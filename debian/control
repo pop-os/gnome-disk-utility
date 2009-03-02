@@ -1,0 +1,61 @@
+Source: gnome-disk-utility
+Section: admin
+Priority: optional
+Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.org>
+Uploaders: Michael Biebl <biebl@debian.org>
+Build-Depends: debhelper (>= 7),
+ cdbs,
+ autotools-dev,
+ pkg-config,
+ xsltproc,
+ gtk-doc-tools,
+ devicekit-disks,
+ libdbus-glib-1-dev (>= 0.76),
+ libglib2.0-dev (>= 2.16),
+ libgtk2.0-dev (>= 2.6.0),
+ libpolkit-dbus-dev (>= 0.7),
+ libpolkit-gnome-dev (>= 0.7),
+ libgnome-keyring-dev (>= 2.22),
+ libsexy-dev (>= 0.1.11)
+Standards-Version: 3.8.0
+Vcs-Svn: svn://svn.debian.org/svn/pkg-utopia/packages/experimental/gnome-disk-utility
+Vcs-Browser: http://svn.debian.org/wsvn/pkg-utopia/packages/experimental/gnome-disk-utility
+Homepage: http://gitweb.freedesktop.org/?p=users/david/gnome-disk-utility.git;a=summary
+
+Package: gnome-disk-utility
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, devicekit-disks
+Description: manage and configure disk drives and media
+ gnome-disk-utility utilizes DeviceKit-disks to allow for easy management of
+ disk drives and media.
+  o Format and partition drives.
+  o Mount and unmount partitions.
+  o Query S.M.A.R.T. attributes.
+
+Package: libgdu0
+Architecture: any
+Section: libs
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: GObject based Disk Utility Library
+ Description will follow...
+
+Package: libgdu-gtk0
+Architecture: any
+Section: libs
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: GTK+ library for libgdu
+ Description will follow...
+
+Package: libgdu-dev
+Architecture: any
+Section: libdevel
+Depends: libgdu0 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}, libglib2.0-dev (>= 2.16), libpolkit-dev
+Description: GObject based Disk Utility Library - development files
+ Description will follow...
+
+Package: libgdu-gtk-dev
+Architecture: any
+Section: libdevel
+Depends: libgdu-gtk0 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}, libgdu-dev, libpolkit-gnome-dev, libgtk2.0-dev
+Description: GTK+ library for libgdu
+ Description will follow...

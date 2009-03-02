@@ -1,0 +1,3 @@
+debian/tmp/usr/lib/libgdu-gtk.{so,a}
+debian/tmp/usr/lib/pkgconfig/gdu-gtk.pc
+debian/tmp/usr/include/gnome-disk-utility/gdu-gtk/

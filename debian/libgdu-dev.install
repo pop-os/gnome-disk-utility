@@ -1,0 +1,3 @@
+debian/tmp/usr/lib/libgdu.{so,a}
+debian/tmp/usr/lib/pkgconfig/gdu.pc
+debian/tmp/usr/include/gnome-disk-utility/gdu/

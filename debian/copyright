@@ -1,0 +1,11 @@
+Files: src/*
+Copyright: 2008 David Zeuthen <david@fubar.dk>
+License: GPL-2+
+  The full text of the GPL is distributed as in
+  /usr/share/common-licenses/GPL-2 on Debian systems.
+
+Files: doc/*
+Copyright: 2008 David Zeuthen <david@fubar.dk>
+License: GFDL-1.1+
+  The full text of the GPL is distributed as in
+  /usr/share/common-licenses/GFDL on Debian systems.
