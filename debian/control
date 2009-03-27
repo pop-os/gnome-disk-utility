@@ -20,7 +20,7 @@ Build-Depends: debhelper (>= 7),
 Standards-Version: 3.8.0
 Vcs-Git: git://git.debian.org/git/pkg-utopia/gnome-disk-utility.git
 Vcs-Browser: http://git.debian.org/?p=pkg-utopia/gnome-disk-utility.git;a=summary
-Homepage: http://gitweb.freedesktop.org/?p=users/david/gnome-disk-utility.git;a=summary
+Homepage: http://git.gnome.org/cgit/gnome-disk-utility/
 
 Package: gnome-disk-utility
 Architecture: any
