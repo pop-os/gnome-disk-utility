@@ -18,8 +18,8 @@ Build-Depends: debhelper (>= 7),
  libgnome-keyring-dev (>= 2.22),
  libsexy-dev (>= 0.1.11)
 Standards-Version: 3.8.0
-Vcs-Svn: svn://svn.debian.org/svn/pkg-utopia/packages/experimental/gnome-disk-utility
-Vcs-Browser: http://svn.debian.org/wsvn/pkg-utopia/packages/experimental/gnome-disk-utility
+Vcs-Git: git://git.debian.org/git/pkg-utopia/gnome-disk-utility.git
+Vcs-Browser: http://git.debian.org/?p=pkg-utopia/gnome-disk-utility.git;a=summary
 Homepage: http://gitweb.freedesktop.org/?p=users/david/gnome-disk-utility.git;a=summary
 
 Package: gnome-disk-utility
