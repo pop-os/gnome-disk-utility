@@ -1,0 +1,167 @@
+<!-- ##### SECTION Title ##### -->
+gdu-presentable
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GduPresentableIface ##### -->
+<para>
+
+</para>
+
+@g_iface: 
+@changed: 
+@removed: 
+@job_changed: 
+@get_id: 
+@get_device: 
+@get_enclosing_presentable: 
+@get_name: 
+@get_icon: 
+@get_offset: 
+@get_size: 
+@get_pool: 
+@is_allocated: 
+@is_recognized: 
+
+<!-- ##### FUNCTION gdu_presentable_get_id ##### -->
+<para>
+
+</para>
+
+@presentable: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_presentable_get_device ##### -->
+<para>
+
+</para>
+
+@presentable: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_presentable_get_enclosing_presentable ##### -->
+<para>
+
+</para>
+
+@presentable: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_presentable_get_name ##### -->
+<para>
+
+</para>
+
+@presentable: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_presentable_get_icon ##### -->
+<para>
+
+</para>
+
+@presentable: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_presentable_get_offset ##### -->
+<para>
+
+</para>
+
+@presentable: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_presentable_get_size ##### -->
+<para>
+
+</para>
+
+@presentable: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_presentable_get_pool ##### -->
+<para>
+
+</para>
+
+@presentable: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_presentable_is_allocated ##### -->
+<para>
+
+</para>
+
+@presentable: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_presentable_is_recognized ##### -->
+<para>
+
+</para>
+
+@presentable: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_presentable_get_toplevel ##### -->
+<para>
+
+</para>
+
+@presentable: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_presentable_hash ##### -->
+<para>
+
+</para>
+
+@presentable: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_presentable_equals ##### -->
+<para>
+
+</para>
+
+@a: 
+@b: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_presentable_compare ##### -->
+<para>
+
+</para>
+
+@a: 
+@b: 
+@Returns: 
+
+

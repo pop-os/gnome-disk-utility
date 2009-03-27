@@ -1,0 +1,161 @@
+<!-- ##### USER_FUNCTION GduDriveStartFunc ##### -->
+<para>
+
+</para>
+
+@drive: 
+@assembled_drive_object_path: 
+@error: 
+@user_data: 
+
+<!-- ##### USER_FUNCTION GduDriveStopFunc ##### -->
+<para>
+
+</para>
+
+@drive: 
+@error: 
+@user_data: 
+
+<!-- ##### ENUM GduLinuxMdDriveSlaveState ##### -->
+<para>
+
+</para>
+
+@GDU_LINUX_MD_DRIVE_SLAVE_STATE_RUNNING: 
+@GDU_LINUX_MD_DRIVE_SLAVE_STATE_RUNNING_SYNCING: 
+@GDU_LINUX_MD_DRIVE_SLAVE_STATE_RUNNING_HOT_SPARE: 
+@GDU_LINUX_MD_DRIVE_SLAVE_STATE_READY: 
+@GDU_LINUX_MD_DRIVE_SLAVE_STATE_NOT_FRESH: 
+
+<!-- ##### FUNCTION gdu_device_linux_md_component_get_events ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_device_linux_md_component_get_update_time ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_device_linux_md_get_slaves_state ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_device_optical_disc_get_has_audio ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_device_optical_disc_get_is_recordable ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_device_optical_disc_get_is_rewritable ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_drive_can_start ##### -->
+<para>
+
+</para>
+
+@drive: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_drive_can_start_degraded ##### -->
+<para>
+
+</para>
+
+@drive: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_drive_can_start_stop ##### -->
+<para>
+
+</para>
+
+@drive: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_drive_is_running ##### -->
+<para>
+
+</para>
+
+@drive: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_drive_start ##### -->
+<para>
+
+</para>
+
+@drive: 
+@callback: 
+@user_data: 
+
+<!-- ##### FUNCTION gdu_drive_stop ##### -->
+<para>
+
+</para>
+
+@drive: 
+@callback: 
+@user_data: 
+
+<!-- ##### FUNCTION gdu_linux_md_drive_get_first_slave ##### -->
+<para>
+
+</para>
+
+@drive: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_linux_md_drive_get_num_ready_slaves ##### -->
+<para>
+
+</para>
+
+@drive: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_linux_md_drive_get_num_slaves ##### -->
+<para>
+
+</para>
+
+@drive: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_linux_md_drive_get_slave_state ##### -->
+<para>
+
+</para>
+
+@drive: 
+@slave: 
+@Returns: 
+

@@ -1,0 +1,234 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="gnome-disk-utility-gdu-error">
+<refmeta>
+<refentrytitle role="top_of_page" id="gnome-disk-utility-gdu-error.top_of_page">GduError</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GNOME-DISK-UTILITY Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GduError</refname>
+<refpurpose>Error helper functions</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gnome-disk-utility-gdu-error.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+enum                <link linkend="GduError">GduError</link>;
+#define             <link linkend="GDU-ERROR--CAPS">GDU_ERROR</link>
+<link linkend="GQuark">GQuark</link>              <link linkend="gdu-error-quark">gdu_error_quark</link>                     (void);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-error-check-polkit-not-authorized">gdu_error_check_polkit_not_authorized</link>
+                                                        (<link linkend="GError">GError</link> *error,
+                                                         <link linkend="PolKitAction">PolKitAction</link> **pk_action,
+                                                         <link linkend="PolKitResult">PolKitResult</link> *pk_result);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gnome-disk-utility-gdu-error.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Contains helper functions for reporting errors to the user.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gnome-disk-utility-gdu-error.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GduError" role="enum">
+<title>enum GduError</title>
+<indexterm zone="GduError"><primary sortas="GduError">GduError</primary></indexterm><programlisting>typedef enum
+{
+        GDU_ERROR_FAILED,
+        GDU_ERROR_INHIBITED,
+        GDU_ERROR_BUSY,
+        GDU_ERROR_CANCELLED,
+        GDU_ERROR_INVALID_OPTION,
+        GDU_ERROR_ALREADY_MOUNTED,
+        GDU_ERROR_NOT_MOUNTED,
+        GDU_ERROR_NOT_CANCELLABLE,
+        GDU_ERROR_NOT_PARTITION,
+        GDU_ERROR_NOT_PARTITION_TABLE,
+        GDU_ERROR_NOT_FILESYSTEM,
+        GDU_ERROR_NOT_LUKS,
+        GDU_ERROR_NOT_LOCKED,
+        GDU_ERROR_NOT_UNLOCKED,
+        GDU_ERROR_NOT_LINUX_MD,
+        GDU_ERROR_NOT_LINUX_MD_COMPONENT,
+        GDU_ERROR_NOT_DRIVE,
+        GDU_ERROR_NOT_SMART_CAPABLE,
+        GDU_ERROR_NOT_SUPPORTED,
+        GDU_ERROR_NOT_FOUND,
+} GduError;
+</programlisting>
+<para>
+Error codes in the <link linkend="GDU-ERROR--CAPS"><type>GDU_ERROR</type></link> domain.</para>
+<para>
+</para><variablelist role="enum">
+<varlistentry id="GDU-ERROR-FAILED--CAPS" role="constant">
+<term><literal>GDU_ERROR_FAILED</literal></term>
+<listitem><simpara> The operation failed.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-ERROR-INHIBITED--CAPS" role="constant">
+<term><literal>GDU_ERROR_INHIBITED</literal></term>
+<listitem><simpara> The daemon is being inhibited.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-ERROR-BUSY--CAPS" role="constant">
+<term><literal>GDU_ERROR_BUSY</literal></term>
+<listitem><simpara> The device is busy
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-ERROR-CANCELLED--CAPS" role="constant">
+<term><literal>GDU_ERROR_CANCELLED</literal></term>
+<listitem><simpara> The operation was cancelled
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-ERROR-INVALID-OPTION--CAPS" role="constant">
+<term><literal>GDU_ERROR_INVALID_OPTION</literal></term>
+<listitem><simpara> An invalid option was passed
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-ERROR-ALREADY-MOUNTED--CAPS" role="constant">
+<term><literal>GDU_ERROR_ALREADY_MOUNTED</literal></term>
+<listitem><simpara> Device is already mounted.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-ERROR-NOT-MOUNTED--CAPS" role="constant">
+<term><literal>GDU_ERROR_NOT_MOUNTED</literal></term>
+<listitem><simpara> Device is not mounted.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-ERROR-NOT-CANCELLABLE--CAPS" role="constant">
+<term><literal>GDU_ERROR_NOT_CANCELLABLE</literal></term>
+<listitem><simpara> Operation is not cancellable.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-ERROR-NOT-PARTITION--CAPS" role="constant">
+<term><literal>GDU_ERROR_NOT_PARTITION</literal></term>
+<listitem><simpara> Device is not a partition.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-ERROR-NOT-PARTITION-TABLE--CAPS" role="constant">
+<term><literal>GDU_ERROR_NOT_PARTITION_TABLE</literal></term>
+<listitem><simpara> Device is not a partition table.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-ERROR-NOT-FILESYSTEM--CAPS" role="constant">
+<term><literal>GDU_ERROR_NOT_FILESYSTEM</literal></term>
+<listitem><simpara> Device is not a file system.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-ERROR-NOT-LUKS--CAPS" role="constant">
+<term><literal>GDU_ERROR_NOT_LUKS</literal></term>
+<listitem><simpara> Device is not a LUKS encrypted device.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-ERROR-NOT-LOCKED--CAPS" role="constant">
+<term><literal>GDU_ERROR_NOT_LOCKED</literal></term>
+<listitem><simpara> Device is not locked.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-ERROR-NOT-UNLOCKED--CAPS" role="constant">
+<term><literal>GDU_ERROR_NOT_UNLOCKED</literal></term>
+<listitem><simpara> Device is not unlocked.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-ERROR-NOT-LINUX-MD--CAPS" role="constant">
+<term><literal>GDU_ERROR_NOT_LINUX_MD</literal></term>
+<listitem><simpara> Device is not a Linux md Software RAID device.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-ERROR-NOT-LINUX-MD-COMPONENT--CAPS" role="constant">
+<term><literal>GDU_ERROR_NOT_LINUX_MD_COMPONENT</literal></term>
+<listitem><simpara> Device is not a Linux md Software RAID component.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-ERROR-NOT-DRIVE--CAPS" role="constant">
+<term><literal>GDU_ERROR_NOT_DRIVE</literal></term>
+<listitem><simpara> Device is not a drive.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-ERROR-NOT-SMART-CAPABLE--CAPS" role="constant">
+<term><literal>GDU_ERROR_NOT_SMART_CAPABLE</literal></term>
+<listitem><simpara> Device is not S.M.A.R.T. capable.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-ERROR-NOT-SUPPORTED--CAPS" role="constant">
+<term><literal>GDU_ERROR_NOT_SUPPORTED</literal></term>
+<listitem><simpara> Operation not supported.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-ERROR-NOT-FOUND--CAPS" role="constant">
+<term><literal>GDU_ERROR_NOT_FOUND</literal></term>
+<listitem><simpara> Given device does not exist.
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GDU-ERROR--CAPS" role="macro">
+<title>GDU_ERROR</title>
+<indexterm zone="GDU-ERROR--CAPS"><primary sortas="GDU_ERROR">GDU_ERROR</primary></indexterm><programlisting>#define GDU_ERROR gdu_error_quark ()
+</programlisting>
+<para>
+Error domain used for errors reported from DeviceKit-disks daemon
+via D-Bus. Note that not all remote errors are mapped to this
+domain. Errors in this domain will come from the <link linkend="GduError"><type>GduError</type></link>
+enumeration. See <link linkend="GError"><type>GError</type></link> for more information on error domains.</para>
+<para>
+</para></refsect2>
+<refsect2 id="gdu-error-quark" role="function">
+<title>gdu_error_quark ()</title>
+<indexterm zone="gdu-error-quark"><primary sortas="gdu_error_quark">gdu_error_quark</primary></indexterm><programlisting><link linkend="GQuark">GQuark</link>              gdu_error_quark                     (void);</programlisting>
+<para>
+Gets the <link linkend="GduError"><type>GduError</type></link> Quark.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GQuark"><type>GQuark</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-error-check-polkit-not-authorized" role="function">
+<title>gdu_error_check_polkit_not_authorized ()</title>
+<indexterm zone="gdu-error-check-polkit-not-authorized"><primary sortas="gdu_error_check_polkit_not_authorized">gdu_error_check_polkit_not_authorized</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_error_check_polkit_not_authorized
+                                                        (<link linkend="GError">GError</link> *error,
+                                                         <link linkend="PolKitAction">PolKitAction</link> **pk_action,
+                                                         <link linkend="PolKitResult">PolKitResult</link> *pk_result);</programlisting>
+<para>
+Checks if an error from a remote method call is of
+type <literal>org.freedesktop.PolicyKit.Error.NotAuthorized</literal>
+and if so, extracts the PolicyKit action and result.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GError"><type>GError</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>pk_action</parameter>&#160;:</term>
+<listitem><simpara> Return location for a <link linkend="PolKitAction"><type>PolKitAction</type></link> object.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>pk_result</parameter>&#160;:</term>
+<listitem><simpara> Return location for <link linkend="PolKitResult"><type>PolKitResult</type></link> value.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><type>TRUE</type></link> only if the error is a PolicyKit exception and
+<parameter>pk_action</parameter> (caller must free this object with <link linkend="polkit-action-unref"><function>polkit_action_unref()</function></link>)
+and <parameter>pk_result</parameter> are set.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

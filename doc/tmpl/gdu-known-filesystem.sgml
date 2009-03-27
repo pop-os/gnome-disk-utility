@@ -1,0 +1,157 @@
+<!-- ##### SECTION Title ##### -->
+GduKnownFilesystem
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GduKnownFilesystemPrivate ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT GduKnownFilesystem ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdu_known_filesystem_get_id ##### -->
+<para>
+
+</para>
+
+@known_filesystem: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_known_filesystem_get_name ##### -->
+<para>
+
+</para>
+
+@known_filesystem: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_known_filesystem_get_supports_unix_owners ##### -->
+<para>
+
+</para>
+
+@known_filesystem: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_known_filesystem_get_can_mount ##### -->
+<para>
+
+</para>
+
+@known_filesystem: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_known_filesystem_get_can_create ##### -->
+<para>
+
+</para>
+
+@known_filesystem: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_known_filesystem_get_max_label_len ##### -->
+<para>
+
+</para>
+
+@known_filesystem: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_known_filesystem_get_supports_label_rename ##### -->
+<para>
+
+</para>
+
+@known_filesystem: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_known_filesystem_get_supports_online_label_rename ##### -->
+<para>
+
+</para>
+
+@known_filesystem: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_known_filesystem_get_supports_fsck ##### -->
+<para>
+
+</para>
+
+@known_filesystem: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_known_filesystem_get_supports_online_fsck ##### -->
+<para>
+
+</para>
+
+@known_filesystem: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_known_filesystem_get_supports_resize_enlarge ##### -->
+<para>
+
+</para>
+
+@known_filesystem: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_known_filesystem_get_supports_online_resize_enlarge ##### -->
+<para>
+
+</para>
+
+@known_filesystem: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_known_filesystem_get_supports_resize_shrink ##### -->
+<para>
+
+</para>
+
+@known_filesystem: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_known_filesystem_get_supports_online_resize_shrink ##### -->
+<para>
+
+</para>
+
+@known_filesystem: 
+@Returns: 
+
+

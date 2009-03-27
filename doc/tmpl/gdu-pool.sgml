@@ -1,0 +1,238 @@
+<!-- ##### SECTION Title ##### -->
+GduPool
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GduPoolPrivate ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT GduPool ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SIGNAL GduPool::device-added ##### -->
+<para>
+
+</para>
+
+@gdupool: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL GduPool::device-changed ##### -->
+<para>
+
+</para>
+
+@gdupool: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL GduPool::device-job-changed ##### -->
+<para>
+
+</para>
+
+@gdupool: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL GduPool::device-removed ##### -->
+<para>
+
+</para>
+
+@gdupool: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL GduPool::presentable-added ##### -->
+<para>
+
+</para>
+
+@gdupool: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL GduPool::presentable-changed ##### -->
+<para>
+
+</para>
+
+@gdupool: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL GduPool::presentable-job-changed ##### -->
+<para>
+
+</para>
+
+@gdupool: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL GduPool::presentable-removed ##### -->
+<para>
+
+</para>
+
+@gdupool: the object which received the signal.
+@arg1: 
+
+<!-- ##### FUNCTION gdu_pool_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_pool_get_daemon_version ##### -->
+<para>
+
+</para>
+
+@pool: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_pool_is_daemon_inhibited ##### -->
+<para>
+
+</para>
+
+@pool: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_pool_supports_luks_devices ##### -->
+<para>
+
+</para>
+
+@pool: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_pool_get_known_filesystems ##### -->
+<para>
+
+</para>
+
+@pool: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_pool_get_known_filesystem_by_id ##### -->
+<para>
+
+</para>
+
+@pool: 
+@id: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_pool_get_by_object_path ##### -->
+<para>
+
+</para>
+
+@pool: 
+@object_path: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_pool_get_by_device_file ##### -->
+<para>
+
+</para>
+
+@pool: 
+@device_file: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_pool_get_volume_by_device ##### -->
+<para>
+
+</para>
+
+@pool: 
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_pool_get_drive_by_device ##### -->
+<para>
+
+</para>
+
+@pool: 
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_pool_get_presentable_by_id ##### -->
+<para>
+
+</para>
+
+@pool: 
+@id: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_pool_get_devices ##### -->
+<para>
+
+</para>
+
+@pool: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_pool_get_presentables ##### -->
+<para>
+
+</para>
+
+@pool: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_pool_get_enclosed_presentables ##### -->
+<para>
+
+</para>
+
+@pool: 
+@presentable: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_pool_op_linux_md_start ##### -->
+<para>
+
+</para>
+
+@pool: 
+@component_objpaths: 
+@callback: 
+@user_data: 
+
+

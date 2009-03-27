@@ -1,0 +1,410 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="gnome-disk-utility-gdu-types">
+<refmeta>
+<refentrytitle role="top_of_page" id="gnome-disk-utility-gdu-types.top_of_page">gdu-types</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GNOME-DISK-UTILITY Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>gdu-types</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gnome-disk-utility-gdu-types.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+<anchor id="GduPool"/><anchor id="GduDevice"/><anchor id="GduPresentable"/><anchor id="GduDrive"/><anchor id="GduLinuxMdDrive"/><anchor id="GduVolume"/><anchor id="GduVolumeHole"/><anchor id="GduKnownFilesystem"/><anchor id="GduProcess"/><anchor id="GduSmartData"/><anchor id="GduSmartDataAttribute"/>
+<synopsis>
+                    <link linkend="GduPool-struct">GduPool</link>;
+                    <link linkend="GduDevice-struct">GduDevice</link>;
+                    <link linkend="GduPresentable-struct">GduPresentable</link>;
+                    <link linkend="GduDrive-struct">GduDrive</link>;
+                    <link linkend="GduLinuxMdDrive-struct">GduLinuxMdDrive</link>;
+                    <link linkend="GduVolume-struct">GduVolume</link>;
+                    <link linkend="GduVolumeHole-struct">GduVolumeHole</link>;
+                    <link linkend="GduKnownFilesystem-struct">GduKnownFilesystem</link>;
+                    <link linkend="GduProcess-struct">GduProcess</link>;
+                    <link linkend="GduSmartData-struct">GduSmartData</link>;
+                    <link linkend="GduSmartDataAttribute-struct">GduSmartDataAttribute</link>;
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="gnome-disk-utility-gdu-types.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----GduPool
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----GduDevice
+</synopsis>
+<synopsis>
+  <link linkend="GInterface">GInterface</link>
+   +----GduPresentable
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----GduDrive
+         +----<link linkend="GduLinuxMdDrive">GduLinuxMdDrive</link>
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GduDrive">GduDrive</link>
+         +----GduLinuxMdDrive
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----GduVolume
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----GduVolumeHole
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----GduKnownFilesystem
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----GduProcess
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----GduSmartData
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----GduSmartDataAttribute
+</synopsis>
+</refsect1>
+
+<refsect1 id="gnome-disk-utility-gdu-types.prerequisites" role="prerequisites">
+<title role="prerequisites.title">Prerequisites</title>
+<para>
+GduPresentable requires
+ <link linkend="GObject">GObject</link>.</para>
+</refsect1>
+
+
+<refsect1 id="gnome-disk-utility-gdu-types.implemented-interfaces" role="impl_interfaces">
+<title role="impl_interfaces.title">Implemented Interfaces</title>
+<para>
+GduDrive implements
+ <link linkend="GduPresentable">GduPresentable</link>.</para>
+<para>
+GduLinuxMdDrive implements
+ <link linkend="GduPresentable">GduPresentable</link>.</para>
+<para>
+GduVolume implements
+ <link linkend="GduPresentable">GduPresentable</link>.</para>
+<para>
+GduVolumeHole implements
+ <link linkend="GduPresentable">GduPresentable</link>.</para>
+</refsect1>
+
+<refsect1 id="gnome-disk-utility-gdu-types.implementations" role="implementations">
+<title role="implementations.title">Known Implementations</title>
+<para>
+GduPresentable is implemented by
+ <link linkend="GduVolume">GduVolume</link>,  <link linkend="GduVolumeHole">GduVolumeHole</link>,  <link linkend="GduLinuxMdDrive">GduLinuxMdDrive</link> and  <link linkend="GduDrive">GduDrive</link>.</para>
+</refsect1>
+
+
+<refsect1 id="gnome-disk-utility-gdu-types.signals" role="signal_proto">
+<title role="signal_proto.title">Signals</title>
+<synopsis>
+  &quot;<link linkend="GduPool-device-added">device-added</link>&quot;                                   : Run Last
+  &quot;<link linkend="GduPool-device-changed">device-changed</link>&quot;                                 : Run Last
+  &quot;<link linkend="GduPool-device-job-changed">device-job-changed</link>&quot;                             : Run Last
+  &quot;<link linkend="GduPool-device-removed">device-removed</link>&quot;                                 : Run Last
+  &quot;<link linkend="GduPool-presentable-added">presentable-added</link>&quot;                              : Run Last
+  &quot;<link linkend="GduPool-presentable-changed">presentable-changed</link>&quot;                            : Run Last
+  &quot;<link linkend="GduPool-presentable-job-changed">presentable-job-changed</link>&quot;                        : Run Last
+  &quot;<link linkend="GduPool-presentable-removed">presentable-removed</link>&quot;                            : Run Last
+  &quot;<link linkend="GduDevice-changed">changed</link>&quot;                                        : Run Last
+  &quot;<link linkend="GduDevice-job-changed">job-changed</link>&quot;                                    : Run Last
+  &quot;<link linkend="GduDevice-removed">removed</link>&quot;                                        : Run Last
+  &quot;<link linkend="GduPresentable-changed">changed</link>&quot;                                        : Run Last
+  &quot;<link linkend="GduPresentable-job-changed">job-changed</link>&quot;                                    : Run Last
+  &quot;<link linkend="GduPresentable-removed">removed</link>&quot;                                        : Run Last
+</synopsis>
+</refsect1>
+
+
+<refsect1 id="gnome-disk-utility-gdu-types.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gnome-disk-utility-gdu-types.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GduPool-struct" role="struct">
+<title>GduPool</title>
+<indexterm zone="GduPool-struct"><primary sortas="GduPool">GduPool</primary></indexterm><programlisting>typedef struct _GduPool GduPool;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduDevice-struct" role="struct">
+<title>GduDevice</title>
+<indexterm zone="GduDevice-struct"><primary sortas="GduDevice">GduDevice</primary></indexterm><programlisting>typedef struct _GduDevice GduDevice;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduPresentable-struct" role="struct">
+<title>GduPresentable</title>
+<indexterm zone="GduPresentable-struct"><primary sortas="GduPresentable">GduPresentable</primary></indexterm><programlisting>typedef struct _GduPresentable GduPresentable;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduDrive-struct" role="struct">
+<title>GduDrive</title>
+<indexterm zone="GduDrive-struct"><primary sortas="GduDrive">GduDrive</primary></indexterm><programlisting>typedef struct _GduDrive GduDrive;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduLinuxMdDrive-struct" role="struct">
+<title>GduLinuxMdDrive</title>
+<indexterm zone="GduLinuxMdDrive-struct"><primary sortas="GduLinuxMdDrive">GduLinuxMdDrive</primary></indexterm><programlisting>typedef struct _GduLinuxMdDrive GduLinuxMdDrive;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduVolume-struct" role="struct">
+<title>GduVolume</title>
+<indexterm zone="GduVolume-struct"><primary sortas="GduVolume">GduVolume</primary></indexterm><programlisting>typedef struct _GduVolume GduVolume;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduVolumeHole-struct" role="struct">
+<title>GduVolumeHole</title>
+<indexterm zone="GduVolumeHole-struct"><primary sortas="GduVolumeHole">GduVolumeHole</primary></indexterm><programlisting>typedef struct _GduVolumeHole GduVolumeHole;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduKnownFilesystem-struct" role="struct">
+<title>GduKnownFilesystem</title>
+<indexterm zone="GduKnownFilesystem-struct"><primary sortas="GduKnownFilesystem">GduKnownFilesystem</primary></indexterm><programlisting>typedef struct _GduKnownFilesystem GduKnownFilesystem;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduProcess-struct" role="struct">
+<title>GduProcess</title>
+<indexterm zone="GduProcess-struct"><primary sortas="GduProcess">GduProcess</primary></indexterm><programlisting>typedef struct _GduProcess GduProcess;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduSmartData-struct" role="struct">
+<title>GduSmartData</title>
+<indexterm zone="GduSmartData-struct"><primary sortas="GduSmartData">GduSmartData</primary></indexterm><programlisting>typedef struct _GduSmartData GduSmartData;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduSmartDataAttribute-struct" role="struct">
+<title>GduSmartDataAttribute</title>
+<indexterm zone="GduSmartDataAttribute-struct"><primary sortas="GduSmartDataAttribute">GduSmartDataAttribute</primary></indexterm><programlisting>typedef struct _GduSmartDataAttribute GduSmartDataAttribute;</programlisting>
+<para>
+</para></refsect2>
+
+</refsect1>
+
+<refsect1 id="gnome-disk-utility-gdu-types.signal-details" role="signals">
+<title role="signals.title">Signal Details</title>
+<refsect2 id="GduPool-device-added" role="signal"><title>The <literal>&quot;device-added&quot;</literal> signal</title>
+<indexterm zone="GduPool-device-added"><primary sortas="GduPool::device-added">GduPool::device-added</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="GduPool">GduPool</link>   *pool,
+                                                        <link linkend="GduDevice">GduDevice</link> *device,
+                                                        <link linkend="gpointer">gpointer</link>   user_data)      : Run Last</programlisting>
+<para>
+Emitted when <parameter>device</parameter> is added to <parameter>pool</parameter>.</para>
+<para>
+</para>
+@:
+@:<variablelist role="params">
+<varlistentry><term><parameter>pool</parameter>&#160;:</term>
+<listitem><simpara> The <link linkend="GduPool"><type>GduPool</type></link> emitting the signal.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara> The <link linkend="GduDevice"><type>GduDevice</type></link> that was added.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="GduPool-device-changed" role="signal"><title>The <literal>&quot;device-changed&quot;</literal> signal</title>
+<indexterm zone="GduPool-device-changed"><primary sortas="GduPool::device-changed">GduPool::device-changed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="GduPool">GduPool</link>   *pool,
+                                                        <link linkend="GduDevice">GduDevice</link> *device,
+                                                        <link linkend="gpointer">gpointer</link>   user_data)      : Run Last</programlisting>
+<para>
+Emitted when <parameter>device</parameter> is changed.</para>
+<para>
+</para>
+@:
+@:<variablelist role="params">
+<varlistentry><term><parameter>pool</parameter>&#160;:</term>
+<listitem><simpara> The <link linkend="GduPool"><type>GduPool</type></link> emitting the signal.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GduDevice"><type>GduDevice</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="GduPool-device-job-changed" role="signal"><title>The <literal>&quot;device-job-changed&quot;</literal> signal</title>
+<indexterm zone="GduPool-device-job-changed"><primary sortas="GduPool::device-job-changed">GduPool::device-job-changed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="GduPool">GduPool</link>   *pool,
+                                                        <link linkend="GduDevice">GduDevice</link> *device,
+                                                        <link linkend="gpointer">gpointer</link>   user_data)      : Run Last</programlisting>
+<para>
+Emitted when job status on <parameter>device</parameter> changes.</para>
+<para>
+</para>
+@:
+@:<variablelist role="params">
+<varlistentry><term><parameter>pool</parameter>&#160;:</term>
+<listitem><simpara> The <link linkend="GduPool"><type>GduPool</type></link> emitting the signal.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GduDevice"><type>GduDevice</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="GduPool-device-removed" role="signal"><title>The <literal>&quot;device-removed&quot;</literal> signal</title>
+<indexterm zone="GduPool-device-removed"><primary sortas="GduPool::device-removed">GduPool::device-removed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="GduPool">GduPool</link>   *pool,
+                                                        <link linkend="GduDevice">GduDevice</link> *device,
+                                                        <link linkend="gpointer">gpointer</link>   user_data)      : Run Last</programlisting>
+<para>
+Emitted when <parameter>device</parameter> is removed from <parameter>pool</parameter>. Recipients
+should release references to <parameter>device</parameter>.</para>
+<para>
+</para>
+@:
+@:<variablelist role="params">
+<varlistentry><term><parameter>pool</parameter>&#160;:</term>
+<listitem><simpara> The <link linkend="GduPool"><type>GduPool</type></link> emitting the signal.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara> The <link linkend="GduDevice"><type>GduDevice</type></link> that was removed.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="GduPool-presentable-added" role="signal"><title>The <literal>&quot;presentable-added&quot;</literal> signal</title>
+<indexterm zone="GduPool-presentable-added"><primary sortas="GduPool::presentable-added">GduPool::presentable-added</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="GduPool">GduPool</link>        *pool,
+                                                        <link linkend="GduPresentable">GduPresentable</link> *presentable,
+                                                        <link linkend="gpointer">gpointer</link>        user_data)        : Run Last</programlisting>
+<para>
+Emitted when <parameter>presentable</parameter> is added to <parameter>pool</parameter>.</para>
+<para>
+</para>
+@:
+@:<variablelist role="params">
+<varlistentry><term><parameter>pool</parameter>&#160;:</term>
+<listitem><simpara> The <link linkend="GduPool"><type>GduPool</type></link> emitting the signal.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>presentable</parameter>&#160;:</term>
+<listitem><simpara> The <link linkend="GduPresentable"><type>GduPresentable</type></link> that was added.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="GduPool-presentable-changed" role="signal"><title>The <literal>&quot;presentable-changed&quot;</literal> signal</title>
+<indexterm zone="GduPool-presentable-changed"><primary sortas="GduPool::presentable-changed">GduPool::presentable-changed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="GduPool">GduPool</link>        *pool,
+                                                        <link linkend="GduPresentable">GduPresentable</link> *presentable,
+                                                        <link linkend="gpointer">gpointer</link>        user_data)        : Run Last</programlisting>
+<para>
+Emitted when <parameter>presentable</parameter> changes.</para>
+<para>
+</para>
+@:
+@:<variablelist role="params">
+<varlistentry><term><parameter>pool</parameter>&#160;:</term>
+<listitem><simpara> The <link linkend="GduPool"><type>GduPool</type></link> emitting the signal.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>presentable</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GduPresentable"><type>GduPresentable</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="GduPool-presentable-job-changed" role="signal"><title>The <literal>&quot;presentable-job-changed&quot;</literal> signal</title>
+<indexterm zone="GduPool-presentable-job-changed"><primary sortas="GduPool::presentable-job-changed">GduPool::presentable-job-changed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="GduPool">GduPool</link>        *pool,
+                                                        <link linkend="GduPresentable">GduPresentable</link> *presentable,
+                                                        <link linkend="gpointer">gpointer</link>        user_data)        : Run Last</programlisting>
+<para>
+Emitted when job status on <parameter>presentable</parameter> changes.</para>
+<para>
+</para>
+@:
+@:<variablelist role="params">
+<varlistentry><term><parameter>pool</parameter>&#160;:</term>
+<listitem><simpara> The <link linkend="GduPool"><type>GduPool</type></link> emitting the signal.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>presentable</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GduPresentable"><type>GduPresentable</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="GduPool-presentable-removed" role="signal"><title>The <literal>&quot;presentable-removed&quot;</literal> signal</title>
+<indexterm zone="GduPool-presentable-removed"><primary sortas="GduPool::presentable-removed">GduPool::presentable-removed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="GduPool">GduPool</link>        *pool,
+                                                        <link linkend="GduPresentable">GduPresentable</link> *presentable,
+                                                        <link linkend="gpointer">gpointer</link>        user_data)        : Run Last</programlisting>
+<para>
+Emitted when <parameter>presentable</parameter> is removed from <parameter>pool</parameter>. Recipients
+should release references to <parameter>presentable</parameter>.</para>
+<para>
+</para>
+@:
+@:<variablelist role="params">
+<varlistentry><term><parameter>pool</parameter>&#160;:</term>
+<listitem><simpara> The <link linkend="GduPool"><type>GduPool</type></link> emitting the signal.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>presentable</parameter>&#160;:</term>
+<listitem><simpara> The <link linkend="GduPresentable"><type>GduPresentable</type></link> that was removed.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="GduDevice-changed" role="signal"><title>The <literal>&quot;changed&quot;</literal> signal</title>
+<indexterm zone="GduDevice-changed"><primary sortas="GduDevice::changed">GduDevice::changed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="GduDevice">GduDevice</link> *gdudevice,
+                                                        <link linkend="gpointer">gpointer</link>   user_data)      : Run Last</programlisting>
+<para>
+</para>
+@:</refsect2><refsect2 id="GduDevice-job-changed" role="signal"><title>The <literal>&quot;job-changed&quot;</literal> signal</title>
+<indexterm zone="GduDevice-job-changed"><primary sortas="GduDevice::job-changed">GduDevice::job-changed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="GduDevice">GduDevice</link> *gdudevice,
+                                                        <link linkend="gpointer">gpointer</link>   user_data)      : Run Last</programlisting>
+<para>
+</para>
+@:</refsect2><refsect2 id="GduDevice-removed" role="signal"><title>The <literal>&quot;removed&quot;</literal> signal</title>
+<indexterm zone="GduDevice-removed"><primary sortas="GduDevice::removed">GduDevice::removed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="GduDevice">GduDevice</link> *gdudevice,
+                                                        <link linkend="gpointer">gpointer</link>   user_data)      : Run Last</programlisting>
+<para>
+</para>
+@:</refsect2><refsect2 id="GduPresentable-changed" role="signal"><title>The <literal>&quot;changed&quot;</literal> signal</title>
+<indexterm zone="GduPresentable-changed"><primary sortas="GduPresentable::changed">GduPresentable::changed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="GduPresentable">GduPresentable</link> *presentable,
+                                                        <link linkend="gpointer">gpointer</link>        user_data)        : Run Last</programlisting>
+<para>
+Emitted when <parameter>presentable</parameter> changes.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>presentable</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GduPresentable"><type>GduPresentable</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="GduPresentable-job-changed" role="signal"><title>The <literal>&quot;job-changed&quot;</literal> signal</title>
+<indexterm zone="GduPresentable-job-changed"><primary sortas="GduPresentable::job-changed">GduPresentable::job-changed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="GduPresentable">GduPresentable</link> *presentable,
+                                                        <link linkend="gpointer">gpointer</link>        user_data)        : Run Last</programlisting>
+<para>
+Emitted when job status on <parameter>presentable</parameter> changes.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>presentable</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GduPresentable"><type>GduPresentable</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="GduPresentable-removed" role="signal"><title>The <literal>&quot;removed&quot;</literal> signal</title>
+<indexterm zone="GduPresentable-removed"><primary sortas="GduPresentable::removed">GduPresentable::removed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="GduPresentable">GduPresentable</link> *presentable,
+                                                        <link linkend="gpointer">gpointer</link>        user_data)        : Run Last</programlisting>
+<para>
+Emitted when <parameter>presentable</parameter> is removed. Recipients
+should release references to <parameter>presentable</parameter>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>presentable</parameter>&#160;:</term>
+<listitem><simpara> The <link linkend="GduPresentable"><type>GduPresentable</type></link> that was removed.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+</refsect1>
+
+
+
+</refentry>

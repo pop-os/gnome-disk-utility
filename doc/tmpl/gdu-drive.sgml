@@ -1,0 +1,68 @@
+<!-- ##### SECTION Title ##### -->
+GduDrive
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GduDrivePrivate ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT GduDrive ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdu_drive_is_active ##### -->
+<para>
+
+</para>
+
+@drive: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_drive_is_activatable ##### -->
+<para>
+
+</para>
+
+@drive: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_drive_can_activate ##### -->
+<para>
+
+</para>
+
+@drive: 
+@out_degraded: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_drive_can_deactivate ##### -->
+<para>
+
+</para>
+
+@drive: 
+@Returns: 
+
+

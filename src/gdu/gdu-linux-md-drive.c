@@ -1,0 +1,867 @@
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*- */
+/* gdu-linux-md-drive.c
+ *
+ * Copyright (C) 2007 David Zeuthen
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation; either version 2 of
+ * the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ */
+
+#include <config.h>
+#include <string.h>
+#include <glib/gi18n.h>
+#include <dbus/dbus-glib.h>
+
+#include "gdu-private.h"
+#include "gdu-util.h"
+#include "gdu-pool.h"
+#include "gdu-device.h"
+#include "gdu-linux-md-drive.h"
+#include "gdu-presentable.h"
+
+/**
+ * SECTION:gdu-linux-md-drive
+ * @title: GduLinuxMdDrive
+ * @short_description: Linux Software RAID drives
+ *
+ * The #GduLinuxMdDrive class represents drives Linux Software RAID arrays.
+ *
+ * An #GduLinuxMdDrive drive is added to #GduPool as soon as a
+ * component device that is part of the abstraction is available.  The
+ * drive can be started (gdu_drive_start()) and stopped
+ * (gdu_drive_stop()) and the state of the underlying components can
+ * be queried through gdu_linux_md_drive_get_slave_flags()).
+ *
+ * See the documentation for #GduPresentable for the big picture.
+ */
+
+struct _GduLinuxMdDrivePrivate
+{
+        /* device may be NULL */
+        GduDevice *device;
+
+        GList *slaves;
+
+        GduPool *pool;
+
+        gchar *uuid;
+
+        gchar *id;
+};
+
+static GObjectClass *parent_class = NULL;
+
+static void gdu_linux_md_drive_presentable_iface_init (GduPresentableIface *iface);
+
+G_DEFINE_TYPE_WITH_CODE (GduLinuxMdDrive, gdu_linux_md_drive, GDU_TYPE_DRIVE,
+                         G_IMPLEMENT_INTERFACE (GDU_TYPE_PRESENTABLE,
+                                                gdu_linux_md_drive_presentable_iface_init))
+
+static void device_added (GduPool *pool, GduDevice *device, gpointer user_data);
+static void device_removed (GduPool *pool, GduDevice *device, gpointer user_data);
+static void device_changed (GduPool *pool, GduDevice *device, gpointer user_data);
+
+static gboolean    gdu_linux_md_drive_is_active             (GduDrive               *drive);
+static gboolean    gdu_linux_md_drive_is_activatable        (GduDrive               *drive);
+static gboolean    gdu_linux_md_drive_can_deactivate        (GduDrive               *drive);
+static gboolean    gdu_linux_md_drive_can_activate          (GduDrive               *drive,
+                                                             gboolean               *out_degraded);
+static void        gdu_linux_md_drive_activate              (GduDrive               *drive,
+                                                             GduDriveActivateFunc    callback,
+                                                             gpointer                user_data);
+static void        gdu_linux_md_drive_deactivate            (GduDrive               *drive,
+                                                             GduDriveDeactivateFunc  callback,
+                                                             gpointer                user_data);
+
+
+static void
+gdu_linux_md_drive_finalize (GObject *object)
+{
+        GduLinuxMdDrive *drive = GDU_LINUX_MD_DRIVE (object);
+
+        //g_debug ("##### finalized linux-md drive '%s' %p", drive->priv->id, drive);
+
+        if (drive->priv->pool != NULL) {
+                g_signal_handlers_disconnect_by_func (drive->priv->pool, device_added, drive);
+                g_signal_handlers_disconnect_by_func (drive->priv->pool, device_removed, drive);
+                g_signal_handlers_disconnect_by_func (drive->priv->pool, device_changed, drive);
+                g_object_unref (drive->priv->pool);
+        }
+
+        if (drive->priv->device != NULL) {
+                g_object_unref (drive->priv->device);
+        }
+
+        g_list_foreach (drive->priv->slaves, (GFunc) g_object_unref, NULL);
+        g_list_free (drive->priv->slaves);
+
+        g_free (drive->priv->id);
+
+        if (G_OBJECT_CLASS (parent_class)->finalize)
+                (* G_OBJECT_CLASS (parent_class)->finalize) (G_OBJECT (drive));
+}
+
+static void
+gdu_linux_md_drive_class_init (GduLinuxMdDriveClass *klass)
+{
+        GObjectClass *gobject_class = (GObjectClass *) klass;
+        GduDriveClass *drive_class = (GduDriveClass *) klass;
+
+        parent_class = g_type_class_peek_parent (klass);
+
+        gobject_class->finalize = gdu_linux_md_drive_finalize;
+
+        g_type_class_add_private (klass, sizeof (GduLinuxMdDrivePrivate));
+
+        drive_class->is_active             = gdu_linux_md_drive_is_active;
+        drive_class->is_activatable        = gdu_linux_md_drive_is_activatable;
+        drive_class->can_deactivate        = gdu_linux_md_drive_can_deactivate;
+        drive_class->can_activate          = gdu_linux_md_drive_can_activate;
+        drive_class->activate              = gdu_linux_md_drive_activate;
+        drive_class->deactivate            = gdu_linux_md_drive_deactivate;
+}
+
+static void
+gdu_linux_md_drive_init (GduLinuxMdDrive *drive)
+{
+        drive->priv = G_TYPE_INSTANCE_GET_PRIVATE (drive, GDU_TYPE_LINUX_MD_DRIVE, GduLinuxMdDrivePrivate);
+}
+
+static void
+prime_devices (GduLinuxMdDrive *drive)
+{
+        GList *l;
+        GList *devices;
+
+        devices = gdu_pool_get_devices (drive->priv->pool);
+
+        for (l = devices; l != NULL; l = l->next) {
+                GduDevice *device = GDU_DEVICE (l->data);
+
+                if (gdu_device_is_linux_md (device) &&
+                    g_strcmp0 (gdu_device_linux_md_get_uuid (device), drive->priv->uuid) == 0) {
+                        drive->priv->device = g_object_ref (device);
+                }
+
+                if (gdu_device_is_linux_md_component (device) &&
+                    g_strcmp0 (gdu_device_linux_md_component_get_uuid (device), drive->priv->uuid) == 0) {
+                        drive->priv->slaves = g_list_prepend (drive->priv->slaves, g_object_ref (device));
+                }
+
+        }
+
+        g_list_foreach (devices, (GFunc) g_object_unref, NULL);
+        g_list_free (devices);
+}
+
+static void
+emit_changed (GduLinuxMdDrive *drive)
+{
+        //g_debug ("emitting changed for uuid '%s'", drive->priv->uuid);
+        g_signal_emit_by_name (drive, "changed");
+        g_signal_emit_by_name (drive->priv->pool, "presentable-changed", drive);
+}
+
+static void
+device_added (GduPool *pool, GduDevice *device, gpointer user_data)
+{
+        GduLinuxMdDrive *drive = GDU_LINUX_MD_DRIVE (user_data);
+
+        //g_debug ("MD: in device_added %s '%s'", gdu_device_get_object_path (device), gdu_device_linux_md_get_uuid (device));
+
+        if (gdu_device_is_linux_md (device) &&
+            g_strcmp0 (gdu_device_linux_md_get_uuid (device), drive->priv->uuid) == 0) {
+                if (drive->priv->device != NULL) {
+                        g_warning ("Already have md device %s", gdu_device_get_device_file (device));
+                        g_object_unref (drive->priv->device);
+                }
+                drive->priv->device = g_object_ref (device);
+                emit_changed (drive);
+        }
+
+        if (gdu_device_is_linux_md_component (device) &&
+            g_strcmp0 (gdu_device_linux_md_component_get_uuid (device), drive->priv->uuid) == 0) {
+                GList *l;
+
+                for (l = drive->priv->slaves; l != NULL; l = l->next) {
+                        if (g_strcmp0 (gdu_device_get_device_file (GDU_DEVICE (l->data)),
+                                       gdu_device_get_device_file (device)) == 0) {
+                                g_warning ("Already have md slave %s", gdu_device_get_device_file (device));
+                                g_object_unref (GDU_DEVICE (l->data));
+                                drive->priv->slaves = g_list_delete_link (drive->priv->slaves, l);
+                        }
+                }
+
+                drive->priv->slaves = g_list_prepend (drive->priv->slaves, g_object_ref (device));
+                emit_changed (drive);
+        }
+}
+
+static void
+device_removed (GduPool *pool, GduDevice *device, gpointer user_data)
+{
+        GduLinuxMdDrive *drive = GDU_LINUX_MD_DRIVE (user_data);
+
+        //g_debug ("MD: in device_removed %s", gdu_device_get_object_path (device));
+
+        if (device == drive->priv->device) {
+                g_object_unref (device);
+                drive->priv->device = NULL;
+                emit_changed (drive);
+        }
+
+        if (g_list_find (drive->priv->slaves, device) != NULL) {
+                g_object_unref (device);
+                drive->priv->slaves = g_list_remove (drive->priv->slaves, device);
+                emit_changed (drive);
+        }
+}
+
+static void
+device_changed (GduPool *pool, GduDevice *device, gpointer user_data)
+{
+        GduLinuxMdDrive *drive = GDU_LINUX_MD_DRIVE (user_data);
+        gboolean has_device;
+        gboolean emit_signal;
+
+        //g_debug ("MD: in device_changed %s", gdu_device_get_object_path (device));
+
+        emit_signal = TRUE;
+
+        has_device = g_list_find (drive->priv->slaves, device) != NULL;
+
+        if (has_device) {
+                /* handle when device is removed from the array */
+                emit_signal = TRUE;
+                if (!gdu_device_is_linux_md_component (device) ||
+                    g_strcmp0 (gdu_device_linux_md_component_get_uuid (device), drive->priv->uuid) != 0) {
+                        drive->priv->slaves = g_list_remove (drive->priv->slaves, device);
+                        g_object_unref (device);
+                }
+        } else {
+                /* handle when device is joining the array */
+                if (gdu_device_is_linux_md_component (device) &&
+                    g_strcmp0 (gdu_device_linux_md_component_get_uuid (device), drive->priv->uuid) == 0) {
+                        emit_signal = TRUE;
+                        drive->priv->slaves = g_list_prepend (drive->priv->slaves, g_object_ref (device));
+                }
+        }
+
+
+
+        if (device == drive->priv->device || emit_signal) {
+                emit_changed (drive);
+        }
+}
+
+GduLinuxMdDrive *
+_gdu_linux_md_drive_new (GduPool      *pool,
+                         const gchar  *uuid)
+{
+        GduLinuxMdDrive *drive;
+
+        drive = GDU_LINUX_MD_DRIVE (g_object_new (GDU_TYPE_LINUX_MD_DRIVE, NULL));
+        drive->priv->pool = g_object_ref (pool);
+        drive->priv->uuid = g_strdup (uuid);
+        drive->priv->id = g_strdup_printf ("linux_md_%s", uuid);
+
+        g_signal_connect (drive->priv->pool, "device-added", G_CALLBACK (device_added), drive);
+        g_signal_connect (drive->priv->pool, "device-removed", G_CALLBACK (device_removed), drive);
+        g_signal_connect (drive->priv->pool, "device-changed", G_CALLBACK (device_changed), drive);
+
+        prime_devices (drive);
+
+        return drive;
+}
+
+gboolean
+_gdu_linux_md_drive_has_uuid (GduLinuxMdDrive  *drive,
+                              const gchar      *uuid)
+{
+        return g_strcmp0 (drive->priv->uuid, uuid) == 0;
+}
+
+/**
+ * gdu_linux_md_drive_has_slave:
+ * @drive: A #GduLinuxMdDrive.
+ * @device: A #GduDevice.
+ *
+ * Checks if @device is a component of @drive.
+ *
+ * Returns: #TRUE only if @slave is a component of @drive.
+ **/
+gboolean
+gdu_linux_md_drive_has_slave    (GduLinuxMdDrive  *drive,
+                                 GduDevice            *device)
+{
+        return g_list_find (drive->priv->slaves, device) != NULL;
+}
+
+/**
+ * gdu_linux_md_drive_get_slaves:
+ * @drive: A #GduLinuxMdDrive.
+ *
+ * Gets all slaves of @drive.
+ *
+ * Returns: A #GList of #GduDevice objects. Caller must free this list (and call g_object_unref() on all elements).
+ **/
+GList *
+gdu_linux_md_drive_get_slaves (GduLinuxMdDrive *drive)
+{
+        GList *ret;
+        ret = g_list_copy (drive->priv->slaves);
+        g_list_foreach (ret, (GFunc) g_object_ref, NULL);
+        return ret;
+}
+
+/**
+ * gdu_linux_md_drive_get_slave_flags:
+ * @drive: A #GduLinuxMdDrive.
+ * @slave: A #GduDevice.
+ *
+ * Gets the state of @slave of @drive.
+ *
+ * Returns: A value from #GduLinuxMdDriveSlaveState for @slave.
+ **/
+GduLinuxMdDriveSlaveFlags
+gdu_linux_md_drive_get_slave_flags (GduLinuxMdDrive  *drive,
+                                    GduDevice        *slave)
+{
+        gchar **state;
+        const gchar *holder;
+        GduLinuxMdDriveSlaveFlags flags;
+        guint n;
+
+        flags = 0;
+
+        holder = gdu_device_linux_md_component_get_holder (slave);
+        if (holder == NULL || g_strcmp0 (holder, "/") == 0)
+                flags |= GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_NOT_ATTACHED;
+
+        state = gdu_device_linux_md_component_get_state (slave);
+        for (n = 0; state != NULL && state[n] != NULL; n++) {
+                if (g_strcmp0 (state[n], "faulty") == 0)
+                        flags |= GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_FAULTY;
+                else if (g_strcmp0 (state[n], "in_sync") == 0)
+                        flags |= GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_IN_SYNC;
+                else if (g_strcmp0 (state[n], "writemostly") == 0)
+                        flags |= GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_WRITEMOSTLY;
+                else if (g_strcmp0 (state[n], "blocked") == 0)
+                        flags |= GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_BLOCKED;
+                else if (g_strcmp0 (state[n], "spare") == 0)
+                        flags |= GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_SPARE;
+                else
+                        g_debug ("unknown linux md component state %s, please add support", state[n]);
+        }
+
+        return flags;
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+/* GduPresentable methods */
+
+static const gchar *
+gdu_linux_md_drive_get_id (GduPresentable *presentable)
+{
+        GduLinuxMdDrive *drive = GDU_LINUX_MD_DRIVE (presentable);
+
+        return drive->priv->id;
+}
+
+static GduDevice *
+gdu_linux_md_drive_get_device (GduPresentable *presentable)
+{
+        GduLinuxMdDrive *drive = GDU_LINUX_MD_DRIVE (presentable);
+        if (drive->priv->device == NULL)
+                return NULL;
+        else
+                return g_object_ref (drive->priv->device);
+}
+
+static GduPresentable *
+gdu_linux_md_drive_get_enclosing_presentable (GduPresentable *presentable)
+{
+        return NULL;
+}
+
+static char *
+gdu_linux_md_drive_get_name (GduPresentable *presentable)
+{
+        GduLinuxMdDrive *drive = GDU_LINUX_MD_DRIVE (presentable);
+        GduDevice *device;
+        char *ret;
+        char *level_str;
+        guint64 component_size;
+        int num_slaves;
+        int num_raid_devices;
+        const char *level;
+        const char *name;
+
+        ret = NULL;
+
+        if (drive->priv->slaves == NULL)
+                goto out;
+
+        device = GDU_DEVICE (drive->priv->slaves->data);
+
+        level = gdu_device_linux_md_component_get_level (device);
+        name = gdu_device_linux_md_component_get_name (device);
+        num_raid_devices = gdu_device_linux_md_component_get_num_raid_devices (device);
+        num_slaves = g_list_length (drive->priv->slaves);
+        component_size = gdu_device_get_size (device);
+
+        level_str = gdu_linux_md_get_raid_level_for_display (level);
+
+        if (name == NULL || strlen (name) == 0) {
+                ret = g_strdup_printf (_("%s Drive"), level_str);
+        } else {
+                ret = g_strdup_printf (_("%s (%s)"), name, level_str);
+        }
+
+        g_free (level_str);
+
+out:
+        return ret;
+}
+
+static GIcon *
+gdu_linux_md_drive_get_icon (GduPresentable *presentable)
+{
+        return g_themed_icon_new_with_default_fallbacks ("gdu-raid-array");
+}
+
+static guint64
+gdu_linux_md_drive_get_offset (GduPresentable *presentable)
+{
+        return 0;
+}
+
+static guint64
+gdu_linux_md_drive_get_size (GduPresentable *presentable)
+{
+        GduLinuxMdDrive *drive = GDU_LINUX_MD_DRIVE (presentable);
+        GduDevice *device;
+        guint64 ret;
+        const char *level;
+        int num_raid_devices;
+        guint component_size;
+
+        ret = 0;
+
+        if (drive->priv->device != NULL) {
+                ret = gdu_device_get_size (drive->priv->device);
+                goto out;
+        }
+
+        if (drive->priv->slaves == NULL) {
+                g_warning ("%s: no device and no slaves", __FUNCTION__);
+                goto out;
+        }
+
+        device = GDU_DEVICE (drive->priv->slaves->data);
+
+        level = gdu_device_linux_md_component_get_level (device);
+        num_raid_devices = gdu_device_linux_md_component_get_num_raid_devices (device);
+        component_size = gdu_device_get_size (device);
+
+        if (strcmp (level, "raid0") == 0) {
+                /* stripes in linux can have different sizes so we don't really know
+                 * until the drive is activated
+                 */
+                ret = 0;
+        } else if (strcmp (level, "raid1") == 0) {
+                ret = component_size;
+        } else if (strcmp (level, "raid4") == 0) {
+                ret = component_size * (num_raid_devices - 1) / num_raid_devices;
+        } else if (strcmp (level, "raid5") == 0) {
+                ret = component_size * (num_raid_devices - 1) / num_raid_devices;
+        } else if (strcmp (level, "raid6") == 0) {
+                ret = component_size * (num_raid_devices - 2) / num_raid_devices;
+        } else if (strcmp (level, "raid10") == 0) {
+                /* don't really know until the drive is activated */
+                ret = 0;
+        } else if (strcmp (level, "linear") == 0) {
+                /* don't really know until the drive is activated */
+                ret = 0;
+        } else {
+                g_warning ("%s: unknown level '%s'", __FUNCTION__, level);
+        }
+
+out:
+        return ret;
+}
+
+static GduPool *
+gdu_linux_md_drive_get_pool (GduPresentable *presentable)
+{
+        GduLinuxMdDrive *drive = GDU_LINUX_MD_DRIVE (presentable);
+        return g_object_ref (drive->priv->pool);
+}
+
+static gboolean
+gdu_linux_md_drive_is_allocated (GduPresentable *presentable)
+{
+        return TRUE;
+}
+
+static gboolean
+gdu_linux_md_drive_is_recognized (GduPresentable *presentable)
+{
+        /* TODO: maybe we need to return FALSE sometimes */
+        return TRUE;
+}
+
+static void
+gdu_linux_md_drive_presentable_iface_init (GduPresentableIface *iface)
+{
+        iface->get_id = gdu_linux_md_drive_get_id;
+        iface->get_device = gdu_linux_md_drive_get_device;
+        iface->get_enclosing_presentable = gdu_linux_md_drive_get_enclosing_presentable;
+        iface->get_name = gdu_linux_md_drive_get_name;
+        iface->get_icon = gdu_linux_md_drive_get_icon;
+        iface->get_offset = gdu_linux_md_drive_get_offset;
+        iface->get_size = gdu_linux_md_drive_get_size;
+        iface->get_pool = gdu_linux_md_drive_get_pool;
+        iface->is_allocated = gdu_linux_md_drive_is_allocated;
+        iface->is_recognized = gdu_linux_md_drive_is_recognized;
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+/* GduDrive virtual method overrides */
+
+static gboolean
+array_is_active (const gchar *state)
+{
+        gboolean ret;
+
+        ret = TRUE;
+
+        if (g_strcmp0 (state, "clear") == 0 ||
+            g_strcmp0 (state, "inactive") == 0 ||
+            g_strcmp0 (state, "suspended") == 0)
+                ret = FALSE;
+
+        return ret;
+}
+
+static gboolean
+gdu_linux_md_drive_is_active (GduDrive *_drive)
+{
+        GduLinuxMdDrive *drive = GDU_LINUX_MD_DRIVE (_drive);
+        //g_debug ("is running %p", drive->priv->device);
+        return drive->priv->device != NULL && array_is_active (gdu_device_linux_md_get_state (drive->priv->device));
+}
+
+static gboolean
+gdu_linux_md_drive_is_activatable (GduDrive *_drive)
+{
+        return TRUE;
+}
+
+static gboolean
+gdu_linux_md_drive_can_deactivate (GduDrive *_drive)
+{
+        GduLinuxMdDrive *drive = GDU_LINUX_MD_DRIVE (_drive);
+        /* if we have a underlying md device, we can always deactivate */
+        return drive->priv->device != NULL;
+}
+
+static gboolean
+check_can_activate (GduLinuxMdDrive *drive,
+                    gboolean        *out_degraded)
+{
+        gboolean can_activate;
+        gboolean degraded;
+        guint num_slaves;
+        guint num_devices;
+        const gchar *raid_level;
+        GduDevice *first_slave_device;
+
+        can_activate = FALSE;
+        degraded = FALSE;
+
+        num_slaves = g_list_length (drive->priv->slaves);
+        if (num_slaves == 0)
+                goto out;
+
+        first_slave_device = GDU_DEVICE (drive->priv->slaves->data);
+
+        num_devices = gdu_device_linux_md_component_get_num_raid_devices (first_slave_device);
+        raid_level = gdu_device_linux_md_component_get_level (first_slave_device);
+
+        if (strcmp (raid_level, "raid0") == 0) {
+                can_activate = (num_slaves == num_devices);
+                degraded = FALSE;
+
+        } else if (strcmp (raid_level, "linear") == 0) {
+                can_activate = (num_slaves == num_devices);
+                degraded = FALSE;
+
+        } else if (strcmp (raid_level, "raid1") == 0) {
+                can_activate = (num_slaves >= 1);
+                degraded = (num_slaves < num_devices);
+
+        } else if (strcmp (raid_level, "raid4") == 0) {
+                can_activate = (num_slaves >= num_devices - 1);
+                degraded = (num_slaves < num_devices);
+
+        } else if (strcmp (raid_level, "raid5") == 0) {
+                can_activate = (num_slaves >= num_devices - 1);
+                degraded = (num_slaves < num_devices);
+
+        } else if (strcmp (raid_level, "raid6") == 0) {
+                can_activate = (num_slaves >= num_devices - 2);
+                degraded = (num_slaves < num_devices);
+
+        } else if (strcmp (raid_level, "raid10") == 0) {
+
+                /* TODO: This is not necessarily correct; whether we can activate
+                 *       really depends on what slaves are available and not just
+                 *       the number of slaves... To check this we'd have to look
+                 *       at the metadata of each slave.
+                 *
+                 *       So we just claim to be able to start the array if at least
+                 *       half of the devices are available.
+                 *
+                 */
+                can_activate = (num_slaves >= num_devices / 2);
+                degraded = (num_slaves < num_devices);
+        }
+
+ out:
+        if (out_degraded != NULL)
+                *out_degraded = degraded;
+
+        return can_activate;
+}
+
+static gboolean
+gdu_linux_md_drive_can_activate (GduDrive *_drive,
+                                 gboolean *out_degraded)
+{
+        GduLinuxMdDrive *drive = GDU_LINUX_MD_DRIVE (_drive);
+        gboolean ret;
+
+        ret = FALSE;
+
+        /* if already activated, we can't activate it again */
+        if (gdu_linux_md_drive_is_active (_drive))
+                goto out;
+
+        /* For now, refuse to activate if state is 'inactive' since this represents a partially
+         * assembled drive (may be caused by broken auto-assembly rules).
+         *
+         * Note that can_deactivate() will return TRUE which allows the user to stop the partially
+         * assembled array and then start it again.
+         */
+        if (drive->priv->device != NULL &&
+            g_strcmp0 (gdu_device_linux_md_get_state (drive->priv->device), "inactive") == 0)
+                goto out;
+
+        ret = check_can_activate (drive, out_degraded);
+out:
+        return ret;
+}
+
+#if 0
+static gboolean
+gdu_linux_md_drive_can_activate_degraded (GduDrive *_drive)
+{
+        GduLinuxMdDrive *drive = GDU_LINUX_MD_DRIVE (_drive);
+        GduDevice *device;
+        gboolean can_activate_degraded;
+        int num_ready_slaves;
+        int num_raid_devices;
+        const char *raid_level;
+
+        device = NULL;
+
+        can_activate_degraded = FALSE;
+
+        /* can't activated what's already activated */
+        if (drive->priv->device != NULL)
+                goto out;
+
+        /* we might even be able to activate in non-degraded mode */
+        if (gdu_linux_md_drive_can_activate (_drive))
+                goto out;
+
+        device = gdu_linux_md_drive_get_first_slave (drive);
+        if (device == NULL)
+                goto out;
+
+        num_ready_slaves = gdu_linux_md_drive_get_num_ready_slaves (drive);
+        num_raid_devices = gdu_device_linux_md_component_get_num_raid_devices (device);
+        raid_level = gdu_device_linux_md_component_get_level (device);
+
+        /* this depends on the raid level... */
+        if (strcmp (raid_level, "raid1") == 0) {
+                if (num_ready_slaves >= 1) {
+                        can_activate_degraded = TRUE;
+                }
+        } else if (strcmp (raid_level, "raid4") == 0) {
+                if (num_ready_slaves >= num_raid_devices - 1) {
+                        can_activate_degraded = TRUE;
+                }
+        } else if (strcmp (raid_level, "raid5") == 0) {
+                if (num_ready_slaves >= num_raid_devices - 1) {
+                        can_activate_degraded = TRUE;
+                }
+        } else if (strcmp (raid_level, "raid6") == 0) {
+                if (num_ready_slaves >= num_raid_devices - 2) {
+                        can_activate_degraded = TRUE;
+                }
+        } else if (strcmp (raid_level, "raid10") == 0) {
+                /* TODO: This is not necessarily correct; it depends on which
+                 *       slaves have failed... Right now we err on the side
+                 *       of saying the array can be activated even when sometimes
+                 *       it can't
+                 */
+                if (num_ready_slaves >= num_raid_devices / 2) {
+                        can_activate_degraded = TRUE;
+                }
+        }
+
+
+out:
+        if (device != NULL)
+                g_object_unref (device);
+        return can_activate_degraded;
+        return FALSE;
+}
+#endif
+
+typedef struct
+{
+        GduLinuxMdDrive *drive;
+        GduDriveActivateFunc callback;
+        gpointer user_data;
+} ActivationData;
+
+static ActivationData *
+activation_data_new (GduLinuxMdDrive *drive,
+                     GduDriveActivateFunc callback,
+                     gpointer user_data)
+{
+        ActivationData *ad;
+        ad = g_new0 (ActivationData, 1);
+        ad->drive = g_object_ref (drive);
+        ad->callback = callback;
+        ad->user_data = user_data;
+        return ad;
+}
+
+static void
+activation_data_free (ActivationData *ad)
+{
+        g_object_unref (ad->drive);
+        g_free (ad);
+}
+
+static void
+activation_completed (GduPool  *pool,
+                      char     *assembled_array_object_path,
+                      GError   *error,
+                      gpointer  user_data)
+{
+        ActivationData *ad = user_data;
+        ad->callback (GDU_DRIVE (ad->drive), assembled_array_object_path, error, ad->user_data);
+        activation_data_free (ad);
+}
+
+static void
+gdu_linux_md_drive_activate (GduDrive             *_drive,
+                             GduDriveActivateFunc  callback,
+                             gpointer              user_data)
+{
+        GduLinuxMdDrive *drive = GDU_LINUX_MD_DRIVE (_drive);
+        GPtrArray *components;
+        GList *l;
+        GList *slaves;
+
+        g_return_if_fail (drive->priv->device == NULL);
+
+        components = g_ptr_array_new ();
+        slaves = gdu_linux_md_drive_get_slaves (drive);
+        for (l = slaves; l != NULL; l = l->next) {
+                GduDevice *d = l->data;
+                /* no need to dup; we keep a ref on d for the lifetime of components */
+                g_ptr_array_add (components, (gpointer) gdu_device_get_object_path (d));
+        }
+
+        gdu_pool_op_linux_md_start (drive->priv->pool,
+                                    components,
+                                    activation_completed,
+                                    activation_data_new (drive, callback, user_data));
+
+        g_ptr_array_free (components, TRUE);
+        g_list_foreach (slaves, (GFunc) g_object_unref, NULL);
+        g_list_free (slaves);
+}
+
+typedef struct
+{
+        GduLinuxMdDrive *drive;
+        GduDriveDeactivateFunc callback;
+        gpointer user_data;
+} DeactivationData;
+
+
+static DeactivationData *
+deactivation_data_new (GduLinuxMdDrive *drive,
+                       GduDriveDeactivateFunc callback,
+                       gpointer user_data)
+{
+        DeactivationData *dad;
+        dad = g_new0 (DeactivationData, 1);
+        dad->drive = g_object_ref (drive);
+        dad->callback = callback;
+        dad->user_data = user_data;
+        return dad;
+}
+
+static void
+deactivation_data_free (DeactivationData *dad)
+{
+        g_object_unref (dad->drive);
+        g_free (dad);
+}
+
+static void
+deactivation_completed (GduDevice *device,
+                        GError    *error,
+                        gpointer   user_data)
+{
+        DeactivationData *dad = user_data;
+        dad->callback (GDU_DRIVE (dad->drive), error, dad->user_data);
+        deactivation_data_free (dad);
+}
+
+
+static void
+gdu_linux_md_drive_deactivate (GduDrive               *_drive,
+                               GduDriveDeactivateFunc  callback,
+                               gpointer                user_data)
+{
+        GduLinuxMdDrive *drive = GDU_LINUX_MD_DRIVE (_drive);
+
+        g_return_if_fail (drive->priv->device != NULL);
+
+        gdu_device_op_linux_md_stop (drive->priv->device,
+                                     deactivation_completed,
+                                     deactivation_data_new (drive, callback, user_data));
+}

@@ -1,0 +1,71 @@
+<!-- ##### SECTION Title ##### -->
+gdu-error
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### ENUM GduError ##### -->
+<para>
+
+</para>
+
+@GDU_ERROR_FAILED: 
+@GDU_ERROR_INHIBITED: 
+@GDU_ERROR_BUSY: 
+@GDU_ERROR_CANCELLED: 
+@GDU_ERROR_INVALID_OPTION: 
+@GDU_ERROR_ALREADY_MOUNTED: 
+@GDU_ERROR_NOT_MOUNTED: 
+@GDU_ERROR_NOT_CANCELLABLE: 
+@GDU_ERROR_NOT_PARTITION: 
+@GDU_ERROR_NOT_PARTITION_TABLE: 
+@GDU_ERROR_NOT_FILESYSTEM: 
+@GDU_ERROR_NOT_LUKS: 
+@GDU_ERROR_NOT_LOCKED: 
+@GDU_ERROR_NOT_UNLOCKED: 
+@GDU_ERROR_NOT_LINUX_MD: 
+@GDU_ERROR_NOT_LINUX_MD_COMPONENT: 
+@GDU_ERROR_NOT_DRIVE: 
+@GDU_ERROR_NOT_SMART_CAPABLE: 
+@GDU_ERROR_NOT_SUPPORTED: 
+@GDU_ERROR_NOT_FOUND: 
+
+<!-- ##### MACRO GDU_ERROR ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION gdu_error_quark ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_error_check_polkit_not_authorized ##### -->
+<para>
+
+</para>
+
+@error: 
+@pk_action: 
+@pk_result: 
+@Returns: 
+
+

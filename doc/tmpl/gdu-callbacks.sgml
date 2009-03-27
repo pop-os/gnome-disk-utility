@@ -1,0 +1,256 @@
+<!-- ##### SECTION Title ##### -->
+gdu-callbacks
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### USER_FUNCTION GduDeviceFilesystemMountCompletedFunc ##### -->
+<para>
+
+</para>
+
+@device: 
+@mount_point: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduDeviceFilesystemUnmountCompletedFunc ##### -->
+<para>
+
+</para>
+
+@device: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduDeviceFilesystemCheckCompletedFunc ##### -->
+<para>
+
+</para>
+
+@device: 
+@is_clean: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduDevicePartitionDeleteCompletedFunc ##### -->
+<para>
+
+</para>
+
+@device: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduDevicePartitionModifyCompletedFunc ##### -->
+<para>
+
+</para>
+
+@device: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduDevicePartitionTableCreateCompletedFunc ##### -->
+<para>
+
+</para>
+
+@device: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduDeviceLuksUnlockCompletedFunc ##### -->
+<para>
+
+</para>
+
+@device: 
+@object_path_of_cleartext_device: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduDeviceLuksLockCompletedFunc ##### -->
+<para>
+
+</para>
+
+@device: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduDeviceLuksChangePassphraseCompletedFunc ##### -->
+<para>
+
+</para>
+
+@device: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduDeviceFilesystemSetLabelCompletedFunc ##### -->
+<para>
+
+</para>
+
+@device: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduDeviceDriveSmartInitiateSelftestCompletedFunc ##### -->
+<para>
+
+</para>
+
+@device: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduDeviceDriveSmartRefreshDataCompletedFunc ##### -->
+<para>
+
+</para>
+
+@device: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduDeviceLinuxMdStopCompletedFunc ##### -->
+<para>
+
+</para>
+
+@device: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduDeviceLinuxMdAddComponentCompletedFunc ##### -->
+<para>
+
+</para>
+
+@device: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduDeviceLinuxMdRemoveComponentCompletedFunc ##### -->
+<para>
+
+</para>
+
+@device: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduDeviceFilesystemCreateCompletedFunc ##### -->
+<para>
+
+</para>
+
+@device: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduDevicePartitionCreateCompletedFunc ##### -->
+<para>
+
+</para>
+
+@device: 
+@created_device_object_path: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduDeviceCancelJobCompletedFunc ##### -->
+<para>
+
+</para>
+
+@device: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduDeviceDriveSmartGetHistoricalDataCompletedFunc ##### -->
+<para>
+
+</para>
+
+@device: 
+@smart_data: 
+@error: 
+@user_data: 
+
+
+<!-- ##### FUNCTION gdu_device_drive_smart_get_historical_data ##### -->
+<para>
+
+</para>
+
+@device: 
+@callback: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduDeviceFilesystemListOpenFilesCompletedFunc ##### -->
+<para>
+
+</para>
+
+@device: 
+@processes: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduDeviceDriveEjectCompletedFunc ##### -->
+<para>
+
+</para>
+
+@device: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduPoolLinuxMdStartCompletedFunc ##### -->
+<para>
+
+</para>
+
+@pool: 
+@assembled_array_object_path: 
+@error: 
+@user_data: 
+
+

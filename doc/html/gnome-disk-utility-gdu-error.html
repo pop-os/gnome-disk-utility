@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GduError</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.2">
+<link rel="home" href="index.html" title="Disk Utility Library Reference Manual">
+<link rel="up" href="ref-core.html" title="API Reference">
+<link rel="prev" href="ref-core.html" title="API Reference">
+<link rel="next" href="GduPool.html" title="GduPool">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-core.html" title="API Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ref-core.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-core.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Disk Utility Library Reference Manual</th>
+<td><a accesskey="n" href="GduPool.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#gnome-disk-utility-gdu-error.synopsis" class="shortcut">Top</a>
+                 | 
+                <a href="#gnome-disk-utility-gdu-error.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="gnome-disk-utility-gdu-error"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="gnome-disk-utility-gdu-error.top_of_page"></a>GduError</span></h2>
+<p>GduError — Error helper functions</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="gnome-disk-utility-gdu-error.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+enum                <a class="link" href="gnome-disk-utility-gdu-error.html#GduError" title="enum GduError">GduError</a>;
+#define             <a class="link" href="gnome-disk-utility-gdu-error.html#GDU-ERROR--CAPS" title="GDU_ERROR">GDU_ERROR</a>
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Quarks.html#GQuark"
+>GQuark</a>              <a class="link" href="gnome-disk-utility-gdu-error.html#gdu-error-quark" title="gdu_error_quark ()">gdu_error_quark</a>                     (void);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="gnome-disk-utility-gdu-error.html#gdu-error-check-polkit-not-authorized" title="gdu_error_check_polkit_not_authorized ()">gdu_error_check_polkit_not_authorized</a>
+                                                        (<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> *error,
+                                                         <a
+href="/usr/share/gtk-doc/html/polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> **pk_action,
+                                                         <a
+href="/usr/share/gtk-doc/html/polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a> *pk_result);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="gnome-disk-utility-gdu-error.description"></a><h2>Description</h2>
+<p>
+Contains helper functions for reporting errors to the user.</p>
+<p>
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="gnome-disk-utility-gdu-error.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="GduError"></a><h3>enum GduError</h3>
+<pre class="programlisting">typedef enum
+{
+        GDU_ERROR_FAILED,
+        GDU_ERROR_INHIBITED,
+        GDU_ERROR_BUSY,
+        GDU_ERROR_CANCELLED,
+        GDU_ERROR_INVALID_OPTION,
+        GDU_ERROR_ALREADY_MOUNTED,
+        GDU_ERROR_NOT_MOUNTED,
+        GDU_ERROR_NOT_CANCELLABLE,
+        GDU_ERROR_NOT_PARTITION,
+        GDU_ERROR_NOT_PARTITION_TABLE,
+        GDU_ERROR_NOT_FILESYSTEM,
+        GDU_ERROR_NOT_LUKS,
+        GDU_ERROR_NOT_LOCKED,
+        GDU_ERROR_NOT_UNLOCKED,
+        GDU_ERROR_NOT_LINUX_MD,
+        GDU_ERROR_NOT_LINUX_MD_COMPONENT,
+        GDU_ERROR_NOT_DRIVE,
+        GDU_ERROR_NOT_SMART_CAPABLE,
+        GDU_ERROR_NOT_SUPPORTED,
+        GDU_ERROR_NOT_FOUND,
+} GduError;
+</pre>
+<p>
+Error codes in the <a class="link" href="gnome-disk-utility-gdu-error.html#GDU-ERROR--CAPS" title="GDU_ERROR"><span class="type">GDU_ERROR</span></a> domain.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="GDU-ERROR-FAILED--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_FAILED</code></span></p></td>
+<td> The operation failed.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-ERROR-INHIBITED--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_INHIBITED</code></span></p></td>
+<td> The daemon is being inhibited.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-ERROR-BUSY--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_BUSY</code></span></p></td>
+<td> The device is busy
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-ERROR-CANCELLED--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_CANCELLED</code></span></p></td>
+<td> The operation was cancelled
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-ERROR-INVALID-OPTION--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_INVALID_OPTION</code></span></p></td>
+<td> An invalid option was passed
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-ERROR-ALREADY-MOUNTED--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_ALREADY_MOUNTED</code></span></p></td>
+<td> Device is already mounted.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-ERROR-NOT-MOUNTED--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_NOT_MOUNTED</code></span></p></td>
+<td> Device is not mounted.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-ERROR-NOT-CANCELLABLE--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_NOT_CANCELLABLE</code></span></p></td>
+<td> Operation is not cancellable.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-ERROR-NOT-PARTITION--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_NOT_PARTITION</code></span></p></td>
+<td> Device is not a partition.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-ERROR-NOT-PARTITION-TABLE--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_NOT_PARTITION_TABLE</code></span></p></td>
+<td> Device is not a partition table.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-ERROR-NOT-FILESYSTEM--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_NOT_FILESYSTEM</code></span></p></td>
+<td> Device is not a file system.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-ERROR-NOT-LUKS--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_NOT_LUKS</code></span></p></td>
+<td> Device is not a LUKS encrypted device.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-ERROR-NOT-LOCKED--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_NOT_LOCKED</code></span></p></td>
+<td> Device is not locked.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-ERROR-NOT-UNLOCKED--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_NOT_UNLOCKED</code></span></p></td>
+<td> Device is not unlocked.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-ERROR-NOT-LINUX-MD--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_NOT_LINUX_MD</code></span></p></td>
+<td> Device is not a Linux md Software RAID device.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-ERROR-NOT-LINUX-MD-COMPONENT--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_NOT_LINUX_MD_COMPONENT</code></span></p></td>
+<td> Device is not a Linux md Software RAID component.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-ERROR-NOT-DRIVE--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_NOT_DRIVE</code></span></p></td>
+<td> Device is not a drive.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-ERROR-NOT-SMART-CAPABLE--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_NOT_SMART_CAPABLE</code></span></p></td>
+<td> Device is not S.M.A.R.T. capable.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-ERROR-NOT-SUPPORTED--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_NOT_SUPPORTED</code></span></p></td>
+<td> Operation not supported.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-ERROR-NOT-FOUND--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_NOT_FOUND</code></span></p></td>
+<td> Given device does not exist.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GDU-ERROR--CAPS"></a><h3>GDU_ERROR</h3>
+<pre class="programlisting">#define GDU_ERROR gdu_error_quark ()
+</pre>
+<p>
+Error domain used for errors reported from DeviceKit-disks daemon
+via D-Bus. Note that not all remote errors are mapped to this
+domain. Errors in this domain will come from the <a class="link" href="gnome-disk-utility-gdu-error.html#GduError" title="enum GduError"><span class="type">GduError</span></a>
+enumeration. See <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+><span class="type">GError</span></a> for more information on error domains.</p>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-error-quark"></a><h3>gdu_error_quark ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Quarks.html#GQuark"
+>GQuark</a>              gdu_error_quark                     (void);</pre>
+<p>
+Gets the <a class="link" href="gnome-disk-utility-gdu-error.html#GduError" title="enum GduError"><span class="type">GduError</span></a> Quark.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Quarks.html#GQuark"
+><span class="type">GQuark</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-error-check-polkit-not-authorized"></a><h3>gdu_error_check_polkit_not_authorized ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_error_check_polkit_not_authorized
+                                                        (<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> *error,
+                                                         <a
+href="/usr/share/gtk-doc/html/polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> **pk_action,
+                                                         <a
+href="/usr/share/gtk-doc/html/polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a> *pk_result);</pre>
+<p>
+Checks if an error from a remote method call is of
+type <code class="literal">org.freedesktop.PolicyKit.Error.NotAuthorized</code>
+and if so, extracts the PolicyKit action and result.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td> A <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+><span class="type">GError</span></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pk_action</code></em> :</span></p></td>
+<td> Return location for a <a
+href="/usr/share/gtk-doc/html/polkit/polkit-polkit-action.html#PolKitAction"
+><span class="type">PolKitAction</span></a> object.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pk_result</code></em> :</span></p></td>
+<td> Return location for <a
+href="/usr/share/gtk-doc/html/polkit/polkit-polkit-result.html#PolKitResult"
+><span class="type">PolKitResult</span></a> value.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE--CAPS"
+><span class="type">TRUE</span></a> only if the error is a PolicyKit exception and
+<em class="parameter"><code>pk_action</code></em> (caller must free this object with <a
+href="/usr/share/gtk-doc/html/polkit/polkit-polkit-action.html#polkit-action-unref"
+><code class="function">polkit_action_unref()</code></a>)
+and <em class="parameter"><code>pk_result</code></em> are set.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.11</div>
+</body>
+</html>

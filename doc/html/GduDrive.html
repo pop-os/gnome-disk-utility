@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GduDrive</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.2">
+<link rel="home" href="index.html" title="Disk Utility Library Reference Manual">
+<link rel="up" href="ref-core.html" title="API Reference">
+<link rel="prev" href="gnome-disk-utility-gdu-presentable.html" title="GduPresentable">
+<link rel="next" href="GduLinuxMdDrive.html" title="GduLinuxMdDrive">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-core.html" title="API Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="gnome-disk-utility-gdu-presentable.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-core.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Disk Utility Library Reference Manual</th>
+<td><a accesskey="n" href="GduLinuxMdDrive.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#GduDrive.synopsis" class="shortcut">Top</a>
+                 | 
+                <a href="#GduDrive.description" class="shortcut">Description</a>
+                 | 
+                <a href="#GduDrive.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                 | 
+                <a href="#GduDrive.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
+</td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="GduDrive"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="GduDrive.top_of_page"></a>GduDrive</span></h2>
+<p>GduDrive — Drives</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="GduDrive.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="GduDrive.html#GduDrivePrivate" title="GduDrivePrivate">GduDrivePrivate</a>;
+                    <a class="link" href="GduDrive.html#GduDrive-struct" title="GduDrive">GduDrive</a>;
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduDrive.html#gdu-drive-is-active" title="gdu_drive_is_active ()">gdu_drive_is_active</a>                 (<a class="link" href="GduDrive.html" title="GduDrive">GduDrive</a> *drive);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduDrive.html#gdu-drive-is-activatable" title="gdu_drive_is_activatable ()">gdu_drive_is_activatable</a>            (<a class="link" href="GduDrive.html" title="GduDrive">GduDrive</a> *drive);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduDrive.html#gdu-drive-can-activate" title="gdu_drive_can_activate ()">gdu_drive_can_activate</a>              (<a class="link" href="GduDrive.html" title="GduDrive">GduDrive</a> *drive,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a> *out_degraded);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduDrive.html#gdu-drive-can-deactivate" title="gdu_drive_can_deactivate ()">gdu_drive_can_deactivate</a>            (<a class="link" href="GduDrive.html" title="GduDrive">GduDrive</a> *drive);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GduDrive.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----GduDrive
+         +----<a class="link" href="GduLinuxMdDrive.html" title="GduLinuxMdDrive">GduLinuxMdDrive</a>
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GduDrive.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
+<p>
+GduDrive implements
+ GduPresentable.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="GduDrive.description"></a><h2>Description</h2>
+<p>
+The <a class="link" href="GduDrive.html" title="GduDrive"><span class="type">GduDrive</span></a> class represents drives attached to the
+system. Normally, objects of this class corresponds 1:1 to physical
+drives (hard disks, optical drives, card readers etc.) attached to
+the system. However, it can also relate to software abstractions
+such as a Linux md Software RAID array and similar things.
+</p>
+<p>
+See the documentation for <span class="type">GduPresentable</span> for the big picture.</p>
+<p>
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="GduDrive.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="GduDrivePrivate"></a><h3>GduDrivePrivate</h3>
+<pre class="programlisting">typedef struct _GduDrivePrivate GduDrivePrivate;</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GduDrive-struct"></a><h3>GduDrive</h3>
+<pre class="programlisting">typedef struct _GduDrive GduDrive;</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-drive-is-active"></a><h3>gdu_drive_is_active ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_drive_is_active                 (<a class="link" href="GduDrive.html" title="GduDrive">GduDrive</a> *drive);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>drive</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-drive-is-activatable"></a><h3>gdu_drive_is_activatable ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_drive_is_activatable            (<a class="link" href="GduDrive.html" title="GduDrive">GduDrive</a> *drive);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>drive</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-drive-can-activate"></a><h3>gdu_drive_can_activate ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_drive_can_activate              (<a class="link" href="GduDrive.html" title="GduDrive">GduDrive</a> *drive,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a> *out_degraded);</pre>
+<p>
+Checks if <em class="parameter"><code>drive</code></em> can be activated. If this function returns <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE--CAPS"
+><code class="literal">TRUE</code></a>,
+<em class="parameter"><code>out_degraded</code></em> will be set to whether the drive will be started in
+degraded mode (e.g. starting a mirror RAID array with only one
+component available).</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>drive</code></em> :</span></p></td>
+<td> A <a class="link" href="GduDrive.html" title="GduDrive"><span class="type">GduDrive</span></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>out_degraded</code></em> :</span></p></td>
+<td> <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a> or return location for whether the drive will be degraded if activated.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE--CAPS"
+><code class="literal">TRUE</code></a> if <em class="parameter"><code>drive</code></em> can be activated (and <em class="parameter"><code>out_degraded</code></em> will be set), <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE--CAPS"
+><code class="literal">FALSE</code></a> otherwise.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-drive-can-deactivate"></a><h3>gdu_drive_can_deactivate ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_drive_can_deactivate            (<a class="link" href="GduDrive.html" title="GduDrive">GduDrive</a> *drive);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>drive</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.11</div>
+</body>
+</html>

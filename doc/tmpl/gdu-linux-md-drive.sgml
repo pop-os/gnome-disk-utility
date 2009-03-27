@@ -1,0 +1,82 @@
+<!-- ##### SECTION Title ##### -->
+GduLinuxMdDrive
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GduLinuxMdDrivePrivate ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT GduLinuxMdDrive ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ENUM GduLinuxMdDriveSlaveFlags ##### -->
+<para>
+
+</para>
+
+@GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_NONE: 
+@GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_NOT_ATTACHED: 
+@GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_FAULTY: 
+@GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_IN_SYNC: 
+@GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_WRITEMOSTLY: 
+@GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_BLOCKED: 
+@GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_SPARE: 
+
+<!-- ##### FUNCTION gdu_linux_md_drive_get_uuid ##### -->
+<para>
+
+</para>
+
+@drive: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_linux_md_drive_has_slave ##### -->
+<para>
+
+</para>
+
+@drive: 
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_linux_md_drive_get_slaves ##### -->
+<para>
+
+</para>
+
+@drive: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_linux_md_drive_get_slave_flags ##### -->
+<para>
+
+</para>
+
+@drive: 
+@slave: 
+@Returns: 
+
+

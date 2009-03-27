@@ -1,0 +1,473 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GduKnownFilesystem</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.2">
+<link rel="home" href="index.html" title="Disk Utility Library Reference Manual">
+<link rel="up" href="ref-core.html" title="API Reference">
+<link rel="prev" href="GduVolumeHole.html" title="GduVolumeHole">
+<link rel="next" href="GduProcess.html" title="GduProcess">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-core.html" title="API Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="GduVolumeHole.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-core.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Disk Utility Library Reference Manual</th>
+<td><a accesskey="n" href="GduProcess.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#GduKnownFilesystem.synopsis" class="shortcut">Top</a>
+                 | 
+                <a href="#GduKnownFilesystem.description" class="shortcut">Description</a>
+                 | 
+                <a href="#GduKnownFilesystem.object-hierarchy" class="shortcut">Object Hierarchy</a>
+</td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="GduKnownFilesystem"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="GduKnownFilesystem.top_of_page"></a>GduKnownFilesystem</span></h2>
+<p>GduKnownFilesystem</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="GduKnownFilesystem.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="GduKnownFilesystem.html#GduKnownFilesystemPrivate" title="GduKnownFilesystemPrivate">GduKnownFilesystemPrivate</a>;
+                    <a class="link" href="GduKnownFilesystem.html#GduKnownFilesystem-struct" title="GduKnownFilesystem">GduKnownFilesystem</a>;
+const char *        <a class="link" href="GduKnownFilesystem.html#gdu-known-filesystem-get-id" title="gdu_known_filesystem_get_id ()">gdu_known_filesystem_get_id</a>         (<a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem">GduKnownFilesystem</a> *known_filesystem);
+const char *        <a class="link" href="GduKnownFilesystem.html#gdu-known-filesystem-get-name" title="gdu_known_filesystem_get_name ()">gdu_known_filesystem_get_name</a>       (<a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem">GduKnownFilesystem</a> *known_filesystem);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduKnownFilesystem.html#gdu-known-filesystem-get-supports-unix-owners" title="gdu_known_filesystem_get_supports_unix_owners ()">gdu_known_filesystem_get_supports_unix_owners</a>
+                                                        (<a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem">GduKnownFilesystem</a> *known_filesystem);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduKnownFilesystem.html#gdu-known-filesystem-get-can-mount" title="gdu_known_filesystem_get_can_mount ()">gdu_known_filesystem_get_can_mount</a>  (<a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem">GduKnownFilesystem</a> *known_filesystem);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduKnownFilesystem.html#gdu-known-filesystem-get-can-create" title="gdu_known_filesystem_get_can_create ()">gdu_known_filesystem_get_can_create</a> (<a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem">GduKnownFilesystem</a> *known_filesystem);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="GduKnownFilesystem.html#gdu-known-filesystem-get-max-label-len" title="gdu_known_filesystem_get_max_label_len ()">gdu_known_filesystem_get_max_label_len</a>
+                                                        (<a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem">GduKnownFilesystem</a> *known_filesystem);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduKnownFilesystem.html#gdu-known-filesystem-get-supports-label-rename" title="gdu_known_filesystem_get_supports_label_rename ()">gdu_known_filesystem_get_supports_label_rename</a>
+                                                        (<a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem">GduKnownFilesystem</a> *known_filesystem);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduKnownFilesystem.html#gdu-known-filesystem-get-supports-online-label-rename" title="gdu_known_filesystem_get_supports_online_label_rename ()">gdu_known_filesystem_get_supports_online_label_rename</a>
+                                                        (<a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem">GduKnownFilesystem</a> *known_filesystem);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduKnownFilesystem.html#gdu-known-filesystem-get-supports-fsck" title="gdu_known_filesystem_get_supports_fsck ()">gdu_known_filesystem_get_supports_fsck</a>
+                                                        (<a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem">GduKnownFilesystem</a> *known_filesystem);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduKnownFilesystem.html#gdu-known-filesystem-get-supports-online-fsck" title="gdu_known_filesystem_get_supports_online_fsck ()">gdu_known_filesystem_get_supports_online_fsck</a>
+                                                        (<a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem">GduKnownFilesystem</a> *known_filesystem);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduKnownFilesystem.html#gdu-known-filesystem-get-supports-resize-enlarge" title="gdu_known_filesystem_get_supports_resize_enlarge ()">gdu_known_filesystem_get_supports_resize_enlarge</a>
+                                                        (<a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem">GduKnownFilesystem</a> *known_filesystem);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduKnownFilesystem.html#gdu-known-filesystem-get-supports-online-resize-enlarge" title="gdu_known_filesystem_get_supports_online_resize_enlarge ()">gdu_known_filesystem_get_supports_online_resize_enlarge</a>
+                                                        (<a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem">GduKnownFilesystem</a> *known_filesystem);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduKnownFilesystem.html#gdu-known-filesystem-get-supports-resize-shrink" title="gdu_known_filesystem_get_supports_resize_shrink ()">gdu_known_filesystem_get_supports_resize_shrink</a>
+                                                        (<a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem">GduKnownFilesystem</a> *known_filesystem);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduKnownFilesystem.html#gdu-known-filesystem-get-supports-online-resize-shrink" title="gdu_known_filesystem_get_supports_online_resize_shrink ()">gdu_known_filesystem_get_supports_online_resize_shrink</a>
+                                                        (<a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem">GduKnownFilesystem</a> *known_filesystem);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GduKnownFilesystem.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----GduKnownFilesystem
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GduKnownFilesystem.description"></a><h2>Description</h2>
+<p>
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="GduKnownFilesystem.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="GduKnownFilesystemPrivate"></a><h3>GduKnownFilesystemPrivate</h3>
+<pre class="programlisting">typedef struct _GduKnownFilesystemPrivate GduKnownFilesystemPrivate;</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GduKnownFilesystem-struct"></a><h3>GduKnownFilesystem</h3>
+<pre class="programlisting">typedef struct _GduKnownFilesystem GduKnownFilesystem;</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-known-filesystem-get-id"></a><h3>gdu_known_filesystem_get_id ()</h3>
+<pre class="programlisting">const char *        gdu_known_filesystem_get_id         (<a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem">GduKnownFilesystem</a> *known_filesystem);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>known_filesystem</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-known-filesystem-get-name"></a><h3>gdu_known_filesystem_get_name ()</h3>
+<pre class="programlisting">const char *        gdu_known_filesystem_get_name       (<a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem">GduKnownFilesystem</a> *known_filesystem);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>known_filesystem</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-known-filesystem-get-supports-unix-owners"></a><h3>gdu_known_filesystem_get_supports_unix_owners ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_known_filesystem_get_supports_unix_owners
+                                                        (<a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem">GduKnownFilesystem</a> *known_filesystem);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>known_filesystem</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-known-filesystem-get-can-mount"></a><h3>gdu_known_filesystem_get_can_mount ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_known_filesystem_get_can_mount  (<a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem">GduKnownFilesystem</a> *known_filesystem);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>known_filesystem</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-known-filesystem-get-can-create"></a><h3>gdu_known_filesystem_get_can_create ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_known_filesystem_get_can_create (<a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem">GduKnownFilesystem</a> *known_filesystem);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>known_filesystem</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-known-filesystem-get-max-label-len"></a><h3>gdu_known_filesystem_get_max_label_len ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>               gdu_known_filesystem_get_max_label_len
+                                                        (<a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem">GduKnownFilesystem</a> *known_filesystem);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>known_filesystem</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-known-filesystem-get-supports-label-rename"></a><h3>gdu_known_filesystem_get_supports_label_rename ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_known_filesystem_get_supports_label_rename
+                                                        (<a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem">GduKnownFilesystem</a> *known_filesystem);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>known_filesystem</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-known-filesystem-get-supports-online-label-rename"></a><h3>gdu_known_filesystem_get_supports_online_label_rename ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_known_filesystem_get_supports_online_label_rename
+                                                        (<a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem">GduKnownFilesystem</a> *known_filesystem);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>known_filesystem</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-known-filesystem-get-supports-fsck"></a><h3>gdu_known_filesystem_get_supports_fsck ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_known_filesystem_get_supports_fsck
+                                                        (<a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem">GduKnownFilesystem</a> *known_filesystem);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>known_filesystem</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-known-filesystem-get-supports-online-fsck"></a><h3>gdu_known_filesystem_get_supports_online_fsck ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_known_filesystem_get_supports_online_fsck
+                                                        (<a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem">GduKnownFilesystem</a> *known_filesystem);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>known_filesystem</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-known-filesystem-get-supports-resize-enlarge"></a><h3>gdu_known_filesystem_get_supports_resize_enlarge ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_known_filesystem_get_supports_resize_enlarge
+                                                        (<a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem">GduKnownFilesystem</a> *known_filesystem);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>known_filesystem</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-known-filesystem-get-supports-online-resize-enlarge"></a><h3>gdu_known_filesystem_get_supports_online_resize_enlarge ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_known_filesystem_get_supports_online_resize_enlarge
+                                                        (<a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem">GduKnownFilesystem</a> *known_filesystem);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>known_filesystem</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-known-filesystem-get-supports-resize-shrink"></a><h3>gdu_known_filesystem_get_supports_resize_shrink ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_known_filesystem_get_supports_resize_shrink
+                                                        (<a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem">GduKnownFilesystem</a> *known_filesystem);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>known_filesystem</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-known-filesystem-get-supports-online-resize-shrink"></a><h3>gdu_known_filesystem_get_supports_online_resize_shrink ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_known_filesystem_get_supports_online_resize_shrink
+                                                        (<a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem">GduKnownFilesystem</a> *known_filesystem);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>known_filesystem</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.11</div>
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GduSmartDataAttribute</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.2">
+<link rel="home" href="index.html" title="Disk Utility Library Reference Manual">
+<link rel="up" href="ref-core.html" title="API Reference">
+<link rel="prev" href="GduSmartData.html" title="GduSmartData">
+<link rel="next" href="gnome-disk-utility-gdu-util.html" title="gdu-util">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-core.html" title="API Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="GduSmartData.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-core.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Disk Utility Library Reference Manual</th>
+<td><a accesskey="n" href="gnome-disk-utility-gdu-util.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#GduSmartDataAttribute.synopsis" class="shortcut">Top</a>
+                 | 
+                <a href="#GduSmartDataAttribute.description" class="shortcut">Description</a>
+                 | 
+                <a href="#GduSmartDataAttribute.object-hierarchy" class="shortcut">Object Hierarchy</a>
+</td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="GduSmartDataAttribute"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="GduSmartDataAttribute.top_of_page"></a>GduSmartDataAttribute</span></h2>
+<p>GduSmartDataAttribute</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="GduSmartDataAttribute.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="GduSmartDataAttribute.html#GduSmartDataAttributePrivate" title="GduSmartDataAttributePrivate">GduSmartDataAttributePrivate</a>;
+                    <a class="link" href="GduSmartDataAttribute.html#GduSmartDataAttribute-struct" title="GduSmartDataAttribute">GduSmartDataAttribute</a>;
+int                 <a class="link" href="GduSmartDataAttribute.html#gdu-smart-data-attribute-get-id" title="gdu_smart_data_attribute_get_id ()">gdu_smart_data_attribute_get_id</a>     (<a class="link" href="GduSmartDataAttribute.html" title="GduSmartDataAttribute">GduSmartDataAttribute</a> *smart_data_attribute);
+int                 <a class="link" href="GduSmartDataAttribute.html#gdu-smart-data-attribute-get-flags" title="gdu_smart_data_attribute_get_flags ()">gdu_smart_data_attribute_get_flags</a>  (<a class="link" href="GduSmartDataAttribute.html" title="GduSmartDataAttribute">GduSmartDataAttribute</a> *smart_data_attribute);
+int                 <a class="link" href="GduSmartDataAttribute.html#gdu-smart-data-attribute-get-value" title="gdu_smart_data_attribute_get_value ()">gdu_smart_data_attribute_get_value</a>  (<a class="link" href="GduSmartDataAttribute.html" title="GduSmartDataAttribute">GduSmartDataAttribute</a> *smart_data_attribute);
+int                 <a class="link" href="GduSmartDataAttribute.html#gdu-smart-data-attribute-get-worst" title="gdu_smart_data_attribute_get_worst ()">gdu_smart_data_attribute_get_worst</a>  (<a class="link" href="GduSmartDataAttribute.html" title="GduSmartDataAttribute">GduSmartDataAttribute</a> *smart_data_attribute);
+int                 <a class="link" href="GduSmartDataAttribute.html#gdu-smart-data-attribute-get-threshold" title="gdu_smart_data_attribute_get_threshold ()">gdu_smart_data_attribute_get_threshold</a>
+                                                        (<a class="link" href="GduSmartDataAttribute.html" title="GduSmartDataAttribute">GduSmartDataAttribute</a> *smart_data_attribute);
+char *              <a class="link" href="GduSmartDataAttribute.html#gdu-smart-data-attribute-get-raw" title="gdu_smart_data_attribute_get_raw ()">gdu_smart_data_attribute_get_raw</a>    (<a class="link" href="GduSmartDataAttribute.html" title="GduSmartDataAttribute">GduSmartDataAttribute</a> *smart_data_attribute);
+char *              <a class="link" href="GduSmartDataAttribute.html#gdu-smart-data-attribute-get-name" title="gdu_smart_data_attribute_get_name ()">gdu_smart_data_attribute_get_name</a>   (<a class="link" href="GduSmartDataAttribute.html" title="GduSmartDataAttribute">GduSmartDataAttribute</a> *smart_data_attribute);
+char *              <a class="link" href="GduSmartDataAttribute.html#gdu-smart-data-attribute-get-description" title="gdu_smart_data_attribute_get_description ()">gdu_smart_data_attribute_get_description</a>
+                                                        (<a class="link" href="GduSmartDataAttribute.html" title="GduSmartDataAttribute">GduSmartDataAttribute</a> *smart_data_attribute);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduSmartDataAttribute.html#gdu-smart-data-attribute-is-warning" title="gdu_smart_data_attribute_is_warning ()">gdu_smart_data_attribute_is_warning</a> (<a class="link" href="GduSmartDataAttribute.html" title="GduSmartDataAttribute">GduSmartDataAttribute</a> *smart_data_attribute);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduSmartDataAttribute.html#gdu-smart-data-attribute-is-failing" title="gdu_smart_data_attribute_is_failing ()">gdu_smart_data_attribute_is_failing</a> (<a class="link" href="GduSmartDataAttribute.html" title="GduSmartDataAttribute">GduSmartDataAttribute</a> *smart_data_attribute);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GduSmartDataAttribute.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----GduSmartDataAttribute
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GduSmartDataAttribute.description"></a><h2>Description</h2>
+<p>
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="GduSmartDataAttribute.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="GduSmartDataAttributePrivate"></a><h3>GduSmartDataAttributePrivate</h3>
+<pre class="programlisting">typedef struct _GduSmartDataAttributePrivate GduSmartDataAttributePrivate;</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GduSmartDataAttribute-struct"></a><h3>GduSmartDataAttribute</h3>
+<pre class="programlisting">typedef struct _GduSmartDataAttribute GduSmartDataAttribute;</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-smart-data-attribute-get-id"></a><h3>gdu_smart_data_attribute_get_id ()</h3>
+<pre class="programlisting">int                 gdu_smart_data_attribute_get_id     (<a class="link" href="GduSmartDataAttribute.html" title="GduSmartDataAttribute">GduSmartDataAttribute</a> *smart_data_attribute);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>smart_data_attribute</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-smart-data-attribute-get-flags"></a><h3>gdu_smart_data_attribute_get_flags ()</h3>
+<pre class="programlisting">int                 gdu_smart_data_attribute_get_flags  (<a class="link" href="GduSmartDataAttribute.html" title="GduSmartDataAttribute">GduSmartDataAttribute</a> *smart_data_attribute);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>smart_data_attribute</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-smart-data-attribute-get-value"></a><h3>gdu_smart_data_attribute_get_value ()</h3>
+<pre class="programlisting">int                 gdu_smart_data_attribute_get_value  (<a class="link" href="GduSmartDataAttribute.html" title="GduSmartDataAttribute">GduSmartDataAttribute</a> *smart_data_attribute);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>smart_data_attribute</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-smart-data-attribute-get-worst"></a><h3>gdu_smart_data_attribute_get_worst ()</h3>
+<pre class="programlisting">int                 gdu_smart_data_attribute_get_worst  (<a class="link" href="GduSmartDataAttribute.html" title="GduSmartDataAttribute">GduSmartDataAttribute</a> *smart_data_attribute);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>smart_data_attribute</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-smart-data-attribute-get-threshold"></a><h3>gdu_smart_data_attribute_get_threshold ()</h3>
+<pre class="programlisting">int                 gdu_smart_data_attribute_get_threshold
+                                                        (<a class="link" href="GduSmartDataAttribute.html" title="GduSmartDataAttribute">GduSmartDataAttribute</a> *smart_data_attribute);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>smart_data_attribute</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-smart-data-attribute-get-raw"></a><h3>gdu_smart_data_attribute_get_raw ()</h3>
+<pre class="programlisting">char *              gdu_smart_data_attribute_get_raw    (<a class="link" href="GduSmartDataAttribute.html" title="GduSmartDataAttribute">GduSmartDataAttribute</a> *smart_data_attribute);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>smart_data_attribute</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-smart-data-attribute-get-name"></a><h3>gdu_smart_data_attribute_get_name ()</h3>
+<pre class="programlisting">char *              gdu_smart_data_attribute_get_name   (<a class="link" href="GduSmartDataAttribute.html" title="GduSmartDataAttribute">GduSmartDataAttribute</a> *smart_data_attribute);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>smart_data_attribute</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-smart-data-attribute-get-description"></a><h3>gdu_smart_data_attribute_get_description ()</h3>
+<pre class="programlisting">char *              gdu_smart_data_attribute_get_description
+                                                        (<a class="link" href="GduSmartDataAttribute.html" title="GduSmartDataAttribute">GduSmartDataAttribute</a> *smart_data_attribute);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>smart_data_attribute</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-smart-data-attribute-is-warning"></a><h3>gdu_smart_data_attribute_is_warning ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_smart_data_attribute_is_warning (<a class="link" href="GduSmartDataAttribute.html" title="GduSmartDataAttribute">GduSmartDataAttribute</a> *smart_data_attribute);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>smart_data_attribute</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-smart-data-attribute-is-failing"></a><h3>gdu_smart_data_attribute_is_failing ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_smart_data_attribute_is_failing (<a class="link" href="GduSmartDataAttribute.html" title="GduSmartDataAttribute">GduSmartDataAttribute</a> *smart_data_attribute);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>smart_data_attribute</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.11</div>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="GduDrive">
+<refmeta>
+<refentrytitle role="top_of_page" id="GduDrive.top_of_page">GduDrive</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GNOME-DISK-UTILITY Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GduDrive</refname>
+<refpurpose>Drives</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="GduDrive.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="GduDrivePrivate">GduDrivePrivate</link>;
+                    <link linkend="GduDrive-struct">GduDrive</link>;
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-drive-is-active">gdu_drive_is_active</link>                 (<link linkend="GduDrive">GduDrive</link> *drive);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-drive-is-activatable">gdu_drive_is_activatable</link>            (<link linkend="GduDrive">GduDrive</link> *drive);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-drive-can-activate">gdu_drive_can_activate</link>              (<link linkend="GduDrive">GduDrive</link> *drive,
+                                                         <link linkend="gboolean">gboolean</link> *out_degraded);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-drive-can-deactivate">gdu_drive_can_deactivate</link>            (<link linkend="GduDrive">GduDrive</link> *drive);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="GduDrive.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----GduDrive
+         +----<link linkend="GduLinuxMdDrive">GduLinuxMdDrive</link>
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="GduDrive.implemented-interfaces" role="impl_interfaces">
+<title role="impl_interfaces.title">Implemented Interfaces</title>
+<para>
+GduDrive implements
+ <link linkend="GduPresentable">GduPresentable</link>.</para>
+</refsect1>
+
+
+
+
+
+<refsect1 id="GduDrive.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+The <link linkend="GduDrive"><type>GduDrive</type></link> class represents drives attached to the
+system. Normally, objects of this class corresponds 1:1 to physical
+drives (hard disks, optical drives, card readers etc.) attached to
+the system. However, it can also relate to software abstractions
+such as a Linux md Software RAID array and similar things.
+</para>
+<para>
+See the documentation for <link linkend="GduPresentable"><type>GduPresentable</type></link> for the big picture.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="GduDrive.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GduDrivePrivate" role="struct">
+<title>GduDrivePrivate</title>
+<indexterm zone="GduDrivePrivate"><primary sortas="GduDrivePrivate">GduDrivePrivate</primary></indexterm><programlisting>typedef struct _GduDrivePrivate GduDrivePrivate;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduDrive-struct" role="struct">
+<title>GduDrive</title>
+<indexterm zone="GduDrive-struct"><primary sortas="GduDrive">GduDrive</primary></indexterm><programlisting>typedef struct _GduDrive GduDrive;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="gdu-drive-is-active" role="function">
+<title>gdu_drive_is_active ()</title>
+<indexterm zone="gdu-drive-is-active"><primary sortas="gdu_drive_is_active">gdu_drive_is_active</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_drive_is_active                 (<link linkend="GduDrive">GduDrive</link> *drive);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>drive</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-drive-is-activatable" role="function">
+<title>gdu_drive_is_activatable ()</title>
+<indexterm zone="gdu-drive-is-activatable"><primary sortas="gdu_drive_is_activatable">gdu_drive_is_activatable</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_drive_is_activatable            (<link linkend="GduDrive">GduDrive</link> *drive);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>drive</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-drive-can-activate" role="function">
+<title>gdu_drive_can_activate ()</title>
+<indexterm zone="gdu-drive-can-activate"><primary sortas="gdu_drive_can_activate">gdu_drive_can_activate</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_drive_can_activate              (<link linkend="GduDrive">GduDrive</link> *drive,
+                                                         <link linkend="gboolean">gboolean</link> *out_degraded);</programlisting>
+<para>
+Checks if <parameter>drive</parameter> can be activated. If this function returns <link linkend="TRUE--CAPS"><literal>TRUE</literal></link>,
+<parameter>out_degraded</parameter> will be set to whether the drive will be started in
+degraded mode (e.g. starting a mirror RAID array with only one
+component available).</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>drive</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GduDrive"><type>GduDrive</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out_degraded</parameter>&#160;:</term>
+<listitem><simpara> <link linkend="NULL--CAPS"><literal>NULL</literal></link> or return location for whether the drive will be degraded if activated.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if <parameter>drive</parameter> can be activated (and <parameter>out_degraded</parameter> will be set), <link linkend="FALSE--CAPS"><literal>FALSE</literal></link> otherwise.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-drive-can-deactivate" role="function">
+<title>gdu_drive_can_deactivate ()</title>
+<indexterm zone="gdu-drive-can-deactivate"><primary sortas="gdu_drive_can_deactivate">gdu_drive_can_deactivate</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_drive_can_deactivate            (<link linkend="GduDrive">GduDrive</link> *drive);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>drive</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

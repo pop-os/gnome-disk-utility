@@ -1,0 +1,191 @@
+<!-- ##### SECTION Title ##### -->
+gdu-types
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GduPool ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SIGNAL GduPool::device-added ##### -->
+<para>
+
+</para>
+
+@: 
+@: 
+
+<!-- ##### SIGNAL GduPool::device-changed ##### -->
+<para>
+
+</para>
+
+@: 
+@: 
+
+<!-- ##### SIGNAL GduPool::device-job-changed ##### -->
+<para>
+
+</para>
+
+@: 
+@: 
+
+<!-- ##### SIGNAL GduPool::device-removed ##### -->
+<para>
+
+</para>
+
+@: 
+@: 
+
+<!-- ##### SIGNAL GduPool::presentable-added ##### -->
+<para>
+
+</para>
+
+@: 
+@: 
+
+<!-- ##### SIGNAL GduPool::presentable-changed ##### -->
+<para>
+
+</para>
+
+@: 
+@: 
+
+<!-- ##### SIGNAL GduPool::presentable-job-changed ##### -->
+<para>
+
+</para>
+
+@: 
+@: 
+
+<!-- ##### SIGNAL GduPool::presentable-removed ##### -->
+<para>
+
+</para>
+
+@: 
+@: 
+
+<!-- ##### STRUCT GduDevice ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SIGNAL GduDevice::changed ##### -->
+<para>
+
+</para>
+
+@: 
+
+<!-- ##### SIGNAL GduDevice::job-changed ##### -->
+<para>
+
+</para>
+
+@: 
+
+<!-- ##### SIGNAL GduDevice::removed ##### -->
+<para>
+
+</para>
+
+@: 
+
+<!-- ##### STRUCT GduPresentable ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SIGNAL GduPresentable::changed ##### -->
+<para>
+
+</para>
+
+@gdupresentable: the object which received the signal.
+
+<!-- ##### SIGNAL GduPresentable::job-changed ##### -->
+<para>
+
+</para>
+
+@gdupresentable: the object which received the signal.
+
+<!-- ##### SIGNAL GduPresentable::removed ##### -->
+<para>
+
+</para>
+
+@gdupresentable: the object which received the signal.
+
+<!-- ##### STRUCT GduDrive ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT GduLinuxMdDrive ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT GduVolume ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT GduVolumeHole ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT GduKnownFilesystem ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT GduProcess ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT GduSmartData ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT GduSmartDataAttribute ##### -->
+<para>
+
+</para>
+
+

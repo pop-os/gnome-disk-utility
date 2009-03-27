@@ -1,0 +1,615 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>gdu-util</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.2">
+<link rel="home" href="index.html" title="Disk Utility Library Reference Manual">
+<link rel="up" href="ref-core.html" title="API Reference">
+<link rel="prev" href="GduSmartDataAttribute.html" title="GduSmartDataAttribute">
+<link rel="next" href="gnome-disk-utility-gdu-callbacks.html" title="Callbacks">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-core.html" title="API Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="GduSmartDataAttribute.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-core.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Disk Utility Library Reference Manual</th>
+<td><a accesskey="n" href="gnome-disk-utility-gdu-callbacks.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#gnome-disk-utility-gdu-util.synopsis" class="shortcut">Top</a>
+                 | 
+                <a href="#gnome-disk-utility-gdu-util.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="gnome-disk-utility-gdu-util"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="gnome-disk-utility-gdu-util.top_of_page"></a>gdu-util</span></h2>
+<p>gdu-util</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="gnome-disk-utility-gdu-util.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+char *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-get-size-for-display" title="gdu_util_get_size_for_display ()">gdu_util_get_size_for_display</a>       (<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a> size,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a> long_string);
+char *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-get-fstype-for-display" title="gdu_util_get_fstype_for_display ()">gdu_util_get_fstype_for_display</a>     (const char *fstype,
+                                                         const char *fsversion,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a> long_string);
+char *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-fstype-get-description" title="gdu_util_fstype_get_description ()">gdu_util_fstype_get_description</a>     (char *fstype);
+char *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-part-table-type-get-description" title="gdu_util_part_table_type_get_description ()">gdu_util_part_table_type_get_description</a>
+                                                        (char *part_type);
+char *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-secure-erase-get-description" title="gdu_util_secure_erase_get_description ()">gdu_util_secure_erase_get_description</a>
+                                                        (char *secure_erase_type);
+char *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-get-speed-for-display" title="gdu_util_get_speed_for_display ()">gdu_util_get_speed_for_display</a>      (<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a> size);
+char *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-get-connection-for-display" title="gdu_util_get_connection_for_display ()">gdu_util_get_connection_for_display</a> (const char *connection_interface,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a> connection_speed);
+char *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-get-desc-for-part-type" title="gdu_util_get_desc_for_part_type ()">gdu_util_get_desc_for_part_type</a>     (const char *part_scheme,
+                                                         const char *part_type);
+char *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-get-job-description" title="gdu_get_job_description ()">gdu_get_job_description</a>             (const char *job_id);
+char *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-get-task-description" title="gdu_get_task_description ()">gdu_get_task_description</a>            (const char *task_id);
+char *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-linux-md-get-raid-level-for-display" title="gdu_linux_md_get_raid_level_for_display ()">gdu_linux_md_get_raid_level_for_display</a>
+                                                        (const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *linux_md_raid_level);
+void                (<a class="link" href="gnome-disk-utility-gdu-util.html#GduUtilPartTypeForeachFunc" title="GduUtilPartTypeForeachFunc ()">*GduUtilPartTypeForeachFunc</a>)       (const char *scheme,
+                                                         const char *type,
+                                                         const char *name,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
+void                <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-part-type-foreach" title="gdu_util_part_type_foreach ()">gdu_util_part_type_foreach</a>          (<a class="link" href="gnome-disk-utility-gdu-util.html#GduUtilPartTypeForeachFunc" title="GduUtilPartTypeForeachFunc ()">GduUtilPartTypeForeachFunc</a> callback,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
+char *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-get-default-part-type-for-scheme-and-fstype" title="gdu_util_get_default_part_type_for_scheme_and_fstype ()">gdu_util_get_default_part_type_for_scheme_and_fstype</a>
+                                                        (const char *scheme,
+                                                         const char *fstype,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a> size);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-save-secret" title="gdu_util_save_secret ()">gdu_util_save_secret</a>                (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
+                                                         const char *secret,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a> save_in_keyring_session);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-delete-secret" title="gdu_util_delete_secret ()">gdu_util_delete_secret</a>              (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-have-secret" title="gdu_util_have_secret ()">gdu_util_have_secret</a>                (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *             <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-get-secret" title="gdu_util_get_secret ()">gdu_util_get_secret</a>                 (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="gnome-disk-utility-gdu-util.description"></a><h2>Description</h2>
+<p>
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="gnome-disk-utility-gdu-util.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="gdu-util-get-size-for-display"></a><h3>gdu_util_get_size_for_display ()</h3>
+<pre class="programlisting">char *              gdu_util_get_size_for_display       (<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a> size,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a> long_string);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>size</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>long_string</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-util-get-fstype-for-display"></a><h3>gdu_util_get_fstype_for_display ()</h3>
+<pre class="programlisting">char *              gdu_util_get_fstype_for_display     (const char *fstype,
+                                                         const char *fsversion,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a> long_string);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>fstype</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>fsversion</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>long_string</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-util-fstype-get-description"></a><h3>gdu_util_fstype_get_description ()</h3>
+<pre class="programlisting">char *              gdu_util_fstype_get_description     (char *fstype);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>fstype</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-util-part-table-type-get-description"></a><h3>gdu_util_part_table_type_get_description ()</h3>
+<pre class="programlisting">char *              gdu_util_part_table_type_get_description
+                                                        (char *part_type);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>part_type</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-util-secure-erase-get-description"></a><h3>gdu_util_secure_erase_get_description ()</h3>
+<pre class="programlisting">char *              gdu_util_secure_erase_get_description
+                                                        (char *secure_erase_type);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>secure_erase_type</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-util-get-speed-for-display"></a><h3>gdu_util_get_speed_for_display ()</h3>
+<pre class="programlisting">char *              gdu_util_get_speed_for_display      (<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a> size);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>size</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-util-get-connection-for-display"></a><h3>gdu_util_get_connection_for_display ()</h3>
+<pre class="programlisting">char *              gdu_util_get_connection_for_display (const char *connection_interface,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a> connection_speed);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>connection_interface</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>connection_speed</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-util-get-desc-for-part-type"></a><h3>gdu_util_get_desc_for_part_type ()</h3>
+<pre class="programlisting">char *              gdu_util_get_desc_for_part_type     (const char *part_scheme,
+                                                         const char *part_type);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>part_scheme</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>part_type</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-get-job-description"></a><h3>gdu_get_job_description ()</h3>
+<pre class="programlisting">char *              gdu_get_job_description             (const char *job_id);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>job_id</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-get-task-description"></a><h3>gdu_get_task_description ()</h3>
+<pre class="programlisting">char *              gdu_get_task_description            (const char *task_id);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>task_id</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-linux-md-get-raid-level-for-display"></a><h3>gdu_linux_md_get_raid_level_for_display ()</h3>
+<pre class="programlisting">char *              gdu_linux_md_get_raid_level_for_display
+                                                        (const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *linux_md_raid_level);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>linux_md_raid_level</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GduUtilPartTypeForeachFunc"></a><h3>GduUtilPartTypeForeachFunc ()</h3>
+<pre class="programlisting">void                (*GduUtilPartTypeForeachFunc)       (const char *scheme,
+                                                         const char *type,
+                                                         const char *name,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>scheme</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>type</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>name</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-util-part-type-foreach"></a><h3>gdu_util_part_type_foreach ()</h3>
+<pre class="programlisting">void                gdu_util_part_type_foreach          (<a class="link" href="gnome-disk-utility-gdu-util.html#GduUtilPartTypeForeachFunc" title="GduUtilPartTypeForeachFunc ()">GduUtilPartTypeForeachFunc</a> callback,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-util-get-default-part-type-for-scheme-and-fstype"></a><h3>gdu_util_get_default_part_type_for_scheme_and_fstype ()</h3>
+<pre class="programlisting">char *              gdu_util_get_default_part_type_for_scheme_and_fstype
+                                                        (const char *scheme,
+                                                         const char *fstype,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a> size);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>scheme</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>fstype</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>size</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-util-save-secret"></a><h3>gdu_util_save_secret ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_util_save_secret                (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
+                                                         const char *secret,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a> save_in_keyring_session);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>secret</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>save_in_keyring_session</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-util-delete-secret"></a><h3>gdu_util_delete_secret ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_util_delete_secret              (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-util-have-secret"></a><h3>gdu_util_have_secret ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_util_have_secret                (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-util-get-secret"></a><h3>gdu_util_get_secret ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *             gdu_util_get_secret                 (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.11</div>
+</body>
+</html>
