@@ -67,14 +67,13 @@ create_part_table_callback (GtkAction *action, gpointer user_data)
 {
         GduSectionCreatePartitionTable *section = GDU_SECTION_CREATE_PARTITION_TABLE (user_data);
         GduDevice *device;
-        char *secure_erase;
+        gboolean do_erase;
         char *scheme;
         char *primary;
         char *secondary;
         char *drive_name;
 
         scheme = NULL;
-        secure_erase = NULL;
         primary = NULL;
         secondary = NULL;
         drive_name = NULL;
@@ -87,7 +86,7 @@ create_part_table_callback (GtkAction *action, gpointer user_data)
 
         drive_name = gdu_presentable_get_name (gdu_section_get_presentable (GDU_SECTION (section)));
 
-        primary = g_strdup (_("<b><big>Are you sure you want to format the disk, deleting existing data?</big></b>"));
+        primary = g_strconcat ("<b><big>", _("Are you sure you want to format the disk, deleting existing data ?"), "</big></b>", NULL);
 
         if (gdu_device_is_removable (device)) {
                 secondary = g_strdup_printf (_("All data on the media in \"%s\" will be irrecovably erased. "
@@ -101,15 +100,14 @@ create_part_table_callback (GtkAction *action, gpointer user_data)
                                              drive_name);
         }
 
-        secure_erase = gdu_util_delete_confirmation_dialog (gdu_shell_get_toplevel (gdu_section_get_shell (GDU_SECTION (section))),
-                                                            "",
-                                                            FALSE,
-                                                            primary,
-                                                            secondary,
-                                                            _("C_reate"));
+        do_erase = gdu_util_delete_confirmation_dialog (gdu_shell_get_toplevel (gdu_section_get_shell (GDU_SECTION (section))),
+                                                        "",
+                                                        primary,
+                                                        secondary,
+                                                        _("C_reate"));
 
 
-        if (secure_erase == NULL)
+        if (!do_erase)
                 goto out;
 
         scheme = gdu_util_part_table_type_combo_box_get_selected (
@@ -117,7 +115,6 @@ create_part_table_callback (GtkAction *action, gpointer user_data)
 
         gdu_device_op_partition_table_create (device,
                                               scheme,
-                                              secure_erase,
                                               create_partition_table_callback,
                                               g_object_ref (section));
 
@@ -125,7 +122,6 @@ out:
         if (device != NULL)
                 g_object_unref (device);
         g_free (scheme);
-        g_free (secure_erase);
         g_free (primary);
         g_free (secondary);
         g_free (drive_name);
@@ -192,7 +188,7 @@ gdu_section_create_partition_table_init (GduSectionCreatePartitionTable *section
         GtkWidget *combo_box;
         GtkWidget *button;
         GtkWidget *button_box;
-
+        char *text;
 
         section->priv = G_TYPE_INSTANCE_GET_PRIVATE (section, GDU_TYPE_SECTION_CREATE_PARTITION_TABLE, GduSectionCreatePartitionTablePrivate);
 
@@ -205,7 +201,7 @@ gdu_section_create_partition_table_init (GduSectionCreatePartitionTable *section
         section->priv->create_part_table_action = polkit_gnome_action_new_default (
                 "create-part-table",
                 section->priv->pk_change_action,
-                _("_Create"),
+                _("C_reate"),
                 _("Create"));
         g_object_set (section->priv->create_part_table_action,
                       "auth-label", _("_Create..."),
@@ -219,7 +215,9 @@ gdu_section_create_partition_table_init (GduSectionCreatePartitionTable *section
 
 
         label = gtk_label_new (NULL);
-        gtk_label_set_markup (GTK_LABEL (label), _("<b>Create Partition Table</b>"));
+        text = g_strdup_printf ("<b>%s</b>", _("Create Partition Table"));
+        gtk_label_set_markup (GTK_LABEL (label), text);
+        g_free (text);
         gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
         gtk_box_pack_start (GTK_BOX (section), label, FALSE, FALSE, 6);
         vbox2 = gtk_vbox_new (FALSE, 5);
@@ -237,6 +235,8 @@ gdu_section_create_partition_table_init (GduSectionCreatePartitionTable *section
         gtk_box_pack_start (GTK_BOX (vbox2), label, FALSE, TRUE, 0);
 
         table = gtk_table_new (4, 2, FALSE);
+        gtk_table_set_col_spacings (GTK_TABLE (table), 12);
+
         gtk_box_pack_start (GTK_BOX (vbox2), table, FALSE, FALSE, 0);
 
         row = 0;
@@ -244,7 +244,7 @@ gdu_section_create_partition_table_init (GduSectionCreatePartitionTable *section
         /* partition table type */
         label = gtk_label_new (NULL);
         gtk_misc_set_alignment (GTK_MISC (label), 1.0, 0.5);
-        gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), _("_Type:"));
+        gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), _("Ty_pe:"));
         gtk_table_attach (GTK_TABLE (table), label, 0, 1, row, row + 1,
                           GTK_FILL, GTK_EXPAND | GTK_FILL, 2, 2);
         combo_box = gdu_util_part_table_type_combo_box_create ();

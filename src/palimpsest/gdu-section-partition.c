@@ -72,21 +72,26 @@ delete_partition_callback (GtkAction *action, gpointer user_data)
 {
         GduSectionPartition *section = GDU_SECTION_PARTITION (user_data);
         GduDevice *device;
+        GduPresentable *presentable;
         char *primary;
         char *secondary;
-        char *secure_erase;
+        gboolean do_erase;
         GduPresentable *toplevel_presentable;
         GduDevice *toplevel_device;
         char *drive_name;
+        char *name;
+        const gchar *type;
+        gint msdos_type;
 
-        secure_erase = NULL;
         primary = NULL;
         secondary = NULL;
         toplevel_presentable = NULL;
         toplevel_device = NULL;
         drive_name = NULL;
+        name = NULL;
 
-        device = gdu_presentable_get_device (gdu_section_get_presentable (GDU_SECTION (section)));
+	presentable = gdu_section_get_presentable (GDU_SECTION (section));
+        device = gdu_presentable_get_device (presentable);
         if (device == NULL) {
                 g_warning ("%s: device is not supposed to be NULL", __FUNCTION__);
                 goto out;
@@ -104,37 +109,104 @@ delete_partition_callback (GtkAction *action, gpointer user_data)
         }
 
         drive_name = gdu_presentable_get_name (toplevel_presentable);
+        name = gdu_presentable_get_name (presentable);
+        type = gdu_device_partition_get_type (device);
+        msdos_type = strtol (type, NULL, 0);
 
-        primary = g_strdup (_("<b><big>Are you sure you want to remove the partition, deleting existing data?</big></b>"));
+        primary = g_strconcat ("<b><big>", _("Are you sure you want to remove the partition, deleting existing data ?"), "</big></b>", NULL);
 
         if (gdu_device_is_removable (toplevel_device)) {
-                secondary = g_strdup_printf (_("All data on partition %d on the media in \"%s\" will be "
-                                               "irrecovably erased. "
-                                               "Make sure important data is backed up. "
-                                               "This action cannot be undone."),
-                                             gdu_device_partition_get_number (device),
-                                             drive_name);
+                if (name != NULL && strlen (name) > 0) {
+                        if (msdos_type == 0x05 || msdos_type == 0x0f || msdos_type == 0x85) {
+                                secondary = g_strdup_printf (_("All data on partition %d with name \"%s\" on the media in \"%s\" "
+                                                             "and all partitions contained in this extended partition "
+                                                             "will be irrecovably erased.\n\n"
+                                                             "Make sure important data is backed up. "
+                                                             "This action cannot be undone."),
+                                                             gdu_device_partition_get_number (device),
+                                                             name,
+                                                             drive_name);
+                        }
+                        else {
+                                secondary = g_strdup_printf (_("All data on partition %d with name \"%s\" on the media in \"%s\" will be "
+                                                             "irrecovably erased.\n\n"
+                                                             "Make sure important data is backed up. "
+                                                             "This action cannot be undone."),
+                                                             gdu_device_partition_get_number (device),
+                                                             name,
+                                                             drive_name);
+                        }
+                } else {
+                        if (msdos_type == 0x05 || msdos_type == 0x0f || msdos_type == 0x85) {
+                                secondary = g_strdup_printf (_("All data on partition %d on the media in \"%s\" "
+                                                             "and all partitions contained in this extended partition "
+                                                             "will be irrecovably erased.\n\n"
+                                                             "Make sure important data is backed up. "
+                                                             "This action cannot be undone."),
+                                                             gdu_device_partition_get_number (device),
+                                                             drive_name);
+                        }
+                        else {
+                                secondary = g_strdup_printf (_("All data on partition %d on the media in \"%s\" "
+                                                             "will be irrecovably erased.\n\n"
+                                                             "Make sure important data is backed up. "
+                                                             "This action cannot be undone."),
+                                                             gdu_device_partition_get_number (device),
+                                                             drive_name);
+                        }
+                }
         } else {
-                secondary = g_strdup_printf (_("All data on partition %d of \"%s\" will be "
-                                               "irrecovably erased. "
-                                               "Make sure important data is backed up. "
-                                               "This action cannot be undone."),
-                                             gdu_device_partition_get_number (device),
-                                             drive_name);
+                if (name != NULL && strlen (name) > 0) {
+                        if (msdos_type == 0x05 || msdos_type == 0x0f || msdos_type == 0x85) {
+                                secondary = g_strdup_printf (_("All data on partition %d with name \"%s\" of \"%s\" "
+                                                             "and all partitions contained in this extended partition "
+                                                             "will be irrecovably erased.\n\n"
+                                                             "Make sure important data is backed up. "
+                                                             "This action cannot be undone."),
+                                                             gdu_device_partition_get_number (device),
+                                                             name,
+                                                             drive_name);
+                        }
+                        else {
+                                secondary = g_strdup_printf (_("All data on partition %d with name \"%s\" of \"%s\" will be "
+                                                             "irrecovably erased.\n\n"
+                                                             "Make sure important data is backed up. "
+                                                             "This action cannot be undone."),
+                                                             gdu_device_partition_get_number (device),
+                                                             name,
+                                                             drive_name);
+                        }
+                } else {
+                        if (msdos_type == 0x05 || msdos_type == 0x0f || msdos_type == 0x85) {
+                                secondary = g_strdup_printf (_("All data on partition %d of \"%s\" "
+                                                             "and all partitions contained in this extended partition "
+                                                             "will be irrecovably erased.\n\n"
+                                                             "Make sure important data is backed up. "
+                                                             "This action cannot be undone."),
+                                                             gdu_device_partition_get_number (device),
+                                                             drive_name);
+                        }
+                        else {
+                                secondary = g_strdup_printf (_("All data on partition %d of \"%s\" will be "
+                                                             "irrecovably erased.\n\n"
+                                                             "Make sure important data is backed up. "
+                                                             "This action cannot be undone."),
+                                                             gdu_device_partition_get_number (device),
+                                                             drive_name);
+                        }
+                }
         }
 
-        secure_erase = gdu_util_delete_confirmation_dialog (gdu_shell_get_toplevel (gdu_section_get_shell (GDU_SECTION (section))),
-                                                            "",
-                                                            FALSE,
-                                                            primary,
-                                                            secondary,
-                                                            _("_Delete Partition"));
+        do_erase = gdu_util_delete_confirmation_dialog (gdu_shell_get_toplevel (gdu_section_get_shell (GDU_SECTION (section))),
+                                                        "",
+                                                        primary,
+                                                        secondary,
+                                                        _("_Delete Partition"));
 
-        if (secure_erase == NULL)
+        if (!do_erase)
                 goto out;
 
         gdu_device_op_partition_delete (device,
-                                        secure_erase,
                                         op_delete_partition_callback,
                                         g_object_ref (section));
 
@@ -151,7 +223,6 @@ out:
                 g_object_unref (toplevel_device);
         g_free (primary);
         g_free (secondary);
-        g_free (secure_erase);
         g_free (drive_name);
 }
 
@@ -471,6 +542,7 @@ gdu_section_partition_init (GduSectionPartition *section)
         GtkWidget *check_button;
         GtkWidget *button_box;
         int row;
+        gchar *s;
 
         section->priv = G_TYPE_INSTANCE_GET_PRIVATE (section, GDU_TYPE_SECTION_PARTITION, GduSectionPartitionPrivate);
 
@@ -513,7 +585,9 @@ gdu_section_partition_init (GduSectionPartition *section)
 
 
         label = gtk_label_new (NULL);
-        gtk_label_set_markup (GTK_LABEL (label), _("<b>Partition</b>"));
+        s = g_strconcat ("<b>", _("Partition"), "</b>", NULL);
+        gtk_label_set_markup (GTK_LABEL (label), s);
+        g_free (s);
         gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
         gtk_box_pack_start (GTK_BOX (section), label, FALSE, FALSE, 6);
         vbox2 = gtk_vbox_new (FALSE, 5);
@@ -532,17 +606,16 @@ gdu_section_partition_init (GduSectionPartition *section)
         gtk_box_pack_start (GTK_BOX (vbox2), label, FALSE, TRUE, 0);
 
         table = gtk_table_new (6, 2, FALSE);
+        gtk_table_set_col_spacings (GTK_TABLE (table), 12);
+
         gtk_box_pack_start (GTK_BOX (vbox2), table, FALSE, FALSE, 0);
 
         row = 0;
 
-        table = gtk_table_new (2, 2, FALSE);
-        gtk_box_pack_start (GTK_BOX (vbox2), table, FALSE, FALSE, 0);
-
         /* partition label */
         label = gtk_label_new (NULL);
-        gtk_misc_set_alignment (GTK_MISC (label), 1.0, 0.5);
-        gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), _("_Label:"));
+        gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
+        gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), _("Part_ition Label:"));
         gtk_table_attach (GTK_TABLE (table), label, 0, 1, row, row + 1,
                           GTK_FILL, GTK_EXPAND | GTK_FILL, 2, 2);
         entry = gtk_entry_new ();
@@ -555,7 +628,7 @@ gdu_section_partition_init (GduSectionPartition *section)
 
         /* partition type */
         label = gtk_label_new (NULL);
-        gtk_misc_set_alignment (GTK_MISC (label), 1.0, 0.5);
+        gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
         gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), _("Ty_pe:"));
         gtk_table_attach (GTK_TABLE (table), label, 0, 1, row, row + 1,
                           GTK_FILL, GTK_EXPAND | GTK_FILL, 2, 2);
@@ -571,7 +644,7 @@ gdu_section_partition_init (GduSectionPartition *section)
 
         /* used by mbr, apm */
         check_button = gtk_check_button_new_with_mnemonic (_("_Bootable"));
-        gtk_table_attach (GTK_TABLE (table), check_button, 1, 2, row, row +1,
+        gtk_table_attach (GTK_TABLE (table), check_button, 0, 2, row, row +1,
                           GTK_FILL, GTK_EXPAND | GTK_FILL, 2, 2);
         section->priv->modify_part_flag_boot_check_button = check_button;
 
@@ -579,7 +652,7 @@ gdu_section_partition_init (GduSectionPartition *section)
 
         /* used by gpt */
         check_button = gtk_check_button_new_with_mnemonic (_("Required / Firm_ware"));
-        gtk_table_attach (GTK_TABLE (table), check_button, 1, 2, row, row +1,
+        gtk_table_attach (GTK_TABLE (table), check_button, 0, 2, row, row +1,
                           GTK_FILL, GTK_EXPAND | GTK_FILL, 2, 2);
         section->priv->modify_part_flag_required_check_button = check_button;
 

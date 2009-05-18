@@ -13,8 +13,8 @@
       <sub name="GduVolumeHole" link="GduVolumeHole.html"/>
       <sub name="GduKnownFilesystem" link="GduKnownFilesystem.html"/>
       <sub name="GduProcess" link="GduProcess.html"/>
-      <sub name="GduSmartData" link="GduSmartData.html"/>
-      <sub name="GduSmartDataAttribute" link="GduSmartDataAttribute.html"/>
+      <sub name="GduAtaSmartAttribute" link="GduAtaSmartAttribute.html"/>
+      <sub name="GduAtaSmartHistoricalData" link="GduAtaSmartHistoricalData.html"/>
       <sub name="gdu-util" link="gnome-disk-utility-gdu-util.html"/>
       <sub name="Callbacks" link="gnome-disk-utility-gdu-callbacks.html"/>
     </sub>
@@ -59,6 +59,10 @@
     <keyword type="function" name="gdu_device_get_block_size ()" link="GduDevice.html#gdu-device-get-block-size"/>
     <keyword type="function" name="gdu_device_is_removable ()" link="GduDevice.html#gdu-device-is-removable"/>
     <keyword type="function" name="gdu_device_is_media_available ()" link="GduDevice.html#gdu-device-is-media-available"/>
+    <keyword type="function" name="gdu_device_is_media_change_detected ()" link="GduDevice.html#gdu-device-is-media-change-detected"/>
+    <keyword type="function" name="gdu_device_is_media_change_detection_polling ()" link="GduDevice.html#gdu-device-is-media-change-detection-polling"/>
+    <keyword type="function" name="gdu_device_is_media_change_detection_inhibitable ()" link="GduDevice.html#gdu-device-is-media-change-detection-inhibitable"/>
+    <keyword type="function" name="gdu_device_is_media_change_detection_inhibited ()" link="GduDevice.html#gdu-device-is-media-change-detection-inhibited"/>
     <keyword type="function" name="gdu_device_is_read_only ()" link="GduDevice.html#gdu-device-is-read-only"/>
     <keyword type="function" name="gdu_device_is_system_internal ()" link="GduDevice.html#gdu-device-is-system-internal"/>
     <keyword type="function" name="gdu_device_is_partition ()" link="GduDevice.html#gdu-device-is-partition"/>
@@ -70,17 +74,14 @@
     <keyword type="function" name="gdu_device_is_linux_md_component ()" link="GduDevice.html#gdu-device-is-linux-md-component"/>
     <keyword type="function" name="gdu_device_is_linux_md ()" link="GduDevice.html#gdu-device-is-linux-md"/>
     <keyword type="function" name="gdu_device_is_mounted ()" link="GduDevice.html#gdu-device-is-mounted"/>
-    <keyword type="function" name="gdu_device_is_busy ()" link="GduDevice.html#gdu-device-is-busy"/>
     <keyword type="function" name="gdu_device_get_mount_path ()" link="GduDevice.html#gdu-device-get-mount-path"/>
     <keyword type="function" name="gdu_device_get_mounted_by_uid ()" link="GduDevice.html#gdu-device-get-mounted-by-uid"/>
+    <keyword type="function" name="gdu_device_get_presentation_name ()" link="GduDevice.html#gdu-device-get-presentation-name"/>
+    <keyword type="function" name="gdu_device_get_presentation_icon_name ()" link="GduDevice.html#gdu-device-get-presentation-icon-name"/>
     <keyword type="function" name="gdu_device_job_in_progress ()" link="GduDevice.html#gdu-device-job-in-progress"/>
     <keyword type="function" name="gdu_device_job_get_id ()" link="GduDevice.html#gdu-device-job-get-id"/>
     <keyword type="function" name="gdu_device_job_get_initiated_by_uid ()" link="GduDevice.html#gdu-device-job-get-initiated-by-uid"/>
     <keyword type="function" name="gdu_device_job_is_cancellable ()" link="GduDevice.html#gdu-device-job-is-cancellable"/>
-    <keyword type="function" name="gdu_device_job_get_num_tasks ()" link="GduDevice.html#gdu-device-job-get-num-tasks"/>
-    <keyword type="function" name="gdu_device_job_get_cur_task ()" link="GduDevice.html#gdu-device-job-get-cur-task"/>
-    <keyword type="function" name="gdu_device_job_get_cur_task_id ()" link="GduDevice.html#gdu-device-job-get-cur-task-id"/>
-    <keyword type="function" name="gdu_device_job_get_cur_task_percentage ()" link="GduDevice.html#gdu-device-job-get-cur-task-percentage"/>
     <keyword type="function" name="gdu_device_id_get_usage ()" link="GduDevice.html#gdu-device-id-get-usage"/>
     <keyword type="function" name="gdu_device_id_get_type ()" link="GduDevice.html#gdu-device-id-get-type"/>
     <keyword type="function" name="gdu_device_id_get_version ()" link="GduDevice.html#gdu-device-id-get-version"/>
@@ -97,9 +98,6 @@
     <keyword type="function" name="gdu_device_partition_get_size ()" link="GduDevice.html#gdu-device-partition-get-size"/>
     <keyword type="function" name="gdu_device_partition_table_get_scheme ()" link="GduDevice.html#gdu-device-partition-table-get-scheme"/>
     <keyword type="function" name="gdu_device_partition_table_get_count ()" link="GduDevice.html#gdu-device-partition-table-get-count"/>
-    <keyword type="function" name="gdu_device_partition_table_get_max_number ()" link="GduDevice.html#gdu-device-partition-table-get-max-number"/>
-    <keyword type="function" name="gdu_device_partition_table_get_offsets ()" link="GduDevice.html#gdu-device-partition-table-get-offsets"/>
-    <keyword type="function" name="gdu_device_partition_table_get_sizes ()" link="GduDevice.html#gdu-device-partition-table-get-sizes"/>
     <keyword type="function" name="gdu_device_luks_get_holder ()" link="GduDevice.html#gdu-device-luks-get-holder"/>
     <keyword type="function" name="gdu_device_luks_cleartext_get_slave ()" link="GduDevice.html#gdu-device-luks-cleartext-get-slave"/>
     <keyword type="function" name="gdu_device_luks_cleartext_unlocked_by_uid ()" link="GduDevice.html#gdu-device-luks-cleartext-unlocked-by-uid"/>
@@ -117,16 +115,17 @@
     <keyword type="function" name="gdu_device_optical_disc_get_is_appendable ()" link="GduDevice.html#gdu-device-optical-disc-get-is-appendable"/>
     <keyword type="function" name="gdu_device_optical_disc_get_is_closed ()" link="GduDevice.html#gdu-device-optical-disc-get-is-closed"/>
     <keyword type="function" name="gdu_device_optical_disc_get_num_tracks ()" link="GduDevice.html#gdu-device-optical-disc-get-num-tracks"/>
+    <keyword type="function" name="gdu_device_optical_disc_get_num_audio_tracks ()" link="GduDevice.html#gdu-device-optical-disc-get-num-audio-tracks"/>
     <keyword type="function" name="gdu_device_optical_disc_get_num_sessions ()" link="GduDevice.html#gdu-device-optical-disc-get-num-sessions"/>
-    <keyword type="function" name="gdu_device_drive_smart_get_is_capable ()" link="GduDevice.html#gdu-device-drive-smart-get-is-capable"/>
-    <keyword type="function" name="gdu_device_drive_smart_get_is_enabled ()" link="GduDevice.html#gdu-device-drive-smart-get-is-enabled"/>
-    <keyword type="function" name="gdu_device_get_smart_data ()" link="GduDevice.html#gdu-device-get-smart-data"/>
     <keyword type="function" name="gdu_device_linux_md_component_get_level ()" link="GduDevice.html#gdu-device-linux-md-component-get-level"/>
     <keyword type="function" name="gdu_device_linux_md_component_get_num_raid_devices ()" link="GduDevice.html#gdu-device-linux-md-component-get-num-raid-devices"/>
     <keyword type="function" name="gdu_device_linux_md_component_get_uuid ()" link="GduDevice.html#gdu-device-linux-md-component-get-uuid"/>
     <keyword type="function" name="gdu_device_linux_md_component_get_home_host ()" link="GduDevice.html#gdu-device-linux-md-component-get-home-host"/>
     <keyword type="function" name="gdu_device_linux_md_component_get_name ()" link="GduDevice.html#gdu-device-linux-md-component-get-name"/>
     <keyword type="function" name="gdu_device_linux_md_component_get_version ()" link="GduDevice.html#gdu-device-linux-md-component-get-version"/>
+    <keyword type="function" name="gdu_device_linux_md_component_get_holder ()" link="GduDevice.html#gdu-device-linux-md-component-get-holder"/>
+    <keyword type="function" name="gdu_device_linux_md_component_get_state ()" link="GduDevice.html#gdu-device-linux-md-component-get-state"/>
+    <keyword type="function" name="gdu_device_linux_md_get_state ()" link="GduDevice.html#gdu-device-linux-md-get-state"/>
     <keyword type="function" name="gdu_device_linux_md_get_level ()" link="GduDevice.html#gdu-device-linux-md-get-level"/>
     <keyword type="function" name="gdu_device_linux_md_get_num_raid_devices ()" link="GduDevice.html#gdu-device-linux-md-get-num-raid-devices"/>
     <keyword type="function" name="gdu_device_linux_md_get_uuid ()" link="GduDevice.html#gdu-device-linux-md-get-uuid"/>
@@ -138,6 +137,29 @@
     <keyword type="function" name="gdu_device_linux_md_get_sync_action ()" link="GduDevice.html#gdu-device-linux-md-get-sync-action"/>
     <keyword type="function" name="gdu_device_linux_md_get_sync_percentage ()" link="GduDevice.html#gdu-device-linux-md-get-sync-percentage"/>
     <keyword type="function" name="gdu_device_linux_md_get_sync_speed ()" link="GduDevice.html#gdu-device-linux-md-get-sync-speed"/>
+    <keyword type="enum" name="enum GduAtaSmartOfflineDataCollectionStatus" link="GduDevice.html#GduAtaSmartOfflineDataCollectionStatus"/>
+    <keyword type="enum" name="enum GduAtaSmartSelfTestExecutionStatus" link="GduDevice.html#GduAtaSmartSelfTestExecutionStatus"/>
+    <keyword type="function" name="gdu_device_drive_ata_smart_get_is_available ()" link="GduDevice.html#gdu-device-drive-ata-smart-get-is-available"/>
+    <keyword type="function" name="gdu_device_drive_ata_smart_get_is_failing ()" link="GduDevice.html#gdu-device-drive-ata-smart-get-is-failing"/>
+    <keyword type="function" name="gdu_device_drive_ata_smart_get_is_failing_valid ()" link="GduDevice.html#gdu-device-drive-ata-smart-get-is-failing-valid"/>
+    <keyword type="function" name="gdu_device_drive_ata_smart_get_has_bad_sectors ()" link="GduDevice.html#gdu-device-drive-ata-smart-get-has-bad-sectors"/>
+    <keyword type="function" name="gdu_device_drive_ata_smart_get_has_bad_attributes ()" link="GduDevice.html#gdu-device-drive-ata-smart-get-has-bad-attributes"/>
+    <keyword type="function" name="gdu_device_drive_ata_smart_get_temperature_kelvin ()" link="GduDevice.html#gdu-device-drive-ata-smart-get-temperature-kelvin"/>
+    <keyword type="function" name="gdu_device_drive_ata_smart_get_power_on_seconds ()" link="GduDevice.html#gdu-device-drive-ata-smart-get-power-on-seconds"/>
+    <keyword type="function" name="gdu_device_drive_ata_smart_get_time_collected ()" link="GduDevice.html#gdu-device-drive-ata-smart-get-time-collected"/>
+    <keyword type="function" name="gdu_device_drive_ata_smart_get_offline_data_collection_status ()" link="GduDevice.html#gdu-device-drive-ata-smart-get-offline-data-collection-status"/>
+    <keyword type="function" name="gdu_device_drive_ata_smart_get_offline_data_collection_seconds ()" link="GduDevice.html#gdu-device-drive-ata-smart-get-offline-data-collection-seconds"/>
+    <keyword type="function" name="gdu_device_drive_ata_smart_get_self_test_execution_status ()" link="GduDevice.html#gdu-device-drive-ata-smart-get-self-test-execution-status"/>
+    <keyword type="function" name="gdu_device_drive_ata_smart_get_self_test_execution_percent_remaining ()" link="GduDevice.html#gdu-device-drive-ata-smart-get-self-test-execution-percent-remaining"/>
+    <keyword type="function" name="gdu_device_drive_ata_smart_get_short_and_extended_self_test_available ()" link="GduDevice.html#gdu-device-drive-ata-smart-get-short-and-extended-self-test-available"/>
+    <keyword type="function" name="gdu_device_drive_ata_smart_get_conveyance_self_test_available ()" link="GduDevice.html#gdu-device-drive-ata-smart-get-conveyance-self-test-available"/>
+    <keyword type="function" name="gdu_device_drive_ata_smart_get_start_self_test_available ()" link="GduDevice.html#gdu-device-drive-ata-smart-get-start-self-test-available"/>
+    <keyword type="function" name="gdu_device_drive_ata_smart_get_abort_self_test_available ()" link="GduDevice.html#gdu-device-drive-ata-smart-get-abort-self-test-available"/>
+    <keyword type="function" name="gdu_device_drive_ata_smart_get_short_self_test_polling_minutes ()" link="GduDevice.html#gdu-device-drive-ata-smart-get-short-self-test-polling-minutes"/>
+    <keyword type="function" name="gdu_device_drive_ata_smart_get_extended_self_test_polling_minutes ()" link="GduDevice.html#gdu-device-drive-ata-smart-get-extended-self-test-polling-minutes"/>
+    <keyword type="function" name="gdu_device_drive_ata_smart_get_conveyance_self_test_polling_minutes ()" link="GduDevice.html#gdu-device-drive-ata-smart-get-conveyance-self-test-polling-minutes"/>
+    <keyword type="function" name="gdu_device_drive_ata_smart_get_attributes ()" link="GduDevice.html#gdu-device-drive-ata-smart-get-attributes"/>
+    <keyword type="function" name="gdu_device_drive_ata_smart_get_attribute ()" link="GduDevice.html#gdu-device-drive-ata-smart-get-attribute"/>
     <keyword type="function" name="gdu_device_op_filesystem_mount ()" link="GduDevice.html#gdu-device-op-filesystem-mount"/>
     <keyword type="function" name="gdu_device_op_filesystem_unmount ()" link="GduDevice.html#gdu-device-op-filesystem-unmount"/>
     <keyword type="function" name="gdu_device_op_filesystem_check ()" link="GduDevice.html#gdu-device-op-filesystem-check"/>
@@ -148,18 +170,20 @@
     <keyword type="function" name="gdu_device_op_luks_lock ()" link="GduDevice.html#gdu-device-op-luks-lock"/>
     <keyword type="function" name="gdu_device_op_luks_change_passphrase ()" link="GduDevice.html#gdu-device-op-luks-change-passphrase"/>
     <keyword type="function" name="gdu_device_op_filesystem_set_label ()" link="GduDevice.html#gdu-device-op-filesystem-set-label"/>
-    <keyword type="function" name="gdu_device_op_drive_smart_initiate_selftest ()" link="GduDevice.html#gdu-device-op-drive-smart-initiate-selftest"/>
-    <keyword type="function" name="gdu_device_drive_smart_refresh_data ()" link="GduDevice.html#gdu-device-drive-smart-refresh-data"/>
+    <keyword type="function" name="gdu_device_op_drive_ata_smart_initiate_selftest ()" link="GduDevice.html#gdu-device-op-drive-ata-smart-initiate-selftest"/>
+    <keyword type="function" name="gdu_device_drive_ata_smart_refresh_data ()" link="GduDevice.html#gdu-device-drive-ata-smart-refresh-data"/>
     <keyword type="function" name="gdu_device_op_linux_md_stop ()" link="GduDevice.html#gdu-device-op-linux-md-stop"/>
     <keyword type="function" name="gdu_device_op_linux_md_add_component ()" link="GduDevice.html#gdu-device-op-linux-md-add-component"/>
     <keyword type="function" name="gdu_device_op_linux_md_remove_component ()" link="GduDevice.html#gdu-device-op-linux-md-remove-component"/>
     <keyword type="function" name="gdu_device_op_filesystem_create ()" link="GduDevice.html#gdu-device-op-filesystem-create"/>
     <keyword type="function" name="gdu_device_op_partition_create ()" link="GduDevice.html#gdu-device-op-partition-create"/>
     <keyword type="function" name="gdu_device_op_cancel_job ()" link="GduDevice.html#gdu-device-op-cancel-job"/>
-    <keyword type="function" name="gdu_device_drive_smart_get_historical_data_sync ()" link="GduDevice.html#gdu-device-drive-smart-get-historical-data-sync"/>
+    <keyword type="function" name="gdu_device_drive_ata_smart_get_historical_data ()" link="GduDevice.html#gdu-device-drive-ata-smart-get-historical-data"/>
+    <keyword type="function" name="gdu_device_drive_ata_smart_get_historical_data_sync ()" link="GduDevice.html#gdu-device-drive-ata-smart-get-historical-data-sync"/>
     <keyword type="function" name="gdu_device_filesystem_list_open_files ()" link="GduDevice.html#gdu-device-filesystem-list-open-files"/>
     <keyword type="function" name="gdu_device_filesystem_list_open_files_sync ()" link="GduDevice.html#gdu-device-filesystem-list-open-files-sync"/>
     <keyword type="function" name="gdu_device_op_drive_eject ()" link="GduDevice.html#gdu-device-op-drive-eject"/>
+    <keyword type="function" name="gdu_device_op_drive_poll_media ()" link="GduDevice.html#gdu-device-op-drive-poll-media"/>
     <keyword type="signal" name="The &quot;changed&quot; signal" link="GduDevice.html#GduDevice-changed"/>
     <keyword type="signal" name="The &quot;job-changed&quot; signal" link="GduDevice.html#GduDevice-job-changed"/>
     <keyword type="signal" name="The &quot;removed&quot; signal" link="GduDevice.html#GduDevice-removed"/>
@@ -182,8 +206,10 @@
     <keyword type="struct" name="GduDrive" link="GduDrive.html#GduDrive-struct"/>
     <keyword type="function" name="gdu_drive_is_active ()" link="GduDrive.html#gdu-drive-is-active"/>
     <keyword type="function" name="gdu_drive_is_activatable ()" link="GduDrive.html#gdu-drive-is-activatable"/>
-    <keyword type="function" name="gdu_drive_can_activate ()" link="GduDrive.html#gdu-drive-can-activate"/>
     <keyword type="function" name="gdu_drive_can_deactivate ()" link="GduDrive.html#gdu-drive-can-deactivate"/>
+    <keyword type="function" name="gdu_drive_can_activate ()" link="GduDrive.html#gdu-drive-can-activate"/>
+    <keyword type="function" name="gdu_drive_activate ()" link="GduDrive.html#gdu-drive-activate"/>
+    <keyword type="function" name="gdu_drive_deactivate ()" link="GduDrive.html#gdu-drive-deactivate"/>
     <keyword type="struct" name="GduLinuxMdDrivePrivate" link="GduLinuxMdDrive.html#GduLinuxMdDrivePrivate"/>
     <keyword type="struct" name="GduLinuxMdDrive" link="GduLinuxMdDrive.html#GduLinuxMdDrive-struct"/>
     <keyword type="enum" name="enum GduLinuxMdDriveSlaveFlags" link="GduLinuxMdDrive.html#GduLinuxMdDriveSlaveFlags"/>
@@ -217,39 +243,45 @@
     <keyword type="function" name="gdu_process_get_owner ()" link="GduProcess.html#gdu-process-get-owner"/>
     <keyword type="function" name="gdu_process_get_command_line ()" link="GduProcess.html#gdu-process-get-command-line"/>
     <keyword type="function" name="gdu_process_get_app_info ()" link="GduProcess.html#gdu-process-get-app-info"/>
-    <keyword type="struct" name="GduSmartDataPrivate" link="GduSmartData.html#GduSmartDataPrivate"/>
-    <keyword type="struct" name="GduSmartData" link="GduSmartData.html#GduSmartData-struct"/>
-    <keyword type="function" name="gdu_smart_data_get_time_collected ()" link="GduSmartData.html#gdu-smart-data-get-time-collected"/>
-    <keyword type="function" name="gdu_smart_data_get_temperature ()" link="GduSmartData.html#gdu-smart-data-get-temperature"/>
-    <keyword type="function" name="gdu_smart_data_get_time_powered_on ()" link="GduSmartData.html#gdu-smart-data-get-time-powered-on"/>
-    <keyword type="function" name="gdu_smart_data_get_last_self_test_result ()" link="GduSmartData.html#gdu-smart-data-get-last-self-test-result"/>
-    <keyword type="function" name="gdu_smart_data_get_is_failing ()" link="GduSmartData.html#gdu-smart-data-get-is-failing"/>
-    <keyword type="function" name="gdu_smart_data_get_attributes ()" link="GduSmartData.html#gdu-smart-data-get-attributes"/>
-    <keyword type="function" name="gdu_smart_data_get_attribute_warning ()" link="GduSmartData.html#gdu-smart-data-get-attribute-warning"/>
-    <keyword type="function" name="gdu_smart_data_get_attribute_failing ()" link="GduSmartData.html#gdu-smart-data-get-attribute-failing"/>
-    <keyword type="function" name="gdu_smart_data_get_attribute ()" link="GduSmartData.html#gdu-smart-data-get-attribute"/>
-    <keyword type="struct" name="GduSmartDataAttributePrivate" link="GduSmartDataAttribute.html#GduSmartDataAttributePrivate"/>
-    <keyword type="struct" name="GduSmartDataAttribute" link="GduSmartDataAttribute.html#GduSmartDataAttribute-struct"/>
-    <keyword type="function" name="gdu_smart_data_attribute_get_id ()" link="GduSmartDataAttribute.html#gdu-smart-data-attribute-get-id"/>
-    <keyword type="function" name="gdu_smart_data_attribute_get_flags ()" link="GduSmartDataAttribute.html#gdu-smart-data-attribute-get-flags"/>
-    <keyword type="function" name="gdu_smart_data_attribute_get_value ()" link="GduSmartDataAttribute.html#gdu-smart-data-attribute-get-value"/>
-    <keyword type="function" name="gdu_smart_data_attribute_get_worst ()" link="GduSmartDataAttribute.html#gdu-smart-data-attribute-get-worst"/>
-    <keyword type="function" name="gdu_smart_data_attribute_get_threshold ()" link="GduSmartDataAttribute.html#gdu-smart-data-attribute-get-threshold"/>
-    <keyword type="function" name="gdu_smart_data_attribute_get_raw ()" link="GduSmartDataAttribute.html#gdu-smart-data-attribute-get-raw"/>
-    <keyword type="function" name="gdu_smart_data_attribute_get_name ()" link="GduSmartDataAttribute.html#gdu-smart-data-attribute-get-name"/>
-    <keyword type="function" name="gdu_smart_data_attribute_get_description ()" link="GduSmartDataAttribute.html#gdu-smart-data-attribute-get-description"/>
-    <keyword type="function" name="gdu_smart_data_attribute_is_warning ()" link="GduSmartDataAttribute.html#gdu-smart-data-attribute-is-warning"/>
-    <keyword type="function" name="gdu_smart_data_attribute_is_failing ()" link="GduSmartDataAttribute.html#gdu-smart-data-attribute-is-failing"/>
+    <keyword type="struct" name="GduAtaSmartAttributePrivate" link="GduAtaSmartAttribute.html#GduAtaSmartAttributePrivate"/>
+    <keyword type="struct" name="GduAtaSmartAttribute" link="GduAtaSmartAttribute.html#GduAtaSmartAttribute-struct"/>
+    <keyword type="enum" name="enum GduAtaSmartAttributeUnit" link="GduAtaSmartAttribute.html#GduAtaSmartAttributeUnit"/>
+    <keyword type="function" name="gdu_ata_smart_attribute_get_id ()" link="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-id"/>
+    <keyword type="function" name="gdu_ata_smart_attribute_get_name ()" link="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-name"/>
+    <keyword type="function" name="gdu_ata_smart_attribute_get_localized_name ()" link="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-localized-name"/>
+    <keyword type="function" name="gdu_ata_smart_attribute_get_localized_description ()" link="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-localized-description"/>
+    <keyword type="function" name="gdu_ata_smart_attribute_get_flags ()" link="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-flags"/>
+    <keyword type="function" name="gdu_ata_smart_attribute_get_online ()" link="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-online"/>
+    <keyword type="function" name="gdu_ata_smart_attribute_get_prefailure ()" link="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-prefailure"/>
+    <keyword type="function" name="gdu_ata_smart_attribute_get_current ()" link="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-current"/>
+    <keyword type="function" name="gdu_ata_smart_attribute_get_current_valid ()" link="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-current-valid"/>
+    <keyword type="function" name="gdu_ata_smart_attribute_get_worst ()" link="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-worst"/>
+    <keyword type="function" name="gdu_ata_smart_attribute_get_worst_valid ()" link="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-worst-valid"/>
+    <keyword type="function" name="gdu_ata_smart_attribute_get_threshold ()" link="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-threshold"/>
+    <keyword type="function" name="gdu_ata_smart_attribute_get_threshold_valid ()" link="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-threshold-valid"/>
+    <keyword type="function" name="gdu_ata_smart_attribute_get_good ()" link="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-good"/>
+    <keyword type="function" name="gdu_ata_smart_attribute_get_good_valid ()" link="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-good-valid"/>
+    <keyword type="function" name="gdu_ata_smart_attribute_get_pretty_value ()" link="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-pretty-value"/>
+    <keyword type="function" name="gdu_ata_smart_attribute_get_pretty_unit ()" link="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-pretty-unit"/>
+    <keyword type="struct" name="GduAtaSmartHistoricalDataPrivate" link="GduAtaSmartHistoricalData.html#GduAtaSmartHistoricalDataPrivate"/>
+    <keyword type="struct" name="GduAtaSmartHistoricalData" link="GduAtaSmartHistoricalData.html#GduAtaSmartHistoricalData-struct"/>
+    <keyword type="function" name="gdu_ata_smart_historical_data_get_time_collected ()" link="GduAtaSmartHistoricalData.html#gdu-ata-smart-historical-data-get-time-collected"/>
+    <keyword type="function" name="gdu_ata_smart_historical_data_get_is_failing ()" link="GduAtaSmartHistoricalData.html#gdu-ata-smart-historical-data-get-is-failing"/>
+    <keyword type="function" name="gdu_ata_smart_historical_data_get_is_failing_valid ()" link="GduAtaSmartHistoricalData.html#gdu-ata-smart-historical-data-get-is-failing-valid"/>
+    <keyword type="function" name="gdu_ata_smart_historical_data_get_has_bad_sectors ()" link="GduAtaSmartHistoricalData.html#gdu-ata-smart-historical-data-get-has-bad-sectors"/>
+    <keyword type="function" name="gdu_ata_smart_historical_data_get_has_bad_attributes ()" link="GduAtaSmartHistoricalData.html#gdu-ata-smart-historical-data-get-has-bad-attributes"/>
+    <keyword type="function" name="gdu_ata_smart_historical_data_get_temperature_kelvin ()" link="GduAtaSmartHistoricalData.html#gdu-ata-smart-historical-data-get-temperature-kelvin"/>
+    <keyword type="function" name="gdu_ata_smart_historical_data_get_power_on_seconds ()" link="GduAtaSmartHistoricalData.html#gdu-ata-smart-historical-data-get-power-on-seconds"/>
+    <keyword type="function" name="gdu_ata_smart_historical_data_get_attributes ()" link="GduAtaSmartHistoricalData.html#gdu-ata-smart-historical-data-get-attributes"/>
+    <keyword type="function" name="gdu_ata_smart_historical_data_get_attribute ()" link="GduAtaSmartHistoricalData.html#gdu-ata-smart-historical-data-get-attribute"/>
     <keyword type="function" name="gdu_util_get_size_for_display ()" link="gnome-disk-utility-gdu-util.html#gdu-util-get-size-for-display"/>
     <keyword type="function" name="gdu_util_get_fstype_for_display ()" link="gnome-disk-utility-gdu-util.html#gdu-util-get-fstype-for-display"/>
     <keyword type="function" name="gdu_util_fstype_get_description ()" link="gnome-disk-utility-gdu-util.html#gdu-util-fstype-get-description"/>
     <keyword type="function" name="gdu_util_part_table_type_get_description ()" link="gnome-disk-utility-gdu-util.html#gdu-util-part-table-type-get-description"/>
-    <keyword type="function" name="gdu_util_secure_erase_get_description ()" link="gnome-disk-utility-gdu-util.html#gdu-util-secure-erase-get-description"/>
     <keyword type="function" name="gdu_util_get_speed_for_display ()" link="gnome-disk-utility-gdu-util.html#gdu-util-get-speed-for-display"/>
     <keyword type="function" name="gdu_util_get_connection_for_display ()" link="gnome-disk-utility-gdu-util.html#gdu-util-get-connection-for-display"/>
     <keyword type="function" name="gdu_util_get_desc_for_part_type ()" link="gnome-disk-utility-gdu-util.html#gdu-util-get-desc-for-part-type"/>
     <keyword type="function" name="gdu_get_job_description ()" link="gnome-disk-utility-gdu-util.html#gdu-get-job-description"/>
-    <keyword type="function" name="gdu_get_task_description ()" link="gnome-disk-utility-gdu-util.html#gdu-get-task-description"/>
     <keyword type="function" name="gdu_linux_md_get_raid_level_for_display ()" link="gnome-disk-utility-gdu-util.html#gdu-linux-md-get-raid-level-for-display"/>
     <keyword type="function" name="GduUtilPartTypeForeachFunc ()" link="gnome-disk-utility-gdu-util.html#GduUtilPartTypeForeachFunc"/>
     <keyword type="function" name="gdu_util_part_type_foreach ()" link="gnome-disk-utility-gdu-util.html#gdu-util-part-type-foreach"/>
@@ -268,39 +300,28 @@
     <keyword type="function" name="GduDeviceLuksLockCompletedFunc ()" link="gnome-disk-utility-gdu-callbacks.html#GduDeviceLuksLockCompletedFunc"/>
     <keyword type="function" name="GduDeviceLuksChangePassphraseCompletedFunc ()" link="gnome-disk-utility-gdu-callbacks.html#GduDeviceLuksChangePassphraseCompletedFunc"/>
     <keyword type="function" name="GduDeviceFilesystemSetLabelCompletedFunc ()" link="gnome-disk-utility-gdu-callbacks.html#GduDeviceFilesystemSetLabelCompletedFunc"/>
-    <keyword type="function" name="GduDeviceDriveSmartInitiateSelftestCompletedFunc ()" link="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveSmartInitiateSelftestCompletedFunc"/>
-    <keyword type="function" name="GduDeviceDriveSmartRefreshDataCompletedFunc ()" link="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveSmartRefreshDataCompletedFunc"/>
+    <keyword type="function" name="GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc ()" link="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc"/>
+    <keyword type="function" name="GduDeviceDriveAtaSmartRefreshDataCompletedFunc ()" link="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveAtaSmartRefreshDataCompletedFunc"/>
     <keyword type="function" name="GduDeviceLinuxMdStopCompletedFunc ()" link="gnome-disk-utility-gdu-callbacks.html#GduDeviceLinuxMdStopCompletedFunc"/>
     <keyword type="function" name="GduDeviceLinuxMdAddComponentCompletedFunc ()" link="gnome-disk-utility-gdu-callbacks.html#GduDeviceLinuxMdAddComponentCompletedFunc"/>
     <keyword type="function" name="GduDeviceLinuxMdRemoveComponentCompletedFunc ()" link="gnome-disk-utility-gdu-callbacks.html#GduDeviceLinuxMdRemoveComponentCompletedFunc"/>
     <keyword type="function" name="GduDeviceFilesystemCreateCompletedFunc ()" link="gnome-disk-utility-gdu-callbacks.html#GduDeviceFilesystemCreateCompletedFunc"/>
     <keyword type="function" name="GduDevicePartitionCreateCompletedFunc ()" link="gnome-disk-utility-gdu-callbacks.html#GduDevicePartitionCreateCompletedFunc"/>
     <keyword type="function" name="GduDeviceCancelJobCompletedFunc ()" link="gnome-disk-utility-gdu-callbacks.html#GduDeviceCancelJobCompletedFunc"/>
-    <keyword type="function" name="GduDeviceDriveSmartGetHistoricalDataCompletedFunc ()" link="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveSmartGetHistoricalDataCompletedFunc"/>
-    <keyword type="function" name="gdu_device_drive_smart_get_historical_data ()" link="gnome-disk-utility-gdu-callbacks.html#gdu-device-drive-smart-get-historical-data"/>
+    <keyword type="function" name="GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc ()" link="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc"/>
     <keyword type="function" name="GduDeviceFilesystemListOpenFilesCompletedFunc ()" link="gnome-disk-utility-gdu-callbacks.html#GduDeviceFilesystemListOpenFilesCompletedFunc"/>
     <keyword type="function" name="GduDeviceDriveEjectCompletedFunc ()" link="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveEjectCompletedFunc"/>
+    <keyword type="function" name="GduDeviceDrivePollMediaCompletedFunc ()" link="gnome-disk-utility-gdu-callbacks.html#GduDeviceDrivePollMediaCompletedFunc"/>
     <keyword type="function" name="GduPoolLinuxMdStartCompletedFunc ()" link="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxMdStartCompletedFunc"/>
+    <keyword type="function" name="GduDriveActivateFunc ()" link="gnome-disk-utility-gdu-callbacks.html#GduDriveActivateFunc"/>
+    <keyword type="function" name="GduDriveDeactivateFunc ()" link="gnome-disk-utility-gdu-callbacks.html#GduDriveDeactivateFunc"/>
     <keyword type="constant" name="GDU_ERROR_FAILED" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-FAILED--CAPS"/>
-    <keyword type="constant" name="GDU_ERROR_INHIBITED" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-INHIBITED--CAPS"/>
     <keyword type="constant" name="GDU_ERROR_BUSY" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-BUSY--CAPS"/>
     <keyword type="constant" name="GDU_ERROR_CANCELLED" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-CANCELLED--CAPS"/>
+    <keyword type="constant" name="GDU_ERROR_INHIBITED" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-INHIBITED--CAPS"/>
     <keyword type="constant" name="GDU_ERROR_INVALID_OPTION" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-INVALID-OPTION--CAPS"/>
-    <keyword type="constant" name="GDU_ERROR_ALREADY_MOUNTED" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-ALREADY-MOUNTED--CAPS"/>
-    <keyword type="constant" name="GDU_ERROR_NOT_MOUNTED" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-NOT-MOUNTED--CAPS"/>
-    <keyword type="constant" name="GDU_ERROR_NOT_CANCELLABLE" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-NOT-CANCELLABLE--CAPS"/>
-    <keyword type="constant" name="GDU_ERROR_NOT_PARTITION" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-NOT-PARTITION--CAPS"/>
-    <keyword type="constant" name="GDU_ERROR_NOT_PARTITION_TABLE" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-NOT-PARTITION-TABLE--CAPS"/>
-    <keyword type="constant" name="GDU_ERROR_NOT_FILESYSTEM" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-NOT-FILESYSTEM--CAPS"/>
-    <keyword type="constant" name="GDU_ERROR_NOT_LUKS" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-NOT-LUKS--CAPS"/>
-    <keyword type="constant" name="GDU_ERROR_NOT_LOCKED" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-NOT-LOCKED--CAPS"/>
-    <keyword type="constant" name="GDU_ERROR_NOT_UNLOCKED" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-NOT-UNLOCKED--CAPS"/>
-    <keyword type="constant" name="GDU_ERROR_NOT_LINUX_MD" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-NOT-LINUX-MD--CAPS"/>
-    <keyword type="constant" name="GDU_ERROR_NOT_LINUX_MD_COMPONENT" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-NOT-LINUX-MD-COMPONENT--CAPS"/>
-    <keyword type="constant" name="GDU_ERROR_NOT_DRIVE" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-NOT-DRIVE--CAPS"/>
-    <keyword type="constant" name="GDU_ERROR_NOT_SMART_CAPABLE" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-NOT-SMART-CAPABLE--CAPS"/>
     <keyword type="constant" name="GDU_ERROR_NOT_SUPPORTED" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-NOT-SUPPORTED--CAPS"/>
-    <keyword type="constant" name="GDU_ERROR_NOT_FOUND" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-NOT-FOUND--CAPS"/>
+    <keyword type="constant" name="GDU_ERROR_ATA_SMART_WOULD_WAKEUP" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-ATA-SMART-WOULD-WAKEUP--CAPS"/>
     <keyword type="constant" name="GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_NONE" link="GduLinuxMdDrive.html#GDU-LINUX-MD-DRIVE-SLAVE-FLAGS-NONE--CAPS"/>
     <keyword type="constant" name="GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_NOT_ATTACHED" link="GduLinuxMdDrive.html#GDU-LINUX-MD-DRIVE-SLAVE-FLAGS-NOT-ATTACHED--CAPS"/>
     <keyword type="constant" name="GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_FAULTY" link="GduLinuxMdDrive.html#GDU-LINUX-MD-DRIVE-SLAVE-FLAGS-FAULTY--CAPS"/>

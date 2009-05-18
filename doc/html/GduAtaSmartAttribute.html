@@ -1,0 +1,573 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GduAtaSmartAttribute</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<link rel="home" href="index.html" title="Disk Utility Library Reference Manual">
+<link rel="up" href="ref-core.html" title="API Reference">
+<link rel="prev" href="GduProcess.html" title="GduProcess">
+<link rel="next" href="GduAtaSmartHistoricalData.html" title="GduAtaSmartHistoricalData">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-core.html" title="API Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="GduProcess.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-core.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Disk Utility Library Reference Manual</th>
+<td><a accesskey="n" href="GduAtaSmartHistoricalData.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#GduAtaSmartAttribute.synopsis" class="shortcut">Top</a>
+                 | 
+                <a href="#GduAtaSmartAttribute.description" class="shortcut">Description</a>
+                 | 
+                <a href="#GduAtaSmartAttribute.object-hierarchy" class="shortcut">Object Hierarchy</a>
+</td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="GduAtaSmartAttribute"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="GduAtaSmartAttribute.top_of_page"></a>GduAtaSmartAttribute</span></h2>
+<p>GduAtaSmartAttribute</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="GduAtaSmartAttribute.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="GduAtaSmartAttribute.html#GduAtaSmartAttributePrivate" title="GduAtaSmartAttributePrivate">GduAtaSmartAttributePrivate</a>;
+                    <a class="link" href="GduAtaSmartAttribute.html#GduAtaSmartAttribute-struct" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a>;
+enum                <a class="link" href="GduAtaSmartAttribute.html#GduAtaSmartAttributeUnit" title="enum GduAtaSmartAttributeUnit">GduAtaSmartAttributeUnit</a>;
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-id" title="gdu_ata_smart_attribute_get_id ()">gdu_ata_smart_attribute_get_id</a>      (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);
+const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *       <a class="link" href="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-name" title="gdu_ata_smart_attribute_get_name ()">gdu_ata_smart_attribute_get_name</a>    (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *             <a class="link" href="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-localized-name" title="gdu_ata_smart_attribute_get_localized_name ()">gdu_ata_smart_attribute_get_localized_name</a>
+                                                        (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *             <a class="link" href="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-localized-description" title="gdu_ata_smart_attribute_get_localized_description ()">gdu_ata_smart_attribute_get_localized_description</a>
+                                                        (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-flags" title="gdu_ata_smart_attribute_get_flags ()">gdu_ata_smart_attribute_get_flags</a>   (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-online" title="gdu_ata_smart_attribute_get_online ()">gdu_ata_smart_attribute_get_online</a>  (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-prefailure" title="gdu_ata_smart_attribute_get_prefailure ()">gdu_ata_smart_attribute_get_prefailure</a>
+                                                        (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-current" title="gdu_ata_smart_attribute_get_current ()">gdu_ata_smart_attribute_get_current</a> (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-current-valid" title="gdu_ata_smart_attribute_get_current_valid ()">gdu_ata_smart_attribute_get_current_valid</a>
+                                                        (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-worst" title="gdu_ata_smart_attribute_get_worst ()">gdu_ata_smart_attribute_get_worst</a>   (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-worst-valid" title="gdu_ata_smart_attribute_get_worst_valid ()">gdu_ata_smart_attribute_get_worst_valid</a>
+                                                        (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-threshold" title="gdu_ata_smart_attribute_get_threshold ()">gdu_ata_smart_attribute_get_threshold</a>
+                                                        (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-threshold-valid" title="gdu_ata_smart_attribute_get_threshold_valid ()">gdu_ata_smart_attribute_get_threshold_valid</a>
+                                                        (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-good" title="gdu_ata_smart_attribute_get_good ()">gdu_ata_smart_attribute_get_good</a>    (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-good-valid" title="gdu_ata_smart_attribute_get_good_valid ()">gdu_ata_smart_attribute_get_good_valid</a>
+                                                        (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a>             <a class="link" href="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-pretty-value" title="gdu_ata_smart_attribute_get_pretty_value ()">gdu_ata_smart_attribute_get_pretty_value</a>
+                                                        (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);
+<a class="link" href="GduAtaSmartAttribute.html#GduAtaSmartAttributeUnit" title="enum GduAtaSmartAttributeUnit">GduAtaSmartAttributeUnit</a>  <a class="link" href="GduAtaSmartAttribute.html#gdu-ata-smart-attribute-get-pretty-unit" title="gdu_ata_smart_attribute_get_pretty_unit ()">gdu_ata_smart_attribute_get_pretty_unit</a>
+                                                        (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GduAtaSmartAttribute.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----GduAtaSmartAttribute
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GduAtaSmartAttribute.description"></a><h2>Description</h2>
+<p>
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="GduAtaSmartAttribute.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="GduAtaSmartAttributePrivate"></a><h3>GduAtaSmartAttributePrivate</h3>
+<pre class="programlisting">typedef struct _GduAtaSmartAttributePrivate GduAtaSmartAttributePrivate;</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GduAtaSmartAttribute-struct"></a><h3>GduAtaSmartAttribute</h3>
+<pre class="programlisting">typedef struct _GduAtaSmartAttribute GduAtaSmartAttribute;</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GduAtaSmartAttributeUnit"></a><h3>enum GduAtaSmartAttributeUnit</h3>
+<pre class="programlisting">typedef enum {
+        GDU_ATA_SMART_ATTRIBUTE_UNIT_UNKNOWN,
+        GDU_ATA_SMART_ATTRIBUTE_UNIT_NONE,
+        GDU_ATA_SMART_ATTRIBUTE_UNIT_MSECONDS,
+        GDU_ATA_SMART_ATTRIBUTE_UNIT_SECTORS,
+        GDU_ATA_SMART_ATTRIBUTE_UNIT_MKELVIN,
+} GduAtaSmartAttributeUnit;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-ata-smart-attribute-get-id"></a><h3>gdu_ata_smart_attribute_get_id ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>               gdu_ata_smart_attribute_get_id      (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attribute</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-ata-smart-attribute-get-name"></a><h3>gdu_ata_smart_attribute_get_name ()</h3>
+<pre class="programlisting">const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *       gdu_ata_smart_attribute_get_name    (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attribute</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-ata-smart-attribute-get-localized-name"></a><h3>gdu_ata_smart_attribute_get_localized_name ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *             gdu_ata_smart_attribute_get_localized_name
+                                                        (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attribute</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-ata-smart-attribute-get-localized-description"></a><h3>gdu_ata_smart_attribute_get_localized_description ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *             gdu_ata_smart_attribute_get_localized_description
+                                                        (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attribute</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-ata-smart-attribute-get-flags"></a><h3>gdu_ata_smart_attribute_get_flags ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>               gdu_ata_smart_attribute_get_flags   (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attribute</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-ata-smart-attribute-get-online"></a><h3>gdu_ata_smart_attribute_get_online ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_ata_smart_attribute_get_online  (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attribute</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-ata-smart-attribute-get-prefailure"></a><h3>gdu_ata_smart_attribute_get_prefailure ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_ata_smart_attribute_get_prefailure
+                                                        (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attribute</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-ata-smart-attribute-get-current"></a><h3>gdu_ata_smart_attribute_get_current ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>               gdu_ata_smart_attribute_get_current (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attribute</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-ata-smart-attribute-get-current-valid"></a><h3>gdu_ata_smart_attribute_get_current_valid ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_ata_smart_attribute_get_current_valid
+                                                        (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attribute</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-ata-smart-attribute-get-worst"></a><h3>gdu_ata_smart_attribute_get_worst ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>               gdu_ata_smart_attribute_get_worst   (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attribute</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-ata-smart-attribute-get-worst-valid"></a><h3>gdu_ata_smart_attribute_get_worst_valid ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_ata_smart_attribute_get_worst_valid
+                                                        (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attribute</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-ata-smart-attribute-get-threshold"></a><h3>gdu_ata_smart_attribute_get_threshold ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>               gdu_ata_smart_attribute_get_threshold
+                                                        (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attribute</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-ata-smart-attribute-get-threshold-valid"></a><h3>gdu_ata_smart_attribute_get_threshold_valid ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_ata_smart_attribute_get_threshold_valid
+                                                        (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attribute</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-ata-smart-attribute-get-good"></a><h3>gdu_ata_smart_attribute_get_good ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_ata_smart_attribute_get_good    (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attribute</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-ata-smart-attribute-get-good-valid"></a><h3>gdu_ata_smart_attribute_get_good_valid ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_ata_smart_attribute_get_good_valid
+                                                        (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attribute</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-ata-smart-attribute-get-pretty-value"></a><h3>gdu_ata_smart_attribute_get_pretty_value ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a>             gdu_ata_smart_attribute_get_pretty_value
+                                                        (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attribute</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-ata-smart-attribute-get-pretty-unit"></a><h3>gdu_ata_smart_attribute_get_pretty_unit ()</h3>
+<pre class="programlisting"><a class="link" href="GduAtaSmartAttribute.html#GduAtaSmartAttributeUnit" title="enum GduAtaSmartAttributeUnit">GduAtaSmartAttributeUnit</a>  gdu_ata_smart_attribute_get_pretty_unit
+                                                        (<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> *attribute);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attribute</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.11</div>
+</body>
+</html>

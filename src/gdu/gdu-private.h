@@ -28,24 +28,29 @@
 
 #include "gdu-types.h"
 
-#define SMART_DATA_STRUCT_TYPE (dbus_g_type_get_struct ("GValueArray",   \
-                                                        G_TYPE_INT,      \
-                                                        G_TYPE_STRING,   \
-                                                        G_TYPE_INT,      \
-                                                        G_TYPE_INT,      \
-                                                        G_TYPE_INT,      \
-                                                        G_TYPE_INT,      \
-                                                        G_TYPE_STRING,   \
-                                                        G_TYPE_INVALID))
+#define ATA_SMART_ATTRIBUTE_STRUCT_TYPE (dbus_g_type_get_struct ("GValueArray", \
+                                                                 G_TYPE_UINT, \
+                                                                 G_TYPE_STRING, \
+                                                                 G_TYPE_UINT, \
+                                                                 G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, \
+                                                                 G_TYPE_UCHAR, G_TYPE_BOOLEAN, \
+                                                                 G_TYPE_UCHAR, G_TYPE_BOOLEAN, \
+                                                                 G_TYPE_UCHAR, G_TYPE_BOOLEAN, \
+                                                                 G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, \
+                                                                 G_TYPE_UINT, G_TYPE_UINT64, \
+                                                                 dbus_g_type_get_collection ("GArray", G_TYPE_UCHAR), \
+                                                                 G_TYPE_INVALID))
 
-#define HISTORICAL_SMART_DATA_STRUCT_TYPE (dbus_g_type_get_struct ("GValueArray",   \
-                                                                   G_TYPE_UINT64, \
-                                                                   G_TYPE_DOUBLE, \
-                                                                   G_TYPE_UINT64, \
-                                                                   G_TYPE_STRING, \
-                                                                   G_TYPE_BOOLEAN, \
-                                                                   dbus_g_type_get_collection ("GPtrArray", SMART_DATA_STRUCT_TYPE), \
-                                                                   G_TYPE_INVALID))
+#define ATA_SMART_HISTORICAL_DATA_STRUCT_TYPE (dbus_g_type_get_struct ("GValueArray",   \
+                                                                       G_TYPE_UINT64, \
+                                                                       G_TYPE_BOOLEAN, \
+                                                                       G_TYPE_BOOLEAN, \
+                                                                       G_TYPE_BOOLEAN, \
+                                                                       G_TYPE_BOOLEAN, \
+                                                                       G_TYPE_DOUBLE, \
+                                                                       G_TYPE_UINT64, \
+                                                                       dbus_g_type_get_collection ("GPtrArray", ATA_SMART_ATTRIBUTE_STRUCT_TYPE), \
+                                                                       G_TYPE_INVALID))
 
 #define KNOWN_FILESYSTEMS_STRUCT_TYPE (dbus_g_type_get_struct ("GValueArray",   \
                                                                G_TYPE_STRING, \
@@ -70,15 +75,9 @@
                                                      G_TYPE_STRING,   \
                                                      G_TYPE_INVALID))
 
-GduSmartDataAttribute *_gdu_smart_data_attribute_new   (gpointer data);
-GduSmartData          *_gdu_smart_data_new_from_values (guint64     time_collected,
-                                                        double      temperature,
-                                                        guint64     time_powered_on,
-                                                        const char *last_self_test_result,
-                                                        gboolean    is_failing,
-                                                        GPtrArray  *attrs);
+GduAtaSmartAttribute *_gdu_ata_smart_attribute_new   (gpointer data);
 
-GduSmartData          * _gdu_smart_data_new            (gpointer data);
+GduAtaSmartHistoricalData * _gdu_ata_smart_historical_data_new            (gpointer data);
 
 GduKnownFilesystem    *_gdu_known_filesystem_new       (gpointer data);
 
@@ -94,7 +93,8 @@ GduVolumeHole   *_gdu_volume_hole_new       (GduPool *pool, guint64 offset, guin
 
 
 GduLinuxMdDrive   *_gdu_linux_md_drive_new             (GduPool              *pool,
-                                                        const gchar          *uuid);
+                                                        const gchar          *uuid,
+                                                        const gchar          *device_file);
 
 gboolean _gdu_linux_md_drive_has_uuid (GduLinuxMdDrive  *drive,
                                        const gchar      *uuid);
@@ -106,10 +106,7 @@ void        _gdu_device_job_changed           (GduDevice   *device,
                                                const char  *job_id,
                                                uid_t        job_initiated_by_uid,
                                                gboolean     job_is_cancellable,
-                                               int          job_num_tasks,
-                                               int          job_cur_task,
-                                               const char  *job_cur_task_id,
-                                               double       job_cur_task_percentage);
+                                               double       job_percentage);
 
 void _gdu_volume_rewrite_enclosing_presentable (GduVolume *volume);
 void _gdu_volume_hole_rewrite_enclosing_presentable (GduVolumeHole *volume_hole);

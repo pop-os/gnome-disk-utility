@@ -218,7 +218,7 @@ details_update (GduShell *shell)
         gtk_image_set_from_pixbuf (GTK_IMAGE (shell->priv->icon_image), pixbuf);
         g_object_unref (pixbuf);
 
-        s = g_strdup_printf (_("<span font_desc='18'><b>%s</b></span>"), name);
+        s = g_strdup_printf ("<span font_desc='18'><b>%s</b></span>", name);
         gtk_label_set_markup (GTK_LABEL (shell->priv->name_label), s);
         g_free (s);
 
@@ -365,7 +365,7 @@ details_update (GduShell *shell)
 
                 if (gdu_device_is_luks_cleartext (device)) {
                         g_ptr_array_add (details,
-                                         g_strdup (_("Unlocked Encrypted LUKS Volume")));
+                                         g_strdup (_("Cleartext LUKS Device")));
                 } else {
                         if (gdu_device_is_partition (device)) {
                                 char *part_desc;
@@ -384,21 +384,27 @@ details_update (GduShell *shell)
                 s = g_strdup (device_file);
                 if (gdu_device_is_read_only (device)) {
                         p = s;
-                        s = g_strconcat (s, _(" (Read Only)"), NULL);
+                        s = g_strdup_printf (_("%s (Read Only)"), s);
                         g_free (p);
                 }
 
                 if (gdu_device_is_mounted (device)) {
-                        p = s;
-                        s = g_strconcat (s,
-                                         _(" mounted at "),
-                                         "<a href=\"file://",
-                                         gdu_device_get_mount_path (device),
-                                         "\">",
-                                         gdu_device_get_mount_path (device),
-                                         "</a>",
-                                         NULL);
-                        g_free (p);
+                        gchar **mount_paths;
+                        GString *str;
+
+                        mount_paths = gdu_device_get_mount_paths (device);
+
+                        str = g_string_new (s);
+                        g_free (s);
+                        g_string_append (str, " mounted at ");
+                        for (n = 0; mount_paths[n] != NULL; n++) {
+                                if (n > 0)
+                                        g_string_append (str, ", ");
+                                g_string_append_printf (str, "<a href=\"file://%s\">%s</a>",
+                                                        mount_paths[n],
+                                                        mount_paths[n]);
+                        }
+                        s = g_string_free (str, FALSE);
                 }
                 g_ptr_array_add (details, s);
 
@@ -517,13 +523,10 @@ compute_sections_to_show (GduShell *shell, gboolean showing_job)
 
                         } else {
 
-                                if (gdu_device_drive_smart_get_is_enabled (device)) {
+                                if (gdu_device_drive_ata_smart_get_is_available (device)) {
                                                 sections_to_show = g_list_append (sections_to_show,
                                                                                   (gpointer) GDU_TYPE_SECTION_HEALTH);
                                 }
-
-                                sections_to_show = g_list_append (sections_to_show,
-                                                                  (gpointer) GDU_TYPE_SECTION_CREATE_PARTITION_TABLE);
 
                         }
 
@@ -551,11 +554,30 @@ compute_sections_to_show (GduShell *shell, gboolean showing_job)
                                                 sections_to_show, (gpointer) GDU_TYPE_SECTION_SWAPSPACE);
                                 }
                         } else {
+                                GduPresentable *toplevel_presentable;
+                                GduDevice *toplevel_device;
+
                                 sections_to_show = g_list_append (
                                         sections_to_show, (gpointer) GDU_TYPE_SECTION_UNRECOGNIZED);
+
+                                /* Also show a "Create partition table" section for a volume if the drive isn't partitioned */
+                                toplevel_presentable = gdu_presentable_get_toplevel (shell->priv->presentable_now_showing);
+                                if (toplevel_presentable != NULL) {
+                                        toplevel_device = gdu_presentable_get_device (toplevel_presentable);
+
+                                        if (toplevel_device != NULL) {
+                                                if (!gdu_device_is_partition_table (toplevel_device)) {
+                                                        sections_to_show = g_list_append (
+                                                                sections_to_show, (gpointer) GDU_TYPE_SECTION_CREATE_PARTITION_TABLE);
+                                                }
+                                                g_object_unref (toplevel_device);
+                                        }
+                                        g_object_unref (toplevel_presentable);
+                                }
                         }
 
                 } else if (GDU_IS_VOLUME_HOLE (shell->priv->presentable_now_showing)) {
+
                         sections_to_show = g_list_append (sections_to_show,
                                                           (gpointer) GDU_TYPE_SECTION_UNALLOCATED);
                 }
@@ -819,7 +841,6 @@ gdu_shell_update (GduShell *shell)
                 }
         }
 
-
         /* update all GtkActions */
         polkit_gnome_action_set_sensitive (shell->priv->mount_action, can_mount);
         polkit_gnome_action_set_sensitive (shell->priv->fsck_action, can_fsck);
@@ -979,12 +1000,12 @@ fsck_op_callback (GduDevice *device,
                 name = gdu_presentable_get_name (data->presentable);
                 icon = gdu_presentable_get_icon (data->presentable);
 
-                dialog = gtk_message_dialog_new_with_markup (
+                dialog = gtk_message_dialog_new (
                         GTK_WINDOW (data->shell->priv->app_window),
                         GTK_DIALOG_MODAL|GTK_DIALOG_DESTROY_WITH_PARENT,
                         is_clean ? GTK_MESSAGE_INFO : GTK_MESSAGE_WARNING,
                         GTK_BUTTONS_CLOSE,
-                        _("<big><b>File system check on \"%s\" completed</b></big>"),
+                        _("File system check on \"%s\" completed"),
                         name);
                 if (is_clean)
                         gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
@@ -1053,6 +1074,7 @@ mount_action_callback (GtkAction *action, gpointer user_data)
         device = gdu_presentable_get_device (shell->priv->presentable_now_showing);
         if (device != NULL) {
                 gdu_device_op_filesystem_mount (device,
+                                                NULL,
                                                 mount_op_callback,
                                                 shell_presentable_new (shell, shell->priv->presentable_now_showing));
                 g_object_unref (device);
@@ -1324,12 +1346,12 @@ start_cb (GduDrive *ad,
         if (error != NULL) {
                 GtkWidget *dialog;
 
-                dialog = gtk_message_dialog_new_with_markup (
+                dialog = gtk_message_dialog_new (
                         GTK_WINDOW (shell->priv->app_window),
                         GTK_DIALOG_MODAL|GTK_DIALOG_DESTROY_WITH_PARENT,
                         GTK_MESSAGE_ERROR,
                         GTK_BUTTONS_CLOSE,
-                        _("<big><b>There was an error starting the drive \"%s\".</b></big>"),
+                        _("There was an error starting the drive \"%s\"."),
                         gdu_presentable_get_name (GDU_PRESENTABLE (ad)));
 
                 gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), "%s", error->message);
@@ -1378,12 +1400,12 @@ start_action_callback (GtkAction *action, gpointer user_data)
                 GtkWidget *dialog;
                 int response;
 
-                dialog = gtk_message_dialog_new_with_markup (
+                dialog = gtk_message_dialog_new (
                         GTK_WINDOW (shell->priv->app_window),
                         GTK_DIALOG_MODAL|GTK_DIALOG_DESTROY_WITH_PARENT,
                         GTK_MESSAGE_WARNING,
                         GTK_BUTTONS_CANCEL,
-                        _("<big><b>Are you sure you want to start the drive \"%s\" in degraded mode?</b></big>"),
+                        _("Are you sure you want to start the drive \"%s\" in degraded mode ?"),
                         gdu_presentable_get_name (GDU_PRESENTABLE (drive)));
 
                 gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
@@ -1415,12 +1437,12 @@ stop_cb (GduDrive *drive, GError *error, gpointer user_data)
         if (error != NULL) {
                 GtkWidget *dialog;
 
-                dialog = gtk_message_dialog_new_with_markup (
+                dialog = gtk_message_dialog_new (
                         GTK_WINDOW (shell->priv->app_window),
                         GTK_DIALOG_MODAL|GTK_DIALOG_DESTROY_WITH_PARENT,
                         GTK_MESSAGE_ERROR,
                         GTK_BUTTONS_CLOSE,
-                        _("<big><b>There was an error stopping the drive \"%s\".</b></big>"),
+                        _("There was an error stopping the drive \"%s\"."),
                         gdu_presentable_get_name (GDU_PRESENTABLE (drive)));
 
                 gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), "%s", error->message);
@@ -1490,13 +1512,12 @@ erase_action_callback (GtkAction *action, gpointer user_data)
         gchar *drive_name;
         gchar *primary;
         gchar *secondary;
-        gchar *secure_erase;
+        gboolean do_erase;
 
         device = NULL;
         drive_name = NULL;
         primary = NULL;
         secondary = NULL;
-        secure_erase = NULL;
         toplevel_presentable = NULL;
         toplevel_device = NULL;
 
@@ -1525,7 +1546,7 @@ erase_action_callback (GtkAction *action, gpointer user_data)
 
         drive_name = gdu_presentable_get_name (toplevel_presentable);
 
-        primary = g_strdup (_("<b><big>Are you sure you want to erase the device?</big></b>"));
+        primary = g_strconcat ("<b><big>", _("Are you sure you want to erase the device ?"), "</big></b>", NULL);
 
         if (gdu_device_is_partition (device)) {
                 if (gdu_device_is_removable (toplevel_device)) {
@@ -1557,17 +1578,15 @@ erase_action_callback (GtkAction *action, gpointer user_data)
                 }
         }
 
-        secure_erase = gdu_util_delete_confirmation_dialog (gdu_shell_get_toplevel (shell),
-                                                            "",
-                                                            TRUE,
-                                                            primary,
-                                                            secondary,
-                                                            _("_Erase"));
-        if (secure_erase != NULL) {
+        do_erase = gdu_util_delete_confirmation_dialog (gdu_shell_get_toplevel (shell),
+                                                        "",
+                                                        primary,
+                                                        secondary,
+                                                        _("_Erase"));
+        if (do_erase) {
                 gdu_device_op_filesystem_create (device,
                                                  "empty",
                                                  "",
-                                                 secure_erase,
                                                  NULL,
                                                  FALSE,
                                                  op_erase_callback,
@@ -1577,7 +1596,6 @@ erase_action_callback (GtkAction *action, gpointer user_data)
 out:
         g_free (secondary);
         g_free (primary);
-        g_free (secure_erase);
         g_free (drive_name);
         if (toplevel_presentable != NULL)
                 g_object_unref (toplevel_presentable);
@@ -1709,6 +1727,9 @@ create_ui_manager (GduShell *shell)
                                                                     _("Check the file system"));
         g_object_set (shell->priv->fsck_action,
                       "auth-label", _("_Check File System..."),
+                      "auth-short-label", _("_Check"),
+                      "yes-short-label", _("_Check"),
+                      "no-short-label", _("_Check"),
                       "yes-icon-name", "gdu-check-disk",
                       "no-icon-name", "gdu-check-disk",
                       "auth-icon-name", "gdu-check-disk",
@@ -1836,7 +1857,9 @@ create_ui_manager (GduShell *shell)
                                                                      _("_Erase..."),
                                                                      _("Erase the contents of the selected device"));
         g_object_set (shell->priv->erase_action,
-                      "auth-label", _("_Erase..."),
+                      "auth-short-label", _("_Erase"),
+                      "no-short-label", _("_Erase"),
+                      "yes-short-label", _("_Erase"),
                       "yes-icon-name", GTK_STOCK_CLEAR,
                       "no-icon-name", GTK_STOCK_CLEAR,
                       "auth-icon-name", GTK_STOCK_CLEAR,
@@ -1918,6 +1941,21 @@ url_activated (SexyUrlLabel *url_label,
         g_free (s);
 }
 
+static void
+fix_focus_cb (GtkDialog *dialog, gpointer data)
+{
+        GtkWidget *button;
+
+        button = gtk_window_get_default_widget (GTK_WINDOW (dialog));
+        gtk_widget_grab_focus (button);
+}
+
+static void
+expander_cb (GtkExpander *expander, GParamSpec *pspec, GtkWindow *dialog)
+{
+        gtk_window_set_resizable (dialog, gtk_expander_get_expanded (expander));
+}
+
 /**
  * gdu_shell_raise_error:
  * @shell: An object implementing the #GduShell interface
@@ -1940,12 +1978,14 @@ gdu_shell_raise_error (GduShell       *shell,
         char *window_title;
         GIcon *window_icon;
         va_list args;
+        char *error_msg;
+        GtkWidget *box, *hbox, *expander, *sw, *tv;
+        GList *children;
+        GtkTextBuffer *buffer;
 
         g_return_if_fail (shell != NULL);
         g_return_if_fail (presentable != NULL);
         g_return_if_fail (error != NULL);
-
-        /* TODO: this still needs work */
 
         window_title = gdu_presentable_get_name (presentable);
         window_icon = gdu_presentable_get_icon (presentable);
@@ -1954,6 +1994,33 @@ gdu_shell_raise_error (GduShell       *shell,
         error_text = g_strdup_vprintf (primary_markup_format, args);
         va_end (args);
 
+        switch (error->code) {
+        case GDU_ERROR_FAILED:
+                error_msg = _("The operation failed.");
+                break;
+        case GDU_ERROR_BUSY:
+                error_msg = _("The device is busy.");
+                break;
+        case GDU_ERROR_CANCELLED:
+                error_msg = _("The operation was cancelled.");
+                break;
+        case GDU_ERROR_INHIBITED:
+                error_msg = _("The daemon is being inhibited.");
+                break;
+        case GDU_ERROR_INVALID_OPTION:
+                error_msg = _("An invalid option was passed.");
+                break;
+        case GDU_ERROR_NOT_SUPPORTED:
+                error_msg = _("The operation is not supported.");
+                break;
+        case GDU_ERROR_ATA_SMART_WOULD_WAKEUP:
+                error_msg = _("Getting ATA SMART data would wake up the device.");
+                break;
+        default:
+                error_msg = _("Unknown error");
+                break;
+        }
+
         dialog = gtk_message_dialog_new_with_markup (
                 GTK_WINDOW (shell->priv->app_window),
                 GTK_DIALOG_MODAL|GTK_DIALOG_DESTROY_WITH_PARENT,
@@ -1961,7 +2028,60 @@ gdu_shell_raise_error (GduShell       *shell,
                 GTK_BUTTONS_CLOSE,
                 "<big><b>%s</b></big>",
                 error_text);
-        gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), "%s", error->message);
+        gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), "%s", error_msg);
+
+	/* Here we cheat a little by poking in the messagedialog internals
+         * to add the details expander to the inner vbox and arrange things
+         * so that resizing the dialog works as expected.
+         */
+	box = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
+	children = gtk_container_get_children (GTK_CONTAINER (box));
+	hbox = GTK_WIDGET (children->data);
+	gtk_container_child_set (GTK_CONTAINER (box), hbox,
+                                 "expand", TRUE,
+                                 "fill", TRUE,
+                                 NULL);
+	g_list_free (children);
+	children = gtk_container_get_children (GTK_CONTAINER (hbox));
+	box = GTK_WIDGET (children->next->data);
+	g_list_free (children);
+	children = gtk_container_get_children (GTK_CONTAINER (box));
+	gtk_container_child_set (GTK_CONTAINER (box), GTK_WIDGET (children->next->data),
+                                 "expand", FALSE,
+                                 "fill", FALSE,
+                                 NULL);
+	g_list_free (children);
+
+	expander = g_object_new (GTK_TYPE_EXPANDER,
+                                 "label", _("_Details:"),
+                                 "use-underline", TRUE,
+                                 "use-markup", TRUE,
+                                 NULL);
+        sw = g_object_new (GTK_TYPE_SCROLLED_WINDOW,
+                           "hscrollbar-policy", GTK_POLICY_AUTOMATIC,
+                           "vscrollbar-policy", GTK_POLICY_AUTOMATIC,
+                           "shadow-type", GTK_SHADOW_IN,
+                           NULL);
+        buffer = gtk_text_buffer_new (NULL);
+        gtk_text_buffer_set_text (buffer, error->message, -1);
+	tv = gtk_text_view_new_with_buffer (buffer);
+        gtk_text_view_set_editable (GTK_TEXT_VIEW (tv), FALSE);
+
+        gtk_container_add (GTK_CONTAINER (sw), tv);
+        gtk_container_add (GTK_CONTAINER (expander), sw);
+	gtk_box_pack_end (GTK_BOX (box), expander, TRUE, TRUE, 0);
+        gtk_widget_show_all (expander);
+
+        /* Make the window resizable when the details are visible
+         */
+	g_signal_connect (expander, "notify::expanded", G_CALLBACK (expander_cb), dialog);
+
+        /* We don't want the initial focus to end up on the expander,
+         * so grab it to the close button on map.
+         */
+        gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_CLOSE);
+        g_signal_connect (dialog, "map", G_CALLBACK (fix_focus_cb), NULL);
+
 
         gtk_window_set_title (GTK_WINDOW (dialog), window_title);
         // TODO: no support for GIcon in GtkWindow
@@ -2015,13 +2135,15 @@ create_window (GduShell *shell)
         /* tree view */
         treeview_scrolled_window = gtk_scrolled_window_new (NULL, NULL);
         gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (treeview_scrolled_window),
-                                        GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+                                        GTK_POLICY_NEVER,
+                                        GTK_POLICY_AUTOMATIC);
         gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (treeview_scrolled_window),
                                              GTK_SHADOW_IN);
         shell->priv->treeview = gdu_device_tree_new (shell->priv->pool);
         gtk_container_add (GTK_CONTAINER (treeview_scrolled_window), shell->priv->treeview);
 
         vbox2 = gtk_vbox_new (FALSE, 0);
+        gtk_container_set_border_width (GTK_CONTAINER (vbox2), 12);
 
         /* --- */
         GtkWidget *label;
@@ -2030,7 +2152,7 @@ create_window (GduShell *shell)
         GtkWidget *hbox;
         GtkWidget *image;
 
-        hbox = gtk_hbox_new (FALSE, 10);
+        hbox = gtk_hbox_new (FALSE, 12);
         gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, TRUE, 0);
 
         image = gtk_image_new ();
@@ -2073,7 +2195,7 @@ create_window (GduShell *shell)
 
         /* --- */
 
-        shell->priv->sections_vbox = gtk_vbox_new (FALSE, 8);
+        shell->priv->sections_vbox = gtk_vbox_new (FALSE, 18);
         gtk_container_set_border_width (GTK_CONTAINER (shell->priv->sections_vbox), 8);
         gtk_box_pack_start (GTK_BOX (vbox2), shell->priv->sections_vbox, TRUE, TRUE, 0);
 
@@ -2082,7 +2204,7 @@ create_window (GduShell *shell)
         hpane = gtk_hpaned_new ();
         gtk_paned_add1 (GTK_PANED (hpane), treeview_scrolled_window);
         gtk_paned_add2 (GTK_PANED (hpane), vbox2);
-        gtk_paned_set_position (GTK_PANED (hpane), 260);
+        //gtk_paned_set_position (GTK_PANED (hpane), 260);
 
         gtk_box_pack_start (GTK_BOX (vbox), hpane, TRUE, TRUE, 0);
 

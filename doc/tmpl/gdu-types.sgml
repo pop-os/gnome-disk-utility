@@ -177,13 +177,13 @@ gdu-types
 </para>
 
 
-<!-- ##### STRUCT GduSmartData ##### -->
+<!-- ##### STRUCT GduAtaSmartHistoricalData ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### STRUCT GduSmartDataAttribute ##### -->
+<!-- ##### STRUCT GduAtaSmartAttribute ##### -->
 <para>
 
 </para>

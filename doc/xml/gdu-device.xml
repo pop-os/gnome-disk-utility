@@ -29,6 +29,13 @@ const <link linkend="char">char</link> *        <link linkend="gdu-device-get-de
 <link linkend="guint64">guint64</link>             <link linkend="gdu-device-get-block-size">gdu_device_get_block_size</link>           (<link linkend="GduDevice">GduDevice</link> *device);
 <link linkend="gboolean">gboolean</link>            <link linkend="gdu-device-is-removable">gdu_device_is_removable</link>             (<link linkend="GduDevice">GduDevice</link> *device);
 <link linkend="gboolean">gboolean</link>            <link linkend="gdu-device-is-media-available">gdu_device_is_media_available</link>       (<link linkend="GduDevice">GduDevice</link> *device);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-device-is-media-change-detected">gdu_device_is_media_change_detected</link> (<link linkend="GduDevice">GduDevice</link> *device);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-device-is-media-change-detection-polling">gdu_device_is_media_change_detection_polling</link>
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-device-is-media-change-detection-inhibitable">gdu_device_is_media_change_detection_inhibitable</link>
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-device-is-media-change-detection-inhibited">gdu_device_is_media_change_detection_inhibited</link>
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);
 <link linkend="gboolean">gboolean</link>            <link linkend="gdu-device-is-read-only">gdu_device_is_read_only</link>             (<link linkend="GduDevice">GduDevice</link> *device);
 <link linkend="gboolean">gboolean</link>            <link linkend="gdu-device-is-system-internal">gdu_device_is_system_internal</link>       (<link linkend="GduDevice">GduDevice</link> *device);
 <link linkend="gboolean">gboolean</link>            <link linkend="gdu-device-is-partition">gdu_device_is_partition</link>             (<link linkend="GduDevice">GduDevice</link> *device);
@@ -40,18 +47,15 @@ const <link linkend="char">char</link> *        <link linkend="gdu-device-get-de
 <link linkend="gboolean">gboolean</link>            <link linkend="gdu-device-is-linux-md-component">gdu_device_is_linux_md_component</link>    (<link linkend="GduDevice">GduDevice</link> *device);
 <link linkend="gboolean">gboolean</link>            <link linkend="gdu-device-is-linux-md">gdu_device_is_linux_md</link>              (<link linkend="GduDevice">GduDevice</link> *device);
 <link linkend="gboolean">gboolean</link>            <link linkend="gdu-device-is-mounted">gdu_device_is_mounted</link>               (<link linkend="GduDevice">GduDevice</link> *device);
-<link linkend="gboolean">gboolean</link>            <link linkend="gdu-device-is-busy">gdu_device_is_busy</link>                  (<link linkend="GduDevice">GduDevice</link> *device);
 const <link linkend="char">char</link> *        <link linkend="gdu-device-get-mount-path">gdu_device_get_mount_path</link>           (<link linkend="GduDevice">GduDevice</link> *device);
 <link linkend="uid-t">uid_t</link>               <link linkend="gdu-device-get-mounted-by-uid">gdu_device_get_mounted_by_uid</link>       (<link linkend="GduDevice">GduDevice</link> *device);
+const <link linkend="char">char</link> *        <link linkend="gdu-device-get-presentation-name">gdu_device_get_presentation_name</link>    (<link linkend="GduDevice">GduDevice</link> *device);
+const <link linkend="char">char</link> *        <link linkend="gdu-device-get-presentation-icon-name">gdu_device_get_presentation_icon_name</link>
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);
 <link linkend="gboolean">gboolean</link>            <link linkend="gdu-device-job-in-progress">gdu_device_job_in_progress</link>          (<link linkend="GduDevice">GduDevice</link> *device);
 const <link linkend="char">char</link> *        <link linkend="gdu-device-job-get-id">gdu_device_job_get_id</link>               (<link linkend="GduDevice">GduDevice</link> *device);
 <link linkend="uid-t">uid_t</link>               <link linkend="gdu-device-job-get-initiated-by-uid">gdu_device_job_get_initiated_by_uid</link> (<link linkend="GduDevice">GduDevice</link> *device);
 <link linkend="gboolean">gboolean</link>            <link linkend="gdu-device-job-is-cancellable">gdu_device_job_is_cancellable</link>       (<link linkend="GduDevice">GduDevice</link> *device);
-<link linkend="int">int</link>                 <link linkend="gdu-device-job-get-num-tasks">gdu_device_job_get_num_tasks</link>        (<link linkend="GduDevice">GduDevice</link> *device);
-<link linkend="int">int</link>                 <link linkend="gdu-device-job-get-cur-task">gdu_device_job_get_cur_task</link>         (<link linkend="GduDevice">GduDevice</link> *device);
-const <link linkend="char">char</link> *        <link linkend="gdu-device-job-get-cur-task-id">gdu_device_job_get_cur_task_id</link>      (<link linkend="GduDevice">GduDevice</link> *device);
-<link linkend="double">double</link>              <link linkend="gdu-device-job-get-cur-task-percentage">gdu_device_job_get_cur_task_percentage</link>
-                                                        (<link linkend="GduDevice">GduDevice</link> *device);
 const <link linkend="char">char</link> *        <link linkend="gdu-device-id-get-usage">gdu_device_id_get_usage</link>             (<link linkend="GduDevice">GduDevice</link> *device);
 const <link linkend="char">char</link> *        <link linkend="gdu-device-id-get-type">gdu_device_id_get_type</link>              (<link linkend="GduDevice">GduDevice</link> *device);
 const <link linkend="char">char</link> *        <link linkend="gdu-device-id-get-version">gdu_device_id_get_version</link>           (<link linkend="GduDevice">GduDevice</link> *device);
@@ -69,12 +73,6 @@ const <link linkend="char">char</link> *        <link linkend="gdu-device-partit
 const <link linkend="char">char</link> *        <link linkend="gdu-device-partition-table-get-scheme">gdu_device_partition_table_get_scheme</link>
                                                         (<link linkend="GduDevice">GduDevice</link> *device);
 <link linkend="int">int</link>                 <link linkend="gdu-device-partition-table-get-count">gdu_device_partition_table_get_count</link>
-                                                        (<link linkend="GduDevice">GduDevice</link> *device);
-<link linkend="int">int</link>                 <link linkend="gdu-device-partition-table-get-max-number">gdu_device_partition_table_get_max_number</link>
-                                                        (<link linkend="GduDevice">GduDevice</link> *device);
-<link linkend="GArray">GArray</link> *            <link linkend="gdu-device-partition-table-get-offsets">gdu_device_partition_table_get_offsets</link>
-                                                        (<link linkend="GduDevice">GduDevice</link> *device);
-<link linkend="GArray">GArray</link> *            <link linkend="gdu-device-partition-table-get-sizes">gdu_device_partition_table_get_sizes</link>
                                                         (<link linkend="GduDevice">GduDevice</link> *device);
 const <link linkend="char">char</link> *        <link linkend="gdu-device-luks-get-holder">gdu_device_luks_get_holder</link>          (<link linkend="GduDevice">GduDevice</link> *device);
 const <link linkend="char">char</link> *        <link linkend="gdu-device-luks-cleartext-get-slave">gdu_device_luks_cleartext_get_slave</link> (<link linkend="GduDevice">GduDevice</link> *device);
@@ -102,13 +100,10 @@ const <link linkend="char">char</link> *        <link linkend="gdu-device-drive-
                                                         (<link linkend="GduDevice">GduDevice</link> *device);
 <link linkend="guint">guint</link>               <link linkend="gdu-device-optical-disc-get-num-tracks">gdu_device_optical_disc_get_num_tracks</link>
                                                         (<link linkend="GduDevice">GduDevice</link> *device);
+<link linkend="guint">guint</link>               <link linkend="gdu-device-optical-disc-get-num-audio-tracks">gdu_device_optical_disc_get_num_audio_tracks</link>
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);
 <link linkend="guint">guint</link>               <link linkend="gdu-device-optical-disc-get-num-sessions">gdu_device_optical_disc_get_num_sessions</link>
                                                         (<link linkend="GduDevice">GduDevice</link> *device);
-<link linkend="gboolean">gboolean</link>            <link linkend="gdu-device-drive-smart-get-is-capable">gdu_device_drive_smart_get_is_capable</link>
-                                                        (<link linkend="GduDevice">GduDevice</link> *device);
-<link linkend="gboolean">gboolean</link>            <link linkend="gdu-device-drive-smart-get-is-enabled">gdu_device_drive_smart_get_is_enabled</link>
-                                                        (<link linkend="GduDevice">GduDevice</link> *device);
-<link linkend="GduSmartData">GduSmartData</link> *      <link linkend="gdu-device-get-smart-data">gdu_device_get_smart_data</link>           (<link linkend="GduDevice">GduDevice</link> *device);
 const <link linkend="char">char</link> *        <link linkend="gdu-device-linux-md-component-get-level">gdu_device_linux_md_component_get_level</link>
                                                         (<link linkend="GduDevice">GduDevice</link> *device);
 <link linkend="int">int</link>                 <link linkend="gdu-device-linux-md-component-get-num-raid-devices">gdu_device_linux_md_component_get_num_raid_devices</link>
@@ -121,6 +116,11 @@ const <link linkend="char">char</link> *        <link linkend="gdu-device-linux-
                                                         (<link linkend="GduDevice">GduDevice</link> *device);
 const <link linkend="char">char</link> *        <link linkend="gdu-device-linux-md-component-get-version">gdu_device_linux_md_component_get_version</link>
                                                         (<link linkend="GduDevice">GduDevice</link> *device);
+const <link linkend="char">char</link> *        <link linkend="gdu-device-linux-md-component-get-holder">gdu_device_linux_md_component_get_holder</link>
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);
+<link linkend="char">char</link> **             <link linkend="gdu-device-linux-md-component-get-state">gdu_device_linux_md_component_get_state</link>
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);
+const <link linkend="char">char</link> *        <link linkend="gdu-device-linux-md-get-state">gdu_device_linux_md_get_state</link>       (<link linkend="GduDevice">GduDevice</link> *device);
 const <link linkend="char">char</link> *        <link linkend="gdu-device-linux-md-get-level">gdu_device_linux_md_get_level</link>       (<link linkend="GduDevice">GduDevice</link> *device);
 <link linkend="int">int</link>                 <link linkend="gdu-device-linux-md-get-num-raid-devices">gdu_device_linux_md_get_num_raid_devices</link>
                                                         (<link linkend="GduDevice">GduDevice</link> *device);
@@ -134,7 +134,53 @@ const <link linkend="char">char</link> *        <link linkend="gdu-device-linux-
 <link linkend="double">double</link>              <link linkend="gdu-device-linux-md-get-sync-percentage">gdu_device_linux_md_get_sync_percentage</link>
                                                         (<link linkend="GduDevice">GduDevice</link> *device);
 <link linkend="guint64">guint64</link>             <link linkend="gdu-device-linux-md-get-sync-speed">gdu_device_linux_md_get_sync_speed</link>  (<link linkend="GduDevice">GduDevice</link> *device);
+enum                <link linkend="GduAtaSmartOfflineDataCollectionStatus">GduAtaSmartOfflineDataCollectionStatus</link>;
+enum                <link linkend="GduAtaSmartSelfTestExecutionStatus">GduAtaSmartSelfTestExecutionStatus</link>;
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-device-drive-ata-smart-get-is-available">gdu_device_drive_ata_smart_get_is_available</link>
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-device-drive-ata-smart-get-is-failing">gdu_device_drive_ata_smart_get_is_failing</link>
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-device-drive-ata-smart-get-is-failing-valid">gdu_device_drive_ata_smart_get_is_failing_valid</link>
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-device-drive-ata-smart-get-has-bad-sectors">gdu_device_drive_ata_smart_get_has_bad_sectors</link>
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-device-drive-ata-smart-get-has-bad-attributes">gdu_device_drive_ata_smart_get_has_bad_attributes</link>
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);
+<link linkend="gdouble">gdouble</link>             <link linkend="gdu-device-drive-ata-smart-get-temperature-kelvin">gdu_device_drive_ata_smart_get_temperature_kelvin</link>
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);
+<link linkend="guint64">guint64</link>             <link linkend="gdu-device-drive-ata-smart-get-power-on-seconds">gdu_device_drive_ata_smart_get_power_on_seconds</link>
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);
+<link linkend="guint64">guint64</link>             <link linkend="gdu-device-drive-ata-smart-get-time-collected">gdu_device_drive_ata_smart_get_time_collected</link>
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);
+<link linkend="GduAtaSmartOfflineDataCollectionStatus">GduAtaSmartOfflineDataCollectionStatus</link>  <link linkend="gdu-device-drive-ata-smart-get-offline-data-collection-status">gdu_device_drive_ata_smart_get_offline_data_collection_status</link>
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);
+<link linkend="guint">guint</link>               <link linkend="gdu-device-drive-ata-smart-get-offline-data-collection-seconds">gdu_device_drive_ata_smart_get_offline_data_collection_seconds</link>
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);
+<link linkend="GduAtaSmartSelfTestExecutionStatus">GduAtaSmartSelfTestExecutionStatus</link>  <link linkend="gdu-device-drive-ata-smart-get-self-test-execution-status">gdu_device_drive_ata_smart_get_self_test_execution_status</link>
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);
+<link linkend="guint">guint</link>               <link linkend="gdu-device-drive-ata-smart-get-self-test-execution-percent-remaining">gdu_device_drive_ata_smart_get_self_test_execution_percent_remaining</link>
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-device-drive-ata-smart-get-short-and-extended-self-test-available">gdu_device_drive_ata_smart_get_short_and_extended_self_test_available</link>
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-device-drive-ata-smart-get-conveyance-self-test-available">gdu_device_drive_ata_smart_get_conveyance_self_test_available</link>
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-device-drive-ata-smart-get-start-self-test-available">gdu_device_drive_ata_smart_get_start_self_test_available</link>
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-device-drive-ata-smart-get-abort-self-test-available">gdu_device_drive_ata_smart_get_abort_self_test_available</link>
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);
+<link linkend="guint">guint</link>               <link linkend="gdu-device-drive-ata-smart-get-short-self-test-polling-minutes">gdu_device_drive_ata_smart_get_short_self_test_polling_minutes</link>
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);
+<link linkend="guint">guint</link>               <link linkend="gdu-device-drive-ata-smart-get-extended-self-test-polling-minutes">gdu_device_drive_ata_smart_get_extended_self_test_polling_minutes</link>
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);
+<link linkend="guint">guint</link>               <link linkend="gdu-device-drive-ata-smart-get-conveyance-self-test-polling-minutes">gdu_device_drive_ata_smart_get_conveyance_self_test_polling_minutes</link>
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);
+<link linkend="GList">GList</link> *             <link linkend="gdu-device-drive-ata-smart-get-attributes">gdu_device_drive_ata_smart_get_attributes</link>
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);
+<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> * <link linkend="gdu-device-drive-ata-smart-get-attribute">gdu_device_drive_ata_smart_get_attribute</link>
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         const <link linkend="gchar">gchar</link> *attr_name);
 <link linkend="void">void</link>                <link linkend="gdu-device-op-filesystem-mount">gdu_device_op_filesystem_mount</link>      (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="gchar">gchar</link> **options,
                                                          <link linkend="GduDeviceFilesystemMountCompletedFunc">GduDeviceFilesystemMountCompletedFunc</link> callback,
                                                          <link linkend="gpointer">gpointer</link> user_data);
 <link linkend="void">void</link>                <link linkend="gdu-device-op-filesystem-unmount">gdu_device_op_filesystem_unmount</link>    (<link linkend="GduDevice">GduDevice</link> *device,
@@ -144,7 +190,6 @@ const <link linkend="char">char</link> *        <link linkend="gdu-device-linux-
                                                          <link linkend="GduDeviceFilesystemCheckCompletedFunc">GduDeviceFilesystemCheckCompletedFunc</link> callback,
                                                          <link linkend="gpointer">gpointer</link> user_data);
 <link linkend="void">void</link>                <link linkend="gdu-device-op-partition-delete">gdu_device_op_partition_delete</link>      (<link linkend="GduDevice">GduDevice</link> *device,
-                                                         const <link linkend="char">char</link> *secure_erase,
                                                          <link linkend="GduDevicePartitionDeleteCompletedFunc">GduDevicePartitionDeleteCompletedFunc</link> callback,
                                                          <link linkend="gpointer">gpointer</link> user_data);
 <link linkend="void">void</link>                <link linkend="gdu-device-op-partition-modify">gdu_device_op_partition_modify</link>      (<link linkend="GduDevice">GduDevice</link> *device,
@@ -156,7 +201,6 @@ const <link linkend="char">char</link> *        <link linkend="gdu-device-linux-
 <link linkend="void">void</link>                <link linkend="gdu-device-op-partition-table-create">gdu_device_op_partition_table_create</link>
                                                         (<link linkend="GduDevice">GduDevice</link> *device,
                                                          const <link linkend="char">char</link> *scheme,
-                                                         const <link linkend="char">char</link> *secure_erase,
                                                          <link linkend="GduDevicePartitionTableCreateCompletedFunc">GduDevicePartitionTableCreateCompletedFunc</link> callback,
                                                          <link linkend="gpointer">gpointer</link> user_data);
 <link linkend="void">void</link>                <link linkend="gdu-device-op-luks-unlock">gdu_device_op_luks_unlock</link>           (<link linkend="GduDevice">GduDevice</link> *device,
@@ -176,14 +220,14 @@ const <link linkend="char">char</link> *        <link linkend="gdu-device-linux-
                                                          const <link linkend="char">char</link> *new_label,
                                                          <link linkend="GduDeviceFilesystemSetLabelCompletedFunc">GduDeviceFilesystemSetLabelCompletedFunc</link> callback,
                                                          <link linkend="gpointer">gpointer</link> user_data);
-<link linkend="void">void</link>                <link linkend="gdu-device-op-drive-smart-initiate-selftest">gdu_device_op_drive_smart_initiate_selftest</link>
+<link linkend="void">void</link>                <link linkend="gdu-device-op-drive-ata-smart-initiate-selftest">gdu_device_op_drive_ata_smart_initiate_selftest</link>
                                                         (<link linkend="GduDevice">GduDevice</link> *device,
                                                          const <link linkend="char">char</link> *test,
-                                                         <link linkend="gboolean">gboolean</link> captive,
-                                                         <link linkend="GduDeviceDriveSmartInitiateSelftestCompletedFunc">GduDeviceDriveSmartInitiateSelftestCompletedFunc</link> callback,
+                                                         <link linkend="GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc">GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc</link> callback,
                                                          <link linkend="gpointer">gpointer</link> user_data);
-<link linkend="void">void</link>                <link linkend="gdu-device-drive-smart-refresh-data">gdu_device_drive_smart_refresh_data</link> (<link linkend="GduDevice">GduDevice</link> *device,
-                                                         <link linkend="GduDeviceDriveSmartRefreshDataCompletedFunc">GduDeviceDriveSmartRefreshDataCompletedFunc</link> callback,
+<link linkend="void">void</link>                <link linkend="gdu-device-drive-ata-smart-refresh-data">gdu_device_drive_ata_smart_refresh_data</link>
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GduDeviceDriveAtaSmartRefreshDataCompletedFunc">GduDeviceDriveAtaSmartRefreshDataCompletedFunc</link> callback,
                                                          <link linkend="gpointer">gpointer</link> user_data);
 <link linkend="void">void</link>                <link linkend="gdu-device-op-linux-md-stop">gdu_device_op_linux_md_stop</link>         (<link linkend="GduDevice">GduDevice</link> *device,
                                                          <link linkend="GduDeviceLinuxMdStopCompletedFunc">GduDeviceLinuxMdStopCompletedFunc</link> callback,
@@ -196,13 +240,11 @@ const <link linkend="char">char</link> *        <link linkend="gdu-device-linux-
 <link linkend="void">void</link>                <link linkend="gdu-device-op-linux-md-remove-component">gdu_device_op_linux_md_remove_component</link>
                                                         (<link linkend="GduDevice">GduDevice</link> *device,
                                                          const <link linkend="char">char</link> *component_objpath,
-                                                         const <link linkend="char">char</link> *secure_erase,
                                                          <link linkend="GduDeviceLinuxMdRemoveComponentCompletedFunc">GduDeviceLinuxMdRemoveComponentCompletedFunc</link> callback,
                                                          <link linkend="gpointer">gpointer</link> user_data);
 <link linkend="void">void</link>                <link linkend="gdu-device-op-filesystem-create">gdu_device_op_filesystem_create</link>     (<link linkend="GduDevice">GduDevice</link> *device,
                                                          const <link linkend="char">char</link> *fstype,
                                                          const <link linkend="char">char</link> *fslabel,
-                                                         const <link linkend="char">char</link> *fserase,
                                                          const <link linkend="char">char</link> *encrypt_passphrase,
                                                          <link linkend="gboolean">gboolean</link> fs_take_ownership,
                                                          <link linkend="GduDeviceFilesystemCreateCompletedFunc">GduDeviceFilesystemCreateCompletedFunc</link> callback,
@@ -215,7 +257,6 @@ const <link linkend="char">char</link> *        <link linkend="gdu-device-linux-
                                                          <link linkend="char">char</link> **flags,
                                                          const <link linkend="char">char</link> *fstype,
                                                          const <link linkend="char">char</link> *fslabel,
-                                                         const <link linkend="char">char</link> *fserase,
                                                          const <link linkend="char">char</link> *encrypt_passphrase,
                                                          <link linkend="gboolean">gboolean</link> fs_take_ownership,
                                                          <link linkend="GduDevicePartitionCreateCompletedFunc">GduDevicePartitionCreateCompletedFunc</link> callback,
@@ -223,8 +264,18 @@ const <link linkend="char">char</link> *        <link linkend="gdu-device-linux-
 <link linkend="void">void</link>                <link linkend="gdu-device-op-cancel-job">gdu_device_op_cancel_job</link>            (<link linkend="GduDevice">GduDevice</link> *device,
                                                          <link linkend="GduDeviceCancelJobCompletedFunc">GduDeviceCancelJobCompletedFunc</link> callback,
                                                          <link linkend="gpointer">gpointer</link> user_data);
-<link linkend="GList">GList</link> *             <link linkend="gdu-device-drive-smart-get-historical-data-sync">gdu_device_drive_smart_get_historical_data_sync</link>
+<link linkend="void">void</link>                <link linkend="gdu-device-drive-ata-smart-get-historical-data">gdu_device_drive_ata_smart_get_historical_data</link>
                                                         (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="guint64">guint64</link> since,
+                                                         <link linkend="guint64">guint64</link> until,
+                                                         <link linkend="guint64">guint64</link> spacing,
+                                                         <link linkend="GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc">GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="GList">GList</link> *             <link linkend="gdu-device-drive-ata-smart-get-historical-data-sync">gdu_device_drive_ata_smart_get_historical_data_sync</link>
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="guint64">guint64</link> since,
+                                                         <link linkend="guint64">guint64</link> until,
+                                                         <link linkend="guint64">guint64</link> spacing,
                                                          <link linkend="GError">GError</link> **error);
 <link linkend="void">void</link>                <link linkend="gdu-device-filesystem-list-open-files">gdu_device_filesystem_list_open_files</link>
                                                         (<link linkend="GduDevice">GduDevice</link> *device,
@@ -235,6 +286,9 @@ const <link linkend="char">char</link> *        <link linkend="gdu-device-linux-
                                                          <link linkend="GError">GError</link> **error);
 <link linkend="void">void</link>                <link linkend="gdu-device-op-drive-eject">gdu_device_op_drive_eject</link>           (<link linkend="GduDevice">GduDevice</link> *device,
                                                          <link linkend="GduDeviceDriveEjectCompletedFunc">GduDeviceDriveEjectCompletedFunc</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                <link linkend="gdu-device-op-drive-poll-media">gdu_device_op_drive_poll_media</link>      (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GduDeviceDrivePollMediaCompletedFunc">GduDeviceDrivePollMediaCompletedFunc</link> callback,
                                                          <link linkend="gpointer">gpointer</link> user_data);
 </synopsis>
 </refsynopsisdiv>
@@ -373,6 +427,53 @@ complex.</para>
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
+<refsect2 id="gdu-device-is-media-change-detected" role="function">
+<title>gdu_device_is_media_change_detected ()</title>
+<indexterm zone="gdu-device-is-media-change-detected"><primary sortas="gdu_device_is_media_change_detected">gdu_device_is_media_change_detected</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_device_is_media_change_detected (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-device-is-media-change-detection-polling" role="function">
+<title>gdu_device_is_media_change_detection_polling ()</title>
+<indexterm zone="gdu-device-is-media-change-detection-polling"><primary sortas="gdu_device_is_media_change_detection_polling">gdu_device_is_media_change_detection_polling</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_device_is_media_change_detection_polling
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-device-is-media-change-detection-inhibitable" role="function">
+<title>gdu_device_is_media_change_detection_inhibitable ()</title>
+<indexterm zone="gdu-device-is-media-change-detection-inhibitable"><primary sortas="gdu_device_is_media_change_detection_inhibitable">gdu_device_is_media_change_detection_inhibitable</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_device_is_media_change_detection_inhibitable
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-device-is-media-change-detection-inhibited" role="function">
+<title>gdu_device_is_media_change_detection_inhibited ()</title>
+<indexterm zone="gdu-device-is-media-change-detection-inhibited"><primary sortas="gdu_device_is_media_change_detection_inhibited">gdu_device_is_media_change_detection_inhibited</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_device_is_media_change_detection_inhibited
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
 <refsect2 id="gdu-device-is-read-only" role="function">
 <title>gdu_device_is_read_only ()</title>
 <indexterm zone="gdu-device-is-read-only"><primary sortas="gdu_device_is_read_only">gdu_device_is_read_only</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_device_is_read_only             (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
@@ -494,17 +595,6 @@ complex.</para>
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="gdu-device-is-busy" role="function">
-<title>gdu_device_is_busy ()</title>
-<indexterm zone="gdu-device-is-busy"><primary sortas="gdu_device_is_busy">gdu_device_is_busy</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_device_is_busy                  (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
-<para>
-</para><variablelist role="params">
-<varlistentry><term><parameter>device</parameter>&#160;:</term>
-<listitem><simpara>
-</simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
-</simpara></listitem></varlistentry>
-</variablelist></refsect2>
 <refsect2 id="gdu-device-get-mount-path" role="function">
 <title>gdu_device_get_mount_path ()</title>
 <indexterm zone="gdu-device-get-mount-path"><primary sortas="gdu_device_get_mount_path">gdu_device_get_mount_path</primary></indexterm><programlisting>const <link linkend="char">char</link> *        gdu_device_get_mount_path           (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
@@ -519,6 +609,29 @@ complex.</para>
 <refsect2 id="gdu-device-get-mounted-by-uid" role="function">
 <title>gdu_device_get_mounted_by_uid ()</title>
 <indexterm zone="gdu-device-get-mounted-by-uid"><primary sortas="gdu_device_get_mounted_by_uid">gdu_device_get_mounted_by_uid</primary></indexterm><programlisting><link linkend="uid-t">uid_t</link>               gdu_device_get_mounted_by_uid       (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-device-get-presentation-name" role="function">
+<title>gdu_device_get_presentation_name ()</title>
+<indexterm zone="gdu-device-get-presentation-name"><primary sortas="gdu_device_get_presentation_name">gdu_device_get_presentation_name</primary></indexterm><programlisting>const <link linkend="char">char</link> *        gdu_device_get_presentation_name    (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-device-get-presentation-icon-name" role="function">
+<title>gdu_device_get_presentation_icon_name ()</title>
+<indexterm zone="gdu-device-get-presentation-icon-name"><primary sortas="gdu_device_get_presentation_icon_name">gdu_device_get_presentation_icon_name</primary></indexterm><programlisting>const <link linkend="char">char</link> *        gdu_device_get_presentation_icon_name
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>device</parameter>&#160;:</term>
@@ -563,51 +676,6 @@ complex.</para>
 <refsect2 id="gdu-device-job-is-cancellable" role="function">
 <title>gdu_device_job_is_cancellable ()</title>
 <indexterm zone="gdu-device-job-is-cancellable"><primary sortas="gdu_device_job_is_cancellable">gdu_device_job_is_cancellable</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_device_job_is_cancellable       (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
-<para>
-</para><variablelist role="params">
-<varlistentry><term><parameter>device</parameter>&#160;:</term>
-<listitem><simpara>
-</simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
-</simpara></listitem></varlistentry>
-</variablelist></refsect2>
-<refsect2 id="gdu-device-job-get-num-tasks" role="function">
-<title>gdu_device_job_get_num_tasks ()</title>
-<indexterm zone="gdu-device-job-get-num-tasks"><primary sortas="gdu_device_job_get_num_tasks">gdu_device_job_get_num_tasks</primary></indexterm><programlisting><link linkend="int">int</link>                 gdu_device_job_get_num_tasks        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
-<para>
-</para><variablelist role="params">
-<varlistentry><term><parameter>device</parameter>&#160;:</term>
-<listitem><simpara>
-</simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
-</simpara></listitem></varlistentry>
-</variablelist></refsect2>
-<refsect2 id="gdu-device-job-get-cur-task" role="function">
-<title>gdu_device_job_get_cur_task ()</title>
-<indexterm zone="gdu-device-job-get-cur-task"><primary sortas="gdu_device_job_get_cur_task">gdu_device_job_get_cur_task</primary></indexterm><programlisting><link linkend="int">int</link>                 gdu_device_job_get_cur_task         (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
-<para>
-</para><variablelist role="params">
-<varlistentry><term><parameter>device</parameter>&#160;:</term>
-<listitem><simpara>
-</simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
-</simpara></listitem></varlistentry>
-</variablelist></refsect2>
-<refsect2 id="gdu-device-job-get-cur-task-id" role="function">
-<title>gdu_device_job_get_cur_task_id ()</title>
-<indexterm zone="gdu-device-job-get-cur-task-id"><primary sortas="gdu_device_job_get_cur_task_id">gdu_device_job_get_cur_task_id</primary></indexterm><programlisting>const <link linkend="char">char</link> *        gdu_device_job_get_cur_task_id      (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
-<para>
-</para><variablelist role="params">
-<varlistentry><term><parameter>device</parameter>&#160;:</term>
-<listitem><simpara>
-</simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
-</simpara></listitem></varlistentry>
-</variablelist></refsect2>
-<refsect2 id="gdu-device-job-get-cur-task-percentage" role="function">
-<title>gdu_device_job_get_cur_task_percentage ()</title>
-<indexterm zone="gdu-device-job-get-cur-task-percentage"><primary sortas="gdu_device_job_get_cur_task_percentage">gdu_device_job_get_cur_task_percentage</primary></indexterm><programlisting><link linkend="double">double</link>              gdu_device_job_get_cur_task_percentage
-                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>device</parameter>&#160;:</term>
@@ -785,42 +853,6 @@ complex.</para>
 <refsect2 id="gdu-device-partition-table-get-count" role="function">
 <title>gdu_device_partition_table_get_count ()</title>
 <indexterm zone="gdu-device-partition-table-get-count"><primary sortas="gdu_device_partition_table_get_count">gdu_device_partition_table_get_count</primary></indexterm><programlisting><link linkend="int">int</link>                 gdu_device_partition_table_get_count
-                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
-<para>
-</para><variablelist role="params">
-<varlistentry><term><parameter>device</parameter>&#160;:</term>
-<listitem><simpara>
-</simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
-</simpara></listitem></varlistentry>
-</variablelist></refsect2>
-<refsect2 id="gdu-device-partition-table-get-max-number" role="function">
-<title>gdu_device_partition_table_get_max_number ()</title>
-<indexterm zone="gdu-device-partition-table-get-max-number"><primary sortas="gdu_device_partition_table_get_max_number">gdu_device_partition_table_get_max_number</primary></indexterm><programlisting><link linkend="int">int</link>                 gdu_device_partition_table_get_max_number
-                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
-<para>
-</para><variablelist role="params">
-<varlistentry><term><parameter>device</parameter>&#160;:</term>
-<listitem><simpara>
-</simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
-</simpara></listitem></varlistentry>
-</variablelist></refsect2>
-<refsect2 id="gdu-device-partition-table-get-offsets" role="function">
-<title>gdu_device_partition_table_get_offsets ()</title>
-<indexterm zone="gdu-device-partition-table-get-offsets"><primary sortas="gdu_device_partition_table_get_offsets">gdu_device_partition_table_get_offsets</primary></indexterm><programlisting><link linkend="GArray">GArray</link> *            gdu_device_partition_table_get_offsets
-                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
-<para>
-</para><variablelist role="params">
-<varlistentry><term><parameter>device</parameter>&#160;:</term>
-<listitem><simpara>
-</simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
-</simpara></listitem></varlistentry>
-</variablelist></refsect2>
-<refsect2 id="gdu-device-partition-table-get-sizes" role="function">
-<title>gdu_device_partition_table_get_sizes ()</title>
-<indexterm zone="gdu-device-partition-table-get-sizes"><primary sortas="gdu_device_partition_table_get_sizes">gdu_device_partition_table_get_sizes</primary></indexterm><programlisting><link linkend="GArray">GArray</link> *            gdu_device_partition_table_get_sizes
                                                         (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
 <para>
 </para><variablelist role="params">
@@ -1026,45 +1058,22 @@ complex.</para>
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
+<refsect2 id="gdu-device-optical-disc-get-num-audio-tracks" role="function">
+<title>gdu_device_optical_disc_get_num_audio_tracks ()</title>
+<indexterm zone="gdu-device-optical-disc-get-num-audio-tracks"><primary sortas="gdu_device_optical_disc_get_num_audio_tracks">gdu_device_optical_disc_get_num_audio_tracks</primary></indexterm><programlisting><link linkend="guint">guint</link>               gdu_device_optical_disc_get_num_audio_tracks
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
 <refsect2 id="gdu-device-optical-disc-get-num-sessions" role="function">
 <title>gdu_device_optical_disc_get_num_sessions ()</title>
 <indexterm zone="gdu-device-optical-disc-get-num-sessions"><primary sortas="gdu_device_optical_disc_get_num_sessions">gdu_device_optical_disc_get_num_sessions</primary></indexterm><programlisting><link linkend="guint">guint</link>               gdu_device_optical_disc_get_num_sessions
                                                         (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
-<para>
-</para><variablelist role="params">
-<varlistentry><term><parameter>device</parameter>&#160;:</term>
-<listitem><simpara>
-</simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
-</simpara></listitem></varlistentry>
-</variablelist></refsect2>
-<refsect2 id="gdu-device-drive-smart-get-is-capable" role="function">
-<title>gdu_device_drive_smart_get_is_capable ()</title>
-<indexterm zone="gdu-device-drive-smart-get-is-capable"><primary sortas="gdu_device_drive_smart_get_is_capable">gdu_device_drive_smart_get_is_capable</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_device_drive_smart_get_is_capable
-                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
-<para>
-</para><variablelist role="params">
-<varlistentry><term><parameter>device</parameter>&#160;:</term>
-<listitem><simpara>
-</simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
-</simpara></listitem></varlistentry>
-</variablelist></refsect2>
-<refsect2 id="gdu-device-drive-smart-get-is-enabled" role="function">
-<title>gdu_device_drive_smart_get_is_enabled ()</title>
-<indexterm zone="gdu-device-drive-smart-get-is-enabled"><primary sortas="gdu_device_drive_smart_get_is_enabled">gdu_device_drive_smart_get_is_enabled</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_device_drive_smart_get_is_enabled
-                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
-<para>
-</para><variablelist role="params">
-<varlistentry><term><parameter>device</parameter>&#160;:</term>
-<listitem><simpara>
-</simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
-</simpara></listitem></varlistentry>
-</variablelist></refsect2>
-<refsect2 id="gdu-device-get-smart-data" role="function">
-<title>gdu_device_get_smart_data ()</title>
-<indexterm zone="gdu-device-get-smart-data"><primary sortas="gdu_device_get_smart_data">gdu_device_get_smart_data</primary></indexterm><programlisting><link linkend="GduSmartData">GduSmartData</link> *      gdu_device_get_smart_data           (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>device</parameter>&#160;:</term>
@@ -1137,6 +1146,41 @@ complex.</para>
 <title>gdu_device_linux_md_component_get_version ()</title>
 <indexterm zone="gdu-device-linux-md-component-get-version"><primary sortas="gdu_device_linux_md_component_get_version">gdu_device_linux_md_component_get_version</primary></indexterm><programlisting>const <link linkend="char">char</link> *        gdu_device_linux_md_component_get_version
                                                         (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-device-linux-md-component-get-holder" role="function">
+<title>gdu_device_linux_md_component_get_holder ()</title>
+<indexterm zone="gdu-device-linux-md-component-get-holder"><primary sortas="gdu_device_linux_md_component_get_holder">gdu_device_linux_md_component_get_holder</primary></indexterm><programlisting>const <link linkend="char">char</link> *        gdu_device_linux_md_component_get_holder
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-device-linux-md-component-get-state" role="function">
+<title>gdu_device_linux_md_component_get_state ()</title>
+<indexterm zone="gdu-device-linux-md-component-get-state"><primary sortas="gdu_device_linux_md_component_get_state">gdu_device_linux_md_component_get_state</primary></indexterm><programlisting><link linkend="char">char</link> **             gdu_device_linux_md_component_get_state
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-device-linux-md-get-state" role="function">
+<title>gdu_device_linux_md_get_state ()</title>
+<indexterm zone="gdu-device-linux-md-get-state"><primary sortas="gdu_device_linux_md_get_state">gdu_device_linux_md_get_state</primary></indexterm><programlisting>const <link linkend="char">char</link> *        gdu_device_linux_md_get_state       (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>device</parameter>&#160;:</term>
@@ -1268,14 +1312,305 @@ complex.</para>
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
+<refsect2 id="GduAtaSmartOfflineDataCollectionStatus" role="enum">
+<title>enum GduAtaSmartOfflineDataCollectionStatus</title>
+<indexterm zone="GduAtaSmartOfflineDataCollectionStatus"><primary sortas="GduAtaSmartOfflineDataCollectionStatus">GduAtaSmartOfflineDataCollectionStatus</primary></indexterm><programlisting>typedef enum {
+        GDU_ATA_SMART_OFFLINE_DATA_COLLECTION_STATUS_NEVER,
+        GDU_ATA_SMART_OFFLINE_DATA_COLLECTION_STATUS_SUCCESS,
+        GDU_ATA_SMART_OFFLINE_DATA_COLLECTION_STATUS_INPROGRESS,
+        GDU_ATA_SMART_OFFLINE_DATA_COLLECTION_STATUS_SUSPENDED,
+        GDU_ATA_SMART_OFFLINE_DATA_COLLECTION_STATUS_ABORTED,
+        GDU_ATA_SMART_OFFLINE_DATA_COLLECTION_STATUS_FATAL,
+        GDU_ATA_SMART_OFFLINE_DATA_COLLECTION_STATUS_UNKNOWN,
+} GduAtaSmartOfflineDataCollectionStatus;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduAtaSmartSelfTestExecutionStatus" role="enum">
+<title>enum GduAtaSmartSelfTestExecutionStatus</title>
+<indexterm zone="GduAtaSmartSelfTestExecutionStatus"><primary sortas="GduAtaSmartSelfTestExecutionStatus">GduAtaSmartSelfTestExecutionStatus</primary></indexterm><programlisting>typedef enum {
+        GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_SUCCESS_OR_NEVER = 0,
+        GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_ABORTED = 1,
+        GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_INTERRUPTED = 2,
+        GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_FATAL = 3,
+        GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_ERROR_UNKNOWN = 4,
+        GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_ERROR_ELECTRICAL = 5,
+        GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_ERROR_SERVO = 6,
+        GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_ERROR_READ = 7,
+        GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_ERROR_HANDLING = 8,
+        GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_INPROGRESS = 15,
+} GduAtaSmartSelfTestExecutionStatus;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="gdu-device-drive-ata-smart-get-is-available" role="function">
+<title>gdu_device_drive_ata_smart_get_is_available ()</title>
+<indexterm zone="gdu-device-drive-ata-smart-get-is-available"><primary sortas="gdu_device_drive_ata_smart_get_is_available">gdu_device_drive_ata_smart_get_is_available</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_device_drive_ata_smart_get_is_available
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-device-drive-ata-smart-get-is-failing" role="function">
+<title>gdu_device_drive_ata_smart_get_is_failing ()</title>
+<indexterm zone="gdu-device-drive-ata-smart-get-is-failing"><primary sortas="gdu_device_drive_ata_smart_get_is_failing">gdu_device_drive_ata_smart_get_is_failing</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_device_drive_ata_smart_get_is_failing
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-device-drive-ata-smart-get-is-failing-valid" role="function">
+<title>gdu_device_drive_ata_smart_get_is_failing_valid ()</title>
+<indexterm zone="gdu-device-drive-ata-smart-get-is-failing-valid"><primary sortas="gdu_device_drive_ata_smart_get_is_failing_valid">gdu_device_drive_ata_smart_get_is_failing_valid</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_device_drive_ata_smart_get_is_failing_valid
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-device-drive-ata-smart-get-has-bad-sectors" role="function">
+<title>gdu_device_drive_ata_smart_get_has_bad_sectors ()</title>
+<indexterm zone="gdu-device-drive-ata-smart-get-has-bad-sectors"><primary sortas="gdu_device_drive_ata_smart_get_has_bad_sectors">gdu_device_drive_ata_smart_get_has_bad_sectors</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_device_drive_ata_smart_get_has_bad_sectors
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-device-drive-ata-smart-get-has-bad-attributes" role="function">
+<title>gdu_device_drive_ata_smart_get_has_bad_attributes ()</title>
+<indexterm zone="gdu-device-drive-ata-smart-get-has-bad-attributes"><primary sortas="gdu_device_drive_ata_smart_get_has_bad_attributes">gdu_device_drive_ata_smart_get_has_bad_attributes</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_device_drive_ata_smart_get_has_bad_attributes
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-device-drive-ata-smart-get-temperature-kelvin" role="function">
+<title>gdu_device_drive_ata_smart_get_temperature_kelvin ()</title>
+<indexterm zone="gdu-device-drive-ata-smart-get-temperature-kelvin"><primary sortas="gdu_device_drive_ata_smart_get_temperature_kelvin">gdu_device_drive_ata_smart_get_temperature_kelvin</primary></indexterm><programlisting><link linkend="gdouble">gdouble</link>             gdu_device_drive_ata_smart_get_temperature_kelvin
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-device-drive-ata-smart-get-power-on-seconds" role="function">
+<title>gdu_device_drive_ata_smart_get_power_on_seconds ()</title>
+<indexterm zone="gdu-device-drive-ata-smart-get-power-on-seconds"><primary sortas="gdu_device_drive_ata_smart_get_power_on_seconds">gdu_device_drive_ata_smart_get_power_on_seconds</primary></indexterm><programlisting><link linkend="guint64">guint64</link>             gdu_device_drive_ata_smart_get_power_on_seconds
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-device-drive-ata-smart-get-time-collected" role="function">
+<title>gdu_device_drive_ata_smart_get_time_collected ()</title>
+<indexterm zone="gdu-device-drive-ata-smart-get-time-collected"><primary sortas="gdu_device_drive_ata_smart_get_time_collected">gdu_device_drive_ata_smart_get_time_collected</primary></indexterm><programlisting><link linkend="guint64">guint64</link>             gdu_device_drive_ata_smart_get_time_collected
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-device-drive-ata-smart-get-offline-data-collection-status" role="function">
+<title>gdu_device_drive_ata_smart_get_offline_data_collection_status ()</title>
+<indexterm zone="gdu-device-drive-ata-smart-get-offline-data-collection-status"><primary sortas="gdu_device_drive_ata_smart_get_offline_data_collection_status">gdu_device_drive_ata_smart_get_offline_data_collection_status</primary></indexterm><programlisting><link linkend="GduAtaSmartOfflineDataCollectionStatus">GduAtaSmartOfflineDataCollectionStatus</link>  gdu_device_drive_ata_smart_get_offline_data_collection_status
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-device-drive-ata-smart-get-offline-data-collection-seconds" role="function">
+<title>gdu_device_drive_ata_smart_get_offline_data_collection_seconds ()</title>
+<indexterm zone="gdu-device-drive-ata-smart-get-offline-data-collection-seconds"><primary sortas="gdu_device_drive_ata_smart_get_offline_data_collection_seconds">gdu_device_drive_ata_smart_get_offline_data_collection_seconds</primary></indexterm><programlisting><link linkend="guint">guint</link>               gdu_device_drive_ata_smart_get_offline_data_collection_seconds
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-device-drive-ata-smart-get-self-test-execution-status" role="function">
+<title>gdu_device_drive_ata_smart_get_self_test_execution_status ()</title>
+<indexterm zone="gdu-device-drive-ata-smart-get-self-test-execution-status"><primary sortas="gdu_device_drive_ata_smart_get_self_test_execution_status">gdu_device_drive_ata_smart_get_self_test_execution_status</primary></indexterm><programlisting><link linkend="GduAtaSmartSelfTestExecutionStatus">GduAtaSmartSelfTestExecutionStatus</link>  gdu_device_drive_ata_smart_get_self_test_execution_status
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-device-drive-ata-smart-get-self-test-execution-percent-remaining" role="function">
+<title>gdu_device_drive_ata_smart_get_self_test_execution_percent_remaining ()</title>
+<indexterm zone="gdu-device-drive-ata-smart-get-self-test-execution-percent-remaining"><primary sortas="gdu_device_drive_ata_smart_get_self_test_execution_percent_remaining">gdu_device_drive_ata_smart_get_self_test_execution_percent_remaining</primary></indexterm><programlisting><link linkend="guint">guint</link>               gdu_device_drive_ata_smart_get_self_test_execution_percent_remaining
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-device-drive-ata-smart-get-short-and-extended-self-test-available" role="function">
+<title>gdu_device_drive_ata_smart_get_short_and_extended_self_test_available ()</title>
+<indexterm zone="gdu-device-drive-ata-smart-get-short-and-extended-self-test-available"><primary sortas="gdu_device_drive_ata_smart_get_short_and_extended_self_test_available">gdu_device_drive_ata_smart_get_short_and_extended_self_test_available</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_device_drive_ata_smart_get_short_and_extended_self_test_available
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-device-drive-ata-smart-get-conveyance-self-test-available" role="function">
+<title>gdu_device_drive_ata_smart_get_conveyance_self_test_available ()</title>
+<indexterm zone="gdu-device-drive-ata-smart-get-conveyance-self-test-available"><primary sortas="gdu_device_drive_ata_smart_get_conveyance_self_test_available">gdu_device_drive_ata_smart_get_conveyance_self_test_available</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_device_drive_ata_smart_get_conveyance_self_test_available
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-device-drive-ata-smart-get-start-self-test-available" role="function">
+<title>gdu_device_drive_ata_smart_get_start_self_test_available ()</title>
+<indexterm zone="gdu-device-drive-ata-smart-get-start-self-test-available"><primary sortas="gdu_device_drive_ata_smart_get_start_self_test_available">gdu_device_drive_ata_smart_get_start_self_test_available</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_device_drive_ata_smart_get_start_self_test_available
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-device-drive-ata-smart-get-abort-self-test-available" role="function">
+<title>gdu_device_drive_ata_smart_get_abort_self_test_available ()</title>
+<indexterm zone="gdu-device-drive-ata-smart-get-abort-self-test-available"><primary sortas="gdu_device_drive_ata_smart_get_abort_self_test_available">gdu_device_drive_ata_smart_get_abort_self_test_available</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_device_drive_ata_smart_get_abort_self_test_available
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-device-drive-ata-smart-get-short-self-test-polling-minutes" role="function">
+<title>gdu_device_drive_ata_smart_get_short_self_test_polling_minutes ()</title>
+<indexterm zone="gdu-device-drive-ata-smart-get-short-self-test-polling-minutes"><primary sortas="gdu_device_drive_ata_smart_get_short_self_test_polling_minutes">gdu_device_drive_ata_smart_get_short_self_test_polling_minutes</primary></indexterm><programlisting><link linkend="guint">guint</link>               gdu_device_drive_ata_smart_get_short_self_test_polling_minutes
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-device-drive-ata-smart-get-extended-self-test-polling-minutes" role="function">
+<title>gdu_device_drive_ata_smart_get_extended_self_test_polling_minutes ()</title>
+<indexterm zone="gdu-device-drive-ata-smart-get-extended-self-test-polling-minutes"><primary sortas="gdu_device_drive_ata_smart_get_extended_self_test_polling_minutes">gdu_device_drive_ata_smart_get_extended_self_test_polling_minutes</primary></indexterm><programlisting><link linkend="guint">guint</link>               gdu_device_drive_ata_smart_get_extended_self_test_polling_minutes
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-device-drive-ata-smart-get-conveyance-self-test-polling-minutes" role="function">
+<title>gdu_device_drive_ata_smart_get_conveyance_self_test_polling_minutes ()</title>
+<indexterm zone="gdu-device-drive-ata-smart-get-conveyance-self-test-polling-minutes"><primary sortas="gdu_device_drive_ata_smart_get_conveyance_self_test_polling_minutes">gdu_device_drive_ata_smart_get_conveyance_self_test_polling_minutes</primary></indexterm><programlisting><link linkend="guint">guint</link>               gdu_device_drive_ata_smart_get_conveyance_self_test_polling_minutes
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-device-drive-ata-smart-get-attributes" role="function">
+<title>gdu_device_drive_ata_smart_get_attributes ()</title>
+<indexterm zone="gdu-device-drive-ata-smart-get-attributes"><primary sortas="gdu_device_drive_ata_smart_get_attributes">gdu_device_drive_ata_smart_get_attributes</primary></indexterm><programlisting><link linkend="GList">GList</link> *             gdu_device_drive_ata_smart_get_attributes
+                                                        (<link linkend="GduDevice">GduDevice</link> *device);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-device-drive-ata-smart-get-attribute" role="function">
+<title>gdu_device_drive_ata_smart_get_attribute ()</title>
+<indexterm zone="gdu-device-drive-ata-smart-get-attribute"><primary sortas="gdu_device_drive_ata_smart_get_attribute">gdu_device_drive_ata_smart_get_attribute</primary></indexterm><programlisting><link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> * gdu_device_drive_ata_smart_get_attribute
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         const <link linkend="gchar">gchar</link> *attr_name);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attr_name</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
 <refsect2 id="gdu-device-op-filesystem-mount" role="function">
 <title>gdu_device_op_filesystem_mount ()</title>
 <indexterm zone="gdu-device-op-filesystem-mount"><primary sortas="gdu_device_op_filesystem_mount">gdu_device_op_filesystem_mount</primary></indexterm><programlisting><link linkend="void">void</link>                gdu_device_op_filesystem_mount      (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="gchar">gchar</link> **options,
                                                          <link linkend="GduDeviceFilesystemMountCompletedFunc">GduDeviceFilesystemMountCompletedFunc</link> callback,
                                                          <link linkend="gpointer">gpointer</link> user_data);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>options</parameter>&#160;:</term>
 <listitem><simpara>
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>callback</parameter>&#160;:</term>
@@ -1322,15 +1657,11 @@ complex.</para>
 <refsect2 id="gdu-device-op-partition-delete" role="function">
 <title>gdu_device_op_partition_delete ()</title>
 <indexterm zone="gdu-device-op-partition-delete"><primary sortas="gdu_device_op_partition_delete">gdu_device_op_partition_delete</primary></indexterm><programlisting><link linkend="void">void</link>                gdu_device_op_partition_delete      (<link linkend="GduDevice">GduDevice</link> *device,
-                                                         const <link linkend="char">char</link> *secure_erase,
                                                          <link linkend="GduDevicePartitionDeleteCompletedFunc">GduDevicePartitionDeleteCompletedFunc</link> callback,
                                                          <link linkend="gpointer">gpointer</link> user_data);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>device</parameter>&#160;:</term>
-<listitem><simpara>
-</simpara></listitem></varlistentry>
-<varlistentry><term><parameter>secure_erase</parameter>&#160;:</term>
 <listitem><simpara>
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>callback</parameter>&#160;:</term>
@@ -1374,7 +1705,6 @@ complex.</para>
 <indexterm zone="gdu-device-op-partition-table-create"><primary sortas="gdu_device_op_partition_table_create">gdu_device_op_partition_table_create</primary></indexterm><programlisting><link linkend="void">void</link>                gdu_device_op_partition_table_create
                                                         (<link linkend="GduDevice">GduDevice</link> *device,
                                                          const <link linkend="char">char</link> *scheme,
-                                                         const <link linkend="char">char</link> *secure_erase,
                                                          <link linkend="GduDevicePartitionTableCreateCompletedFunc">GduDevicePartitionTableCreateCompletedFunc</link> callback,
                                                          <link linkend="gpointer">gpointer</link> user_data);</programlisting>
 <para>
@@ -1383,9 +1713,6 @@ complex.</para>
 <listitem><simpara>
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>scheme</parameter>&#160;:</term>
-<listitem><simpara>
-</simpara></listitem></varlistentry>
-<varlistentry><term><parameter>secure_erase</parameter>&#160;:</term>
 <listitem><simpara>
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>callback</parameter>&#160;:</term>
@@ -1480,13 +1807,12 @@ complex.</para>
 <listitem><simpara>
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="gdu-device-op-drive-smart-initiate-selftest" role="function">
-<title>gdu_device_op_drive_smart_initiate_selftest ()</title>
-<indexterm zone="gdu-device-op-drive-smart-initiate-selftest"><primary sortas="gdu_device_op_drive_smart_initiate_selftest">gdu_device_op_drive_smart_initiate_selftest</primary></indexterm><programlisting><link linkend="void">void</link>                gdu_device_op_drive_smart_initiate_selftest
+<refsect2 id="gdu-device-op-drive-ata-smart-initiate-selftest" role="function">
+<title>gdu_device_op_drive_ata_smart_initiate_selftest ()</title>
+<indexterm zone="gdu-device-op-drive-ata-smart-initiate-selftest"><primary sortas="gdu_device_op_drive_ata_smart_initiate_selftest">gdu_device_op_drive_ata_smart_initiate_selftest</primary></indexterm><programlisting><link linkend="void">void</link>                gdu_device_op_drive_ata_smart_initiate_selftest
                                                         (<link linkend="GduDevice">GduDevice</link> *device,
                                                          const <link linkend="char">char</link> *test,
-                                                         <link linkend="gboolean">gboolean</link> captive,
-                                                         <link linkend="GduDeviceDriveSmartInitiateSelftestCompletedFunc">GduDeviceDriveSmartInitiateSelftestCompletedFunc</link> callback,
+                                                         <link linkend="GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc">GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc</link> callback,
                                                          <link linkend="gpointer">gpointer</link> user_data);</programlisting>
 <para>
 </para><variablelist role="params">
@@ -1496,9 +1822,6 @@ complex.</para>
 <varlistentry><term><parameter>test</parameter>&#160;:</term>
 <listitem><simpara>
 </simpara></listitem></varlistentry>
-<varlistentry><term><parameter>captive</parameter>&#160;:</term>
-<listitem><simpara>
-</simpara></listitem></varlistentry>
 <varlistentry><term><parameter>callback</parameter>&#160;:</term>
 <listitem><simpara>
 </simpara></listitem></varlistentry>
@@ -1506,10 +1829,11 @@ complex.</para>
 <listitem><simpara>
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="gdu-device-drive-smart-refresh-data" role="function">
-<title>gdu_device_drive_smart_refresh_data ()</title>
-<indexterm zone="gdu-device-drive-smart-refresh-data"><primary sortas="gdu_device_drive_smart_refresh_data">gdu_device_drive_smart_refresh_data</primary></indexterm><programlisting><link linkend="void">void</link>                gdu_device_drive_smart_refresh_data (<link linkend="GduDevice">GduDevice</link> *device,
-                                                         <link linkend="GduDeviceDriveSmartRefreshDataCompletedFunc">GduDeviceDriveSmartRefreshDataCompletedFunc</link> callback,
+<refsect2 id="gdu-device-drive-ata-smart-refresh-data" role="function">
+<title>gdu_device_drive_ata_smart_refresh_data ()</title>
+<indexterm zone="gdu-device-drive-ata-smart-refresh-data"><primary sortas="gdu_device_drive_ata_smart_refresh_data">gdu_device_drive_ata_smart_refresh_data</primary></indexterm><programlisting><link linkend="void">void</link>                gdu_device_drive_ata_smart_refresh_data
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GduDeviceDriveAtaSmartRefreshDataCompletedFunc">GduDeviceDriveAtaSmartRefreshDataCompletedFunc</link> callback,
                                                          <link linkend="gpointer">gpointer</link> user_data);</programlisting>
 <para>
 </para><variablelist role="params">
@@ -1567,7 +1891,6 @@ complex.</para>
 <indexterm zone="gdu-device-op-linux-md-remove-component"><primary sortas="gdu_device_op_linux_md_remove_component">gdu_device_op_linux_md_remove_component</primary></indexterm><programlisting><link linkend="void">void</link>                gdu_device_op_linux_md_remove_component
                                                         (<link linkend="GduDevice">GduDevice</link> *device,
                                                          const <link linkend="char">char</link> *component_objpath,
-                                                         const <link linkend="char">char</link> *secure_erase,
                                                          <link linkend="GduDeviceLinuxMdRemoveComponentCompletedFunc">GduDeviceLinuxMdRemoveComponentCompletedFunc</link> callback,
                                                          <link linkend="gpointer">gpointer</link> user_data);</programlisting>
 <para>
@@ -1576,9 +1899,6 @@ complex.</para>
 <listitem><simpara>
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>component_objpath</parameter>&#160;:</term>
-<listitem><simpara>
-</simpara></listitem></varlistentry>
-<varlistentry><term><parameter>secure_erase</parameter>&#160;:</term>
 <listitem><simpara>
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>callback</parameter>&#160;:</term>
@@ -1593,7 +1913,6 @@ complex.</para>
 <indexterm zone="gdu-device-op-filesystem-create"><primary sortas="gdu_device_op_filesystem_create">gdu_device_op_filesystem_create</primary></indexterm><programlisting><link linkend="void">void</link>                gdu_device_op_filesystem_create     (<link linkend="GduDevice">GduDevice</link> *device,
                                                          const <link linkend="char">char</link> *fstype,
                                                          const <link linkend="char">char</link> *fslabel,
-                                                         const <link linkend="char">char</link> *fserase,
                                                          const <link linkend="char">char</link> *encrypt_passphrase,
                                                          <link linkend="gboolean">gboolean</link> fs_take_ownership,
                                                          <link linkend="GduDeviceFilesystemCreateCompletedFunc">GduDeviceFilesystemCreateCompletedFunc</link> callback,
@@ -1607,9 +1926,6 @@ complex.</para>
 <listitem><simpara>
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>fslabel</parameter>&#160;:</term>
-<listitem><simpara>
-</simpara></listitem></varlistentry>
-<varlistentry><term><parameter>fserase</parameter>&#160;:</term>
 <listitem><simpara>
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>encrypt_passphrase</parameter>&#160;:</term>
@@ -1635,7 +1951,6 @@ complex.</para>
                                                          <link linkend="char">char</link> **flags,
                                                          const <link linkend="char">char</link> *fstype,
                                                          const <link linkend="char">char</link> *fslabel,
-                                                         const <link linkend="char">char</link> *fserase,
                                                          const <link linkend="char">char</link> *encrypt_passphrase,
                                                          <link linkend="gboolean">gboolean</link> fs_take_ownership,
                                                          <link linkend="GduDevicePartitionCreateCompletedFunc">GduDevicePartitionCreateCompletedFunc</link> callback,
@@ -1664,9 +1979,6 @@ complex.</para>
 <listitem><simpara>
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>fslabel</parameter>&#160;:</term>
-<listitem><simpara>
-</simpara></listitem></varlistentry>
-<varlistentry><term><parameter>fserase</parameter>&#160;:</term>
 <listitem><simpara>
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>encrypt_passphrase</parameter>&#160;:</term>
@@ -1699,14 +2011,56 @@ complex.</para>
 <listitem><simpara>
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="gdu-device-drive-smart-get-historical-data-sync" role="function">
-<title>gdu_device_drive_smart_get_historical_data_sync ()</title>
-<indexterm zone="gdu-device-drive-smart-get-historical-data-sync"><primary sortas="gdu_device_drive_smart_get_historical_data_sync">gdu_device_drive_smart_get_historical_data_sync</primary></indexterm><programlisting><link linkend="GList">GList</link> *             gdu_device_drive_smart_get_historical_data_sync
+<refsect2 id="gdu-device-drive-ata-smart-get-historical-data" role="function">
+<title>gdu_device_drive_ata_smart_get_historical_data ()</title>
+<indexterm zone="gdu-device-drive-ata-smart-get-historical-data"><primary sortas="gdu_device_drive_ata_smart_get_historical_data">gdu_device_drive_ata_smart_get_historical_data</primary></indexterm><programlisting><link linkend="void">void</link>                gdu_device_drive_ata_smart_get_historical_data
                                                         (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="guint64">guint64</link> since,
+                                                         <link linkend="guint64">guint64</link> until,
+                                                         <link linkend="guint64">guint64</link> spacing,
+                                                         <link linkend="GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc">GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>since</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>until</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>spacing</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-device-drive-ata-smart-get-historical-data-sync" role="function">
+<title>gdu_device_drive_ata_smart_get_historical_data_sync ()</title>
+<indexterm zone="gdu-device-drive-ata-smart-get-historical-data-sync"><primary sortas="gdu_device_drive_ata_smart_get_historical_data_sync">gdu_device_drive_ata_smart_get_historical_data_sync</primary></indexterm><programlisting><link linkend="GList">GList</link> *             gdu_device_drive_ata_smart_get_historical_data_sync
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="guint64">guint64</link> since,
+                                                         <link linkend="guint64">guint64</link> until,
+                                                         <link linkend="guint64">guint64</link> spacing,
                                                          <link linkend="GError">GError</link> **error);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>since</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>until</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>spacing</parameter>&#160;:</term>
 <listitem><simpara>
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>error</parameter>&#160;:</term>
@@ -1753,6 +2107,23 @@ complex.</para>
 <title>gdu_device_op_drive_eject ()</title>
 <indexterm zone="gdu-device-op-drive-eject"><primary sortas="gdu_device_op_drive_eject">gdu_device_op_drive_eject</primary></indexterm><programlisting><link linkend="void">void</link>                gdu_device_op_drive_eject           (<link linkend="GduDevice">GduDevice</link> *device,
                                                          <link linkend="GduDeviceDriveEjectCompletedFunc">GduDeviceDriveEjectCompletedFunc</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-device-op-drive-poll-media" role="function">
+<title>gdu_device_op_drive_poll_media ()</title>
+<indexterm zone="gdu-device-op-drive-poll-media"><primary sortas="gdu_device_op_drive_poll_media">gdu_device_op_drive_poll_media</primary></indexterm><programlisting><link linkend="void">void</link>                gdu_device_op_drive_poll_media      (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GduDeviceDrivePollMediaCompletedFunc">GduDeviceDrivePollMediaCompletedFunc</link> callback,
                                                          <link linkend="gpointer">gpointer</link> user_data);</programlisting>
 <para>
 </para><variablelist role="params">

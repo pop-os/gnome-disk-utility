@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GduDrive</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.74.2">
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
 <link rel="home" href="index.html" title="Disk Utility Library Reference Manual">
 <link rel="up" href="ref-core.html" title="API Reference">
 <link rel="prev" href="gnome-disk-utility-gdu-presentable.html" title="GduPresentable">
@@ -53,13 +53,23 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolea
 >gboolean</a>            <a class="link" href="GduDrive.html#gdu-drive-is-activatable" title="gdu_drive_is_activatable ()">gdu_drive_is_activatable</a>            (<a class="link" href="GduDrive.html" title="GduDrive">GduDrive</a> *drive);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduDrive.html#gdu-drive-can-deactivate" title="gdu_drive_can_deactivate ()">gdu_drive_can_deactivate</a>            (<a class="link" href="GduDrive.html" title="GduDrive">GduDrive</a> *drive);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a>            <a class="link" href="GduDrive.html#gdu-drive-can-activate" title="gdu_drive_can_activate ()">gdu_drive_can_activate</a>              (<a class="link" href="GduDrive.html" title="GduDrive">GduDrive</a> *drive,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a> *out_degraded);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GduDrive.html#gdu-drive-can-deactivate" title="gdu_drive_can_deactivate ()">gdu_drive_can_deactivate</a>            (<a class="link" href="GduDrive.html" title="GduDrive">GduDrive</a> *drive);
+void                <a class="link" href="GduDrive.html#gdu-drive-activate" title="gdu_drive_activate ()">gdu_drive_activate</a>                  (<a class="link" href="GduDrive.html" title="GduDrive">GduDrive</a> *drive,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDriveActivateFunc" title="GduDriveActivateFunc ()">GduDriveActivateFunc</a> callback,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
+void                <a class="link" href="GduDrive.html#gdu-drive-deactivate" title="gdu_drive_deactivate ()">gdu_drive_deactivate</a>                (<a class="link" href="GduDrive.html" title="GduDrive">GduDrive</a> *drive,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDriveDeactivateFunc" title="GduDriveDeactivateFunc ()">GduDriveDeactivateFunc</a> callback,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
 </pre>
 </div>
 <div class="refsect1" lang="en">
@@ -157,6 +167,30 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolea
 </div>
 <hr>
 <div class="refsect2" lang="en">
+<a name="gdu-drive-can-deactivate"></a><h3>gdu_drive_can_deactivate ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_drive_can_deactivate            (<a class="link" href="GduDrive.html" title="GduDrive">GduDrive</a> *drive);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>drive</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
 <a name="gdu-drive-can-activate"></a><h3>gdu_drive_can_activate ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
@@ -202,10 +236,12 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FAL
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="gdu-drive-can-deactivate"></a><h3>gdu_drive_can_deactivate ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            gdu_drive_can_deactivate            (<a class="link" href="GduDrive.html" title="GduDrive">GduDrive</a> *drive);</pre>
+<a name="gdu-drive-activate"></a><h3>gdu_drive_activate ()</h3>
+<pre class="programlisting">void                gdu_drive_activate                  (<a class="link" href="GduDrive.html" title="GduDrive">GduDrive</a> *drive,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDriveActivateFunc" title="GduDriveActivateFunc ()">GduDriveActivateFunc</a> callback,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -217,7 +253,43 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolea
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-drive-deactivate"></a><h3>gdu_drive_deactivate ()</h3>
+<pre class="programlisting">void                gdu_drive_deactivate                (<a class="link" href="GduDrive.html" title="GduDrive">GduDrive</a> *drive,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDriveDeactivateFunc" title="GduDriveDeactivateFunc ()">GduDriveDeactivateFunc</a> callback,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>drive</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
 <td>
 </td>
 </tr>

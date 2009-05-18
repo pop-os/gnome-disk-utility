@@ -249,8 +249,40 @@ gdu_pool_class_init (GduPoolClass *klass)
 }
 
 static void
+gdu_log_func (const gchar   *log_domain,
+              GLogLevelFlags log_level,
+              const gchar   *message,
+              gpointer       user_data)
+{
+        gboolean show_debug;
+        const gchar *gdu_debug_var;
+
+        gdu_debug_var = g_getenv ("GDU_DEBUG");
+        show_debug = (g_strcmp0 (gdu_debug_var, "1") == 0);
+
+        if (G_LIKELY (!show_debug))
+                goto out;
+
+        g_print ("%s: %s\n",
+                 G_LOG_DOMAIN,
+                 message);
+ out:
+        ;
+}
+
+static void
 gdu_pool_init (GduPool *pool)
 {
+        static gboolean log_handler_initialized = FALSE;
+
+        if (!log_handler_initialized) {
+                g_log_set_handler (G_LOG_DOMAIN,
+                                   G_LOG_LEVEL_MESSAGE | G_LOG_LEVEL_INFO | G_LOG_LEVEL_DEBUG,
+                                   gdu_log_func,
+                                   NULL);
+                log_handler_initialized = TRUE;
+        }
+
         pool->priv = G_TYPE_INSTANCE_GET_PRIVATE (pool, GDU_TYPE_POOL, GduPoolPrivate);
 
         pool->priv->object_path_to_device = g_hash_table_new_full (g_str_hash,
@@ -378,6 +410,7 @@ part_entry_compare (PartEntry *pa, PartEntry *pb, gpointer user_data)
 
 static GList *
 get_holes (GduPool        *pool,
+           GList          *devices,
            GduDrive       *drive,
            GduDevice      *drive_device,
            GduPresentable *enclosed_in,
@@ -388,16 +421,15 @@ get_holes (GduPool        *pool,
         GList *ret;
         gint n;
         gint num_entries;
-        gint max_number;
-        guint64 *offsets;
-        guint64 *sizes;
         PartEntry *entries;
         guint64 cursor;
         guint64 gap_size;
         guint64 gap_position;
         const char *scheme;
+        GList *l;
 
         ret = NULL;
+        entries = NULL;
 
         /* no point if adding holes if there's no media */
         if (!gdu_device_is_media_available (drive_device))
@@ -414,51 +446,77 @@ get_holes (GduPool        *pool,
                  start + size,
                  ignore_logical);*/
 
-        offsets = (guint64*) ((gdu_device_partition_table_get_offsets (drive_device))->data);
-        sizes = (guint64*) ((gdu_device_partition_table_get_sizes (drive_device))->data);
-        max_number = gdu_device_partition_table_get_max_number (drive_device);
         scheme = gdu_device_partition_table_get_scheme (drive_device);
 
-        entries = g_new0 (PartEntry, max_number);
-        for (n = 0, num_entries = 0; n < max_number; n++) {
-                /* ignore unused partition table entries */
-                if (offsets[n] == 0)
+        /* find the offsets and sizes of existing partitions of the partition table */
+        GArray *entries_array;
+        entries_array = g_array_new (FALSE, FALSE, sizeof (PartEntry));
+        num_entries = 0;
+        for (l = devices; l != NULL; l = l->next) {
+                GduDevice *partition_device = GDU_DEVICE (l->data);
+                guint64 partition_offset;
+                guint64 partition_size;
+                guint partition_number;
+
+                if (!gdu_device_is_partition (partition_device))
+                        continue;
+                if (g_strcmp0 (gdu_device_get_object_path (drive_device),
+                               gdu_device_partition_get_slave (partition_device)) != 0)
                         continue;
 
+                partition_offset = gdu_device_partition_get_offset (partition_device);
+                partition_size = gdu_device_partition_get_size (partition_device);
+                partition_number = gdu_device_partition_get_number (partition_device);
+
+                //g_print ("  considering partition number %d at offset=%lldMB size=%lldMB\n",
+                //         partition_number,
+                //         partition_offset / (1000 * 1000),
+                //         partition_size / (1000 * 1000));
+
                 /* only consider partitions in the given space */
-                if (offsets[n] <= start)
+                if (partition_offset <= start)
                         continue;
-                if (offsets[n] >= start + size)
+                if (partition_offset >= start + size)
                         continue;
 
                 /* ignore logical partitions if requested */
                 if (ignore_logical) {
-                        if (strcmp (scheme, "mbr") == 0 && n >= 4)
+                        if (strcmp (scheme, "mbr") == 0 && partition_number > 4)
                                 continue;
                 }
 
-                entries[num_entries].number = n + 1;
-                entries[num_entries].offset = offsets[n];
-                entries[num_entries].size = sizes[n];
+                g_array_set_size (entries_array, num_entries + 1);
+
+                g_array_index (entries_array, PartEntry, num_entries).number = partition_number;
+                g_array_index (entries_array, PartEntry, num_entries).offset = partition_offset;
+                g_array_index (entries_array, PartEntry, num_entries).size = partition_size;
+
                 num_entries++;
-                //g_print ("%d: offset=%lld size=%lld\n", entries[n].number, entries[n].offset, entries[n].size);
         }
-        entries = g_realloc (entries, num_entries * sizeof (PartEntry));
+        entries = (PartEntry *) g_array_free (entries_array, FALSE);
 
         g_qsort_with_data (entries, num_entries, sizeof (PartEntry), (GCompareDataFunc) part_entry_compare, NULL);
 
+        //g_print (" %s: start=%lldMB size=%lldMB num_entries=%d\n",
+        //         gdu_device_get_device_file (drive_device),
+        //         start / (1000 * 1000),
+        //         size / (1000 * 1000),
+        //         num_entries);
         for (n = 0, cursor = start; n <= num_entries; n++) {
                 if (n < num_entries) {
-
-                        /*g_print (" %d: offset=%lldMB size=%lldMB\n",
-                                 entries[n].number,
-                                 entries[n].offset / (1000 * 1000),
-                                 entries[n].size / (1000 * 1000));*/
+                        //g_print ("  %d: %d: offset=%lldMB size=%lldMB\n",
+                        //         n,
+                        //         entries[n].number,
+                        //         entries[n].offset / (1000 * 1000),
+                        //         entries[n].size / (1000 * 1000));
 
                         gap_size = entries[n].offset - cursor;
                         gap_position = entries[n].offset - gap_size;
                         cursor = entries[n].offset + entries[n].size;
                 } else {
+                        //g_print ("  trailing: cursor=%lldMB\n",
+                        //         cursor / (1000 * 1000));
+
                         /* trailing free space */
                         gap_size = start + size - cursor;
                         gap_position = start + size - gap_size;
@@ -467,6 +525,9 @@ get_holes (GduPool        *pool,
                 /* ignore unallocated space that is less than 1% of the drive */
                 if (gap_size >= gdu_device_get_size (drive_device) / 100) {
                         GduVolumeHole *hole;
+                        //g_print ("  adding %lldMB gap at %lldMB\n",
+                        //         gap_size / (1000 * 1000),
+                        //         gap_position / (1000 * 1000));
 
                         hole = _gdu_volume_hole_new (pool, gap_position, gap_size, enclosed_in);
                         ret = g_list_prepend (ret, hole);
@@ -474,13 +535,14 @@ get_holes (GduPool        *pool,
 
         }
 
-        g_free (entries);
 out:
+        g_free (entries);
         return ret;
 }
 
 static GList *
 get_holes_for_drive (GduPool   *pool,
+                     GList     *devices,
                      GduDrive  *drive,
                      GduVolume *extended_partition)
 {
@@ -497,6 +559,7 @@ get_holes_for_drive (GduPool   *pool,
 
         /* first add holes between primary partitions */
         ret = get_holes (pool,
+                         devices,
                          drive,
                          drive_device,
                          GDU_PRESENTABLE (drive),
@@ -517,6 +580,7 @@ get_holes_for_drive (GduPool   *pool,
                 }
 
                 holes_in_extended_partition = get_holes (pool,
+                                                         devices,
                                                          drive,
                                                          drive_device,
                                                          GDU_PRESENTABLE (extended_partition),
@@ -554,7 +618,7 @@ recompute_presentables (GduPool *pool)
          *
          * The reason for this brute-force approach is that the GduPresentable entities are
          * somewhat complicated since the whole process involves synthesizing GduVolumeHole and
-         * GduActivatableDrive objects.
+         * GduLinuxMdDrive objects.
          */
 
         new_presentables = NULL;
@@ -595,16 +659,29 @@ recompute_presentables (GduPool *pool)
                                 const gchar *uuid;
 
                                 uuid = gdu_device_linux_md_get_uuid (device);
-                                drive = GDU_DRIVE (_gdu_linux_md_drive_new (pool, uuid));
 
-                                /* Due to the topological sorting of devices, we are guaranteed that
-                                 * that running Linux MD arrays come before the slaves.
-                                 */
-                                g_warn_if_fail (g_hash_table_lookup (hash_map_from_linux_md_uuid_to_drive, uuid) == NULL);
+                                /* 'clear' and 'inactive' devices may not have an uuid */
+                                if (uuid != NULL && strlen (uuid) == 0)
+                                        uuid = NULL;
 
-                                g_hash_table_insert (hash_map_from_linux_md_uuid_to_drive,
-                                                     (gpointer) uuid,
-                                                     drive);
+                                if (uuid != NULL) {
+                                        drive = GDU_DRIVE (_gdu_linux_md_drive_new (pool, uuid, NULL));
+
+                                        /* Due to the topological sorting of devices, we are guaranteed that
+                                         * that running Linux MD arrays come before the slaves.
+                                         */
+                                        g_warn_if_fail (g_hash_table_lookup (hash_map_from_linux_md_uuid_to_drive, uuid) == NULL);
+
+                                        g_hash_table_insert (hash_map_from_linux_md_uuid_to_drive,
+                                                             (gpointer) uuid,
+                                                             drive);
+                                } else {
+                                        drive = GDU_DRIVE (_gdu_linux_md_drive_new (pool,
+                                                                                    NULL,
+                                                                                    gdu_device_get_device_file (device)));
+                                }
+
+
                         } else {
                                 drive = _gdu_drive_new_from_device (pool, device);
                         }
@@ -709,7 +786,7 @@ recompute_presentables (GduPool *pool)
                         if (g_hash_table_lookup (hash_map_from_linux_md_uuid_to_drive, uuid) == NULL) {
                                 GduDrive *drive;
 
-                                drive = GDU_DRIVE (_gdu_linux_md_drive_new (pool, uuid));
+                                drive = GDU_DRIVE (_gdu_linux_md_drive_new (pool, uuid, NULL));
                                 new_presentables = g_list_prepend (new_presentables, drive);
 
                                 g_hash_table_insert (hash_map_from_linux_md_uuid_to_drive,
@@ -729,7 +806,7 @@ recompute_presentables (GduPool *pool)
                 drive = GDU_DRIVE (l->data);
                 extended_partition = g_hash_table_lookup (hash_map_from_drive_to_extended_partition, drive);
 
-                holes = get_holes_for_drive (pool, drive, extended_partition);
+                holes = get_holes_for_drive (pool, devices, drive, extended_partition);
 
                 new_presentables = g_list_concat (new_presentables, holes);
         }
@@ -890,10 +967,7 @@ device_job_changed_signal_handler (DBusGProxy *proxy,
                                    const char *job_id,
                                    guint32     job_initiated_by_uid,
                                    gboolean    job_is_cancellable,
-                                   int         job_num_tasks,
-                                   int         job_cur_task,
-                                   const char *job_cur_task_id,
-                                   double      job_cur_task_percentage,
+                                   double      job_percentage,
                                    gpointer user_data)
 {
         GduPool *pool = GDU_POOL (user_data);
@@ -905,10 +979,7 @@ device_job_changed_signal_handler (DBusGProxy *proxy,
                                          job_id,
                                          job_initiated_by_uid,
                                          job_is_cancellable,
-                                         job_num_tasks,
-                                         job_cur_task,
-                                         job_cur_task_id,
-                                         job_cur_task_percentage);
+                                         job_percentage);
                 g_signal_emit_by_name (pool, "device-job-changed", device);
                 g_object_unref (device);
         } else {
@@ -931,7 +1002,7 @@ get_properties (GduPool *pool)
 
 	prop_proxy = dbus_g_proxy_new_for_name (pool->priv->bus,
                                                 "org.freedesktop.DeviceKit.Disks",
-                                                "/",
+                                                "/org/freedesktop/DeviceKit/Disks",
                                                 "org.freedesktop.DBus.Properties");
         error = NULL;
         if (!dbus_g_proxy_call (prop_proxy,
@@ -1010,22 +1081,19 @@ gdu_pool_new (void)
         }
 
         dbus_g_object_register_marshaller (
-                gdu_marshal_VOID__STRING_BOOLEAN_STRING_UINT_BOOLEAN_INT_INT_STRING_DOUBLE,
+                gdu_marshal_VOID__STRING_BOOLEAN_STRING_UINT_BOOLEAN_DOUBLE,
                 G_TYPE_NONE,
                 DBUS_TYPE_G_OBJECT_PATH,
                 G_TYPE_BOOLEAN,
                 G_TYPE_STRING,
                 G_TYPE_UINT,
                 G_TYPE_BOOLEAN,
-                G_TYPE_INT,
-                G_TYPE_INT,
-                G_TYPE_STRING,
                 G_TYPE_DOUBLE,
                 G_TYPE_INVALID);
 
 	pool->priv->proxy = dbus_g_proxy_new_for_name (pool->priv->bus,
                                                        "org.freedesktop.DeviceKit.Disks",
-                                                       "/",
+                                                       "/org/freedesktop/DeviceKit/Disks",
                                                        "org.freedesktop.DeviceKit.Disks");
         dbus_g_proxy_add_signal (pool->priv->proxy, "DeviceAdded", DBUS_TYPE_G_OBJECT_PATH, G_TYPE_INVALID);
         dbus_g_proxy_add_signal (pool->priv->proxy, "DeviceRemoved", DBUS_TYPE_G_OBJECT_PATH, G_TYPE_INVALID);
@@ -1037,9 +1105,6 @@ gdu_pool_new (void)
                                  G_TYPE_STRING,
                                  G_TYPE_UINT,
                                  G_TYPE_BOOLEAN,
-                                 G_TYPE_INT,
-                                 G_TYPE_INT,
-                                 G_TYPE_STRING,
                                  G_TYPE_DOUBLE,
                                  G_TYPE_INVALID);
 
@@ -1540,7 +1605,7 @@ gdu_pool_is_daemon_inhibited (GduPool *pool)
 
 	prop_proxy = dbus_g_proxy_new_for_name (pool->priv->bus,
                                                 "org.freedesktop.DeviceKit.Disks",
-                                                "/",
+                                                "/org/freedesktop/DeviceKit/Disks",
                                                 "org.freedesktop.DBus.Properties");
         error = NULL;
         if (!dbus_g_proxy_call (prop_proxy,

@@ -116,6 +116,7 @@ show_busy_get_list_store (ShowBusyData *data, int *num_rows)
         GList *processes;
         GError *error;
         GList *l;
+        gchar *s;
 
         if (num_rows != NULL)
                 *num_rows = 0;
@@ -224,19 +225,20 @@ show_busy_get_list_store (ShowBusyData *data, int *num_rows)
                 }
 
                 if (gdu_process_get_owner (process) != getuid ()) {
-                        markup = g_strdup_printf (_("<b>%s</b>\n"
-                                                    "<small>uid %d, pid %d: %s</small>"),
-                                                  name,
-                                                  gdu_process_get_owner (process),
-                                                  gdu_process_get_id (process),
-                                                  gdu_process_get_command_line (process));
+                        s = g_strdup_printf (_("uid: %d  pid: %d  program: %s"),
+                                             gdu_process_get_owner (process),
+                                             gdu_process_get_id (process),
+                                             gdu_process_get_command_line (process));
                 } else {
-                        markup = g_strdup_printf (_("<b>%s</b>\n"
-                                                    "<small>pid %d: %s</small>"),
-                                                  name,
-                                                  gdu_process_get_id (process),
-                                                  gdu_process_get_command_line (process));
+                        s = g_strdup_printf (_("pid: %d  program: %s"),
+                                             gdu_process_get_id (process),
+                                             gdu_process_get_command_line (process));
                 }
+                markup = g_strdup_printf ("<b>%s</b>\n"
+                                          "<small>%s</small>",
+                                          name,
+                                          s);
+                g_free (s);
 
                 gtk_list_store_append (store, &iter);
                 gtk_list_store_set (store, &iter,
@@ -300,6 +302,7 @@ gdu_util_dialog_show_filesystem_busy (GtkWidget *parent_window,
         GdkPixbuf *pixbuf;
         ShowBusyData *data;
         guint refresh_timer_id;
+        char *text;
 
         ret = FALSE;
         window_title = NULL;
@@ -360,8 +363,11 @@ gdu_util_dialog_show_filesystem_busy (GtkWidget *parent_window,
 
         /* main message */
 	label = gtk_label_new (NULL);
-        gtk_label_set_markup (GTK_LABEL (label),
-                              _("<b><big>Cannot unmount volume</big></b>"));
+
+        text = g_strconcat ("<b><big>", _("Cannot unmount volume"), "</big></b>", NULL);
+        gtk_label_set_markup (GTK_LABEL (label), text);
+        g_free (text);
+
 	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
 	gtk_label_set_line_wrap (GTK_LABEL (label), TRUE);
 	gtk_box_pack_start (GTK_BOX (main_vbox), GTK_WIDGET (label), FALSE, FALSE, 0);
@@ -466,22 +472,47 @@ typedef struct
 static void
 gdu_util_dialog_secret_update (DialogSecretData *data)
 {
-        if (strcmp (gtk_entry_get_text (GTK_ENTRY (data->password_entry_new)),
-                    gtk_entry_get_text (GTK_ENTRY (data->password_entry_verify))) != 0) {
+        const gchar *current, *new, *verify;
+        gchar *s;
+
+        if (data->password_entry != NULL)
+                current = gtk_entry_get_text (GTK_ENTRY (data->password_entry));
+        else
+                current = NULL;
+
+        if (data->password_entry_new != NULL)
+                new = gtk_entry_get_text (GTK_ENTRY (data->password_entry_new));
+        else
+                new = NULL;
+
+        if (data->password_entry_verify != NULL)
+                verify = gtk_entry_get_text (GTK_ENTRY (data->password_entry_verify));
+        else
+                verify = NULL;
+
+        if (g_strcmp0 (new, verify) != 0) {
                 gtk_widget_show (data->warning_hbox);
-                gtk_label_set_markup (GTK_LABEL (data->warning_label), "<i>Passphrases do not match</i>");
+                s = g_strconcat ("<i>", _("Passphrases do not match"), "</i>", NULL);
+                gtk_label_set_markup (GTK_LABEL (data->warning_label), s);
+                g_free (s);
                 gtk_widget_set_sensitive (data->button, FALSE);
         } else if (!data->is_new_password &&
-                   (strlen (gtk_entry_get_text (GTK_ENTRY (data->password_entry))) > 0 ||
-                    strlen (gtk_entry_get_text (GTK_ENTRY (data->password_entry_new))) > 0) &&
-                   strcmp (gtk_entry_get_text (GTK_ENTRY (data->password_entry)),
-                           gtk_entry_get_text (GTK_ENTRY (data->password_entry_new))) == 0) {
+                   (g_strcmp0 (current, "") != 0 || g_strcmp0 (new, "") != 0) && g_strcmp0 (current, new) == 0) {
                 gtk_widget_show (data->warning_hbox);
-                gtk_label_set_markup (GTK_LABEL (data->warning_label), "<i>Passphrases do not differ</i>");
+                s = g_strconcat ("<i>", _("Passphrases do not differ"), "</i>", NULL);
+                gtk_label_set_markup (GTK_LABEL (data->warning_label), s);
+                g_free (s);
+                gtk_widget_set_sensitive (data->button, FALSE);
+        } else if (g_strcmp0 (new, "") == 0) {
+                gtk_widget_show (data->warning_hbox);
+                s = g_strconcat ("<i>", _("Passphrase can't be empty"), "</i>", NULL);
+                gtk_label_set_markup (GTK_LABEL (data->warning_label), s);
+                g_free (s);
                 gtk_widget_set_sensitive (data->button, FALSE);
         } else {
-                gtk_widget_hide (data->warning_hbox);
-                gtk_widget_set_sensitive (data->button, TRUE);
+                if (data->warning_hbox != NULL)
+                        gtk_widget_hide (data->warning_hbox);
+                gtk_widget_set_sensitive (data->button, g_strcmp0 (new, "") != 0);
         }
 }
 
@@ -527,6 +558,7 @@ gdu_util_dialog_secret_internal (GtkWidget   *parent_window,
         GtkWidget *session_radio_button;
         GtkWidget *always_radio_button;
         DialogSecretData *data;
+        char *text;
 
         g_return_val_if_fail (parent_window == NULL || GTK_IS_WINDOW (parent_window), NULL);
 
@@ -578,18 +610,18 @@ gdu_util_dialog_secret_internal (GtkWidget   *parent_window,
 	/* main message */
 	label = gtk_label_new (NULL);
         if (is_new_password) {
-                gtk_label_set_markup (GTK_LABEL (label),
-                                      _("<b><big>To create an encrypted device, choose a passphrase "
-                                        "to protect it</big></b>"));
+                text = _("To create an encrypted device, choose a passphrase "
+                         "to protect it");
         } else if (is_change_password) {
-                gtk_label_set_markup (GTK_LABEL (label),
-                                      _("<b><big>To change the passphrase, enter both the current and "
-                                        "new passphrase</big></b>"));
+                text = _("To change the passphrase, enter both the current and "
+                         "new passphrase");
         } else {
-                gtk_label_set_markup (GTK_LABEL (label),
-                                      _("<b><big>Data on this device is stored in an encrypted form "
-                                        "protected by a passphrase</big></b>"));
+                text = _("Data on this device is stored in an encrypted form "
+                         "protected by a passphrase");
         }
+        text = g_strconcat ("<b><big>", text, "</big></b>", NULL);
+        gtk_label_set_markup (GTK_LABEL (label), text);
+        g_free (text);
 	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
 	gtk_label_set_line_wrap (GTK_LABEL (label), TRUE);
 	gtk_box_pack_start (GTK_BOX (main_vbox), GTK_WIDGET (label), FALSE, FALSE, 0);
@@ -612,7 +644,9 @@ gdu_util_dialog_secret_internal (GtkWidget   *parent_window,
 
         if (indicate_wrong_passphrase) {
                 label = gtk_label_new (NULL);
-                gtk_label_set_markup (GTK_LABEL (label), _("<b>Incorrect Passphrase. Try again.</b>"));
+                text = g_strconcat ("<b>", _("Incorrect Passphrase. Try again."), "</b>", NULL);
+                gtk_label_set_markup (GTK_LABEL (label), text);
+                g_free (text);
                 gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
                 gtk_label_set_line_wrap (GTK_LABEL (label), TRUE);
                 gtk_box_pack_start (GTK_BOX (main_vbox), GTK_WIDGET (label), FALSE, FALSE, 0);
@@ -636,7 +670,7 @@ gdu_util_dialog_secret_internal (GtkWidget   *parent_window,
                 if (is_change_password) {
                         label = gtk_label_new_with_mnemonic (_("C_urrent Passphrase:"));
                         gtk_label_set_use_markup (GTK_LABEL (label), TRUE);
-                        gtk_misc_set_alignment (GTK_MISC (label), 1.0, 0.5);
+                        gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
                         gtk_table_attach (GTK_TABLE (table), label,
                                           0, 1, row, row + 1,
                                           GTK_FILL, GTK_EXPAND | GTK_FILL, 0, 0);
@@ -650,7 +684,7 @@ gdu_util_dialog_secret_internal (GtkWidget   *parent_window,
 
                 label = gtk_label_new_with_mnemonic (_("_New Passphrase:"));
                 gtk_label_set_use_markup (GTK_LABEL (label), TRUE);
-                gtk_misc_set_alignment (GTK_MISC (label), 1.0, 0.5);
+                gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
                 gtk_table_attach (GTK_TABLE (table), label,
                                   0, 1, row, row + 1,
                                   GTK_FILL, GTK_EXPAND | GTK_FILL, 0, 0);
@@ -663,7 +697,7 @@ gdu_util_dialog_secret_internal (GtkWidget   *parent_window,
 
                 label = gtk_label_new_with_mnemonic (_("_Verify Passphrase:"));
                 gtk_label_set_use_markup (GTK_LABEL (label), TRUE);
-                gtk_misc_set_alignment (GTK_MISC (label), 1.0, 0.5);
+                gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
                 gtk_table_attach (GTK_TABLE (table), label,
                                   0, 1, row, row + 1,
                                   GTK_FILL, GTK_EXPAND | GTK_FILL, 0, 0);
@@ -675,10 +709,17 @@ gdu_util_dialog_secret_internal (GtkWidget   *parent_window,
                 data->warning_hbox = gtk_hbox_new (FALSE, 12);
                 image = gtk_image_new_from_stock (GTK_STOCK_DIALOG_INFO, GTK_ICON_SIZE_MENU);
                 data->warning_label = gtk_label_new (NULL);
+
                 gtk_box_pack_start (GTK_BOX (data->warning_hbox), image, FALSE, FALSE, 0);
                 gtk_box_pack_start (GTK_BOX (data->warning_hbox), data->warning_label, FALSE, FALSE, 0);
-                gtk_box_pack_start (GTK_BOX (vbox), data->warning_hbox, FALSE, FALSE, 0);
+                hbox = gtk_hbox_new (FALSE, 0);
+                gtk_box_pack_start (GTK_BOX (hbox), data->warning_hbox, FALSE, FALSE, 0);
+                gtk_box_pack_start (GTK_BOX (hbox), gtk_label_new (" "), FALSE, FALSE, 0);
+                gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
 
+                if (data->password_entry != NULL)
+                        g_signal_connect (data->password_entry, "changed",
+                                          (GCallback) gdu_util_dialog_secret_entry_changed, data);
                 g_signal_connect (data->password_entry_new, "changed",
                                   (GCallback) gdu_util_dialog_secret_entry_changed, data);
                 g_signal_connect (data->password_entry_verify, "changed",
@@ -729,8 +770,7 @@ gdu_util_dialog_secret_internal (GtkWidget   *parent_window,
         gtk_box_pack_start (GTK_BOX (vbox), always_radio_button, FALSE, FALSE, 0);
 
         gtk_widget_show_all (dialog);
-        if (is_change_password || is_new_password)
-                gdu_util_dialog_secret_update (data);
+        gdu_util_dialog_secret_update (data);
 
         if (device != NULL)
                 g_signal_connect (device, "removed", (GCallback) secret_dialog_device_removed, dialog);
@@ -1057,7 +1097,7 @@ out:
 
         g_free (window_title);
         if (window_icon != NULL)
-                g_free (window_icon);
+                g_object_unref (window_icon);
         if (device != NULL)
                 g_object_unref (device);
         return ret;
@@ -1069,38 +1109,30 @@ out:
  * gdu_util_delete_confirmation_dialog:
  * @parent_window: parent window for transient dialog
  * @title: the title of the dialog
- * @show_secure_erase_combo_box: %TRUE to include secure erase combo box
  * @primary_text: primary text
  * @secondary_text: secondary text
  * @affirmative_action_button_mnemonic: text to use on the affirmative action button
  *
- * Utility to show a confirmation dialog for deletion. If @show_secure_erase_combo_box is %TRUE
- * a combo box allowing the user to choose the secure erase option will be shown, otherwise
- * "none" will be returned (unless the user cancelled the dialog).
+ * Utility to show a confirmation dialog for deletion.
  *
- * Returns: %NULL if the user canceled, otherwise the secure erase
- * type. Must be freed by the caller.
+ * Returns: %FALSE if the user canceled, otherwise %TRUE.
  **/
-char *
+gboolean
 gdu_util_delete_confirmation_dialog (GtkWidget   *parent_window,
                                      const char  *title,
-                                     gboolean     show_secure_erase_combo_box,
                                      const char  *primary_text,
                                      const char  *secondary_text,
                                      const char  *affirmative_action_button_mnemonic)
 {
-        int response;
+        gboolean ret;
+        gint response;
         GtkWidget *dialog;
-        char *secure_erase;
         GtkWidget *hbox;
         GtkWidget *image;
         GtkWidget *main_vbox;
         GtkWidget *label;
-        int row;
-        GtkWidget *combo_box;
-        GtkWidget *table;
 
-        secure_erase = NULL;
+        ret = FALSE;
 
         dialog = gtk_dialog_new_with_buttons (title,
                                               GTK_WINDOW (parent_window),
@@ -1136,58 +1168,21 @@ gdu_util_delete_confirmation_dialog (GtkWidget   *parent_window,
 	gtk_label_set_line_wrap (GTK_LABEL (label), TRUE);
 	gtk_box_pack_start (GTK_BOX (main_vbox), GTK_WIDGET (label), FALSE, FALSE, 0);
 
-        if (show_secure_erase_combo_box) {
-                row = 0;
-
-                table = gtk_table_new (2, 2, FALSE);
-                gtk_box_pack_start (GTK_BOX (main_vbox), table, FALSE, FALSE, 0);
-
-                /* secure erase */
-                label = gtk_label_new (NULL);
-                gtk_misc_set_alignment (GTK_MISC (label), 1.0, 0.5);
-                gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), _("_Secure Erase:"));
-                gtk_table_attach (GTK_TABLE (table), label, 0, 1, row, row + 1,
-                                  GTK_FILL, GTK_EXPAND | GTK_FILL, 2, 2);
-                combo_box = gdu_util_secure_erase_combo_box_create ();
-                gtk_table_attach (GTK_TABLE (table), combo_box, 1, 2, row, row + 1,
-                                  GTK_FILL, GTK_EXPAND | GTK_FILL, 2, 2);
-                gtk_label_set_mnemonic_widget (GTK_LABEL (label), combo_box);
-
-                row++;
-
-                /* secure erase desc */
-                label = gtk_label_new (NULL);
-                gtk_label_set_line_wrap (GTK_LABEL (label), TRUE);
-                gtk_label_set_width_chars (GTK_LABEL (label), 40);
-                gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
-                gtk_table_attach (GTK_TABLE (table), label, 1, 2, row, row + 1,
-                                  GTK_FILL, GTK_EXPAND | GTK_FILL, 2, 2);
-                gdu_util_secure_erase_combo_box_set_desc_label (combo_box, label);
-
-                row++;
-        }
-
         gtk_widget_grab_focus (gtk_dialog_add_button (GTK_DIALOG (dialog), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL));
         gtk_dialog_add_button (GTK_DIALOG (dialog), affirmative_action_button_mnemonic, 0);
 
         gtk_widget_show_all (dialog);
         response = gtk_dialog_run (GTK_DIALOG (dialog));
 
-        if (show_secure_erase_combo_box) {
-                secure_erase = gdu_util_secure_erase_combo_box_get_selected (combo_box);
-        } else {
-                secure_erase = g_strdup ("none");
-        }
-
         gtk_widget_destroy (dialog);
         if (response != 0) {
-                g_free (secure_erase);
-                secure_erase = NULL;
                 goto out;
         }
 
+        ret = TRUE;
+
 out:
-        return secure_erase;
+        return ret;
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -1271,7 +1266,7 @@ gdu_util_fstype_combo_box_create_store (GduPool *pool, const char *include_exten
                 gtk_list_store_append (store, &iter);
                 gtk_list_store_set (store, &iter,
                                     0, "msdos_extended_partition",
-                                    1, "Extended Partition",
+                                    1, _("Extended Partition"),
                                     -1);
         }
 
@@ -1669,74 +1664,6 @@ gdu_util_part_table_type_combo_box_get_selected (GtkWidget *combo_box)
                 gtk_tree_model_get (model, &iter, 0, &part_table_type, -1);
 
         return part_table_type;
-}
-
-/* ---------------------------------------------------------------------------------------------------- */
-
-static void
-gdu_util_secure_erase_combo_box_update_desc_label (GtkWidget *combo_box)
-{
-        GtkWidget *desc_label;
-
-        desc_label = g_object_get_data (G_OBJECT (combo_box), "gdu-desc-label");
-        if (desc_label != NULL) {
-                char *s;
-                char *secure_erase;
-                char *secure_erase_desc;
-
-                secure_erase = gdu_util_secure_erase_combo_box_get_selected (combo_box);
-                secure_erase_desc = gdu_util_secure_erase_get_description (secure_erase);
-                s = g_strdup_printf ("<small><i>%s</i></small>", secure_erase_desc);
-                gtk_label_set_markup (GTK_LABEL (desc_label), s);
-                g_free (s);
-                g_free (secure_erase_desc);
-                g_free (secure_erase);
-        }
-}
-
-static void
-gdu_util_secure_erase_combo_box_changed (GtkWidget *combo_box, gpointer user_data)
-{
-        gdu_util_secure_erase_combo_box_update_desc_label (combo_box);
-}
-
-GtkWidget *
-gdu_util_secure_erase_combo_box_create (void)
-{
-        GtkWidget *combo_box;
-
-        combo_box = gtk_combo_box_new_text ();
-        gtk_combo_box_append_text (GTK_COMBO_BOX (combo_box), _("Don't overwrite data"));
-        gtk_combo_box_append_text (GTK_COMBO_BOX (combo_box), _("Overwrite data"));
-        gtk_combo_box_append_text (GTK_COMBO_BOX (combo_box), _("Overwrite data 3 times"));
-        gtk_combo_box_append_text (GTK_COMBO_BOX (combo_box), _("Overwrite data 7 times"));
-        gtk_combo_box_append_text (GTK_COMBO_BOX (combo_box), _("Overwrite data 35 times"));
-        gtk_combo_box_set_active (GTK_COMBO_BOX (combo_box), 0); /* read default from gconf; use lockdown too */
-
-        g_signal_connect (combo_box, "changed", (GCallback) gdu_util_secure_erase_combo_box_changed, NULL);
-        return combo_box;
-}
-
-char *
-gdu_util_secure_erase_combo_box_get_selected (GtkWidget *combo_box)
-{
-        const char *result[] = {"none", "full", "full3pass", "full7pass", "full35pass"};
-        int active;
-
-        active = gtk_combo_box_get_active (GTK_COMBO_BOX (combo_box));
-        g_assert (active >= 0 && active < (int) sizeof (result));
-        return g_strdup (result[active]);
-}
-
-void
-gdu_util_secure_erase_combo_box_set_desc_label (GtkWidget *combo_box, GtkWidget *desc_label)
-{
-        g_object_set_data_full (G_OBJECT (combo_box),
-                                "gdu-desc-label",
-                                g_object_ref (desc_label),
-                                g_object_unref);
-
-        gdu_util_secure_erase_combo_box_update_desc_label (combo_box);
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
