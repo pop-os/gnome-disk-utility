@@ -1,2 +1,6 @@
 debian/tmp/usr/bin/
 debian/tmp/usr/share/
+debian/tmp/etc/xdg/autostart/gdu-notification-daemon.desktop
+debian/tmp/usr/lib/gnome-disk-utility/gdu-notification-daemon
+debian/tmp/usr/lib/gnome-disk-utility/gdu-format-tool
+debian/tmp/usr/lib/nautilus/extensions-2.0/libnautilus-gdu.so
