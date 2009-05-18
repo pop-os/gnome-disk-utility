@@ -31,9 +31,9 @@ Description: manage and configure disk drives and media
  palimpsest (from the gnome-disk-utility project) is a tool to manage disk
  drives and media:
  .
-  o Format and partition drives.
-  o Mount and unmount partitions.
-  o Query S.M.A.R.T. attributes.
+  * Format and partition drives.
+  * Mount and unmount partitions.
+  * Query S.M.A.R.T. attributes.
  .
  It utilizes DeviceKit-disks.
 
