@@ -17,7 +17,7 @@
 
 <refsynopsisdiv id="gnome-disk-utility-gdu-types.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
-<anchor id="GduPool"/><anchor id="GduDevice"/><anchor id="GduPresentable"/><anchor id="GduDrive"/><anchor id="GduLinuxMdDrive"/><anchor id="GduVolume"/><anchor id="GduVolumeHole"/><anchor id="GduKnownFilesystem"/><anchor id="GduProcess"/><anchor id="GduSmartData"/><anchor id="GduSmartDataAttribute"/>
+<anchor id="GduPool"/><anchor id="GduDevice"/><anchor id="GduPresentable"/><anchor id="GduDrive"/><anchor id="GduLinuxMdDrive"/><anchor id="GduVolume"/><anchor id="GduVolumeHole"/><anchor id="GduKnownFilesystem"/><anchor id="GduProcess"/><anchor id="GduAtaSmartHistoricalData"/><anchor id="GduAtaSmartAttribute"/>
 <synopsis>
                     <link linkend="GduPool-struct">GduPool</link>;
                     <link linkend="GduDevice-struct">GduDevice</link>;
@@ -28,8 +28,8 @@
                     <link linkend="GduVolumeHole-struct">GduVolumeHole</link>;
                     <link linkend="GduKnownFilesystem-struct">GduKnownFilesystem</link>;
                     <link linkend="GduProcess-struct">GduProcess</link>;
-                    <link linkend="GduSmartData-struct">GduSmartData</link>;
-                    <link linkend="GduSmartDataAttribute-struct">GduSmartDataAttribute</link>;
+                    <link linkend="GduAtaSmartHistoricalData-struct">GduAtaSmartHistoricalData</link>;
+                    <link linkend="GduAtaSmartAttribute-struct">GduAtaSmartAttribute</link>;
 </synopsis>
 </refsynopsisdiv>
 
@@ -75,11 +75,11 @@
 </synopsis>
 <synopsis>
   <link linkend="GObject">GObject</link>
-   +----GduSmartData
+   +----GduAtaSmartHistoricalData
 </synopsis>
 <synopsis>
   <link linkend="GObject">GObject</link>
-   +----GduSmartDataAttribute
+   +----GduAtaSmartAttribute
 </synopsis>
 </refsect1>
 
@@ -189,14 +189,14 @@ GduPresentable is implemented by
 <indexterm zone="GduProcess-struct"><primary sortas="GduProcess">GduProcess</primary></indexterm><programlisting>typedef struct _GduProcess GduProcess;</programlisting>
 <para>
 </para></refsect2>
-<refsect2 id="GduSmartData-struct" role="struct">
-<title>GduSmartData</title>
-<indexterm zone="GduSmartData-struct"><primary sortas="GduSmartData">GduSmartData</primary></indexterm><programlisting>typedef struct _GduSmartData GduSmartData;</programlisting>
+<refsect2 id="GduAtaSmartHistoricalData-struct" role="struct">
+<title>GduAtaSmartHistoricalData</title>
+<indexterm zone="GduAtaSmartHistoricalData-struct"><primary sortas="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</primary></indexterm><programlisting>typedef struct _GduAtaSmartHistoricalData GduAtaSmartHistoricalData;</programlisting>
 <para>
 </para></refsect2>
-<refsect2 id="GduSmartDataAttribute-struct" role="struct">
-<title>GduSmartDataAttribute</title>
-<indexterm zone="GduSmartDataAttribute-struct"><primary sortas="GduSmartDataAttribute">GduSmartDataAttribute</primary></indexterm><programlisting>typedef struct _GduSmartDataAttribute GduSmartDataAttribute;</programlisting>
+<refsect2 id="GduAtaSmartAttribute-struct" role="struct">
+<title>GduAtaSmartAttribute</title>
+<indexterm zone="GduAtaSmartAttribute-struct"><primary sortas="GduAtaSmartAttribute">GduAtaSmartAttribute</primary></indexterm><programlisting>typedef struct _GduAtaSmartAttribute GduAtaSmartAttribute;</programlisting>
 <para>
 </para></refsect2>
 

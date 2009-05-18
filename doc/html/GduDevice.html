@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GduDevice</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.74.2">
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
 <link rel="home" href="index.html" title="Disk Utility Library Reference Manual">
 <link rel="up" href="ref-core.html" title="API Reference">
 <link rel="prev" href="GduPool.html" title="GduPool">
@@ -63,6 +63,21 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolea
 >gboolean</a>            <a class="link" href="GduDevice.html#gdu-device-is-media-available" title="gdu_device_is_media_available ()">gdu_device_is_media_available</a>       (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduDevice.html#gdu-device-is-media-change-detected" title="gdu_device_is_media_change_detected ()">gdu_device_is_media_change_detected</a> (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduDevice.html#gdu-device-is-media-change-detection-polling" title="gdu_device_is_media_change_detection_polling ()">gdu_device_is_media_change_detection_polling</a>
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduDevice.html#gdu-device-is-media-change-detection-inhibitable" title="gdu_device_is_media_change_detection_inhibitable ()">gdu_device_is_media_change_detection_inhibitable</a>
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduDevice.html#gdu-device-is-media-change-detection-inhibited" title="gdu_device_is_media_change_detection_inhibited ()">gdu_device_is_media_change_detection_inhibited</a>
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a>            <a class="link" href="GduDevice.html#gdu-device-is-read-only" title="gdu_device_is_read_only ()">gdu_device_is_read_only</a>             (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
@@ -94,11 +109,11 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolea
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a>            <a class="link" href="GduDevice.html#gdu-device-is-mounted" title="gdu_device_is_mounted ()">gdu_device_is_mounted</a>               (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GduDevice.html#gdu-device-is-busy" title="gdu_device_is_busy ()">gdu_device_is_busy</a>                  (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
 const char *        <a class="link" href="GduDevice.html#gdu-device-get-mount-path" title="gdu_device_get_mount_path ()">gdu_device_get_mount_path</a>           (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
 uid_t               <a class="link" href="GduDevice.html#gdu-device-get-mounted-by-uid" title="gdu_device_get_mounted_by_uid ()">gdu_device_get_mounted_by_uid</a>       (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+const char *        <a class="link" href="GduDevice.html#gdu-device-get-presentation-name" title="gdu_device_get_presentation_name ()">gdu_device_get_presentation_name</a>    (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+const char *        <a class="link" href="GduDevice.html#gdu-device-get-presentation-icon-name" title="gdu_device_get_presentation_icon_name ()">gdu_device_get_presentation_icon_name</a>
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a>            <a class="link" href="GduDevice.html#gdu-device-job-in-progress" title="gdu_device_job_in_progress ()">gdu_device_job_in_progress</a>          (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
@@ -107,11 +122,6 @@ uid_t               <a class="link" href="GduDevice.html#gdu-device-job-get-init
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a>            <a class="link" href="GduDevice.html#gdu-device-job-is-cancellable" title="gdu_device_job_is_cancellable ()">gdu_device_job_is_cancellable</a>       (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
-int                 <a class="link" href="GduDevice.html#gdu-device-job-get-num-tasks" title="gdu_device_job_get_num_tasks ()">gdu_device_job_get_num_tasks</a>        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
-int                 <a class="link" href="GduDevice.html#gdu-device-job-get-cur-task" title="gdu_device_job_get_cur_task ()">gdu_device_job_get_cur_task</a>         (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
-const char *        <a class="link" href="GduDevice.html#gdu-device-job-get-cur-task-id" title="gdu_device_job_get_cur_task_id ()">gdu_device_job_get_cur_task_id</a>      (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
-double              <a class="link" href="GduDevice.html#gdu-device-job-get-cur-task-percentage" title="gdu_device_job_get_cur_task_percentage ()">gdu_device_job_get_cur_task_percentage</a>
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
 const char *        <a class="link" href="GduDevice.html#gdu-device-id-get-usage" title="gdu_device_id_get_usage ()">gdu_device_id_get_usage</a>             (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
 const char *        <a class="link" href="GduDevice.html#gdu-device-id-get-type" title="gdu_device_id_get_type ()">gdu_device_id_get_type</a>              (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
 const char *        <a class="link" href="GduDevice.html#gdu-device-id-get-version" title="gdu_device_id_get_version ()">gdu_device_id_get_version</a>           (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
@@ -133,16 +143,6 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64
 const char *        <a class="link" href="GduDevice.html#gdu-device-partition-table-get-scheme" title="gdu_device_partition_table_get_scheme ()">gdu_device_partition_table_get_scheme</a>
                                                         (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
 int                 <a class="link" href="GduDevice.html#gdu-device-partition-table-get-count" title="gdu_device_partition_table_get_count ()">gdu_device_partition_table_get_count</a>
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
-int                 <a class="link" href="GduDevice.html#gdu-device-partition-table-get-max-number" title="gdu_device_partition_table_get_max_number ()">gdu_device_partition_table_get_max_number</a>
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"
->GArray</a> *            <a class="link" href="GduDevice.html#gdu-device-partition-table-get-offsets" title="gdu_device_partition_table_get_offsets ()">gdu_device_partition_table_get_offsets</a>
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"
->GArray</a> *            <a class="link" href="GduDevice.html#gdu-device-partition-table-get-sizes" title="gdu_device_partition_table_get_sizes ()">gdu_device_partition_table_get_sizes</a>
                                                         (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
 const char *        <a class="link" href="GduDevice.html#gdu-device-luks-get-holder" title="gdu_device_luks_get_holder ()">gdu_device_luks_get_holder</a>          (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
 const char *        <a class="link" href="GduDevice.html#gdu-device-luks-cleartext-get-slave" title="gdu_device_luks_cleartext_get_slave ()">gdu_device_luks_cleartext_get_slave</a> (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
@@ -186,17 +186,12 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
                                                         (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="GduDevice.html#gdu-device-optical-disc-get-num-audio-tracks" title="gdu_device_optical_disc_get_num_audio_tracks ()">gdu_device_optical_disc_get_num_audio_tracks</a>
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a>               <a class="link" href="GduDevice.html#gdu-device-optical-disc-get-num-sessions" title="gdu_device_optical_disc_get_num_sessions ()">gdu_device_optical_disc_get_num_sessions</a>
                                                         (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GduDevice.html#gdu-device-drive-smart-get-is-capable" title="gdu_device_drive_smart_get_is_capable ()">gdu_device_drive_smart_get_is_capable</a>
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GduDevice.html#gdu-device-drive-smart-get-is-enabled" title="gdu_device_drive_smart_get_is_enabled ()">gdu_device_drive_smart_get_is_enabled</a>
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
-<a class="link" href="GduSmartData.html" title="GduSmartData">GduSmartData</a> *      <a class="link" href="GduDevice.html#gdu-device-get-smart-data" title="gdu_device_get_smart_data ()">gdu_device_get_smart_data</a>           (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
 const char *        <a class="link" href="GduDevice.html#gdu-device-linux-md-component-get-level" title="gdu_device_linux_md_component_get_level ()">gdu_device_linux_md_component_get_level</a>
                                                         (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
 int                 <a class="link" href="GduDevice.html#gdu-device-linux-md-component-get-num-raid-devices" title="gdu_device_linux_md_component_get_num_raid_devices ()">gdu_device_linux_md_component_get_num_raid_devices</a>
@@ -209,6 +204,11 @@ const char *        <a class="link" href="GduDevice.html#gdu-device-linux-md-com
                                                         (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
 const char *        <a class="link" href="GduDevice.html#gdu-device-linux-md-component-get-version" title="gdu_device_linux_md_component_get_version ()">gdu_device_linux_md_component_get_version</a>
                                                         (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+const char *        <a class="link" href="GduDevice.html#gdu-device-linux-md-component-get-holder" title="gdu_device_linux_md_component_get_holder ()">gdu_device_linux_md_component_get_holder</a>
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+char **             <a class="link" href="GduDevice.html#gdu-device-linux-md-component-get-state" title="gdu_device_linux_md_component_get_state ()">gdu_device_linux_md_component_get_state</a>
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+const char *        <a class="link" href="GduDevice.html#gdu-device-linux-md-get-state" title="gdu_device_linux_md_get_state ()">gdu_device_linux_md_get_state</a>       (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
 const char *        <a class="link" href="GduDevice.html#gdu-device-linux-md-get-level" title="gdu_device_linux_md_get_level ()">gdu_device_linux_md_get_level</a>       (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
 int                 <a class="link" href="GduDevice.html#gdu-device-linux-md-get-num-raid-devices" title="gdu_device_linux_md_get_num_raid_devices ()">gdu_device_linux_md_get_num_raid_devices</a>
                                                         (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
@@ -226,7 +226,93 @@ double              <a class="link" href="GduDevice.html#gdu-device-linux-md-get
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
 >guint64</a>             <a class="link" href="GduDevice.html#gdu-device-linux-md-get-sync-speed" title="gdu_device_linux_md_get_sync_speed ()">gdu_device_linux_md_get_sync_speed</a>  (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+enum                <a class="link" href="GduDevice.html#GduAtaSmartOfflineDataCollectionStatus" title="enum GduAtaSmartOfflineDataCollectionStatus">GduAtaSmartOfflineDataCollectionStatus</a>;
+enum                <a class="link" href="GduDevice.html#GduAtaSmartSelfTestExecutionStatus" title="enum GduAtaSmartSelfTestExecutionStatus">GduAtaSmartSelfTestExecutionStatus</a>;
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduDevice.html#gdu-device-drive-ata-smart-get-is-available" title="gdu_device_drive_ata_smart_get_is_available ()">gdu_device_drive_ata_smart_get_is_available</a>
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduDevice.html#gdu-device-drive-ata-smart-get-is-failing" title="gdu_device_drive_ata_smart_get_is_failing ()">gdu_device_drive_ata_smart_get_is_failing</a>
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduDevice.html#gdu-device-drive-ata-smart-get-is-failing-valid" title="gdu_device_drive_ata_smart_get_is_failing_valid ()">gdu_device_drive_ata_smart_get_is_failing_valid</a>
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduDevice.html#gdu-device-drive-ata-smart-get-has-bad-sectors" title="gdu_device_drive_ata_smart_get_has_bad_sectors ()">gdu_device_drive_ata_smart_get_has_bad_sectors</a>
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduDevice.html#gdu-device-drive-ata-smart-get-has-bad-attributes" title="gdu_device_drive_ata_smart_get_has_bad_attributes ()">gdu_device_drive_ata_smart_get_has_bad_attributes</a>
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>             <a class="link" href="GduDevice.html#gdu-device-drive-ata-smart-get-temperature-kelvin" title="gdu_device_drive_ata_smart_get_temperature_kelvin ()">gdu_device_drive_ata_smart_get_temperature_kelvin</a>
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a>             <a class="link" href="GduDevice.html#gdu-device-drive-ata-smart-get-power-on-seconds" title="gdu_device_drive_ata_smart_get_power_on_seconds ()">gdu_device_drive_ata_smart_get_power_on_seconds</a>
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a>             <a class="link" href="GduDevice.html#gdu-device-drive-ata-smart-get-time-collected" title="gdu_device_drive_ata_smart_get_time_collected ()">gdu_device_drive_ata_smart_get_time_collected</a>
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+<a class="link" href="GduDevice.html#GduAtaSmartOfflineDataCollectionStatus" title="enum GduAtaSmartOfflineDataCollectionStatus">GduAtaSmartOfflineDataCollectionStatus</a>  <a class="link" href="GduDevice.html#gdu-device-drive-ata-smart-get-offline-data-collection-status" title="gdu_device_drive_ata_smart_get_offline_data_collection_status ()">gdu_device_drive_ata_smart_get_offline_data_collection_status</a>
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="GduDevice.html#gdu-device-drive-ata-smart-get-offline-data-collection-seconds" title="gdu_device_drive_ata_smart_get_offline_data_collection_seconds ()">gdu_device_drive_ata_smart_get_offline_data_collection_seconds</a>
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+<a class="link" href="GduDevice.html#GduAtaSmartSelfTestExecutionStatus" title="enum GduAtaSmartSelfTestExecutionStatus">GduAtaSmartSelfTestExecutionStatus</a>  <a class="link" href="GduDevice.html#gdu-device-drive-ata-smart-get-self-test-execution-status" title="gdu_device_drive_ata_smart_get_self_test_execution_status ()">gdu_device_drive_ata_smart_get_self_test_execution_status</a>
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="GduDevice.html#gdu-device-drive-ata-smart-get-self-test-execution-percent-remaining" title="gdu_device_drive_ata_smart_get_self_test_execution_percent_remaining ()">gdu_device_drive_ata_smart_get_self_test_execution_percent_remaining</a>
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduDevice.html#gdu-device-drive-ata-smart-get-short-and-extended-self-test-available" title="gdu_device_drive_ata_smart_get_short_and_extended_self_test_available ()">gdu_device_drive_ata_smart_get_short_and_extended_self_test_available</a>
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduDevice.html#gdu-device-drive-ata-smart-get-conveyance-self-test-available" title="gdu_device_drive_ata_smart_get_conveyance_self_test_available ()">gdu_device_drive_ata_smart_get_conveyance_self_test_available</a>
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduDevice.html#gdu-device-drive-ata-smart-get-start-self-test-available" title="gdu_device_drive_ata_smart_get_start_self_test_available ()">gdu_device_drive_ata_smart_get_start_self_test_available</a>
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduDevice.html#gdu-device-drive-ata-smart-get-abort-self-test-available" title="gdu_device_drive_ata_smart_get_abort_self_test_available ()">gdu_device_drive_ata_smart_get_abort_self_test_available</a>
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="GduDevice.html#gdu-device-drive-ata-smart-get-short-self-test-polling-minutes" title="gdu_device_drive_ata_smart_get_short_self_test_polling_minutes ()">gdu_device_drive_ata_smart_get_short_self_test_polling_minutes</a>
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="GduDevice.html#gdu-device-drive-ata-smart-get-extended-self-test-polling-minutes" title="gdu_device_drive_ata_smart_get_extended_self_test_polling_minutes ()">gdu_device_drive_ata_smart_get_extended_self_test_polling_minutes</a>
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>               <a class="link" href="GduDevice.html#gdu-device-drive-ata-smart-get-conveyance-self-test-polling-minutes" title="gdu_device_drive_ata_smart_get_conveyance_self_test_polling_minutes ()">gdu_device_drive_ata_smart_get_conveyance_self_test_polling_minutes</a>
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
+>GList</a> *             <a class="link" href="GduDevice.html#gdu-device-drive-ata-smart-get-attributes" title="gdu_device_drive_ata_smart_get_attributes ()">gdu_device_drive_ata_smart_get_attributes</a>
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
+<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> * <a class="link" href="GduDevice.html#gdu-device-drive-ata-smart-get-attribute" title="gdu_device_drive_ata_smart_get_attribute ()">gdu_device_drive_ata_smart_get_attribute</a>
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *attr_name);
 void                <a class="link" href="GduDevice.html#gdu-device-op-filesystem-mount" title="gdu_device_op_filesystem_mount ()">gdu_device_op_filesystem_mount</a>      (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> **options,
                                                          <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceFilesystemMountCompletedFunc" title="GduDeviceFilesystemMountCompletedFunc ()">GduDeviceFilesystemMountCompletedFunc</a> callback,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
@@ -242,7 +328,6 @@ void                <a class="link" href="GduDevice.html#gdu-device-op-filesyste
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);
 void                <a class="link" href="GduDevice.html#gdu-device-op-partition-delete" title="gdu_device_op_partition_delete ()">gdu_device_op_partition_delete</a>      (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         const char *secure_erase,
                                                          <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDevicePartitionDeleteCompletedFunc" title="GduDevicePartitionDeleteCompletedFunc ()">GduDevicePartitionDeleteCompletedFunc</a> callback,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
@@ -258,7 +343,6 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 void                <a class="link" href="GduDevice.html#gdu-device-op-partition-table-create" title="gdu_device_op_partition_table_create ()">gdu_device_op_partition_table_create</a>
                                                         (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
                                                          const char *scheme,
-                                                         const char *secure_erase,
                                                          <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDevicePartitionTableCreateCompletedFunc" title="GduDevicePartitionTableCreateCompletedFunc ()">GduDevicePartitionTableCreateCompletedFunc</a> callback,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
@@ -288,18 +372,16 @@ void                <a class="link" href="GduDevice.html#gdu-device-op-filesyste
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);
-void                <a class="link" href="GduDevice.html#gdu-device-op-drive-smart-initiate-selftest" title="gdu_device_op_drive_smart_initiate_selftest ()">gdu_device_op_drive_smart_initiate_selftest</a>
+void                <a class="link" href="GduDevice.html#gdu-device-op-drive-ata-smart-initiate-selftest" title="gdu_device_op_drive_ata_smart_initiate_selftest ()">gdu_device_op_drive_ata_smart_initiate_selftest</a>
                                                         (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
                                                          const char *test,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a> captive,
-                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveSmartInitiateSelftestCompletedFunc" title="GduDeviceDriveSmartInitiateSelftestCompletedFunc ()">GduDeviceDriveSmartInitiateSelftestCompletedFunc</a> callback,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc" title="GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc ()">GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc</a> callback,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);
-void                <a class="link" href="GduDevice.html#gdu-device-drive-smart-refresh-data" title="gdu_device_drive_smart_refresh_data ()">gdu_device_drive_smart_refresh_data</a> (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveSmartRefreshDataCompletedFunc" title="GduDeviceDriveSmartRefreshDataCompletedFunc ()">GduDeviceDriveSmartRefreshDataCompletedFunc</a> callback,
+void                <a class="link" href="GduDevice.html#gdu-device-drive-ata-smart-refresh-data" title="gdu_device_drive_ata_smart_refresh_data ()">gdu_device_drive_ata_smart_refresh_data</a>
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveAtaSmartRefreshDataCompletedFunc" title="GduDeviceDriveAtaSmartRefreshDataCompletedFunc ()">GduDeviceDriveAtaSmartRefreshDataCompletedFunc</a> callback,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);
@@ -318,7 +400,6 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 void                <a class="link" href="GduDevice.html#gdu-device-op-linux-md-remove-component" title="gdu_device_op_linux_md_remove_component ()">gdu_device_op_linux_md_remove_component</a>
                                                         (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
                                                          const char *component_objpath,
-                                                         const char *secure_erase,
                                                          <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceLinuxMdRemoveComponentCompletedFunc" title="GduDeviceLinuxMdRemoveComponentCompletedFunc ()">GduDeviceLinuxMdRemoveComponentCompletedFunc</a> callback,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
@@ -326,7 +407,6 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 void                <a class="link" href="GduDevice.html#gdu-device-op-filesystem-create" title="gdu_device_op_filesystem_create ()">gdu_device_op_filesystem_create</a>     (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
                                                          const char *fstype,
                                                          const char *fslabel,
-                                                         const char *fserase,
                                                          const char *encrypt_passphrase,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
@@ -347,7 +427,6 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64
                                                          char **flags,
                                                          const char *fstype,
                                                          const char *fslabel,
-                                                         const char *fserase,
                                                          const char *encrypt_passphrase,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
@@ -361,10 +440,34 @@ void                <a class="link" href="GduDevice.html#gdu-device-op-cancel-jo
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);
+void                <a class="link" href="GduDevice.html#gdu-device-drive-ata-smart-get-historical-data" title="gdu_device_drive_ata_smart_get_historical_data ()">gdu_device_drive_ata_smart_get_historical_data</a>
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a> since,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a> until,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a> spacing,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc" title="GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc ()">GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc</a> callback,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
->GList</a> *             <a class="link" href="GduDevice.html#gdu-device-drive-smart-get-historical-data-sync" title="gdu_device_drive_smart_get_historical_data_sync ()">gdu_device_drive_smart_get_historical_data_sync</a>
+>GList</a> *             <a class="link" href="GduDevice.html#gdu-device-drive-ata-smart-get-historical-data-sync" title="gdu_device_drive_ata_smart_get_historical_data_sync ()">gdu_device_drive_ata_smart_get_historical_data_sync</a>
                                                         (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a> since,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a> until,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a> spacing,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);
@@ -383,6 +486,11 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
 >GError</a> **error);
 void                <a class="link" href="GduDevice.html#gdu-device-op-drive-eject" title="gdu_device_op_drive_eject ()">gdu_device_op_drive_eject</a>           (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
                                                          <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveEjectCompletedFunc" title="GduDeviceDriveEjectCompletedFunc ()">GduDeviceDriveEjectCompletedFunc</a> callback,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
+void                <a class="link" href="GduDevice.html#gdu-device-op-drive-poll-media" title="gdu_device_op_drive_poll_media ()">gdu_device_op_drive_poll_media</a>      (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDrivePollMediaCompletedFunc" title="GduDeviceDrivePollMediaCompletedFunc ()">GduDeviceDrivePollMediaCompletedFunc</a> callback,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);
@@ -600,6 +708,105 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolea
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a>            gdu_device_is_media_available       (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-device-is-media-change-detected"></a><h3>gdu_device_is_media_change_detected ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_device_is_media_change_detected (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-device-is-media-change-detection-polling"></a><h3>gdu_device_is_media_change_detection_polling ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_device_is_media_change_detection_polling
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-device-is-media-change-detection-inhibitable"></a><h3>gdu_device_is_media_change_detection_inhibitable ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_device_is_media_change_detection_inhibitable
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-device-is-media-change-detection-inhibited"></a><h3>gdu_device_is_media_change_detection_inhibited ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_device_is_media_change_detection_inhibited
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -884,30 +1091,6 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolea
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="gdu-device-is-busy"></a><h3>gdu_device_is_busy ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            gdu_device_is_busy                  (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
-<p>
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
-<td>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2" lang="en">
 <a name="gdu-device-get-mount-path"></a><h3>gdu_device_get_mount_path ()</h3>
 <pre class="programlisting">const char *        gdu_device_get_mount_path           (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
 <p>
@@ -932,6 +1115,51 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolea
 <div class="refsect2" lang="en">
 <a name="gdu-device-get-mounted-by-uid"></a><h3>gdu_device_get_mounted_by_uid ()</h3>
 <pre class="programlisting">uid_t               gdu_device_get_mounted_by_uid       (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-device-get-presentation-name"></a><h3>gdu_device_get_presentation_name ()</h3>
+<pre class="programlisting">const char *        gdu_device_get_presentation_name    (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-device-get-presentation-icon-name"></a><h3>gdu_device_get_presentation_icon_name ()</h3>
+<pre class="programlisting">const char *        gdu_device_get_presentation_icon_name
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1024,95 +1252,6 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolea
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
 >gboolean</a>            gdu_device_job_is_cancellable       (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
-<p>
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
-<td>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2" lang="en">
-<a name="gdu-device-job-get-num-tasks"></a><h3>gdu_device_job_get_num_tasks ()</h3>
-<pre class="programlisting">int                 gdu_device_job_get_num_tasks        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
-<p>
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
-<td>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2" lang="en">
-<a name="gdu-device-job-get-cur-task"></a><h3>gdu_device_job_get_cur_task ()</h3>
-<pre class="programlisting">int                 gdu_device_job_get_cur_task         (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
-<p>
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
-<td>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2" lang="en">
-<a name="gdu-device-job-get-cur-task-id"></a><h3>gdu_device_job_get_cur_task_id ()</h3>
-<pre class="programlisting">const char *        gdu_device_job_get_cur_task_id      (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
-<p>
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
-<td>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2" lang="en">
-<a name="gdu-device-job-get-cur-task-percentage"></a><h3>gdu_device_job_get_cur_task_percentage ()</h3>
-<pre class="programlisting">double              gdu_device_job_get_cur_task_percentage
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1470,79 +1609,6 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64
 <div class="refsect2" lang="en">
 <a name="gdu-device-partition-table-get-count"></a><h3>gdu_device_partition_table_get_count ()</h3>
 <pre class="programlisting">int                 gdu_device_partition_table_get_count
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
-<p>
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
-<td>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2" lang="en">
-<a name="gdu-device-partition-table-get-max-number"></a><h3>gdu_device_partition_table_get_max_number ()</h3>
-<pre class="programlisting">int                 gdu_device_partition_table_get_max_number
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
-<p>
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
-<td>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2" lang="en">
-<a name="gdu-device-partition-table-get-offsets"></a><h3>gdu_device_partition_table_get_offsets ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"
->GArray</a> *            gdu_device_partition_table_get_offsets
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
-<p>
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
-<td>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2" lang="en">
-<a name="gdu-device-partition-table-get-sizes"></a><h3>gdu_device_partition_table_get_sizes ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Arrays.html#GArray"
->GArray</a> *            gdu_device_partition_table_get_sizes
                                                         (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
 <p>
 </p>
@@ -1961,83 +2027,36 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 </div>
 <hr>
 <div class="refsect2" lang="en">
+<a name="gdu-device-optical-disc-get-num-audio-tracks"></a><h3>gdu_device_optical_disc_get_num_audio_tracks ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>               gdu_device_optical_disc_get_num_audio_tracks
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
 <a name="gdu-device-optical-disc-get-num-sessions"></a><h3>gdu_device_optical_disc_get_num_sessions ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 >guint</a>               gdu_device_optical_disc_get_num_sessions
                                                         (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
-<p>
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
-<td>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2" lang="en">
-<a name="gdu-device-drive-smart-get-is-capable"></a><h3>gdu_device_drive_smart_get_is_capable ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            gdu_device_drive_smart_get_is_capable
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
-<p>
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
-<td>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2" lang="en">
-<a name="gdu-device-drive-smart-get-is-enabled"></a><h3>gdu_device_drive_smart_get_is_enabled ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            gdu_device_drive_smart_get_is_enabled
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
-<p>
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
-<td>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2" lang="en">
-<a name="gdu-device-get-smart-data"></a><h3>gdu_device_get_smart_data ()</h3>
-<pre class="programlisting"><a class="link" href="GduSmartData.html" title="GduSmartData">GduSmartData</a> *      gdu_device_get_smart_data           (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -2176,6 +2195,74 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolea
 <a name="gdu-device-linux-md-component-get-version"></a><h3>gdu_device_linux_md_component_get_version ()</h3>
 <pre class="programlisting">const char *        gdu_device_linux_md_component_get_version
                                                         (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-device-linux-md-component-get-holder"></a><h3>gdu_device_linux_md_component_get_holder ()</h3>
+<pre class="programlisting">const char *        gdu_device_linux_md_component_get_holder
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-device-linux-md-component-get-state"></a><h3>gdu_device_linux_md_component_get_state ()</h3>
+<pre class="programlisting">char **             gdu_device_linux_md_component_get_state
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-device-linux-md-get-state"></a><h3>gdu_device_linux_md_get_state ()</h3>
+<pre class="programlisting">const char *        gdu_device_linux_md_get_state       (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -2444,8 +2531,573 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64
 </div>
 <hr>
 <div class="refsect2" lang="en">
+<a name="GduAtaSmartOfflineDataCollectionStatus"></a><h3>enum GduAtaSmartOfflineDataCollectionStatus</h3>
+<pre class="programlisting">typedef enum {
+        GDU_ATA_SMART_OFFLINE_DATA_COLLECTION_STATUS_NEVER,
+        GDU_ATA_SMART_OFFLINE_DATA_COLLECTION_STATUS_SUCCESS,
+        GDU_ATA_SMART_OFFLINE_DATA_COLLECTION_STATUS_INPROGRESS,
+        GDU_ATA_SMART_OFFLINE_DATA_COLLECTION_STATUS_SUSPENDED,
+        GDU_ATA_SMART_OFFLINE_DATA_COLLECTION_STATUS_ABORTED,
+        GDU_ATA_SMART_OFFLINE_DATA_COLLECTION_STATUS_FATAL,
+        GDU_ATA_SMART_OFFLINE_DATA_COLLECTION_STATUS_UNKNOWN,
+} GduAtaSmartOfflineDataCollectionStatus;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GduAtaSmartSelfTestExecutionStatus"></a><h3>enum GduAtaSmartSelfTestExecutionStatus</h3>
+<pre class="programlisting">typedef enum {
+        GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_SUCCESS_OR_NEVER = 0,
+        GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_ABORTED = 1,
+        GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_INTERRUPTED = 2,
+        GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_FATAL = 3,
+        GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_ERROR_UNKNOWN = 4,
+        GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_ERROR_ELECTRICAL = 5,
+        GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_ERROR_SERVO = 6,
+        GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_ERROR_READ = 7,
+        GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_ERROR_HANDLING = 8,
+        GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_INPROGRESS = 15,
+} GduAtaSmartSelfTestExecutionStatus;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-device-drive-ata-smart-get-is-available"></a><h3>gdu_device_drive_ata_smart_get_is_available ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_device_drive_ata_smart_get_is_available
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-device-drive-ata-smart-get-is-failing"></a><h3>gdu_device_drive_ata_smart_get_is_failing ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_device_drive_ata_smart_get_is_failing
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-device-drive-ata-smart-get-is-failing-valid"></a><h3>gdu_device_drive_ata_smart_get_is_failing_valid ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_device_drive_ata_smart_get_is_failing_valid
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-device-drive-ata-smart-get-has-bad-sectors"></a><h3>gdu_device_drive_ata_smart_get_has_bad_sectors ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_device_drive_ata_smart_get_has_bad_sectors
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-device-drive-ata-smart-get-has-bad-attributes"></a><h3>gdu_device_drive_ata_smart_get_has_bad_attributes ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_device_drive_ata_smart_get_has_bad_attributes
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-device-drive-ata-smart-get-temperature-kelvin"></a><h3>gdu_device_drive_ata_smart_get_temperature_kelvin ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>             gdu_device_drive_ata_smart_get_temperature_kelvin
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-device-drive-ata-smart-get-power-on-seconds"></a><h3>gdu_device_drive_ata_smart_get_power_on_seconds ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a>             gdu_device_drive_ata_smart_get_power_on_seconds
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-device-drive-ata-smart-get-time-collected"></a><h3>gdu_device_drive_ata_smart_get_time_collected ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a>             gdu_device_drive_ata_smart_get_time_collected
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-device-drive-ata-smart-get-offline-data-collection-status"></a><h3>gdu_device_drive_ata_smart_get_offline_data_collection_status ()</h3>
+<pre class="programlisting"><a class="link" href="GduDevice.html#GduAtaSmartOfflineDataCollectionStatus" title="enum GduAtaSmartOfflineDataCollectionStatus">GduAtaSmartOfflineDataCollectionStatus</a>  gdu_device_drive_ata_smart_get_offline_data_collection_status
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-device-drive-ata-smart-get-offline-data-collection-seconds"></a><h3>gdu_device_drive_ata_smart_get_offline_data_collection_seconds ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>               gdu_device_drive_ata_smart_get_offline_data_collection_seconds
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-device-drive-ata-smart-get-self-test-execution-status"></a><h3>gdu_device_drive_ata_smart_get_self_test_execution_status ()</h3>
+<pre class="programlisting"><a class="link" href="GduDevice.html#GduAtaSmartSelfTestExecutionStatus" title="enum GduAtaSmartSelfTestExecutionStatus">GduAtaSmartSelfTestExecutionStatus</a>  gdu_device_drive_ata_smart_get_self_test_execution_status
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-device-drive-ata-smart-get-self-test-execution-percent-remaining"></a><h3>gdu_device_drive_ata_smart_get_self_test_execution_percent_remaining ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>               gdu_device_drive_ata_smart_get_self_test_execution_percent_remaining
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-device-drive-ata-smart-get-short-and-extended-self-test-available"></a><h3>gdu_device_drive_ata_smart_get_short_and_extended_self_test_available ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_device_drive_ata_smart_get_short_and_extended_self_test_available
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-device-drive-ata-smart-get-conveyance-self-test-available"></a><h3>gdu_device_drive_ata_smart_get_conveyance_self_test_available ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_device_drive_ata_smart_get_conveyance_self_test_available
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-device-drive-ata-smart-get-start-self-test-available"></a><h3>gdu_device_drive_ata_smart_get_start_self_test_available ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_device_drive_ata_smart_get_start_self_test_available
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-device-drive-ata-smart-get-abort-self-test-available"></a><h3>gdu_device_drive_ata_smart_get_abort_self_test_available ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_device_drive_ata_smart_get_abort_self_test_available
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-device-drive-ata-smart-get-short-self-test-polling-minutes"></a><h3>gdu_device_drive_ata_smart_get_short_self_test_polling_minutes ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>               gdu_device_drive_ata_smart_get_short_self_test_polling_minutes
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-device-drive-ata-smart-get-extended-self-test-polling-minutes"></a><h3>gdu_device_drive_ata_smart_get_extended_self_test_polling_minutes ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>               gdu_device_drive_ata_smart_get_extended_self_test_polling_minutes
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-device-drive-ata-smart-get-conveyance-self-test-polling-minutes"></a><h3>gdu_device_drive_ata_smart_get_conveyance_self_test_polling_minutes ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
+>guint</a>               gdu_device_drive_ata_smart_get_conveyance_self_test_polling_minutes
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-device-drive-ata-smart-get-attributes"></a><h3>gdu_device_drive_ata_smart_get_attributes ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
+>GList</a> *             gdu_device_drive_ata_smart_get_attributes
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-device-drive-ata-smart-get-attribute"></a><h3>gdu_device_drive_ata_smart_get_attribute ()</h3>
+<pre class="programlisting"><a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> * gdu_device_drive_ata_smart_get_attribute
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *attr_name);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attr_name</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
 <a name="gdu-device-op-filesystem-mount"></a><h3>gdu_device_op_filesystem_mount ()</h3>
 <pre class="programlisting">void                gdu_device_op_filesystem_mount      (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> **options,
                                                          <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceFilesystemMountCompletedFunc" title="GduDeviceFilesystemMountCompletedFunc ()">GduDeviceFilesystemMountCompletedFunc</a> callback,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
@@ -2457,6 +3109,11 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>options</code></em> :</span></p></td>
 <td>
 </td>
 </tr>
@@ -2539,7 +3196,6 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <div class="refsect2" lang="en">
 <a name="gdu-device-op-partition-delete"></a><h3>gdu_device_op_partition_delete ()</h3>
 <pre class="programlisting">void                gdu_device_op_partition_delete      (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         const char *secure_erase,
                                                          <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDevicePartitionDeleteCompletedFunc" title="GduDevicePartitionDeleteCompletedFunc ()">GduDevicePartitionDeleteCompletedFunc</a> callback,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
@@ -2551,11 +3207,6 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
-<td>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>secure_erase</code></em> :</span></p></td>
 <td>
 </td>
 </tr>
@@ -2627,7 +3278,6 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <pre class="programlisting">void                gdu_device_op_partition_table_create
                                                         (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
                                                          const char *scheme,
-                                                         const char *secure_erase,
                                                          <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDevicePartitionTableCreateCompletedFunc" title="GduDevicePartitionTableCreateCompletedFunc ()">GduDevicePartitionTableCreateCompletedFunc</a> callback,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
@@ -2644,11 +3294,6 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>scheme</code></em> :</span></p></td>
-<td>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>secure_erase</code></em> :</span></p></td>
 <td>
 </td>
 </tr>
@@ -2816,14 +3461,11 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="gdu-device-op-drive-smart-initiate-selftest"></a><h3>gdu_device_op_drive_smart_initiate_selftest ()</h3>
-<pre class="programlisting">void                gdu_device_op_drive_smart_initiate_selftest
+<a name="gdu-device-op-drive-ata-smart-initiate-selftest"></a><h3>gdu_device_op_drive_ata_smart_initiate_selftest ()</h3>
+<pre class="programlisting">void                gdu_device_op_drive_ata_smart_initiate_selftest
                                                         (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
                                                          const char *test,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a> captive,
-                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveSmartInitiateSelftestCompletedFunc" title="GduDeviceDriveSmartInitiateSelftestCompletedFunc ()">GduDeviceDriveSmartInitiateSelftestCompletedFunc</a> callback,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc" title="GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc ()">GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc</a> callback,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);</pre>
@@ -2843,11 +3485,6 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>captive</code></em> :</span></p></td>
-<td>
-</td>
-</tr>
-<tr>
 <td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
 <td>
 </td>
@@ -2862,9 +3499,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="gdu-device-drive-smart-refresh-data"></a><h3>gdu_device_drive_smart_refresh_data ()</h3>
-<pre class="programlisting">void                gdu_device_drive_smart_refresh_data (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveSmartRefreshDataCompletedFunc" title="GduDeviceDriveSmartRefreshDataCompletedFunc ()">GduDeviceDriveSmartRefreshDataCompletedFunc</a> callback,
+<a name="gdu-device-drive-ata-smart-refresh-data"></a><h3>gdu_device_drive_ata_smart_refresh_data ()</h3>
+<pre class="programlisting">void                gdu_device_drive_ata_smart_refresh_data
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveAtaSmartRefreshDataCompletedFunc" title="GduDeviceDriveAtaSmartRefreshDataCompletedFunc ()">GduDeviceDriveAtaSmartRefreshDataCompletedFunc</a> callback,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);</pre>
@@ -2966,7 +3604,6 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <pre class="programlisting">void                gdu_device_op_linux_md_remove_component
                                                         (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
                                                          const char *component_objpath,
-                                                         const char *secure_erase,
                                                          <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceLinuxMdRemoveComponentCompletedFunc" title="GduDeviceLinuxMdRemoveComponentCompletedFunc ()">GduDeviceLinuxMdRemoveComponentCompletedFunc</a> callback,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
@@ -2983,11 +3620,6 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>component_objpath</code></em> :</span></p></td>
-<td>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>secure_erase</code></em> :</span></p></td>
 <td>
 </td>
 </tr>
@@ -3010,7 +3642,6 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <pre class="programlisting">void                gdu_device_op_filesystem_create     (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
                                                          const char *fstype,
                                                          const char *fslabel,
-                                                         const char *fserase,
                                                          const char *encrypt_passphrase,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
@@ -3036,11 +3667,6 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>fslabel</code></em> :</span></p></td>
-<td>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>fserase</code></em> :</span></p></td>
 <td>
 </td>
 </tr>
@@ -3082,7 +3708,6 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64
                                                          char **flags,
                                                          const char *fstype,
                                                          const char *fslabel,
-                                                         const char *fserase,
                                                          const char *encrypt_passphrase,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
@@ -3133,11 +3758,6 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>fslabel</code></em> :</span></p></td>
-<td>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>fserase</code></em> :</span></p></td>
 <td>
 </td>
 </tr>
@@ -3197,11 +3817,76 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="gdu-device-drive-smart-get-historical-data-sync"></a><h3>gdu_device_drive_smart_get_historical_data_sync ()</h3>
+<a name="gdu-device-drive-ata-smart-get-historical-data"></a><h3>gdu_device_drive_ata_smart_get_historical_data ()</h3>
+<pre class="programlisting">void                gdu_device_drive_ata_smart_get_historical_data
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a> since,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a> until,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a> spacing,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc" title="GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc ()">GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc</a> callback,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>since</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>until</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>spacing</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-device-drive-ata-smart-get-historical-data-sync"></a><h3>gdu_device_drive_ata_smart_get_historical_data_sync ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
->GList</a> *             gdu_device_drive_smart_get_historical_data_sync
+>GList</a> *             gdu_device_drive_ata_smart_get_historical_data_sync
                                                         (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a> since,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a> until,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a> spacing,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> **error);</pre>
@@ -3212,6 +3897,21 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>since</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>until</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>spacing</code></em> :</span></p></td>
 <td>
 </td>
 </tr>
@@ -3298,6 +3998,37 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
 <a name="gdu-device-op-drive-eject"></a><h3>gdu_device_op_drive_eject ()</h3>
 <pre class="programlisting">void                gdu_device_op_drive_eject           (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
                                                          <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveEjectCompletedFunc" title="GduDeviceDriveEjectCompletedFunc ()">GduDeviceDriveEjectCompletedFunc</a> callback,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-device-op-drive-poll-media"></a><h3>gdu_device_op_drive_poll_media ()</h3>
+<pre class="programlisting">void                gdu_device_op_drive_poll_media      (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDrivePollMediaCompletedFunc" title="GduDeviceDrivePollMediaCompletedFunc ()">GduDeviceDrivePollMediaCompletedFunc</a> callback,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);</pre>

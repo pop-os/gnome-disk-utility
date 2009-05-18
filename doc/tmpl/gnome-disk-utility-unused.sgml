@@ -1,3 +1,79 @@
+<!-- ##### SECTION ./tmpl/gdu-smart-data-attribute.sgml:Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/gdu-smart-data-attribute.sgml:See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/gdu-smart-data-attribute.sgml:Short_Description ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/gdu-smart-data-attribute.sgml:Stability_Level ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/gdu-smart-data-attribute.sgml:Title ##### -->
+GduSmartDataAttribute
+
+
+<!-- ##### SECTION ./tmpl/gdu-smart-data.sgml:Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/gdu-smart-data.sgml:See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/gdu-smart-data.sgml:Short_Description ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/gdu-smart-data.sgml:Stability_Level ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/gdu-smart-data.sgml:Title ##### -->
+GduSmartData
+
+
+<!-- ##### USER_FUNCTION GduDeviceDriveSmartGetHistoricalDataCompletedFunc ##### -->
+<para>
+
+</para>
+
+@device: 
+@smart_data: 
+@error: 
+@user_data: 
+
+<!-- ##### USER_FUNCTION GduDeviceDriveSmartInitiateSelftestCompletedFunc ##### -->
+<para>
+
+</para>
+
+@device: 
+@error: 
+@user_data: 
+
+<!-- ##### USER_FUNCTION GduDeviceDriveSmartRefreshDataCompletedFunc ##### -->
+<para>
+
+</para>
+
+@device: 
+@error: 
+@user_data: 
+
 <!-- ##### USER_FUNCTION GduDriveStartFunc ##### -->
 <para>
 
@@ -28,6 +104,121 @@
 @GDU_LINUX_MD_DRIVE_SLAVE_STATE_READY: 
 @GDU_LINUX_MD_DRIVE_SLAVE_STATE_NOT_FRESH: 
 
+<!-- ##### STRUCT GduSmartData ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT GduSmartDataAttribute ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT GduSmartDataAttributePrivate ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT GduSmartDataPrivate ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdu_device_drive_smart_get_historical_data ##### -->
+<para>
+
+</para>
+
+@device: 
+@callback: 
+@user_data: 
+
+<!-- ##### FUNCTION gdu_device_drive_smart_get_historical_data_sync ##### -->
+<para>
+
+</para>
+
+@device: 
+@error: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_device_drive_smart_get_is_capable ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_device_drive_smart_get_is_enabled ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_device_drive_smart_refresh_data ##### -->
+<para>
+
+</para>
+
+@device: 
+@callback: 
+@user_data: 
+
+<!-- ##### FUNCTION gdu_device_get_smart_data ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_device_is_busy ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_device_job_get_cur_task ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_device_job_get_cur_task_id ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_device_job_get_cur_task_percentage ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_device_job_get_num_tasks ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
 <!-- ##### FUNCTION gdu_device_linux_md_component_get_events ##### -->
 <para>
 
@@ -52,6 +243,17 @@
 @device: 
 @Returns: 
 
+<!-- ##### FUNCTION gdu_device_op_drive_smart_initiate_selftest ##### -->
+<para>
+
+</para>
+
+@device: 
+@test: 
+@captive: 
+@callback: 
+@user_data: 
+
 <!-- ##### FUNCTION gdu_device_optical_disc_get_has_audio ##### -->
 <para>
 
@@ -69,6 +271,30 @@
 @Returns: 
 
 <!-- ##### FUNCTION gdu_device_optical_disc_get_is_rewritable ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_device_partition_table_get_max_number ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_device_partition_table_get_offsets ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_device_partition_table_get_sizes ##### -->
 <para>
 
 </para>
@@ -126,6 +352,14 @@
 @callback: 
 @user_data: 
 
+<!-- ##### FUNCTION gdu_get_task_description ##### -->
+<para>
+
+</para>
+
+@task_id: 
+@Returns: 
+
 <!-- ##### FUNCTION gdu_linux_md_drive_get_first_slave ##### -->
 <para>
 
@@ -157,5 +391,166 @@
 
 @drive: 
 @slave: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_smart_data_attribute_get_description ##### -->
+<para>
+
+</para>
+
+@smart_data_attribute: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_smart_data_attribute_get_flags ##### -->
+<para>
+
+</para>
+
+@smart_data_attribute: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_smart_data_attribute_get_id ##### -->
+<para>
+
+</para>
+
+@smart_data_attribute: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_smart_data_attribute_get_name ##### -->
+<para>
+
+</para>
+
+@smart_data_attribute: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_smart_data_attribute_get_raw ##### -->
+<para>
+
+</para>
+
+@smart_data_attribute: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_smart_data_attribute_get_threshold ##### -->
+<para>
+
+</para>
+
+@smart_data_attribute: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_smart_data_attribute_get_value ##### -->
+<para>
+
+</para>
+
+@smart_data_attribute: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_smart_data_attribute_get_worst ##### -->
+<para>
+
+</para>
+
+@smart_data_attribute: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_smart_data_attribute_is_failing ##### -->
+<para>
+
+</para>
+
+@smart_data_attribute: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_smart_data_attribute_is_warning ##### -->
+<para>
+
+</para>
+
+@smart_data_attribute: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_smart_data_get_attribute ##### -->
+<para>
+
+</para>
+
+@smart_data: 
+@id: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_smart_data_get_attribute_failing ##### -->
+<para>
+
+</para>
+
+@smart_data: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_smart_data_get_attribute_warning ##### -->
+<para>
+
+</para>
+
+@smart_data: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_smart_data_get_attributes ##### -->
+<para>
+
+</para>
+
+@smart_data: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_smart_data_get_is_failing ##### -->
+<para>
+
+</para>
+
+@smart_data: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_smart_data_get_last_self_test_result ##### -->
+<para>
+
+</para>
+
+@smart_data: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_smart_data_get_temperature ##### -->
+<para>
+
+</para>
+
+@smart_data: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_smart_data_get_time_collected ##### -->
+<para>
+
+</para>
+
+@smart_data: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_smart_data_get_time_powered_on ##### -->
+<para>
+
+</para>
+
+@smart_data: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_util_secure_erase_get_description ##### -->
+<para>
+
+</para>
+
+@secure_erase_type: 
 @Returns: 
 

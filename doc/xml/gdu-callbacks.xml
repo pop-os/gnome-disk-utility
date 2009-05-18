@@ -60,11 +60,11 @@
                                                         (<link linkend="GduDevice">GduDevice</link> *device,
                                                          <link linkend="GError">GError</link> *error,
                                                          <link linkend="gpointer">gpointer</link> user_data);
-<link linkend="void">void</link>                (<link linkend="GduDeviceDriveSmartInitiateSelftestCompletedFunc">*GduDeviceDriveSmartInitiateSelftestCompletedFunc</link>)
+<link linkend="void">void</link>                (<link linkend="GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc">*GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc</link>)
                                                         (<link linkend="GduDevice">GduDevice</link> *device,
                                                          <link linkend="GError">GError</link> *error,
                                                          <link linkend="gpointer">gpointer</link> user_data);
-<link linkend="void">void</link>                (<link linkend="GduDeviceDriveSmartRefreshDataCompletedFunc">*GduDeviceDriveSmartRefreshDataCompletedFunc</link>)
+<link linkend="void">void</link>                (<link linkend="GduDeviceDriveAtaSmartRefreshDataCompletedFunc">*GduDeviceDriveAtaSmartRefreshDataCompletedFunc</link>)
                                                         (<link linkend="GduDevice">GduDevice</link> *device,
                                                          <link linkend="GError">GError</link> *error,
                                                          <link linkend="gpointer">gpointer</link> user_data);
@@ -92,14 +92,10 @@
 <link linkend="void">void</link>                (<link linkend="GduDeviceCancelJobCompletedFunc">*GduDeviceCancelJobCompletedFunc</link>)  (<link linkend="GduDevice">GduDevice</link> *device,
                                                          <link linkend="GError">GError</link> *error,
                                                          <link linkend="gpointer">gpointer</link> user_data);
-<link linkend="void">void</link>                (<link linkend="GduDeviceDriveSmartGetHistoricalDataCompletedFunc">*GduDeviceDriveSmartGetHistoricalDataCompletedFunc</link>)
+<link linkend="void">void</link>                (<link linkend="GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc">*GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc</link>)
                                                         (<link linkend="GduDevice">GduDevice</link> *device,
                                                          <link linkend="GList">GList</link> *smart_data,
                                                          <link linkend="GError">GError</link> *error,
-                                                         <link linkend="gpointer">gpointer</link> user_data);
-<link linkend="void">void</link>                <link linkend="gdu-device-drive-smart-get-historical-data">gdu_device_drive_smart_get_historical_data</link>
-                                                        (<link linkend="GduDevice">GduDevice</link> *device,
-                                                         <link linkend="GduDeviceDriveSmartGetHistoricalDataCompletedFunc">GduDeviceDriveSmartGetHistoricalDataCompletedFunc</link> callback,
                                                          <link linkend="gpointer">gpointer</link> user_data);
 <link linkend="void">void</link>                (<link linkend="GduDeviceFilesystemListOpenFilesCompletedFunc">*GduDeviceFilesystemListOpenFilesCompletedFunc</link>)
                                                         (<link linkend="GduDevice">GduDevice</link> *device,
@@ -109,8 +105,19 @@
 <link linkend="void">void</link>                (<link linkend="GduDeviceDriveEjectCompletedFunc">*GduDeviceDriveEjectCompletedFunc</link>) (<link linkend="GduDevice">GduDevice</link> *device,
                                                          <link linkend="GError">GError</link> *error,
                                                          <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduDeviceDrivePollMediaCompletedFunc">*GduDeviceDrivePollMediaCompletedFunc</link>)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
 <link linkend="void">void</link>                (<link linkend="GduPoolLinuxMdStartCompletedFunc">*GduPoolLinuxMdStartCompletedFunc</link>) (<link linkend="GduPool">GduPool</link> *pool,
                                                          <link linkend="char">char</link> *assembled_array_object_path,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduDriveActivateFunc">*GduDriveActivateFunc</link>)             (<link linkend="GduDrive">GduDrive</link> *drive,
+                                                         <link linkend="char">char</link> *assembled_drive_object_path,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduDriveDeactivateFunc">*GduDriveDeactivateFunc</link>)           (<link linkend="GduDrive">GduDrive</link> *drive,
                                                          <link linkend="GError">GError</link> *error,
                                                          <link linkend="gpointer">gpointer</link> user_data);
 </synopsis>
@@ -324,9 +331,9 @@ Various callback function signatures.</para>
 <listitem><simpara>
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GduDeviceDriveSmartInitiateSelftestCompletedFunc" role="function">
-<title>GduDeviceDriveSmartInitiateSelftestCompletedFunc ()</title>
-<indexterm zone="GduDeviceDriveSmartInitiateSelftestCompletedFunc"><primary sortas="GduDeviceDriveSmartInitiateSelftestCompletedFunc">GduDeviceDriveSmartInitiateSelftestCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceDriveSmartInitiateSelftestCompletedFunc)
+<refsect2 id="GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc" role="function">
+<title>GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc ()</title>
+<indexterm zone="GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc"><primary sortas="GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc">GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc)
                                                         (<link linkend="GduDevice">GduDevice</link> *device,
                                                          <link linkend="GError">GError</link> *error,
                                                          <link linkend="gpointer">gpointer</link> user_data);</programlisting>
@@ -342,9 +349,9 @@ Various callback function signatures.</para>
 <listitem><simpara>
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GduDeviceDriveSmartRefreshDataCompletedFunc" role="function">
-<title>GduDeviceDriveSmartRefreshDataCompletedFunc ()</title>
-<indexterm zone="GduDeviceDriveSmartRefreshDataCompletedFunc"><primary sortas="GduDeviceDriveSmartRefreshDataCompletedFunc">GduDeviceDriveSmartRefreshDataCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceDriveSmartRefreshDataCompletedFunc)
+<refsect2 id="GduDeviceDriveAtaSmartRefreshDataCompletedFunc" role="function">
+<title>GduDeviceDriveAtaSmartRefreshDataCompletedFunc ()</title>
+<indexterm zone="GduDeviceDriveAtaSmartRefreshDataCompletedFunc"><primary sortas="GduDeviceDriveAtaSmartRefreshDataCompletedFunc">GduDeviceDriveAtaSmartRefreshDataCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceDriveAtaSmartRefreshDataCompletedFunc)
                                                         (<link linkend="GduDevice">GduDevice</link> *device,
                                                          <link linkend="GError">GError</link> *error,
                                                          <link linkend="gpointer">gpointer</link> user_data);</programlisting>
@@ -471,9 +478,9 @@ Various callback function signatures.</para>
 <listitem><simpara>
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GduDeviceDriveSmartGetHistoricalDataCompletedFunc" role="function">
-<title>GduDeviceDriveSmartGetHistoricalDataCompletedFunc ()</title>
-<indexterm zone="GduDeviceDriveSmartGetHistoricalDataCompletedFunc"><primary sortas="GduDeviceDriveSmartGetHistoricalDataCompletedFunc">GduDeviceDriveSmartGetHistoricalDataCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceDriveSmartGetHistoricalDataCompletedFunc)
+<refsect2 id="GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc" role="function">
+<title>GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc ()</title>
+<indexterm zone="GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc"><primary sortas="GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc">GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc)
                                                         (<link linkend="GduDevice">GduDevice</link> *device,
                                                          <link linkend="GList">GList</link> *smart_data,
                                                          <link linkend="GError">GError</link> *error,
@@ -487,24 +494,6 @@ Various callback function signatures.</para>
 <listitem><simpara>
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>error</parameter>&#160;:</term>
-<listitem><simpara>
-</simpara></listitem></varlistentry>
-<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
-<listitem><simpara>
-</simpara></listitem></varlistentry>
-</variablelist></refsect2>
-<refsect2 id="gdu-device-drive-smart-get-historical-data" role="function">
-<title>gdu_device_drive_smart_get_historical_data ()</title>
-<indexterm zone="gdu-device-drive-smart-get-historical-data"><primary sortas="gdu_device_drive_smart_get_historical_data">gdu_device_drive_smart_get_historical_data</primary></indexterm><programlisting><link linkend="void">void</link>                gdu_device_drive_smart_get_historical_data
-                                                        (<link linkend="GduDevice">GduDevice</link> *device,
-                                                         <link linkend="GduDeviceDriveSmartGetHistoricalDataCompletedFunc">GduDeviceDriveSmartGetHistoricalDataCompletedFunc</link> callback,
-                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
-<para>
-</para><variablelist role="params">
-<varlistentry><term><parameter>device</parameter>&#160;:</term>
-<listitem><simpara>
-</simpara></listitem></varlistentry>
-<varlistentry><term><parameter>callback</parameter>&#160;:</term>
 <listitem><simpara>
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>user_data</parameter>&#160;:</term>
@@ -550,6 +539,24 @@ Various callback function signatures.</para>
 <listitem><simpara>
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
+<refsect2 id="GduDeviceDrivePollMediaCompletedFunc" role="function">
+<title>GduDeviceDrivePollMediaCompletedFunc ()</title>
+<indexterm zone="GduDeviceDrivePollMediaCompletedFunc"><primary sortas="GduDeviceDrivePollMediaCompletedFunc">GduDeviceDrivePollMediaCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceDrivePollMediaCompletedFunc)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
 <refsect2 id="GduPoolLinuxMdStartCompletedFunc" role="function">
 <title>GduPoolLinuxMdStartCompletedFunc ()</title>
 <indexterm zone="GduPoolLinuxMdStartCompletedFunc"><primary sortas="GduPoolLinuxMdStartCompletedFunc">GduPoolLinuxMdStartCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduPoolLinuxMdStartCompletedFunc) (<link linkend="GduPool">GduPool</link> *pool,
@@ -562,6 +569,44 @@ Various callback function signatures.</para>
 <listitem><simpara>
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>assembled_array_object_path</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduDriveActivateFunc" role="function">
+<title>GduDriveActivateFunc ()</title>
+<indexterm zone="GduDriveActivateFunc"><primary sortas="GduDriveActivateFunc">GduDriveActivateFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDriveActivateFunc)             (<link linkend="GduDrive">GduDrive</link> *drive,
+                                                         <link linkend="char">char</link> *assembled_drive_object_path,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>drive</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>assembled_drive_object_path</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduDriveDeactivateFunc" role="function">
+<title>GduDriveDeactivateFunc ()</title>
+<indexterm zone="GduDriveDeactivateFunc"><primary sortas="GduDriveDeactivateFunc">GduDriveDeactivateFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDriveDeactivateFunc)           (<link linkend="GduDrive">GduDrive</link> *drive,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>drive</parameter>&#160;:</term>
 <listitem><simpara>
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>error</parameter>&#160;:</term>

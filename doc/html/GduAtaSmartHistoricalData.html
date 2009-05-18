@@ -1,0 +1,351 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GduAtaSmartHistoricalData</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<link rel="home" href="index.html" title="Disk Utility Library Reference Manual">
+<link rel="up" href="ref-core.html" title="API Reference">
+<link rel="prev" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">
+<link rel="next" href="gnome-disk-utility-gdu-util.html" title="gdu-util">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-core.html" title="API Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="GduAtaSmartAttribute.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-core.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Disk Utility Library Reference Manual</th>
+<td><a accesskey="n" href="gnome-disk-utility-gdu-util.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#GduAtaSmartHistoricalData.synopsis" class="shortcut">Top</a>
+                 | 
+                <a href="#GduAtaSmartHistoricalData.description" class="shortcut">Description</a>
+                 | 
+                <a href="#GduAtaSmartHistoricalData.object-hierarchy" class="shortcut">Object Hierarchy</a>
+</td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="GduAtaSmartHistoricalData"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="GduAtaSmartHistoricalData.top_of_page"></a>GduAtaSmartHistoricalData</span></h2>
+<p>GduAtaSmartHistoricalData</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="GduAtaSmartHistoricalData.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="GduAtaSmartHistoricalData.html#GduAtaSmartHistoricalDataPrivate" title="GduAtaSmartHistoricalDataPrivate">GduAtaSmartHistoricalDataPrivate</a>;
+                    <a class="link" href="GduAtaSmartHistoricalData.html#GduAtaSmartHistoricalData-struct" title="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</a>;
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a>             <a class="link" href="GduAtaSmartHistoricalData.html#gdu-ata-smart-historical-data-get-time-collected" title="gdu_ata_smart_historical_data_get_time_collected ()">gdu_ata_smart_historical_data_get_time_collected</a>
+                                                        (<a class="link" href="GduAtaSmartHistoricalData.html" title="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</a> *data);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduAtaSmartHistoricalData.html#gdu-ata-smart-historical-data-get-is-failing" title="gdu_ata_smart_historical_data_get_is_failing ()">gdu_ata_smart_historical_data_get_is_failing</a>
+                                                        (<a class="link" href="GduAtaSmartHistoricalData.html" title="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</a> *data);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduAtaSmartHistoricalData.html#gdu-ata-smart-historical-data-get-is-failing-valid" title="gdu_ata_smart_historical_data_get_is_failing_valid ()">gdu_ata_smart_historical_data_get_is_failing_valid</a>
+                                                        (<a class="link" href="GduAtaSmartHistoricalData.html" title="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</a> *data);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduAtaSmartHistoricalData.html#gdu-ata-smart-historical-data-get-has-bad-sectors" title="gdu_ata_smart_historical_data_get_has_bad_sectors ()">gdu_ata_smart_historical_data_get_has_bad_sectors</a>
+                                                        (<a class="link" href="GduAtaSmartHistoricalData.html" title="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</a> *data);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduAtaSmartHistoricalData.html#gdu-ata-smart-historical-data-get-has-bad-attributes" title="gdu_ata_smart_historical_data_get_has_bad_attributes ()">gdu_ata_smart_historical_data_get_has_bad_attributes</a>
+                                                        (<a class="link" href="GduAtaSmartHistoricalData.html" title="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</a> *data);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>             <a class="link" href="GduAtaSmartHistoricalData.html#gdu-ata-smart-historical-data-get-temperature-kelvin" title="gdu_ata_smart_historical_data_get_temperature_kelvin ()">gdu_ata_smart_historical_data_get_temperature_kelvin</a>
+                                                        (<a class="link" href="GduAtaSmartHistoricalData.html" title="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</a> *data);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a>             <a class="link" href="GduAtaSmartHistoricalData.html#gdu-ata-smart-historical-data-get-power-on-seconds" title="gdu_ata_smart_historical_data_get_power_on_seconds ()">gdu_ata_smart_historical_data_get_power_on_seconds</a>
+                                                        (<a class="link" href="GduAtaSmartHistoricalData.html" title="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</a> *data);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
+>GList</a> *             <a class="link" href="GduAtaSmartHistoricalData.html#gdu-ata-smart-historical-data-get-attributes" title="gdu_ata_smart_historical_data_get_attributes ()">gdu_ata_smart_historical_data_get_attributes</a>
+                                                        (<a class="link" href="GduAtaSmartHistoricalData.html" title="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</a> *data);
+<a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> * <a class="link" href="GduAtaSmartHistoricalData.html#gdu-ata-smart-historical-data-get-attribute" title="gdu_ata_smart_historical_data_get_attribute ()">gdu_ata_smart_historical_data_get_attribute</a>
+                                                        (<a class="link" href="GduAtaSmartHistoricalData.html" title="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</a> *data,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *attr_name);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GduAtaSmartHistoricalData.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----GduAtaSmartHistoricalData
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="GduAtaSmartHistoricalData.description"></a><h2>Description</h2>
+<p>
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="GduAtaSmartHistoricalData.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="GduAtaSmartHistoricalDataPrivate"></a><h3>GduAtaSmartHistoricalDataPrivate</h3>
+<pre class="programlisting">typedef struct _GduAtaSmartHistoricalDataPrivate GduAtaSmartHistoricalDataPrivate;</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GduAtaSmartHistoricalData-struct"></a><h3>GduAtaSmartHistoricalData</h3>
+<pre class="programlisting">typedef struct _GduAtaSmartHistoricalData GduAtaSmartHistoricalData;</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-ata-smart-historical-data-get-time-collected"></a><h3>gdu_ata_smart_historical_data_get_time_collected ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a>             gdu_ata_smart_historical_data_get_time_collected
+                                                        (<a class="link" href="GduAtaSmartHistoricalData.html" title="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</a> *data);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-ata-smart-historical-data-get-is-failing"></a><h3>gdu_ata_smart_historical_data_get_is_failing ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_ata_smart_historical_data_get_is_failing
+                                                        (<a class="link" href="GduAtaSmartHistoricalData.html" title="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</a> *data);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-ata-smart-historical-data-get-is-failing-valid"></a><h3>gdu_ata_smart_historical_data_get_is_failing_valid ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_ata_smart_historical_data_get_is_failing_valid
+                                                        (<a class="link" href="GduAtaSmartHistoricalData.html" title="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</a> *data);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-ata-smart-historical-data-get-has-bad-sectors"></a><h3>gdu_ata_smart_historical_data_get_has_bad_sectors ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_ata_smart_historical_data_get_has_bad_sectors
+                                                        (<a class="link" href="GduAtaSmartHistoricalData.html" title="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</a> *data);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-ata-smart-historical-data-get-has-bad-attributes"></a><h3>gdu_ata_smart_historical_data_get_has_bad_attributes ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_ata_smart_historical_data_get_has_bad_attributes
+                                                        (<a class="link" href="GduAtaSmartHistoricalData.html" title="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</a> *data);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-ata-smart-historical-data-get-temperature-kelvin"></a><h3>gdu_ata_smart_historical_data_get_temperature_kelvin ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>             gdu_ata_smart_historical_data_get_temperature_kelvin
+                                                        (<a class="link" href="GduAtaSmartHistoricalData.html" title="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</a> *data);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-ata-smart-historical-data-get-power-on-seconds"></a><h3>gdu_ata_smart_historical_data_get_power_on_seconds ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a>             gdu_ata_smart_historical_data_get_power_on_seconds
+                                                        (<a class="link" href="GduAtaSmartHistoricalData.html" title="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</a> *data);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-ata-smart-historical-data-get-attributes"></a><h3>gdu_ata_smart_historical_data_get_attributes ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
+>GList</a> *             gdu_ata_smart_historical_data_get_attributes
+                                                        (<a class="link" href="GduAtaSmartHistoricalData.html" title="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</a> *data);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="gdu-ata-smart-historical-data-get-attribute"></a><h3>gdu_ata_smart_historical_data_get_attribute ()</h3>
+<pre class="programlisting"><a class="link" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">GduAtaSmartAttribute</a> * gdu_ata_smart_historical_data_get_attribute
+                                                        (<a class="link" href="GduAtaSmartHistoricalData.html" title="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</a> *data,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *attr_name);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attr_name</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.11</div>
+</body>
+</html>

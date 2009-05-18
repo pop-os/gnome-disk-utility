@@ -56,15 +56,6 @@ gdu-util
 @Returns: 
 
 
-<!-- ##### FUNCTION gdu_util_secure_erase_get_description ##### -->
-<para>
-
-</para>
-
-@secure_erase_type: 
-@Returns: 
-
-
 <!-- ##### FUNCTION gdu_util_get_speed_for_display ##### -->
 <para>
 
@@ -100,15 +91,6 @@ gdu-util
 </para>
 
 @job_id: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gdu_get_task_description ##### -->
-<para>
-
-</para>
-
-@task_id: 
 @Returns: 
 
 

@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Callbacks</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.74.2">
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
 <link rel="home" href="index.html" title="Disk Utility Library Reference Manual">
 <link rel="up" href="ref-core.html" title="API Reference">
 <link rel="prev" href="gnome-disk-utility-gdu-util.html" title="gdu-util">
@@ -121,7 +121,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveSmartInitiateSelftestCompletedFunc" title="GduDeviceDriveSmartInitiateSelftestCompletedFunc ()">*GduDeviceDriveSmartInitiateSelftestCompletedFunc</a>)
+void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc" title="GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc ()">*GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc</a>)
                                                         (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
@@ -129,7 +129,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveSmartRefreshDataCompletedFunc" title="GduDeviceDriveSmartRefreshDataCompletedFunc ()">*GduDeviceDriveSmartRefreshDataCompletedFunc</a>)
+void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveAtaSmartRefreshDataCompletedFunc" title="GduDeviceDriveAtaSmartRefreshDataCompletedFunc ()">*GduDeviceDriveAtaSmartRefreshDataCompletedFunc</a>)
                                                         (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
@@ -185,7 +185,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveSmartGetHistoricalDataCompletedFunc" title="GduDeviceDriveSmartGetHistoricalDataCompletedFunc ()">*GduDeviceDriveSmartGetHistoricalDataCompletedFunc</a>)
+void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc" title="GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc ()">*GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc</a>)
                                                         (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
@@ -193,12 +193,6 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                <a class="link" href="gnome-disk-utility-gdu-callbacks.html#gdu-device-drive-smart-get-historical-data" title="gdu_device_drive_smart_get_historical_data ()">gdu_device_drive_smart_get_historical_data</a>
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveSmartGetHistoricalDataCompletedFunc" title="GduDeviceDriveSmartGetHistoricalDataCompletedFunc ()">GduDeviceDriveSmartGetHistoricalDataCompletedFunc</a> callback,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);
@@ -220,8 +214,31 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
 >gpointer</a> user_data);
+void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDrivePollMediaCompletedFunc" title="GduDeviceDrivePollMediaCompletedFunc ()">*GduDeviceDrivePollMediaCompletedFunc</a>)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> *error,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
 void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxMdStartCompletedFunc" title="GduPoolLinuxMdStartCompletedFunc ()">*GduPoolLinuxMdStartCompletedFunc</a>) (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
                                                          char *assembled_array_object_path,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> *error,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
+void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDriveActivateFunc" title="GduDriveActivateFunc ()">*GduDriveActivateFunc</a>)             (<a class="link" href="GduDrive.html" title="GduDrive">GduDrive</a> *drive,
+                                                         char *assembled_drive_object_path,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> *error,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
+void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDriveDeactivateFunc" title="GduDriveDeactivateFunc ()">*GduDriveDeactivateFunc</a>)           (<a class="link" href="GduDrive.html" title="GduDrive">GduDrive</a> *drive,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
 >GError</a> *error,
@@ -598,8 +615,8 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GduDeviceDriveSmartInitiateSelftestCompletedFunc"></a><h3>GduDeviceDriveSmartInitiateSelftestCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduDeviceDriveSmartInitiateSelftestCompletedFunc)
+<a name="GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc"></a><h3>GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc ()</h3>
+<pre class="programlisting">void                (*GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc)
                                                         (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
@@ -632,8 +649,8 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GduDeviceDriveSmartRefreshDataCompletedFunc"></a><h3>GduDeviceDriveSmartRefreshDataCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduDeviceDriveSmartRefreshDataCompletedFunc)
+<a name="GduDeviceDriveAtaSmartRefreshDataCompletedFunc"></a><h3>GduDeviceDriveAtaSmartRefreshDataCompletedFunc ()</h3>
+<pre class="programlisting">void                (*GduDeviceDriveAtaSmartRefreshDataCompletedFunc)
                                                         (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
@@ -875,8 +892,8 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="GduDeviceDriveSmartGetHistoricalDataCompletedFunc"></a><h3>GduDeviceDriveSmartGetHistoricalDataCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduDeviceDriveSmartGetHistoricalDataCompletedFunc)
+<a name="GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc"></a><h3>GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc ()</h3>
+<pre class="programlisting">void                (*GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc)
                                                         (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
                                                          <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
@@ -904,38 +921,6 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
-<td>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2" lang="en">
-<a name="gdu-device-drive-smart-get-historical-data"></a><h3>gdu_device_drive_smart_get_historical_data ()</h3>
-<pre class="programlisting">void                gdu_device_drive_smart_get_historical_data
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveSmartGetHistoricalDataCompletedFunc" title="GduDeviceDriveSmartGetHistoricalDataCompletedFunc ()">GduDeviceDriveSmartGetHistoricalDataCompletedFunc</a> callback,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
-<p>
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
-<td>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
 <td>
 </td>
 </tr>
@@ -1024,6 +1009,40 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 </div>
 <hr>
 <div class="refsect2" lang="en">
+<a name="GduDeviceDrivePollMediaCompletedFunc"></a><h3>GduDeviceDrivePollMediaCompletedFunc ()</h3>
+<pre class="programlisting">void                (*GduDeviceDrivePollMediaCompletedFunc)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> *error,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>device</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
 <a name="GduPoolLinuxMdStartCompletedFunc"></a><h3>GduPoolLinuxMdStartCompletedFunc ()</h3>
 <pre class="programlisting">void                (*GduPoolLinuxMdStartCompletedFunc) (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
                                                          char *assembled_array_object_path,
@@ -1045,6 +1064,78 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>assembled_array_object_path</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GduDriveActivateFunc"></a><h3>GduDriveActivateFunc ()</h3>
+<pre class="programlisting">void                (*GduDriveActivateFunc)             (<a class="link" href="GduDrive.html" title="GduDrive">GduDrive</a> *drive,
+                                                         char *assembled_drive_object_path,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> *error,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>drive</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>assembled_drive_object_path</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="GduDriveDeactivateFunc"></a><h3>GduDriveDeactivateFunc ()</h3>
+<pre class="programlisting">void                (*GduDriveDeactivateFunc)           (<a class="link" href="GduDrive.html" title="GduDrive">GduDrive</a> *drive,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> *error,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>drive</code></em> :</span></p></td>
 <td>
 </td>
 </tr>

@@ -120,7 +120,7 @@ gdu-callbacks
 @user_data: 
 
 
-<!-- ##### USER_FUNCTION GduDeviceDriveSmartInitiateSelftestCompletedFunc ##### -->
+<!-- ##### USER_FUNCTION GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc ##### -->
 <para>
 
 </para>
@@ -130,7 +130,7 @@ gdu-callbacks
 @user_data: 
 
 
-<!-- ##### USER_FUNCTION GduDeviceDriveSmartRefreshDataCompletedFunc ##### -->
+<!-- ##### USER_FUNCTION GduDeviceDriveAtaSmartRefreshDataCompletedFunc ##### -->
 <para>
 
 </para>
@@ -201,7 +201,7 @@ gdu-callbacks
 @user_data: 
 
 
-<!-- ##### USER_FUNCTION GduDeviceDriveSmartGetHistoricalDataCompletedFunc ##### -->
+<!-- ##### USER_FUNCTION GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc ##### -->
 <para>
 
 </para>
@@ -209,16 +209,6 @@ gdu-callbacks
 @device: 
 @smart_data: 
 @error: 
-@user_data: 
-
-
-<!-- ##### FUNCTION gdu_device_drive_smart_get_historical_data ##### -->
-<para>
-
-</para>
-
-@device: 
-@callback: 
 @user_data: 
 
 
@@ -243,6 +233,16 @@ gdu-callbacks
 @user_data: 
 
 
+<!-- ##### USER_FUNCTION GduDeviceDrivePollMediaCompletedFunc ##### -->
+<para>
+
+</para>
+
+@device: 
+@error: 
+@user_data: 
+
+
 <!-- ##### USER_FUNCTION GduPoolLinuxMdStartCompletedFunc ##### -->
 <para>
 
@@ -250,6 +250,27 @@ gdu-callbacks
 
 @pool: 
 @assembled_array_object_path: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduDriveActivateFunc ##### -->
+<para>
+
+</para>
+
+@drive: 
+@assembled_drive_object_path: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduDriveDeactivateFunc ##### -->
+<para>
+
+</para>
+
+@drive: 
 @error: 
 @user_data: 
 

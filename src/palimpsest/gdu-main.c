@@ -22,59 +22,180 @@
 #include <config.h>
 #include <glib-object.h>
 #include <string.h>
+#include <stdlib.h>
 #include <glib/gi18n.h>
 #include <polkit-gnome/polkit-gnome.h>
+#include <unique/unique.h>
 
 #include "gdu-shell.h"
 
 static gboolean
-show_nag_dialog (GtkWidget *toplevel)
+show_volume (GduShell   *shell,
+             const char *device_file)
 {
-        GtkWidget *dialog;
-        gint response;
-        gboolean ret;
+        GduPool *pool;
+        GduDevice *device;
+        GduPresentable *presentable;
 
-        ret = TRUE;
+        presentable = NULL;
+        pool = gdu_shell_get_pool (shell);
+        device = gdu_pool_get_by_device_file (pool, device_file);
+        if (device) {
+                presentable = gdu_pool_get_volume_by_device (pool, device);
+                g_object_unref (device);
+        }
+        if (presentable) {
+                gdu_shell_select_presentable (shell, presentable);
+                g_object_unref (presentable);
+                return TRUE;
+        }
 
-        dialog = gtk_message_dialog_new_with_markup (GTK_WINDOW (toplevel),
-                                                     GTK_DIALOG_MODAL,
-                                                     GTK_MESSAGE_WARNING,
-                                                     GTK_BUTTONS_OK,
-                                                     _("<b><big>WARNING WARNING WARNING</big></b>"));
-        gtk_message_dialog_format_secondary_markup (GTK_MESSAGE_DIALOG (dialog),
-                                                    _("The Palimpsest Disk Utility is still under development and "
-                                                      "may still have bugs that can lead to data loss.\n"
-                                                      "\n"
-                                                      "Use at your own risk."));
-        response = gtk_dialog_run (GTK_DIALOG (dialog));
-
-        if (response != GTK_RESPONSE_OK)
-                ret = FALSE;
-
-        gtk_widget_destroy (dialog);
-
-        return ret;
+        return FALSE;
 }
+
+static gboolean
+show_drive (GduShell   *shell,
+            const char *device_file)
+{
+        GduPool *pool;
+        GduDevice *device;
+        GduPresentable *presentable;
+
+        presentable = NULL;
+        pool = gdu_shell_get_pool (shell);
+        device = gdu_pool_get_by_device_file (pool, device_file);
+        if (device) {
+                presentable = gdu_pool_get_drive_by_device (pool, device);
+                g_object_unref (device);
+        }
+        if (presentable) {
+                gdu_shell_select_presentable (shell, presentable);
+                g_object_unref (presentable);
+                return TRUE;
+        }
+
+        return FALSE;
+}
+
+enum {
+        CMD_PRESENT_WINDOW = 1,
+        CMD_SHOW_VOLUME,
+        CMD_SHOW_DRIVE
+};
+
+static UniqueResponse
+message_received (UniqueApp         *app,
+                  gint               command,
+                  UniqueMessageData *message_data,
+                  guint              timestamp,
+                  GduShell          *shell)
+{
+        gchar *data;
+
+        switch (command) {
+        case CMD_PRESENT_WINDOW:
+                gtk_window_present (GTK_WINDOW (gdu_shell_get_toplevel (shell)));
+                return UNIQUE_RESPONSE_OK;
+        case CMD_SHOW_VOLUME:
+                gtk_window_present (GTK_WINDOW (gdu_shell_get_toplevel (shell)));
+                data = unique_message_data_get_text (message_data);
+                if (show_volume (shell, data))
+                        return UNIQUE_RESPONSE_OK;
+                else
+                        return UNIQUE_RESPONSE_FAIL;
+        case CMD_SHOW_DRIVE:
+                gtk_window_present (GTK_WINDOW (gdu_shell_get_toplevel (shell)));
+                data = unique_message_data_get_text (message_data);
+                if (show_drive (shell, data))
+                        return UNIQUE_RESPONSE_OK;
+                else
+                        return UNIQUE_RESPONSE_FAIL;
+        default:
+                return UNIQUE_RESPONSE_PASSTHROUGH;
+        }
+}
+
+const char *volume_to_show = NULL;
+const char *drive_to_show = NULL;
+
+static GOptionEntry entries[] = {
+        { "show-volume", 0, 0, G_OPTION_ARG_FILENAME, &volume_to_show, N_("Volume to show"), N_("DEVICE") },
+        { "show-drive", 0, 0, G_OPTION_ARG_FILENAME, &drive_to_show, N_("Drive to show"), N_("DEVICE") },
+        { NULL }
+};
 
 int
 main (int argc, char **argv)
 {
+        gint ret;
         GduShell *shell;
+        UniqueApp *unique_app;
+        UniqueMessageData *msg_data;
+        UniqueResponse response;
+        GError *error;
 
-        gtk_init (&argc, &argv);
+        ret = 1;
+
+        error = NULL;
+        if (!gtk_init_with_args (&argc, &argv, "", entries, GETTEXT_PACKAGE, &error)) {
+                g_error ("%s", error->message);
+                exit (1);
+        }
+
+        bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
+        bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+        textdomain (GETTEXT_PACKAGE);
 
         gtk_window_set_default_icon_name ("palimpsest");
 
+        unique_app = unique_app_new_with_commands ("org.gnome.Palimpsest",
+                                                   NULL,
+                                                   "present_window", CMD_PRESENT_WINDOW,
+                                                   "show_volume", CMD_SHOW_VOLUME,
+                                                   "show_drive", CMD_SHOW_DRIVE,
+                                                   NULL);
+
+        if (unique_app_is_running (unique_app)) {
+                msg_data = unique_message_data_new ();
+                if (volume_to_show) {
+                        unique_message_data_set_text (msg_data, volume_to_show, -1);
+                        response = unique_app_send_message (unique_app, CMD_SHOW_VOLUME, msg_data);
+                }
+                else if (drive_to_show) {
+                        unique_message_data_set_text (msg_data, drive_to_show, -1);
+                        response = unique_app_send_message (unique_app, CMD_SHOW_DRIVE, msg_data);
+                }
+                else {
+                        response = unique_app_send_message (unique_app, CMD_PRESENT_WINDOW, NULL);
+                }
+                unique_message_data_free (msg_data);
+                if (response == UNIQUE_RESPONSE_OK)
+                        return 0;
+                else
+                        return 1;
+        }
+
         shell = gdu_shell_new ();
+
+        g_signal_connect (unique_app, "message-received",
+                          G_CALLBACK (message_received), shell);
+
         gtk_widget_show_all (gdu_shell_get_toplevel (shell));
         gdu_shell_update (shell);
 
-        if (!show_nag_dialog (gdu_shell_get_toplevel (shell)))
-                goto out;
+        if (volume_to_show) {
+                if (!show_volume (shell, volume_to_show))
+                        goto out;
+        }  else if (drive_to_show) {
+                if (!show_drive (shell, drive_to_show))
+                        goto out;
+        }
 
         gtk_main ();
 
+        ret = 0;
+
  out:
         g_object_unref (shell);
-        return 0;
+        return ret;
 }

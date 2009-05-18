@@ -23,9 +23,15 @@
                     <link linkend="GduDrive-struct">GduDrive</link>;
 <link linkend="gboolean">gboolean</link>            <link linkend="gdu-drive-is-active">gdu_drive_is_active</link>                 (<link linkend="GduDrive">GduDrive</link> *drive);
 <link linkend="gboolean">gboolean</link>            <link linkend="gdu-drive-is-activatable">gdu_drive_is_activatable</link>            (<link linkend="GduDrive">GduDrive</link> *drive);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-drive-can-deactivate">gdu_drive_can_deactivate</link>            (<link linkend="GduDrive">GduDrive</link> *drive);
 <link linkend="gboolean">gboolean</link>            <link linkend="gdu-drive-can-activate">gdu_drive_can_activate</link>              (<link linkend="GduDrive">GduDrive</link> *drive,
                                                          <link linkend="gboolean">gboolean</link> *out_degraded);
-<link linkend="gboolean">gboolean</link>            <link linkend="gdu-drive-can-deactivate">gdu_drive_can_deactivate</link>            (<link linkend="GduDrive">GduDrive</link> *drive);
+<link linkend="void">void</link>                <link linkend="gdu-drive-activate">gdu_drive_activate</link>                  (<link linkend="GduDrive">GduDrive</link> *drive,
+                                                         <link linkend="GduDriveActivateFunc">GduDriveActivateFunc</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                <link linkend="gdu-drive-deactivate">gdu_drive_deactivate</link>                (<link linkend="GduDrive">GduDrive</link> *drive,
+                                                         <link linkend="GduDriveDeactivateFunc">GduDriveDeactivateFunc</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
 </synopsis>
 </refsynopsisdiv>
 
@@ -100,6 +106,17 @@ See the documentation for <link linkend="GduPresentable"><type>GduPresentable</t
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
+<refsect2 id="gdu-drive-can-deactivate" role="function">
+<title>gdu_drive_can_deactivate ()</title>
+<indexterm zone="gdu-drive-can-deactivate"><primary sortas="gdu_drive_can_deactivate">gdu_drive_can_deactivate</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_drive_can_deactivate            (<link linkend="GduDrive">GduDrive</link> *drive);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>drive</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
 <refsect2 id="gdu-drive-can-activate" role="function">
 <title>gdu_drive_can_activate ()</title>
 <indexterm zone="gdu-drive-can-activate"><primary sortas="gdu_drive_can_activate">gdu_drive_can_activate</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_drive_can_activate              (<link linkend="GduDrive">GduDrive</link> *drive,
@@ -120,15 +137,38 @@ component available).</para>
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if <parameter>drive</parameter> can be activated (and <parameter>out_degraded</parameter> will be set), <link linkend="FALSE--CAPS"><literal>FALSE</literal></link> otherwise.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="gdu-drive-can-deactivate" role="function">
-<title>gdu_drive_can_deactivate ()</title>
-<indexterm zone="gdu-drive-can-deactivate"><primary sortas="gdu_drive_can_deactivate">gdu_drive_can_deactivate</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_drive_can_deactivate            (<link linkend="GduDrive">GduDrive</link> *drive);</programlisting>
+<refsect2 id="gdu-drive-activate" role="function">
+<title>gdu_drive_activate ()</title>
+<indexterm zone="gdu-drive-activate"><primary sortas="gdu_drive_activate">gdu_drive_activate</primary></indexterm><programlisting><link linkend="void">void</link>                gdu_drive_activate                  (<link linkend="GduDrive">GduDrive</link> *drive,
+                                                         <link linkend="GduDriveActivateFunc">GduDriveActivateFunc</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>drive</parameter>&#160;:</term>
 <listitem><simpara>
 </simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-drive-deactivate" role="function">
+<title>gdu_drive_deactivate ()</title>
+<indexterm zone="gdu-drive-deactivate"><primary sortas="gdu_drive_deactivate">gdu_drive_deactivate</primary></indexterm><programlisting><link linkend="void">void</link>                gdu_drive_deactivate                (<link linkend="GduDrive">GduDrive</link> *drive,
+                                                         <link linkend="GduDriveDeactivateFunc">GduDriveDeactivateFunc</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>drive</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 

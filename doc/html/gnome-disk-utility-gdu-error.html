@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GduError</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.74.2">
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
 <link rel="home" href="index.html" title="Disk Utility Library Reference Manual">
 <link rel="up" href="ref-core.html" title="API Reference">
 <link rel="prev" href="ref-core.html" title="API Reference">
@@ -72,25 +72,12 @@ Contains helper functions for reporting errors to the user.</p>
 <pre class="programlisting">typedef enum
 {
         GDU_ERROR_FAILED,
-        GDU_ERROR_INHIBITED,
         GDU_ERROR_BUSY,
         GDU_ERROR_CANCELLED,
+        GDU_ERROR_INHIBITED,
         GDU_ERROR_INVALID_OPTION,
-        GDU_ERROR_ALREADY_MOUNTED,
-        GDU_ERROR_NOT_MOUNTED,
-        GDU_ERROR_NOT_CANCELLABLE,
-        GDU_ERROR_NOT_PARTITION,
-        GDU_ERROR_NOT_PARTITION_TABLE,
-        GDU_ERROR_NOT_FILESYSTEM,
-        GDU_ERROR_NOT_LUKS,
-        GDU_ERROR_NOT_LOCKED,
-        GDU_ERROR_NOT_UNLOCKED,
-        GDU_ERROR_NOT_LINUX_MD,
-        GDU_ERROR_NOT_LINUX_MD_COMPONENT,
-        GDU_ERROR_NOT_DRIVE,
-        GDU_ERROR_NOT_SMART_CAPABLE,
         GDU_ERROR_NOT_SUPPORTED,
-        GDU_ERROR_NOT_FOUND,
+        GDU_ERROR_ATA_SMART_WOULD_WAKEUP
 } GduError;
 </pre>
 <p>
@@ -106,11 +93,6 @@ Error codes in the <a class="link" href="gnome-disk-utility-gdu-error.html#GDU-E
 </td>
 </tr>
 <tr>
-<td><p><a name="GDU-ERROR-INHIBITED--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_INHIBITED</code></span></p></td>
-<td> The daemon is being inhibited.
-</td>
-</tr>
-<tr>
 <td><p><a name="GDU-ERROR-BUSY--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_BUSY</code></span></p></td>
 <td> The device is busy
 </td>
@@ -121,73 +103,13 @@ Error codes in the <a class="link" href="gnome-disk-utility-gdu-error.html#GDU-E
 </td>
 </tr>
 <tr>
+<td><p><a name="GDU-ERROR-INHIBITED--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_INHIBITED</code></span></p></td>
+<td> The daemon is being inhibited.
+</td>
+</tr>
+<tr>
 <td><p><a name="GDU-ERROR-INVALID-OPTION--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_INVALID_OPTION</code></span></p></td>
 <td> An invalid option was passed
-</td>
-</tr>
-<tr>
-<td><p><a name="GDU-ERROR-ALREADY-MOUNTED--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_ALREADY_MOUNTED</code></span></p></td>
-<td> Device is already mounted.
-</td>
-</tr>
-<tr>
-<td><p><a name="GDU-ERROR-NOT-MOUNTED--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_NOT_MOUNTED</code></span></p></td>
-<td> Device is not mounted.
-</td>
-</tr>
-<tr>
-<td><p><a name="GDU-ERROR-NOT-CANCELLABLE--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_NOT_CANCELLABLE</code></span></p></td>
-<td> Operation is not cancellable.
-</td>
-</tr>
-<tr>
-<td><p><a name="GDU-ERROR-NOT-PARTITION--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_NOT_PARTITION</code></span></p></td>
-<td> Device is not a partition.
-</td>
-</tr>
-<tr>
-<td><p><a name="GDU-ERROR-NOT-PARTITION-TABLE--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_NOT_PARTITION_TABLE</code></span></p></td>
-<td> Device is not a partition table.
-</td>
-</tr>
-<tr>
-<td><p><a name="GDU-ERROR-NOT-FILESYSTEM--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_NOT_FILESYSTEM</code></span></p></td>
-<td> Device is not a file system.
-</td>
-</tr>
-<tr>
-<td><p><a name="GDU-ERROR-NOT-LUKS--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_NOT_LUKS</code></span></p></td>
-<td> Device is not a LUKS encrypted device.
-</td>
-</tr>
-<tr>
-<td><p><a name="GDU-ERROR-NOT-LOCKED--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_NOT_LOCKED</code></span></p></td>
-<td> Device is not locked.
-</td>
-</tr>
-<tr>
-<td><p><a name="GDU-ERROR-NOT-UNLOCKED--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_NOT_UNLOCKED</code></span></p></td>
-<td> Device is not unlocked.
-</td>
-</tr>
-<tr>
-<td><p><a name="GDU-ERROR-NOT-LINUX-MD--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_NOT_LINUX_MD</code></span></p></td>
-<td> Device is not a Linux md Software RAID device.
-</td>
-</tr>
-<tr>
-<td><p><a name="GDU-ERROR-NOT-LINUX-MD-COMPONENT--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_NOT_LINUX_MD_COMPONENT</code></span></p></td>
-<td> Device is not a Linux md Software RAID component.
-</td>
-</tr>
-<tr>
-<td><p><a name="GDU-ERROR-NOT-DRIVE--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_NOT_DRIVE</code></span></p></td>
-<td> Device is not a drive.
-</td>
-</tr>
-<tr>
-<td><p><a name="GDU-ERROR-NOT-SMART-CAPABLE--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_NOT_SMART_CAPABLE</code></span></p></td>
-<td> Device is not S.M.A.R.T. capable.
 </td>
 </tr>
 <tr>
@@ -196,8 +118,8 @@ Error codes in the <a class="link" href="gnome-disk-utility-gdu-error.html#GDU-E
 </td>
 </tr>
 <tr>
-<td><p><a name="GDU-ERROR-NOT-FOUND--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_NOT_FOUND</code></span></p></td>
-<td> Given device does not exist.
+<td><p><a name="GDU-ERROR-ATA-SMART-WOULD-WAKEUP--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_ATA_SMART_WOULD_WAKEUP</code></span></p></td>
+<td> Getting S.M.A.R.T. data for the device would require to spin it up.
 </td>
 </tr>
 </tbody>

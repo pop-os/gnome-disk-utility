@@ -46,7 +46,6 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
 am_palimpsest_OBJECTS = palimpsest-gdu-main.$(OBJEXT) \
-	palimpsest-gdu-time-label.$(OBJEXT) \
 	palimpsest-gdu-shell.$(OBJEXT) \
 	palimpsest-gdu-section.$(OBJEXT) \
 	palimpsest-gdu-section-health.$(OBJEXT) \
@@ -68,7 +67,7 @@ palimpsest_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
-	$(top_builddir)/src/gdu/libgdu.la \
+	$(am__DEPENDENCIES_1) $(top_builddir)/src/gdu/libgdu.la \
 	$(top_builddir)/src/gdu-gtk/libgdu-gtk.la
 palimpsest_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(palimpsest_CFLAGS) \
@@ -141,6 +140,8 @@ GNOME_KEYRING_LIBS = @GNOME_KEYRING_LIBS@
 GOBJECT2_CFLAGS = @GOBJECT2_CFLAGS@
 GOBJECT2_LIBS = @GOBJECT2_LIBS@
 GREP = @GREP@
+GTHREAD2_CFLAGS = @GTHREAD2_CFLAGS@
+GTHREAD2_LIBS = @GTHREAD2_LIBS@
 GTK2_CFLAGS = @GTK2_CFLAGS@
 GTK2_LIBS = @GTK2_LIBS@
 GTKDOC_CHECK = @GTKDOC_CHECK@
@@ -153,31 +154,14 @@ INSTALL_SCRIPT = @INSTALL_SCRIPT@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
 INSTOBJEXT = @INSTOBJEXT@
 INTLLIBS = @INTLLIBS@
-INTLTOOL_CAVES_RULE = @INTLTOOL_CAVES_RULE@
-INTLTOOL_DESKTOP_RULE = @INTLTOOL_DESKTOP_RULE@
-INTLTOOL_DIRECTORY_RULE = @INTLTOOL_DIRECTORY_RULE@
 INTLTOOL_EXTRACT = @INTLTOOL_EXTRACT@
-INTLTOOL_KBD_RULE = @INTLTOOL_KBD_RULE@
-INTLTOOL_KEYS_RULE = @INTLTOOL_KEYS_RULE@
 INTLTOOL_MERGE = @INTLTOOL_MERGE@
-INTLTOOL_OAF_RULE = @INTLTOOL_OAF_RULE@
 INTLTOOL_PERL = @INTLTOOL_PERL@
-INTLTOOL_POLICY_RULE = @INTLTOOL_POLICY_RULE@
-INTLTOOL_PONG_RULE = @INTLTOOL_PONG_RULE@
-INTLTOOL_PROP_RULE = @INTLTOOL_PROP_RULE@
-INTLTOOL_SCHEMAS_RULE = @INTLTOOL_SCHEMAS_RULE@
-INTLTOOL_SERVER_RULE = @INTLTOOL_SERVER_RULE@
-INTLTOOL_SERVICE_RULE = @INTLTOOL_SERVICE_RULE@
-INTLTOOL_SHEET_RULE = @INTLTOOL_SHEET_RULE@
-INTLTOOL_SOUNDLIST_RULE = @INTLTOOL_SOUNDLIST_RULE@
-INTLTOOL_THEME_RULE = @INTLTOOL_THEME_RULE@
-INTLTOOL_UI_RULE = @INTLTOOL_UI_RULE@
 INTLTOOL_UPDATE = @INTLTOOL_UPDATE@
-INTLTOOL_XAM_RULE = @INTLTOOL_XAM_RULE@
-INTLTOOL_XML_NOMERGE_RULE = @INTLTOOL_XML_NOMERGE_RULE@
-INTLTOOL_XML_RULE = @INTLTOOL_XML_RULE@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
+LIBNOTIFY_CFLAGS = @LIBNOTIFY_CFLAGS@
+LIBNOTIFY_LIBS = @LIBNOTIFY_LIBS@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
 LIBSEXY_CFLAGS = @LIBSEXY_CFLAGS@
@@ -196,6 +180,9 @@ MKINSTALLDIRS = @MKINSTALLDIRS@
 MSGFMT = @MSGFMT@
 MSGFMT_OPTS = @MSGFMT_OPTS@
 MSGMERGE = @MSGMERGE@
+NAUTILUS_CFLAGS = @NAUTILUS_CFLAGS@
+NAUTILUS_EXTENSION_DIR = @NAUTILUS_EXTENSION_DIR@
+NAUTILUS_LIBS = @NAUTILUS_LIBS@
 NM = @NM@
 NMEDIT = @NMEDIT@
 OBJDUMP = @OBJDUMP@
@@ -225,6 +212,8 @@ SED = @SED@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
+UNIQUE_CFLAGS = @UNIQUE_CFLAGS@
+UNIQUE_LIBS = @UNIQUE_LIBS@
 USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 WARN_CFLAGS = @WARN_CFLAGS@
@@ -283,7 +272,6 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 palimpsest_SOURCES = \
 						gdu-main.c				\
-	gdu-time-label.h			gdu-time-label.c			\
 	gdu-shell.h				gdu-shell.c				\
 	gdu-section.h				gdu-section.c				\
 	gdu-section-health.h			gdu-section-health.c			\
@@ -320,6 +308,7 @@ palimpsest_CFLAGS = \
 	$(GNOME_KEYRING_CFLAGS)				\
 	$(GTK2_CFLAGS)					\
 	$(LIBSEXY_CFLAGS)				\
+	$(UNIQUE_CFLAGS)				\
 	$(WARN_CFLAGS)					\
 	$(AM_CFLAGS)
 
@@ -336,6 +325,7 @@ palimpsest_LDADD = \
 	$(GNOME_KEYRING_LIBS)				\
 	$(GTK2_LIBS)					\
 	$(LIBSEXY_LIBS)					\
+	$(UNIQUE_LIBS)					\
 	$(INTLLIBS)					\
 	$(top_builddir)/src/gdu/libgdu.la		\
 	$(top_builddir)/src/gdu-gtk/libgdu-gtk.la
@@ -425,7 +415,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/palimpsest-gdu-section-unrecognized.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/palimpsest-gdu-section.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/palimpsest-gdu-shell.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/palimpsest-gdu-time-label.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/palimpsest-gdu-tree.Po@am__quote@
 
 .c.o:
@@ -462,20 +451,6 @@ palimpsest-gdu-main.obj: gdu-main.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='gdu-main.c' object='palimpsest-gdu-main.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(palimpsest_CPPFLAGS) $(CPPFLAGS) $(palimpsest_CFLAGS) $(CFLAGS) -c -o palimpsest-gdu-main.obj `if test -f 'gdu-main.c'; then $(CYGPATH_W) 'gdu-main.c'; else $(CYGPATH_W) '$(srcdir)/gdu-main.c'; fi`
-
-palimpsest-gdu-time-label.o: gdu-time-label.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(palimpsest_CPPFLAGS) $(CPPFLAGS) $(palimpsest_CFLAGS) $(CFLAGS) -MT palimpsest-gdu-time-label.o -MD -MP -MF $(DEPDIR)/palimpsest-gdu-time-label.Tpo -c -o palimpsest-gdu-time-label.o `test -f 'gdu-time-label.c' || echo '$(srcdir)/'`gdu-time-label.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/palimpsest-gdu-time-label.Tpo $(DEPDIR)/palimpsest-gdu-time-label.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='gdu-time-label.c' object='palimpsest-gdu-time-label.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(palimpsest_CPPFLAGS) $(CPPFLAGS) $(palimpsest_CFLAGS) $(CFLAGS) -c -o palimpsest-gdu-time-label.o `test -f 'gdu-time-label.c' || echo '$(srcdir)/'`gdu-time-label.c
-
-palimpsest-gdu-time-label.obj: gdu-time-label.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(palimpsest_CPPFLAGS) $(CPPFLAGS) $(palimpsest_CFLAGS) $(CFLAGS) -MT palimpsest-gdu-time-label.obj -MD -MP -MF $(DEPDIR)/palimpsest-gdu-time-label.Tpo -c -o palimpsest-gdu-time-label.obj `if test -f 'gdu-time-label.c'; then $(CYGPATH_W) 'gdu-time-label.c'; else $(CYGPATH_W) '$(srcdir)/gdu-time-label.c'; fi`
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/palimpsest-gdu-time-label.Tpo $(DEPDIR)/palimpsest-gdu-time-label.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='gdu-time-label.c' object='palimpsest-gdu-time-label.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(palimpsest_CPPFLAGS) $(CPPFLAGS) $(palimpsest_CFLAGS) $(CFLAGS) -c -o palimpsest-gdu-time-label.obj `if test -f 'gdu-time-label.c'; then $(CYGPATH_W) 'gdu-time-label.c'; else $(CYGPATH_W) '$(srcdir)/gdu-time-label.c'; fi`
 
 palimpsest-gdu-shell.o: gdu-shell.c
 @am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(palimpsest_CPPFLAGS) $(CPPFLAGS) $(palimpsest_CFLAGS) $(CFLAGS) -MT palimpsest-gdu-shell.o -MD -MP -MF $(DEPDIR)/palimpsest-gdu-shell.Tpo -c -o palimpsest-gdu-shell.o `test -f 'gdu-shell.c' || echo '$(srcdir)/'`gdu-shell.c

@@ -31,6 +31,7 @@
 #include "gdu-private.h"
 #include "gdu-pool.h"
 #include "gdu-device.h"
+#include "gdu-ata-smart-attribute.h"
 #include "devkit-disks-device-glue.h"
 
 /* --- SUCKY CODE BEGIN --- */
@@ -45,6 +46,10 @@ typedef struct
 {
         char *native_path;
 
+        guint64  device_detection_time;
+        guint64  device_media_detection_time;
+        gint64   device_major;
+        gint64   device_minor;
         char    *device_file;
         char   **device_file_by_id;
         char   **device_file_by_path;
@@ -54,6 +59,7 @@ typedef struct
         gboolean device_is_removable;
         gboolean device_is_media_available;
         gboolean device_is_media_change_detected;
+        gboolean device_is_media_change_detection_polling;
         gboolean device_is_media_change_detection_inhibitable;
         gboolean device_is_media_change_detection_inhibited;
         gboolean device_is_read_only;
@@ -62,11 +68,11 @@ typedef struct
         gboolean device_is_luks;
         gboolean device_is_luks_cleartext;
         gboolean device_is_mounted;
-        gboolean device_is_busy;
         gboolean device_is_linux_md_component;
         gboolean device_is_linux_md;
-        char    *device_mount_path;
+        char   **device_mount_paths;
         uid_t    device_mounted_by_uid;
+        gboolean device_presentation_hide;
         char    *device_presentation_name;
         char    *device_presentation_icon_name;
         guint64  device_size;
@@ -76,10 +82,7 @@ typedef struct
         char    *job_id;
         uid_t    job_initiated_by_uid;
         gboolean job_is_cancellable;
-        int      job_num_tasks;
-        int      job_cur_task;
-        char    *job_cur_task_id;
-        double   job_cur_task_percentage;
+        double   job_percentage;
 
         char    *id_usage;
         char    *id_type;
@@ -99,9 +102,6 @@ typedef struct
 
         char    *partition_table_scheme;
         int      partition_table_count;
-        int      partition_table_max_number;
-        GArray  *partition_table_offsets;
-        GArray  *partition_table_sizes;
 
         char    *luks_holder;
 
@@ -126,14 +126,26 @@ typedef struct
         guint optical_disc_num_audio_tracks;
         guint optical_disc_num_sessions;
 
-        gboolean               drive_smart_is_capable;
-        gboolean               drive_smart_is_enabled;
-        guint64                drive_smart_time_collected;
-        gboolean               drive_smart_is_failing;
-        double                 drive_smart_temperature;
-        guint64                drive_smart_time_powered_on;
-        char                  *drive_smart_last_self_test_result;
-        GValue                 drive_smart_attributes;
+        gboolean drive_ata_smart_is_available;
+        gboolean drive_ata_smart_is_failing;
+        gboolean drive_ata_smart_is_failing_valid;
+        gboolean drive_ata_smart_has_bad_sectors;
+        gboolean drive_ata_smart_has_bad_attributes;
+        gdouble drive_ata_smart_temperature_kelvin;
+        guint64 drive_ata_smart_power_on_seconds;
+        guint64 drive_ata_smart_time_collected;
+        guint drive_ata_smart_offline_data_collection_status;
+        guint drive_ata_smart_offline_data_collection_seconds;
+        guint drive_ata_smart_self_test_execution_status;
+        guint drive_ata_smart_self_test_execution_percent_remaining;
+        gboolean drive_ata_smart_short_and_extended_self_test_available;
+        gboolean drive_ata_smart_conveyance_self_test_available;
+        gboolean drive_ata_smart_start_self_test_available;
+        gboolean drive_ata_smart_abort_self_test_available;
+        guint drive_ata_smart_short_self_test_polling_minutes;
+        guint drive_ata_smart_extended_self_test_polling_minutes;
+        guint drive_ata_smart_conveyance_self_test_polling_minutes;
+        GValue drive_ata_smart_attributes;
 
         char    *linux_md_component_level;
         int      linux_md_component_num_raid_devices;
@@ -166,6 +178,14 @@ collect_props (const char *key, const GValue *value, DeviceProperties *props)
         if (strcmp (key, "native-path") == 0)
                 props->native_path = g_strdup (g_value_get_string (value));
 
+        else if (strcmp (key, "device-detection-time") == 0)
+                props->device_detection_time = g_value_get_uint64 (value);
+        else if (strcmp (key, "device-media-detection-time") == 0)
+                props->device_media_detection_time = g_value_get_uint64 (value);
+        else if (strcmp (key, "device-major") == 0)
+                props->device_major = g_value_get_int64 (value);
+        else if (strcmp (key, "device-minor") == 0)
+                props->device_minor = g_value_get_int64 (value);
         else if (strcmp (key, "device-file") == 0)
                 props->device_file = g_strdup (g_value_get_string (value));
         else if (strcmp (key, "device-file-by-id") == 0)
@@ -184,6 +204,8 @@ collect_props (const char *key, const GValue *value, DeviceProperties *props)
                 props->device_is_media_available = g_value_get_boolean (value);
         else if (strcmp (key, "device-is-media-change-detected") == 0)
                 props->device_is_media_change_detected = g_value_get_boolean (value);
+        else if (strcmp (key, "device-is-media-change-detection-polling") == 0)
+                props->device_is_media_change_detection_polling = g_value_get_boolean (value);
         else if (strcmp (key, "device-is-media-change-detection-inhibitable") == 0)
                 props->device_is_media_change_detection_inhibitable = g_value_get_boolean (value);
         else if (strcmp (key, "device-is-media-change-detection-inhibited") == 0)
@@ -204,12 +226,12 @@ collect_props (const char *key, const GValue *value, DeviceProperties *props)
                 props->device_is_linux_md = g_value_get_boolean (value);
         else if (strcmp (key, "device-is-mounted") == 0)
                 props->device_is_mounted = g_value_get_boolean (value);
-        else if (strcmp (key, "device-is-busy") == 0)
-                props->device_is_busy = g_value_get_boolean (value);
-        else if (strcmp (key, "device-mount-path") == 0)
-                props->device_mount_path = g_strdup (g_value_get_string (value));
+        else if (strcmp (key, "device-mount-paths") == 0)
+                props->device_mount_paths = g_strdupv (g_value_get_boxed (value));
         else if (strcmp (key, "device-mounted-by-uid") == 0)
                 props->device_mounted_by_uid = g_value_get_uint (value);
+        else if (strcmp (key, "device-presentation-hide") == 0)
+                props->device_presentation_hide = g_value_get_boolean (value);
         else if (strcmp (key, "device-presentation-name") == 0)
                 props->device_presentation_name = g_strdup (g_value_get_string (value));
         else if (strcmp (key, "device-presentation-icon-name") == 0)
@@ -227,14 +249,8 @@ collect_props (const char *key, const GValue *value, DeviceProperties *props)
                 props->job_initiated_by_uid = g_value_get_uint (value);
         else if (strcmp (key, "job-is-cancellable") == 0)
                 props->job_is_cancellable = g_value_get_boolean (value);
-        else if (strcmp (key, "job-num-tasks") == 0)
-                props->job_num_tasks = g_value_get_int (value);
-        else if (strcmp (key, "job-cur-task") == 0)
-                props->job_cur_task = g_value_get_int (value);
-        else if (strcmp (key, "job-cur-task-id") == 0)
-                props->job_cur_task_id = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "job-cur-task-percentage") == 0)
-                props->job_cur_task_percentage = g_value_get_double (value);
+        else if (strcmp (key, "job-percentage") == 0)
+                props->job_percentage = g_value_get_double (value);
 
         else if (strcmp (key, "id-usage") == 0)
                 props->id_usage = g_strdup (g_value_get_string (value));
@@ -270,19 +286,6 @@ collect_props (const char *key, const GValue *value, DeviceProperties *props)
                 props->partition_table_scheme = g_strdup (g_value_get_string (value));
         else if (strcmp (key, "partition-table-count") == 0)
                 props->partition_table_count = g_value_get_int (value);
-        else if (strcmp (key, "partition-table-max-number") == 0)
-                props->partition_table_max_number = g_value_get_int (value);
-        else if (strcmp (key, "partition-table-offsets") == 0) {
-                GValue dest_value = {0,};
-                g_value_init (&dest_value, dbus_g_type_get_collection ("GArray", G_TYPE_UINT64));
-                g_value_copy (value, &dest_value);
-                props->partition_table_offsets = g_value_get_boxed (&dest_value);
-        } else if (strcmp (key, "partition-table-sizes") == 0) {
-                GValue dest_value = {0,};
-                g_value_init (&dest_value, dbus_g_type_get_collection ("GArray", G_TYPE_UINT64));
-                g_value_copy (value, &dest_value);
-                props->partition_table_sizes = g_value_get_boxed (&dest_value);
-        }
 
         else if (strcmp (key, "luks-holder") == 0)
                 props->luks_holder = g_strdup (g_value_get_boxed (value));
@@ -326,22 +329,46 @@ collect_props (const char *key, const GValue *value, DeviceProperties *props)
         else if (strcmp (key, "optical-disc-num-sessions") == 0)
                 props->optical_disc_num_sessions = g_value_get_uint (value);
 
-        else if (strcmp (key, "drive-smart-is-capable") == 0)
-                props->drive_smart_is_capable = g_value_get_boolean (value);
-        else if (strcmp (key, "drive-smart-is-enabled") == 0)
-                props->drive_smart_is_enabled = g_value_get_boolean (value);
-        else if (strcmp (key, "drive-smart-time-collected") == 0)
-                props->drive_smart_time_collected = g_value_get_uint64 (value);
-        else if (strcmp (key, "drive-smart-is-failing") == 0)
-                props->drive_smart_is_failing = g_value_get_boolean (value);
-        else if (strcmp (key, "drive-smart-temperature") == 0)
-                props->drive_smart_temperature = g_value_get_double (value);
-        else if (strcmp (key, "drive-smart-time-powered-on") == 0)
-                props->drive_smart_time_powered_on = g_value_get_uint64 (value);
-        else if (strcmp (key, "drive-smart-last-self-test-result") == 0)
-                props->drive_smart_last_self_test_result = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "drive-smart-attributes") == 0) {
-                g_value_copy (value, &(props->drive_smart_attributes));
+        else if (strcmp (key, "drive-ata-smart-is-available") == 0)
+                props->drive_ata_smart_is_available = g_value_get_boolean (value);
+        else if (strcmp (key, "drive-ata-smart-is-failing") == 0)
+                props->drive_ata_smart_is_failing = g_value_get_boolean (value);
+        else if (strcmp (key, "drive-ata-smart-is-failing-valid") == 0)
+                props->drive_ata_smart_is_failing_valid = g_value_get_boolean (value);
+        else if (strcmp (key, "drive-ata-smart-has-bad-sectors") == 0)
+                props->drive_ata_smart_has_bad_sectors = g_value_get_boolean (value);
+        else if (strcmp (key, "drive-ata-smart-has-bad-attributes") == 0)
+                props->drive_ata_smart_has_bad_attributes = g_value_get_boolean (value);
+        else if (strcmp (key, "drive-ata-smart-temperature-kelvin") == 0)
+                props->drive_ata_smart_temperature_kelvin = g_value_get_double (value);
+        else if (strcmp (key, "drive-ata-smart-power-on-seconds") == 0)
+                props->drive_ata_smart_power_on_seconds = g_value_get_uint64 (value);
+        else if (strcmp (key, "drive-ata-smart-time-collected") == 0)
+                props->drive_ata_smart_time_collected = g_value_get_uint64 (value);
+        else if (strcmp (key, "drive-ata-smart-offline-data-collection-status") == 0)
+                props->drive_ata_smart_offline_data_collection_status = g_value_get_uint (value);
+        else if (strcmp (key, "drive-ata-smart-offline-data-collection-seconds") == 0)
+                props->drive_ata_smart_offline_data_collection_seconds = g_value_get_uint (value);
+        else if (strcmp (key, "drive-ata-smart-self-test-execution-status") == 0)
+                props->drive_ata_smart_self_test_execution_status = g_value_get_uint (value);
+        else if (strcmp (key, "drive-ata-smart-self-test-execution-percent-remaining") == 0)
+                props->drive_ata_smart_self_test_execution_percent_remaining = g_value_get_uint (value);
+        else if (strcmp (key, "drive-ata-smart-short-and-extended-self-test-available") == 0)
+                props->drive_ata_smart_short_and_extended_self_test_available = g_value_get_boolean (value);
+        else if (strcmp (key, "drive-ata-smart-conveyance-self-test-available") == 0)
+                props->drive_ata_smart_conveyance_self_test_available = g_value_get_boolean (value);
+        else if (strcmp (key, "drive-ata-smart-start-self-test-available") == 0)
+                props->drive_ata_smart_start_self_test_available = g_value_get_boolean (value);
+        else if (strcmp (key, "drive-ata-smart-abort-self-test-available") == 0)
+                props->drive_ata_smart_abort_self_test_available = g_value_get_boolean (value);
+        else if (strcmp (key, "drive-ata-smart-short-self-test-polling-minutes") == 0)
+                props->drive_ata_smart_short_self_test_polling_minutes = g_value_get_uint (value);
+        else if (strcmp (key, "drive-ata-smart-extended-self-test-polling-minutes") == 0)
+                props->drive_ata_smart_extended_self_test_polling_minutes = g_value_get_uint (value);
+        else if (strcmp (key, "drive-ata-smart-conveyance-self-test-polling-minutes") == 0)
+                props->drive_ata_smart_conveyance_self_test_polling_minutes = g_value_get_uint (value);
+        else if (strcmp (key, "drive-ata-smart-attributes") == 0) {
+                g_value_copy (value, &(props->drive_ata_smart_attributes));
         }
 
         else if (strcmp (key, "linux-md-component-level") == 0)
@@ -409,27 +436,21 @@ device_properties_free (DeviceProperties *props)
         g_free (props->device_file);
         g_strfreev (props->device_file_by_id);
         g_strfreev (props->device_file_by_path);
-        g_free (props->device_mount_path);
+        g_strfreev (props->device_mount_paths);
         g_free (props->device_presentation_name);
         g_free (props->device_presentation_icon_name);
         g_free (props->job_id);
-        g_free (props->job_cur_task_id);
         g_free (props->id_usage);
         g_free (props->id_type);
         g_free (props->id_version);
         g_free (props->id_uuid);
         g_free (props->id_label);
         g_free (props->partition_slave);
-        g_free (props->partition_scheme);
         g_free (props->partition_type);
         g_free (props->partition_label);
         g_free (props->partition_uuid);
         g_strfreev (props->partition_flags);
         g_free (props->partition_table_scheme);
-        if (props->partition_table_offsets != NULL)
-                g_array_free (props->partition_table_offsets, TRUE);
-        if (props->partition_table_sizes != NULL)
-                g_array_free (props->partition_table_sizes, TRUE);
         g_free (props->luks_holder);
         g_free (props->luks_cleartext_slave);
         g_free (props->drive_model);
@@ -439,8 +460,9 @@ device_properties_free (DeviceProperties *props)
         g_free (props->drive_connection_interface);
         g_strfreev (props->drive_media_compatibility);
         g_free (props->drive_media);
-        g_free (props->drive_smart_last_self_test_result);
-        g_value_unset (&(props->drive_smart_attributes));
+
+        g_value_unset (&(props->drive_ata_smart_attributes));
+
         g_free (props->linux_md_component_level);
         g_free (props->linux_md_component_uuid);
         g_free (props->linux_md_component_home_host);
@@ -471,8 +493,8 @@ device_properties_get (DBusGConnection *bus,
         const char *ifname = "org.freedesktop.DeviceKit.Disks.Device";
 
         props = g_new0 (DeviceProperties, 1);
-        g_value_init (&(props->drive_smart_attributes),
-                      dbus_g_type_get_collection ("GPtrArray", SMART_DATA_STRUCT_TYPE));
+        g_value_init (&(props->drive_ata_smart_attributes),
+                      dbus_g_type_get_collection ("GPtrArray", ATA_SMART_ATTRIBUTE_STRUCT_TYPE));
 
 	prop_proxy = dbus_g_proxy_new_for_name (bus,
                                                 "org.freedesktop.DeviceKit.Disks",
@@ -645,7 +667,7 @@ _gdu_device_new_from_object_path (GduPool *pool, const char *object_path)
         if (!update_info (device))
                 goto error;
 
-        g_print ("%s: %s\n", __FUNCTION__, device->priv->props->device_file);
+        g_debug ("_gdu_device_new_from_object_path: %s", device->priv->props->device_file);
 
         return device;
 error:
@@ -656,7 +678,7 @@ error:
 gboolean
 _gdu_device_changed (GduDevice *device)
 {
-        g_print ("%s: %s\n", __FUNCTION__, device->priv->props->device_file);
+        g_debug ("_gdu_device_changed: %s", device->priv->props->device_file);
         if (update_info (device)) {
                 g_signal_emit (device, signals[CHANGED], 0);
                 return TRUE;
@@ -671,23 +693,16 @@ _gdu_device_job_changed (GduDevice   *device,
                          const char  *job_id,
                          uid_t        job_initiated_by_uid,
                          gboolean     job_is_cancellable,
-                         int          job_num_tasks,
-                         int          job_cur_task,
-                         const char  *job_cur_task_id,
-                         double       job_cur_task_percentage)
+                         double       job_percentage)
 {
-        g_print ("%s: %s: %s\n", __FUNCTION__, device->priv->props->device_file, job_id);
+        g_debug ("_gdu_device_job_changed: %s: %s", device->priv->props->device_file, job_id);
 
         device->priv->props->job_in_progress = job_in_progress;
         g_free (device->priv->props->job_id);
         device->priv->props->job_id = g_strdup (job_id);
         device->priv->props->job_initiated_by_uid = job_initiated_by_uid;
         device->priv->props->job_is_cancellable = job_is_cancellable;
-        device->priv->props->job_num_tasks = job_num_tasks;
-        device->priv->props->job_cur_task = job_cur_task;
-        g_free (device->priv->props->job_cur_task_id);
-        device->priv->props->job_cur_task_id = g_strdup (job_cur_task_id);
-        device->priv->props->job_cur_task_percentage = job_cur_task_percentage;
+        device->priv->props->job_percentage = job_percentage;
 
         g_signal_emit (device, signals[JOB_CHANGED], 0);
 }
@@ -727,6 +742,24 @@ gdu_device_find_parent (GduDevice *device)
         return parent;
 }
 
+guint64
+gdu_device_get_detection_time (GduDevice *device)
+{
+        return device->priv->props->device_detection_time;
+}
+
+guint64
+gdu_device_get_media_detection_time (GduDevice *device)
+{
+        return device->priv->props->device_media_detection_time;
+}
+
+dev_t
+gdu_device_get_dev (GduDevice *device)
+{
+        return makedev (device->priv->props->device_major, device->priv->props->device_minor);
+}
+
 const char *
 gdu_device_get_device_file (GduDevice *device)
 {
@@ -761,6 +794,12 @@ gboolean
 gdu_device_is_media_change_detected (GduDevice *device)
 {
         return device->priv->props->device_is_media_change_detected;
+}
+
+gboolean
+gdu_device_is_media_change_detection_polling (GduDevice *device)
+{
+        return device->priv->props->device_is_media_change_detection_polling;
 }
 
 gboolean
@@ -829,16 +868,25 @@ gdu_device_is_mounted (GduDevice *device)
         return device->priv->props->device_is_mounted;
 }
 
-gboolean
-gdu_device_is_busy (GduDevice *device)
-{
-        return device->priv->props->device_is_busy;
-}
-
+/* keep this around for a while to avoid breaking ABI */
 const char *
 gdu_device_get_mount_path (GduDevice *device)
 {
-        return device->priv->props->device_mount_path;
+        if (device->priv->props->device_mount_paths == NULL || device->priv->props->device_mount_paths[0] == NULL)
+                return NULL;
+        return (const char *) device->priv->props->device_mount_paths[0];
+}
+
+char **
+gdu_device_get_mount_paths (GduDevice *device)
+{
+        return device->priv->props->device_mount_paths;
+}
+
+gboolean
+gdu_device_get_presentation_hide (GduDevice *device)
+{
+        return device->priv->props->device_presentation_hide;
 }
 
 const char *
@@ -958,24 +1006,6 @@ int
 gdu_device_partition_table_get_count (GduDevice *device)
 {
         return device->priv->props->partition_table_count;
-}
-
-int
-gdu_device_partition_table_get_max_number (GduDevice *device)
-{
-        return device->priv->props->partition_table_max_number;
-}
-
-GArray *
-gdu_device_partition_table_get_offsets (GduDevice *device)
-{
-        return device->priv->props->partition_table_offsets;
-}
-
-GArray *
-gdu_device_partition_table_get_sizes (GduDevice *device)
-{
-        return device->priv->props->partition_table_sizes;
 }
 
 const char *
@@ -1105,30 +1135,6 @@ gdu_device_optical_disc_get_num_sessions (GduDevice *device)
         return device->priv->props->optical_disc_num_sessions;
 }
 
-
-gboolean
-gdu_device_drive_smart_get_is_capable (GduDevice *device)
-{
-        return device->priv->props->drive_smart_is_capable;
-}
-
-gboolean
-gdu_device_drive_smart_get_is_enabled (GduDevice *device)
-{
-        return device->priv->props->drive_smart_is_enabled;
-}
-
-GduSmartData *
-gdu_device_get_smart_data (GduDevice *device)
-{
-        return _gdu_smart_data_new_from_values (device->priv->props->drive_smart_time_collected,
-                                                device->priv->props->drive_smart_temperature,
-                                                device->priv->props->drive_smart_time_powered_on,
-                                                device->priv->props->drive_smart_last_self_test_result,
-                                                device->priv->props->drive_smart_is_failing,
-                                                g_value_get_boxed (&(device->priv->props->drive_smart_attributes)));
-}
-
 const char *
 gdu_device_linux_md_component_get_level (GduDevice *device)
 {
@@ -1252,6 +1258,161 @@ gdu_device_linux_md_get_sync_speed (GduDevice *device)
 /* ---------------------------------------------------------------------------------------------------- */
 
 gboolean
+gdu_device_drive_ata_smart_get_is_available (GduDevice *device)
+{
+        return device->priv->props->drive_ata_smart_is_available;
+}
+
+gboolean
+gdu_device_drive_ata_smart_get_is_failing (GduDevice *device)
+{
+        return device->priv->props->drive_ata_smart_is_failing;
+}
+
+gboolean
+gdu_device_drive_ata_smart_get_is_failing_valid (GduDevice *device)
+{
+        return device->priv->props->drive_ata_smart_is_failing_valid;
+}
+
+gboolean
+gdu_device_drive_ata_smart_get_has_bad_sectors (GduDevice *device)
+{
+        return device->priv->props->drive_ata_smart_has_bad_sectors;
+}
+
+gboolean
+gdu_device_drive_ata_smart_get_has_bad_attributes (GduDevice *device)
+{
+        return device->priv->props->drive_ata_smart_has_bad_attributes;
+}
+
+gdouble
+gdu_device_drive_ata_smart_get_temperature_kelvin (GduDevice *device)
+{
+        return device->priv->props->drive_ata_smart_temperature_kelvin;
+}
+
+guint64 gdu_device_drive_ata_smart_get_power_on_seconds (GduDevice *device)
+{
+        return device->priv->props->drive_ata_smart_power_on_seconds;
+}
+
+guint64
+gdu_device_drive_ata_smart_get_time_collected (GduDevice *device)
+{
+        return device->priv->props->drive_ata_smart_time_collected;
+}
+
+GduAtaSmartOfflineDataCollectionStatus
+gdu_device_drive_ata_smart_get_offline_data_collection_status (GduDevice *device)
+{
+        return device->priv->props->drive_ata_smart_offline_data_collection_status;
+}
+
+guint
+gdu_device_drive_ata_smart_get_offline_data_collection_seconds (GduDevice *device)
+{
+        return device->priv->props->drive_ata_smart_offline_data_collection_seconds;
+}
+
+GduAtaSmartSelfTestExecutionStatus
+gdu_device_drive_ata_smart_get_self_test_execution_status (GduDevice *device)
+{
+        return device->priv->props->drive_ata_smart_self_test_execution_status;
+}
+
+guint
+gdu_device_drive_ata_smart_get_self_test_execution_percent_remaining (GduDevice *device)
+{
+        return device->priv->props->drive_ata_smart_self_test_execution_percent_remaining;
+}
+
+gboolean
+gdu_device_drive_ata_smart_get_short_and_extended_self_test_available (GduDevice *device)
+{
+        return device->priv->props->drive_ata_smart_short_and_extended_self_test_available;
+}
+
+gboolean
+gdu_device_drive_ata_smart_get_conveyance_self_test_available (GduDevice *device)
+{
+        return device->priv->props->drive_ata_smart_conveyance_self_test_available;
+}
+
+gboolean
+gdu_device_drive_ata_smart_get_start_self_test_available (GduDevice *device)
+{
+        return device->priv->props->drive_ata_smart_start_self_test_available;
+}
+
+gboolean
+gdu_device_drive_ata_smart_get_abort_self_test_available (GduDevice *device)
+{
+        return device->priv->props->drive_ata_smart_abort_self_test_available;
+}
+
+guint
+gdu_device_drive_ata_smart_get_short_self_test_polling_minutes (GduDevice *device)
+{
+        return device->priv->props->drive_ata_smart_short_self_test_polling_minutes;
+}
+
+guint
+gdu_device_drive_ata_smart_get_extended_self_test_polling_minutes (GduDevice *device)
+{
+        return device->priv->props->drive_ata_smart_extended_self_test_polling_minutes;
+}
+
+guint
+gdu_device_drive_ata_smart_get_conveyance_self_test_polling_minutes (GduDevice *device)
+{
+        return device->priv->props->drive_ata_smart_conveyance_self_test_polling_minutes;
+}
+
+GList *
+gdu_device_drive_ata_smart_get_attributes (GduDevice *device)
+{
+        GList *ret;
+        GPtrArray *p;
+        guint n;
+
+        ret = NULL;
+
+        p = g_value_get_boxed (&(device->priv->props->drive_ata_smart_attributes));
+        for (n = 0; n < p->len; n++) {
+                ret = g_list_prepend (ret, _gdu_ata_smart_attribute_new (p->pdata[n]));
+        }
+
+        return ret;
+}
+
+GduAtaSmartAttribute *
+gdu_device_drive_ata_smart_get_attribute (GduDevice *device, const gchar *attr_name)
+{
+        GList *attrs;
+        GList *l;
+        GduAtaSmartAttribute *ret;
+
+        ret = NULL;
+
+        attrs = gdu_device_drive_ata_smart_get_attributes (device);
+        for (l = attrs; l != NULL; l = l->next) {
+                GduAtaSmartAttribute *a = GDU_ATA_SMART_ATTRIBUTE (l->data);
+                if (g_strcmp0 (attr_name, gdu_ata_smart_attribute_get_name (a)) == 0) {
+                        ret = g_object_ref (a);
+                        break;
+                }
+        }
+        g_list_foreach (attrs, (GFunc) g_object_unref, NULL);
+        g_list_free (attrs);
+
+        return ret;
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+gboolean
 gdu_device_job_in_progress (GduDevice *device)
 {
         return device->priv->props->job_in_progress;
@@ -1275,28 +1436,10 @@ gdu_device_job_is_cancellable (GduDevice *device)
         return device->priv->props->job_is_cancellable;
 }
 
-int
-gdu_device_job_get_num_tasks (GduDevice *device)
-{
-        return device->priv->props->job_num_tasks;
-}
-
-int
-gdu_device_job_get_cur_task (GduDevice *device)
-{
-        return device->priv->props->job_cur_task;
-}
-
-const char *
-gdu_device_job_get_cur_task_id (GduDevice *device)
-{
-        return device->priv->props->job_cur_task_id;
-}
-
 double
-gdu_device_job_get_cur_task_percentage (GduDevice *device)
+gdu_device_job_get_percentage (GduDevice *device)
 {
-        return device->priv->props->job_cur_task_percentage;
+        return device->priv->props->job_percentage;
 }
 
 /* -------------------------------------------------------------------------------- */
@@ -1321,7 +1464,6 @@ void
 gdu_device_op_filesystem_create (GduDevice                              *device,
                                  const char                             *fstype,
                                  const char                             *fslabel,
-                                 const char                             *fserase,
                                  const char                             *encrypt_passphrase,
                                  gboolean                                fs_take_ownership,
                                  GduDeviceFilesystemCreateCompletedFunc  callback,
@@ -1339,9 +1481,6 @@ gdu_device_op_filesystem_create (GduDevice                              *device,
         n = 0;
         if (fslabel != NULL && strlen (fslabel) > 0) {
                 options[n++] = g_strdup_printf ("label=%s", fslabel);
-        }
-        if (fserase != NULL && strlen (fserase) > 0) {
-                options[n++] = g_strdup_printf ("erase=%s", fserase);
         }
         if (encrypt_passphrase != NULL && strlen (encrypt_passphrase) > 0) {
                 options[n++] = g_strdup_printf ("luks_encrypt=%s", encrypt_passphrase);
@@ -1382,11 +1521,12 @@ op_mount_cb (DBusGProxy *proxy, char *mount_path, GError *error, gpointer user_d
 
 void
 gdu_device_op_filesystem_mount (GduDevice                   *device,
+                                gchar                      **options,
                                 GduDeviceFilesystemMountCompletedFunc  callback,
                                 gpointer                     user_data)
 {
         const char *fstype;
-        char *options[16];
+        gchar *null_options[16];
         FilesystemMountData *data;
 
         data = g_new0 (FilesystemMountData, 1);
@@ -1394,8 +1534,11 @@ gdu_device_op_filesystem_mount (GduDevice                   *device,
         data->callback = callback;
         data->user_data = user_data;
 
-        options[0] = NULL;
         fstype = NULL;
+
+        null_options[0] = NULL;
+        if (options == NULL)
+                options = null_options;
 
         org_freedesktop_DeviceKit_Disks_Device_filesystem_mount_async (device->priv->proxy,
                                                                        fstype,
@@ -1503,7 +1646,6 @@ op_partition_delete_cb (DBusGProxy *proxy, GError *error, gpointer user_data)
 
 void
 gdu_device_op_partition_delete (GduDevice                             *device,
-                                const char                            *secure_erase,
                                 GduDevicePartitionDeleteCompletedFunc  callback,
                                 gpointer                               user_data)
 {
@@ -1517,9 +1659,6 @@ gdu_device_op_partition_delete (GduDevice                             *device,
         data->user_data = user_data;
 
         n = 0;
-        if (secure_erase != NULL && strlen (secure_erase) > 0) {
-                options[n++] = g_strdup_printf ("erase=%s", secure_erase);
-        }
         options[n] = NULL;
 
         org_freedesktop_DeviceKit_Disks_Device_partition_delete_async (device->priv->proxy,
@@ -1559,7 +1698,6 @@ gdu_device_op_partition_create (GduDevice   *device,
                                 char       **flags,
                                 const char  *fstype,
                                 const char  *fslabel,
-                                const char  *fserase,
                                 const char  *encrypt_passphrase,
                                 gboolean     fs_take_ownership,
                                 GduDevicePartitionCreateCompletedFunc callback,
@@ -1580,9 +1718,6 @@ gdu_device_op_partition_create (GduDevice   *device,
         n = 0;
         if (fslabel != NULL && strlen (fslabel) > 0) {
                 fsoptions[n++] = g_strdup_printf ("label=%s", fslabel);
-        }
-        if (fserase != NULL && strlen (fserase) > 0) {
-                fsoptions[n++] = g_strdup_printf ("erase=%s", fserase);
         }
         if (encrypt_passphrase != NULL && strlen (encrypt_passphrase) > 0) {
                 fsoptions[n++] = g_strdup_printf ("luks_encrypt=%s", encrypt_passphrase);
@@ -1673,7 +1808,6 @@ op_create_partition_table_cb (DBusGProxy *proxy, GError *error, gpointer user_da
 void
 gdu_device_op_partition_table_create (GduDevice                                  *device,
                                       const char                                 *scheme,
-                                      const char                                 *secure_erase,
                                       GduDevicePartitionTableCreateCompletedFunc  callback,
                                       gpointer                                    user_data)
 {
@@ -1687,9 +1821,6 @@ gdu_device_op_partition_table_create (GduDevice                                 
         data->user_data = user_data;
 
         n = 0;
-        if (secure_erase != NULL && strlen (secure_erase) > 0) {
-                options[n++] = g_strdup_printf ("erase=%s", secure_erase);
-        }
         options[n] = NULL;
 
         org_freedesktop_DeviceKit_Disks_Device_partition_table_create_async (device->priv->proxy,
@@ -1941,14 +2072,14 @@ out:
 
 typedef struct {
         GduDevice *device;
-        GduDeviceDriveSmartRefreshDataCompletedFunc callback;
+        GduDeviceDriveAtaSmartRefreshDataCompletedFunc callback;
         gpointer user_data;
-} RetrieveSmartDataData;
+} RetrieveAtaSmartDataData;
 
 static void
-op_retrieve_smart_data_cb (DBusGProxy *proxy, GError *error, gpointer user_data)
+op_retrieve_ata_smart_data_cb (DBusGProxy *proxy, GError *error, gpointer user_data)
 {
-        RetrieveSmartDataData *data = user_data;
+        RetrieveAtaSmartDataData *data = user_data;
         _gdu_error_fixup (error);
         if (data->callback != NULL)
                 data->callback (data->device, error, data->user_data);
@@ -1957,23 +2088,23 @@ op_retrieve_smart_data_cb (DBusGProxy *proxy, GError *error, gpointer user_data)
 }
 
 void
-gdu_device_drive_smart_refresh_data (GduDevice                                  *device,
-                                     GduDeviceDriveSmartRefreshDataCompletedFunc callback,
+gdu_device_drive_ata_smart_refresh_data (GduDevice                                  *device,
+                                     GduDeviceDriveAtaSmartRefreshDataCompletedFunc callback,
                                      gpointer                                    user_data)
 {
-        RetrieveSmartDataData *data;
+        RetrieveAtaSmartDataData *data;
         char *options[16];
 
         options[0] = NULL;
 
-        data = g_new0 (RetrieveSmartDataData, 1);
+        data = g_new0 (RetrieveAtaSmartDataData, 1);
         data->device = g_object_ref (device);
         data->callback = callback;
         data->user_data = user_data;
 
-        org_freedesktop_DeviceKit_Disks_Device_drive_smart_refresh_data_async (device->priv->proxy,
+        org_freedesktop_DeviceKit_Disks_Device_drive_ata_smart_refresh_data_async (device->priv->proxy,
                                                                                (const char **) options,
-                                                                               op_retrieve_smart_data_cb,
+                                                                               op_retrieve_ata_smart_data_cb,
                                                                                data);
 }
 
@@ -1981,14 +2112,14 @@ gdu_device_drive_smart_refresh_data (GduDevice                                  
 
 typedef struct {
         GduDevice *device;
-        GduDeviceDriveSmartInitiateSelftestCompletedFunc callback;
+        GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc callback;
         gpointer user_data;
-} DriveSmartInitiateSelftestData;
+} DriveAtaSmartInitiateSelftestData;
 
 static void
-op_run_smart_selftest_cb (DBusGProxy *proxy, GError *error, gpointer user_data)
+op_run_ata_smart_selftest_cb (DBusGProxy *proxy, GError *error, gpointer user_data)
 {
-        DriveSmartInitiateSelftestData *data = user_data;
+        DriveAtaSmartInitiateSelftestData *data = user_data;
         _gdu_error_fixup (error);
         if (data->callback != NULL)
                 data->callback (data->device, error, data->user_data);
@@ -1997,24 +2128,24 @@ op_run_smart_selftest_cb (DBusGProxy *proxy, GError *error, gpointer user_data)
 }
 
 void
-gdu_device_op_drive_smart_initiate_selftest (GduDevice                                        *device,
-                                             const char                                       *test,
-                                             gboolean                                          captive,
-                                             GduDeviceDriveSmartInitiateSelftestCompletedFunc  callback,
-                                             gpointer                                          user_data)
+gdu_device_op_drive_ata_smart_initiate_selftest (GduDevice                                        *device,
+                                                 const char                                       *test,
+                                                 GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc  callback,
+                                                 gpointer                                          user_data)
 {
-        DriveSmartInitiateSelftestData *data;
+        DriveAtaSmartInitiateSelftestData *data;
+        gchar *options = {NULL};
 
-        data = g_new0 (DriveSmartInitiateSelftestData, 1);
+        data = g_new0 (DriveAtaSmartInitiateSelftestData, 1);
         data->device = g_object_ref (device);
         data->callback = callback;
         data->user_data = user_data;
 
-        org_freedesktop_DeviceKit_Disks_Device_drive_smart_initiate_selftest_async (device->priv->proxy,
-                                                                                    test,
-                                                                                    captive,
-                                                                                    op_run_smart_selftest_cb,
-                                                                                    data);
+        org_freedesktop_DeviceKit_Disks_Device_drive_ata_smart_initiate_selftest_async (device->priv->proxy,
+                                                                                        test,
+                                                                                        (const gchar **) options,
+                                                                                        op_run_ata_smart_selftest_cb,
+                                                                                        data);
 }
 
 /* -------------------------------------------------------------------------------- */
@@ -2122,7 +2253,6 @@ op_remove_component_from_linux_md_array_cb (DBusGProxy *proxy, GError *error, gp
 void
 gdu_device_op_linux_md_remove_component (GduDevice                                    *device,
                                          const char                                   *component_objpath,
-                                         const char                                   *secure_erase,
                                          GduDeviceLinuxMdRemoveComponentCompletedFunc  callback,
                                          gpointer                                      user_data)
 {
@@ -2136,9 +2266,6 @@ gdu_device_op_linux_md_remove_component (GduDevice                              
         data->user_data = user_data;
 
         n = 0;
-        if (secure_erase != NULL && strlen (secure_erase) > 0) {
-                options[n++] = g_strdup_printf ("erase=%s", secure_erase);
-        }
         options[n] = NULL;
 
         org_freedesktop_DeviceKit_Disks_Device_linux_md_remove_component_async (
@@ -2190,35 +2317,35 @@ gdu_device_op_cancel_job (GduDevice *device, GduDeviceCancelJobCompletedFunc cal
 
 typedef struct {
         GduDevice *device;
-        GduDeviceDriveSmartGetHistoricalDataCompletedFunc callback;
+        GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc callback;
         gpointer user_data;
-} DriveSmartGetHistoricalDataData;
+} DriveAtaSmartGetHistoricalDataData;
 
 static GList *
-op_smart_historical_data_compute_ret (GPtrArray *historical_data)
+op_ata_smart_historical_data_compute_ret (GPtrArray *historical_data)
 {
         GList *ret;
         int n;
 
         ret = NULL;
         for (n = 0; n < (int) historical_data->len; n++) {
-                ret = g_list_prepend (ret, _gdu_smart_data_new (historical_data->pdata[n]));
+                ret = g_list_prepend (ret, _gdu_ata_smart_historical_data_new (historical_data->pdata[n]));
         }
         ret = g_list_reverse (ret);
         return ret;
 }
 
 static void
-op_smart_historical_data_cb (DBusGProxy *proxy, GPtrArray *historical_data, GError *error, gpointer user_data)
+op_ata_smart_historical_data_cb (DBusGProxy *proxy, GPtrArray *historical_data, GError *error, gpointer user_data)
 {
-        DriveSmartGetHistoricalDataData *data = user_data;
+        DriveAtaSmartGetHistoricalDataData *data = user_data;
         GList *ret;
 
         _gdu_error_fixup (error);
 
         ret = NULL;
         if (historical_data != NULL && error == NULL)
-                ret = op_smart_historical_data_compute_ret (historical_data);
+                ret = op_ata_smart_historical_data_compute_ret (historical_data);
 
         if (data->callback == NULL)
                 data->callback (data->device, ret, error, data->user_data);
@@ -2228,42 +2355,48 @@ op_smart_historical_data_cb (DBusGProxy *proxy, GPtrArray *historical_data, GErr
 }
 
 void
-gdu_device_drive_smart_get_historical_data (GduDevice                                         *device,
-                                            GduDeviceDriveSmartGetHistoricalDataCompletedFunc  callback,
-                                            gpointer                                           user_data)
+gdu_device_drive_ata_smart_get_historical_data (GduDevice                                         *device,
+                                                guint64                                            since,
+                                                guint64                                            until,
+                                                guint64                                            spacing,
+                                                GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc  callback,
+                                                gpointer                                           user_data)
 {
-        DriveSmartGetHistoricalDataData *data;
+        DriveAtaSmartGetHistoricalDataData *data;
 
-        data = g_new0 (DriveSmartGetHistoricalDataData, 1);
+        data = g_new0 (DriveAtaSmartGetHistoricalDataData, 1);
         data->device = g_object_ref (device);
         data->callback = callback;
         data->user_data = user_data;
 
-        /* TODO: since, until */
-        org_freedesktop_DeviceKit_Disks_Device_drive_smart_get_historical_data_async (device->priv->proxy,
-                                                                                      0,
-                                                                                      0,
-                                                                                      op_smart_historical_data_cb,
-                                                                                      data);
+        org_freedesktop_DeviceKit_Disks_Device_drive_ata_smart_get_historical_data_async (device->priv->proxy,
+                                                                                          since,
+                                                                                          until,
+                                                                                          spacing,
+                                                                                          op_ata_smart_historical_data_cb,
+                                                                                          data);
 }
 
 GList *
-gdu_device_drive_smart_get_historical_data_sync (GduDevice  *device,
-                                                 GError    **error)
+gdu_device_drive_ata_smart_get_historical_data_sync (GduDevice  *device,
+                                                     guint64     since,
+                                                     guint64     until,
+                                                     guint64     spacing,
+                                                     GError    **error)
 {
         GList *ret;
         GPtrArray *historical_data;
 
         ret = NULL;
-        /* TODO: since, until */
-        if (!org_freedesktop_DeviceKit_Disks_Device_drive_smart_get_historical_data (device->priv->proxy,
-                                                                                     0,
-                                                                                     0,
-                                                                                     &historical_data,
-                                                                                     error))
+        if (!org_freedesktop_DeviceKit_Disks_Device_drive_ata_smart_get_historical_data (device->priv->proxy,
+                                                                                         since,
+                                                                                         until,
+                                                                                         spacing,
+                                                                                         &historical_data,
+                                                                                         error))
                 goto out;
 
-        ret = op_smart_historical_data_compute_ret (historical_data);
+        ret = op_ata_smart_historical_data_compute_ret (historical_data);
 out:
         return ret;
 }

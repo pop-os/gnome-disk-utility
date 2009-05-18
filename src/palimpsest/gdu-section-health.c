@@ -28,7 +28,7 @@
 #include <polkit-gnome/polkit-gnome.h>
 
 #include <gdu/gdu.h>
-#include "gdu-time-label.h"
+#include <gdu-gtk/gdu-gtk.h>
 #include "gdu-section-health.h"
 
 struct _GduSectionHealthPrivate
@@ -54,18 +54,68 @@ static GObjectClass *parent_class = NULL;
 G_DEFINE_TYPE (GduSectionHealth, gdu_section_health, GDU_TYPE_SECTION)
 
 /* ---------------------------------------------------------------------------------------------------- */
+static gchar *
+pretty_to_string (guint64 pretty_value, GduAtaSmartAttributeUnit pretty_unit)
+{
+        gchar *ret;
+        gdouble celcius;
+        gdouble fahrenheit;
+
+        switch (pretty_unit) {
+
+        case GDU_ATA_SMART_ATTRIBUTE_UNIT_MSECONDS:
+                if (pretty_value > 1000 * 60 * 60 * 24) {
+                        ret = g_strdup_printf (_("%.3g days"), pretty_value / 1000.0 / 60.0 / 60.0 / 24.0);
+                } else if (pretty_value > 1000 * 60 * 60) {
+                        ret = g_strdup_printf (_("%.3g hours"), pretty_value / 1000.0 / 60.0 / 60.0);
+                } else if (pretty_value > 1000 * 60) {
+                        ret = g_strdup_printf (_("%.3g mins"), pretty_value / 1000.0 / 60.0);
+                } else if (pretty_value > 1000) {
+                        ret = g_strdup_printf (_("%.3g secs"), pretty_value / 1000.0);
+                } else {
+                        ret = g_strdup_printf (_("%" G_GUINT64_FORMAT " msec"), pretty_value);
+                }
+                break;
+
+        case GDU_ATA_SMART_ATTRIBUTE_UNIT_SECTORS:
+                ret = g_strdup_printf (ngettext ("%d Sector",
+                                                 "%d Sectors", (unsigned long int) pretty_value),
+                                       (int) pretty_value);
+                break;
+
+        case GDU_ATA_SMART_ATTRIBUTE_UNIT_MKELVIN:
+                celcius = pretty_value / 1000.0 - 273.15;
+                fahrenheit = 9.0 * celcius / 5.0 + 32.0;
+                ret = g_strdup_printf (_("%.3g\302\260 C / %.3g\302\260 F"), celcius, fahrenheit);
+                break;
+
+        default:
+        case GDU_ATA_SMART_ATTRIBUTE_UNIT_NONE:
+        case GDU_ATA_SMART_ATTRIBUTE_UNIT_UNKNOWN:
+                ret = g_strdup_printf (_("%" G_GUINT64_FORMAT), pretty_value);
+                break;
+        }
+
+        return ret;
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
 
 static void
 smart_data_set_pending (GduSectionHealth *section)
 {
+        char *s;
+
         gtk_image_set_from_icon_name (GTK_IMAGE (section->priv->health_status_image),
                                       "gdu-smart-unknown",
                                       GTK_ICON_SIZE_MENU);
-        gtk_label_set_markup (GTK_LABEL (section->priv->health_status_label), _("<i>Retrieving...</i>"));
-        gtk_label_set_text (GTK_LABEL (section->priv->health_power_on_hours_label), _("-"));
-        gtk_label_set_text (GTK_LABEL (section->priv->health_temperature_label), _("-"));
-        gtk_label_set_text (GTK_LABEL (section->priv->health_updated_label), _("-"));
-        gtk_label_set_markup (GTK_LABEL (section->priv->health_last_self_test_result_label), _("-"));
+        s = g_strconcat ("<i>", _("Retrieving..."), "</i>", NULL);
+        gtk_label_set_markup (GTK_LABEL (section->priv->health_status_label), s);
+        g_free (s);
+        gtk_label_set_text (GTK_LABEL (section->priv->health_power_on_hours_label), "-");
+        gtk_label_set_text (GTK_LABEL (section->priv->health_temperature_label), "-");
+        gtk_label_set_text (GTK_LABEL (section->priv->health_updated_label), "-");
+        gtk_label_set_markup (GTK_LABEL (section->priv->health_last_self_test_result_label), "-");
 
         polkit_gnome_action_set_sensitive (section->priv->health_refresh_action, FALSE);
         polkit_gnome_action_set_sensitive (section->priv->health_details_action, FALSE);
@@ -76,14 +126,18 @@ smart_data_set_pending (GduSectionHealth *section)
 static void
 smart_data_set_not_supported (GduSectionHealth *section)
 {
+        gchar *s;
+
         gtk_image_set_from_icon_name (GTK_IMAGE (section->priv->health_status_image),
                                       "gdu-smart-unknown",
                                       GTK_ICON_SIZE_MENU);
-        gtk_label_set_markup (GTK_LABEL (section->priv->health_status_label), _("<i>S.M.A.R.T. Not Supported</i>"));
-        gtk_label_set_text (GTK_LABEL (section->priv->health_power_on_hours_label), _("-"));
-        gtk_label_set_text (GTK_LABEL (section->priv->health_temperature_label), _("-"));
-        gtk_label_set_text (GTK_LABEL (section->priv->health_updated_label), _("-"));
-        gtk_label_set_markup (GTK_LABEL (section->priv->health_last_self_test_result_label), _("-"));
+        s = g_strconcat ("<i>", _("ATA SMART not Supported"), "</i>", NULL);
+        gtk_label_set_markup (GTK_LABEL (section->priv->health_status_label), s);
+        g_free (s);
+        gtk_label_set_text (GTK_LABEL (section->priv->health_power_on_hours_label), "-");
+        gtk_label_set_text (GTK_LABEL (section->priv->health_temperature_label), "-");
+        gtk_label_set_text (GTK_LABEL (section->priv->health_updated_label), "-");
+        gtk_label_set_markup (GTK_LABEL (section->priv->health_last_self_test_result_label), "-");
 
         polkit_gnome_action_set_sensitive (section->priv->health_refresh_action, FALSE);
         polkit_gnome_action_set_sensitive (section->priv->health_details_action, FALSE);
@@ -91,24 +145,43 @@ smart_data_set_not_supported (GduSectionHealth *section)
         gtk_widget_hide (section->priv->health_status_explanation_label);
 }
 
+enum
+{
+        ATTR_ID_NAME_COLUMN,
+        ATTR_ID_INT_COLUMN,
+        ATTR_ID_COLUMN,
+        ATTR_DESC_COLUMN,
+        ATTR_CURRENT_COLUMN,
+        ATTR_WORST_COLUMN,
+        ATTR_THRESHOLD_COLUMN,
+        ATTR_VALUE_COLUMN,
+        ATTR_STATUS_PIXBUF_COLUMN,
+        ATTR_STATUS_TEXT_COLUMN,
+        ATTR_TYPE_COLUMN,
+        ATTR_UPDATES_COLUMN,
+        ATTR_TOOLTIP_COLUMN,
+        ATTR_N_COLUMNS,
+};
+
 static void
 smart_data_set (GduSectionHealth *section)
 {
         char *s;
-        double fahrenheit;
-        const char *last;
-        gboolean passed;
-        int power_on_hours;
-        double temperature;
-        char *last_self_test_result;
+        guint64 temperature_mkelvin;
+        guint64 power_on_msec;
         GduDevice *device;
-        gboolean attr_warn;
-        gboolean attr_fail;
         GTimeVal updated;
-        GduSmartData *sd;
+        gchar *text;
+        gchar *explanation;
+        const gchar *icon_name;
+        gboolean is_failing;
+        gboolean is_failing_valid;
+        gboolean has_bad_sectors;
+        gboolean has_bad_attributes;
+        GduAtaSmartSelfTestExecutionStatus self_test_status;
 
-        sd = NULL;
-        last_self_test_result = NULL;
+        text = NULL;
+        explanation = NULL;
 
         device = gdu_presentable_get_device (gdu_section_get_presentable (GDU_SECTION (section)));
         if (device == NULL) {
@@ -116,126 +189,175 @@ smart_data_set (GduSectionHealth *section)
                 goto out;
         }
 
-        sd = gdu_device_get_smart_data (device);
-        if (sd == NULL) {
-                g_warning ("%s: no smart data for device", __FUNCTION__);
+        if (!gdu_device_drive_ata_smart_get_is_available (device)) {
+                g_warning ("%s: device does not support ATA SMART", __FUNCTION__);
                 goto out;
         }
 
-        passed = ! gdu_smart_data_get_is_failing (sd);
-        attr_warn = gdu_smart_data_get_attribute_warning (sd);
-        attr_fail = gdu_smart_data_get_attribute_failing (sd);
-        power_on_hours = gdu_smart_data_get_time_powered_on (sd) / 3600;
-        temperature = gdu_smart_data_get_temperature (sd);
-        last_self_test_result = gdu_smart_data_get_last_self_test_result (sd);
+        is_failing = gdu_device_drive_ata_smart_get_is_failing (device);
+        is_failing_valid = gdu_device_drive_ata_smart_get_is_failing_valid (device);
+
+        self_test_status = gdu_device_drive_ata_smart_get_self_test_execution_status (device);
+
+        power_on_msec = 1000 * gdu_device_drive_ata_smart_get_power_on_seconds (device);
+        temperature_mkelvin = (guint64) (gdu_device_drive_ata_smart_get_temperature_kelvin (device) * 1000.0);
+
+        has_bad_sectors = gdu_device_drive_ata_smart_get_has_bad_sectors (device);
+        has_bad_attributes = gdu_device_drive_ata_smart_get_has_bad_attributes (device);
 
         polkit_gnome_action_set_sensitive (section->priv->health_refresh_action, TRUE);
         polkit_gnome_action_set_sensitive (section->priv->health_details_action, TRUE);
         polkit_gnome_action_set_sensitive (section->priv->health_selftest_action, TRUE);
         gtk_widget_show (section->priv->health_status_image);
 
-        if (passed) {
-                if (attr_fail) {
-                        gtk_image_set_from_icon_name (GTK_IMAGE (section->priv->health_status_image),
-                                                      "gdu-smart-threshold",
-                                                      GTK_ICON_SIZE_MENU);
-                        gtk_label_set_text (GTK_LABEL (section->priv->health_status_label),
-                                            _("Passed"));
-                        gtk_label_set_markup (GTK_LABEL (section->priv->health_status_explanation_label),
-                                              _("<small><i><b>"
-                                                "One or more attributes failing."
-                                                "</b></i></small>"));
-                } else if (attr_warn) {
-                        gtk_image_set_from_icon_name (GTK_IMAGE (section->priv->health_status_image),
-                                                      "gdu-smart-threshold",
-                                                      GTK_ICON_SIZE_MENU);
-                        gtk_label_set_text (GTK_LABEL (section->priv->health_status_label),
-                                            _("Passed"));
-                        gtk_label_set_markup (GTK_LABEL (section->priv->health_status_explanation_label),
-                                              _("<small><i><b>"
-                                                "One or more attributes non-zero but within threshold."
-                                                "</b></i></small>"));
+        explanation = NULL;
+        if (is_failing_valid) {
+                if (!is_failing) {
+                        if (has_bad_sectors) {
+                                icon_name = "gdu-smart-threshold";
+                                text = g_strdup (C_("ATA SMART status", "Passed"));
+                                explanation = g_strconcat ("<small><i>",
+                                                           _("The disk has bad sectors."),
+                                                           "</i></small>",
+                                                           NULL);
+                        } else if (has_bad_attributes) {
+                                icon_name = "gdu-smart-threshold";
+                                text = g_strdup (C_("ATA SMART status", "Passed"));
+                                explanation = g_strconcat ("<small><i>",
+                                                           _("One or more attributes exceeding threshold."),
+                                                           "</i></small>",
+                                                           NULL);
+                        } else {
+                                icon_name = "gdu-smart-healthy";
+                                text = g_strdup (C_("ATA SMART status", "Passed"));
+                        }
                 } else {
-                        gtk_image_set_from_icon_name (GTK_IMAGE (section->priv->health_status_image),
-                                                      "gdu-smart-healthy",
-                                                      GTK_ICON_SIZE_MENU);
-                        gtk_label_set_text (GTK_LABEL (section->priv->health_status_label),
-                                            _("Passed"));
-                        gtk_widget_hide (section->priv->health_status_explanation_label);
+                        icon_name = "gdu-smart-failing";
+                        text = g_strconcat ("<span foreground='red'><b>",
+                                            C_("ATA SMART status", "FAILING"),
+                                            "</b></span>",
+                                            NULL);
+                        explanation = g_strconcat ("<small><i>",
+                                                   _("Drive failure expected in less than 24 hours. Save all data immediately."),
+                                                   "</i></small>",
+                                                   NULL);
                 }
         } else {
-                gtk_image_set_from_icon_name (GTK_IMAGE (section->priv->health_status_image),
-                                              "gdu-smart-failing",
-                                              GTK_ICON_SIZE_MENU);
-                gtk_label_set_markup (GTK_LABEL (section->priv->health_status_label), _("<span foreground='red'><b>FAILING</b></span>"));
-                gtk_label_set_markup (GTK_LABEL (section->priv->health_status_explanation_label),
-                                      _("<small><i><b>"
-                                        "Drive failure expected in less than 24 hours. "
-                                        "Save all data immediately."
-                                        "</b></i></small>"));
+                if (has_bad_sectors) {
+                        icon_name = "gdu-smart-threshold";
+                        text = g_strdup (C_("ATA SMART status", "Unknown"));
+                        explanation = g_strconcat ("<small><i>",
+                                                   _("The disk has bad sectors."),
+                                                   "</i></small>",
+                                                   NULL);
+                } else if (has_bad_attributes) {
+                        icon_name = "gdu-smart-threshold";
+                        text = g_strdup (C_("ATA SMART status", "Unknown"));
+                        explanation = g_strconcat ("<small><i>",
+                                                   _("One or more attributes exceeding threshold."),
+                                                   "</i></small>",
+                                                   NULL);
+                } else {
+                        icon_name = "gdu-smart-unknown";
+                        text = g_strdup (C_("ATA SMART status", "Unknown"));
+                }
         }
+
+        gtk_label_set_text (GTK_LABEL (section->priv->health_status_label), text);
+        if (explanation == NULL) {
+                        gtk_widget_hide (section->priv->health_status_explanation_label);
+        } else {
+                gtk_label_set_markup (GTK_LABEL (section->priv->health_status_explanation_label), explanation);
+                gtk_widget_show (section->priv->health_status_explanation_label);
+        }
+        gtk_image_set_from_icon_name (GTK_IMAGE (section->priv->health_status_image), icon_name, GTK_ICON_SIZE_MENU);
+
         /* TODO: use gdu-smart-threshold if one or more attributes exceeds threshold */
 
-        if (power_on_hours < 24)
-                s = g_strdup_printf (_("%d hours"), power_on_hours);
-        else {
-                int d;
-                int h;
-
-                d = power_on_hours / 24;
-                h = power_on_hours - d * 24;
-
-                if (d == 0)
-                        s = g_strdup_printf (_("%d days"), d);
-                else if (d == 1)
-                        s = g_strdup_printf (_("%d days, 1 hour"), d);
-                else
-                        s = g_strdup_printf (_("%d days, %d hours"), d, h);
+        if (power_on_msec == 0) {
+                s = g_strdup (_("Unknown"));
+        } else {
+                s = pretty_to_string (power_on_msec, GDU_ATA_SMART_ATTRIBUTE_UNIT_MSECONDS);
         }
         gtk_label_set_text (GTK_LABEL (section->priv->health_power_on_hours_label), s);
         g_free (s);
 
-        fahrenheit = 9.0 * temperature / 5.0 + 32.0;
-        s = g_strdup_printf (_("%g° C / %g° F"), temperature, fahrenheit);
+        if (temperature_mkelvin == 0) {
+                s = g_strdup (_("Unknown"));
+        } else {
+                s = pretty_to_string (temperature_mkelvin, GDU_ATA_SMART_ATTRIBUTE_UNIT_MKELVIN);
+        }
         gtk_label_set_text (GTK_LABEL (section->priv->health_temperature_label), s);
         g_free (s);
 
-        updated.tv_sec = gdu_smart_data_get_time_collected (sd);
+        updated.tv_sec = gdu_device_drive_ata_smart_get_time_collected (device);
         updated.tv_usec = 0;
         gdu_time_label_set_time (GDU_TIME_LABEL (section->priv->health_updated_label), &updated);
 
-        last = _("Unknown");
-        if (strcmp (last_self_test_result, "completed_ok") == 0) {
-                last = _("Completed OK");
-        } else if (strcmp (last_self_test_result, "not_completed_aborted") == 0) {
-                last = _("Cancelled");
-        } else if (strcmp (last_self_test_result, "not_completed_aborted_reset") == 0) {
-                last = _("Cancelled (with hard or soft reset)");
-        } else if (strcmp (last_self_test_result, "not_completed_unknown_reason") == 0) {
-                last = _("Not completed (a fatal error might have occured)");
-        } else if (strcmp (last_self_test_result, "completed_failed_electrical") == 0) {
-                last = _("<span foreground='red'><b>FAILED</b></span> (electrical test)");
-        } else if (strcmp (last_self_test_result, "completed_failed_servo") == 0) {
-                last = _("<span foreground='red'><b>FAILED</b></span> (servo/seek test)");
-        } else if (strcmp (last_self_test_result, "completed_failed_read") == 0) {
-                last = _("<span foreground='red'><b>FAILED</b></span> (read test)");
-        } else if (strcmp (last_self_test_result, "completed_failed_damage") == 0) {
-                last = _("<span foreground='red'><b>FAILED</b></span> (device is suspected of having handled damage");
+        switch (self_test_status) {
+        case GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_SUCCESS_OR_NEVER:
+                s = g_strdup (C_("ATA SMART test result", "Completed OK"));
+                break;
+        case GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_ABORTED:
+                s = g_strdup (C_("ATA SMART test result", "Cancelled"));
+                break;
+        case GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_INTERRUPTED:
+                s = g_strdup (C_("ATA SMART test result", "Cancelled (with hard or soft reset)"));
+                break;
+        case GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_FATAL:
+                s = g_strdup (C_("ATA SMART test result", "Not completed (a fatal error might have occured)"));
+                break;
+        case GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_ERROR_ELECTRICAL:
+                s = g_strconcat ("<span foreground='red'><b>",
+                                 C_("ATA SMART test result", "FAILED"),
+                                 "</b></span> ",
+                                 C_("ATA SMART test result", "(Electrical)"),
+                                 NULL);
+                break;
+        case GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_ERROR_SERVO:
+                s = g_strconcat ("<span foreground='red'><b>",
+                                 C_("ATA SMART test result", "FAILED"),
+                                 "</b></span> ",
+                                 C_("ATA SMART test result", "(Servo)"),
+                                 NULL);
+                break;
+        case GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_ERROR_READ:
+                s = g_strconcat ("<span foreground='red'><b>",
+                                 C_("ATA SMART test result", "FAILED"),
+                                 "</b></span> ",
+                                 C_("ATA SMART test result", "(Read)"),
+                                 NULL);
+                break;
+        case GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_ERROR_HANDLING:
+                s = g_strconcat ("<span foreground='red'><b>",
+                                 C_("ATA SMART test result", "FAILED"),
+                                 "</b></span> ",
+                                 C_("ATA SMART test result", "(Suspected of having handled damage)"),
+                                 NULL);
+                break;
+        case GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_INPROGRESS:
+                s = g_strdup (C_("ATA SMART test result", "In progress"));
+                break;
+
+        default:
+        case GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_ERROR_UNKNOWN:
+                s = g_strdup (C_("ATA SMART test result", "Unknown"));
+                break;
         }
-        gtk_label_set_markup (GTK_LABEL (section->priv->health_last_self_test_result_label), last);
+        gtk_label_set_markup (GTK_LABEL (section->priv->health_last_self_test_result_label), s);
+        g_free (s);
 
 out:
-        g_free (last_self_test_result);
+        g_free (text);
+        g_free (explanation);
         if (device != NULL)
                 g_object_unref (device);
-        if (sd != NULL)
-                g_object_unref (sd);
 }
 
 static void
-retrieve_smart_data_cb (GduDevice  *device,
-                        GError     *error,
-                        gpointer    user_data)
+retrieve_ata_smart_data_cb (GduDevice  *device,
+                            GError     *error,
+                            gpointer    user_data)
 {
         GduSectionHealth *section = GDU_SECTION_HEALTH (user_data);
 
@@ -264,27 +386,12 @@ health_refresh_action_callback (GtkAction *action, gpointer user_data)
         }
 
         smart_data_set_pending (section);
-        gdu_device_drive_smart_refresh_data (device, retrieve_smart_data_cb, g_object_ref (section));
+        gdu_device_drive_ata_smart_refresh_data (device, retrieve_ata_smart_data_cb, g_object_ref (section));
 
 out:
         if (device != NULL)
                 g_object_unref (device);
 }
-
-enum
-{
-        ATTR_ID_INT_COLUMN,
-        ATTR_ID_COLUMN,
-        ATTR_DESC_COLUMN,
-        ATTR_VALUE_COLUMN,
-        ATTR_WORST_COLUMN,
-        ATTR_THRESHOLD_COLUMN,
-        ATTR_RAW_COLUMN,
-        ATTR_STATUS_PIXBUF_COLUMN,
-        ATTR_STATUS_TEXT_COLUMN,
-        ATTR_TOOLTIP_COLUMN,
-        ATTR_N_COLUMNS,
-};
 
 typedef struct
 {
@@ -515,7 +622,7 @@ expose_event_callback (GtkWidget *widget, GdkEventExpose *event, gpointer user_d
                 val = val_y_top - (val_y_top - val_y_bottom) * n / (num_y_markers - 1);
 
                 char *s;
-                s = g_strdup_printf (_("%g°"), ceil (val));
+                s = g_strdup_printf (C_("ATA SMART graph label", "%g\302\260"), ceil (val));
 
                 cairo_text_extents_t te;
                 cairo_set_source_rgb (cr, 0.0, 0.0, 0.0);
@@ -586,26 +693,26 @@ expose_event_callback (GtkWidget *widget, GdkEventExpose *event, gpointer user_d
 
                 char *s;
                 if (age == 0) {
-                        s = g_strdup_printf (_("now"));
+                        s = g_strdup_printf (C_("ATA SMART graph label", "now"));
                 } else if (age < 3600) {
-                        s = g_strdup_printf ("%dm", age / 60);
+                        s = g_strdup_printf (C_("ATA SMART graph label", "%dm"), age / 60);
                 } else if (age < 24 * 3600) {
                         int h = age/3600;
                         int m = (age%3600) / 60;
                         if (m == 0)
-                                s = g_strdup_printf ("%dh", h);
+                                s = g_strdup_printf (C_("ATA SMART graph label", "%dh"), h);
                         else
-                                s = g_strdup_printf ("%dh %dm", h, m);
+                                s = g_strdup_printf (C_("ATA SMART graph label", "%dh %dm"), h, m);
                 } else {
                         int d = age/(24*3600);
                         int h = (age%(24*3600)) / 3600;
                         int m = (age%3600) / 60;
                         if (h == 0 && m == 0)
-                                s = g_strdup_printf ("%dd", d);
+                                s = g_strdup_printf (C_("ATA SMART graph label", "%dd"), d);
                         else if (m == 0)
-                                s = g_strdup_printf ("%dd %dh", d, h);
+                                s = g_strdup_printf (C_("ATA SMART graph label", "%dd %dh"), d, h);
                         else
-                                s = g_strdup_printf ("%dd %dh %dm", d, h, m);
+                                s = g_strdup_printf (C_("ATA SMART graph label", "%dd %dh %dm"), d, h, m);
                 }
 
                 cairo_text_extents_t te;
@@ -640,28 +747,24 @@ expose_event_callback (GtkWidget *widget, GdkEventExpose *event, gpointer user_d
         GtkTreeSelection *tree_selection;
         GtkTreeModel *tree_model;
         GtkTreeIter iter;
-        int selected_attr_id;
+        gchar *selected_attr_name;
 
-        selected_attr_id = -1;
-
+        selected_attr_name = NULL;
         tree_selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (data->tree_view));
         if (gtk_tree_selection_get_selected (tree_selection, &tree_model, &iter)) {
                 gtk_tree_model_get (tree_model, &iter,
-                                    ATTR_ID_INT_COLUMN,
-                                    &selected_attr_id,
+                                    ATTR_ID_NAME_COLUMN,
+                                    &selected_attr_name,
                                     -1);
         }
 
-        SegmentSet *temperature_segset;
         SegmentSet *attr_value_segset;
         SegmentSet *attr_thres_segset;
         SegmentSet *attr_raw_segset;
-        temperature_segset = segment_set_new ();
         attr_value_segset = segment_set_new ();
         attr_thres_segset = segment_set_new ();
         attr_raw_segset = segment_set_new ();
 
-        /* draw temperature graph (TODO: draw a smooth curve) */
         GList *l;
 
         cairo_new_path (cr);
@@ -675,19 +778,18 @@ expose_event_callback (GtkWidget *widget, GdkEventExpose *event, gpointer user_d
         last_segment_xpos = 0;
         for (l = data->history; l != NULL; l = l->next) {
                 double x;
-                double temperature_y;
-                GduSmartData *sd = GDU_SMART_DATA (l->data);
+                GduAtaSmartHistoricalData *sd = GDU_ATA_SMART_HISTORICAL_DATA (l->data);
 
-                x = gx + gw * ((double) gdu_smart_data_get_time_collected (sd) - (double) t_left) /
+                x = gx + gw * ((double) gdu_ata_smart_historical_data_get_time_collected (sd) - (double) t_left) /
                         ((double) t_right - (double) t_left);
 
                 if (x < gx) {
                         /* point is not in graph.. but do consider it if the *following* point is */
 
                         if (l->next != NULL) {
-                                GduSmartData *nsd = GDU_SMART_DATA (l->next->data);
+                                GduAtaSmartHistoricalData *nsd = GDU_ATA_SMART_HISTORICAL_DATA (l->next->data);
                                 double nx;
-                                nx = gx + gw * ((double) gdu_smart_data_get_time_collected (nsd) - (double) t_left) /
+                                nx = gx + gw * ((double) gdu_ata_smart_historical_data_get_time_collected (nsd) - (double) t_left) /
                                         ((double) t_right - (double) t_left);
                                 if (nx < gx)
                                         continue;
@@ -699,12 +801,11 @@ expose_event_callback (GtkWidget *widget, GdkEventExpose *event, gpointer user_d
                 /* If there's a discontinuity in the samples (more than 30 minutes between consecutive
                  * samples), draw a grey rectangle to convey this
                  */
-                if (prev_time_collected != 0 && (gdu_smart_data_get_time_collected (sd) -
+                if (prev_time_collected != 0 && (gdu_ata_smart_historical_data_get_time_collected (sd) -
                                                  prev_time_collected) > 30 * 60) {
                         cairo_pattern_t *pat;
                         double stop_size;
 
-                        segment_set_close (temperature_segset);
                         segment_set_close (attr_value_segset);
                         segment_set_close (attr_thres_segset);
                         segment_set_close (attr_raw_segset);
@@ -731,14 +832,10 @@ expose_event_callback (GtkWidget *widget, GdkEventExpose *event, gpointer user_d
                         cairo_pattern_destroy (pat);
                 }
 
-                temperature_y = gy + gh - gh * (gdu_smart_data_get_temperature (sd) - val_y_bottom) /
-                        (val_y_top - val_y_bottom);
-                segment_set_add_point (temperature_segset, x, temperature_y);
+                if (selected_attr_name != NULL) {
+                        GduAtaSmartAttribute *a;
 
-                if (selected_attr_id != -1) {
-                        GduSmartDataAttribute *a;
-
-                        a = gdu_smart_data_get_attribute (sd, selected_attr_id);
+                        a = gdu_ata_smart_historical_data_get_attribute (sd, selected_attr_name);
                         if (a != NULL) {
                                 double attr_value_y;
                                 double attr_thres_y;
@@ -746,8 +843,8 @@ expose_event_callback (GtkWidget *widget, GdkEventExpose *event, gpointer user_d
                                 int attr_value;
                                 int attr_thres;
 
-                                attr_value = gdu_smart_data_attribute_get_value (a);
-                                attr_thres = gdu_smart_data_attribute_get_threshold (a);
+                                attr_value = gdu_ata_smart_attribute_get_current (a);
+                                attr_thres = gdu_ata_smart_attribute_get_threshold (a);
 
                                 attr_value_y = gy + (256 - attr_value) * gh / 256.0;
                                 attr_thres_y = gy + (256 - attr_thres) * gh / 256.0;
@@ -755,22 +852,21 @@ expose_event_callback (GtkWidget *widget, GdkEventExpose *event, gpointer user_d
                                 segment_set_add_point (attr_value_segset, x, attr_value_y);
                                 segment_set_add_point (attr_thres_segset, x, attr_thres_y);
 
-                                attr_raw_y = atof (gdu_smart_data_attribute_get_raw (a));
+                                attr_raw_y = gdu_ata_smart_attribute_get_pretty_value (a);
                                 segment_set_add_point (attr_raw_segset, x, attr_raw_y);
 
                                 g_object_unref (a);
                         }
                 }
 
-                prev_time_collected = gdu_smart_data_get_time_collected (sd);
+                prev_time_collected = gdu_ata_smart_historical_data_get_time_collected (sd);
                 last_segment_xpos = x;
         }
 
         cairo_set_line_width (cr, 1.0);
         cairo_set_source_rgb (cr, 1.0, 0.64, 0.0);
-        segment_set_draw (temperature_segset, cr);
 
-        if (selected_attr_id != -1) {
+        if (selected_attr_name != NULL) {
                 double min_y, max_y;
                 double dashes[1] = {1.0};
                 cairo_set_dash (cr, dashes, 1, 0.0);
@@ -788,7 +884,8 @@ expose_event_callback (GtkWidget *widget, GdkEventExpose *event, gpointer user_d
                 segment_set_draw (attr_thres_segset, cr);
         }
 
-        segment_set_free (temperature_segset);
+        g_free (selected_attr_name);
+
         segment_set_free (attr_value_segset);
         segment_set_free (attr_thres_segset);
 
@@ -830,7 +927,7 @@ health_details_action_callback (GtkAction *action, gpointer user_data)
         GtkListStore *list_store;
         GtkCellRenderer *renderer;
         GtkTreeViewColumn *column;
-        GduSmartData *sd;
+        GduAtaSmartHistoricalData *sd;
         GList *attrs;
         GList *l;
 
@@ -843,7 +940,7 @@ health_details_action_callback (GtkAction *action, gpointer user_data)
                 goto out;
         }
 
-        dialog = gtk_dialog_new_with_buttons (_("S.M.A.R.T. Attributes"),
+        dialog = gtk_dialog_new_with_buttons (_("ATA SMART Attributes"),
                                               GTK_WINDOW (gdu_shell_get_toplevel (gdu_section_get_shell (GDU_SECTION (section)))),
                                               GTK_DIALOG_MODAL|GTK_DIALOG_DESTROY_WITH_PARENT|GTK_DIALOG_NO_SEPARATOR,
                                               GTK_STOCK_CLOSE,
@@ -863,7 +960,8 @@ health_details_action_callback (GtkAction *action, gpointer user_data)
 
         HealthGraphData *data;
         data = g_new0 (HealthGraphData, 1);
-        data->history = gdu_device_drive_smart_get_historical_data_sync (device, NULL);
+        /* TODO: do this async */
+        data->history = gdu_device_drive_ata_smart_get_historical_data_sync (device, 0, 0, 0, NULL);
 
         GtkWidget *history_label;
         history_label = gtk_label_new (_("View:"));
@@ -894,6 +992,7 @@ health_details_action_callback (GtkAction *action, gpointer user_data)
         g_signal_connect (history_combo_box, "changed", G_CALLBACK (history_combo_box_changed), data);
 
         list_store = gtk_list_store_new (ATTR_N_COLUMNS,
+                                         G_TYPE_STRING,
                                          G_TYPE_INT,
                                          G_TYPE_STRING,
                                          G_TYPE_STRING,
@@ -902,6 +1001,8 @@ health_details_action_callback (GtkAction *action, gpointer user_data)
                                          G_TYPE_STRING,
                                          G_TYPE_STRING,
                                          GDK_TYPE_PIXBUF,
+                                         G_TYPE_STRING,
+                                         G_TYPE_STRING,
                                          G_TYPE_STRING,
                                          G_TYPE_STRING);
 
@@ -913,8 +1014,12 @@ health_details_action_callback (GtkAction *action, gpointer user_data)
                           "changed",
                           G_CALLBACK (smart_attr_tree_selection_changed), data);
 
+        gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list_store),
+                                              ATTR_ID_INT_COLUMN,
+                                              GTK_SORT_ASCENDING);
+
         column = gtk_tree_view_column_new ();
-        gtk_tree_view_column_set_title (column, "ID");
+        gtk_tree_view_column_set_title (column, C_("SMART attribute", "ID"));
         renderer = gtk_cell_renderer_text_new ();
         gtk_tree_view_column_pack_start (column, renderer, TRUE);
         gtk_tree_view_column_set_attributes (column, renderer,
@@ -923,7 +1028,7 @@ health_details_action_callback (GtkAction *action, gpointer user_data)
         gtk_tree_view_append_column (GTK_TREE_VIEW (tree_view), column);
 
         column = gtk_tree_view_column_new ();
-        gtk_tree_view_column_set_title (column, "Attribute");
+        gtk_tree_view_column_set_title (column, C_("SMART attribute", "Attribute"));
         renderer = gtk_cell_renderer_text_new ();
         gtk_tree_view_column_pack_start (column, renderer, TRUE);
         gtk_tree_view_column_set_attributes (column, renderer,
@@ -932,12 +1037,12 @@ health_details_action_callback (GtkAction *action, gpointer user_data)
         gtk_tree_view_append_column (GTK_TREE_VIEW (tree_view), column);
 
         column = gtk_tree_view_column_new ();
-        gtk_tree_view_column_set_title (column, "Value");
+        gtk_tree_view_column_set_title (column, "Current");
         renderer = gtk_cell_renderer_text_new ();
         g_object_set (renderer, "xalign", 1.0, NULL);
         gtk_tree_view_column_pack_start (column, renderer, TRUE);
         gtk_tree_view_column_set_attributes (column, renderer,
-                                             "text", ATTR_VALUE_COLUMN,
+                                             "text", ATTR_CURRENT_COLUMN,
                                              NULL);
         gtk_tree_view_append_column (GTK_TREE_VIEW (tree_view), column);
 
@@ -963,17 +1068,17 @@ health_details_action_callback (GtkAction *action, gpointer user_data)
         gtk_tree_view_append_column (GTK_TREE_VIEW (tree_view), column);
 
         column = gtk_tree_view_column_new ();
-        gtk_tree_view_column_set_title (column, "Raw Value");
+        gtk_tree_view_column_set_title (column, C_("SMART attribute", "Value"));
         renderer = gtk_cell_renderer_text_new ();
         g_object_set (renderer, "xalign", 1.0, NULL);
         gtk_tree_view_column_pack_start (column, renderer, TRUE);
         gtk_tree_view_column_set_attributes (column, renderer,
-                                             "text", ATTR_RAW_COLUMN,
+                                             "text", ATTR_VALUE_COLUMN,
                                              NULL);
         gtk_tree_view_append_column (GTK_TREE_VIEW (tree_view), column);
 
         column = gtk_tree_view_column_new ();
-        gtk_tree_view_column_set_title (column, "Status");
+        gtk_tree_view_column_set_title (column, C_("SMART attribute", "Status"));
         renderer = gtk_cell_renderer_pixbuf_new ();
         gtk_tree_view_column_pack_start (column, renderer, FALSE);
         gtk_tree_view_column_set_attributes (column, renderer,
@@ -983,6 +1088,26 @@ health_details_action_callback (GtkAction *action, gpointer user_data)
         gtk_tree_view_column_pack_start (column, renderer, TRUE);
         gtk_tree_view_column_set_attributes (column, renderer,
                                              "markup", ATTR_STATUS_TEXT_COLUMN,
+                                             NULL);
+        gtk_tree_view_append_column (GTK_TREE_VIEW (tree_view), column);
+
+        column = gtk_tree_view_column_new ();
+        gtk_tree_view_column_set_title (column, "Type");
+        renderer = gtk_cell_renderer_text_new ();
+        g_object_set (renderer, "xalign", 1.0, NULL);
+        gtk_tree_view_column_pack_start (column, renderer, TRUE);
+        gtk_tree_view_column_set_attributes (column, renderer,
+                                             "text", ATTR_TYPE_COLUMN,
+                                             NULL);
+        gtk_tree_view_append_column (GTK_TREE_VIEW (tree_view), column);
+
+        column = gtk_tree_view_column_new ();
+        gtk_tree_view_column_set_title (column, "Updates");
+        renderer = gtk_cell_renderer_text_new ();
+        g_object_set (renderer, "xalign", 1.0, NULL);
+        gtk_tree_view_column_pack_start (column, renderer, TRUE);
+        gtk_tree_view_column_set_attributes (column, renderer,
+                                             "text", ATTR_UPDATES_COLUMN,
                                              NULL);
         gtk_tree_view_append_column (GTK_TREE_VIEW (tree_view), column);
 
@@ -996,109 +1121,128 @@ health_details_action_callback (GtkAction *action, gpointer user_data)
 
 	gtk_box_pack_start (GTK_BOX (vbox), scrolled_window, TRUE, TRUE, 0);
 
-        sd = gdu_device_get_smart_data (device);
-        if (sd != NULL)
-                attrs = gdu_smart_data_get_attributes (sd);
+        attrs = gdu_device_drive_ata_smart_get_attributes (device);
         for (l = attrs; l != NULL; l = l->next) {
-                GduSmartDataAttribute *a = l->data;
+                GduAtaSmartAttribute *a = l->data;
                 GtkTreeIter iter;
                 char *col_str;
                 char *name_str;
-                char *value_str;
+                char *current_str;
                 char *worst_str;
                 char *threshold_str;
-                char *raw_str;
+                char *pretty_str;
                 char *status_str;
                 GdkPixbuf *status_pixbuf;
                 char *tooltip_str;
                 int icon_width, icon_height;
-                gboolean threshold_exceeded;
-                gboolean threshold_exceeded_in_the_past;
-                gboolean should_warn;
                 char *desc_str;
+                const gchar *type_str;
+                const gchar *updates_str;
+                const gchar *tips_type_str;
+                const gchar *tips_updates_str;
+                gboolean is_good;
+                gboolean is_good_valid;
 
-                col_str = g_strdup_printf ("%d", gdu_smart_data_attribute_get_id (a));
+                col_str = g_strdup_printf ("%d", gdu_ata_smart_attribute_get_id (a));
 
-                name_str = gdu_smart_data_attribute_get_name (a);
-                desc_str = gdu_smart_data_attribute_get_description (a);
-                should_warn = gdu_smart_data_attribute_is_warning (a);
+                name_str = gdu_ata_smart_attribute_get_localized_name (a);
+                desc_str = gdu_ata_smart_attribute_get_localized_description (a);
 
                 if (desc_str == NULL) {
                         desc_str = g_strdup_printf (_("No description for attribute %d."),
-                                                    gdu_smart_data_attribute_get_id (a));
+                                                    gdu_ata_smart_attribute_get_id (a));
                 }
 
-                tooltip_str = g_strdup_printf (_("<b>Flags:</b> 0x%04x\n"
-                                                 "<b>Type:</b> %s\n"
-                                                 "<b>Updated:</b> %s\n"
-                                                 "<b>Description</b>: %s"),
-                                               gdu_smart_data_attribute_get_flags (a),
-                                               (gdu_smart_data_attribute_get_flags (a) & 0x0001) ? _("Pre-Fail") : _("Old-Age"),
-                                               (gdu_smart_data_attribute_get_flags (a) & 0x0002) ? _("Always") : _("Offline"),
-                                               desc_str);
+                if (gdu_ata_smart_attribute_get_online (a)) {
+                        updates_str = _("Online");
+                        tips_updates_str = _("Every time data is collected.");
+                } else {
+                        updates_str = _("Offline");
+                        tips_updates_str = _("Only when performing a self-test.");
+                }
 
-                value_str = g_strdup_printf ("%d", gdu_smart_data_attribute_get_value (a));
-                worst_str = g_strdup_printf ("%d", gdu_smart_data_attribute_get_worst (a));
-                threshold_str = g_strdup_printf ("%d", gdu_smart_data_attribute_get_threshold (a));
-                raw_str = gdu_smart_data_attribute_get_raw (a);
+                if (gdu_ata_smart_attribute_get_prefailure (a)) {
+                        type_str = _("Pre-fail");
+                        tips_type_str = _("Failure is a sign of imminent disk failure.");
+                } else {
+                        type_str = _("Old-age");
+                        tips_type_str = _("Failure is a sign of old age.");
+                }
 
-                threshold_exceeded = (gdu_smart_data_attribute_get_value (a) < gdu_smart_data_attribute_get_threshold (a));
-                threshold_exceeded_in_the_past = (gdu_smart_data_attribute_get_worst (a) < gdu_smart_data_attribute_get_threshold (a));
+                tooltip_str = g_strdup_printf ("<b>%s</b> %s\n"
+                                               "<b>%s</b> %s\n"
+                                               "<b>%s</b> %s",
+                                               _("Type:"), tips_type_str,
+                                               _("Updates:"), tips_updates_str,
+                                               _("Description:"), desc_str);
+
+                current_str = g_strdup_printf ("%d", gdu_ata_smart_attribute_get_current (a));
+                worst_str = g_strdup_printf ("%d", gdu_ata_smart_attribute_get_worst (a));
+                threshold_str = g_strdup_printf ("%d", gdu_ata_smart_attribute_get_threshold (a));
+
+
+                guint64 pretty_value;
+                GduAtaSmartAttributeUnit pretty_unit;
+                pretty_value = gdu_ata_smart_attribute_get_pretty_value (a);
+                pretty_unit = gdu_ata_smart_attribute_get_pretty_unit (a);
+                pretty_str = pretty_to_string (pretty_value, pretty_unit);
+
+                is_good = gdu_ata_smart_attribute_get_good (a);
+                is_good_valid = gdu_ata_smart_attribute_get_good_valid (a);
 
                 if (!gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, &icon_width, &icon_height))
                         icon_height = 48;
 
-                if (threshold_exceeded) {
-                        status_pixbuf = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (),
-                                                                  "gdu-smart-failing",
-                                                                  icon_height,
-                                                                  GTK_ICON_LOOKUP_GENERIC_FALLBACK,
-                                                                  NULL);
-                        status_str = g_strdup (_("<span foreground='red'><b>FAILING NOW</b></span>"));
-                } else if (threshold_exceeded_in_the_past) {
-                        status_pixbuf = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (),
-                                                                  "gdu-smart-threshold",
-                                                                  icon_height,
-                                                                  GTK_ICON_LOOKUP_GENERIC_FALLBACK,
-                                                                  NULL);
-                        status_str = g_strdup (_("OK (Failed in the past)"));
-                } else {
-                        if (should_warn) {
+                if (!is_good_valid) {
                                 status_pixbuf = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (),
-                                                                          "gdu-smart-threshold",
+                                                                          "gdu-smart-unknown",
                                                                           icon_height,
                                                                           GTK_ICON_LOOKUP_GENERIC_FALLBACK,
                                                                           NULL);
-                                status_str = g_strdup (_("OK (Non-zero)"));
-                        } else {
+                                status_str = g_strdup (_("N/A"));
+                } else {
+                        if (is_good) {
                                 status_pixbuf = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (),
                                                                           "gdu-smart-healthy",
                                                                           icon_height,
                                                                           GTK_ICON_LOOKUP_GENERIC_FALLBACK,
                                                                           NULL);
                                 status_str = g_strdup (_("OK"));
+                        } else {
+                                status_pixbuf = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (),
+                                                                          "gdu-smart-failing",
+                                                                          icon_height,
+                                                                          GTK_ICON_LOOKUP_GENERIC_FALLBACK,
+                                                                          NULL);
+                                status_str = g_strconcat ("<span foreground='red'><b>",
+                                                          _("FAILING"),
+                                                          "</b></span>",
+                                                          NULL);
                         }
                 }
 
                 gtk_list_store_append (list_store, &iter);
                 gtk_list_store_set (list_store, &iter,
-                                    ATTR_ID_INT_COLUMN, gdu_smart_data_attribute_get_id (a),
+                                    ATTR_ID_NAME_COLUMN, gdu_ata_smart_attribute_get_name (a),
+                                    ATTR_ID_INT_COLUMN, gdu_ata_smart_attribute_get_id (a),
                                     ATTR_ID_COLUMN, col_str,
                                     ATTR_DESC_COLUMN, name_str,
-                                    ATTR_VALUE_COLUMN, value_str,
+                                    ATTR_CURRENT_COLUMN, current_str,
                                     ATTR_WORST_COLUMN, worst_str,
                                     ATTR_THRESHOLD_COLUMN, threshold_str,
-                                    ATTR_RAW_COLUMN, raw_str,
+                                    ATTR_VALUE_COLUMN, pretty_str,
                                     ATTR_STATUS_PIXBUF_COLUMN, status_pixbuf,
                                     ATTR_STATUS_TEXT_COLUMN, status_str,
+                                    ATTR_TYPE_COLUMN, type_str,
+                                    ATTR_UPDATES_COLUMN, updates_str,
                                     ATTR_TOOLTIP_COLUMN, tooltip_str,
                                     -1);
                 g_free (col_str);
                 g_free (name_str);
-                g_free (value_str);
+                g_free (current_str);
                 g_free (worst_str);
                 g_free (threshold_str);
-                g_free (raw_str);
+                g_free (pretty_str);
                 g_object_unref (status_pixbuf);
                 g_free (status_str);
                 g_free (tooltip_str);
@@ -1130,8 +1274,9 @@ out:
                 g_object_unref (sd);
 }
 
+
 static void
-run_smart_selftest_callback (GduDevice *device,
+run_ata_smart_selftest_callback (GduDevice *device,
                              GError *error,
                              gpointer user_data)
 {
@@ -1140,7 +1285,7 @@ run_smart_selftest_callback (GduDevice *device,
                 gdu_shell_raise_error (gdu_section_get_shell (section),
                                        gdu_section_get_presentable (section),
                                        error,
-                                       _("Error initiating S.M.A.R.T. Self Test"));
+                                       _("Error initiating ATA SMART Self Test"));
         }
         g_object_unref (section);
 }
@@ -1158,7 +1303,9 @@ health_selftest_action_callback (GtkAction *action, gpointer user_data)
         GtkWidget *label;
         GtkWidget *radio0;
         GtkWidget *radio1;
+        GtkWidget *radio2;
         const char *test;
+        gchar *s;
 
         test = NULL;
 
@@ -1169,7 +1316,7 @@ health_selftest_action_callback (GtkAction *action, gpointer user_data)
         }
 
 
-        dialog = gtk_dialog_new_with_buttons (_("S.M.A.R.T. Self Test"),
+        dialog = gtk_dialog_new_with_buttons (_("ATA SMART Self Test"),
                                               GTK_WINDOW (gdu_shell_get_toplevel (gdu_section_get_shell (GDU_SECTION (section)))),
                                               GTK_DIALOG_MODAL|GTK_DIALOG_DESTROY_WITH_PARENT|GTK_DIALOG_NO_SEPARATOR,
                                               NULL);
@@ -1192,7 +1339,12 @@ health_selftest_action_callback (GtkAction *action, gpointer user_data)
 	gtk_box_pack_start (GTK_BOX (hbox), main_vbox, TRUE, TRUE, 0);
 
 	label = gtk_label_new (NULL);
-        gtk_label_set_markup (GTK_LABEL (label), _("<big><b>Select what S.M.A.R.T. test to run on the drive.</b></big>"));
+        s = g_strconcat ("<big><b>",
+                         _("Select what ATA SMART self test to run"),
+                         "</b></big>",
+                         NULL);
+        gtk_label_set_markup (GTK_LABEL (label), s);
+        g_free (s);
 	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
 	gtk_label_set_line_wrap (GTK_LABEL (label), TRUE);
 	gtk_box_pack_start (GTK_BOX (main_vbox), GTK_WIDGET (label), FALSE, FALSE, 0);
@@ -1208,10 +1360,13 @@ health_selftest_action_callback (GtkAction *action, gpointer user_data)
         radio0 = gtk_radio_button_new_with_mnemonic_from_widget (NULL,
                                                                  _("_Short (usually less than ten minutes)"));
         radio1 = gtk_radio_button_new_with_mnemonic_from_widget (GTK_RADIO_BUTTON (radio0),
-                                                                 _("_Long (usually tens of minutes)"));
+                                                                 _("_Extended (usually tens of minutes)"));
+        radio2 = gtk_radio_button_new_with_mnemonic_from_widget (GTK_RADIO_BUTTON (radio0),
+                                                                 _("C_onveyance (usually less than ten minutes)"));
 
 	gtk_box_pack_start (GTK_BOX (main_vbox), GTK_WIDGET (radio0), FALSE, FALSE, 0);
 	gtk_box_pack_start (GTK_BOX (main_vbox), GTK_WIDGET (radio1), FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (main_vbox), GTK_WIDGET (radio2), FALSE, FALSE, 0);
 
         gtk_dialog_add_button (GTK_DIALOG (dialog), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
         gtk_dialog_add_button (GTK_DIALOG (dialog), _("_Initiate Self Test"), 0);
@@ -1223,19 +1378,19 @@ health_selftest_action_callback (GtkAction *action, gpointer user_data)
         if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (radio0))) {
                 test = "short";
         } else if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (radio1))) {
-                test = "long";
+                test = "extended";
+        } else if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (radio2))) {
+                test = "conveyance";
         }
 
         gtk_widget_destroy (dialog);
         if (response != 0)
                 goto out;
 
-        /* TODO: option for captive */
-        gdu_device_op_drive_smart_initiate_selftest (device,
-                                                     test,
-                                                     FALSE,
-                                                     run_smart_selftest_callback,
-                                                     g_object_ref (section));
+        gdu_device_op_drive_ata_smart_initiate_selftest (device,
+                                                         test,
+                                                         run_ata_smart_selftest_callback,
+                                                         g_object_ref (section));
 out:
         if (device != NULL)
                 g_object_unref (device);
@@ -1249,29 +1404,24 @@ update (GduSectionHealth *section)
         GduDevice *device;
         guint64 collect_time;
         GTimeVal now;
-        GduSmartData *sd;
 
-        sd = NULL;
         device = gdu_presentable_get_device (gdu_section_get_presentable (GDU_SECTION (section)));
         if (device == NULL) {
                 g_warning ("%s: device is not supposed to be NULL", __FUNCTION__);
                 goto out;
         }
 
-        if (!gdu_device_drive_smart_get_is_capable (device)) {
+        if (!gdu_device_drive_ata_smart_get_is_available (device)) {
                 smart_data_set_not_supported (section);
                 goto out;
         }
 
         /* refresh if data is more than an hour old */
         g_get_current_time (&now);
-        sd = gdu_device_get_smart_data (device);
-        collect_time = 0;
-        if (sd != NULL)
-                collect_time = gdu_smart_data_get_time_collected (sd);
-        if (sd == NULL || collect_time == 0 || (now.tv_sec - collect_time) > 60 * 60) {
+        collect_time = gdu_device_drive_ata_smart_get_time_collected (device);
+        if (collect_time == 0 || (now.tv_sec - collect_time) > 60 * 60) {
                 smart_data_set_pending (section);
-                gdu_device_drive_smart_refresh_data (device, retrieve_smart_data_cb, g_object_ref (section));
+                gdu_device_drive_ata_smart_refresh_data (device, retrieve_ata_smart_data_cb, g_object_ref (section));
         } else {
                 smart_data_set (section);
         }
@@ -1279,8 +1429,6 @@ update (GduSectionHealth *section)
 out:
         if (device != NULL)
                 g_object_unref (device);
-        if (sd != NULL)
-                g_object_unref (sd);
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -1324,23 +1472,26 @@ gdu_section_health_init (GduSectionHealth *section)
         GtkWidget *button;
         GtkWidget *button_box;
         GtkWidget *image;
+        char *s;
 
         section->priv = G_TYPE_INSTANCE_GET_PRIVATE (section, GDU_TYPE_SECTION_HEALTH, GduSectionHealthPrivate);
 
         section->priv->pk_smart_refresh_action = polkit_action_new ();
         polkit_action_set_action_id (section->priv->pk_smart_refresh_action,
-                                     "org.freedesktop.devicekit.disks.drive-smart-refresh");
+                                     "org.freedesktop.devicekit.disks.drive-ata-smart-refresh");
 
         section->priv->pk_smart_retrieve_historical_data_action = polkit_action_new ();
         polkit_action_set_action_id (section->priv->pk_smart_retrieve_historical_data_action,
-                                     "org.freedesktop.devicekit.disks.drive-smart-retrieve-historical-data");
+                                     "org.freedesktop.devicekit.disks.drive-ata-smart-retrieve-historical-data");
 
         section->priv->pk_smart_selftest_action = polkit_action_new ();
         polkit_action_set_action_id (section->priv->pk_smart_selftest_action,
-                                     "org.freedesktop.devicekit.disks.drive-smart-selftest");
+                                     "org.freedesktop.devicekit.disks.drive-ata-smart-selftest");
 
         label = gtk_label_new (NULL);
-        gtk_label_set_markup (GTK_LABEL (label), _("<b>Health</b>"));
+        s = g_strconcat ("<b>", _("Health"), "</b>", NULL);
+        gtk_label_set_markup (GTK_LABEL (label), s);
+        g_free (s);
         gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
         gtk_box_pack_start (GTK_BOX (section), label, FALSE, FALSE, 6);
         vbox2 = gtk_vbox_new (FALSE, 5);
@@ -1351,7 +1502,7 @@ gdu_section_health_init (GduSectionHealth *section)
 
         /* explanatory text */
         label = gtk_label_new (NULL);
-        gtk_label_set_markup (GTK_LABEL (label), _("Some disks supports S.M.A.R.T., a monitoring system for "
+        gtk_label_set_markup (GTK_LABEL (label), _("Some disks support ATA SMART, a monitoring system for "
                                                    "disks to detect and report on various indicators of "
                                                    "reliability, in the hope of anticipating failures."));
         gtk_label_set_line_wrap (GTK_LABEL (label), TRUE);
@@ -1359,6 +1510,8 @@ gdu_section_health_init (GduSectionHealth *section)
         gtk_box_pack_start (GTK_BOX (vbox2), label, FALSE, TRUE, 0);
 
         table = gtk_table_new (4, 2, FALSE);
+        gtk_table_set_col_spacings (GTK_TABLE (table), 12);
+
         gtk_box_pack_start (GTK_BOX (vbox2), table, FALSE, FALSE, 0);
 
         row = 0;
@@ -1367,7 +1520,9 @@ gdu_section_health_init (GduSectionHealth *section)
         /* power on hours */
         label = gtk_label_new (NULL);
         gtk_misc_set_alignment (GTK_MISC (label), 1.0, 0.5);
-        gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), _("<b>Powered On:</b>"));
+        s = g_strconcat ("<b>", _("Powered On:"), "</b>", NULL);
+        gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), s);
+        g_free (s);
         gtk_table_attach (GTK_TABLE (table), label, 0, 1, row, row + 1,
                           GTK_FILL, GTK_EXPAND | GTK_FILL, 2, 2);
 
@@ -1383,7 +1538,9 @@ gdu_section_health_init (GduSectionHealth *section)
         /* temperature */
         label = gtk_label_new (NULL);
         gtk_misc_set_alignment (GTK_MISC (label), 1.0, 0.5);
-        gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), _("<b>Temperature:</b>"));
+        s = g_strconcat ("<b>", _("Temperature:"), "</b>", NULL);
+        gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), s);
+        g_free (s);
         gtk_table_attach (GTK_TABLE (table), label, 0, 1, row, row + 1,
                           GTK_FILL, GTK_EXPAND | GTK_FILL, 2, 2);
 
@@ -1399,7 +1556,9 @@ gdu_section_health_init (GduSectionHealth *section)
         /* last test */
         label = gtk_label_new (NULL);
         gtk_misc_set_alignment (GTK_MISC (label), 1.0, 0.5);
-        gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), _("<b>Last Test:</b>"));
+        s = g_strconcat ("<b>", _("Last Test:"), "</b>", NULL);
+        gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), s);
+        g_free (s);
         gtk_table_attach (GTK_TABLE (table), label, 0, 1, row, row + 1,
                           GTK_FILL, GTK_EXPAND | GTK_FILL, 2, 2);
 
@@ -1415,7 +1574,9 @@ gdu_section_health_init (GduSectionHealth *section)
         /* updated */
         label = gtk_label_new (NULL);
         gtk_misc_set_alignment (GTK_MISC (label), 1.0, 0.5);
-        gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), _("<b>Updated:</b>"));
+        s = g_strconcat ("<b>", _("Updated:"), "</b>", NULL);
+        gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), s);
+        g_free (s);
         gtk_table_attach (GTK_TABLE (table), label, 0, 1, row, row + 1,
                           GTK_FILL, GTK_EXPAND | GTK_FILL, 2, 2);
 
@@ -1431,7 +1592,9 @@ gdu_section_health_init (GduSectionHealth *section)
         /* assessment */
         label = gtk_label_new (NULL);
         gtk_misc_set_alignment (GTK_MISC (label), 1.0, 0.5);
-        gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), _("<b>Assessment:</b>"));
+        s = g_strconcat ("<b>", _("Assessment:"), "</b>", NULL);
+        gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), s);
+        g_free (s);
         gtk_table_attach (GTK_TABLE (table), label, 0, 1, row, row + 1,
                           GTK_FILL, GTK_EXPAND | GTK_FILL, 2, 2);
 
@@ -1465,7 +1628,7 @@ gdu_section_health_init (GduSectionHealth *section)
                 "refresh",
                 section->priv->pk_smart_refresh_action,
                 _("Refre_sh"),
-                _("Collect S.M.A.R.T. data from the device"));
+                _("Refresh ATA SMART data from the device"));
         g_object_set (section->priv->health_refresh_action,
                       "auth-label", _("Refre_sh..."),
                       "yes-icon-name", GTK_STOCK_REFRESH,
@@ -1482,7 +1645,7 @@ gdu_section_health_init (GduSectionHealth *section)
                 "details",
                 section->priv->pk_smart_retrieve_historical_data_action,
                 _("_Details..."),
-                _("Show S.M.A.R.T. Historical Data"));
+                _("Show ATA SMART Historical Data"));
         g_object_set (section->priv->health_details_action,
                       "auth-label", _("_Details..."),
                       "yes-icon-name", GTK_STOCK_DIALOG_INFO,
@@ -1499,7 +1662,7 @@ gdu_section_health_init (GduSectionHealth *section)
                 "selftest",
                 section->priv->pk_smart_selftest_action,
                 _("Se_lf Test..."),
-                _("Run a S.M.A.R.T. Self Test"));
+                _("Run an ATA SMART Self Test"));
         g_object_set (section->priv->health_selftest_action,
                       "auth-label", _("Se_lf Test..."),
                       "yes-icon-name", GTK_STOCK_EXECUTE,

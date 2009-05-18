@@ -210,6 +210,7 @@ gdu_section_filesystem_init (GduSectionFilesystem *section)
         GtkWidget *table;
         GtkWidget *entry;
         int row;
+        char *s;
 
         section->priv = G_TYPE_INSTANCE_GET_PRIVATE (section, GDU_TYPE_SECTION_FILESYSTEM, GduSectionFilesystemPrivate);
 
@@ -236,7 +237,9 @@ gdu_section_filesystem_init (GduSectionFilesystem *section)
         section->priv->modify_fs_vbox = vbox3;
 
         label = gtk_label_new (NULL);
-        gtk_label_set_markup (GTK_LABEL (label), _("<b>Mountable Filesystem</b>"));
+        s = g_strconcat ("<b>", _("Mountable Filesystem"), "</b>", NULL);
+        gtk_label_set_markup (GTK_LABEL (label), s);
+        g_free (s);
         gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
         gtk_box_pack_start (GTK_BOX (vbox3), label, FALSE, FALSE, 6);
         vbox2 = gtk_vbox_new (FALSE, 5);
@@ -254,6 +257,8 @@ gdu_section_filesystem_init (GduSectionFilesystem *section)
         gtk_box_pack_start (GTK_BOX (vbox2), label, FALSE, TRUE, 0);
 
         table = gtk_table_new (1, 3, FALSE);
+        gtk_table_set_col_spacings (GTK_TABLE (table), 12);
+
         gtk_box_pack_start (GTK_BOX (vbox2), table, FALSE, FALSE, 0);
 
         row = 0;
@@ -261,7 +266,7 @@ gdu_section_filesystem_init (GduSectionFilesystem *section)
         /* file system label */
         label = gtk_label_new (NULL);
         gtk_misc_set_alignment (GTK_MISC (label), 1.0, 0.5);
-        gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), _("_Name:"));
+        gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), _("_Label:"));
         gtk_table_attach (GTK_TABLE (table), label, 0, 1, row, row + 1,
                           GTK_FILL, GTK_EXPAND | GTK_FILL, 2, 2);
         entry = gtk_entry_new ();

@@ -1,4 +1,4 @@
-AC_INIT([GNOME Disk Utility],[0.2],[mailto:david@fubar.dk],[gnome-disk-utility])
+AC_INIT([GNOME Disk Utility],[0.3],[mailto:david@fubar.dk],[gnome-disk-utility])
 
 AM_INIT_AUTOMAKE([1.9 foreign dist-bzip2 no-dist-gzip])
 
@@ -126,6 +126,9 @@ POLKIT_GNOME_REQUIRED=0.7
 GNOME_KEYRING_REQUIRED=2.22
 GTK2_REQUIRED=2.6.0
 LIBSEXY_REQUIRED=0.1.11
+UNIQUE_REQUIRED=1.0
+LIBNOTIFY_REQUIRED=0.3.0
+NAUTILUS_REQUIRED=2.24.0
 
 SCROLLKEEPER_REQUIRED=0.3.14
 INTLTOOL_REQUIRED=0.35.0
@@ -134,12 +137,15 @@ PKG_CHECK_MODULES(GLIB2, glib-2.0 >= $GLIB2_REQUIRED)
 PKG_CHECK_MODULES(GOBJECT2, gobject-2.0 >= $GOBJECT2_REQUIRED)
 PKG_CHECK_MODULES(GIO2, gio-2.0 >= $GIO2_REQUIRED)
 PKG_CHECK_MODULES(GIO_UNIX2, gio-unix-2.0 >= $GIO2_REQUIRED)
+PKG_CHECK_MODULES(GTHREAD2, gthread-2.0 >= $GLIB2_REQUIRED)
 PKG_CHECK_MODULES(DBUS_GLIB, dbus-glib-1 >= $DBUS_GLIB_REQUIRED)
 PKG_CHECK_MODULES(POLKIT_DBUS, polkit-dbus >= $POLKIT_DBUS_REQUIRED)
 PKG_CHECK_MODULES(POLKIT_GNOME, polkit-gnome >= $POLKIT_GNOME_REQUIRED)
 PKG_CHECK_MODULES(GNOME_KEYRING, gnome-keyring-1 >= $GNOME_KEYRING_REQUIRED)
 PKG_CHECK_MODULES(GTK2, gtk+-2.0 >= $GTK2_REQUIRED)
 PKG_CHECK_MODULES(LIBSEXY, libsexy >= $LIBSEXY_REQUIRED)
+PKG_CHECK_MODULES(UNIQUE, unique-1.0 >= $UNIQUE_REQUIRED)
+PKG_CHECK_MODULES(LIBNOTIFY, libnotify  >= $LIBNOTIFY_REQUIRED)
 
 # *************
 # Documentation
@@ -161,6 +167,28 @@ AC_SUBST([GETTEXT_PACKAGE])
 AM_GLIB_GNU_GETTEXT
 AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE],["$GETTEXT_PACKAGE"],[gettext domain])
 
+# ******************
+# Nautilus extension
+# ******************
+
+have_nautilus=no
+AC_ARG_ENABLE(nautilus, AC_HELP_STRING([--disable-nautilus], [disable nautilus extension]))
+
+if test "x$enable_nautilus" != "xno"; then
+	PKG_CHECK_MODULES(NAUTILUS, libnautilus-extension >= $NAUTILUS_REQUIRED,
+			  [AC_DEFINE(HAVE_NAUTILUS, 1, [Define if nautilus is available])
+			  have_nautilus=yes], have_nautilus=no)
+	if test "x$have_nautilus" = xno -a "x$enable_nautilus" = xyes; then
+		AC_MSG_ERROR([nautilus support requested but libraries not found])
+	fi
+fi
+
+AC_SUBST(NAUTILUS_LIBS)
+AC_SUBST(NAUTILUS_CFLAGS)
+AC_SUBST(NAUTILUS_EXTENSION_DIR)
+
+AM_CONDITIONAL(ENABLE_NAUTILUS, [test "$have_nautilus" = "yes"])
+
 # *************************************
 # *************************************
 
@@ -177,8 +205,14 @@ src/gdu/gdu.pc
 src/gdu-gtk/Makefile
 src/gdu-gtk/gdu-gtk.pc
 src/palimpsest/Makefile
+src/notification/Makefile
+src/playground/Makefile
+src/playground/grid/Makefile
+src/format-tool/Makefile
+src/nautilus-extension/Makefile
 po/Makefile.in
 data/Makefile
+data/gdu-notification-daemon.desktop.in.in
 data/icons/Makefile
 data/icons/16x16/Makefile
 data/icons/22x22/Makefile
@@ -210,4 +244,5 @@ echo "
 
         Maintainer mode:            ${USE_MAINTAINER_MODE}
         Building api docs:          ${enable_gtk_doc}
+        Nautilus extension:         ${have_nautilus}
 "

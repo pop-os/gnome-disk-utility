@@ -3,10 +3,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>gdu-util</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.74.2">
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
 <link rel="home" href="index.html" title="Disk Utility Library Reference Manual">
 <link rel="up" href="ref-core.html" title="API Reference">
-<link rel="prev" href="GduSmartDataAttribute.html" title="GduSmartDataAttribute">
+<link rel="prev" href="GduAtaSmartHistoricalData.html" title="GduAtaSmartHistoricalData">
 <link rel="next" href="gnome-disk-utility-gdu-callbacks.html" title="Callbacks">
 <meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
@@ -15,7 +15,7 @@
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
 <tr valign="middle">
-<td><a accesskey="p" href="GduSmartDataAttribute.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="p" href="GduAtaSmartHistoricalData.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
 <td><a accesskey="u" href="ref-core.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">Disk Utility Library Reference Manual</th>
@@ -53,8 +53,6 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolea
 char *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-fstype-get-description" title="gdu_util_fstype_get_description ()">gdu_util_fstype_get_description</a>     (char *fstype);
 char *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-part-table-type-get-description" title="gdu_util_part_table_type_get_description ()">gdu_util_part_table_type_get_description</a>
                                                         (char *part_type);
-char *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-secure-erase-get-description" title="gdu_util_secure_erase_get_description ()">gdu_util_secure_erase_get_description</a>
-                                                        (char *secure_erase_type);
 char *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-get-speed-for-display" title="gdu_util_get_speed_for_display ()">gdu_util_get_speed_for_display</a>      (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
 >guint64</a> size);
@@ -65,7 +63,6 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64
 char *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-get-desc-for-part-type" title="gdu_util_get_desc_for_part_type ()">gdu_util_get_desc_for_part_type</a>     (const char *part_scheme,
                                                          const char *part_type);
 char *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-get-job-description" title="gdu_get_job_description ()">gdu_get_job_description</a>             (const char *job_id);
-char *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-get-task-description" title="gdu_get_task_description ()">gdu_get_task_description</a>            (const char *task_id);
 char *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-linux-md-get-raid-level-for-display" title="gdu_linux_md_get_raid_level_for_display ()">gdu_linux_md_get_raid_level_for_display</a>
                                                         (const <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
@@ -225,29 +222,6 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolea
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="gdu-util-secure-erase-get-description"></a><h3>gdu_util_secure_erase_get_description ()</h3>
-<pre class="programlisting">char *              gdu_util_secure_erase_get_description
-                                                        (char *secure_erase_type);</pre>
-<p>
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>secure_erase_type</code></em> :</span></p></td>
-<td>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2" lang="en">
 <a name="gdu-util-get-speed-for-display"></a><h3>gdu_util_get_speed_for_display ()</h3>
 <pre class="programlisting">char *              gdu_util_get_speed_for_display      (<a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
@@ -339,28 +313,6 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>job_id</code></em> :</span></p></td>
-<td>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2" lang="en">
-<a name="gdu-get-task-description"></a><h3>gdu_get_task_description ()</h3>
-<pre class="programlisting">char *              gdu_get_task_description            (const char *task_id);</pre>
-<p>
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>task_id</code></em> :</span></p></td>
 <td>
 </td>
 </tr>

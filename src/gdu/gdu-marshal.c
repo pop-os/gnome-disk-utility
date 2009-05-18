@@ -48,30 +48,27 @@
 #endif /* !G_ENABLE_DEBUG */
 
 
-/* VOID:BOOLEAN,STRING,UINT,BOOLEAN,INT,INT,STRING,DOUBLE (gdu-marshal.list:1) */
+/* VOID:BOOLEAN,STRING,UINT,BOOLEAN,DOUBLE (gdu-marshal.list:1) */
 void
-gdu_marshal_VOID__BOOLEAN_STRING_UINT_BOOLEAN_INT_INT_STRING_DOUBLE (GClosure     *closure,
-                                                                     GValue       *return_value G_GNUC_UNUSED,
-                                                                     guint         n_param_values,
-                                                                     const GValue *param_values,
-                                                                     gpointer      invocation_hint G_GNUC_UNUSED,
-                                                                     gpointer      marshal_data)
+gdu_marshal_VOID__BOOLEAN_STRING_UINT_BOOLEAN_DOUBLE (GClosure     *closure,
+                                                      GValue       *return_value G_GNUC_UNUSED,
+                                                      guint         n_param_values,
+                                                      const GValue *param_values,
+                                                      gpointer      invocation_hint G_GNUC_UNUSED,
+                                                      gpointer      marshal_data)
 {
-  typedef void (*GMarshalFunc_VOID__BOOLEAN_STRING_UINT_BOOLEAN_INT_INT_STRING_DOUBLE) (gpointer     data1,
-                                                                                        gboolean     arg_1,
-                                                                                        gpointer     arg_2,
-                                                                                        guint        arg_3,
-                                                                                        gboolean     arg_4,
-                                                                                        gint         arg_5,
-                                                                                        gint         arg_6,
-                                                                                        gpointer     arg_7,
-                                                                                        gdouble      arg_8,
-                                                                                        gpointer     data2);
-  register GMarshalFunc_VOID__BOOLEAN_STRING_UINT_BOOLEAN_INT_INT_STRING_DOUBLE callback;
+  typedef void (*GMarshalFunc_VOID__BOOLEAN_STRING_UINT_BOOLEAN_DOUBLE) (gpointer     data1,
+                                                                         gboolean     arg_1,
+                                                                         gpointer     arg_2,
+                                                                         guint        arg_3,
+                                                                         gboolean     arg_4,
+                                                                         gdouble      arg_5,
+                                                                         gpointer     data2);
+  register GMarshalFunc_VOID__BOOLEAN_STRING_UINT_BOOLEAN_DOUBLE callback;
   register GCClosure *cc = (GCClosure*) closure;
   register gpointer data1, data2;
 
-  g_return_if_fail (n_param_values == 9);
+  g_return_if_fail (n_param_values == 6);
 
   if (G_CCLOSURE_SWAP_DATA (closure))
     {
@@ -83,45 +80,39 @@ gdu_marshal_VOID__BOOLEAN_STRING_UINT_BOOLEAN_INT_INT_STRING_DOUBLE (GClosure   
       data1 = g_value_peek_pointer (param_values + 0);
       data2 = closure->data;
     }
-  callback = (GMarshalFunc_VOID__BOOLEAN_STRING_UINT_BOOLEAN_INT_INT_STRING_DOUBLE) (marshal_data ? marshal_data : cc->callback);
+  callback = (GMarshalFunc_VOID__BOOLEAN_STRING_UINT_BOOLEAN_DOUBLE) (marshal_data ? marshal_data : cc->callback);
 
   callback (data1,
             g_marshal_value_peek_boolean (param_values + 1),
             g_marshal_value_peek_string (param_values + 2),
             g_marshal_value_peek_uint (param_values + 3),
             g_marshal_value_peek_boolean (param_values + 4),
-            g_marshal_value_peek_int (param_values + 5),
-            g_marshal_value_peek_int (param_values + 6),
-            g_marshal_value_peek_string (param_values + 7),
-            g_marshal_value_peek_double (param_values + 8),
+            g_marshal_value_peek_double (param_values + 5),
             data2);
 }
 
-/* VOID:STRING,BOOLEAN,STRING,UINT,BOOLEAN,INT,INT,STRING,DOUBLE (gdu-marshal.list:2) */
+/* VOID:STRING,BOOLEAN,STRING,UINT,BOOLEAN,DOUBLE (gdu-marshal.list:2) */
 void
-gdu_marshal_VOID__STRING_BOOLEAN_STRING_UINT_BOOLEAN_INT_INT_STRING_DOUBLE (GClosure     *closure,
-                                                                            GValue       *return_value G_GNUC_UNUSED,
-                                                                            guint         n_param_values,
-                                                                            const GValue *param_values,
-                                                                            gpointer      invocation_hint G_GNUC_UNUSED,
-                                                                            gpointer      marshal_data)
+gdu_marshal_VOID__STRING_BOOLEAN_STRING_UINT_BOOLEAN_DOUBLE (GClosure     *closure,
+                                                             GValue       *return_value G_GNUC_UNUSED,
+                                                             guint         n_param_values,
+                                                             const GValue *param_values,
+                                                             gpointer      invocation_hint G_GNUC_UNUSED,
+                                                             gpointer      marshal_data)
 {
-  typedef void (*GMarshalFunc_VOID__STRING_BOOLEAN_STRING_UINT_BOOLEAN_INT_INT_STRING_DOUBLE) (gpointer     data1,
-                                                                                               gpointer     arg_1,
-                                                                                               gboolean     arg_2,
-                                                                                               gpointer     arg_3,
-                                                                                               guint        arg_4,
-                                                                                               gboolean     arg_5,
-                                                                                               gint         arg_6,
-                                                                                               gint         arg_7,
-                                                                                               gpointer     arg_8,
-                                                                                               gdouble      arg_9,
-                                                                                               gpointer     data2);
-  register GMarshalFunc_VOID__STRING_BOOLEAN_STRING_UINT_BOOLEAN_INT_INT_STRING_DOUBLE callback;
+  typedef void (*GMarshalFunc_VOID__STRING_BOOLEAN_STRING_UINT_BOOLEAN_DOUBLE) (gpointer     data1,
+                                                                                gpointer     arg_1,
+                                                                                gboolean     arg_2,
+                                                                                gpointer     arg_3,
+                                                                                guint        arg_4,
+                                                                                gboolean     arg_5,
+                                                                                gdouble      arg_6,
+                                                                                gpointer     data2);
+  register GMarshalFunc_VOID__STRING_BOOLEAN_STRING_UINT_BOOLEAN_DOUBLE callback;
   register GCClosure *cc = (GCClosure*) closure;
   register gpointer data1, data2;
 
-  g_return_if_fail (n_param_values == 10);
+  g_return_if_fail (n_param_values == 7);
 
   if (G_CCLOSURE_SWAP_DATA (closure))
     {
@@ -133,7 +124,7 @@ gdu_marshal_VOID__STRING_BOOLEAN_STRING_UINT_BOOLEAN_INT_INT_STRING_DOUBLE (GClo
       data1 = g_value_peek_pointer (param_values + 0);
       data2 = closure->data;
     }
-  callback = (GMarshalFunc_VOID__STRING_BOOLEAN_STRING_UINT_BOOLEAN_INT_INT_STRING_DOUBLE) (marshal_data ? marshal_data : cc->callback);
+  callback = (GMarshalFunc_VOID__STRING_BOOLEAN_STRING_UINT_BOOLEAN_DOUBLE) (marshal_data ? marshal_data : cc->callback);
 
   callback (data1,
             g_marshal_value_peek_string (param_values + 1),
@@ -141,10 +132,7 @@ gdu_marshal_VOID__STRING_BOOLEAN_STRING_UINT_BOOLEAN_INT_INT_STRING_DOUBLE (GClo
             g_marshal_value_peek_string (param_values + 3),
             g_marshal_value_peek_uint (param_values + 4),
             g_marshal_value_peek_boolean (param_values + 5),
-            g_marshal_value_peek_int (param_values + 6),
-            g_marshal_value_peek_int (param_values + 7),
-            g_marshal_value_peek_string (param_values + 8),
-            g_marshal_value_peek_double (param_values + 9),
+            g_marshal_value_peek_double (param_values + 6),
             data2);
 }
 

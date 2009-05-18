@@ -64,6 +64,44 @@ static
 inline
 #endif
 gboolean
+org_freedesktop_DeviceKit_Disks_enumerate_device_files (DBusGProxy *proxy, char *** OUT_device_files, GError **error)
+
+{
+  return dbus_g_proxy_call (proxy, "EnumerateDeviceFiles", error, G_TYPE_INVALID, G_TYPE_STRV, OUT_device_files, G_TYPE_INVALID);
+}
+
+typedef void (*org_freedesktop_DeviceKit_Disks_enumerate_device_files_reply) (DBusGProxy *proxy, char * *OUT_device_files, GError *error, gpointer userdata);
+
+static void
+org_freedesktop_DeviceKit_Disks_enumerate_device_files_async_callback (DBusGProxy *proxy, DBusGProxyCall *call, void *user_data)
+{
+  DBusGAsyncData *data = (DBusGAsyncData*) user_data;
+  GError *error = NULL;
+  char ** OUT_device_files;
+  dbus_g_proxy_end_call (proxy, call, &error, G_TYPE_STRV, &OUT_device_files, G_TYPE_INVALID);
+  (*(org_freedesktop_DeviceKit_Disks_enumerate_device_files_reply)data->cb) (proxy, OUT_device_files, error, data->userdata);
+  return;
+}
+
+static
+#ifdef G_HAVE_INLINE
+inline
+#endif
+DBusGProxyCall*
+org_freedesktop_DeviceKit_Disks_enumerate_device_files_async (DBusGProxy *proxy, org_freedesktop_DeviceKit_Disks_enumerate_device_files_reply callback, gpointer userdata)
+
+{
+  DBusGAsyncData *stuff;
+  stuff = g_slice_new (DBusGAsyncData);
+  stuff->cb = G_CALLBACK (callback);
+  stuff->userdata = userdata;
+  return dbus_g_proxy_begin_call (proxy, "EnumerateDeviceFiles", org_freedesktop_DeviceKit_Disks_enumerate_device_files_async_callback, stuff, _dbus_glib_async_data_free, G_TYPE_INVALID);
+}
+static
+#ifdef G_HAVE_INLINE
+inline
+#endif
+gboolean
 org_freedesktop_DeviceKit_Disks_find_device_by_device_file (DBusGProxy *proxy, const char * IN_device_file, char** OUT_device, GError **error)
 
 {
@@ -96,6 +134,44 @@ org_freedesktop_DeviceKit_Disks_find_device_by_device_file_async (DBusGProxy *pr
   stuff->cb = G_CALLBACK (callback);
   stuff->userdata = userdata;
   return dbus_g_proxy_begin_call (proxy, "FindDeviceByDeviceFile", org_freedesktop_DeviceKit_Disks_find_device_by_device_file_async_callback, stuff, _dbus_glib_async_data_free, G_TYPE_STRING, IN_device_file, G_TYPE_INVALID);
+}
+static
+#ifdef G_HAVE_INLINE
+inline
+#endif
+gboolean
+org_freedesktop_DeviceKit_Disks_find_device_by_major_minor (DBusGProxy *proxy, const gint64 IN_device_major, const gint64 IN_device_minor, char** OUT_device, GError **error)
+
+{
+  return dbus_g_proxy_call (proxy, "FindDeviceByMajorMinor", error, G_TYPE_INT64, IN_device_major, G_TYPE_INT64, IN_device_minor, G_TYPE_INVALID, DBUS_TYPE_G_OBJECT_PATH, OUT_device, G_TYPE_INVALID);
+}
+
+typedef void (*org_freedesktop_DeviceKit_Disks_find_device_by_major_minor_reply) (DBusGProxy *proxy, char *OUT_device, GError *error, gpointer userdata);
+
+static void
+org_freedesktop_DeviceKit_Disks_find_device_by_major_minor_async_callback (DBusGProxy *proxy, DBusGProxyCall *call, void *user_data)
+{
+  DBusGAsyncData *data = (DBusGAsyncData*) user_data;
+  GError *error = NULL;
+  char* OUT_device;
+  dbus_g_proxy_end_call (proxy, call, &error, DBUS_TYPE_G_OBJECT_PATH, &OUT_device, G_TYPE_INVALID);
+  (*(org_freedesktop_DeviceKit_Disks_find_device_by_major_minor_reply)data->cb) (proxy, OUT_device, error, data->userdata);
+  return;
+}
+
+static
+#ifdef G_HAVE_INLINE
+inline
+#endif
+DBusGProxyCall*
+org_freedesktop_DeviceKit_Disks_find_device_by_major_minor_async (DBusGProxy *proxy, const gint64 IN_device_major, const gint64 IN_device_minor, org_freedesktop_DeviceKit_Disks_find_device_by_major_minor_reply callback, gpointer userdata)
+
+{
+  DBusGAsyncData *stuff;
+  stuff = g_slice_new (DBusGAsyncData);
+  stuff->cb = G_CALLBACK (callback);
+  stuff->userdata = userdata;
+  return dbus_g_proxy_begin_call (proxy, "FindDeviceByMajorMinor", org_freedesktop_DeviceKit_Disks_find_device_by_major_minor_async_callback, stuff, _dbus_glib_async_data_free, G_TYPE_INT64, IN_device_major, G_TYPE_INT64, IN_device_minor, G_TYPE_INVALID);
 }
 static
 #ifdef G_HAVE_INLINE

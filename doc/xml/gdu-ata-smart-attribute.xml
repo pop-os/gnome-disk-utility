@@ -1,0 +1,303 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="GduAtaSmartAttribute">
+<refmeta>
+<refentrytitle role="top_of_page" id="GduAtaSmartAttribute.top_of_page">GduAtaSmartAttribute</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GNOME-DISK-UTILITY Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GduAtaSmartAttribute</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="GduAtaSmartAttribute.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="GduAtaSmartAttributePrivate">GduAtaSmartAttributePrivate</link>;
+                    <link linkend="GduAtaSmartAttribute-struct">GduAtaSmartAttribute</link>;
+enum                <link linkend="GduAtaSmartAttributeUnit">GduAtaSmartAttributeUnit</link>;
+<link linkend="guint">guint</link>               <link linkend="gdu-ata-smart-attribute-get-id">gdu_ata_smart_attribute_get_id</link>      (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);
+const <link linkend="gchar">gchar</link> *       <link linkend="gdu-ata-smart-attribute-get-name">gdu_ata_smart_attribute_get_name</link>    (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);
+<link linkend="gchar">gchar</link> *             <link linkend="gdu-ata-smart-attribute-get-localized-name">gdu_ata_smart_attribute_get_localized_name</link>
+                                                        (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);
+<link linkend="gchar">gchar</link> *             <link linkend="gdu-ata-smart-attribute-get-localized-description">gdu_ata_smart_attribute_get_localized_description</link>
+                                                        (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);
+<link linkend="guint">guint</link>               <link linkend="gdu-ata-smart-attribute-get-flags">gdu_ata_smart_attribute_get_flags</link>   (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-ata-smart-attribute-get-online">gdu_ata_smart_attribute_get_online</link>  (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-ata-smart-attribute-get-prefailure">gdu_ata_smart_attribute_get_prefailure</link>
+                                                        (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);
+<link linkend="guint">guint</link>               <link linkend="gdu-ata-smart-attribute-get-current">gdu_ata_smart_attribute_get_current</link> (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-ata-smart-attribute-get-current-valid">gdu_ata_smart_attribute_get_current_valid</link>
+                                                        (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);
+<link linkend="guint">guint</link>               <link linkend="gdu-ata-smart-attribute-get-worst">gdu_ata_smart_attribute_get_worst</link>   (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-ata-smart-attribute-get-worst-valid">gdu_ata_smart_attribute_get_worst_valid</link>
+                                                        (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);
+<link linkend="guint">guint</link>               <link linkend="gdu-ata-smart-attribute-get-threshold">gdu_ata_smart_attribute_get_threshold</link>
+                                                        (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-ata-smart-attribute-get-threshold-valid">gdu_ata_smart_attribute_get_threshold_valid</link>
+                                                        (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-ata-smart-attribute-get-good">gdu_ata_smart_attribute_get_good</link>    (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-ata-smart-attribute-get-good-valid">gdu_ata_smart_attribute_get_good_valid</link>
+                                                        (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);
+<link linkend="guint64">guint64</link>             <link linkend="gdu-ata-smart-attribute-get-pretty-value">gdu_ata_smart_attribute_get_pretty_value</link>
+                                                        (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);
+<link linkend="GduAtaSmartAttributeUnit">GduAtaSmartAttributeUnit</link>  <link linkend="gdu-ata-smart-attribute-get-pretty-unit">gdu_ata_smart_attribute_get_pretty_unit</link>
+                                                        (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="GduAtaSmartAttribute.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----GduAtaSmartAttribute
+</synopsis>
+</refsect1>
+
+
+
+
+
+
+
+
+<refsect1 id="GduAtaSmartAttribute.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="GduAtaSmartAttribute.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GduAtaSmartAttributePrivate" role="struct">
+<title>GduAtaSmartAttributePrivate</title>
+<indexterm zone="GduAtaSmartAttributePrivate"><primary sortas="GduAtaSmartAttributePrivate">GduAtaSmartAttributePrivate</primary></indexterm><programlisting>typedef struct _GduAtaSmartAttributePrivate GduAtaSmartAttributePrivate;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduAtaSmartAttribute-struct" role="struct">
+<title>GduAtaSmartAttribute</title>
+<indexterm zone="GduAtaSmartAttribute-struct"><primary sortas="GduAtaSmartAttribute">GduAtaSmartAttribute</primary></indexterm><programlisting>typedef struct _GduAtaSmartAttribute GduAtaSmartAttribute;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduAtaSmartAttributeUnit" role="enum">
+<title>enum GduAtaSmartAttributeUnit</title>
+<indexterm zone="GduAtaSmartAttributeUnit"><primary sortas="GduAtaSmartAttributeUnit">GduAtaSmartAttributeUnit</primary></indexterm><programlisting>typedef enum {
+        GDU_ATA_SMART_ATTRIBUTE_UNIT_UNKNOWN,
+        GDU_ATA_SMART_ATTRIBUTE_UNIT_NONE,
+        GDU_ATA_SMART_ATTRIBUTE_UNIT_MSECONDS,
+        GDU_ATA_SMART_ATTRIBUTE_UNIT_SECTORS,
+        GDU_ATA_SMART_ATTRIBUTE_UNIT_MKELVIN,
+} GduAtaSmartAttributeUnit;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="gdu-ata-smart-attribute-get-id" role="function">
+<title>gdu_ata_smart_attribute_get_id ()</title>
+<indexterm zone="gdu-ata-smart-attribute-get-id"><primary sortas="gdu_ata_smart_attribute_get_id">gdu_ata_smart_attribute_get_id</primary></indexterm><programlisting><link linkend="guint">guint</link>               gdu_ata_smart_attribute_get_id      (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attribute</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-ata-smart-attribute-get-name" role="function">
+<title>gdu_ata_smart_attribute_get_name ()</title>
+<indexterm zone="gdu-ata-smart-attribute-get-name"><primary sortas="gdu_ata_smart_attribute_get_name">gdu_ata_smart_attribute_get_name</primary></indexterm><programlisting>const <link linkend="gchar">gchar</link> *       gdu_ata_smart_attribute_get_name    (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attribute</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-ata-smart-attribute-get-localized-name" role="function">
+<title>gdu_ata_smart_attribute_get_localized_name ()</title>
+<indexterm zone="gdu-ata-smart-attribute-get-localized-name"><primary sortas="gdu_ata_smart_attribute_get_localized_name">gdu_ata_smart_attribute_get_localized_name</primary></indexterm><programlisting><link linkend="gchar">gchar</link> *             gdu_ata_smart_attribute_get_localized_name
+                                                        (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attribute</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-ata-smart-attribute-get-localized-description" role="function">
+<title>gdu_ata_smart_attribute_get_localized_description ()</title>
+<indexterm zone="gdu-ata-smart-attribute-get-localized-description"><primary sortas="gdu_ata_smart_attribute_get_localized_description">gdu_ata_smart_attribute_get_localized_description</primary></indexterm><programlisting><link linkend="gchar">gchar</link> *             gdu_ata_smart_attribute_get_localized_description
+                                                        (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attribute</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-ata-smart-attribute-get-flags" role="function">
+<title>gdu_ata_smart_attribute_get_flags ()</title>
+<indexterm zone="gdu-ata-smart-attribute-get-flags"><primary sortas="gdu_ata_smart_attribute_get_flags">gdu_ata_smart_attribute_get_flags</primary></indexterm><programlisting><link linkend="guint">guint</link>               gdu_ata_smart_attribute_get_flags   (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attribute</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-ata-smart-attribute-get-online" role="function">
+<title>gdu_ata_smart_attribute_get_online ()</title>
+<indexterm zone="gdu-ata-smart-attribute-get-online"><primary sortas="gdu_ata_smart_attribute_get_online">gdu_ata_smart_attribute_get_online</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_ata_smart_attribute_get_online  (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attribute</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-ata-smart-attribute-get-prefailure" role="function">
+<title>gdu_ata_smart_attribute_get_prefailure ()</title>
+<indexterm zone="gdu-ata-smart-attribute-get-prefailure"><primary sortas="gdu_ata_smart_attribute_get_prefailure">gdu_ata_smart_attribute_get_prefailure</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_ata_smart_attribute_get_prefailure
+                                                        (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attribute</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-ata-smart-attribute-get-current" role="function">
+<title>gdu_ata_smart_attribute_get_current ()</title>
+<indexterm zone="gdu-ata-smart-attribute-get-current"><primary sortas="gdu_ata_smart_attribute_get_current">gdu_ata_smart_attribute_get_current</primary></indexterm><programlisting><link linkend="guint">guint</link>               gdu_ata_smart_attribute_get_current (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attribute</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-ata-smart-attribute-get-current-valid" role="function">
+<title>gdu_ata_smart_attribute_get_current_valid ()</title>
+<indexterm zone="gdu-ata-smart-attribute-get-current-valid"><primary sortas="gdu_ata_smart_attribute_get_current_valid">gdu_ata_smart_attribute_get_current_valid</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_ata_smart_attribute_get_current_valid
+                                                        (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attribute</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-ata-smart-attribute-get-worst" role="function">
+<title>gdu_ata_smart_attribute_get_worst ()</title>
+<indexterm zone="gdu-ata-smart-attribute-get-worst"><primary sortas="gdu_ata_smart_attribute_get_worst">gdu_ata_smart_attribute_get_worst</primary></indexterm><programlisting><link linkend="guint">guint</link>               gdu_ata_smart_attribute_get_worst   (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attribute</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-ata-smart-attribute-get-worst-valid" role="function">
+<title>gdu_ata_smart_attribute_get_worst_valid ()</title>
+<indexterm zone="gdu-ata-smart-attribute-get-worst-valid"><primary sortas="gdu_ata_smart_attribute_get_worst_valid">gdu_ata_smart_attribute_get_worst_valid</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_ata_smart_attribute_get_worst_valid
+                                                        (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attribute</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-ata-smart-attribute-get-threshold" role="function">
+<title>gdu_ata_smart_attribute_get_threshold ()</title>
+<indexterm zone="gdu-ata-smart-attribute-get-threshold"><primary sortas="gdu_ata_smart_attribute_get_threshold">gdu_ata_smart_attribute_get_threshold</primary></indexterm><programlisting><link linkend="guint">guint</link>               gdu_ata_smart_attribute_get_threshold
+                                                        (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attribute</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-ata-smart-attribute-get-threshold-valid" role="function">
+<title>gdu_ata_smart_attribute_get_threshold_valid ()</title>
+<indexterm zone="gdu-ata-smart-attribute-get-threshold-valid"><primary sortas="gdu_ata_smart_attribute_get_threshold_valid">gdu_ata_smart_attribute_get_threshold_valid</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_ata_smart_attribute_get_threshold_valid
+                                                        (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attribute</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-ata-smart-attribute-get-good" role="function">
+<title>gdu_ata_smart_attribute_get_good ()</title>
+<indexterm zone="gdu-ata-smart-attribute-get-good"><primary sortas="gdu_ata_smart_attribute_get_good">gdu_ata_smart_attribute_get_good</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_ata_smart_attribute_get_good    (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attribute</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-ata-smart-attribute-get-good-valid" role="function">
+<title>gdu_ata_smart_attribute_get_good_valid ()</title>
+<indexterm zone="gdu-ata-smart-attribute-get-good-valid"><primary sortas="gdu_ata_smart_attribute_get_good_valid">gdu_ata_smart_attribute_get_good_valid</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_ata_smart_attribute_get_good_valid
+                                                        (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attribute</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-ata-smart-attribute-get-pretty-value" role="function">
+<title>gdu_ata_smart_attribute_get_pretty_value ()</title>
+<indexterm zone="gdu-ata-smart-attribute-get-pretty-value"><primary sortas="gdu_ata_smart_attribute_get_pretty_value">gdu_ata_smart_attribute_get_pretty_value</primary></indexterm><programlisting><link linkend="guint64">guint64</link>             gdu_ata_smart_attribute_get_pretty_value
+                                                        (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attribute</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-ata-smart-attribute-get-pretty-unit" role="function">
+<title>gdu_ata_smart_attribute_get_pretty_unit ()</title>
+<indexterm zone="gdu-ata-smart-attribute-get-pretty-unit"><primary sortas="gdu_ata_smart_attribute_get_pretty_unit">gdu_ata_smart_attribute_get_pretty_unit</primary></indexterm><programlisting><link linkend="GduAtaSmartAttributeUnit">GduAtaSmartAttributeUnit</link>  gdu_ata_smart_attribute_get_pretty_unit
+                                                        (<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> *attribute);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attribute</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

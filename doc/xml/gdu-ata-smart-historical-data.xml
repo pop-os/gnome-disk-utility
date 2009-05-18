@@ -1,0 +1,197 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="GduAtaSmartHistoricalData">
+<refmeta>
+<refentrytitle role="top_of_page" id="GduAtaSmartHistoricalData.top_of_page">GduAtaSmartHistoricalData</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GNOME-DISK-UTILITY Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GduAtaSmartHistoricalData</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="GduAtaSmartHistoricalData.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="GduAtaSmartHistoricalDataPrivate">GduAtaSmartHistoricalDataPrivate</link>;
+                    <link linkend="GduAtaSmartHistoricalData-struct">GduAtaSmartHistoricalData</link>;
+<link linkend="guint64">guint64</link>             <link linkend="gdu-ata-smart-historical-data-get-time-collected">gdu_ata_smart_historical_data_get_time_collected</link>
+                                                        (<link linkend="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</link> *data);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-ata-smart-historical-data-get-is-failing">gdu_ata_smart_historical_data_get_is_failing</link>
+                                                        (<link linkend="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</link> *data);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-ata-smart-historical-data-get-is-failing-valid">gdu_ata_smart_historical_data_get_is_failing_valid</link>
+                                                        (<link linkend="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</link> *data);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-ata-smart-historical-data-get-has-bad-sectors">gdu_ata_smart_historical_data_get_has_bad_sectors</link>
+                                                        (<link linkend="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</link> *data);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-ata-smart-historical-data-get-has-bad-attributes">gdu_ata_smart_historical_data_get_has_bad_attributes</link>
+                                                        (<link linkend="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</link> *data);
+<link linkend="gdouble">gdouble</link>             <link linkend="gdu-ata-smart-historical-data-get-temperature-kelvin">gdu_ata_smart_historical_data_get_temperature_kelvin</link>
+                                                        (<link linkend="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</link> *data);
+<link linkend="guint64">guint64</link>             <link linkend="gdu-ata-smart-historical-data-get-power-on-seconds">gdu_ata_smart_historical_data_get_power_on_seconds</link>
+                                                        (<link linkend="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</link> *data);
+<link linkend="GList">GList</link> *             <link linkend="gdu-ata-smart-historical-data-get-attributes">gdu_ata_smart_historical_data_get_attributes</link>
+                                                        (<link linkend="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</link> *data);
+<link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> * <link linkend="gdu-ata-smart-historical-data-get-attribute">gdu_ata_smart_historical_data_get_attribute</link>
+                                                        (<link linkend="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</link> *data,
+                                                         const <link linkend="gchar">gchar</link> *attr_name);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="GduAtaSmartHistoricalData.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----GduAtaSmartHistoricalData
+</synopsis>
+</refsect1>
+
+
+
+
+
+
+
+
+<refsect1 id="GduAtaSmartHistoricalData.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="GduAtaSmartHistoricalData.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GduAtaSmartHistoricalDataPrivate" role="struct">
+<title>GduAtaSmartHistoricalDataPrivate</title>
+<indexterm zone="GduAtaSmartHistoricalDataPrivate"><primary sortas="GduAtaSmartHistoricalDataPrivate">GduAtaSmartHistoricalDataPrivate</primary></indexterm><programlisting>typedef struct _GduAtaSmartHistoricalDataPrivate GduAtaSmartHistoricalDataPrivate;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduAtaSmartHistoricalData-struct" role="struct">
+<title>GduAtaSmartHistoricalData</title>
+<indexterm zone="GduAtaSmartHistoricalData-struct"><primary sortas="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</primary></indexterm><programlisting>typedef struct _GduAtaSmartHistoricalData GduAtaSmartHistoricalData;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="gdu-ata-smart-historical-data-get-time-collected" role="function">
+<title>gdu_ata_smart_historical_data_get_time_collected ()</title>
+<indexterm zone="gdu-ata-smart-historical-data-get-time-collected"><primary sortas="gdu_ata_smart_historical_data_get_time_collected">gdu_ata_smart_historical_data_get_time_collected</primary></indexterm><programlisting><link linkend="guint64">guint64</link>             gdu_ata_smart_historical_data_get_time_collected
+                                                        (<link linkend="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</link> *data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-ata-smart-historical-data-get-is-failing" role="function">
+<title>gdu_ata_smart_historical_data_get_is_failing ()</title>
+<indexterm zone="gdu-ata-smart-historical-data-get-is-failing"><primary sortas="gdu_ata_smart_historical_data_get_is_failing">gdu_ata_smart_historical_data_get_is_failing</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_ata_smart_historical_data_get_is_failing
+                                                        (<link linkend="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</link> *data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-ata-smart-historical-data-get-is-failing-valid" role="function">
+<title>gdu_ata_smart_historical_data_get_is_failing_valid ()</title>
+<indexterm zone="gdu-ata-smart-historical-data-get-is-failing-valid"><primary sortas="gdu_ata_smart_historical_data_get_is_failing_valid">gdu_ata_smart_historical_data_get_is_failing_valid</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_ata_smart_historical_data_get_is_failing_valid
+                                                        (<link linkend="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</link> *data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-ata-smart-historical-data-get-has-bad-sectors" role="function">
+<title>gdu_ata_smart_historical_data_get_has_bad_sectors ()</title>
+<indexterm zone="gdu-ata-smart-historical-data-get-has-bad-sectors"><primary sortas="gdu_ata_smart_historical_data_get_has_bad_sectors">gdu_ata_smart_historical_data_get_has_bad_sectors</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_ata_smart_historical_data_get_has_bad_sectors
+                                                        (<link linkend="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</link> *data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-ata-smart-historical-data-get-has-bad-attributes" role="function">
+<title>gdu_ata_smart_historical_data_get_has_bad_attributes ()</title>
+<indexterm zone="gdu-ata-smart-historical-data-get-has-bad-attributes"><primary sortas="gdu_ata_smart_historical_data_get_has_bad_attributes">gdu_ata_smart_historical_data_get_has_bad_attributes</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_ata_smart_historical_data_get_has_bad_attributes
+                                                        (<link linkend="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</link> *data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-ata-smart-historical-data-get-temperature-kelvin" role="function">
+<title>gdu_ata_smart_historical_data_get_temperature_kelvin ()</title>
+<indexterm zone="gdu-ata-smart-historical-data-get-temperature-kelvin"><primary sortas="gdu_ata_smart_historical_data_get_temperature_kelvin">gdu_ata_smart_historical_data_get_temperature_kelvin</primary></indexterm><programlisting><link linkend="gdouble">gdouble</link>             gdu_ata_smart_historical_data_get_temperature_kelvin
+                                                        (<link linkend="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</link> *data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-ata-smart-historical-data-get-power-on-seconds" role="function">
+<title>gdu_ata_smart_historical_data_get_power_on_seconds ()</title>
+<indexterm zone="gdu-ata-smart-historical-data-get-power-on-seconds"><primary sortas="gdu_ata_smart_historical_data_get_power_on_seconds">gdu_ata_smart_historical_data_get_power_on_seconds</primary></indexterm><programlisting><link linkend="guint64">guint64</link>             gdu_ata_smart_historical_data_get_power_on_seconds
+                                                        (<link linkend="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</link> *data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-ata-smart-historical-data-get-attributes" role="function">
+<title>gdu_ata_smart_historical_data_get_attributes ()</title>
+<indexterm zone="gdu-ata-smart-historical-data-get-attributes"><primary sortas="gdu_ata_smart_historical_data_get_attributes">gdu_ata_smart_historical_data_get_attributes</primary></indexterm><programlisting><link linkend="GList">GList</link> *             gdu_ata_smart_historical_data_get_attributes
+                                                        (<link linkend="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</link> *data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-ata-smart-historical-data-get-attribute" role="function">
+<title>gdu_ata_smart_historical_data_get_attribute ()</title>
+<indexterm zone="gdu-ata-smart-historical-data-get-attribute"><primary sortas="gdu_ata_smart_historical_data_get_attribute">gdu_ata_smart_historical_data_get_attribute</primary></indexterm><programlisting><link linkend="GduAtaSmartAttribute">GduAtaSmartAttribute</link> * gdu_ata_smart_historical_data_get_attribute
+                                                        (<link linkend="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</link> *data,
+                                                         const <link linkend="gchar">gchar</link> *attr_name);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attr_name</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

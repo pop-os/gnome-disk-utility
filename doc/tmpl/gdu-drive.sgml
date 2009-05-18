@@ -47,6 +47,15 @@ GduDrive
 @Returns: 
 
 
+<!-- ##### FUNCTION gdu_drive_can_deactivate ##### -->
+<para>
+
+</para>
+
+@drive: 
+@Returns: 
+
+
 <!-- ##### FUNCTION gdu_drive_can_activate ##### -->
 <para>
 
@@ -57,12 +66,23 @@ GduDrive
 @Returns: 
 
 
-<!-- ##### FUNCTION gdu_drive_can_deactivate ##### -->
+<!-- ##### FUNCTION gdu_drive_activate ##### -->
 <para>
 
 </para>
 
 @drive: 
-@Returns: 
+@callback: 
+@user_data: 
+
+
+<!-- ##### FUNCTION gdu_drive_deactivate ##### -->
+<para>
+
+</para>
+
+@drive: 
+@callback: 
+@user_data: 
 
 
