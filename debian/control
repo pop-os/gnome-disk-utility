@@ -54,11 +54,6 @@ Architecture: any
 Section: libs
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: GTK+ standard dialog library for libgdu
- The gnome-disk-utility library provides an user-space interface to the
- DeviceKit-disks objects and properties (such as drives, volumes, SMART data),
- and operations (such as mounting, unmounting, creating and checking
- partitions).
- .
  The gdu-gtk library provides GTK+ standard dialogs for handling media
  operations, like entering secrets for encrypted drives or confirmation dialogs
  for erasing a partition.
@@ -82,12 +77,6 @@ Architecture: any
 Section: libdevel
 Depends: libgdu-gtk0 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}, libgdu-dev, libpolkit-gnome-dev, libgtk2.0-dev
 Description: GTK+ standard dialog library for libgdu - development files
- The gnome-disk-utility library provides an user-space interface to the
- The gnome-disk-utility library provides an user-space interface to the
- DeviceKit-disks objects and properties (such as drives, volumes, SMART data),
- and operations (such as mounting, unmounting, creating and checking
- partitions).
- .
  The gdu-gtk library provides standard GTK+ dialogs for handling media
  operations, like entering secrets for encrypted drives or confirmation dialogs
  for erasing a partition.
