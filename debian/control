@@ -28,36 +28,64 @@ Package: gnome-disk-utility
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, devicekit-disks
 Description: manage and configure disk drives and media
- gnome-disk-utility utilizes DeviceKit-disks to allow for easy management of
- disk drives and media.
+ palimpsest (from the gnome-disk-utility project) is a tool to manage disk
+ drives and media:
+ .
   o Format and partition drives.
   o Mount and unmount partitions.
   o Query S.M.A.R.T. attributes.
+ .
+ It utilizes DeviceKit-disks.
 
 Package: libgdu0
 Architecture: any
 Section: libs
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: GObject based Disk Utility Library
- Description will follow...
+ The gnome-disk-utility library provides an user-space interface to the
+ DeviceKit-disks objects and properties (such as drives, volumes, SMART data),
+ and operations (such as mounting, unmounting, creating and checking partitions).
+ .
+ This package contains shared libraries to be used by applications.
 
 Package: libgdu-gtk0
 Architecture: any
 Section: libs
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: GTK+ library for libgdu
- Description will follow...
+Description: GTK+ standard dialog library for libgdu
+ The gnome-disk-utility library provides an user-space interface to the
+ DeviceKit-disks objects and properties (such as drives, volumes, SMART data),
+ and operations (such as mounting, unmounting, creating and checking partitions).
+ .
+ The gdu-gtk library provides GTK+ standard dialogs for handling media
+ operations, like entering secrets for encrypted drives or confirmation dialogs
+ for erasing a partition.
+ .
+ This package contains shared libraries to be used by applications.
 
 Package: libgdu-dev
 Architecture: any
 Section: libdevel
 Depends: libgdu0 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}, libglib2.0-dev (>= 2.16), libpolkit-dev
 Description: GObject based Disk Utility Library - development files
- Description will follow...
+ The gnome-disk-utility library provides an user-space interface to the
+ DeviceKit-disks objects and properties (such as drives, volumes, SMART data),
+ and operations (such as mounting, unmounting, creating and checking partitions).
+ .
+ This package contains files that are needed to build applications.
 
 Package: libgdu-gtk-dev
 Architecture: any
 Section: libdevel
 Depends: libgdu-gtk0 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}, libgdu-dev, libpolkit-gnome-dev, libgtk2.0-dev
-Description: GTK+ library for libgdu
- Description will follow...
+Description: GTK+ standard dialog library for libgdu - development files
+ The gnome-disk-utility library provides an user-space interface to the
+ The gnome-disk-utility library provides an user-space interface to the
+ DeviceKit-disks objects and properties (such as drives, volumes, SMART data),
+ and operations (such as mounting, unmounting, creating and checking partitions).
+ .
+ The gdu-gtk library provides standard GTK+ dialogs for handling media
+ operations, like entering secrets for encrypted drives or confirmation dialogs
+ for erasing a partition.
+ .
+ This package contains files that are needed to build applications.
