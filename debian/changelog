@@ -1,5 +1,5 @@
-gnome-disk-utility (0.3-1) UNRELEASED; urgency=low
+gnome-disk-utility (0.3-1) experimental; urgency=low
 
   * Initial release. (Closes: #521365)
 
- -- Michael Biebl <biebl@debian.org>  Mon, 18 May 2009 09:55:25 +0200
+ -- Michael Biebl <biebl@debian.org>  Mon, 18 May 2009 10:49:51 +0200
