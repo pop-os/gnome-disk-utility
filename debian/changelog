@@ -2,6 +2,9 @@ gnome-disk-utility (0.3-2) UNRELEASED; urgency=low
 
   * debian/copyright
     - Add Name, Maintainer and Source field as recommended by DEP-5.
+  * debian/control
+    - Add missing Build-Depends on gnome-doc-utils, scrollkeeper and
+      libnautilus-extension-dev (>= 2.24). (Closes: #529589)
 
  -- Michael Biebl <biebl@debian.org>  Wed, 20 May 2009 17:58:49 +0200
 

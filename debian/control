@@ -9,6 +9,8 @@ Build-Depends: debhelper (>= 7),
  pkg-config,
  xsltproc,
  gtk-doc-tools,
+ gnome-doc-utils,
+ scrollkeeper,
  devicekit-disks,
  libdbus-glib-1-dev (>= 0.76),
  libglib2.0-dev (>= 2.16),
@@ -18,7 +20,8 @@ Build-Depends: debhelper (>= 7),
  libgnome-keyring-dev (>= 2.22),
  libsexy-dev (>= 0.1.11),
  libunique-dev (>= 1.0),
- libnotify-dev (>= 0.3.0)
+ libnotify-dev (>= 0.3.0),
+ libnautilus-extension-dev (>= 2.24)
 Standards-Version: 3.8.1
 Vcs-Git: git://git.debian.org/git/pkg-utopia/gnome-disk-utility.git
 Vcs-Browser: http://git.debian.org/?p=pkg-utopia/gnome-disk-utility.git;a=summary
