@@ -1,3 +1,10 @@
+gnome-disk-utility (0.3-2) UNRELEASED; urgency=low
+
+  * debian/copyright
+    - Add Name, Maintainer and Source field as recommended by DEP-5.
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 20 May 2009 17:58:49 +0200
+
 gnome-disk-utility (0.3-1) experimental; urgency=low
 
   * Initial release. (Closes: #521365)

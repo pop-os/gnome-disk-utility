@@ -1,5 +1,9 @@
+Name: gnome-disk-utility
+Maintainer: David Zeuthen <davidz@redhat.com>
+Source: http://hal.freedesktop.org/releases/
+
 Files: *
-Copyright: 2008 David Zeuthen <davidz@redhat.com>
+Copyright: 2007,2009 David Zeuthen <davidz@redhat.com>
 License: LGPL-2+
  The full text of the LGPL is distributed as in
  /usr/share/common-licenses/LGPL-2 on Debian systems.
