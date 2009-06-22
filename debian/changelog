@@ -1,3 +1,11 @@
+gnome-disk-utility (0.3-3) UNRELEASED; urgency=low
+
+  [ Martin Pitt ]
+  * debian/control: Add alternative build dependency "rarian-compat", the
+    successor of scrollkeeper.
+
+ -- Michael Biebl <biebl@debian.org>  Mon, 22 Jun 2009 14:47:08 +0200
+
 gnome-disk-utility (0.3-2) experimental; urgency=low
 
   * debian/copyright
