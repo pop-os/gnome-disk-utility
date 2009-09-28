@@ -2,4 +2,4 @@ usr/bin/
 usr/share/
 etc/xdg/autostart
 usr/lib/gnome-disk-utility
-usr/lib/nautilus
+usr/lib/nautilus/*/*.so
