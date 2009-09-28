@@ -1019,23 +1019,23 @@ get_properties (GduPool *pool)
                 goto out;
         }
 
-        value = g_hash_table_lookup (hash_table, "daemon-version");
+        value = g_hash_table_lookup (hash_table, "DaemonVersion");
         if (value == NULL) {
-                g_warning ("No property 'daemon-version'");
+                g_warning ("No property 'DaemonVersion'");
                 goto out;
         }
         pool->priv->daemon_version = g_strdup (g_value_get_string (value));
 
-        value = g_hash_table_lookup (hash_table, "supports-luks-devices");
+        value = g_hash_table_lookup (hash_table, "SupportsLuksDevices");
         if (value == NULL) {
-                g_warning ("No property 'supports-luks-devices'");
+                g_warning ("No property 'SupportsLuksDevices'");
                 goto out;
         }
         pool->priv->supports_luks_devices = g_value_get_boolean (value);
 
-        value = g_hash_table_lookup (hash_table, "known-filesystems");
+        value = g_hash_table_lookup (hash_table, "KnownFilesystems");
         if (value == NULL) {
-                g_warning ("No property 'known-filesystems'");
+                g_warning ("No property 'KnownFilesystems'");
                 goto out;
         }
         known_filesystems_array = g_value_get_boxed (value);
@@ -1567,6 +1567,67 @@ gdu_pool_op_linux_md_start (GduPool *pool,
                                                               op_linux_md_start_cb,
                                                               data);
 }
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+typedef struct {
+        GduPool *pool;
+        GduPoolLinuxMdCreateCompletedFunc callback;
+        gpointer user_data;
+} LinuxMdCreateData;
+
+static void
+op_linux_md_create_cb (DBusGProxy *proxy, char *assembled_array_object_path, GError *error, gpointer user_data)
+{
+        LinuxMdCreateData *data = user_data;
+        _gdu_error_fixup (error);
+        if (data->callback != NULL)
+                data->callback (data->pool, assembled_array_object_path, error, data->user_data);
+        g_object_unref (data->pool);
+        g_free (data);
+}
+
+/**
+ * gdu_pool_op_linux_md_create:
+ * @pool: A #GduPool.
+ * @component_objpaths: A #GPtrArray of object paths.
+ * @level: RAID level.
+ * @name: Name of array.
+ * @callback: Callback function.
+ * @user_data: User data to pass to @callback.
+ *
+ * Creates a Linux md Software Array.
+ **/
+void
+gdu_pool_op_linux_md_create (GduPool *pool,
+                             GPtrArray *component_objpaths,
+                             const gchar *level,
+                             guint64      stripe_size,
+                             const gchar *name,
+                             GduPoolLinuxMdCreateCompletedFunc callback,
+                             gpointer user_data)
+{
+        LinuxMdCreateData *data;
+        char *options[16];
+
+        options[0] = NULL;
+
+        data = g_new0 (LinuxMdCreateData, 1);
+        data->pool = g_object_ref (pool);
+        data->callback = callback;
+        data->user_data = user_data;
+
+        org_freedesktop_DeviceKit_Disks_linux_md_create_async (pool->priv->proxy,
+                                                               component_objpaths,
+                                                               level,
+                                                               stripe_size,
+                                                               name,
+                                                               (const char **) options,
+                                                               op_linux_md_create_cb,
+                                                               data);
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
 
 /**
  * gdu_pool_get_daemon_version:

@@ -660,6 +660,44 @@ static
 inline
 #endif
 gboolean
+org_freedesktop_DeviceKit_Disks_Device_linux_md_check (DBusGProxy *proxy, const char ** IN_options, guint64* OUT_number_of_errors, GError **error)
+
+{
+  return dbus_g_proxy_call (proxy, "LinuxMdCheck", error, G_TYPE_STRV, IN_options, G_TYPE_INVALID, G_TYPE_UINT64, OUT_number_of_errors, G_TYPE_INVALID);
+}
+
+typedef void (*org_freedesktop_DeviceKit_Disks_Device_linux_md_check_reply) (DBusGProxy *proxy, guint64 OUT_number_of_errors, GError *error, gpointer userdata);
+
+static void
+org_freedesktop_DeviceKit_Disks_Device_linux_md_check_async_callback (DBusGProxy *proxy, DBusGProxyCall *call, void *user_data)
+{
+  DBusGAsyncData *data = (DBusGAsyncData*) user_data;
+  GError *error = NULL;
+  guint64 OUT_number_of_errors;
+  dbus_g_proxy_end_call (proxy, call, &error, G_TYPE_UINT64, &OUT_number_of_errors, G_TYPE_INVALID);
+  (*(org_freedesktop_DeviceKit_Disks_Device_linux_md_check_reply)data->cb) (proxy, OUT_number_of_errors, error, data->userdata);
+  return;
+}
+
+static
+#ifdef G_HAVE_INLINE
+inline
+#endif
+DBusGProxyCall*
+org_freedesktop_DeviceKit_Disks_Device_linux_md_check_async (DBusGProxy *proxy, const char ** IN_options, org_freedesktop_DeviceKit_Disks_Device_linux_md_check_reply callback, gpointer userdata)
+
+{
+  DBusGAsyncData *stuff;
+  stuff = g_slice_new (DBusGAsyncData);
+  stuff->cb = G_CALLBACK (callback);
+  stuff->userdata = userdata;
+  return dbus_g_proxy_begin_call (proxy, "LinuxMdCheck", org_freedesktop_DeviceKit_Disks_Device_linux_md_check_async_callback, stuff, _dbus_glib_async_data_free, G_TYPE_STRV, IN_options, G_TYPE_INVALID);
+}
+static
+#ifdef G_HAVE_INLINE
+inline
+#endif
+gboolean
 org_freedesktop_DeviceKit_Disks_Device_drive_inhibit_polling (DBusGProxy *proxy, const char ** IN_options, char ** OUT_cookie, GError **error)
 
 {
@@ -809,6 +847,118 @@ static
 inline
 #endif
 gboolean
+org_freedesktop_DeviceKit_Disks_Device_drive_detach (DBusGProxy *proxy, const char ** IN_options, GError **error)
+
+{
+  return dbus_g_proxy_call (proxy, "DriveDetach", error, G_TYPE_STRV, IN_options, G_TYPE_INVALID, G_TYPE_INVALID);
+}
+
+typedef void (*org_freedesktop_DeviceKit_Disks_Device_drive_detach_reply) (DBusGProxy *proxy, GError *error, gpointer userdata);
+
+static void
+org_freedesktop_DeviceKit_Disks_Device_drive_detach_async_callback (DBusGProxy *proxy, DBusGProxyCall *call, void *user_data)
+{
+  DBusGAsyncData *data = (DBusGAsyncData*) user_data;
+  GError *error = NULL;
+  dbus_g_proxy_end_call (proxy, call, &error, G_TYPE_INVALID);
+  (*(org_freedesktop_DeviceKit_Disks_Device_drive_detach_reply)data->cb) (proxy, error, data->userdata);
+  return;
+}
+
+static
+#ifdef G_HAVE_INLINE
+inline
+#endif
+DBusGProxyCall*
+org_freedesktop_DeviceKit_Disks_Device_drive_detach_async (DBusGProxy *proxy, const char ** IN_options, org_freedesktop_DeviceKit_Disks_Device_drive_detach_reply callback, gpointer userdata)
+
+{
+  DBusGAsyncData *stuff;
+  stuff = g_slice_new (DBusGAsyncData);
+  stuff->cb = G_CALLBACK (callback);
+  stuff->userdata = userdata;
+  return dbus_g_proxy_begin_call (proxy, "DriveDetach", org_freedesktop_DeviceKit_Disks_Device_drive_detach_async_callback, stuff, _dbus_glib_async_data_free, G_TYPE_STRV, IN_options, G_TYPE_INVALID);
+}
+static
+#ifdef G_HAVE_INLINE
+inline
+#endif
+gboolean
+org_freedesktop_DeviceKit_Disks_Device_drive_set_spindown_timeout (DBusGProxy *proxy, const gint IN_timeout_seconds, const char ** IN_options, char ** OUT_cookie, GError **error)
+
+{
+  return dbus_g_proxy_call (proxy, "DriveSetSpindownTimeout", error, G_TYPE_INT, IN_timeout_seconds, G_TYPE_STRV, IN_options, G_TYPE_INVALID, G_TYPE_STRING, OUT_cookie, G_TYPE_INVALID);
+}
+
+typedef void (*org_freedesktop_DeviceKit_Disks_Device_drive_set_spindown_timeout_reply) (DBusGProxy *proxy, char * OUT_cookie, GError *error, gpointer userdata);
+
+static void
+org_freedesktop_DeviceKit_Disks_Device_drive_set_spindown_timeout_async_callback (DBusGProxy *proxy, DBusGProxyCall *call, void *user_data)
+{
+  DBusGAsyncData *data = (DBusGAsyncData*) user_data;
+  GError *error = NULL;
+  char * OUT_cookie;
+  dbus_g_proxy_end_call (proxy, call, &error, G_TYPE_STRING, &OUT_cookie, G_TYPE_INVALID);
+  (*(org_freedesktop_DeviceKit_Disks_Device_drive_set_spindown_timeout_reply)data->cb) (proxy, OUT_cookie, error, data->userdata);
+  return;
+}
+
+static
+#ifdef G_HAVE_INLINE
+inline
+#endif
+DBusGProxyCall*
+org_freedesktop_DeviceKit_Disks_Device_drive_set_spindown_timeout_async (DBusGProxy *proxy, const gint IN_timeout_seconds, const char ** IN_options, org_freedesktop_DeviceKit_Disks_Device_drive_set_spindown_timeout_reply callback, gpointer userdata)
+
+{
+  DBusGAsyncData *stuff;
+  stuff = g_slice_new (DBusGAsyncData);
+  stuff->cb = G_CALLBACK (callback);
+  stuff->userdata = userdata;
+  return dbus_g_proxy_begin_call (proxy, "DriveSetSpindownTimeout", org_freedesktop_DeviceKit_Disks_Device_drive_set_spindown_timeout_async_callback, stuff, _dbus_glib_async_data_free, G_TYPE_INT, IN_timeout_seconds, G_TYPE_STRV, IN_options, G_TYPE_INVALID);
+}
+static
+#ifdef G_HAVE_INLINE
+inline
+#endif
+gboolean
+org_freedesktop_DeviceKit_Disks_Device_drive_unset_spindown_timeout (DBusGProxy *proxy, const char * IN_cookie, GError **error)
+
+{
+  return dbus_g_proxy_call (proxy, "DriveUnsetSpindownTimeout", error, G_TYPE_STRING, IN_cookie, G_TYPE_INVALID, G_TYPE_INVALID);
+}
+
+typedef void (*org_freedesktop_DeviceKit_Disks_Device_drive_unset_spindown_timeout_reply) (DBusGProxy *proxy, GError *error, gpointer userdata);
+
+static void
+org_freedesktop_DeviceKit_Disks_Device_drive_unset_spindown_timeout_async_callback (DBusGProxy *proxy, DBusGProxyCall *call, void *user_data)
+{
+  DBusGAsyncData *data = (DBusGAsyncData*) user_data;
+  GError *error = NULL;
+  dbus_g_proxy_end_call (proxy, call, &error, G_TYPE_INVALID);
+  (*(org_freedesktop_DeviceKit_Disks_Device_drive_unset_spindown_timeout_reply)data->cb) (proxy, error, data->userdata);
+  return;
+}
+
+static
+#ifdef G_HAVE_INLINE
+inline
+#endif
+DBusGProxyCall*
+org_freedesktop_DeviceKit_Disks_Device_drive_unset_spindown_timeout_async (DBusGProxy *proxy, const char * IN_cookie, org_freedesktop_DeviceKit_Disks_Device_drive_unset_spindown_timeout_reply callback, gpointer userdata)
+
+{
+  DBusGAsyncData *stuff;
+  stuff = g_slice_new (DBusGAsyncData);
+  stuff->cb = G_CALLBACK (callback);
+  stuff->userdata = userdata;
+  return dbus_g_proxy_begin_call (proxy, "DriveUnsetSpindownTimeout", org_freedesktop_DeviceKit_Disks_Device_drive_unset_spindown_timeout_async_callback, stuff, _dbus_glib_async_data_free, G_TYPE_STRING, IN_cookie, G_TYPE_INVALID);
+}
+static
+#ifdef G_HAVE_INLINE
+inline
+#endif
+gboolean
 org_freedesktop_DeviceKit_Disks_Device_drive_ata_smart_refresh_data (DBusGProxy *proxy, const char ** IN_options, GError **error)
 
 {
@@ -840,44 +990,6 @@ org_freedesktop_DeviceKit_Disks_Device_drive_ata_smart_refresh_data_async (DBusG
   stuff->cb = G_CALLBACK (callback);
   stuff->userdata = userdata;
   return dbus_g_proxy_begin_call (proxy, "DriveAtaSmartRefreshData", org_freedesktop_DeviceKit_Disks_Device_drive_ata_smart_refresh_data_async_callback, stuff, _dbus_glib_async_data_free, G_TYPE_STRV, IN_options, G_TYPE_INVALID);
-}
-static
-#ifdef G_HAVE_INLINE
-inline
-#endif
-gboolean
-org_freedesktop_DeviceKit_Disks_Device_drive_ata_smart_get_historical_data (DBusGProxy *proxy, const guint64 IN_since, const guint64 IN_until, const guint64 IN_spacing, GPtrArray** OUT_data, GError **error)
-
-{
-  return dbus_g_proxy_call (proxy, "DriveAtaSmartGetHistoricalData", error, G_TYPE_UINT64, IN_since, G_TYPE_UINT64, IN_until, G_TYPE_UINT64, IN_spacing, G_TYPE_INVALID, dbus_g_type_get_collection ("GPtrArray", dbus_g_type_get_struct ("GValueArray", G_TYPE_UINT64, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_DOUBLE, G_TYPE_UINT64, dbus_g_type_get_collection ("GPtrArray", dbus_g_type_get_struct ("GValueArray", G_TYPE_UINT, G_TYPE_STRING, G_TYPE_UINT, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_UCHAR, G_TYPE_BOOLEAN, G_TYPE_UCHAR, G_TYPE_BOOLEAN, G_TYPE_UCHAR, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_UINT, G_TYPE_UINT64, dbus_g_type_get_collection ("GArray", G_TYPE_UCHAR), G_TYPE_INVALID)), G_TYPE_INVALID)), OUT_data, G_TYPE_INVALID);
-}
-
-typedef void (*org_freedesktop_DeviceKit_Disks_Device_drive_ata_smart_get_historical_data_reply) (DBusGProxy *proxy, GPtrArray *OUT_data, GError *error, gpointer userdata);
-
-static void
-org_freedesktop_DeviceKit_Disks_Device_drive_ata_smart_get_historical_data_async_callback (DBusGProxy *proxy, DBusGProxyCall *call, void *user_data)
-{
-  DBusGAsyncData *data = (DBusGAsyncData*) user_data;
-  GError *error = NULL;
-  GPtrArray* OUT_data;
-  dbus_g_proxy_end_call (proxy, call, &error, dbus_g_type_get_collection ("GPtrArray", dbus_g_type_get_struct ("GValueArray", G_TYPE_UINT64, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_DOUBLE, G_TYPE_UINT64, dbus_g_type_get_collection ("GPtrArray", dbus_g_type_get_struct ("GValueArray", G_TYPE_UINT, G_TYPE_STRING, G_TYPE_UINT, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_UCHAR, G_TYPE_BOOLEAN, G_TYPE_UCHAR, G_TYPE_BOOLEAN, G_TYPE_UCHAR, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_UINT, G_TYPE_UINT64, dbus_g_type_get_collection ("GArray", G_TYPE_UCHAR), G_TYPE_INVALID)), G_TYPE_INVALID)), &OUT_data, G_TYPE_INVALID);
-  (*(org_freedesktop_DeviceKit_Disks_Device_drive_ata_smart_get_historical_data_reply)data->cb) (proxy, OUT_data, error, data->userdata);
-  return;
-}
-
-static
-#ifdef G_HAVE_INLINE
-inline
-#endif
-DBusGProxyCall*
-org_freedesktop_DeviceKit_Disks_Device_drive_ata_smart_get_historical_data_async (DBusGProxy *proxy, const guint64 IN_since, const guint64 IN_until, const guint64 IN_spacing, org_freedesktop_DeviceKit_Disks_Device_drive_ata_smart_get_historical_data_reply callback, gpointer userdata)
-
-{
-  DBusGAsyncData *stuff;
-  stuff = g_slice_new (DBusGAsyncData);
-  stuff->cb = G_CALLBACK (callback);
-  stuff->userdata = userdata;
-  return dbus_g_proxy_begin_call (proxy, "DriveAtaSmartGetHistoricalData", org_freedesktop_DeviceKit_Disks_Device_drive_ata_smart_get_historical_data_async_callback, stuff, _dbus_glib_async_data_free, G_TYPE_UINT64, IN_since, G_TYPE_UINT64, IN_until, G_TYPE_UINT64, IN_spacing, G_TYPE_INVALID);
 }
 static
 #ifdef G_HAVE_INLINE

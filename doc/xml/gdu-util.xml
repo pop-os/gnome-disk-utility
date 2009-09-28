@@ -34,7 +34,14 @@
                                                          const <link linkend="char">char</link> *part_type);
 <link linkend="char">char</link> *              <link linkend="gdu-get-job-description">gdu_get_job_description</link>             (const <link linkend="char">char</link> *job_id);
 <link linkend="char">char</link> *              <link linkend="gdu-linux-md-get-raid-level-for-display">gdu_linux_md_get_raid_level_for_display</link>
+                                                        (const <link linkend="gchar">gchar</link> *linux_md_raid_level,
+                                                         <link linkend="gboolean">gboolean</link> long_string);
+<link linkend="char">char</link> *              <link linkend="gdu-linux-md-get-raid-level-description">gdu_linux_md_get_raid_level_description</link>
                                                         (const <link linkend="gchar">gchar</link> *linux_md_raid_level);
+<link linkend="gchar">gchar</link> *             <link linkend="gdu-util-ata-smart-status-to-desc">gdu_util_ata_smart_status_to_desc</link>   (const <link linkend="gchar">gchar</link> *status,
+                                                         <link linkend="gboolean">gboolean</link> *out_highlight,
+                                                         <link linkend="gchar">gchar</link> **out_action_text,
+                                                         <link linkend="GIcon">GIcon</link> **out_icon);
 <link linkend="void">void</link>                (<link linkend="GduUtilPartTypeForeachFunc">*GduUtilPartTypeForeachFunc</link>)       (const <link linkend="char">char</link> *scheme,
                                                          const <link linkend="char">char</link> *type,
                                                          const <link linkend="char">char</link> *name,
@@ -182,6 +189,22 @@
 <refsect2 id="gdu-linux-md-get-raid-level-for-display" role="function">
 <title>gdu_linux_md_get_raid_level_for_display ()</title>
 <indexterm zone="gdu-linux-md-get-raid-level-for-display"><primary sortas="gdu_linux_md_get_raid_level_for_display">gdu_linux_md_get_raid_level_for_display</primary></indexterm><programlisting><link linkend="char">char</link> *              gdu_linux_md_get_raid_level_for_display
+                                                        (const <link linkend="gchar">gchar</link> *linux_md_raid_level,
+                                                         <link linkend="gboolean">gboolean</link> long_string);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>linux_md_raid_level</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>long_string</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-linux-md-get-raid-level-description" role="function">
+<title>gdu_linux_md_get_raid_level_description ()</title>
+<indexterm zone="gdu-linux-md-get-raid-level-description"><primary sortas="gdu_linux_md_get_raid_level_description">gdu_linux_md_get_raid_level_description</primary></indexterm><programlisting><link linkend="char">char</link> *              gdu_linux_md_get_raid_level_description
                                                         (const <link linkend="gchar">gchar</link> *linux_md_raid_level);</programlisting>
 <para>
 </para><variablelist role="params">
@@ -189,6 +212,31 @@
 <listitem><simpara>
 </simpara></listitem></varlistentry>
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-util-ata-smart-status-to-desc" role="function">
+<title>gdu_util_ata_smart_status_to_desc ()</title>
+<indexterm zone="gdu-util-ata-smart-status-to-desc"><primary sortas="gdu_util_ata_smart_status_to_desc">gdu_util_ata_smart_status_to_desc</primary></indexterm><programlisting><link linkend="gchar">gchar</link> *             gdu_util_ata_smart_status_to_desc   (const <link linkend="gchar">gchar</link> *status,
+                                                         <link linkend="gboolean">gboolean</link> *out_highlight,
+                                                         <link linkend="gchar">gchar</link> **out_action_text,
+                                                         <link linkend="GIcon">GIcon</link> **out_icon);</programlisting>
+<para>
+Gets a human readable representation of <parameter>status</parameter>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>status</parameter>&#160;:</term>
+<listitem><simpara> Status from libatasmart, e.g. <quote>BAD_STATUS</quote>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out_highlight</parameter>&#160;:</term>
+<listitem><simpara> Return value (or <link linkend="NULL--CAPS"><literal>NULL</literal></link>) for suggesting whether the status should be highlighted.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out_action_text</parameter>&#160;:</term>
+<listitem><simpara> Return value (or <link linkend="NULL--CAPS"><literal>NULL</literal></link>) for suggested action. Free with <link linkend="g-free"><function>g_free()</function></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out_icon</parameter>&#160;:</term>
+<listitem><simpara> Return value (or <link linkend="NULL--CAPS"><literal>NULL</literal></link>) for icon to show. Free with <link linkend="g-object-unref"><function>g_object_unref()</function></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The human readable status. Free with <link linkend="g-free"><function>g_free()</function></link>.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2 id="GduUtilPartTypeForeachFunc" role="function">

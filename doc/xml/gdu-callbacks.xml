@@ -72,6 +72,11 @@
                                                         (<link linkend="GduDevice">GduDevice</link> *device,
                                                          <link linkend="GError">GError</link> *error,
                                                          <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduDeviceLinuxMdCheckCompletedFunc">*GduDeviceLinuxMdCheckCompletedFunc</link>)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="guint">guint</link> num_errors,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
 <link linkend="void">void</link>                (<link linkend="GduDeviceLinuxMdAddComponentCompletedFunc">*GduDeviceLinuxMdAddComponentCompletedFunc</link>)
                                                         (<link linkend="GduDevice">GduDevice</link> *device,
                                                          <link linkend="GError">GError</link> *error,
@@ -92,11 +97,6 @@
 <link linkend="void">void</link>                (<link linkend="GduDeviceCancelJobCompletedFunc">*GduDeviceCancelJobCompletedFunc</link>)  (<link linkend="GduDevice">GduDevice</link> *device,
                                                          <link linkend="GError">GError</link> *error,
                                                          <link linkend="gpointer">gpointer</link> user_data);
-<link linkend="void">void</link>                (<link linkend="GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc">*GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc</link>)
-                                                        (<link linkend="GduDevice">GduDevice</link> *device,
-                                                         <link linkend="GList">GList</link> *smart_data,
-                                                         <link linkend="GError">GError</link> *error,
-                                                         <link linkend="gpointer">gpointer</link> user_data);
 <link linkend="void">void</link>                (<link linkend="GduDeviceFilesystemListOpenFilesCompletedFunc">*GduDeviceFilesystemListOpenFilesCompletedFunc</link>)
                                                         (<link linkend="GduDevice">GduDevice</link> *device,
                                                          <link linkend="GList">GList</link> *processes,
@@ -105,12 +105,21 @@
 <link linkend="void">void</link>                (<link linkend="GduDeviceDriveEjectCompletedFunc">*GduDeviceDriveEjectCompletedFunc</link>) (<link linkend="GduDevice">GduDevice</link> *device,
                                                          <link linkend="GError">GError</link> *error,
                                                          <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduDeviceDriveDetachCompletedFunc">*GduDeviceDriveDetachCompletedFunc</link>)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
 <link linkend="void">void</link>                (<link linkend="GduDeviceDrivePollMediaCompletedFunc">*GduDeviceDrivePollMediaCompletedFunc</link>)
                                                         (<link linkend="GduDevice">GduDevice</link> *device,
                                                          <link linkend="GError">GError</link> *error,
                                                          <link linkend="gpointer">gpointer</link> user_data);
 <link linkend="void">void</link>                (<link linkend="GduPoolLinuxMdStartCompletedFunc">*GduPoolLinuxMdStartCompletedFunc</link>) (<link linkend="GduPool">GduPool</link> *pool,
                                                          <link linkend="char">char</link> *assembled_array_object_path,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduPoolLinuxMdCreateCompletedFunc">*GduPoolLinuxMdCreateCompletedFunc</link>)
+                                                        (<link linkend="GduPool">GduPool</link> *pool,
+                                                         <link linkend="char">char</link> *array_object_path,
                                                          <link linkend="GError">GError</link> *error,
                                                          <link linkend="gpointer">gpointer</link> user_data);
 <link linkend="void">void</link>                (<link linkend="GduDriveActivateFunc">*GduDriveActivateFunc</link>)             (<link linkend="GduDrive">GduDrive</link> *drive,
@@ -385,6 +394,28 @@ Various callback function signatures.</para>
 <listitem><simpara>
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
+<refsect2 id="GduDeviceLinuxMdCheckCompletedFunc" role="function">
+<title>GduDeviceLinuxMdCheckCompletedFunc ()</title>
+<indexterm zone="GduDeviceLinuxMdCheckCompletedFunc"><primary sortas="GduDeviceLinuxMdCheckCompletedFunc">GduDeviceLinuxMdCheckCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceLinuxMdCheckCompletedFunc)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="guint">guint</link> num_errors,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>num_errors</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
 <refsect2 id="GduDeviceLinuxMdAddComponentCompletedFunc" role="function">
 <title>GduDeviceLinuxMdAddComponentCompletedFunc ()</title>
 <indexterm zone="GduDeviceLinuxMdAddComponentCompletedFunc"><primary sortas="GduDeviceLinuxMdAddComponentCompletedFunc">GduDeviceLinuxMdAddComponentCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceLinuxMdAddComponentCompletedFunc)
@@ -478,28 +509,6 @@ Various callback function signatures.</para>
 <listitem><simpara>
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2 id="GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc" role="function">
-<title>GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc ()</title>
-<indexterm zone="GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc"><primary sortas="GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc">GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc)
-                                                        (<link linkend="GduDevice">GduDevice</link> *device,
-                                                         <link linkend="GList">GList</link> *smart_data,
-                                                         <link linkend="GError">GError</link> *error,
-                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
-<para>
-</para><variablelist role="params">
-<varlistentry><term><parameter>device</parameter>&#160;:</term>
-<listitem><simpara>
-</simpara></listitem></varlistentry>
-<varlistentry><term><parameter>smart_data</parameter>&#160;:</term>
-<listitem><simpara>
-</simpara></listitem></varlistentry>
-<varlistentry><term><parameter>error</parameter>&#160;:</term>
-<listitem><simpara>
-</simpara></listitem></varlistentry>
-<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
-<listitem><simpara>
-</simpara></listitem></varlistentry>
-</variablelist></refsect2>
 <refsect2 id="GduDeviceFilesystemListOpenFilesCompletedFunc" role="function">
 <title>GduDeviceFilesystemListOpenFilesCompletedFunc ()</title>
 <indexterm zone="GduDeviceFilesystemListOpenFilesCompletedFunc"><primary sortas="GduDeviceFilesystemListOpenFilesCompletedFunc">GduDeviceFilesystemListOpenFilesCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceFilesystemListOpenFilesCompletedFunc)
@@ -525,6 +534,24 @@ Various callback function signatures.</para>
 <refsect2 id="GduDeviceDriveEjectCompletedFunc" role="function">
 <title>GduDeviceDriveEjectCompletedFunc ()</title>
 <indexterm zone="GduDeviceDriveEjectCompletedFunc"><primary sortas="GduDeviceDriveEjectCompletedFunc">GduDeviceDriveEjectCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceDriveEjectCompletedFunc) (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduDeviceDriveDetachCompletedFunc" role="function">
+<title>GduDeviceDriveDetachCompletedFunc ()</title>
+<indexterm zone="GduDeviceDriveDetachCompletedFunc"><primary sortas="GduDeviceDriveDetachCompletedFunc">GduDeviceDriveDetachCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceDriveDetachCompletedFunc)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
                                                          <link linkend="GError">GError</link> *error,
                                                          <link linkend="gpointer">gpointer</link> user_data);</programlisting>
 <para>
@@ -569,6 +596,28 @@ Various callback function signatures.</para>
 <listitem><simpara>
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>assembled_array_object_path</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduPoolLinuxMdCreateCompletedFunc" role="function">
+<title>GduPoolLinuxMdCreateCompletedFunc ()</title>
+<indexterm zone="GduPoolLinuxMdCreateCompletedFunc"><primary sortas="GduPoolLinuxMdCreateCompletedFunc">GduPoolLinuxMdCreateCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduPoolLinuxMdCreateCompletedFunc)
+                                                        (<link linkend="GduPool">GduPool</link> *pool,
+                                                         <link linkend="char">char</link> *array_object_path,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>pool</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>array_object_path</parameter>&#160;:</term>
 <listitem><simpara>
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>error</parameter>&#160;:</term>

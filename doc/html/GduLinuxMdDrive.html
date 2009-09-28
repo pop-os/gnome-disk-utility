@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GduLinuxMdDrive</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
 <link rel="home" href="index.html" title="Disk Utility Library Reference Manual">
 <link rel="up" href="ref-core.html" title="API Reference">
 <link rel="prev" href="GduDrive.html" title="GduDrive">
@@ -31,7 +31,7 @@
                 <a href="#GduLinuxMdDrive.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
 </td></tr>
 </table>
-<div class="refentry" lang="en">
+<div class="refentry" title="GduLinuxMdDrive">
 <a name="GduLinuxMdDrive"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
@@ -40,7 +40,7 @@
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
-<div class="refsynopsisdiv">
+<div class="refsynopsisdiv" title="Synopsis">
 <a name="GduLinuxMdDrive.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
                     <a class="link" href="GduLinuxMdDrive.html#GduLinuxMdDrivePrivate" title="GduLinuxMdDrivePrivate">GduLinuxMdDrivePrivate</a>;
@@ -61,7 +61,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html
                                                          <a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *slave);
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Object Hierarchy">
 <a name="GduLinuxMdDrive.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
   <a
@@ -71,13 +71,13 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
          +----GduLinuxMdDrive
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Implemented Interfaces">
 <a name="GduLinuxMdDrive.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
 <p>
 GduLinuxMdDrive implements
  GduPresentable.</p>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Description">
 <a name="GduLinuxMdDrive.description"></a><h2>Description</h2>
 <p>
 The <a class="link" href="GduLinuxMdDrive.html" title="GduLinuxMdDrive"><span class="type">GduLinuxMdDrive</span></a> class represents drives Linux Software RAID arrays.
@@ -94,23 +94,23 @@ See the documentation for <span class="type">GduPresentable</span> for the big p
 <p>
 </p>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Details">
 <a name="GduLinuxMdDrive.details"></a><h2>Details</h2>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="GduLinuxMdDrivePrivate">
 <a name="GduLinuxMdDrivePrivate"></a><h3>GduLinuxMdDrivePrivate</h3>
 <pre class="programlisting">typedef struct _GduLinuxMdDrivePrivate GduLinuxMdDrivePrivate;</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="GduLinuxMdDrive">
 <a name="GduLinuxMdDrive-struct"></a><h3>GduLinuxMdDrive</h3>
 <pre class="programlisting">typedef struct _GduLinuxMdDrive GduLinuxMdDrive;</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="enum GduLinuxMdDriveSlaveFlags">
 <a name="GduLinuxMdDriveSlaveFlags"></a><h3>enum GduLinuxMdDriveSlaveFlags</h3>
 <pre class="programlisting">typedef enum {
         GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_NONE          = 0,
@@ -183,7 +183,7 @@ recovered to.
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdu_linux_md_drive_get_uuid ()">
 <a name="gdu-linux-md-drive-get-uuid"></a><h3>gdu_linux_md_drive_get_uuid ()</h3>
 <pre class="programlisting">const <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
@@ -207,7 +207,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdu_linux_md_drive_has_slave ()">
 <a name="gdu-linux-md-drive-has-slave"></a><h3>gdu_linux_md_drive_has_slave ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
@@ -241,7 +241,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRU
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdu_linux_md_drive_get_slaves ()">
 <a name="gdu-linux-md-drive-get-slaves"></a><h3>gdu_linux_md_drive_get_slaves ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
@@ -271,7 +271,7 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdu_linux_md_drive_get_slave_flags ()">
 <a name="gdu-linux-md-drive-get-slave-flags"></a><h3>gdu_linux_md_drive_get_slave_flags ()</h3>
 <pre class="programlisting"><a class="link" href="GduLinuxMdDrive.html#GduLinuxMdDriveSlaveFlags" title="enum GduLinuxMdDriveSlaveFlags">GduLinuxMdDriveSlaveFlags</a>  gdu_linux_md_drive_get_slave_flags
                                                         (<a class="link" href="GduLinuxMdDrive.html" title="GduLinuxMdDrive">GduLinuxMdDrive</a> *drive,

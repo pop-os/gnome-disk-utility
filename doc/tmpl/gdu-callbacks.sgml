@@ -150,6 +150,17 @@ gdu-callbacks
 @user_data: 
 
 
+<!-- ##### USER_FUNCTION GduDeviceLinuxMdCheckCompletedFunc ##### -->
+<para>
+
+</para>
+
+@device: 
+@num_errors: 
+@error: 
+@user_data: 
+
+
 <!-- ##### USER_FUNCTION GduDeviceLinuxMdAddComponentCompletedFunc ##### -->
 <para>
 
@@ -201,17 +212,6 @@ gdu-callbacks
 @user_data: 
 
 
-<!-- ##### USER_FUNCTION GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc ##### -->
-<para>
-
-</para>
-
-@device: 
-@smart_data: 
-@error: 
-@user_data: 
-
-
 <!-- ##### USER_FUNCTION GduDeviceFilesystemListOpenFilesCompletedFunc ##### -->
 <para>
 
@@ -224,6 +224,16 @@ gdu-callbacks
 
 
 <!-- ##### USER_FUNCTION GduDeviceDriveEjectCompletedFunc ##### -->
+<para>
+
+</para>
+
+@device: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduDeviceDriveDetachCompletedFunc ##### -->
 <para>
 
 </para>
@@ -250,6 +260,17 @@ gdu-callbacks
 
 @pool: 
 @assembled_array_object_path: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduPoolLinuxMdCreateCompletedFunc ##### -->
+<para>
+
+</para>
+
+@pool: 
+@array_object_path: 
 @error: 
 @user_data: 
 

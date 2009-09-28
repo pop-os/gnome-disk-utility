@@ -62,7 +62,7 @@ get_pow2_size (guint64 size)
         else
                 digits = 0;
 
-        str = g_strdup_printf (_("%.*f %s"), digits, displayed_size, unit);
+        str = g_strdup_printf ("%.*f %s", digits, displayed_size, unit);
 
         return str;
 }
@@ -91,7 +91,7 @@ get_pow10_size (guint64 size)
         else
                 digits = 0;
 
-        str = g_strdup_printf (_("%.*f %s"), digits, displayed_size, unit);
+        str = g_strdup_printf ("%.*f %s", digits, displayed_size, unit);
 
         return str;
 }
@@ -105,12 +105,19 @@ gdu_util_get_size_for_display (guint64 size, gboolean long_string)
         if (long_string) {
                 char *pow2_str;
                 char *pow10_str;
+                char *size_str;
 
                 pow2_str = get_pow2_size (size);
                 pow10_str = get_pow10_size (size);
+                size_str = g_strdup_printf ("%'" G_GINT64_FORMAT, size);
 
-                str = g_strdup_printf (_("%s / %s / %'" G_GINT64_FORMAT " bytes"), pow10_str, pow2_str, size);
+                /* Translators: The first %s is the size in power-of-10 units, e.g. 100 KB
+                 * the second %s is the size in power-of-2 units, e.g. 20 MiB
+                 * the third %s is the size as a number
+                 */
+                str = g_strdup_printf (_("%s / %s / %s bytes"), pow10_str, pow2_str, size_str);
 
+                g_free (size_str);
                 g_free (pow10_str);
                 g_free (pow2_str);
         } else {
@@ -138,18 +145,22 @@ gdu_util_get_fstype_for_display (const char *fstype, const char *fsversion, gboo
 
                 if (strcmp (fsversion, "FAT12") == 0) {
                         if (long_string) {
+                                /* Translators: FAT is a filesystem type */
                                 s = g_strdup (_("FAT (12-bit version)"));
                         } else {
+                                /* Translators: FAT is a filesystem type */
                                 s = g_strdup (_("FAT"));
                         }
                 } else if (strcmp (fsversion, "FAT16") == 0) {
                         if (long_string) {
+                                /* Translators: FAT is a filesystem type */
                                 s = g_strdup (_("FAT (16-bit version)"));
                         } else {
                                 s = g_strdup (_("FAT"));
                         }
                 } else if (strcmp (fsversion, "FAT32") == 0) {
                         if (long_string) {
+                                /* Translators: FAT is a filesystem type */
                                 s = g_strdup (_("FAT (32-bit version)"));
                         } else {
                                 s = g_strdup (_("FAT"));
@@ -164,20 +175,24 @@ gdu_util_get_fstype_for_display (const char *fstype, const char *fsversion, gboo
         } else if (strcmp (fstype, "ntfs") == 0) {
                 if (long_string) {
                         if (strlen (fsversion) > 0)
+                                /* Translators: NTFS is a filesystem type */
                                 s = g_strdup_printf (_("NTFS (version %s)"), fsversion);
                         else
+                                /* Translators: NTFS is a filesystem type */
                                 s = g_strdup_printf (_("NTFS"));
                 } else {
                         s = g_strdup (_("NTFS"));
                 }
         } else if (strcmp (fstype, "hfs") == 0) {
                 if (long_string) {
+                        /* Translators: HFS is a filesystem type */
                         s = g_strdup (_("HFS"));
                 } else {
                         s = g_strdup (_("HFS"));
                 }
         } else if (strcmp (fstype, "hfsplus") == 0) {
                 if (long_string) {
+                        /* Translators: HFS+ is a filesystem type */
                         s = g_strdup (_("HFS+"));
                 } else {
                         s = g_strdup (_("HFS+"));
@@ -186,69 +201,90 @@ gdu_util_get_fstype_for_display (const char *fstype, const char *fsversion, gboo
                 if (long_string) {
                         s = g_strdup (_("Linux Unified Key Setup"));
                 } else {
+                        /* Translators: LUKS is 'Linux Unified Key Setup', a disk encryption format */
                         s = g_strdup (_("LUKS"));
                 }
         } else if (strcmp (fstype, "ext2") == 0) {
                 if (long_string) {
                         if (strlen (fsversion) > 0)
+                                /* Translators: Ext2 is a filesystem type */
                                 s = g_strdup_printf (_("Linux Ext2 (version %s)"), fsversion);
                         else
+                                /* Translators: Ext2 is a filesystem type */
                                 s = g_strdup_printf (_("Linux Ext2"));
                 } else {
+                        /* Translators: Ext2 is a filesystem type */
                         s = g_strdup (_("ext2"));
                 }
         } else if (strcmp (fstype, "ext3") == 0) {
                 if (long_string) {
                         if (strlen (fsversion) > 0)
+                                /* Translators: Ext3 is a filesystem type */
                                 s = g_strdup_printf (_("Linux Ext3 (version %s)"), fsversion);
                         else
+                                /* Translators: Ext3 is a filesystem type */
                                 s = g_strdup_printf (_("Linux Ext3"));
                 } else {
+                        /* Translators: Ext3 is a filesystem type */
                         s = g_strdup (_("ext3"));
                 }
         } else if (strcmp (fstype, "jbd") == 0) {
                 if (long_string) {
                         if (strlen (fsversion) > 0)
+                                /* Translators: 'Journal' refers to a filesystem technology here, see 'journaling filesystems' */
                                 s = g_strdup_printf (_("Journal for Linux ext3 (version %s)"), fsversion);
                         else
+                                /* Translators: 'Journal' refers to a filesystem technology here, see 'journaling filesystems' */
                                 s = g_strdup_printf (_("Journal for Linux ext3"));
                 } else {
+                        /* Translators: jbd is a filesystem type */
                         s = g_strdup (_("jbd"));
                 }
         } else if (strcmp (fstype, "ext4") == 0) {
                 if (long_string) {
                         if (strlen (fsversion) > 0)
+                                /* Translators: ext4 is a filesystem type */
                                 s = g_strdup_printf (_("Linux Ext4 (version %s)"), fsversion);
                         else
+                                /* Translators: ext4 is a filesystem type */
                                 s = g_strdup_printf (_("Linux Ext4"));
                 } else {
+                        /* Translators: Ext4 is a filesystem type */
                         s = g_strdup (_("ext4"));
                 }
         } else if (strcmp (fstype, "xfs") == 0) {
                 if (long_string) {
                         if (strlen (fsversion) > 0)
+                                /* Translators: xfs is a filesystem type */
                                 s = g_strdup_printf (_("Linux XFS (version %s)"), fsversion);
                         else
+                                /* Translators: xfs is a filesystem type */
                                 s = g_strdup_printf (_("Linux XFS"));
                 } else {
+                        /* Translators: xfs is a filesystem type */
                         s = g_strdup (_("xfs"));
                 }
         } else if (strcmp (fstype, "iso9660") == 0) {
                 if (long_string) {
+                        /* Translators: iso9660 is a filesystem type */
                         s = g_strdup (_("ISO 9660"));
                 } else {
+                        /* Translators: iso9660 is a filesystem type */
                         s = g_strdup (_("iso9660"));
                 }
         } else if (strcmp (fstype, "udf") == 0) {
                 if (long_string) {
+                        /* Translators: udf is a filesystem type */
                         s = g_strdup (_("Universal Disk Format"));
                 } else {
+                        /* Translators: udf is a filesystem type */
                         s = g_strdup (_("udf"));
                 }
         } else if (strcmp (fstype, "swap") == 0) {
                 if (long_string) {
                         s = g_strdup (_("Swap Space"));
                 } else {
+                        /* Translators: filesystem type for swap space */
                         s = g_strdup (_("swap"));
                 }
         } else if (strcmp (fstype, "LVM2_member") == 0) {
@@ -258,6 +294,7 @@ gdu_util_get_fstype_for_display (const char *fstype, const char *fsversion, gboo
                         else
                                 s = g_strdup_printf (_("LVM2 Physical Volume"));
                 } else {
+                        /* Translators: short name for LVM2 Physical Volume */
                         s = g_strdup (_("lvm2_pv"));
                 }
 
@@ -268,6 +305,7 @@ gdu_util_get_fstype_for_display (const char *fstype, const char *fsversion, gboo
                         else
                                 s = g_strdup_printf (_("RAID Component"));
                 } else {
+                        /* Translators: short name for 'RAID Component' */
                         s = g_strdup (_("raid"));
                 }
         } else {
@@ -315,10 +353,20 @@ gdu_get_job_description (const char *job_id)
                 s = g_strdup (_("Stopping RAID Array"));
         } else if (strcmp (job_id, "LinuxMdStart") == 0) {
                 s = g_strdup (_("Starting RAID Array"));
-        } else if (strcmp (job_id, "DriveAtaSmartInitiateSelftest") == 0) {
-                s = g_strdup (_("Running S.M.A.R.T. Self Test"));
+        } else if (strcmp (job_id, "LinuxMdCheck") == 0) {
+                s = g_strdup (_("Checking RAID Array"));
+        } else if (strcmp (job_id, "LinuxMdRepair") == 0) {
+                s = g_strdup (_("Repairing RAID Array"));
+        } else if (strcmp (job_id, "DriveAtaSmartSelftestShort") == 0) {
+                s = g_strdup (_("Running Short SMART Self-Test"));
+        } else if (strcmp (job_id, "DriveAtaSmartSelftestExtended") == 0) {
+                s = g_strdup (_("Running Extended SMART Self-Test"));
+        } else if (strcmp (job_id, "DriveAtaSmartSelftestConveyance") == 0) {
+                s = g_strdup (_("Running Conveyance SMART Self-Test"));
         } else if (strcmp (job_id, "DriveEject") == 0) {
                 s = g_strdup (_("Ejecting Media"));
+        } else if (strcmp (job_id, "DriveDetach") == 0) {
+                s = g_strdup (_("Detaching Device"));
         } else if (strcmp (job_id, "ForceUnmount") == 0) {
                 s = g_strdup (_("Forcibly Unmounting Filesystem"));
         } else if (strcmp (job_id, "ForceLuksTeardown") == 0) {
@@ -433,6 +481,9 @@ gdu_util_get_desc_for_part_type (const char *scheme, const char *type)
                         return g_strdup (part_type[n].name);
         }
 
+        /* Translators: Shown for unknown partition types.
+         * %s is the partition type name
+         */
         return g_strdup_printf (_("Unknown (%s)"), type);
 }
 
@@ -481,11 +532,11 @@ gdu_util_part_table_type_get_description (char *part_type)
 
         if (strcmp (part_type, "mbr") == 0)
                 return g_strdup (_("The Master Boot Record scheme is compatible with almost any "
-                                   "device or system but has a number of limitations with respect to to disk "
+                                   "device or system but has a number of limitations with respect to disk "
                                    "size and number of partitions."));
 
         else if (strcmp (part_type, "apm") == 0)
-                return g_strdup (_("A legacy scheme that is incomptible with most systems "
+                return g_strdup (_("A legacy scheme that is incompatible with most systems "
                                    "except Apple systems and most Linux systems. Not recommended for "
                                    "removable media."));
 
@@ -495,7 +546,7 @@ gdu_util_part_table_type_get_description (char *part_type)
 
         else if (strcmp (part_type, "none") == 0)
                 return g_strdup (_("Marks the entire disk as unused. Use this option only if you want "
-                                   "to avoid partitioing the disk for e.g. whole disk use or "
+                                   "to avoid partitioning the disk for e.g. whole disk use or "
                                    "floppy / Zip disks."));
 
         else
@@ -727,34 +778,48 @@ gdu_util_get_connection_for_display (const char *connection_interface, guint64 c
         name = NULL;
         if (connection_interface != NULL) {
                 if (strcmp (connection_interface, "ata_serial") == 0) {
+                        /* Translators: interface name for serial ATA disks */
                         name = _("SATA");
                 } else if (strcmp (connection_interface, "ata_serial_esata") == 0) {
+                        /* Translators: interface name for serial ATA disks */
                         name = _("eSATA");
                 } else if (strcmp (connection_interface, "ata_parallel") == 0) {
+                        /* Translators: interface name for parallel ATA disks */
                         name = _("PATA");
                 } else if (g_str_has_prefix (connection_interface, "ata")) {
+                        /* Translators: interface name for ATA disks */
                         name = _("ATA");
                 } else if (g_str_has_prefix (connection_interface, "scsi")) {
+                        /* Translators: interface name for SCSI disks */
                         name = _("SCSI");
                 } else if (strcmp (connection_interface, "usb") == 0) {
+                        /* Translators: interface name for USB disks */
                         name = _("USB");
                 } else if (strcmp (connection_interface, "firewire") == 0) {
+                        /* Translators: interface name for firewire disks */
                         name = _("Firewire");
                 } else if (strcmp (connection_interface, "sdio") == 0) {
+                        /* Translators: interface name for SDIO disks */
                         name = _("SDIO");
                 } else if (strcmp (connection_interface, "virtual") == 0) {
+                        /* Translators: interface name for virtual disks */
                         name = _("Virtual");
                 }
         }
 
         if (name == NULL)
-                name = _("Unknown");
+                /* Translators: name shown for unknown disk connection interfaces */
+                name = C_("connection name", "Unknown");
 
         if (connection_speed > 0) {
                 char *speed;
 
                 speed = gdu_util_get_speed_for_display (connection_speed);
-                result = g_strdup_printf ("%s at %s", name, speed);
+                /* Translators: Connection with speed information.
+                 * First %s is the connection name, like 'SATA' or 'USB'
+                 * second %s is the speed, like '2 Mbit/s'
+                 */
+                result = g_strdup_printf (_("%s at %s"), name, speed);
                 g_free (speed);
         } else {
                 result = g_strdup (name);
@@ -766,24 +831,46 @@ gdu_util_get_connection_for_display (const char *connection_interface, guint64 c
 /* ---------------------------------------------------------------------------------------------------- */
 
 gchar *
-gdu_linux_md_get_raid_level_for_display (const gchar *linux_md_raid_level)
+gdu_linux_md_get_raid_level_for_display (const gchar *linux_md_raid_level,
+                                         gboolean long_string)
 {
         gchar *ret;
 
         if (strcmp (linux_md_raid_level, "raid0") == 0) {
-                ret = g_strdup (_("RAID-0"));
+                if (long_string)
+                        ret = g_strdup (C_("RAID level", "Stripe (RAID-0)"));
+                else
+                        ret = g_strdup (C_("RAID level", "RAID-0"));
         } else if (strcmp (linux_md_raid_level, "raid1") == 0) {
-                ret = g_strdup (_("RAID-1"));
+                if (long_string)
+                        ret = g_strdup (C_("RAID level", "Mirror (RAID-1)"));
+                else
+                        ret = g_strdup (C_("RAID level", "RAID-1"));
         } else if (strcmp (linux_md_raid_level, "raid4") == 0) {
-                ret = g_strdup (_("RAID-4"));
+                if (long_string)
+                        ret = g_strdup (C_("RAID level", "Parity Disk (RAID-4)"));
+                else
+                        ret = g_strdup (C_("RAID level", "RAID-4"));
         } else if (strcmp (linux_md_raid_level, "raid5") == 0) {
-                ret = g_strdup (_("RAID-5"));
+                if (long_string)
+                        ret = g_strdup (C_("RAID level", "Distributed Parity (RAID-5)"));
+                else
+                        ret = g_strdup (C_("RAID level", "RAID-5"));
         } else if (strcmp (linux_md_raid_level, "raid6") == 0) {
-                ret = g_strdup (_("RAID-6"));
+                if (long_string)
+                        ret = g_strdup (C_("RAID level", "Dual Distributed Parity (RAID-6)"));
+                else
+                        ret = g_strdup (C_("RAID level", "RAID-6"));
         } else if (strcmp (linux_md_raid_level, "raid10") == 0) {
-                ret = g_strdup (_("RAID-10"));
+                if (long_string)
+                        ret = g_strdup (C_("RAID level", "Stripe of Mirrors (RAID-10)"));
+                else
+                        ret = g_strdup (C_("RAID level", "RAID-10"));
         } else if (strcmp (linux_md_raid_level, "linear") == 0) {
-                ret = g_strdup (_("JBOD"));
+                if (long_string)
+                        ret = g_strdup (C_("RAID level", "Concatenated (Linear)"));
+                else
+                        ret = g_strdup (C_("RAID level", "Linear"));
         } else {
                 ret = g_strdup (linux_md_raid_level);
         }
@@ -791,5 +878,127 @@ gdu_linux_md_get_raid_level_for_display (const gchar *linux_md_raid_level)
         return ret;
 }
 
+char *
+gdu_linux_md_get_raid_level_description (const gchar *linux_md_raid_level)
+{
+        gchar *ret;
+
+        if (strcmp (linux_md_raid_level, "raid0") == 0) {
+                ret = g_strdup (_("Striped set without parity. "
+                                  "Provides improved performance but no fault tolerance. "
+                                  "If a single disk in the array fails, the entire RAID-0 array fails."));
+        } else if (strcmp (linux_md_raid_level, "raid1") == 0) {
+                ret = g_strdup (_("Mirrored set without parity. "
+                                  "Provides fault tolerance and improved performance for reading. "
+                                  "RAID-1 arrays can sustain all but one disk failing."));
+        } else if (strcmp (linux_md_raid_level, "raid4") == 0) {
+                ret = g_strdup (_("Striped set with parity on a single disk. "
+                                  "Provides improved performance and fault tolerance. "
+                                  "RAID-4 arrays can sustain a single disk failure."));
+        } else if (strcmp (linux_md_raid_level, "raid5") == 0) {
+                ret = g_strdup (_("Striped set with distributed parity. "
+                                  "Provides improved performance and fault tolerance. "
+                                  "RAID-5 arrays can sustain a single disk failure."));
+        } else if (strcmp (linux_md_raid_level, "raid6") == 0) {
+                ret = g_strdup (_("Striped set with dual distributed parity. "
+                                  "Provides improved performance and fault tolerance. "
+                                  "RAID-6 arrays can sustain two disk failures."));
+        } else if (strcmp (linux_md_raid_level, "raid10") == 0) {
+                ret = g_strdup (_("Striped set with distributed parity. "
+                                  "Provides improved performance and fault tolerance. "
+                                  "RAID-10 arrays can sustain multiple drive losses so long as no mirror loses all its drives."));
+        /*} else if (strcmp (linux_md_raid_level, "linear") == 0) {*/
+
+        } else {
+                ret = g_strdup_printf (_("Unknown RAID level %s."), linux_md_raid_level);
+                g_warning ("Please add support: %s", ret);
+        }
+
+        return ret;
+}
+
 /* ---------------------------------------------------------------------------------------------------- */
 
+/**
+ * gdu_util_ata_smart_status_to_desc:
+ * @status: Status from libatasmart, e.g. <quote>BAD_STATUS</quote>.
+ * @out_highlight: Return value (or %NULL) for suggesting whether the status should be highlighted.
+ * @out_action_text: Return value (or %NULL) for suggested action. Free with g_free().
+ * @out_icon: Return value (or %NULL) for icon to show. Free with g_object_unref().
+ *
+ * Gets a human readable representation of @status.
+ *
+ * Returns: The human readable status. Free with g_free().
+ */
+gchar *
+gdu_util_ata_smart_status_to_desc (const gchar  *status,
+                                   gboolean     *out_highlight,
+                                   gchar       **out_action_text,
+                                   GIcon       **out_icon)
+{
+        const gchar *desc;
+        const gchar *action_text;
+        gchar *ret;
+        gboolean highlight;
+        GIcon *icon;
+
+        highlight = FALSE;
+        action_text = NULL;
+        if (g_strcmp0 (status, "GOOD") == 0) {
+                /* Translators: Overall description of the GOOD status */
+                desc = _("Disk is healthy");
+                icon = g_themed_icon_new ("gdu-smart-healthy");
+        } else if (g_strcmp0 (status, "BAD_ATTRIBUTE_IN_THE_PAST") == 0) {
+                /* Translators: Overall description of the BAD_ATTRIBUTE_IN_THE_PAST status */
+                desc = _("Disk was used outside of design parameters in the past");
+                icon = g_themed_icon_new ("gdu-smart-healthy");
+        } else if (g_strcmp0 (status, "BAD_SECTOR") == 0) {
+                /* Translators: Overall description of the BAD_SECTOR status */
+                desc = _("Disk has a few bad sectors");
+                icon = g_themed_icon_new ("gdu-smart-healthy");
+        } else if (g_strcmp0 (status, "BAD_ATTRIBUTE_NOW") == 0) {
+                /* Translators: Overall description of the BAD_ATTRIBUTE_NOW status */
+                desc = _("DISK IS BEING USED OUTSIDE DESIGN PARAMETERS");
+                /* Translators: Suggested action for the BAD_ATTRIBUTE_NOW status */
+                action_text = _("Backup all data and replace the disk");
+                highlight = TRUE;
+                icon = g_themed_icon_new ("gdu-smart-threshold");
+        } else if (g_strcmp0 (status, "BAD_SECTOR_MANY") == 0) {
+                /* Translators: Overall description of the BAD_SECTOR_MANY status */
+                desc = _("DISK HAS MANY BAD SECTORS");
+                highlight = TRUE;
+                /* Translators: Suggested action for the BAD_SECTOR_MANY status */
+                action_text = _("Backup all data and replace the disk");
+                icon = g_themed_icon_new ("gdu-smart-threshold");
+        } else if (g_strcmp0 (status, "BAD_STATUS") == 0) {
+                /* Translators: Overall description of the BAD_STATUS status */
+                desc = _("DISK FAILURE IS IMMINENT");
+                /* Translators: Suggested action for the BAD_STATUS status */
+                action_text = _("Backup all data and replace the disk");
+                highlight = TRUE;
+                icon = g_themed_icon_new ("gdu-smart-failing");
+        } else if (status == NULL || strlen (status) == 0) {
+                /* Translators: Description when the overall SMART status is unknown */
+                desc = _("Unknown");
+                icon = g_themed_icon_new ("gdu-smart-unknown");
+        } else {
+                desc = status;
+                icon = g_themed_icon_new ("gdu-smart-unknown");
+        }
+
+        if (out_highlight != NULL)
+                *out_highlight = highlight;
+
+        if (out_action_text != NULL)
+                *out_action_text = g_strdup (action_text);
+
+        if (out_icon != NULL)
+                *out_icon = g_object_ref (icon);
+        g_object_unref (icon);
+
+        ret = g_strdup (desc);
+
+        return ret;
+}
+
+/* ---------------------------------------------------------------------------------------------------- */

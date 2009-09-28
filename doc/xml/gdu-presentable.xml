@@ -24,7 +24,9 @@ const <link linkend="gchar">gchar</link> *       <link linkend="gdu-presentable-
 <link linkend="GduDevice">GduDevice</link> *         <link linkend="gdu-presentable-get-device">gdu_presentable_get_device</link>          (<link linkend="GduPresentable">GduPresentable</link> *presentable);
 <link linkend="GduPresentable">GduPresentable</link> *    <link linkend="gdu-presentable-get-enclosing-presentable">gdu_presentable_get_enclosing_presentable</link>
                                                         (<link linkend="GduPresentable">GduPresentable</link> *presentable);
-<link linkend="char">char</link> *              <link linkend="gdu-presentable-get-name">gdu_presentable_get_name</link>            (<link linkend="GduPresentable">GduPresentable</link> *presentable);
+<link linkend="gchar">gchar</link> *             <link linkend="gdu-presentable-get-name">gdu_presentable_get_name</link>            (<link linkend="GduPresentable">GduPresentable</link> *presentable);
+<link linkend="gchar">gchar</link> *             <link linkend="gdu-presentable-get-description">gdu_presentable_get_description</link>     (<link linkend="GduPresentable">GduPresentable</link> *presentable);
+<link linkend="gchar">gchar</link> *             <link linkend="gdu-presentable-get-vpd-name">gdu_presentable_get_vpd_name</link>        (<link linkend="GduPresentable">GduPresentable</link> *presentable);
 <link linkend="GIcon">GIcon</link> *             <link linkend="gdu-presentable-get-icon">gdu_presentable_get_icon</link>            (<link linkend="GduPresentable">GduPresentable</link> *presentable);
 <link linkend="guint64">guint64</link>             <link linkend="gdu-presentable-get-offset">gdu_presentable_get_offset</link>          (<link linkend="GduPresentable">GduPresentable</link> *presentable);
 <link linkend="guint64">guint64</link>             <link linkend="gdu-presentable-get-size">gdu_presentable_get_size</link>            (<link linkend="GduPresentable">GduPresentable</link> *presentable);
@@ -209,7 +211,9 @@ the functions on <link linkend="GduDevice"><type>GduDevice</type></link>.</para>
         const gchar *    (*get_id)                    (GduPresentable *presentable);
         GduDevice *      (*get_device)                (GduPresentable *presentable);
         GduPresentable * (*get_enclosing_presentable) (GduPresentable *presentable);
-        char *           (*get_name)                  (GduPresentable *presentable);
+        gchar *          (*get_name)                  (GduPresentable *presentable);
+        gchar *          (*get_description)           (GduPresentable *presentable);
+        gchar *          (*get_vpd_name)              (GduPresentable *presentable);
         GIcon *          (*get_icon)                  (GduPresentable *presentable);
         guint64          (*get_offset)                (GduPresentable *presentable);
         guint64          (*get_size)                  (GduPresentable *presentable);
@@ -260,6 +264,16 @@ Interface for <link linkend="GduPresentable"><type>GduPresentable</type></link> 
 <varlistentry>
 <term><structfield>get_name</structfield>&#160;()</term>
 <listitem><simpara> Returns a name for the presentable suitable for presentation in an user interface.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>get_description</structfield>&#160;()</term>
+<listitem><simpara> Returns a description of the presentable suitable for presentation in an user interface.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>get_vpd_name</structfield>&#160;()</term>
+<listitem><simpara> Returns a name for the presentable suitable for UI that includes Vital Product Pata.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
@@ -340,10 +354,68 @@ must unref the object.
 </variablelist></refsect2>
 <refsect2 id="gdu-presentable-get-name" role="function">
 <title>gdu_presentable_get_name ()</title>
-<indexterm zone="gdu-presentable-get-name"><primary sortas="gdu_presentable_get_name">gdu_presentable_get_name</primary></indexterm><programlisting><link linkend="char">char</link> *              gdu_presentable_get_name            (<link linkend="GduPresentable">GduPresentable</link> *presentable);</programlisting>
+<indexterm zone="gdu-presentable-get-name"><primary sortas="gdu_presentable_get_name">gdu_presentable_get_name</primary></indexterm><programlisting><link linkend="gchar">gchar</link> *             gdu_presentable_get_name            (<link linkend="GduPresentable">GduPresentable</link> *presentable);</programlisting>
 <para>
 Gets a name for <parameter>presentable</parameter> suitable for presentation in an user
+interface.
+</para>
+<para>
+For drives (e.g. <link linkend="GduDrive"><type>GduDrive</type></link>) this could be "80G Solid-State Disk",
+"500G Hard Disk", "CompactFlash Drive", "CD/DVD Drive"
+</para>
+<para>
+For volumes (e.g. <link linkend="GduVolume"><type>GduVolume</type></link>) this string could be "Fedora
+(Rawhide)" (for filesystems with labels), "48G Free" (for
+unallocated space), "2GB Swap Space" (for swap), "430GB RAID
+Component" (for RAID components) and so on.
+</para>
+<para>
+Constrast with <link linkend="gdu-presentable-get-vpd-name"><function>gdu_presentable_get_vpd_name()</function></link> that returns a name
+based on Vital Product Data including things such as the name of
+the vendor, the model name and so on.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>presentable</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GduPresentable"><type>GduPresentable</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The name. Caller must free the string with <link linkend="g-free"><function>g_free()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-presentable-get-description" role="function">
+<title>gdu_presentable_get_description ()</title>
+<indexterm zone="gdu-presentable-get-description"><primary sortas="gdu_presentable_get_description">gdu_presentable_get_description</primary></indexterm><programlisting><link linkend="gchar">gchar</link> *             gdu_presentable_get_description     (<link linkend="GduPresentable">GduPresentable</link> *presentable);</programlisting>
+<para>
+Gets a description for <parameter>presentable</parameter> suitable for presentation in an user
 interface.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>presentable</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GduPresentable"><type>GduPresentable</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The description. Caller must free the string with <link linkend="g-free"><function>g_free()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-presentable-get-vpd-name" role="function">
+<title>gdu_presentable_get_vpd_name ()</title>
+<indexterm zone="gdu-presentable-get-vpd-name"><primary sortas="gdu_presentable_get_vpd_name">gdu_presentable_get_vpd_name</primary></indexterm><programlisting><link linkend="gchar">gchar</link> *             gdu_presentable_get_vpd_name        (<link linkend="GduPresentable">GduPresentable</link> *presentable);</programlisting>
+<para>
+Gets a name for <parameter>presentable</parameter> suitable for presentation in an user
+interface that includes Vital Product Data details such as the name
+of the vendor, the model name and so on.
+</para>
+<para>
+For drives (e.g. <link linkend="GduDrive"><type>GduDrive</type></link>) this typically includes the
+vendor/model strings obtained from the hardware, for example
+"MATSHITA DVD/CDRW UJDA775" or "ATA INTEL SSDSA2MH080G1GC".
+</para>
+<para>
+For volumes (e.g. <link linkend="GduVolume"><type>GduVolume</type></link>) this includes information about e.g.
+partition infomation for example "Whole-disk volume on ATA INTEL
+SSDSA2MH080G1GC", "Partition 2 of ATA INTEL SSDSA2MH080G1GC".
+</para>
+<para>
+Contrast with <link linkend="gdu-presentable-get-name"><function>gdu_presentable_get_name()</function></link> that may not include this
+information.</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>presentable</parameter>&#160;:</term>

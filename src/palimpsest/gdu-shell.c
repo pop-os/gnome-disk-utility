@@ -28,16 +28,12 @@
 #include <glib-object.h>
 #include <string.h>
 #include <glib/gi18n.h>
-#include <polkit-gnome/polkit-gnome.h>
-#include <libsexy/sexy.h>
 
 #include <gdu/gdu.h>
 #include <gdu-gtk/gdu-gtk.h>
 
 #include "gdu-shell.h"
-#include "gdu-tree.h"
 
-#include "gdu-section-health.h"
 #include "gdu-section-partition.h"
 #include "gdu-section-create-partition-table.h"
 #include "gdu-section-unallocated.h"
@@ -47,14 +43,14 @@
 #include "gdu-section-encrypted.h"
 #include "gdu-section-linux-md-drive.h"
 #include "gdu-section-no-media.h"
-#include "gdu-section-job.h"
+#include "bling-spinner.h"
 
 struct _GduShellPrivate
 {
         GtkWidget *app_window;
         GduPool *pool;
 
-        GtkWidget *treeview;
+        GtkWidget *tree_view;
 
         GtkWidget *icon_image;
         GtkWidget *name_label;
@@ -65,34 +61,14 @@ struct _GduShellPrivate
 
         /* -------------------------------------------------------------------------------- */
 
+        GtkWidget *job_bar;
+        GtkWidget *job_description_label;
+        GtkWidget *job_progress_bar;
+        GtkWidget *job_spinner;
+
         GtkWidget *sections_vbox;
 
         /* -------------------------------------------------------------------------------- */
-
-        PolKitAction *pk_modify_action;
-        PolKitAction *pk_modify_system_internal_action;
-        PolKitAction *pk_fsck_action;
-        PolKitAction *pk_fsck_system_internal_action;
-        PolKitAction *pk_mount_action;
-        PolKitAction *pk_mount_system_internal_action;
-        PolKitAction *pk_unmount_others_action;
-        PolKitAction *pk_eject_action;
-        PolKitAction *pk_unlock_luks_action;
-        PolKitAction *pk_lock_luks_others_action;
-        PolKitAction *pk_linux_md_action;
-
-        PolKitGnomeAction *fsck_action;
-        PolKitGnomeAction *mount_action;
-        PolKitGnomeAction *unmount_action;
-        PolKitGnomeAction *eject_action;
-
-        PolKitGnomeAction *unlock_action;
-        PolKitGnomeAction *lock_action;
-
-        PolKitGnomeAction *start_action;
-        PolKitGnomeAction *stop_action;
-
-        PolKitGnomeAction *erase_action;
 
         GduPresentable *presentable_now_showing;
 
@@ -107,17 +83,6 @@ G_DEFINE_TYPE (GduShell, gdu_shell, G_TYPE_OBJECT);
 static void
 gdu_shell_finalize (GduShell *shell)
 {
-        polkit_action_unref (shell->priv->pk_modify_action);
-        polkit_action_unref (shell->priv->pk_modify_system_internal_action);
-        polkit_action_unref (shell->priv->pk_fsck_action);
-        polkit_action_unref (shell->priv->pk_fsck_system_internal_action);
-        polkit_action_unref (shell->priv->pk_mount_action);
-        polkit_action_unref (shell->priv->pk_mount_system_internal_action);
-        polkit_action_unref (shell->priv->pk_unmount_others_action);
-        polkit_action_unref (shell->priv->pk_unlock_luks_action);
-        polkit_action_unref (shell->priv->pk_lock_luks_others_action);
-        polkit_action_unref (shell->priv->pk_linux_md_action);
-
         if (G_OBJECT_CLASS (parent_class)->finalize)
                 (* G_OBJECT_CLASS (parent_class)->finalize) (G_OBJECT (shell));
 }
@@ -171,8 +136,8 @@ gdu_shell_get_selected_presentable (GduShell *shell)
 void
 gdu_shell_select_presentable (GduShell *shell, GduPresentable *presentable)
 {
-        gdu_device_tree_select_presentable (GTK_TREE_VIEW (shell->priv->treeview), presentable);
-        gtk_widget_grab_focus (shell->priv->treeview);
+        gdu_pool_tree_view_select_presentable (GDU_POOL_TREE_VIEW (shell->priv->tree_view), presentable);
+        gtk_widget_grab_focus (shell->priv->tree_view);
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -235,7 +200,7 @@ details_update (GduShell *shell)
         if (presentable_size > 0) {
                 strsize_long = gdu_util_get_size_for_display (presentable_size, TRUE);
         } else {
-                strsize_long = g_strdup ("Unknown Size");
+                strsize_long = g_strdup (_("Unknown Size"));
         }
 
         if (GDU_IS_DRIVE (presentable)) {
@@ -257,10 +222,12 @@ details_update (GduShell *shell)
                                         } else if (strcmp (scheme, "gpt") == 0) {
                                                 s = g_strdup (_("GUID Partition Table"));
                                         } else {
+                                                /* Translators: 'scheme' refers to a partition table format here, like 'mbr' or 'gpt' */
                                                 s = g_strdup_printf (_("Unknown Scheme: %s"), scheme);
                                         }
 
                                         g_ptr_array_add (details,
+                                                         /* Translators: %s is the name of the partition table format, like 'Master Boot Record' */
                                                          g_strdup_printf (_("Partitioned Media (%s)"), s));
 
                                         g_free (s);
@@ -305,16 +272,48 @@ details_update (GduShell *shell)
                         g_ptr_array_add (details,
                                          g_strdup (_("Linux Software RAID")));
                 } else {
-                        s = gdu_util_get_connection_for_display (
-                                gdu_device_drive_get_connection_interface (device),
-                                gdu_device_drive_get_connection_speed (device));
-                        g_ptr_array_add (details,
-                                         g_strdup_printf (_("Connected via %s"), s));
-                        g_free (s);
+                        if (gdu_device_drive_ata_smart_get_is_available (device) &&
+                            gdu_device_drive_ata_smart_get_time_collected (device) > 0) {
+                                gchar *smart_status;
+                                gchar *status_desc;
+                                gboolean highlight;
+                                gboolean rtl;
+
+                                rtl = (gtk_widget_get_direction (GTK_WIDGET (shell->priv->app_window)) == GTK_TEXT_DIR_RTL);
+
+                                status_desc = gdu_util_ata_smart_status_to_desc (gdu_device_drive_ata_smart_get_status (device),
+                                                                                 &highlight,
+                                                                                 NULL,
+                                                                                 NULL);
+                                /* Translators: the %s is the SMART status of the disk e.g. 'Healthy' */
+                                if (highlight) {
+                                        s = g_strdup_printf ("<span fgcolor=\"red\"><b>%s</b></span>", status_desc);
+                                        g_free (status_desc);
+                                        status_desc = s;
+                                }
+                                smart_status = g_strdup_printf (_("SMART status: %s"),
+                                                                status_desc);
+                                g_free (status_desc);
+
+                                s = g_strdup_printf (rtl ? "<a href=\"gnome-disk-utility://show-smart\" title=\"%2$s\">%3$s</a> – %1$s" :
+                                                     "%s – <a href=\"gnome-disk-utility://show-smart\" title=\"%s\">%s</a>",
+                                                     smart_status,
+                                                     /* Translators: this the SMART hyperlink tooltip */
+                                                     _("View details about SMART for this disk"),
+                                                     /* Translators: this is the text for the SMART hyperlink */
+                                                     _("More Information"));
+                                g_free (smart_status);
+
+                                g_ptr_array_add (details, s);
+
+                        } else {
+                                g_ptr_array_add (details, g_strdup (_("SMART is not available")));
+                        }
                 }
 
                 if (device_file != NULL) {
                         if (gdu_device_is_read_only (device)) {
+                        /* Translators: %s is the device file */
                         g_ptr_array_add (details,
                                          g_strdup_printf (_("%s (Read Only)"), device_file));
                         } else {
@@ -337,6 +336,7 @@ details_update (GduShell *shell)
                                 gdu_device_id_get_type (device),
                                 gdu_device_id_get_version (device),
                                 TRUE);
+                        /* Translators: %s is the filesystem name */
                         g_ptr_array_add (details,
                                          g_strdup_printf (_("%s File System"), fsname));
                         g_free (fsname);
@@ -453,7 +453,8 @@ details_update (GduShell *shell)
                         detail_str = "";
 
                 s = g_strdup_printf ("<span foreground='%s'>%s</span>", detail_color, detail_str);
-                sexy_url_label_set_markup (SEXY_URL_LABEL (label), s);
+                gtk_label_set_markup (GTK_LABEL (label), s);
+                gtk_label_set_track_visited_links (GTK_LABEL (label), FALSE);
                 g_free (s);
         }
 
@@ -493,7 +494,7 @@ update_section (GtkWidget *section, gpointer callback_data)
 }
 
 static GList *
-compute_sections_to_show (GduShell *shell, gboolean showing_job)
+compute_sections_to_show (GduShell *shell)
 {
         GduDevice *device;
         GList *sections_to_show;
@@ -501,92 +502,93 @@ compute_sections_to_show (GduShell *shell, gboolean showing_job)
         sections_to_show = NULL;
         device = gdu_presentable_get_device (shell->priv->presentable_now_showing);
 
-        /* compute sections we want to show */
-        if (showing_job) {
+        if (GDU_IS_LINUX_MD_DRIVE (shell->priv->presentable_now_showing)) {
 
                 sections_to_show = g_list_append (sections_to_show,
-                                                  (gpointer) GDU_TYPE_SECTION_JOB);
-
-        } else {
-                if (GDU_IS_LINUX_MD_DRIVE (shell->priv->presentable_now_showing)) {
-
-                        sections_to_show = g_list_append (sections_to_show,
-                                                          (gpointer) GDU_TYPE_SECTION_LINUX_MD_DRIVE);
+                                                  (gpointer) GDU_TYPE_SECTION_LINUX_MD_DRIVE);
 
 
-                } else if (GDU_IS_DRIVE (shell->priv->presentable_now_showing) && device != NULL) {
+        } else if (GDU_IS_DRIVE (shell->priv->presentable_now_showing) && device != NULL) {
 
-                        if (gdu_device_is_removable (device) && !gdu_device_is_media_available (device)) {
+                if (gdu_device_is_removable (device) && !gdu_device_is_media_available (device)) {
 
-                                sections_to_show = g_list_append (
-                                        sections_to_show, (gpointer) GDU_TYPE_SECTION_NO_MEDIA);
+                        sections_to_show = g_list_append (sections_to_show, (gpointer) GDU_TYPE_SECTION_NO_MEDIA);
 
-                        } else {
-
-                                if (gdu_device_drive_ata_smart_get_is_available (device)) {
-                                                sections_to_show = g_list_append (sections_to_show,
-                                                                                  (gpointer) GDU_TYPE_SECTION_HEALTH);
-                                }
-
-                        }
-
-                } else if (GDU_IS_VOLUME (shell->priv->presentable_now_showing) && device != NULL) {
-
-                        if (gdu_device_is_partition (device))
-                                sections_to_show = g_list_append (sections_to_show, (gpointer) GDU_TYPE_SECTION_PARTITION);
-
-                        if (gdu_presentable_is_recognized (shell->priv->presentable_now_showing)) {
-                                const char *usage;
-                                const char *type;
-
-                                usage = gdu_device_id_get_usage (device);
-                                type = gdu_device_id_get_type (device);
-
-                                if (usage != NULL && strcmp (usage, "filesystem") == 0) {
-                                        sections_to_show = g_list_append (
-                                                sections_to_show, (gpointer) GDU_TYPE_SECTION_FILESYSTEM);
-                                } else if (usage != NULL && strcmp (usage, "crypto") == 0) {
-                                        sections_to_show = g_list_append (
-                                                sections_to_show, (gpointer) GDU_TYPE_SECTION_ENCRYPTED);
-                                } else if (usage != NULL && strcmp (usage, "other") == 0 &&
-                                           type != NULL && strcmp (type, "swap") == 0) {
-                                        sections_to_show = g_list_append (
-                                                sections_to_show, (gpointer) GDU_TYPE_SECTION_SWAPSPACE);
-                                }
-                        } else {
-                                GduPresentable *toplevel_presentable;
-                                GduDevice *toplevel_device;
-
-                                sections_to_show = g_list_append (
-                                        sections_to_show, (gpointer) GDU_TYPE_SECTION_UNRECOGNIZED);
-
-                                /* Also show a "Create partition table" section for a volume if the drive isn't partitioned */
-                                toplevel_presentable = gdu_presentable_get_toplevel (shell->priv->presentable_now_showing);
-                                if (toplevel_presentable != NULL) {
-                                        toplevel_device = gdu_presentable_get_device (toplevel_presentable);
-
-                                        if (toplevel_device != NULL) {
-                                                if (!gdu_device_is_partition_table (toplevel_device)) {
-                                                        sections_to_show = g_list_append (
-                                                                sections_to_show, (gpointer) GDU_TYPE_SECTION_CREATE_PARTITION_TABLE);
-                                                }
-                                                g_object_unref (toplevel_device);
-                                        }
-                                        g_object_unref (toplevel_presentable);
-                                }
-                        }
-
-                } else if (GDU_IS_VOLUME_HOLE (shell->priv->presentable_now_showing)) {
-
-                        sections_to_show = g_list_append (sections_to_show,
-                                                          (gpointer) GDU_TYPE_SECTION_UNALLOCATED);
                 }
+
+        } else if (GDU_IS_VOLUME (shell->priv->presentable_now_showing) && device != NULL) {
+
+                if (gdu_device_is_partition (device))
+                        sections_to_show = g_list_append (sections_to_show, (gpointer) GDU_TYPE_SECTION_PARTITION);
+
+                if (gdu_presentable_is_recognized (shell->priv->presentable_now_showing)) {
+                        const char *usage;
+                        const char *type;
+
+                        usage = gdu_device_id_get_usage (device);
+                        type = gdu_device_id_get_type (device);
+
+                        if (usage != NULL && strcmp (usage, "filesystem") == 0) {
+                                sections_to_show = g_list_append (sections_to_show, (gpointer) GDU_TYPE_SECTION_FILESYSTEM);
+                        } else if (usage != NULL && strcmp (usage, "crypto") == 0) {
+                                sections_to_show = g_list_append (sections_to_show, (gpointer) GDU_TYPE_SECTION_ENCRYPTED);
+                        } else if (usage != NULL && strcmp (usage, "other") == 0 &&
+                                   type != NULL && strcmp (type, "swap") == 0) {
+                                sections_to_show = g_list_append (sections_to_show, (gpointer) GDU_TYPE_SECTION_SWAPSPACE);
+                        }
+                } else {
+                        GduPresentable *toplevel_presentable;
+                        GduDevice *toplevel_device;
+
+                        sections_to_show = g_list_append (sections_to_show, (gpointer) GDU_TYPE_SECTION_UNRECOGNIZED);
+
+                        /* Also show a "Create partition table" section for a volume if the drive isn't partitioned */
+                        toplevel_presentable = gdu_presentable_get_toplevel (shell->priv->presentable_now_showing);
+                        if (toplevel_presentable != NULL) {
+                                toplevel_device = gdu_presentable_get_device (toplevel_presentable);
+
+                                if (toplevel_device != NULL) {
+                                        if (!gdu_device_is_partition_table (toplevel_device)) {
+                                                sections_to_show = g_list_append (
+                                                                                  sections_to_show, (gpointer) GDU_TYPE_SECTION_CREATE_PARTITION_TABLE);
+                                        }
+                                        g_object_unref (toplevel_device);
+                                }
+                                g_object_unref (toplevel_presentable);
+                        }
+                }
+
+        } else if (GDU_IS_VOLUME_HOLE (shell->priv->presentable_now_showing)) {
+
+                sections_to_show = g_list_append (sections_to_show,
+                                                  (gpointer) GDU_TYPE_SECTION_UNALLOCATED);
         }
+
 
         if (device != NULL)
                 g_object_unref (device);
 
         return sections_to_show;
+}
+
+static void
+on_job_bar_response (GtkInfoBar *info_bar,
+                     gint        response_id,
+                     gpointer    user_data)
+{
+        GduShell *shell = GDU_SHELL (user_data);
+
+        if (response_id == GTK_RESPONSE_CANCEL) {
+                if (shell->priv->presentable_now_showing != NULL) {
+                        GduDevice *device;
+
+                        device = gdu_presentable_get_device (shell->priv->presentable_now_showing);
+                        if (device != NULL) {
+                                gdu_device_op_cancel_job (device, NULL, NULL);
+                                g_object_unref (device);
+                        }
+                }
+        }
 }
 
 /* called when a new presentable is selected
@@ -603,6 +605,7 @@ gdu_shell_update (GduShell *shell)
         gboolean can_mount;
         gboolean can_unmount;
         gboolean can_eject;
+        gboolean can_detach;
         gboolean can_lock;
         gboolean can_unlock;
         gboolean can_start;
@@ -610,8 +613,6 @@ gdu_shell_update (GduShell *shell)
         gboolean can_fsck;
         gboolean can_erase;
         static GduPresentable *last_presentable = NULL;
-        static gboolean last_showing_job = FALSE;
-        gboolean showing_job;
         gboolean reset_sections;
         GList *sections_to_show;
         uid_t unlocked_by_uid;
@@ -621,6 +622,7 @@ gdu_shell_update (GduShell *shell)
         can_fsck = FALSE;
         can_unmount = FALSE;
         can_eject = FALSE;
+        can_detach = FALSE;
         can_unlock = FALSE;
         can_lock = FALSE;
         unlocked_by_uid = 0;
@@ -680,11 +682,11 @@ gdu_shell_update (GduShell *shell)
 
                 if (GDU_IS_DRIVE (shell->priv->presentable_now_showing)) {
                         if (gdu_device_is_removable (device) &&
-                            gdu_device_is_media_available (device) &&
-                            (gdu_device_drive_get_is_media_ejectable (device) ||
-                             gdu_device_drive_get_requires_eject (device))) {
+                            gdu_device_is_media_available (device))
                                 can_eject = TRUE;
-                        }
+
+                        if (gdu_device_drive_get_can_detach (device))
+                                can_detach = TRUE;
 
                         can_erase = TRUE;
                         if (gdu_drive_is_activatable (GDU_DRIVE (shell->priv->presentable_now_showing)) &&
@@ -702,17 +704,56 @@ gdu_shell_update (GduShell *shell)
                 can_start = gdu_drive_can_activate (drive, NULL);
         }
 
-        showing_job = job_in_progress;
+        gtk_action_set_sensitive (gtk_action_group_get_action (shell->priv->action_group, "mount"), can_mount);
+        gtk_action_set_sensitive (gtk_action_group_get_action (shell->priv->action_group, "unmount"), can_unmount);
+        gtk_action_set_sensitive (gtk_action_group_get_action (shell->priv->action_group, "eject"), can_eject);
+        gtk_action_set_sensitive (gtk_action_group_get_action (shell->priv->action_group, "detach"), can_detach);
+        gtk_action_set_sensitive (gtk_action_group_get_action (shell->priv->action_group, "fsck"), can_fsck);
+        gtk_action_set_sensitive (gtk_action_group_get_action (shell->priv->action_group, "lock"), can_lock);
+        gtk_action_set_sensitive (gtk_action_group_get_action (shell->priv->action_group, "unlock"), can_unlock);
+        gtk_action_set_sensitive (gtk_action_group_get_action (shell->priv->action_group, "start"), can_start);
+        gtk_action_set_sensitive (gtk_action_group_get_action (shell->priv->action_group, "stop"), can_stop);
+        gtk_action_set_sensitive (gtk_action_group_get_action (shell->priv->action_group, "erase"), can_erase);
 
-        reset_sections =
-                (shell->priv->presentable_now_showing != last_presentable) ||
-                (showing_job != last_showing_job);
+        reset_sections = (shell->priv->presentable_now_showing != last_presentable);
 
         last_presentable = shell->priv->presentable_now_showing;
-        last_showing_job = showing_job;
 
+        sections_to_show = compute_sections_to_show (shell);
 
-        sections_to_show = compute_sections_to_show (shell, showing_job);
+        if (job_in_progress) {
+                gchar *desc;
+                gchar *s;
+                gdouble percentage;
+
+                desc = gdu_get_job_description (gdu_device_job_get_id (device));
+
+                s = g_strdup_printf ("<small><b>%s</b></small>", desc);
+                gtk_label_set_markup (GTK_LABEL (shell->priv->job_description_label), s);
+                g_free (s);
+                g_free (desc);
+
+                gtk_widget_set_no_show_all (shell->priv->job_bar, FALSE);
+                gtk_widget_show_all (shell->priv->job_bar);
+
+                gtk_info_bar_set_response_sensitive (GTK_INFO_BAR (shell->priv->job_bar),
+                                                     GTK_RESPONSE_CANCEL,
+                                                     gdu_device_job_is_cancellable (device));
+
+                percentage = gdu_device_job_get_percentage (device);
+                if (percentage >= 0) {
+                        gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (shell->priv->job_progress_bar),
+                                                       percentage / 100.0);
+                        gtk_widget_hide (shell->priv->job_spinner);
+                } else {
+                        bling_spinner_start (BLING_SPINNER (shell->priv->job_spinner));
+                        gtk_widget_hide (shell->priv->job_progress_bar);
+                }
+
+        } else {
+                bling_spinner_stop (BLING_SPINNER (shell->priv->job_spinner));
+                gtk_widget_hide_all (shell->priv->job_bar);
+        }
 
         /* if this differs from what we currently show, prompt a reset */
         if (!reset_sections) {
@@ -767,111 +808,6 @@ gdu_shell_update (GduShell *shell)
                                update_section,
                                shell);
 
-        if (can_mount) {
-                if (device != NULL) {
-                        g_object_set (shell->priv->mount_action,
-                                      "polkit-action",
-                                      gdu_device_is_system_internal (device) ?
-                                      shell->priv->pk_mount_system_internal_action :
-                                      shell->priv->pk_mount_action,
-                                      NULL);
-                }
-        }
-
-        if (can_fsck) {
-                if (device != NULL) {
-                        g_object_set (shell->priv->fsck_action,
-                                      "polkit-action",
-                                      gdu_device_is_system_internal (device) ?
-                                      shell->priv->pk_fsck_system_internal_action :
-                                      shell->priv->pk_fsck_action,
-                                      NULL);
-                }
-        }
-
-        if (can_unmount) {
-                if (device != NULL) {
-                        PolKitAction *action;
-                        if (gdu_device_get_mounted_by_uid (device) == getuid ()) {
-                                action = NULL;
-                        } else {
-                                action = shell->priv->pk_unmount_others_action;
-                        }
-                        g_object_set (shell->priv->unmount_action,
-                                      "polkit-action",
-                                      action,
-                                      NULL);
-                }
-        }
-
-        if (can_eject) {
-                if (device != NULL) {
-                        g_object_set (shell->priv->eject_action,
-                                      "polkit-action",
-                                      shell->priv->pk_eject_action,
-                                      NULL);
-                }
-        }
-
-        if (can_lock) {
-                PolKitAction *action;
-                action = NULL;
-                if (unlocked_by_uid != getuid () && device != NULL) {
-                        action = shell->priv->pk_lock_luks_others_action;
-                }
-                g_object_set (shell->priv->lock_action,
-                              "polkit-action",
-                              action,
-                              NULL);
-        }
-
-        if (!gdu_pool_supports_luks_devices (shell->priv->pool)) {
-                polkit_gnome_action_set_visible (shell->priv->lock_action, FALSE);
-                polkit_gnome_action_set_visible (shell->priv->unlock_action, FALSE);
-        }
-
-        if (can_erase) {
-                if (device != NULL) {
-                        g_object_set (shell->priv->erase_action,
-                                      "polkit-action",
-                                      gdu_device_is_system_internal (device) ?
-                                      shell->priv->pk_modify_system_internal_action :
-                                      shell->priv->pk_modify_action,
-                                      NULL);
-                }
-        }
-
-        /* update all GtkActions */
-        polkit_gnome_action_set_sensitive (shell->priv->mount_action, can_mount);
-        polkit_gnome_action_set_sensitive (shell->priv->fsck_action, can_fsck);
-        polkit_gnome_action_set_sensitive (shell->priv->unmount_action, can_unmount);
-        polkit_gnome_action_set_sensitive (shell->priv->eject_action, can_eject);
-        polkit_gnome_action_set_sensitive (shell->priv->lock_action, can_lock);
-        polkit_gnome_action_set_sensitive (shell->priv->unlock_action, can_unlock);
-        polkit_gnome_action_set_sensitive (shell->priv->start_action, can_start);
-        polkit_gnome_action_set_sensitive (shell->priv->stop_action, can_stop);
-        polkit_gnome_action_set_sensitive (shell->priv->erase_action, can_erase);
-
-#if 0
-        /* TODO */
-        if (can_lock || can_unlock) {
-                g_warning ("a");
-                polkit_gnome_action_set_visible (shell->priv->mount_action, FALSE);
-                polkit_gnome_action_set_visible (shell->priv->unmount_action, FALSE);
-                polkit_gnome_action_set_visible (shell->priv->eject_action, FALSE);
-                polkit_gnome_action_set_visible (shell->priv->lock_action, TRUE);
-                polkit_gnome_action_set_visible (shell->priv->unlock_action, TRUE);
-        } else {
-                g_warning ("b");
-                polkit_gnome_action_set_visible (shell->priv->mount_action, TRUE);
-                polkit_gnome_action_set_visible (shell->priv->unmount_action, TRUE);
-                polkit_gnome_action_set_visible (shell->priv->eject_action, TRUE);
-                polkit_gnome_action_set_visible (shell->priv->lock_action, FALSE);
-                polkit_gnome_action_set_visible (shell->priv->unlock_action, FALSE);
-        }
-#endif
-
-
         details_update (shell);
 
         if (device != NULL)
@@ -889,8 +825,7 @@ static void
 presentable_job_changed (GduPresentable *presentable, gpointer user_data)
 {
         GduShell *shell = GDU_SHELL (user_data);
-        if (presentable == shell->priv->presentable_now_showing)
-                gdu_shell_update (shell);
+        gdu_shell_update (shell);
 }
 
 static void
@@ -898,10 +833,8 @@ device_tree_changed (GtkTreeSelection *selection, gpointer user_data)
 {
         GduShell *shell = GDU_SHELL (user_data);
         GduPresentable *presentable;
-        GtkTreeView *device_tree_view;
 
-        device_tree_view = gtk_tree_selection_get_tree_view (selection);
-        presentable = gdu_device_tree_get_selected_presentable (device_tree_view);
+        presentable = gdu_pool_tree_view_get_selected_presentable (GDU_POOL_TREE_VIEW (shell->priv->tree_view));
 
         if (presentable != NULL) {
 
@@ -922,6 +855,8 @@ device_tree_changed (GtkTreeSelection *selection, gpointer user_data)
                                   (GCallback) presentable_job_changed, shell);
 
                 gdu_shell_update (shell);
+
+                g_object_unref (presentable);
         }
 }
 
@@ -949,8 +884,8 @@ presentable_removed (GduPool *pool, GduPresentable *presentable, gpointer user_d
                         gdu_shell_select_presentable (shell, enclosing_presentable);
                         g_object_unref (enclosing_presentable);
                 } else {
-                        gdu_device_tree_select_first_presentable (GTK_TREE_VIEW (shell->priv->treeview));
-                        gtk_widget_grab_focus (shell->priv->treeview);
+                        gdu_pool_tree_view_select_first_presentable (GDU_POOL_TREE_VIEW (shell->priv->tree_view));
+                        gtk_widget_grab_focus (shell->priv->tree_view);
                 }
         }
         gdu_shell_update (shell);
@@ -1169,6 +1104,37 @@ eject_action_callback (GtkAction *action, gpointer user_data)
                 gdu_device_op_drive_eject (device,
                                            eject_op_callback,
                                            shell_presentable_new (shell, shell->priv->presentable_now_showing));
+                g_object_unref (device);
+        }
+}
+
+static void
+detach_op_callback (GduDevice *device,
+                    GError    *error,
+                    gpointer   user_data)
+{
+        ShellPresentableData *data = user_data;
+        if (error != NULL) {
+                gdu_shell_raise_error (data->shell,
+                                       data->presentable,
+                                       error,
+                                       _("Error detaching device"));
+                g_error_free (error);
+        }
+        shell_presentable_free (data);
+}
+
+static void
+detach_action_callback (GtkAction *action, gpointer user_data)
+{
+        GduShell *shell = GDU_SHELL (user_data);
+        GduDevice *device;
+
+        device = gdu_presentable_get_device (shell->priv->presentable_now_showing);
+        if (device != NULL) {
+                gdu_device_op_drive_detach (device,
+                                            detach_op_callback,
+                                            shell_presentable_new (shell, shell->priv->presentable_now_showing));
                 g_object_unref (device);
         }
 }
@@ -1614,6 +1580,266 @@ help_contents_action_callback (GtkAction *action, gpointer user_data)
         g_warning ("TODO: launch help");
 }
 
+/* ---------------------------------------------------------------------------------------------------- */
+
+typedef struct {
+        GduShell *shell;
+
+        /* data obtained from GduCreateLinuxMdDialog */
+        gchar *level;
+        gchar *name;
+        guint64 size;
+        guint64 component_size;
+        guint64 stripe_size;
+        GPtrArray *drives;
+
+        /* List of created components - GduDevice objects */
+        GPtrArray *components;
+
+} CreateLinuxMdData;
+
+static void
+create_linux_md_data_free (CreateLinuxMdData *data)
+{
+        g_object_unref (data->shell);
+        g_free (data->level);
+        g_free (data->name);
+        g_ptr_array_unref (data->drives);
+        g_ptr_array_unref (data->components);
+        g_free (data);
+}
+
+static void create_linux_md_do (CreateLinuxMdData *data);
+
+static void
+new_linux_md_create_part_cb (GduDevice  *device,
+                             gchar      *created_device_object_path,
+                             GError     *error,
+                             gpointer    user_data)
+{
+        CreateLinuxMdData *data = user_data;
+
+        if (error != NULL) {
+                gdu_shell_raise_error (data->shell,
+                                       NULL,
+                                       error,
+                                       _("Error creating component for RAID array"));
+                g_error_free (error);
+
+                //g_debug ("Error creating component");
+        } else {
+                GduDevice *d;
+                d = gdu_pool_get_by_object_path (data->shell->priv->pool, created_device_object_path);
+                g_ptr_array_add (data->components, d);
+
+                //g_debug ("Done creating component");
+
+                /* now that we have a component... carry on... */
+                create_linux_md_do (data);
+        }
+}
+
+static void
+new_linux_md_create_part_table_cb (GduDevice  *device,
+                                   GError     *error,
+                                   gpointer    user_data)
+{
+        CreateLinuxMdData *data = user_data;
+
+        if (error != NULL) {
+                gdu_shell_raise_error (data->shell,
+                                       NULL,
+                                       error,
+                                       _("Error creating partition table for component for RAID array"));
+                g_error_free (error);
+
+                //g_debug ("Error creating partition table");
+        } else {
+
+                //g_debug ("Done creating partition table");
+
+                /* now that we have a partition table... carry on... */
+                create_linux_md_do (data);
+        }
+}
+
+static void
+new_linux_md_create_array_cb (GduPool    *pool,
+                              char       *array_object_path,
+                              GError     *error,
+                              gpointer    user_data)
+{
+
+        CreateLinuxMdData *data = user_data;
+
+        if (error != NULL) {
+                gdu_shell_raise_error (data->shell,
+                                       NULL,
+                                       error,
+                                       _("Error creating RAID array"));
+                g_error_free (error);
+
+                //g_debug ("Error creating array");
+        } else {
+                GduDevice *d;
+                GduPresentable *p;
+
+                /* YAY - array has been created - switch the shell to it */
+                d = gdu_pool_get_by_object_path (data->shell->priv->pool, array_object_path);
+                p = gdu_pool_get_drive_by_device (data->shell->priv->pool, d);
+                gdu_shell_select_presentable (data->shell, p);
+                g_object_unref (p);
+                g_object_unref (d);
+
+                //g_debug ("Done creating array");
+        }
+
+        create_linux_md_data_free (data);
+}
+
+static void
+create_linux_md_do (CreateLinuxMdData *data)
+{
+        if (data->components->len == data->drives->len) {
+                GPtrArray *objpaths;
+                guint n;
+
+                /* Create array */
+                //g_debug ("Yay, now creating array");
+
+                objpaths = g_ptr_array_new ();
+                for (n = 0; n < data->components->len; n++) {
+                        GduDevice *d = GDU_DEVICE (data->components->pdata[n]);
+                        g_ptr_array_add (objpaths, (gpointer) gdu_device_get_object_path (d));
+                }
+
+                gdu_pool_op_linux_md_create (data->shell->priv->pool,
+                                             objpaths,
+                                             data->level,
+                                             data->stripe_size,
+                                             data->name,
+                                             new_linux_md_create_array_cb,
+                                             data);
+                g_ptr_array_free (objpaths, TRUE);
+
+        } else {
+                GduDrive *drive;
+                guint num_component;
+                GduPresentable *p;
+                GduDevice *d;
+                guint64 largest_segment;
+                gboolean whole_disk_is_uninitialized;
+
+                num_component = data->components->len;
+                drive = GDU_DRIVE (data->drives->pdata[num_component]);
+
+                g_warn_if_fail (gdu_drive_has_unallocated_space (drive,
+                                                                 &whole_disk_is_uninitialized,
+                                                                 &largest_segment,
+                                                                 &p));
+                g_assert (p != NULL);
+
+                d = gdu_presentable_get_device (GDU_PRESENTABLE (drive));
+
+                if (GDU_IS_VOLUME_HOLE (p)) {
+                        guint64 offset;
+                        guint64 size;
+                        const gchar *scheme;
+                        const gchar *type;
+                        gchar *label;
+
+                        offset = gdu_presentable_get_offset (p);
+                        size = data->component_size;
+
+                        //g_debug ("Creating component %d/%d of size %" G_GUINT64_FORMAT " bytes",
+                        //         num_component + 1,
+                        //         data->drives->len,
+                        //         size);
+
+                        scheme = gdu_device_partition_table_get_scheme (d);
+                        type = "";
+                        label = NULL;
+                        if (g_strcmp0 (scheme, "mbr") == 0) {
+                                type = "0xfd";
+                        } else if (g_strcmp0 (scheme, "gpt") == 0) {
+                                type = "A19D880F-05FC-4D3B-A006-743F0F84911E";
+                                /* Limited to 36 UTF-16LE characters according to on-disk format..
+                                 * Since a RAID array name is limited to 32 chars this should fit */
+                                label = g_strdup_printf ("RAID: %s", data->name);
+                        } else if (g_strcmp0 (scheme, "apt") == 0) {
+                                type = "Apple_Unix_SVR2";
+                                label = g_strdup_printf ("RAID: %s", data->name);
+                        }
+
+                        gdu_device_op_partition_create (d,
+                                                        offset,
+                                                        size,
+                                                        type,
+                                                        label != NULL ? label : "",
+                                                        NULL,
+                                                        "",
+                                                        "",
+                                                        "",
+                                                        FALSE,
+                                                        new_linux_md_create_part_cb,
+                                                        data);
+                        g_free (label);
+
+                } else {
+
+                        /* otherwise the whole disk must be uninitialized... */
+                        g_assert (whole_disk_is_uninitialized);
+
+                        /* so create a partition table... */
+                        gdu_device_op_partition_table_create (d,
+                                                              "mbr",
+                                                              new_linux_md_create_part_table_cb,
+                                                              data);
+                }
+
+                g_object_unref (d);
+                g_object_unref (p);
+
+        }
+}
+
+static void
+new_linud_md_array_callback (GtkAction *action, gpointer user_data)
+{
+        GduShell *shell = GDU_SHELL (user_data);
+        GtkWidget *dialog;
+        gint response;
+
+        //g_debug ("New Linux MD Array!");
+
+        dialog = gdu_create_linux_md_dialog_new (GTK_WINDOW (shell->priv->app_window),
+                                                 shell->priv->pool);
+
+        gtk_widget_show_all (dialog);
+        response = gtk_dialog_run (GTK_DIALOG (dialog));
+        gtk_widget_hide (dialog);
+
+        if (response == GTK_RESPONSE_OK) {
+                CreateLinuxMdData *data;
+
+                data = g_new0 (CreateLinuxMdData, 1);
+                data->shell          = g_object_ref (shell);
+                data->level          = gdu_create_linux_md_dialog_get_level (GDU_CREATE_LINUX_MD_DIALOG (dialog));
+                data->name           = gdu_create_linux_md_dialog_get_name (GDU_CREATE_LINUX_MD_DIALOG (dialog));
+                data->size           = gdu_create_linux_md_dialog_get_size (GDU_CREATE_LINUX_MD_DIALOG (dialog));
+                data->component_size = gdu_create_linux_md_dialog_get_component_size (GDU_CREATE_LINUX_MD_DIALOG (dialog));
+                data->stripe_size    = gdu_create_linux_md_dialog_get_stripe_size (GDU_CREATE_LINUX_MD_DIALOG (dialog));
+                data->drives         = gdu_create_linux_md_dialog_get_drives (GDU_CREATE_LINUX_MD_DIALOG (dialog));
+
+                data->components  = g_ptr_array_new_with_free_func (g_object_unref);
+
+                create_linux_md_do (data);
+        }
+        gtk_widget_destroy (dialog);
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
 static void
 quit_action_callback (GtkAction *action, gpointer user_data)
 {
@@ -1657,12 +1883,16 @@ static const gchar *ui =
         "<ui>"
         "  <menubar>"
         "    <menu action='file'>"
+        "      <menu action='file-new'>"
+        "        <menuitem action='file-new-linux-md-array'/>"
+        "      </menu>"
         "      <menuitem action='quit'/>"
         "    </menu>"
         "    <menu action='edit'>"
         "      <menuitem action='mount'/>"
         "      <menuitem action='unmount'/>"
         "      <menuitem action='eject'/>"
+        "      <menuitem action='detach'/>"
         "      <separator/>"
         "      <menuitem action='fsck'/>"
         "      <separator/>"
@@ -1683,6 +1913,7 @@ static const gchar *ui =
         "    <toolitem action='mount'/>"
         "    <toolitem action='unmount'/>"
         "    <toolitem action='eject'/>"
+        "    <toolitem action='detach'/>"
         "    <separator/>"
         "    <toolitem action='fsck'/>"
         "    <separator/>"
@@ -1698,15 +1929,26 @@ static const gchar *ui =
 
 static GtkActionEntry entries[] = {
         {"file", NULL, N_("_File"), NULL, NULL, NULL },
+        {"file-new", NULL, N_("_New"), NULL, NULL, NULL },
+        {"file-new-linux-md-array", "gdu-raid-array", N_("Software _RAID Array"), NULL, N_("Create a new Software RAID array"), G_CALLBACK (new_linud_md_array_callback)},
         {"edit", NULL, N_("_Edit"), NULL, NULL, NULL },
         {"help", NULL, N_("_Help"), NULL, NULL, NULL },
 
-        {"quit", GTK_STOCK_QUIT, N_("_Quit"), "<Ctrl>Q", N_("Quit"),
-         G_CALLBACK (quit_action_callback)},
-        {"contents", GTK_STOCK_HELP, N_("_Help"), "F1", N_("Get Help on Palimpsest Disk Utility"),
-         G_CALLBACK (help_contents_action_callback)},
-        {"about", GTK_STOCK_ABOUT, N_("_About"), NULL, NULL,
-         G_CALLBACK (about_action_callback)}
+        {"fsck", "gdu-check-disk", N_("_Check File System"), NULL, N_("Check the file system"), G_CALLBACK (fsck_action_callback)},
+        {"mount", "gdu-mount", N_("_Mount"), NULL, N_("Mount the filesystem on device"), G_CALLBACK (mount_action_callback)},
+        {"unmount", "gdu-unmount", N_("_Unmount"), NULL, N_("Unmount the filesystem"), G_CALLBACK (unmount_action_callback)},
+        {"eject", "gdu-eject", N_("_Eject"), NULL, N_("Eject media from the device"), G_CALLBACK (eject_action_callback)},
+        {"detach", "gdu-detach", N_("_Detach"), NULL, N_("Detach the device from the system, powering it off"), G_CALLBACK (detach_action_callback)},
+        {"unlock", "gdu-encrypted-unlock", N_("_Unlock"), NULL, N_("Unlock the encrypted device, making the data available in cleartext"), G_CALLBACK (unlock_action_callback)},
+        {"lock", "gdu-encrypted-lock", N_("_Lock"), NULL, N_("Lock the encrypted device, making the cleartext data unavailable"), G_CALLBACK (lock_action_callback)},
+        {"start", "gdu-raid-array-start", N_("_Start"), NULL, N_("Start the array"), G_CALLBACK (start_action_callback)},
+        {"stop", "gdu-raid-array-stop", N_("_Stop"), NULL, N_("Stop the array"), G_CALLBACK (stop_action_callback)},
+        {"erase", "nautilus-gdu", N_("_Erase"), NULL, N_("Erase the contents of the device"), G_CALLBACK (erase_action_callback)},
+
+
+        {"quit", GTK_STOCK_QUIT, N_("_Quit"), "<Ctrl>Q", N_("Quit"), G_CALLBACK (quit_action_callback)},
+        {"contents", GTK_STOCK_HELP, N_("_Help"), "F1", N_("Get Help on Palimpsest Disk Utility"), G_CALLBACK (help_contents_action_callback)},
+        {"about", GTK_STOCK_ABOUT, N_("_About"), NULL, NULL, G_CALLBACK (about_action_callback)}
 };
 
 static GtkUIManager *
@@ -1718,155 +1960,6 @@ create_ui_manager (GduShell *shell)
         shell->priv->action_group = gtk_action_group_new ("GnomeDiskUtilityActions");
         gtk_action_group_set_translation_domain (shell->priv->action_group, NULL);
         gtk_action_group_add_actions (shell->priv->action_group, entries, G_N_ELEMENTS (entries), shell);
-
-        /* -------------------------------------------------------------------------------- */
-
-        shell->priv->fsck_action = polkit_gnome_action_new_default ("fsck",
-                                                                    shell->priv->pk_fsck_action,
-                                                                    _("_Check File System"),
-                                                                    _("Check the file system"));
-        g_object_set (shell->priv->fsck_action,
-                      "auth-label", _("_Check File System..."),
-                      "auth-short-label", _("_Check"),
-                      "yes-short-label", _("_Check"),
-                      "no-short-label", _("_Check"),
-                      "yes-icon-name", "gdu-check-disk",
-                      "no-icon-name", "gdu-check-disk",
-                      "auth-icon-name", "gdu-check-disk",
-                      "self-blocked-icon-name", "gdu-check-disk",
-                      NULL);
-        g_signal_connect (shell->priv->fsck_action, "activate", G_CALLBACK (fsck_action_callback), shell);
-        gtk_action_group_add_action (shell->priv->action_group, GTK_ACTION (shell->priv->fsck_action));
-
-        /* -------------------------------------------------------------------------------- */
-
-        shell->priv->mount_action = polkit_gnome_action_new_default ("mount",
-                                                                     shell->priv->pk_mount_action,
-                                                                     _("_Mount"),
-                                                                     _("Mount the device"));
-        g_object_set (shell->priv->mount_action,
-                      "auth-label", _("_Mount..."),
-                      "yes-icon-name", "gdu-mount",
-                      "no-icon-name", "gdu-mount",
-                      "auth-icon-name", "gdu-mount",
-                      "self-blocked-icon-name", "gdu-mount",
-                      NULL);
-        g_signal_connect (shell->priv->mount_action, "activate", G_CALLBACK (mount_action_callback), shell);
-        gtk_action_group_add_action (shell->priv->action_group, GTK_ACTION (shell->priv->mount_action));
-
-        /* -------------------------------------------------------------------------------- */
-
-        shell->priv->unmount_action = polkit_gnome_action_new_default ("unmount",
-                                                                       NULL,
-                                                                       _("_Unmount"),
-                                                                       _("Unmount the device"));
-        g_object_set (shell->priv->unmount_action,
-                      "auth-label", _("_Unmount..."),
-                      "yes-icon-name", "gdu-unmount",
-                      "no-icon-name", "gdu-unmount",
-                      "auth-icon-name", "gdu-unmount",
-                      "self-blocked-icon-name", "gdu-unmount",
-                      NULL);
-        g_signal_connect (shell->priv->unmount_action, "activate", G_CALLBACK (unmount_action_callback), shell);
-        gtk_action_group_add_action (shell->priv->action_group, GTK_ACTION (shell->priv->unmount_action));
-
-        /* -------------------------------------------------------------------------------- */
-
-        shell->priv->eject_action = polkit_gnome_action_new_default ("eject",
-                                                                     NULL,
-                                                                     _("_Eject"),
-                                                                     _("Eject media from the device"));
-        g_object_set (shell->priv->eject_action,
-                      "auth-label", _("_Eject..."),
-                      "yes-icon-name", "gdu-eject",
-                      "no-icon-name", "gdu-eject",
-                      "auth-icon-name", "gdu-eject",
-                      "self-blocked-icon-name", "gdu-eject",
-                      NULL);
-        g_signal_connect (shell->priv->eject_action, "activate", G_CALLBACK (eject_action_callback), shell);
-        gtk_action_group_add_action (shell->priv->action_group, GTK_ACTION (shell->priv->eject_action));
-
-        /* -------------------------------------------------------------------------------- */
-
-        shell->priv->unlock_action = polkit_gnome_action_new_default ("unlock",
-                                                                      shell->priv->pk_unlock_luks_action,
-                                                                      _("_Unlock"),
-                                                                      _("Unlock the encrypted device, making the data available in cleartext"));
-        g_object_set (shell->priv->unlock_action,
-                      "auth-label", _("_Unlock..."),
-                      "yes-icon-name", "gdu-encrypted-unlock",
-                      "no-icon-name", "gdu-encrypted-unlock",
-                      "auth-icon-name", "gdu-encrypted-unlock",
-                      "self-blocked-icon-name", "gdu-encrypted-unlock",
-                      NULL);
-        g_signal_connect (shell->priv->unlock_action, "activate", G_CALLBACK (unlock_action_callback), shell);
-        gtk_action_group_add_action (shell->priv->action_group, GTK_ACTION (shell->priv->unlock_action));
-
-        /* -------------------------------------------------------------------------------- */
-
-        shell->priv->lock_action = polkit_gnome_action_new_default ("lock",
-                                                                    NULL,
-                                                                    _("_Lock"),
-                                                                    _("Lock the encrypted device, making the cleartext data unavailable"));
-        g_object_set (shell->priv->lock_action,
-                      "auth-label", _("_Lock..."),
-                      "yes-icon-name", "gdu-encrypted-lock",
-                      "no-icon-name", "gdu-encrypted-lock",
-                      "auth-icon-name", "gdu-encrypted-lock",
-                      "self-blocked-icon-name", "gdu-encrypted-lock",
-                      NULL);
-        g_signal_connect (shell->priv->lock_action, "activate", G_CALLBACK (lock_action_callback), shell);
-        gtk_action_group_add_action (shell->priv->action_group, GTK_ACTION (shell->priv->lock_action));
-
-        /* -------------------------------------------------------------------------------- */
-
-        shell->priv->start_action = polkit_gnome_action_new_default ("start",
-                                                                     shell->priv->pk_linux_md_action,
-                                                                     _("_Start"),
-                                                                     _("Start the array"));
-        g_object_set (shell->priv->start_action,
-                      "auth-label", _("_Start..."),
-                      "yes-icon-name", "gdu-raid-array-start",
-                      "no-icon-name", "gdu-raid-array-start",
-                      "auth-icon-name", "gdu-raid-array-start",
-                      "self-blocked-icon-name", "gdu-raid-array-start",
-                      NULL);
-        g_signal_connect (shell->priv->start_action, "activate", G_CALLBACK (start_action_callback), shell);
-        gtk_action_group_add_action (shell->priv->action_group, GTK_ACTION (shell->priv->start_action));
-
-        /* -------------------------------------------------------------------------------- */
-
-        shell->priv->stop_action = polkit_gnome_action_new_default ("stop",
-                                                                    shell->priv->pk_linux_md_action,
-                                                                    _("_Stop"),
-                                                                    _("Stop the array"));
-        g_object_set (shell->priv->stop_action,
-                      "auth-label", _("_Stop..."),
-                      "yes-icon-name", "gdu-raid-array-stop",
-                      "no-icon-name", "gdu-raid-array-stop",
-                      "auth-icon-name", "gdu-raid-array-stop",
-                      "self-blocked-icon-name", "gdu-raid-array-stop",
-                      NULL);
-        g_signal_connect (shell->priv->stop_action, "activate", G_CALLBACK (stop_action_callback), shell);
-        gtk_action_group_add_action (shell->priv->action_group, GTK_ACTION (shell->priv->stop_action));
-
-        /* -------------------------------------------------------------------------------- */
-
-        shell->priv->erase_action = polkit_gnome_action_new_default ("erase",
-                                                                     shell->priv->pk_modify_action,
-                                                                     _("_Erase..."),
-                                                                     _("Erase the contents of the selected device"));
-        g_object_set (shell->priv->erase_action,
-                      "auth-short-label", _("_Erase"),
-                      "no-short-label", _("_Erase"),
-                      "yes-short-label", _("_Erase"),
-                      "yes-icon-name", GTK_STOCK_CLEAR,
-                      "no-icon-name", GTK_STOCK_CLEAR,
-                      "auth-icon-name", GTK_STOCK_CLEAR,
-                      "self-blocked-icon-name", GTK_STOCK_CLEAR,
-                      NULL);
-        g_signal_connect (shell->priv->erase_action, "activate", G_CALLBACK (erase_action_callback), shell);
-        gtk_action_group_add_action (shell->priv->action_group, GTK_ACTION (shell->priv->erase_action));
 
         /* -------------------------------------------------------------------------------- */
 
@@ -1882,63 +1975,6 @@ create_ui_manager (GduShell *shell)
         }
 
         return ui_manager;
-}
-
-static void
-create_polkit_actions (GduShell *shell)
-{
-        shell->priv->pk_modify_action = polkit_action_new ();
-        polkit_action_set_action_id (shell->priv->pk_modify_action,
-                                     "org.freedesktop.devicekit.disks.change");
-
-        shell->priv->pk_modify_system_internal_action = polkit_action_new ();
-        polkit_action_set_action_id (shell->priv->pk_modify_system_internal_action,
-                                     "org.freedesktop.devicekit.disks.change-system-internal");
-
-        shell->priv->pk_fsck_action = polkit_action_new ();
-        polkit_action_set_action_id (shell->priv->pk_fsck_action,
-                                     "org.freedesktop.devicekit.disks.filesystem-check");
-
-        shell->priv->pk_fsck_system_internal_action = polkit_action_new ();
-        polkit_action_set_action_id (shell->priv->pk_fsck_system_internal_action,
-                                     "org.freedesktop.devicekit.disks.filesystem-check-system-internal");
-
-        shell->priv->pk_mount_action = polkit_action_new ();
-        polkit_action_set_action_id (shell->priv->pk_mount_action,
-                                     "org.freedesktop.devicekit.disks.filesystem-mount");
-
-        shell->priv->pk_mount_system_internal_action = polkit_action_new ();
-        polkit_action_set_action_id (shell->priv->pk_mount_system_internal_action,
-                                     "org.freedesktop.devicekit.disks.filesystem-mount-system-internal");
-
-        shell->priv->pk_unmount_others_action = polkit_action_new ();
-        polkit_action_set_action_id (shell->priv->pk_unmount_others_action,
-                                     "org.freedesktop.devicekit.disks.filesystem-unmount-others");
-
-
-        shell->priv->pk_unlock_luks_action = polkit_action_new ();
-        polkit_action_set_action_id (shell->priv->pk_unlock_luks_action,
-                                     "org.freedesktop.devicekit.disks.luks-unlock");
-
-        shell->priv->pk_lock_luks_others_action = polkit_action_new ();
-        polkit_action_set_action_id (shell->priv->pk_lock_luks_others_action,
-                                     "org.freedesktop.devicekit.disks.luks-lock-others");
-
-        shell->priv->pk_linux_md_action = polkit_action_new ();
-        polkit_action_set_action_id (shell->priv->pk_linux_md_action,
-                                     "org.freedesktop.devicekit.disks.linux-md");
-}
-
-static void
-url_activated (SexyUrlLabel *url_label,
-               const char   *url,
-               gpointer      user_data)
-{
-        char *s;
-        /* TODO: startup notification, determine what file manager to use etc. */
-        s = g_strdup_printf ("nautilus \"%s\"", url);
-        g_spawn_command_line_async (s, NULL);
-        g_free (s);
 }
 
 static void
@@ -1959,7 +1995,7 @@ expander_cb (GtkExpander *expander, GParamSpec *pspec, GtkWindow *dialog)
 /**
  * gdu_shell_raise_error:
  * @shell: An object implementing the #GduShell interface
- * @presentable: The #GduPresentable for which the error was rasied
+ * @presentable: The #GduPresentable for which the error was raised or %NULL.
  * @error: The #GError obtained from the operation
  * @primary_markup_format: Format string for the primary markup text of the dialog
  * @...: Arguments for markup string
@@ -1984,11 +2020,15 @@ gdu_shell_raise_error (GduShell       *shell,
         GtkTextBuffer *buffer;
 
         g_return_if_fail (shell != NULL);
-        g_return_if_fail (presentable != NULL);
         g_return_if_fail (error != NULL);
 
-        window_title = gdu_presentable_get_name (presentable);
-        window_icon = gdu_presentable_get_icon (presentable);
+        window_icon = NULL;
+        if (presentable != NULL) {
+                window_title = gdu_presentable_get_name (presentable);
+                window_icon = gdu_presentable_get_icon (presentable);
+        } else {
+                window_title = g_strdup (_("An error occured"));
+        }
 
         va_start (args, primary_markup_format);
         error_text = g_strdup_vprintf (primary_markup_format, args);
@@ -2002,7 +2042,7 @@ gdu_shell_raise_error (GduShell       *shell,
                 error_msg = _("The device is busy.");
                 break;
         case GDU_ERROR_CANCELLED:
-                error_msg = _("The operation was cancelled.");
+                error_msg = _("The operation was canceled.");
                 break;
         case GDU_ERROR_INHIBITED:
                 error_msg = _("The daemon is being inhibited.");
@@ -2015,6 +2055,9 @@ gdu_shell_raise_error (GduShell       *shell,
                 break;
         case GDU_ERROR_ATA_SMART_WOULD_WAKEUP:
                 error_msg = _("Getting ATA SMART data would wake up the device.");
+                break;
+        case GDU_ERROR_PERMISSION_DENIED:
+                error_msg = _("Permission denied.");
                 break;
         default:
                 error_msg = _("Unknown error");
@@ -2100,20 +2143,54 @@ gdu_shell_raise_error (GduShell       *shell,
 }
 
 static void
+on_activate_link_for_details_label (GtkLabel    *label,
+                                    const gchar *uri,
+                                    gpointer     user_data)
+{
+        GduShell *shell = GDU_SHELL (user_data);
+
+        if (g_str_has_prefix (uri, "gnome-disk-utility://")) {
+
+                if (g_strcmp0 (uri, "gnome-disk-utility://show-smart") == 0) {
+                        if (GDU_IS_DRIVE (shell->priv->presentable_now_showing)) {
+                                GtkWidget *dialog;
+
+                                dialog = gdu_ata_smart_dialog_new (GTK_WINDOW (shell->priv->app_window),
+                                                                   GDU_DRIVE (shell->priv->presentable_now_showing));
+                                gtk_widget_show_all (dialog);
+                                gtk_dialog_run (GTK_DIALOG (dialog));
+                                gtk_widget_destroy (dialog);
+                        } else {
+                                g_warning ("Trying to show ATA SMART dialog for presentable that is not a drive");
+                        }
+                }
+
+                g_signal_stop_emission_by_name (label, "activate-link");
+        }
+}
+
+static void
 create_window (GduShell *shell)
 {
         GtkWidget *vbox;
+        GtkWidget *vbox1;
         GtkWidget *vbox2;
         GtkWidget *menubar;
         GtkWidget *toolbar;
         GtkAccelGroup *accel_group;
         GtkWidget *hpane;
-        GtkWidget *treeview_scrolled_window;
+        GtkWidget *tree_view_scrolled_window;
         GtkTreeSelection *select;
+        GtkWidget *content_area;
+        GtkWidget *button;
+        GtkWidget *label;
+        GtkWidget *align;
+        GtkWidget *vbox3;
+        GtkWidget *hbox;
+        GtkWidget *image;
+        GduPoolTreeModel *model;
 
         shell->priv->pool = gdu_pool_new ();
-
-        create_polkit_actions (shell);
 
         shell->priv->app_window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
         gtk_window_set_resizable (GTK_WINDOW (shell->priv->app_window), TRUE);
@@ -2133,24 +2210,61 @@ create_window (GduShell *shell)
         gtk_box_pack_start (GTK_BOX (vbox), toolbar, FALSE, FALSE, 0);
 
         /* tree view */
-        treeview_scrolled_window = gtk_scrolled_window_new (NULL, NULL);
-        gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (treeview_scrolled_window),
+        tree_view_scrolled_window = gtk_scrolled_window_new (NULL, NULL);
+        gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (tree_view_scrolled_window),
                                         GTK_POLICY_NEVER,
                                         GTK_POLICY_AUTOMATIC);
-        gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (treeview_scrolled_window),
+        gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (tree_view_scrolled_window),
                                              GTK_SHADOW_IN);
-        shell->priv->treeview = gdu_device_tree_new (shell->priv->pool);
-        gtk_container_add (GTK_CONTAINER (treeview_scrolled_window), shell->priv->treeview);
+        model = gdu_pool_tree_model_new (shell->priv->pool,
+                                         GDU_POOL_TREE_MODEL_FLAGS_NONE);
+        shell->priv->tree_view = gdu_pool_tree_view_new (model,
+                                                         GDU_POOL_TREE_VIEW_FLAGS_NONE);
+        g_object_unref (model);
+        gtk_container_add (GTK_CONTAINER (tree_view_scrolled_window), shell->priv->tree_view);
+
+        /* --- */
+
+        vbox1 = gtk_vbox_new (FALSE, 0);
+
+        /* --- */
+
+        shell->priv->job_bar = gtk_info_bar_new ();
+        button = gtk_button_new ();
+        label = gtk_label_new (NULL);
+        gtk_label_set_markup_with_mnemonic (GTK_LABEL (label),
+                                            _("<small>_Cancel</small>"));
+        gtk_container_add (GTK_CONTAINER (button), label);
+        gtk_info_bar_add_action_widget (GTK_INFO_BAR (shell->priv->job_bar),
+                                        button,
+                                        GTK_RESPONSE_CANCEL);
+        g_signal_connect (shell->priv->job_bar,
+                          "response",
+                          G_CALLBACK (on_job_bar_response),
+                          shell);
+        gtk_widget_set_no_show_all (shell->priv->job_bar, TRUE);
+        gtk_info_bar_set_message_type (GTK_INFO_BAR (shell->priv->job_bar),
+                                       GTK_MESSAGE_INFO);
+        gtk_box_pack_start (GTK_BOX (vbox1), shell->priv->job_bar, FALSE, FALSE, 0);
+
+        content_area = gtk_info_bar_get_content_area (GTK_INFO_BAR (shell->priv->job_bar));
+        shell->priv->job_description_label = gtk_label_new (NULL);
+        gtk_misc_set_alignment (GTK_MISC (shell->priv->job_description_label), 0.0, 0.5);
+        gtk_box_pack_start (GTK_BOX (content_area), shell->priv->job_description_label, FALSE, FALSE, 0);
+        shell->priv->job_progress_bar = gtk_progress_bar_new ();
+        gtk_box_pack_start (GTK_BOX (content_area), shell->priv->job_progress_bar, FALSE, FALSE, 0);
+
+        shell->priv->job_spinner = bling_spinner_new ();
+        gtk_widget_set_size_request (shell->priv->job_spinner, 16, 16);
+        gtk_box_pack_start (GTK_BOX (content_area), shell->priv->job_spinner, FALSE, FALSE, 0);
+
+        /* --- */
 
         vbox2 = gtk_vbox_new (FALSE, 0);
         gtk_container_set_border_width (GTK_CONTAINER (vbox2), 12);
+        gtk_box_pack_start (GTK_BOX (vbox1), vbox2, TRUE, TRUE, 0);
 
         /* --- */
-        GtkWidget *label;
-        GtkWidget *align;
-        GtkWidget *vbox3;
-        GtkWidget *hbox;
-        GtkWidget *image;
 
         hbox = gtk_hbox_new (FALSE, 12);
         gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, TRUE, 0);
@@ -2169,29 +2283,41 @@ create_window (GduShell *shell)
         gtk_box_pack_start (GTK_BOX (vbox3), label, FALSE, TRUE, 0);
         shell->priv->name_label = label;
 
-        label = sexy_url_label_new ();
+        label = gtk_label_new (NULL);
         gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
         gtk_box_pack_start (GTK_BOX (vbox3), label, FALSE, TRUE, 0);
+        g_signal_connect (label,
+                          "activate-link",
+                          G_CALLBACK (on_activate_link_for_details_label),
+                          shell);
         shell->priv->details0_label = label;
 
-        label = sexy_url_label_new ();
+        label = gtk_label_new (NULL);
         gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
         gtk_box_pack_start (GTK_BOX (vbox3), label, FALSE, TRUE, 0);
+        g_signal_connect (label,
+                          "activate-link",
+                          G_CALLBACK (on_activate_link_for_details_label),
+                          shell);
         shell->priv->details1_label = label;
 
-        label = sexy_url_label_new ();
+        label = gtk_label_new (NULL);
         gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
         gtk_box_pack_start (GTK_BOX (vbox3), label, FALSE, TRUE, 0);
+        g_signal_connect (label,
+                          "activate-link",
+                          G_CALLBACK (on_activate_link_for_details_label),
+                          shell);
         shell->priv->details2_label = label;
 
-        label = sexy_url_label_new ();
+        label = gtk_label_new (NULL);
         gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
         gtk_box_pack_start (GTK_BOX (vbox3), label, FALSE, TRUE, 0);
+        g_signal_connect (label,
+                          "activate-link",
+                          G_CALLBACK (on_activate_link_for_details_label),
+                          shell);
         shell->priv->details3_label = label;
-
-        g_signal_connect (shell->priv->details1_label, "url-activated", (GCallback) url_activated, shell);
-        g_signal_connect (shell->priv->details2_label, "url-activated", (GCallback) url_activated, shell);
-        g_signal_connect (shell->priv->details3_label, "url-activated", (GCallback) url_activated, shell);
 
         /* --- */
 
@@ -2199,21 +2325,20 @@ create_window (GduShell *shell)
         gtk_container_set_border_width (GTK_CONTAINER (shell->priv->sections_vbox), 8);
         gtk_box_pack_start (GTK_BOX (vbox2), shell->priv->sections_vbox, TRUE, TRUE, 0);
 
-
         /* setup and add horizontal pane */
         hpane = gtk_hpaned_new ();
-        gtk_paned_add1 (GTK_PANED (hpane), treeview_scrolled_window);
-        gtk_paned_add2 (GTK_PANED (hpane), vbox2);
+        gtk_paned_add1 (GTK_PANED (hpane), tree_view_scrolled_window);
+        gtk_paned_add2 (GTK_PANED (hpane), vbox1);
         //gtk_paned_set_position (GTK_PANED (hpane), 260);
 
         gtk_box_pack_start (GTK_BOX (vbox), hpane, TRUE, TRUE, 0);
 
-        select = gtk_tree_view_get_selection (GTK_TREE_VIEW (shell->priv->treeview));
+        select = gtk_tree_view_get_selection (GTK_TREE_VIEW (shell->priv->tree_view));
         gtk_tree_selection_set_mode (select, GTK_SELECTION_SINGLE);
         g_signal_connect (select, "changed", (GCallback) device_tree_changed, shell);
 
         /* when starting up, set focus on tree view */
-        gtk_widget_grab_focus (shell->priv->treeview);
+        gtk_widget_grab_focus (shell->priv->tree_view);
 
         g_signal_connect (shell->priv->pool, "presentable-added", (GCallback) presentable_added, shell);
         g_signal_connect (shell->priv->pool, "presentable-removed", (GCallback) presentable_removed, shell);
@@ -2221,6 +2346,6 @@ create_window (GduShell *shell)
 
         gtk_widget_show_all (vbox);
 
-        gdu_device_tree_select_first_presentable (GTK_TREE_VIEW (shell->priv->treeview));
+        gdu_pool_tree_view_select_first_presentable (GDU_POOL_TREE_VIEW (shell->priv->tree_view));
 }
 

@@ -25,7 +25,6 @@
 #include <dbus/dbus-glib.h>
 #include <stdlib.h>
 #include <math.h>
-#include <polkit-gnome/polkit-gnome.h>
 
 #include <gdu/gdu.h>
 #include <gdu-gtk/gdu-gtk.h>
@@ -46,10 +45,6 @@ struct _GduSectionUnallocatedPrivate
         GtkWidget *warning_label;
         GtkWidget *encrypt_check_button;
         GtkWidget *take_ownership_of_fs_check_button;
-
-        PolKitAction *pk_change_action;
-        PolKitAction *pk_change_system_internal_action;
-        PolKitGnomeAction *create_partition_action;
 };
 
 static GObjectClass *parent_class = NULL;
@@ -132,7 +127,8 @@ create_partition_completed (GduDevice  *device,
 }
 
 static void
-create_partition_callback (GtkAction *action, gpointer user_data)
+on_create_clicked (GtkButton *button,
+                   gpointer   user_data)
 {
         GduSectionUnallocated *section = GDU_SECTION_UNALLOCATED (user_data);
         GduPresentable *presentable;
@@ -418,7 +414,7 @@ update_warning (GduSectionUnallocated *section)
                                 at_max_partitions = TRUE;
                                 warning_markup = g_strconcat ("<small><b>",
                                                               _("No more partitions can be created. You may want to "
-                                                                "delete  an existing partition and then create an "
+                                                                "delete an existing partition and then create an "
                                                                 "Extended Partition."),
                                                               "</b></small>",
                                                               NULL);
@@ -474,13 +470,6 @@ update (GduSectionUnallocated *section)
         }
 
         pool = gdu_shell_get_pool (gdu_section_get_shell (GDU_SECTION (section)));
-
-        g_object_set (section->priv->create_partition_action,
-                      "polkit-action",
-                      gdu_device_is_system_internal (toplevel_device) ?
-                        section->priv->pk_change_system_internal_action :
-                        section->priv->pk_change_action,
-                      NULL);
 
         scheme = gdu_device_partition_table_get_scheme (toplevel_device);
 
@@ -555,10 +544,6 @@ size_spin_button_value_changed_callback (GtkSpinButton *spin_button,
 static void
 gdu_section_unallocated_finalize (GduSectionUnallocated *section)
 {
-        polkit_action_unref (section->priv->pk_change_action);
-        polkit_action_unref (section->priv->pk_change_system_internal_action);
-        g_object_unref (section->priv->create_partition_action);
-
         if (G_OBJECT_CLASS (parent_class)->finalize)
                 (* G_OBJECT_CLASS (parent_class)->finalize) (G_OBJECT (section));
 }
@@ -599,27 +584,6 @@ gdu_section_unallocated_init (GduSectionUnallocated *section)
         gchar *s;
 
         section->priv = G_TYPE_INSTANCE_GET_PRIVATE (section, GDU_TYPE_SECTION_UNALLOCATED, GduSectionUnallocatedPrivate);
-
-        section->priv->pk_change_action = polkit_action_new ();
-        polkit_action_set_action_id (section->priv->pk_change_action,
-                                     "org.freedesktop.devicekit.disks.change");
-        section->priv->pk_change_system_internal_action = polkit_action_new ();
-        polkit_action_set_action_id (section->priv->pk_change_system_internal_action,
-                                     "org.freedesktop.devicekit.disks.change-system-internal");
-        section->priv->create_partition_action = polkit_gnome_action_new_default (
-                "create-partition",
-                section->priv->pk_change_action,
-                _("_Create"),
-                _("Create"));
-        g_object_set (section->priv->create_partition_action,
-                      "auth-label", _("_Create..."),
-                      "yes-icon-name", GTK_STOCK_ADD,
-                      "no-icon-name", GTK_STOCK_ADD,
-                      "auth-icon-name", GTK_STOCK_ADD,
-                      "self-blocked-icon-name", GTK_STOCK_ADD,
-                      NULL);
-        g_signal_connect (section->priv->create_partition_action, "activate",
-                          G_CALLBACK (create_partition_callback), section);
 
         vbox = gtk_vbox_new (FALSE, 10);
 
@@ -683,6 +647,7 @@ gdu_section_unallocated_init (GduSectionUnallocated *section)
 
         label = gtk_label_new (NULL);
         gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
+        /* Translators: unit label for a control that determines partition size in megabytes */
         gtk_label_set_markup (GTK_LABEL (label), _("MB"));
         gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, TRUE, 0);
 
@@ -694,6 +659,7 @@ gdu_section_unallocated_init (GduSectionUnallocated *section)
         /* _file system_ label */
         label = gtk_label_new (NULL);
         gtk_misc_set_alignment (GTK_MISC (label), 1.0, 0.5);
+        /* Translators: 'label' means filesystem label here */
         gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), _("_Label:"));
         gtk_table_attach (GTK_TABLE (table), label, 0, 1, row, row + 1,
                           GTK_FILL, GTK_EXPAND | GTK_FILL, 2, 2);
@@ -737,7 +703,7 @@ gdu_section_unallocated_init (GduSectionUnallocated *section)
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (check_button), TRUE);
         gtk_widget_set_tooltip_text (check_button,
                                      _("The selected file system has a concept of file ownership. "
-                                       "If checked, the created file system be will be owned by you. "
+                                       "If checked, the created file system will be owned by you. "
                                        "If not checked, only the super user can access the file system."));
         gtk_table_attach (GTK_TABLE (table), check_button, 1, 2, row, row + 1,
                           GTK_FILL, GTK_EXPAND | GTK_FILL, 2, 2);
@@ -749,7 +715,7 @@ gdu_section_unallocated_init (GduSectionUnallocated *section)
         check_button = gtk_check_button_new_with_mnemonic (_("Encr_ypt underlying device"));
         gtk_widget_set_tooltip_text (check_button,
                                      _("Encryption protects your data, requiring a "
-                                       "passphrase to be enterered before the file system can be "
+                                       "passphrase to be entered before the file system can be "
                                        "used. May decrease performance and may not be compatible if "
                                        "you use the media on other operating systems."));
                 gtk_table_attach (GTK_TABLE (table), check_button, 1, 2, row, row + 1,
@@ -763,7 +729,10 @@ gdu_section_unallocated_init (GduSectionUnallocated *section)
         gtk_button_box_set_layout (GTK_BUTTON_BOX (button_box), GTK_BUTTONBOX_START);
         gtk_box_set_spacing (GTK_BOX (button_box), 6);
         gtk_box_pack_start (GTK_BOX (vbox2), button_box, TRUE, TRUE, 0);
-        button = polkit_gnome_action_create_button (section->priv->create_partition_action);
+
+        button = gtk_button_new_with_mnemonic ("_Create");
+        gtk_widget_set_tooltip_text (button, _("Create partition"));
+        g_signal_connect (button, "clicked", G_CALLBACK (on_create_clicked), section);
         gtk_container_add (GTK_CONTAINER (button_box), button);
 
         /* update sensivity and length of fs label and ensure it's set initially */

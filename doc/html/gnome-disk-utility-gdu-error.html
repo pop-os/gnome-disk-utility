@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GduError</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
 <link rel="home" href="index.html" title="Disk Utility Library Reference Manual">
 <link rel="up" href="ref-core.html" title="API Reference">
 <link rel="prev" href="ref-core.html" title="API Reference">
@@ -27,7 +27,7 @@
                 <a href="#gnome-disk-utility-gdu-error.description" class="shortcut">Description</a>
 </td></tr>
 </table>
-<div class="refentry" lang="en">
+<div class="refentry" title="GduError">
 <a name="gnome-disk-utility-gdu-error"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
@@ -36,7 +36,7 @@
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
-<div class="refsynopsisdiv">
+<div class="refsynopsisdiv" title="Synopsis">
 <a name="gnome-disk-utility-gdu-error.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
 enum                <a class="link" href="gnome-disk-utility-gdu-error.html#GduError" title="enum GduError">GduError</a>;
@@ -44,30 +44,18 @@ enum                <a class="link" href="gnome-disk-utility-gdu-error.html#GduE
 <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Quarks.html#GQuark"
 >GQuark</a>              <a class="link" href="gnome-disk-utility-gdu-error.html#gdu-error-quark" title="gdu_error_quark ()">gdu_error_quark</a>                     (void);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="gnome-disk-utility-gdu-error.html#gdu-error-check-polkit-not-authorized" title="gdu_error_check_polkit_not_authorized ()">gdu_error_check_polkit_not_authorized</a>
-                                                        (<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="/usr/share/gtk-doc/html/polkit/polkit-polkit-action.html#PolKitAction"
->PolKitAction</a> **pk_action,
-                                                         <a
-href="/usr/share/gtk-doc/html/polkit/polkit-polkit-result.html#PolKitResult"
->PolKitResult</a> *pk_result);
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Description">
 <a name="gnome-disk-utility-gdu-error.description"></a><h2>Description</h2>
 <p>
 Contains helper functions for reporting errors to the user.</p>
 <p>
 </p>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Details">
 <a name="gnome-disk-utility-gdu-error.details"></a><h2>Details</h2>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="enum GduError">
 <a name="GduError"></a><h3>enum GduError</h3>
 <pre class="programlisting">typedef enum
 {
@@ -77,7 +65,8 @@ Contains helper functions for reporting errors to the user.</p>
         GDU_ERROR_INHIBITED,
         GDU_ERROR_INVALID_OPTION,
         GDU_ERROR_NOT_SUPPORTED,
-        GDU_ERROR_ATA_SMART_WOULD_WAKEUP
+        GDU_ERROR_ATA_SMART_WOULD_WAKEUP,
+        GDU_ERROR_PERMISSION_DENIED,
 } GduError;
 </pre>
 <p>
@@ -122,11 +111,16 @@ Error codes in the <a class="link" href="gnome-disk-utility-gdu-error.html#GDU-E
 <td> Getting S.M.A.R.T. data for the device would require to spin it up.
 </td>
 </tr>
+<tr>
+<td><p><a name="GDU-ERROR-PERMISSION-DENIED--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_PERMISSION_DENIED</code></span></p></td>
+<td> Permission denied.
+</td>
+</tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="GDU_ERROR">
 <a name="GDU-ERROR--CAPS"></a><h3>GDU_ERROR</h3>
 <pre class="programlisting">#define GDU_ERROR gdu_error_quark ()
 </pre>
@@ -141,7 +135,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
 </p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdu_error_quark ()">
 <a name="gdu-error-quark"></a><h3>gdu_error_quark ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Quarks.html#GQuark"
@@ -159,65 +153,6 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Quarks.html#GQuark"
 ><span class="type">GQuark</span></a>
 </td>
 </tr></tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2" lang="en">
-<a name="gdu-error-check-polkit-not-authorized"></a><h3>gdu_error_check_polkit_not_authorized ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            gdu_error_check_polkit_not_authorized
-                                                        (<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="/usr/share/gtk-doc/html/polkit/polkit-polkit-action.html#PolKitAction"
->PolKitAction</a> **pk_action,
-                                                         <a
-href="/usr/share/gtk-doc/html/polkit/polkit-polkit-result.html#PolKitResult"
->PolKitResult</a> *pk_result);</pre>
-<p>
-Checks if an error from a remote method call is of
-type <code class="literal">org.freedesktop.PolicyKit.Error.NotAuthorized</code>
-and if so, extracts the PolicyKit action and result.</p>
-<p>
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td> A <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
-><span class="type">GError</span></a>.
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>pk_action</code></em> :</span></p></td>
-<td> Return location for a <a
-href="/usr/share/gtk-doc/html/polkit/polkit-polkit-action.html#PolKitAction"
-><span class="type">PolKitAction</span></a> object.
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>pk_result</code></em> :</span></p></td>
-<td> Return location for <a
-href="/usr/share/gtk-doc/html/polkit/polkit-polkit-result.html#PolKitResult"
-><span class="type">PolKitResult</span></a> value.
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE--CAPS"
-><span class="type">TRUE</span></a> only if the error is a PolicyKit exception and
-<em class="parameter"><code>pk_action</code></em> (caller must free this object with <a
-href="/usr/share/gtk-doc/html/polkit/polkit-polkit-action.html#polkit-action-unref"
-><code class="function">polkit_action_unref()</code></a>)
-and <em class="parameter"><code>pk_result</code></em> are set.
-</td>
-</tr>
-</tbody>
 </table></div>
 </div>
 </div>

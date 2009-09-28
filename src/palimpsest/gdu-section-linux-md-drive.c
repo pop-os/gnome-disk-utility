@@ -25,12 +25,10 @@
 #include <dbus/dbus-glib.h>
 #include <stdlib.h>
 #include <math.h>
-#include <polkit-gnome/polkit-gnome.h>
 
 #include <gdu/gdu.h>
 #include <gdu-gtk/gdu-gtk.h>
 
-#include "gdu-tree.h"
 #include "gdu-section-linux-md-drive.h"
 
 struct _GduSectionLinuxMdDrivePrivate
@@ -43,17 +41,10 @@ struct _GduSectionLinuxMdDrivePrivate
         GtkWidget *linux_md_state_label;
         GtkWidget *linux_md_tree_view;
         GtkTreeStore *linux_md_tree_store;
-#if 0
-        GtkWidget *linux_md_add_to_array_button;
-        GtkWidget *linux_md_remove_from_array_button;
-        GtkWidget *linux_md_add_new_to_array_button;
-#endif
 
-        PolKitAction *pk_linux_md_action;
-
-        PolKitGnomeAction *attach_action;
-        PolKitGnomeAction *detach_action;
-        PolKitGnomeAction *add_action;
+        GtkWidget *attach_button;
+        GtkWidget *detach_button;
+        GtkWidget *add_button;
 };
 
 static GObjectClass *parent_class = NULL;
@@ -87,7 +78,8 @@ add_component_callback (GduDevice *device,
 }
 
 static void
-add_action_callback (GtkAction *action, gpointer user_data)
+on_add_clicked (GtkButton *button,
+                gpointer   user_data)
 {
         GduSectionLinuxMdDrive *section = GDU_SECTION_LINUX_MD_DRIVE (user_data);
         GduPresentable *presentable;
@@ -103,6 +95,8 @@ add_action_callback (GtkAction *action, gpointer user_data)
         char *array_name;
         char *s;
         char *s2;
+        GtkWidget *scrolled_window;
+        GduPoolTreeModel *model;
 
         device = NULL;
         selected_device = NULL;
@@ -171,14 +165,15 @@ add_action_callback (GtkAction *action, gpointer user_data)
         gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
         gtk_box_pack_start (GTK_BOX (vbox), label, FALSE, TRUE, 0);
 
-
-        GtkWidget *scrolled_window;
         scrolled_window = gtk_scrolled_window_new (NULL, NULL);
         gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
                                         GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
         gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolled_window),
                                              GTK_SHADOW_IN);
-        tree_view = gdu_device_tree_new (pool);
+        model = gdu_pool_tree_model_new (pool,
+                                         GDU_POOL_TREE_MODEL_FLAGS_NONE);
+        tree_view = gdu_pool_tree_view_new (model, GDU_POOL_TREE_VIEW_FLAGS_NONE);
+        g_object_unref (model);
         gtk_container_add (GTK_CONTAINER (scrolled_window), tree_view);
 
 	gtk_box_pack_start (GTK_BOX (vbox), scrolled_window, TRUE, TRUE, 0);
@@ -191,9 +186,7 @@ add_action_callback (GtkAction *action, gpointer user_data)
         gtk_widget_show_all (dialog);
         response = gtk_dialog_run (GTK_DIALOG (dialog));
 
-        selected_presentable = gdu_device_tree_get_selected_presentable (GTK_TREE_VIEW (tree_view));
-        if (selected_presentable != NULL)
-                g_object_ref (selected_presentable);
+        selected_presentable = gdu_pool_tree_view_get_selected_presentable (GDU_POOL_TREE_VIEW (tree_view));
         gtk_widget_destroy (dialog);
 
         if (response < 0)
@@ -228,7 +221,8 @@ out:
 }
 
 static void
-attach_action_callback (GtkAction *action, gpointer user_data)
+on_attach_clicked (GtkButton *button,
+                   gpointer   user_data)
 {
         GtkTreePath *path;
         GduSectionLinuxMdDrive *section = GDU_SECTION_LINUX_MD_DRIVE (user_data);
@@ -322,7 +316,8 @@ remove_component_callback (GduDevice *device,
 }
 
 static void
-detach_action_callback (GtkAction *action, gpointer user_data)
+on_detach_clicked (GtkButton *button,
+                   gpointer   user_data)
 {
         GtkTreePath *path;
         GduSectionLinuxMdDrive *section = GDU_SECTION_LINUX_MD_DRIVE (user_data);
@@ -442,6 +437,70 @@ out:
 }
 
 static void
+on_check_clicked (GtkButton *button,
+                  gpointer   user_data)
+{
+        GduSectionLinuxMdDrive *section = GDU_SECTION_LINUX_MD_DRIVE (user_data);
+        GduPresentable *presentable;
+        GduDevice *device;
+
+        presentable = gdu_section_get_presentable (GDU_SECTION (section));
+        if (!GDU_IS_LINUX_MD_DRIVE (presentable)) {
+                g_warning ("%s: is not an linux_md drive", __FUNCTION__);
+                goto out;
+        }
+
+        device = gdu_presentable_get_device (presentable);
+        if (device == NULL) {
+                g_warning ("%s: linux_md drive not active", __FUNCTION__);
+                goto out;
+        }
+
+        gdu_device_op_linux_md_check (device,
+                                      NULL,
+                                      NULL,
+                                      NULL); /* TODO: report result back? */
+
+ out:
+        if (device != NULL)
+                g_object_unref (device);
+}
+
+static void
+on_repair_clicked (GtkButton *button,
+                   gpointer   user_data)
+{
+        GduSectionLinuxMdDrive *section = GDU_SECTION_LINUX_MD_DRIVE (user_data);
+        GduPresentable *presentable;
+        GduDevice *device;
+        gchar *options[2];
+
+        options[0] = "repair";
+        options[1] = NULL;
+
+        presentable = gdu_section_get_presentable (GDU_SECTION (section));
+        if (!GDU_IS_LINUX_MD_DRIVE (presentable)) {
+                g_warning ("%s: is not an linux_md drive", __FUNCTION__);
+                goto out;
+        }
+
+        device = gdu_presentable_get_device (presentable);
+        if (device == NULL) {
+                g_warning ("%s: linux_md drive not active", __FUNCTION__);
+                goto out;
+        }
+
+        gdu_device_op_linux_md_check (device,
+                                      options,
+                                      NULL,
+                                      NULL); /* TODO: report result back? */
+
+ out:
+        if (device != NULL)
+                g_object_unref (device);
+}
+
+static void
 linux_md_buttons_update (GduSectionLinuxMdDrive *section)
 {
         GtkTreePath *path;
@@ -518,9 +577,9 @@ linux_md_buttons_update (GduSectionLinuxMdDrive *section)
         }
 
 out:
-        polkit_gnome_action_set_sensitive (section->priv->attach_action, show_attach_to_array_button);
-        polkit_gnome_action_set_sensitive (section->priv->detach_action, show_detach_from_array_button);
-        polkit_gnome_action_set_sensitive (section->priv->add_action, show_add_new_to_array_button);
+        gtk_widget_set_sensitive (section->priv->attach_button, show_attach_to_array_button);
+        gtk_widget_set_sensitive (section->priv->detach_button, show_detach_from_array_button);
+        gtk_widget_set_sensitive (section->priv->add_button, show_add_new_to_array_button);
 
         g_free (component_objpath);
         if (device != NULL)
@@ -633,26 +692,30 @@ update (GduSectionLinuxMdDrive *section)
         raid_size = gdu_presentable_get_size (presentable);
 
         if (strcmp (level, "raid0") == 0) {
-                level_str = g_strdup (_("Striped (RAID-0)"));
+                level_str = g_strdup (C_("RAID component type", "Striped (RAID-0)"));
         } else if (strcmp (level, "raid1") == 0) {
-                level_str = g_strdup (_("Mirrored (RAID-1)"));
+                level_str = g_strdup (C_("RAID component type", "Mirrored (RAID-1)"));
         } else if (strcmp (level, "raid4") == 0) {
-                level_str = g_strdup (_("RAID-4"));
+                level_str = g_strdup (C_("RAID component type", "RAID-4"));
         } else if (strcmp (level, "raid5") == 0) {
-                level_str = g_strdup (_("RAID-5"));
+                level_str = g_strdup (C_("RAID component type", "RAID-5"));
         } else if (strcmp (level, "raid6") == 0) {
-                level_str = g_strdup (_("RAID-6"));
+                level_str = g_strdup (C_("RAID component type", "RAID-6"));
         } else if (strcmp (level, "linear") == 0) {
-                level_str = g_strdup (_("Linear (Just a Bunch Of Disks)"));
+                level_str = g_strdup (C_("RAID component type", "Linear (Just a Bunch Of Disks)"));
         } else {
                 level_str = g_strdup (level);
         }
 
         s = gdu_util_get_size_for_display (component_size, FALSE);
         if (strcmp (level, "linear") == 0) {
-                components_str = g_strdup_printf (_("%d Components"), num_raid_devices);
+                /* Translators: %d is the number of components in the RAID */
+                components_str = g_strdup_printf (ngettext ("%d Component", "%d Components", num_raid_devices), num_raid_devices);
         } else {
-                components_str = g_strdup_printf (_("%d Components (%s each)"), num_raid_devices, s);
+                /* Translators: %d is the number of components in the RAID,
+                 * %s is the size of each component, formatted like '45 GB'
+                 */
+                components_str = g_strdup_printf (ngettext ("%d Component (%s)", "%d Components (%s each)", num_raid_devices), num_raid_devices, s);
         }
         g_free (s);
  
@@ -705,18 +768,18 @@ update (GduSectionLinuxMdDrive *section)
                         if (strcmp (sync_action, "reshape") == 0) {
                                 g_string_append (str, ", ");
                                 g_string_append (str, C_("RAID status", "Reshaping"));
-                        }
-                        else if (strcmp (sync_action, "resync") == 0) {
+                        } else if (strcmp (sync_action, "resync") == 0) {
                                 g_string_append (str, ", ");
                                 g_string_append (str, C_("RAID status", "Resyncing"));
-                        }
-                        else if (strcmp (sync_action, "repair") == 0) {
+                        } else if (strcmp (sync_action, "repair") == 0) {
                                 g_string_append (str, ", ");
                                 g_string_append (str, C_("RAID status", "Repairing"));
-                        }
-                        else if (strcmp (sync_action, "recover") == 0) {
+                        } else if (strcmp (sync_action, "recover") == 0) {
                                 g_string_append (str, ", ");
                                 g_string_append (str, C_("RAID status", "Recovering"));
+                        } else if (strcmp (sync_action, "check") == 0) {
+                                g_string_append (str, ", ");
+                                g_string_append (str, C_("RAID status", "Checking"));
                         }
 
                         sync_speed_str = gdu_util_get_speed_for_display (sync_speed);
@@ -847,10 +910,6 @@ out:
 static void
 gdu_section_linux_md_drive_finalize (GduSectionLinuxMdDrive *section)
 {
-        polkit_action_unref (section->priv->pk_linux_md_action);
-        g_object_unref (section->priv->attach_action);
-        g_object_unref (section->priv->detach_action);
-        g_object_unref (section->priv->add_action);
         if (G_OBJECT_CLASS (parent_class)->finalize)
                 (* G_OBJECT_CLASS (parent_class)->finalize) (G_OBJECT (section));
 }
@@ -878,16 +937,13 @@ gdu_section_linux_md_drive_init (GduSectionLinuxMdDrive *section)
         GtkWidget *button_box;
         GtkWidget *scrolled_window;
         GtkWidget *tree_view;
+        GtkWidget *button;
         GtkTreeSelection *selection;
         GtkCellRenderer *renderer;
         GtkTreeViewColumn *column;
         char *s;
 
         section->priv = G_TYPE_INSTANCE_GET_PRIVATE (section, GDU_TYPE_SECTION_LINUX_MD_DRIVE, GduSectionLinuxMdDrivePrivate);
-
-        section->priv->pk_linux_md_action = polkit_action_new ();
-        polkit_action_set_action_id (section->priv->pk_linux_md_action,
-                                     "org.freedesktop.devicekit.disks.linux-md");
 
         gtk_box_set_spacing (GTK_BOX (section), 8);
 
@@ -1010,66 +1066,12 @@ gdu_section_linux_md_drive_init (GduSectionLinuxMdDrive *section)
         gtk_box_set_homogeneous (GTK_BOX (button_box), FALSE);
         gtk_box_pack_start (GTK_BOX (section), button_box, FALSE, FALSE, 0);
 
-        section->priv->attach_action = polkit_gnome_action_new_default (
-                "attach",
-                section->priv->pk_linux_md_action,
-                _("A_ttach"),
-                _("Attaches the stale component to the RAID array. "
-                  "After attachment, data from the array will be "
-                  "synchronized on the component."));
-        g_object_set (section->priv->attach_action,
-                      "auth-label", _("A_ttach..."),
-                      "yes-icon-name", GTK_STOCK_ADD,
-                      "no-icon-name", GTK_STOCK_ADD,
-                      "auth-icon-name", GTK_STOCK_ADD,
-                      "self-blocked-icon-name", GTK_STOCK_ADD,
-                      NULL);
-        g_signal_connect (section->priv->attach_action, "activate", G_CALLBACK (attach_action_callback), section);
-        gtk_container_add (GTK_CONTAINER (button_box),
-                           polkit_gnome_action_create_button (section->priv->attach_action));
-
-        section->priv->detach_action = polkit_gnome_action_new_default (
-                "detach",
-                section->priv->pk_linux_md_action,
-                _("_Detach"),
-                _("Detaches the running component from the RAID array. Data on "
-                  "the component will be erased and the volume will be ready "
-                  "for other use."));
-        g_object_set (section->priv->detach_action,
-                      "auth-label", _("_Detach..."),
-                      "yes-icon-name", GTK_STOCK_REMOVE,
-                      "no-icon-name", GTK_STOCK_REMOVE,
-                      "auth-icon-name", GTK_STOCK_REMOVE,
-                      "self-blocked-icon-name", GTK_STOCK_REMOVE,
-                      NULL);
-        g_signal_connect (section->priv->detach_action, "activate", G_CALLBACK (detach_action_callback), section);
-        gtk_container_add (GTK_CONTAINER (button_box),
-                           polkit_gnome_action_create_button (section->priv->detach_action));
-
-        section->priv->add_action = polkit_gnome_action_new_default (
-                "add",
-                section->priv->pk_linux_md_action,
-                _("_Add..."),
-                _("Adds a new component to the running RAID array. Use this "
-                  "when replacing a failed component or adding a hot spare."));
-        g_object_set (section->priv->add_action,
-                      "auth-label", _("_Add..."),
-                      "yes-icon-name", GTK_STOCK_NEW,
-                      "no-icon-name", GTK_STOCK_NEW,
-                      "auth-icon-name", GTK_STOCK_NEW,
-                      "self-blocked-icon-name", GTK_STOCK_NEW,
-                      NULL);
-        g_signal_connect (section->priv->add_action, "activate", G_CALLBACK (add_action_callback), section);
-        gtk_container_add (GTK_CONTAINER (button_box),
-                           polkit_gnome_action_create_button (section->priv->add_action));
-
-#if 0
         button = gtk_button_new_with_mnemonic (_("A_ttach"));
         gtk_button_set_image (GTK_BUTTON (button),
                               gtk_image_new_from_stock (GTK_STOCK_ADD, GTK_ICON_SIZE_BUTTON));
         gtk_container_add (GTK_CONTAINER (button_box), button);
-        section->priv->linux_md_add_to_array_button = button;
-        g_signal_connect (button, "clicked", G_CALLBACK (add_to_array_button_clicked), section);
+        section->priv->attach_button = button;
+        g_signal_connect (button, "clicked", G_CALLBACK (on_attach_clicked), section);
         gtk_widget_set_tooltip_text (button, _("Attaches the stale component to the RAID array. "
                                                "After attachment, data from the array will be "
                                                "synchronized on the component."));
@@ -1078,21 +1080,34 @@ gdu_section_linux_md_drive_init (GduSectionLinuxMdDrive *section)
         gtk_button_set_image (GTK_BUTTON (button),
                               gtk_image_new_from_stock (GTK_STOCK_REMOVE, GTK_ICON_SIZE_BUTTON));
         gtk_container_add (GTK_CONTAINER (button_box), button);
-        section->priv->linux_md_remove_from_array_button = button;
-        g_signal_connect (button, "clicked", G_CALLBACK (remove_from_array_button_clicked), section);
+        section->priv->detach_button = button;
+        g_signal_connect (button, "clicked", G_CALLBACK (on_detach_clicked), section);
         gtk_widget_set_tooltip_text (button, _("Detaches the running component from the RAID array. Data on "
-                                               "the component will be erased and the volume will be ready "
+                                               "the component will be erased and the component will be ready "
                                                "for other use."));
 
         button = gtk_button_new_with_mnemonic (_("_Add..."));
         gtk_button_set_image (GTK_BUTTON (button),
                               gtk_image_new_from_stock (GTK_STOCK_NEW, GTK_ICON_SIZE_BUTTON));
         gtk_container_add (GTK_CONTAINER (button_box), button);
-        section->priv->linux_md_add_new_to_array_button = button;
-        g_signal_connect (button, "clicked", G_CALLBACK (add_new_to_array_button_clicked), section);
+        section->priv->add_button = button;
+        g_signal_connect (button, "clicked", G_CALLBACK (on_add_clicked), section);
         gtk_widget_set_tooltip_text (button, _("Adds a new component to the running RAID array. Use this "
                                                "when replacing a failed component or adding a hot spare."));
-#endif
+
+        /* Translators: this is a verb, as in 'check for consistency' */
+        button = gtk_button_new_with_mnemonic (_("Chec_k"));
+        gtk_container_add (GTK_CONTAINER (button_box), button);
+        section->priv->add_button = button;
+        g_signal_connect (button, "clicked", G_CALLBACK (on_check_clicked), section);
+        gtk_widget_set_tooltip_text (button, _("Starts checking the RAID array for redundancy"));
+
+        /* Translators: this is a verb, as in 'repair this RAID array' */
+        button = gtk_button_new_with_mnemonic (_("_Repair"));
+        gtk_container_add (GTK_CONTAINER (button_box), button);
+        section->priv->add_button = button;
+        g_signal_connect (button, "clicked", G_CALLBACK (on_repair_clicked), section);
+        gtk_widget_set_tooltip_text (button, _("Starts repairing the RAID array"));
 
         /* add renderers for tree view */
         column = gtk_tree_view_column_new ();

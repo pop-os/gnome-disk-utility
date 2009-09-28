@@ -22,10 +22,6 @@
 enum                <link linkend="GduError">GduError</link>;
 #define             <link linkend="GDU-ERROR--CAPS">GDU_ERROR</link>
 <link linkend="GQuark">GQuark</link>              <link linkend="gdu-error-quark">gdu_error_quark</link>                     (void);
-<link linkend="gboolean">gboolean</link>            <link linkend="gdu-error-check-polkit-not-authorized">gdu_error_check_polkit_not_authorized</link>
-                                                        (<link linkend="GError">GError</link> *error,
-                                                         <link linkend="PolKitAction">PolKitAction</link> **pk_action,
-                                                         <link linkend="PolKitResult">PolKitResult</link> *pk_result);
 </synopsis>
 </refsynopsisdiv>
 
@@ -57,7 +53,8 @@ Contains helper functions for reporting errors to the user.</para>
         GDU_ERROR_INHIBITED,
         GDU_ERROR_INVALID_OPTION,
         GDU_ERROR_NOT_SUPPORTED,
-        GDU_ERROR_ATA_SMART_WOULD_WAKEUP
+        GDU_ERROR_ATA_SMART_WOULD_WAKEUP,
+        GDU_ERROR_PERMISSION_DENIED,
 } GduError;
 </programlisting>
 <para>
@@ -99,6 +96,11 @@ Error codes in the <link linkend="GDU-ERROR--CAPS"><type>GDU_ERROR</type></link>
 <listitem><simpara> Getting S.M.A.R.T. data for the device would require to spin it up.
 </simpara></listitem>
 </varlistentry>
+<varlistentry id="GDU-ERROR-PERMISSION-DENIED--CAPS" role="constant">
+<term><literal>GDU_ERROR_PERMISSION_DENIED</literal></term>
+<listitem><simpara> Permission denied.
+</simpara></listitem>
+</varlistentry>
 </variablelist></refsect2>
 <refsect2 id="GDU-ERROR--CAPS" role="macro">
 <title>GDU_ERROR</title>
@@ -119,32 +121,6 @@ Gets the <link linkend="GduError"><type>GduError</type></link> Quark.</para>
 <para>
 </para><variablelist role="params">
 <varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GQuark"><type>GQuark</type></link>
-</simpara></listitem></varlistentry>
-</variablelist></refsect2>
-<refsect2 id="gdu-error-check-polkit-not-authorized" role="function">
-<title>gdu_error_check_polkit_not_authorized ()</title>
-<indexterm zone="gdu-error-check-polkit-not-authorized"><primary sortas="gdu_error_check_polkit_not_authorized">gdu_error_check_polkit_not_authorized</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_error_check_polkit_not_authorized
-                                                        (<link linkend="GError">GError</link> *error,
-                                                         <link linkend="PolKitAction">PolKitAction</link> **pk_action,
-                                                         <link linkend="PolKitResult">PolKitResult</link> *pk_result);</programlisting>
-<para>
-Checks if an error from a remote method call is of
-type <literal>org.freedesktop.PolicyKit.Error.NotAuthorized</literal>
-and if so, extracts the PolicyKit action and result.</para>
-<para>
-</para><variablelist role="params">
-<varlistentry><term><parameter>error</parameter>&#160;:</term>
-<listitem><simpara> A <link linkend="GError"><type>GError</type></link>.
-</simpara></listitem></varlistentry>
-<varlistentry><term><parameter>pk_action</parameter>&#160;:</term>
-<listitem><simpara> Return location for a <link linkend="PolKitAction"><type>PolKitAction</type></link> object.
-</simpara></listitem></varlistentry>
-<varlistentry><term><parameter>pk_result</parameter>&#160;:</term>
-<listitem><simpara> Return location for <link linkend="PolKitResult"><type>PolKitResult</type></link> value.
-</simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><type>TRUE</type></link> only if the error is a PolicyKit exception and
-<parameter>pk_action</parameter> (caller must free this object with <link linkend="polkit-action-unref"><function>polkit_action_unref()</function></link>)
-and <parameter>pk_result</parameter> are set.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 
