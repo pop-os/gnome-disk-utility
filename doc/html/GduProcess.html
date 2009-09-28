@@ -3,11 +3,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GduProcess</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
 <link rel="home" href="index.html" title="Disk Utility Library Reference Manual">
 <link rel="up" href="ref-core.html" title="API Reference">
 <link rel="prev" href="GduKnownFilesystem.html" title="GduKnownFilesystem">
-<link rel="next" href="GduAtaSmartAttribute.html" title="GduAtaSmartAttribute">
+<link rel="next" href="gnome-disk-utility-gdu-util.html" title="gdu-util">
 <meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="reference" href="ref-core.html" title="API Reference">
@@ -19,7 +19,7 @@
 <td><a accesskey="u" href="ref-core.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">Disk Utility Library Reference Manual</th>
-<td><a accesskey="n" href="GduAtaSmartAttribute.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+<td><a accesskey="n" href="gnome-disk-utility-gdu-util.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
 <tr><td colspan="5" class="shortcuts">
 <a href="#GduProcess.synopsis" class="shortcut">Top</a>
@@ -29,7 +29,7 @@
                 <a href="#GduProcess.object-hierarchy" class="shortcut">Object Hierarchy</a>
 </td></tr>
 </table>
-<div class="refentry" lang="en">
+<div class="refentry" title="GduProcess">
 <a name="GduProcess"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
@@ -38,7 +38,7 @@
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
-<div class="refsynopsisdiv">
+<div class="refsynopsisdiv" title="Synopsis">
 <a name="GduProcess.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
                     <a class="link" href="GduProcess.html#GduProcessPrivate" title="GduProcessPrivate">GduProcessPrivate</a>;
@@ -51,7 +51,7 @@ href="http://library.gnome.org/devel/gio/unstable/GAppInfo.html"
 >GAppInfo</a> *          <a class="link" href="GduProcess.html#gdu-process-get-app-info" title="gdu_process_get_app_info ()">gdu_process_get_app_info</a>            (<a class="link" href="GduProcess.html" title="GduProcess">GduProcess</a> *process);
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Object Hierarchy">
 <a name="GduProcess.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
   <a
@@ -60,28 +60,28 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
    +----GduProcess
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Description">
 <a name="GduProcess.description"></a><h2>Description</h2>
 <p>
 </p>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Details">
 <a name="GduProcess.details"></a><h2>Details</h2>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="GduProcessPrivate">
 <a name="GduProcessPrivate"></a><h3>GduProcessPrivate</h3>
 <pre class="programlisting">typedef struct _GduProcessPrivate GduProcessPrivate;</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="GduProcess">
 <a name="GduProcess-struct"></a><h3>GduProcess</h3>
 <pre class="programlisting">typedef struct _GduProcess GduProcess;</pre>
 <p>
 </p>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdu_process_get_id ()">
 <a name="gdu-process-get-id"></a><h3>gdu_process_get_id ()</h3>
 <pre class="programlisting">pid_t               gdu_process_get_id                  (<a class="link" href="GduProcess.html" title="GduProcess">GduProcess</a> *process);</pre>
 <p>
@@ -103,7 +103,7 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdu_process_get_owner ()">
 <a name="gdu-process-get-owner"></a><h3>gdu_process_get_owner ()</h3>
 <pre class="programlisting">uid_t               gdu_process_get_owner               (<a class="link" href="GduProcess.html" title="GduProcess">GduProcess</a> *process);</pre>
 <p>
@@ -125,7 +125,7 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdu_process_get_command_line ()">
 <a name="gdu-process-get-command-line"></a><h3>gdu_process_get_command_line ()</h3>
 <pre class="programlisting">const char *        gdu_process_get_command_line        (<a class="link" href="GduProcess.html" title="GduProcess">GduProcess</a> *process);</pre>
 <p>
@@ -147,7 +147,7 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdu_process_get_app_info ()">
 <a name="gdu-process-get-app-info"></a><h3>gdu_process_get_app_info ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/gio/unstable/GAppInfo.html"

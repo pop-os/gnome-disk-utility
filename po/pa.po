@@ -1,0 +1,4555 @@
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# A S Alam <aalam@users.sf.net>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-disk-utility.master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
+"cgi?product=gnome-disk-utility&component=general\n"
+"POT-Creation-Date: 2009-08-23 18:25+0000\n"
+"PO-Revision-Date: 2009-09-07 07:29+0530\n"
+"Last-Translator: A S Alam <aalam@users.sf.net>\n"
+"Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 1.0\n"
+
+#: ../data/palimpsest.desktop.in.h:1
+msgid "Disk Utility"
+msgstr "ਡਿਸਕ ਸਹੂਲਤ"
+
+#: ../data/palimpsest.desktop.in.h:2
+msgid "Manage Drives and Media"
+msgstr "ਡਰਾਇਵ ਅਤੇ ਮੀਡਿਆ ਪਰਬੰਧ"
+
+#: ../data/gdu-notification-daemon.desktop.in.in.in.h:1
+msgid "Disk Notifications"
+msgstr "ਡਿਸਕ ਨੋਟੀਫਿਕੇਸ਼ਨ"
+
+#: ../data/gdu-notification-daemon.desktop.in.in.in.h:2
+msgid "Provides notifications related to disks"
+msgstr "ਡਿਸਕ ਨਾਲ ਸਬੰਧਿਤ ਨੋਟੀਫਿਕੇਸ਼ਨ ਦਿੰਦਾ ਹੈ"
+
+#: ../src/format-tool/gdu-format-dialog.c:135
+msgid "Volume"
+msgstr "ਵਾਲੀਅਮ"
+
+#: ../src/format-tool/gdu-format-dialog.c:136
+msgid "The volume to format"
+msgstr "ਫਾਰਮੈਟ ਕਰਨ ਲਈ ਵਾਲੀਅਮ"
+
+#: ../src/format-tool/gdu-format-dialog.c:148
+msgid "Filesystem type"
+msgstr "ਫਾਇਲ-ਸਿਸਟਮ ਟਾਈਪ"
+
+#: ../src/format-tool/gdu-format-dialog.c:149
+msgid "The selected filesystem type"
+msgstr "ਚੁਣੀ ਫਾਇਲ ਸਿਸਟਮ ਟਾਈਪ"
+
+#: ../src/format-tool/gdu-format-dialog.c:159
+msgid "Filesystem label"
+msgstr "ਫਾਇਲ ਸਿਸਟਮ ਲੇਬਲ"
+
+#: ../src/format-tool/gdu-format-dialog.c:160
+msgid "The requested filesystem label"
+msgstr "ਮੰਗਿਆ ਫਾਇਲ-ਸਿਸਟਮ ਲੇਬਲ"
+
+#: ../src/format-tool/gdu-format-dialog.c:170
+#: ../src/palimpsest/gdu-section-encrypted.c:240
+msgid "Encryption"
+msgstr "ਇੰਕ੍ਰਿਪਸ਼ਨ"
+
+#: ../src/format-tool/gdu-format-dialog.c:171
+msgid "Whether the volume should be encrypted"
+msgstr "ਕੀ ਵਾਲੀਅਮ ਇੰਕ੍ਰਿਪਟ ਕੀਤਾ ਹੋਵੇ"
+
+#. Translators: Format is used as a verb here
+#: ../src/format-tool/gdu-format-dialog.c:325
+msgid "_Format"
+msgstr "ਫਾਰਮੈਟ(_F)"
+
+#: ../src/format-tool/gdu-format-dialog.c:327
+msgid "Disk _Utility"
+msgstr "ਡਿਸਕ ਸਹੂਲਤ(_U)"
+
+#: ../src/format-tool/gdu-format-dialog.c:333
+msgid "Use Disk Utility to format volume"
+msgstr "ਵਾਲੀਅਮ ਫਾਰਮੈਟ ਕਰਨ ਲਈ ਡਿਸਕ ਸਹੂਲਤ ਵਰਤੋਂ"
+
+#. Translators: 'type' means 'filesystem type' here.
+#: ../src/format-tool/gdu-format-dialog.c:365
+#: ../src/palimpsest/gdu-section-unallocated.c:678
+#: ../src/palimpsest/gdu-section-unrecognized.c:441
+msgid "_Type:"
+msgstr "ਟਾਈਪ(_T):"
+
+#: ../src/format-tool/gdu-format-dialog.c:371
+msgid "Compatible with all systems (FAT)"
+msgstr "ਸਭ ਸਿਸਟਮਾਂ ਨਾਲ ਅਨੁਕੂਲ (FAT)"
+
+#: ../src/format-tool/gdu-format-dialog.c:373
+msgid "Compatible with Linux (ext2)"
+msgstr "ਲੀਨਕਸ ਨਾਲ ਅਨੁਕੂਲ (ext2)"
+
+#: ../src/format-tool/gdu-format-dialog.c:375
+msgid "Compatible with Linux (ext3)"
+msgstr "ਲੀਨਕਸ ਨਾਲ ਅਨੁਕੂਲ (ext3)"
+
+#: ../src/format-tool/gdu-format-dialog.c:377
+msgid "Encrypted, compatible with Linux (FAT)"
+msgstr "ਇੰਕ੍ਰਿਪਟਡ, ਲੀਨਕਸ ਨਾਲ ਅਨੁਕੂਲ (FAT)"
+
+#. Translators: 'name' means 'filesystem label' here.
+#: ../src/format-tool/gdu-format-dialog.c:390
+msgid "_Name:"
+msgstr "ਨਾਂ(_N):"
+
+#. Translators: Keep length of translation of "New Volume" to less than 16 characters
+#: ../src/format-tool/gdu-format-dialog.c:395
+msgid "New Volume"
+msgstr "ਨਵਾਂ ਵਾਲੀਅਮ"
+
+#: ../src/format-tool/gdu-format-dialog.c:410
+msgid "Warning: All data on the volume will be irrevocably lost."
+msgstr "ਸਾਵਧਾਨ: ਵਾਲੀਅਮ ਉੱਤੇ ਮੌਜੂਦ ਸਭ ਡਾਟਾ ਨਾ-ਪ੍ਰਾਪਤੀਯੋਗ ਢੰਗ ਨਾਲ ਖਤਮ ਹੋ ਜਾਵੇਗਾ।"
+
+#: ../src/format-tool/gdu-format-progress-dialog.c:184
+msgid ""
+"To prevent data corruption, wait until this has finished before removing "
+"media or disconnecting the device."
+msgstr ""
+"ਡਾਟਾ ਨਿਕਾਰਾ ਹੋਣ ਤੋਂ ਬਚਣ ਲਈ, ਮੀਡਿਆ ਨੂੰ ਹਟਾਉਣ ਜਾਂ ਜੰਤਰ ਨੂੰ ਡਿਸਕ-ਕੁਨੈਕਟ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਇਹ "
+"ਪੂਰਾ ਹੋਣ ਦੀ ਉਡੀਕ ਕਰੋ।"
+
+#: ../src/format-tool/gdu-format-progress-dialog.c:216
+#: ../src/notification/gdu-slow-unmount-dialog.c:286
+msgid "Device"
+msgstr "ਜੰਤਰ"
+
+#: ../src/format-tool/gdu-format-progress-dialog.c:217
+#: ../src/notification/gdu-slow-unmount-dialog.c:287
+msgid "The device to show the dialog for"
+msgstr "ਡਾਈਲਾਗ ਵੇਖਾਉਣ ਲਈ ਜੰਤਰ"
+
+#: ../src/format-tool/gdu-format-progress-dialog.c:229
+msgid "text"
+msgstr "ਟੈਕਸਟ"
+
+#: ../src/format-tool/gdu-format-progress-dialog.c:230
+msgid "Text to show"
+msgstr "ਵੇਖਾਉਣ ਲਈ ਟੈਕਸਟ"
+
+#: ../src/format-tool/gdu-format-tool.c:111
+msgid "Error launching Disk Utility"
+msgstr "ਡਿਸਕ ਸਹੂਲਤ ਚਲਾਉਣ ਦੌਰਾਨ ਗਲਤੀ"
+
+#: ../src/format-tool/gdu-format-tool.c:131
+msgid "Device to format"
+msgstr "ਫਾਰਮੈਟ ਕਰਨ ਲਈ ਜੰਤਰ"
+
+#: ../src/format-tool/gdu-format-tool.c:131 ../src/palimpsest/gdu-main.c:121
+#: ../src/palimpsest/gdu-main.c:122
+msgid "DEVICE"
+msgstr "ਜੰਤਰ"
+
+#: ../src/format-tool/gdu-format-tool.c:161, c-format
+#| msgid "Operation was cancelled"
+msgid "Operation was canceled"
+msgstr "ਓਪਰੇਸ਼ਨ ਰੱਦ ਕੀਤਾ"
+
+#: ../src/format-tool/gdu-format-tool.c:252
+msgid "Gnome Disk Utility formatting tool"
+msgstr "ਗਨੋਮ ਡਿਸਕ ਸਹੂਲਤ ਫਰਾਮੈਟ ਕਰਨ ਵਾਲਾ ਟੂਲ"
+
+#. Translators: First argument is the partition number, second argument is the drive name,
+#. * third argument is the size (e.g. 10 GB)
+#.
+#: ../src/format-tool/gdu-format-tool.c:299
+#, c-format
+msgid "Format partition %d of %s (%s)"
+msgstr "%2$s (%3$s) ਦਾ %1$d ਪਾਰਟੀਸ਼ਨ ਫਾਰਮੈਟ"
+
+#. Translators: First argument is the partition number, second argument is the drive name,
+#. * third argument is the size (e.g. 10 GB)
+#.
+#: ../src/format-tool/gdu-format-tool.c:306
+#, c-format
+msgid "Formatting partition %d of %s (%s)"
+msgstr "%2$s (%3$s) ਦਾ %1$d ਪਾਰਟੀਸ਼ਨ ਫਾਰਮੈਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
+
+#. Translators: First argument is the drive name, second argument is the size (e.g. 10 GB)
+#: ../src/format-tool/gdu-format-tool.c:312
+#, c-format
+msgid "Format %s (%s)"
+msgstr "ਫਾਰਮੈਟ %s (%s)"
+
+#. Translators: First argument is the drive name, second argument is the size (e.g. 10 GB)
+#: ../src/format-tool/gdu-format-tool.c:316
+#, c-format
+msgid "Formatting %s (%s)"
+msgstr "%s (%s) ਫਾਰਮੈਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
+
+#. Translators: First argument is the size (e.g. 10 GB), second is the device (e.g. /dev/md0)
+#: ../src/format-tool/gdu-format-tool.c:322
+#, c-format
+msgid "Format %s Volume (%s)"
+msgstr "ਫਾਰਮੈਟ %s ਵਾਲੀਅਮ (%s)"
+
+#. Translators: First argument is the size (e.g. 10 GB), second is the device (e.g. /dev/md0)
+#: ../src/format-tool/gdu-format-tool.c:326
+#, c-format
+msgid "Formatting %s Volume (%s)"
+msgstr "ਵਾਲੀਅਮ (%2$s) %1$s ਨਾਲ ਫਾਰਮੈਟ  ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
+
+#: ../src/format-tool/gdu-format-tool.c:379
+msgid "Preparing..."
+msgstr "ਤਿਆਰ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ..."
+
+#: ../src/format-tool/gdu-format-tool.c:422
+msgid "Unmounting..."
+msgstr "ਅਣ-ਮਾਊਂਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ..."
+
+#: ../src/format-tool/gdu-format-tool.c:440
+#, c-format
+msgid "Unable to format '%s'"
+msgstr "'%s' ਫਾਰਮੈਟ ਕਰਨ ਲਈ ਅਸਮਰੱਥ"
+
+#: ../src/format-tool/gdu-format-tool.c:455
+msgid "Formatting..."
+msgstr "ਫਾਰਮੈਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ..."
+
+#: ../src/format-tool/gdu-format-tool.c:472
+msgid "Cancelling..."
+msgstr "ਰੱਦ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ..."
+
+#: ../src/format-tool/gdu-format-tool.c:482
+msgid "Error formatting volume"
+msgstr "ਵਾਲੀਅਮ ਫਾਰਮੈਟ ਕਰਨ ਦੌਰਾਨ ਗਲਤੀ"
+
+#: ../src/format-tool/gdu-format-tool.c:493
+msgid "Mounting volume..."
+msgstr "ਵਾਲੀਅਮ ਮਾਊਂਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ..."
+
+#: ../src/format-tool/gdu-format-tool.c:517 ../src/palimpsest/gdu-shell.c:995
+msgid "Error mounting device"
+msgstr "ਜੰਤਰ ਮਾਊਂਟ ਕਰਨ ਦੌਰਾਨ ਗਲਤੀ"
+
+#: ../src/format-tool/gdu-format-tool.c:534
+msgid "Error storing passphrase in keyring"
+msgstr "ਕੀਰਿੰਗ ਵਿੱਚ ਸ਼ਬਦ ਸਟੋਰ ਕਰਨ ਦੌਰਾਨ ਗਲਤੀ"
+
+#. Translators: This word is used to describe the media inserted into a device
+#: ../src/gdu/gdu-drive.c:455
+msgid "CompactFlash"
+msgstr "ਕੰਪੈਕਟਫਲੈਸ"
+
+#. Translators: This word is used to describe the media inserted into a device
+#: ../src/gdu/gdu-drive.c:458
+msgid "MemoryStick"
+msgstr "ਮੈਮੋਰੀਸਟਿੱਕ"
+
+#. Translators: This word is used to describe the media inserted into a device
+#: ../src/gdu/gdu-drive.c:461
+msgid "SmartMedia"
+msgstr "ਸਮਾਰਟਮੀਡਿਆ"
+
+#. Translators: This word is used to describe the media inserted into a device
+#: ../src/gdu/gdu-drive.c:464
+msgid "SecureDigital"
+msgstr "ਸਕਿਉਰਡਿਜ਼ਿਟਲ"
+
+#. Translators: This word is used to describe the media inserted into a device
+#: ../src/gdu/gdu-drive.c:467
+msgid "SD High Capacity"
+msgstr "SD ਹਾਈ ਕਪੈਸਟੀ"
+
+#. Translators: This word is used to describe the media inserted into a device
+#: ../src/gdu/gdu-drive.c:470
+msgid "Floppy"
+msgstr "ਫਲਾਪੀ"
+
+#. Translators: This word is used to describe the media inserted into a device
+#: ../src/gdu/gdu-drive.c:473
+msgid "Zip"
+msgstr "ਜ਼ਿੱਪ"
+
+#. Translators: This word is used to describe the media inserted into a device
+#: ../src/gdu/gdu-drive.c:476
+msgid "Jaz"
+msgstr "ਜ਼ੇਜ"
+
+#. Translators: This word is used to describe the media inserted into a device
+#: ../src/gdu/gdu-drive.c:479
+#| msgid "Flags"
+msgid "Flash"
+msgstr "ਫਲੈਸ਼"
+
+#. Translators: This word is used to describe the optical disc type, it may appear
+#. * in a slash-separated list e.g. 'CD/DVD/Blu-Ray'
+#.
+#: ../src/gdu/gdu-drive.c:502
+msgid "CD"
+msgstr "CD"
+
+#. Translators: This word is used to describe the optical disc type, it may appear
+#. * in a slash-separated list e.g. 'CD/DVD/Blu-Ray'
+#.
+#: ../src/gdu/gdu-drive.c:510
+msgid "DVD"
+msgstr "DVD"
+
+#. Translators: This word is used to describe the optical disc type, it may appear
+#. * in a slash-separated list e.g. 'CD/DVD/Blu-Ray'
+#.
+#: ../src/gdu/gdu-drive.c:518
+#| msgid "Blu-Ray Disc"
+msgid "Blu-Ray"
+msgstr "ਬਲਿਉ-ਰੇ"
+
+#. Translators: This word is used to describe the optical disc type, it may appear
+#. * in a slash-separated list e.g. 'CD/DVD/Blu-Ray'
+#.
+#: ../src/gdu/gdu-drive.c:526
+#| msgid "HD DVD Disc"
+msgid "HDDVD"
+msgstr "HDDVD"
+
+#. Translators: %s is the media type e.g. 'CD/DVD' or 'CompactFlash'
+#. Translators: %s is a RAID level, e.g. 'RAID-5'
+#: ../src/gdu/gdu-drive.c:575 ../src/gdu/gdu-drive.c:614
+#: ../src/gdu/gdu-linux-md-drive.c:520
+#, c-format
+msgid "%s Drive"
+msgstr "%s ਡਰਾਇਵ"
+
+#. Translators: first %s is the size, second %s is the media type
+#. * e.g. 'CD/DVD' or 'CompactFlash'
+#.
+#. Translators: First %s is the size, second %s is a RAID level, e.g. 'RAID-5'
+#: ../src/gdu/gdu-drive.c:609 ../src/gdu/gdu-linux-md-drive.c:515, c-format
+#| msgid "%s Drive"
+msgid "%s %s Drive"
+msgstr "%s %s ਡਰਾਇਵ"
+
+#. Translators: This string is used to describe a hard disk. The first %s is
+#. * the size of the drive e.g. '45 GB'.
+#.
+#: ../src/gdu/gdu-drive.c:625
+#, c-format
+msgid "%s Hard Disk"
+msgstr "%s ਹਾਰਡ ਡਿਸਕ"
+
+#. Translators: This string is used to describe a hard disk where the size
+#. * is not known.
+#.
+#: ../src/gdu/gdu-drive.c:631
+msgid "Hard Disk"
+msgstr "ਹਾਰਡ ਡਿਸਕ"
+
+#. Translators: This string is used to describe a SSD. The first %s is
+#. * the size of the drive e.g. '45 GB'.
+#.
+#: ../src/gdu/gdu-drive.c:638
+#, c-format
+msgid "%s Solid-State Disk"
+msgstr "%s ਸਾਲਡ-ਸਟੇਟ ਡਿਸਕ"
+
+#. Translators: This string is used to describe a SSD where the size
+#. * is not known.
+#.
+#: ../src/gdu/gdu-drive.c:644
+msgid "Solid-State Disk"
+msgstr "ਸਾਲਡ ਸਟੇਟ ਡਿਸਕ"
+
+#. Translators: This string is the description of a drive. The first %s is the
+#. * size of the inserted media, for example '45 GB'.
+#.
+#: ../src/gdu/gdu-drive.c:685
+#, c-format
+msgid "%s Media"
+msgstr "%s ਮੀਡਿਆ"
+
+#. Translators: This string is used as a description text when no media has
+#. * been detected for a drive
+#.
+#: ../src/gdu/gdu-drive.c:692 ../src/palimpsest/gdu-section-no-media.c:113
+#: ../src/palimpsest/gdu-shell.c:239 ../src/palimpsest/gdu-shell.c:263
+#, c-format
+msgid "No Media Detected"
+msgstr "ਕੋਈ ਮੀਡਿਆ ਨਹੀਂ ਮਿਲਿਆ"
+
+#. Translators: This string is used for conveying the partition table format
+#: ../src/gdu/gdu-drive.c:703 ../src/gdu/gdu-linux-md-drive.c:542
+#| msgid "%s Partition Table"
+msgid "MBR Partition Table"
+msgstr "MBR ਪਾਰਟੀਸ਼ਨ ਟੇਬਲ"
+
+#. Translators: This string is used for conveying the partition table format
+#: ../src/gdu/gdu-drive.c:706 ../src/gdu/gdu-linux-md-drive.c:545
+#: ../src/gdu-gtk/gdu-gtk.c:1534 ../src/palimpsest/gdu-shell.c:223
+#: ../src/palimpsest/gdu-shell.c:253
+msgid "GUID Partition Table"
+msgstr "GUID ਪਾਰਟੀਸ਼ਨ ਟੇਬਲ"
+
+#. Translators: This string is used for conveying the partition table format
+#: ../src/gdu/gdu-drive.c:709 ../src/gdu/gdu-linux-md-drive.c:548
+#| msgid "Apple Partition Map"
+msgid "Apple Partition Table"
+msgstr "Apple ਪਾਰਟੀਸ਼ਨ ਟੇਬਲ"
+
+#. Translators: This string is used for conveying the partition table format when
+#. * the format is unknown
+#.
+#: ../src/gdu/gdu-drive.c:714 ../src/gdu/gdu-linux-md-drive.c:553
+#| msgid "Partition"
+msgid "Partitioned"
+msgstr "ਪਾਰਟੀਸ਼ਨ ਕੀਤੇ"
+
+#. Translators: This string is used for conveying a device is not partitioned.
+#.
+#: ../src/gdu/gdu-drive.c:719 ../src/palimpsest/gdu-shell.c:260
+#: ../src/palimpsest/gdu-shell.c:380
+#, c-format
+msgid "Not Partitioned"
+msgstr "ਪਾਰਟੀਸ਼ਨ ਨਹੀਂ"
+
+#. Translators: First %s is a device file such as /dev/sda4
+#. * second %s is the state of the device
+#.
+#: ../src/gdu/gdu-linux-md-drive.c:575
+#, c-format
+msgid "RAID device %s (%s)"
+msgstr "RAID ਜੰਤਰ %s (%s)"
+
+#. Translators: %s is a device file such as /dev/sda4
+#: ../src/gdu/gdu-linux-md-drive.c:582
+#, c-format
+msgid "RAID device %s"
+msgstr "RAID ਜੰਤਰ %s"
+
+#: ../src/gdu/gdu-linux-md-drive.c:587
+#| msgid "Stopping RAID Array"
+msgid "RAID Array"
+msgstr "ਰੇਡ ਅਰੇ"
+
+#. Translators: %s is the size e.g. '45 GB'
+#: ../src/gdu/gdu-linux-md-drive.c:594, c-format
+#| msgid "Linux Software RAID"
+msgid "%s Software RAID"
+msgstr "%s ਸਾਫਟਵੇਅਰ ਰੇਡ"
+
+#: ../src/gdu/gdu-linux-md-drive.c:597
+#| msgid "Linux Software RAID"
+msgid "Software RAID"
+msgstr "ਸਾਫਟਵੇਅਰ ਰੇਡ"
+
+#. Translators: The first %s is the size in power-of-10 units, e.g. 100 KB
+#. * the second %s is the size in power-of-2 units, e.g. 20 MiB
+#. * the third %s is the size as a number
+#.
+#: ../src/gdu/gdu-util.c:118, c-format
+#| msgid "%s / %s / %'"
+msgid "%s / %s / %s bytes"
+msgstr "%s / %s / %s ਬਾਈਟ"
+
+#. Translators: FAT is a filesystem type
+#: ../src/gdu/gdu-util.c:149
+msgid "FAT (12-bit version)"
+msgstr "FAT (੧੨-ਬਿੱਟ ਵਰਜਨ)"
+
+#. Translators: FAT is a filesystem type
+#: ../src/gdu/gdu-util.c:152 ../src/gdu/gdu-util.c:159
+#: ../src/gdu/gdu-util.c:166 ../src/gdu/gdu-util.c:170
+#: ../src/gdu/gdu-util.c:172
+msgid "FAT"
+msgstr "FAT"
+
+#. Translators: FAT is a filesystem type
+#: ../src/gdu/gdu-util.c:157
+msgid "FAT (16-bit version)"
+msgstr "FAT (੧੬-ਬਿੱਟ ਵਰਜਨ)"
+
+#. Translators: FAT is a filesystem type
+#: ../src/gdu/gdu-util.c:164
+msgid "FAT (32-bit version)"
+msgstr "FAT (੩੨-ਬਿੱਟ ਵਰਜਨ)"
+
+#. Translators: NTFS is a filesystem type
+#: ../src/gdu/gdu-util.c:179
+#, c-format
+msgid "NTFS (version %s)"
+msgstr "NTFS (ਵਰਜਨ %s)"
+
+#. Translators: NTFS is a filesystem type
+#: ../src/gdu/gdu-util.c:182 ../src/gdu/gdu-util.c:184
+#, c-format
+msgid "NTFS"
+msgstr "NTFS"
+
+#. Translators: HFS is a filesystem type
+#: ../src/gdu/gdu-util.c:189 ../src/gdu/gdu-util.c:191
+msgid "HFS"
+msgstr "HFS"
+
+#. Translators: HFS+ is a filesystem type
+#: ../src/gdu/gdu-util.c:196 ../src/gdu/gdu-util.c:198
+msgid "HFS+"
+msgstr "HFS+"
+
+#: ../src/gdu/gdu-util.c:202
+msgid "Linux Unified Key Setup"
+msgstr "ਲੀਨਕਸ ਯੂਨੀਫਾਇਡ ਕੀ ਸੈਟਅੱਪ"
+
+#. Translators: LUKS is 'Linux Unified Key Setup', a disk encryption format
+#: ../src/gdu/gdu-util.c:205
+msgid "LUKS"
+msgstr "LUKS"
+
+#. Translators: Ext2 is a filesystem type
+#: ../src/gdu/gdu-util.c:211
+#, c-format
+msgid "Linux Ext2 (version %s)"
+msgstr "Linux Ext2 (ਵਰਜਨ %s)"
+
+#. Translators: Ext2 is a filesystem type
+#: ../src/gdu/gdu-util.c:214
+#, c-format
+msgid "Linux Ext2"
+msgstr "Linux Ext2"
+
+#. Translators: Ext2 is a filesystem type
+#: ../src/gdu/gdu-util.c:217
+msgid "ext2"
+msgstr "ext2"
+
+#. Translators: Ext3 is a filesystem type
+#: ../src/gdu/gdu-util.c:223
+#, c-format
+msgid "Linux Ext3 (version %s)"
+msgstr "Linux Ext3 (ਵਰਜਨ %s)"
+
+#. Translators: Ext3 is a filesystem type
+#: ../src/gdu/gdu-util.c:226
+#, c-format
+msgid "Linux Ext3"
+msgstr "Linux Ext3"
+
+#. Translators: Ext3 is a filesystem type
+#: ../src/gdu/gdu-util.c:229
+msgid "ext3"
+msgstr "ext3"
+
+#. Translators: 'Journal' refers to a filesystem technology here, see 'journaling filesystems'
+#: ../src/gdu/gdu-util.c:235
+#, c-format
+msgid "Journal for Linux ext3 (version %s)"
+msgstr "ਲੀਨਕਸ ext3 (ਵਰਜਨ %s) ਲਈ ਜਰਨਲ"
+
+#. Translators: 'Journal' refers to a filesystem technology here, see 'journaling filesystems'
+#: ../src/gdu/gdu-util.c:238
+#, c-format
+msgid "Journal for Linux ext3"
+msgstr "ਲੀਨਕਸ ext3 ਲਈ ਜਰਨਲ"
+
+#. Translators: jbd is a filesystem type
+#: ../src/gdu/gdu-util.c:241
+msgid "jbd"
+msgstr "jbd"
+
+#. Translators: ext4 is a filesystem type
+#: ../src/gdu/gdu-util.c:247
+#, c-format
+msgid "Linux Ext4 (version %s)"
+msgstr "ਲੀਨਕਸ Ext4 (ਵਰਜਨ %s)"
+
+#. Translators: ext4 is a filesystem type
+#: ../src/gdu/gdu-util.c:250
+#, c-format
+msgid "Linux Ext4"
+msgstr "ਲੀਨਕਸ Ext4"
+
+#. Translators: Ext4 is a filesystem type
+#: ../src/gdu/gdu-util.c:253
+msgid "ext4"
+msgstr "ext4"
+
+#. Translators: xfs is a filesystem type
+#: ../src/gdu/gdu-util.c:259
+#, c-format
+msgid "Linux XFS (version %s)"
+msgstr "ਲੀਨਕਸ XFS (ਵਰਜਨ %s)"
+
+#. Translators: xfs is a filesystem type
+#: ../src/gdu/gdu-util.c:262
+#, c-format
+msgid "Linux XFS"
+msgstr "ਲੀਨਕਸ XFS"
+
+#. Translators: xfs is a filesystem type
+#: ../src/gdu/gdu-util.c:265
+msgid "xfs"
+msgstr "xfs"
+
+#. Translators: iso9660 is a filesystem type
+#: ../src/gdu/gdu-util.c:270
+msgid "ISO 9660"
+msgstr "ISO 9660"
+
+#. Translators: iso9660 is a filesystem type
+#: ../src/gdu/gdu-util.c:273
+msgid "iso9660"
+msgstr "iso9660"
+
+#. Translators: udf is a filesystem type
+#: ../src/gdu/gdu-util.c:278
+msgid "Universal Disk Format"
+msgstr "ਯੂਨੀਵਰਸਲ ਡਿਸਕ ਫਾਰਮੈਟ"
+
+#. Translators: udf is a filesystem type
+#: ../src/gdu/gdu-util.c:281
+msgid "udf"
+msgstr "udf"
+
+#: ../src/gdu/gdu-util.c:285 ../src/palimpsest/gdu-section-swapspace.c:82
+#: ../src/palimpsest/gdu-shell.c:356
+msgid "Swap Space"
+msgstr "ਸਵੈਪ ਥਾਂ"
+
+#. Translators: filesystem type for swap space
+#: ../src/gdu/gdu-util.c:288
+msgid "swap"
+msgstr "swap"
+
+#: ../src/gdu/gdu-util.c:293
+#, c-format
+msgid "LVM2 Physical Volume (version %s)"
+msgstr "LVM2 ਫਿਜ਼ੀਕਲ ਵਾਲੀਅਮ (ਵਰਜਨ %s)"
+
+#: ../src/gdu/gdu-util.c:295
+#, c-format
+msgid "LVM2 Physical Volume"
+msgstr "LVM2 ਫਿਜ਼ੀਕਲ ਵਾਲੀਅਮ"
+
+#. Translators: short name for LVM2 Physical Volume
+#: ../src/gdu/gdu-util.c:298
+msgid "lvm2_pv"
+msgstr "lvm2_pv"
+
+#: ../src/gdu/gdu-util.c:304
+#, c-format
+msgid "RAID Component (version %s)"
+msgstr "RAID ਭਾਗ (ਵਰਜਨ %s)"
+
+#: ../src/gdu/gdu-util.c:306
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:1114
+#, c-format
+msgid "RAID Component"
+msgstr "RAID ਭਾਗ"
+
+#. Translators: short name for 'RAID Component'
+#: ../src/gdu/gdu-util.c:309
+msgid "raid"
+msgstr "raid"
+
+#: ../src/gdu/gdu-util.c:323
+msgid "Creating File System"
+msgstr "ਫਾਇਲ ਸਿਸਟਮ ਬਣਾਇਆ ਜਾ ਰਿਹਾ ਹੈ"
+
+#: ../src/gdu/gdu-util.c:325
+msgid "Mounting File System"
+msgstr "ਫਾਇਲ ਸਿਸਟਮ ਮਾਊਂਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
+
+#: ../src/gdu/gdu-util.c:327
+msgid "Unmounting File System"
+msgstr "ਫਾਇਲ ਸਿਸਟਮ ਅਣ-ਮਾਊਂਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
+
+#: ../src/gdu/gdu-util.c:329
+msgid "Checking File System"
+msgstr "ਫਾਇਲ ਸਿਸਟਮ ਚੈੱਕ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
+
+#: ../src/gdu/gdu-util.c:331
+msgid "Creating LUKS Device"
+msgstr "LUKS ਜੰਤਰ ਬਣਾਇਆ ਜਾ ਰਿਹਾ ਹੈ"
+
+#: ../src/gdu/gdu-util.c:333
+msgid "Unlocking LUKS Device"
+msgstr "LUKS ਜੰਤਰ ਅਣ-ਲਾਕ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
+
+#: ../src/gdu/gdu-util.c:335
+msgid "Locking LUKS Device"
+msgstr "LUKS ਜੰਤਰ ਲਾਕ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
+
+#: ../src/gdu/gdu-util.c:337
+msgid "Creating Partition Table"
+msgstr "ਪਾਰਟੀਸ਼ਨ ਟੇਬਲ ਬਣਾਇਆ ਜਾ ਰਿਹਾ ਹੈ"
+
+#: ../src/gdu/gdu-util.c:339
+msgid "Deleting Partition"
+msgstr "ਪਾਰਟੀਸ਼ਨ ਹਟਾਇਆ ਜਾ ਰਿਹਾ ਹੈ"
+
+#: ../src/gdu/gdu-util.c:341
+msgid "Creating Partition"
+msgstr "ਪਾਰਟੀਸ਼ਨ ਬਣਾਇਆ ਜਾ ਰਿਹਾ ਹੈ"
+
+#: ../src/gdu/gdu-util.c:343
+msgid "Modifying Partition"
+msgstr "ਪਾਰਟੀਸ਼ਨ ਸੋਧਿਆ ਜਾ ਰਿਹਾ ਹੈ"
+
+#: ../src/gdu/gdu-util.c:345
+msgid "Setting Label for Device"
+msgstr "ਜੰਤਰ ਲਈ ਲੇਬਲ ਸੈੱਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
+
+#: ../src/gdu/gdu-util.c:347
+msgid "Changing Passphrase for Encrypted LUKS Device"
+msgstr "ਇੰਕ੍ਰਿਪਟ ਕੀਤੇ LUKS ਜੰਤਰ ਲਈ ਸ਼ਬਦ ਬਦਲਿਆ ਜਾ ਰਿਹਾ ਹੈ"
+
+#: ../src/gdu/gdu-util.c:349
+msgid "Adding Component to RAID Array"
+msgstr "RAIF ਅਰੇ ਲਈ ਭਾਗ ਜੋੜਿਆ ਜਾ ਰਿਹਾ ਹੈ"
+
+#: ../src/gdu/gdu-util.c:351
+msgid "Removing Component from RAID Array"
+msgstr "RAID ਅਰੇ ਲਈ ਭਾਗ ਹਟਾਏ ਜਾ ਰਹੇ ਹਨ"
+
+#: ../src/gdu/gdu-util.c:353
+msgid "Stopping RAID Array"
+msgstr "ਰੇਡ ਅਰੇ ਰੋਕੀ ਜਾ ਰਹੀ ਹੈ"
+
+#: ../src/gdu/gdu-util.c:355
+msgid "Starting RAID Array"
+msgstr "ਰੇਡ ਅਰੇ ਸ਼ੁਰੂ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
+
+#: ../src/gdu/gdu-util.c:357
+msgid "Checking RAID Array"
+msgstr "ਰੇਡ ਅਰੇ ਚੈੱਕ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
+
+#: ../src/gdu/gdu-util.c:359
+msgid "Repairing RAID Array"
+msgstr "ਰੇਡ ਅਰੇ ਰਿਪੇਅਰ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
+
+#: ../src/gdu/gdu-util.c:361
+#| msgid "Running S.M.A.R.T. Self Test"
+msgid "Running Short SMART Self-Test"
+msgstr "ਛੋਟਾ S.M.A.R.T. ਖੁਦ ਟੈਸਟ ਚੱਲ ਰਿਹਾ ਹੈ"
+
+#: ../src/gdu/gdu-util.c:363
+#| msgid "Running S.M.A.R.T. Self Test"
+msgid "Running Extended SMART Self-Test"
+msgstr "ਵੱਡਾ S.M.A.R.T. ਖੁਦ ਟੈਸਟ ਚੱਲ ਰਿਹਾ ਹੈ"
+
+#: ../src/gdu/gdu-util.c:365
+#| msgid "Running S.M.A.R.T. Self Test"
+msgid "Running Conveyance SMART Self-Test"
+msgstr "ਸੌਖਾ S.M.A.R.T. ਖੁਦ ਟੈਸਟ ਚੱਲ ਰਿਹਾ ਹੈ"
+
+#: ../src/gdu/gdu-util.c:367
+msgid "Ejecting Media"
+msgstr "ਮੀਡਿਆ ਬਾਹਰ ਕੱਢਿਆ ਜਾ ਰਿਹਾ ਹੈ"
+
+#: ../src/gdu/gdu-util.c:369
+msgid "Detaching Device"
+msgstr "ਜੰਤਰ ਵੱਖ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
+
+#: ../src/gdu/gdu-util.c:371
+msgid "Forcibly Unmounting Filesystem"
+msgstr "ਧੱਕੇ ਨਾਲ ਫਾਇਲ ਸਿਸਟਮ ਅਣ-ਮਾਊਂਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
+
+#: ../src/gdu/gdu-util.c:373
+msgid "Forcibly Locking LUKS device"
+msgstr "ਧੱਕੇ ਨਾਲ LUKS ਜੰਤਰ ਲਾਕ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
+
+#. see http://en.wikipedia.org/wiki/GUID_Partition_Table
+#: ../src/gdu/gdu-util.c:388
+msgid "MBR Partition Scheme"
+msgstr "MBR ਪਾਰਟੀਸ਼ਨ ਸਕੀਮ"
+
+#: ../src/gdu/gdu-util.c:389
+msgid "EFI System Partition"
+msgstr "EFI ਸਿਸਟਮ ਪਾਰਟੀਸ਼ਨ"
+
+#. Microsoft
+#: ../src/gdu/gdu-util.c:391
+msgid "Microsoft Reserved Partition"
+msgstr "ਮਾਈਕਰੋਸਾਫਟ ਰਾਖਵਾਂ ਪਾਰਟੀਸ਼ਨ"
+
+#. {"gpt", "EBD0A0A2-B9E5-4433-87C0-68B6B72699C7", N_("Basic Data Partition")},
+#: ../src/gdu/gdu-util.c:393
+msgid "LDM meta data Partition"
+msgstr "LDM ਮੀਟਾ ਡਾਟਾ ਪਾਰਟੀਸ਼ਨ"
+
+#: ../src/gdu/gdu-util.c:394
+msgid "LDM data Partition"
+msgstr "LDM ਡਾਟਾ ਪਾਰਟੀਸ਼ਨ"
+
+#. Linux
+#: ../src/gdu/gdu-util.c:396
+msgid "Basic Data Partition"
+msgstr "ਬੇਸਿਕ ਡਾਟਾ ਪਾਰਟੀਸ਼ਨ"
+
+#. Same GUID as MS!
+#: ../src/gdu/gdu-util.c:397
+msgid "Linux RAID Partition"
+msgstr "ਲੀਨਕਸ ਰੇਡ ਪਾਰਟੀਸ਼ਨ"
+
+#: ../src/gdu/gdu-util.c:398
+msgid "Linux Swap Partition"
+msgstr "ਲੀਨਕਸ ਸਵੈਪ ਪਾਰਟੀਸ਼ਨ"
+
+#: ../src/gdu/gdu-util.c:399
+msgid "Linux LVM Partition"
+msgstr "ਲੀਨਕਸ LVM ਪਾਰਟੀਸ਼ਨ"
+
+#: ../src/gdu/gdu-util.c:400
+msgid "Linux Reserved Partition"
+msgstr "ਲੀਨਕਸ ਰਾਖਾਵਾਂ ਪਾਰਟੀਸ਼ਨ"
+
+#. Mac OS X
+#: ../src/gdu/gdu-util.c:402 ../src/gdu/gdu-util.c:410
+msgid "Apple HFS/HFS+ Partition"
+msgstr "Apple HFS/HFS+ ਪਾਰਟੀਸ਼ਨ"
+
+#. see http://developer.apple.com/documentation/mac/Devices/Devices-126.html
+#. *     http://lists.apple.com/archives/Darwin-drivers/2003/May/msg00021.html
+#: ../src/gdu/gdu-util.c:403 ../src/gdu/gdu-util.c:409
+msgid "Apple UFS Partition"
+msgstr "Apple UFS ਪਾਰਟੀਸ਼ਨ"
+
+#: ../src/gdu/gdu-util.c:404
+msgid "Apple RAID Partition"
+msgstr "Apple RAID ਪਾਰਟੀਸ਼ਨ"
+
+#: ../src/gdu/gdu-util.c:411 ../src/gdu-gtk/gdu-gtk.c:1544
+#: ../src/palimpsest/gdu-shell.c:219 ../src/palimpsest/gdu-shell.c:249
+msgid "Apple Partition Map"
+msgstr "Apple ਪਾਰਟੀਸ਼ਨ ਮੈਪ"
+
+#: ../src/gdu/gdu-util.c:412
+msgid "Unused Partition"
+msgstr "ਅਣ-ਵਰਤਿਆ ਪਾਰਟੀਸ਼ਨ"
+
+#: ../src/gdu/gdu-util.c:413
+msgid "Empty Partition"
+msgstr "ਖਾਲੀ ਪਾਰਟੀਸ਼ਨ"
+
+#: ../src/gdu/gdu-util.c:414
+msgid "Driver Partition"
+msgstr "ਡਰਾਇਵਰ ਪਾਰਟੀਸ਼ਨ"
+
+#: ../src/gdu/gdu-util.c:415
+msgid "Driver 4.3 Partition"
+msgstr "ਡਰਾਇਵਰ 4.3 ਪਾਰਟੀਸ਼ਨ"
+
+#: ../src/gdu/gdu-util.c:416
+msgid "ProDOS file system"
+msgstr "ProDOS ਫਾਇਲ ਸਿਸਟਮ"
+
+#: ../src/gdu/gdu-util.c:417
+msgid "FAT 12"
+msgstr "FAT 12"
+
+#: ../src/gdu/gdu-util.c:418
+msgid "FAT 16"
+msgstr "FAT 16"
+
+#: ../src/gdu/gdu-util.c:419
+msgid "FAT 32"
+msgstr "FAT 32"
+
+#: ../src/gdu/gdu-util.c:420
+msgid "FAT 16 (Windows)"
+msgstr "FAT 16 (Windows)"
+
+#: ../src/gdu/gdu-util.c:421
+msgid "FAT 32 (Windows)"
+msgstr "FAT 32 (Windows)"
+
+#. see http://www.win.tue.nl/~aeb/partitions/partition_types-1.html
+#: ../src/gdu/gdu-util.c:424
+msgid "Empty (0x00)"
+msgstr "ਖਾਲੀ (0x00)"
+
+#: ../src/gdu/gdu-util.c:425
+msgid "FAT12 (0x01)"
+msgstr "FAT12 (0x01)"
+
+#: ../src/gdu/gdu-util.c:426
+msgid "FAT16 <32M (0x04)"
+msgstr "FAT16 <32M (0x04)"
+
+#: ../src/gdu/gdu-util.c:427
+msgid "Extended (0x05)"
+msgstr "ਐਕਸਟੈੱਡਡ (0x05)"
+
+#: ../src/gdu/gdu-util.c:428
+msgid "FAT16 (0x06)"
+msgstr "FAT16 (0x06)"
+
+#: ../src/gdu/gdu-util.c:429
+msgid "HPFS/NTFS (0x07)"
+msgstr "HPFS/NTFS (0x07)"
+
+#: ../src/gdu/gdu-util.c:430
+msgid "W95 FAT32 (0x0b)"
+msgstr "W95 FAT32 (0x0b)"
+
+#: ../src/gdu/gdu-util.c:431
+msgid "W95 FAT32 (LBA) (0x0c)"
+msgstr "W95 FAT32 (LBA) (0x0c)"
+
+#: ../src/gdu/gdu-util.c:432
+msgid "W95 FAT16 (LBA) (0x0e)"
+msgstr "W95 FAT16 (LBA) (0x0e)"
+
+#: ../src/gdu/gdu-util.c:433
+msgid "W95 Ext d (LBA) (0x0f)"
+msgstr "W95 Ext d (LBA) (0x0f)"
+
+#: ../src/gdu/gdu-util.c:434
+msgid "OPUS (0x10)"
+msgstr "OPUS (0x10)"
+
+#: ../src/gdu/gdu-util.c:435
+msgid "Hidden FAT12 (0x11)"
+msgstr "ਲੁਕਵਾਂ FAT12 (0x11)"
+
+#: ../src/gdu/gdu-util.c:436
+msgid "Compaq diagnostics (0x12)"
+msgstr "ਕੰਪੈਕ ਪੜਤਾਲ (0x12)"
+
+#: ../src/gdu/gdu-util.c:437
+msgid "Hidden FAT16 <32M (0x14)"
+msgstr "ਲੁਕਵਾਂ FAT16 <32M (0x14)"
+
+#: ../src/gdu/gdu-util.c:438
+msgid "Hidden FAT16 (0x16)"
+msgstr "ਲੁਕਵਾਂ FAT16 (0x16)"
+
+#: ../src/gdu/gdu-util.c:439
+msgid "Hidden HPFS/NTFS (0x17)"
+msgstr "ਲੁਕਵਾਂ HPFS/NTFS (0x17)"
+
+#: ../src/gdu/gdu-util.c:440
+msgid "Hidden W95 FAT32 (0x1b)"
+msgstr "ਲੁਕਵਾਂ W95 FAT32 (0x1b)"
+
+#: ../src/gdu/gdu-util.c:441
+msgid "Hidden W95 FAT32 (LBA) (0x1c)"
+msgstr "ਲੁਕਵਾਂ W95 FAT32 (LBA) (0x1c)"
+
+#: ../src/gdu/gdu-util.c:442
+msgid "Hidden W95 FAT16 (LBA) (0x1e)"
+msgstr "ਲੁਕਵਾਂ W95 FAT16 (LBA) (0x1e)"
+
+#: ../src/gdu/gdu-util.c:443
+msgid "PartitionMagic (0x3c)"
+msgstr "PartitionMagic (0x3c)"
+
+#: ../src/gdu/gdu-util.c:444
+msgid "Linux swap (0x82)"
+msgstr "ਲੀਨਕਸ ਸਵੈਪ (0x82)"
+
+#: ../src/gdu/gdu-util.c:445
+msgid "Linux (0x83)"
+msgstr "ਲੀਨਕਸ (0x83)"
+
+#: ../src/gdu/gdu-util.c:446
+msgid "Hibernation (0x84)"
+msgstr "ਹਾਈਬਰਨੇਟ (0x84)"
+
+#: ../src/gdu/gdu-util.c:447
+msgid "Linux Extended (0x85)"
+msgstr "ਲੀਨਕਸ ਐਕਸਟੈਂਡ (0x85)"
+
+#: ../src/gdu/gdu-util.c:448
+msgid "Linux LVM (0x8e)"
+msgstr "ਲੀਨਕਸ LVM (0x8e)"
+
+#: ../src/gdu/gdu-util.c:449
+msgid "Hibernation (0xa0)"
+msgstr "ਹਾਈਬਰਨੇਟ (0xa0)"
+
+#: ../src/gdu/gdu-util.c:450
+msgid "FreeBSD (0xa5)"
+msgstr "FreeBSD (0xa5)"
+
+#: ../src/gdu/gdu-util.c:451
+msgid "OpenBSD (0xa6)"
+msgstr "OpenBSD (0xa6)"
+
+#: ../src/gdu/gdu-util.c:452
+msgid "Mac OS X (0xa8)"
+msgstr "Mac OS X (0xa8)"
+
+#: ../src/gdu/gdu-util.c:453
+msgid "Mac OS X (0xaf)"
+msgstr "Mac OS X (0xaf)"
+
+#: ../src/gdu/gdu-util.c:454
+msgid "Solaris boot (0xbe)"
+msgstr "Solaris boot (0xbe)"
+
+#: ../src/gdu/gdu-util.c:455
+msgid "Solaris (0xbf)"
+msgstr "Solaris (0xbf)"
+
+#: ../src/gdu/gdu-util.c:456
+msgid "BeOS BFS (0xeb)"
+msgstr "BeOS BFS (0xeb)"
+
+#: ../src/gdu/gdu-util.c:457
+msgid "SkyOS SkyFS (0xec)"
+msgstr "SkyOS SkyFS (0xec)"
+
+#: ../src/gdu/gdu-util.c:458
+msgid "EFI GPT (0xee)"
+msgstr "EFI GPT (0xee)"
+
+#: ../src/gdu/gdu-util.c:459
+msgid "EFI (FAT-12/16/32 (0xef)"
+msgstr "EFI (FAT-12/16/32 (0xef)"
+
+#: ../src/gdu/gdu-util.c:460
+msgid "Linux RAID autodetect (0xfd)"
+msgstr "ਲੀਨਕਸ ਰੇਡ ਆਪੇ-ਖੋਜ (0xfd)"
+
+#. Translators: Shown for unknown partition types.
+#. * %s is the partition type name
+#.
+#: ../src/gdu/gdu-util.c:487
+#, c-format
+msgid "Unknown (%s)"
+msgstr "ਅਣਜਾਣ (%s)"
+
+#: ../src/gdu/gdu-util.c:497
+msgid ""
+"A popular format compatible with almost any device or system, typically used "
+"for file exchange."
+msgstr ""
+"ਹਰਮਨਪਿਆਰਾ ਫਾਰਮੈਟ, ਜੋ ਕਿ ਕਿਸੇ ਵੀ ਜੰਤਰ ਜਾਂ ਸਿਸਟਮ ਨਾਲ ਅਨੁਕੂਲ ਹੈ। ਅਕਰਸਰ ਫਾਇਲਾਂ ਸਾਂਝੀਆਂ ਕਰਨ "
+"ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ।"
+
+#: ../src/gdu/gdu-util.c:501
+msgid ""
+"This file system is compatible with Linux systems only and provides classic "
+"UNIX file permissions support. This file system does not use a journal."
+msgstr ""
+"ਇਹ ਫਾਇਲ ਸਿਸਟਮ ਕੇਵਲ ਲੀਨਕਸ ਸਿਸਟਮ ਨਾਲ ਹੀ ਅਨੁਕੂਲ ਹੈ ਅਤੇ ਯੂਨੈਕਸ ਫਾਇਲ ਅਧਿਕਾਰ ਸਹਿਯੋਗ "
+"ਉਪਲੱਬਧ ਕਰਵਾਉਂਦਾ ਹੈ। ਇਹ ਫਾਇਲ ਸਿਸਟਮ ਲਈ ਜਰਨਲ ਨਹੀਂ ਵਰਤਿਆ ਜਾਂਦਾ।"
+
+#: ../src/gdu/gdu-util.c:507
+msgid ""
+"This file system is compatible with Linux systems only and provides classic "
+"UNIX file permissions support."
+msgstr ""
+"ਇਹ ਫਾਇਲ ਸਿਸਟਮ ਕੇਵਲ ਲੀਨਕਸ ਸਿਸਟਮ ਨਾਲ ਹੀ ਅਨੁਕੂਲ ਹੈ ਅਤੇ ਯੂਨੈਕਸ ਫਾਇਲ ਅਧਿਕਾਰ ਸਹਿਯੋਗ "
+"ਉਪਲੱਬਧ ਕਰਵਾਉਂਦਾ ਹੈ।"
+
+#: ../src/gdu/gdu-util.c:511
+msgid "Swap area used by the operating system for virtual memory."
+msgstr "ਓਪਰੇਟਿੰਗ ਸਿਸਟਮ ਵਲੋਂ ਵੁਰਚੁਅਲ ਮੈਮੋਰੀ ਲਈ ਸਵੈਪ ਖੇਤਰ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ।"
+
+#: ../src/gdu/gdu-util.c:514
+msgid ""
+"The native Windows file system. Not widely compatible with other operating "
+"systems than Windows."
+msgstr "ਨੇਟਿਵ ਵਿੰਡੋਜ਼ ਫਾਇਲ ਸਿਸਟਮ। ਵਿੰਡੋਜ਼ ਤੋਂ ਬਿਨਾਂ ਹੋਰ ਓਪਰੇਟਿੰਗ ਸਿਸਟਮਾਂ ਨਾਲ ਅਨੁਕੂਲ ਨਹੀਂ।"
+
+#: ../src/gdu/gdu-util.c:518
+msgid "No file system will be created."
+msgstr "ਕੋਈ ਫਾਇਲ ਸਿਸਟਮ ਨਹੀਂ ਬਣਾਇਆ ਜਾਵੇਗਾ।"
+
+#: ../src/gdu/gdu-util.c:521
+msgid "Create an Extended Partition for logical partitions."
+msgstr "ਲਾਜ਼ੀਕਲ ਪਾਰਟੀਸ਼ਨ ਲਈ ਐਕਸਟੈਂਡਡ ਪਾਰਟੀਸ਼ਨ ਬਣਾਓ।"
+
+#: ../src/gdu/gdu-util.c:534
+msgid ""
+"The Master Boot Record scheme is compatible with almost any device or system "
+"but has a number of limitations with respect to disk size and number of "
+"partitions."
+msgstr ""
+"ਮਾਸਟਰ ਬੂਟ ਰਿਕਾਰਡ ਸਕੀਮ ਕਿਸੇ ਵੀ ਜੰਤਰ ਜਾਂ ਸਿਸਟਮ ਨਾਲ ਅਨੁਕੂਲ ਹੈ, ਪਰ ਡਿਸਕਾਂ ਦੇ ਸਾਈਜ਼ ਅਤੇ ਭਾਗਾਂ "
+"ਦੀ ਗਿਣਤੀ ਲਈ ਸੀਮਿਤ ਹੈ।"
+
+#: ../src/gdu/gdu-util.c:539
+msgid ""
+"A legacy scheme that is incompatible with most systems except Apple systems "
+"and most Linux systems. Not recommended for removable media."
+msgstr ""
+
+#: ../src/gdu/gdu-util.c:544
+msgid ""
+"The GUID scheme is compatible with most modern systems but may be "
+"incompatible with some devices and legacy systems."
+msgstr ""
+
+#: ../src/gdu/gdu-util.c:548
+msgid ""
+"Marks the entire disk as unused. Use this option only if you want to avoid "
+"partitioning the disk for e.g. whole disk use or floppy / Zip disks."
+msgstr ""
+
+#: ../src/gdu/gdu-util.c:731 ../src/gdu-gtk/gdu-gtk.c:947
+#, c-format
+msgid "LUKS Passphrase for UUID %s"
+msgstr "UUID %s ਲਈ LUKS ਸ਼ਬਦ"
+
+#: ../src/gdu/gdu-util.c:760
+#, c-format
+msgid "%.1f kbit/s"
+msgstr "%.1f kbit/s"
+
+#: ../src/gdu/gdu-util.c:763
+#, c-format
+msgid "%.1f Mbit/s"
+msgstr "%.1f Mbit/s"
+
+#: ../src/gdu/gdu-util.c:766
+#, c-format
+msgid "%.1f Gbit/s"
+msgstr "%.1f Gbit/s"
+
+#. Translators: interface name for serial ATA disks
+#: ../src/gdu/gdu-util.c:782
+msgid "SATA"
+msgstr "SATA"
+
+#. Translators: interface name for serial ATA disks
+#: ../src/gdu/gdu-util.c:785
+msgid "eSATA"
+msgstr "eSATA"
+
+#. Translators: interface name for parallel ATA disks
+#: ../src/gdu/gdu-util.c:788
+msgid "PATA"
+msgstr "PATA"
+
+#. Translators: interface name for ATA disks
+#: ../src/gdu/gdu-util.c:791
+msgid "ATA"
+msgstr "ATA"
+
+#. Translators: interface name for SCSI disks
+#: ../src/gdu/gdu-util.c:794
+msgid "SCSI"
+msgstr "SCSI"
+
+#. Translators: interface name for USB disks
+#: ../src/gdu/gdu-util.c:797
+msgid "USB"
+msgstr "USB"
+
+#. Translators: interface name for firewire disks
+#: ../src/gdu/gdu-util.c:800
+msgid "Firewire"
+msgstr "ਫਿਰਮਵੇਅਰ"
+
+#. Translators: interface name for SDIO disks
+#: ../src/gdu/gdu-util.c:803
+msgid "SDIO"
+msgstr "SDIO"
+
+#. Translators: interface name for virtual disks
+#: ../src/gdu/gdu-util.c:806
+msgid "Virtual"
+msgstr "ਵੁਰਚੁਅਲ"
+
+#. Translators: name shown for unknown disk connection interfaces
+#: ../src/gdu/gdu-util.c:812
+#| msgid "Unknown"
+msgctxt "connection name"
+msgid "Unknown"
+msgstr "ਅਣਜਾਣ"
+
+#. Translators: Connection with speed information.
+#. * First %s is the connection name, like 'SATA' or 'USB'
+#. * second %s is the speed, like '2 Mbit/s'
+#.
+#: ../src/gdu/gdu-util.c:822, c-format
+#| msgid "%s %s"
+msgid "%s at %s"
+msgstr "%2$s ਉੱਤੇ %1$s"
+
+#: ../src/gdu/gdu-util.c:841
+#| msgid "Mirrored (RAID-1)"
+msgctxt "RAID level"
+msgid "Stripe (RAID-0)"
+msgstr "ਸਟਰਿਪ (RAID-0)"
+
+#: ../src/gdu/gdu-util.c:843
+#| msgid "RAID-0"
+msgctxt "RAID level"
+msgid "RAID-0"
+msgstr "RAID-0"
+
+#: ../src/gdu/gdu-util.c:846
+#| msgid "Mirrored (RAID-1)"
+msgctxt "RAID level"
+msgid "Mirror (RAID-1)"
+msgstr "ਮਿੱਰਰ (RAID-1)"
+
+#: ../src/gdu/gdu-util.c:848
+#| msgid "RAID-1"
+msgctxt "RAID level"
+msgid "RAID-1"
+msgstr "RAID-1"
+
+#: ../src/gdu/gdu-util.c:851
+msgctxt "RAID level"
+msgid "Parity Disk (RAID-4)"
+msgstr "ਪਾਰੀਟੀ ਡਿਸਕ (ਰੇਡ-4)"
+
+#: ../src/gdu/gdu-util.c:853
+#| msgid "RAID-4"
+msgctxt "RAID level"
+msgid "RAID-4"
+msgstr "RAID-4"
+
+#: ../src/gdu/gdu-util.c:856
+msgctxt "RAID level"
+msgid "Distributed Parity (RAID-5)"
+msgstr "ਡਿਸਟਰੀਬਿਊਟਡ ਪਾਰੀਟੀ (ਰੇਡ-5)"
+
+#: ../src/gdu/gdu-util.c:858
+#| msgid "RAID-5"
+msgctxt "RAID level"
+msgid "RAID-5"
+msgstr "RAID-5"
+
+#: ../src/gdu/gdu-util.c:861
+msgctxt "RAID level"
+msgid "Dual Distributed Parity (RAID-6)"
+msgstr "ਦੋਹਰੀ ਡਿਸਟਰੀਬਿਊਟਡ ਪਾਰੀਟੀ (ਰੇਡ-6)"
+
+#: ../src/gdu/gdu-util.c:863
+#| msgid "RAID-6"
+msgctxt "RAID level"
+msgid "RAID-6"
+msgstr "RAID-6"
+
+#: ../src/gdu/gdu-util.c:866
+#| msgid "Mirrored (RAID-1)"
+msgctxt "RAID level"
+msgid "Stripe of Mirrors (RAID-10)"
+msgstr "ਮਿੱਰਰ ਦਾ ਸਟਰਿਪ (RAID-10)"
+
+#: ../src/gdu/gdu-util.c:868
+#| msgid "RAID-10"
+msgctxt "RAID level"
+msgid "RAID-10"
+msgstr "RAID-10"
+
+#: ../src/gdu/gdu-util.c:871
+msgctxt "RAID level"
+msgid "Concatenated (Linear)"
+msgstr ""
+
+#: ../src/gdu/gdu-util.c:873
+msgctxt "RAID level"
+msgid "Linear"
+msgstr "ਲੀਨੀਅਰ"
+
+#: ../src/gdu/gdu-util.c:887
+msgid ""
+"Striped set without parity. Provides improved performance but no fault "
+"tolerance. If a single disk in the array fails, the entire RAID-0 array "
+"fails."
+msgstr ""
+
+#: ../src/gdu/gdu-util.c:891
+msgid ""
+"Mirrored set without parity. Provides fault tolerance and improved "
+"performance for reading. RAID-1 arrays can sustain all but one disk failing."
+msgstr ""
+
+#: ../src/gdu/gdu-util.c:895
+msgid ""
+"Striped set with parity on a single disk. Provides improved performance and "
+"fault tolerance. RAID-4 arrays can sustain a single disk failure."
+msgstr ""
+
+#: ../src/gdu/gdu-util.c:899
+msgid ""
+"Striped set with distributed parity. Provides improved performance and fault "
+"tolerance. RAID-5 arrays can sustain a single disk failure."
+msgstr ""
+
+#: ../src/gdu/gdu-util.c:903
+msgid ""
+"Striped set with dual distributed parity. Provides improved performance and "
+"fault tolerance. RAID-6 arrays can sustain two disk failures."
+msgstr ""
+
+#: ../src/gdu/gdu-util.c:907
+msgid ""
+"Striped set with distributed parity. Provides improved performance and fault "
+"tolerance. RAID-10 arrays can sustain multiple drive losses so long as no "
+"mirror loses all its drives."
+msgstr ""
+
+#: ../src/gdu/gdu-util.c:913, c-format
+#| msgid "Unknown Scheme: %s"
+msgid "Unknown RAID level %s."
+msgstr "ਅਣਜਾਣ ਰੇਡ ਲੈਵਲ: %s"
+
+#. Translators: Overall description of the GOOD status
+#: ../src/gdu/gdu-util.c:949
+#| msgid "Disk Utility"
+msgid "Disk is healthy"
+msgstr "ਡਿਸਕ ਠੀਕ-ਠਾਕ ਹੈ"
+
+#. Translators: Overall description of the BAD_ATTRIBUTE_IN_THE_PAST status
+#: ../src/gdu/gdu-util.c:953
+msgid "Disk was used outside of design parameters in the past"
+msgstr "ਡਿਸਕ ਬਣਾਈਆਂ ਗਈਆਂ ਹੱਦਾਂ ਤੋਂ ਬਾਹਰ ਵਰਤੀ ਜਾ ਰਹੀ ਹੈ"
+
+#. Translators: Overall description of the BAD_SECTOR status
+#: ../src/gdu/gdu-util.c:957
+#| msgid "The disk has bad sectors."
+msgid "Disk has a few bad sectors"
+msgstr "ਡਿਸਕ ਵਿੱਚ ਕੁਝ ਕੁ ਖਰਾਬ (Bad) ਸੈਕਟਰ ਹਨ।"
+
+#. Translators: Overall description of the BAD_ATTRIBUTE_NOW status
+#: ../src/gdu/gdu-util.c:961
+msgid "DISK IS BEING USED OUTSIDE DESIGN PARAMETERS"
+msgstr "ਡਿਸਕ ਬਣਾਈਆਂ ਗਈਆਂ ਹੱਦਾਂ ਤੋਂ ਬਾਹਰ ਵਰਤੀ ਜਾ ਰਹੀ ਹੈ"
+
+#. Translators: Suggested action for the BAD_ATTRIBUTE_NOW status
+#. Translators: Suggested action for the BAD_SECTOR_MANY status
+#. Translators: Suggested action for the BAD_STATUS status
+#: ../src/gdu/gdu-util.c:963 ../src/gdu/gdu-util.c:971
+#: ../src/gdu/gdu-util.c:977
+msgid "Backup all data and replace the disk"
+msgstr "ਸਾਰੇ ਡਾਟੇ ਦਾ ਬੈਕਅੱਪ ਲਵੋ ਅਤੇ ਬਦਲੋ"
+
+#. Translators: Overall description of the BAD_SECTOR_MANY status
+#: ../src/gdu/gdu-util.c:968
+msgid "DISK HAS MANY BAD SECTORS"
+msgstr "ਡਿਸਕ ਉੱਤੇ ਕਈ ਖ਼ਰਾਬ ਸੈਕਟਰ ਹਨ"
+
+#. Translators: Overall description of the BAD_STATUS status
+#: ../src/gdu/gdu-util.c:975
+msgid "DISK FAILURE IS IMMINENT"
+msgstr ""
+
+#. Translators: Description when the overall SMART status is unknown
+#. Translators: Shown in the "Self-assessment" item in the status table
+#. * when the self-assessment of the drive is unknown
+#. Translators: Shown in the "Bad Sectors" item in the status table
+#. * when we don't know if the disk has bad sectors
+#. Translators: Shown in the "Powered On" item in the status table when we don't know
+#. * the amount of time the disk has been powered on
+#. Translators: Shown in the "Temperature" item in the status table when we don't know
+#. * the temperature of the disk
+#.
+#. Translators: Shown in the "Self-tests" item in the status table
+#: ../src/gdu/gdu-util.c:982 ../src/gdu-gtk/gdu-ata-smart-dialog.c:2524
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2542
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2562
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2571
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2633
+#: ../src/playground/grid/gdu-grid-element.c:566
+msgid "Unknown"
+msgstr "ਅਣਜਾਣ"
+
+#. Translator: The word "blank" is used as an adjective, e.g. we are decsribing discs that are already blank
+#: ../src/gdu/gdu-volume.c:74
+msgid "CD-ROM Disc"
+msgstr "CD-ROM ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:74
+msgid "Blank CD-ROM Disc"
+msgstr "ਖਾਲੀ CD-ROM ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:75
+msgid "CD-R Disc"
+msgstr "CD-R ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:75
+msgid "Blank CD-R Disc"
+msgstr "ਖਾਲੀ CD-R ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:76
+msgid "CD-RW Disc"
+msgstr "CD-RW ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:76
+msgid "Blank CD-RW Disc"
+msgstr "ਖਾਲੀ CD-RW ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:77 ../src/gdu/gdu-volume.c:78
+msgid "DVD-ROM Disc"
+msgstr "DVD-ROM ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:77 ../src/gdu/gdu-volume.c:78
+msgid "Blank DVD-ROM Disc"
+msgstr "ਖਾਲੀ DVD-ROM ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:79
+msgid "DVD-RW Disc"
+msgstr "DVD-RW ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:79
+msgid "Blank DVD-RW Disc"
+msgstr "ਖਾਲੀ DVD-RW ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:80
+msgid "DVD-RAM Disc"
+msgstr "DVD-RAM ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:80
+msgid "Blank DVD-RAM Disc"
+msgstr "ਖਾਲੀ DVD-RAM ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:81
+msgid "DVD+R Disc"
+msgstr "DVD+R ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:81
+msgid "Blank DVD+R Disc"
+msgstr "ਖਾਲੀ DVD+R ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:82
+msgid "DVD+RW Disc"
+msgstr "DVD+RW ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:82
+msgid "Blank DVD+RW Disc"
+msgstr "ਖਾਲੀ DVD+RW ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:83
+msgid "DVD+R DL Disc"
+msgstr "DVD+R DL ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:83
+msgid "Blank DVD+R DL Disc"
+msgstr "ਖਾਲੀ DVD+R DL ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:84
+msgid "DVD+RW DL Disc"
+msgstr "DVD+RW DL ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:84
+msgid "Blank DVD+RW DL Disc"
+msgstr "ਖਾਲੀ DVD+RW DL ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:85
+msgid "Blu-Ray Disc"
+msgstr "ਬਲਿਉ-ਰੇ ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:85
+msgid "Blank Blu-Ray Disc"
+msgstr "ਖਾਲੀ ਬਲਿਉ-ਰੇ ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:86
+msgid "Blu-Ray R Disc"
+msgstr "ਬਲਿਉ-ਰੇ R ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:86
+msgid "Blank Blu-Ray R Disc"
+msgstr "ਖਾਲੀ ਬਲਿਉ-ਰੇ R ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:87
+msgid "Blu-Ray RW Disc"
+msgstr "ਬਲਿਉ-ਰੇ RW ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:87
+msgid "Blank Blu-Ray RW Disc"
+msgstr "ਖਾਲੀ ਬਲਿਉ-ਰੇ RW ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:88
+msgid "HD DVD Disc"
+msgstr "HD DVD ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:88
+msgid "Blank HD DVD Disc"
+msgstr "ਖਾਲੀ HD DVD ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:89
+msgid "HD DVD-R Disc"
+msgstr "HD DVD-R ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:89
+msgid "Blank HD DVD-R Disc"
+msgstr "ਖਾਲੀ HD DVD-R ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:90
+msgid "HD DVD-RW Disc"
+msgstr "HD DVD-RW ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:90
+msgid "Blank HD DVD-RW Disc"
+msgstr "ਖਾਲੀ HD DVD-RW ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:91
+msgid "MO Disc"
+msgstr "MO ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:91
+msgid "Blank MO Disc"
+msgstr "ਖਾਲੀ MO ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:92
+msgid "MRW Disc"
+msgstr "MRW ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:92
+msgid "Blank MRW Disc"
+msgstr "ਖਾਲੀ MRW ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:93
+msgid "MRW/W Disc"
+msgstr "MRW/W ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:93
+msgid "Blank MRW/W Disc"
+msgstr "ਖਾਲੀ MRW/W ਡਿਸਕ"
+
+#: ../src/gdu/gdu-volume.c:274
+msgid "Blank Optical Disc"
+msgstr "ਖਾਲੀ ਓਪਟੀਕਲ ਡਿਸਕ"
+
+#. Translators: Label for an extended partition
+#. * %s is the size, formatted like '45 GB'
+#.
+#: ../src/gdu/gdu-volume.c:284
+#, c-format
+msgid "%s Extended"
+msgstr "%s ਐਕਸਟੈਂਡ"
+
+#: ../src/gdu/gdu-volume.c:285
+#| msgid "Creating Partition"
+msgid "Contains logical partitions"
+msgstr "ਲਾਜ਼ੀਕਲ ਪਾਰਟੀਸ਼ਨ ਹਨ"
+
+#. Translators: Label for an extended partition
+#. * %s is the size, formatted like '45 GB'
+#.
+#: ../src/gdu/gdu-volume.c:300
+#, c-format
+msgid "%s Encrypted"
+msgstr "%s ਇੰਕ੍ਰਿਪਟਡ"
+
+#: ../src/gdu/gdu-volume.c:310
+msgid "Optical Disc"
+msgstr "ਓਪਟੀਕਲ ਡਿਸਕ"
+
+#. Translators: Label for a partition with a filesystem
+#. * %s is the size, formatted like '45 GB'
+#.
+#: ../src/gdu/gdu-volume.c:316
+#, c-format
+msgid "%s Filesystem"
+msgstr "%s ਫਾਇਲ ਸਿਸਟਮ"
+
+#. Translators: Label for a partition table
+#. * %s is the size, formatted like '45 GB'
+#.
+#: ../src/gdu/gdu-volume.c:322
+#, c-format
+msgid "%s Partition Table"
+msgstr "%s ਪਾਰਟੀਸ਼ਨ ਟੇਬਲ"
+
+#. Translators: Label for a LVM volume
+#. * %s is the size, formatted like '45 GB'
+#.
+#: ../src/gdu/gdu-volume.c:328
+#, c-format
+msgid "%s LVM2 Physical Volume"
+msgstr "%s LVM2 ਫਿਜ਼ੀਕਲ ਵਾਲੀਅਮ"
+
+#. Translators: Used if no specific RAID level could be determined
+#: ../src/gdu/gdu-volume.c:341
+#| msgid "RAID"
+msgctxt "RAID level"
+msgid "RAID"
+msgstr "RAID"
+
+#. Translators: label for a RAID component
+#. * First %s is the size, formatted like '45 GB'
+#.
+#: ../src/gdu/gdu-volume.c:347 ../src/gdu/gdu-volume.c:359, c-format
+#| msgid "RAID Component"
+msgid "%s RAID Component"
+msgstr "%s ਰੇਡ ਭਾਗ"
+
+#. Translators: description for a RAID component
+#. * First %s is the array name, e.g. 'My Photos RAID',
+#. * second %s is the RAID level string, e.g 'RAID-5'
+#.
+#: ../src/gdu/gdu-volume.c:352
+#, c-format
+msgid "Part of \"%s\" %s array"
+msgstr "\"%s\" %s ਅਰੇ ਦੇ ਭਾਗ"
+
+#. Translators: label for a swap partition
+#. * %s is the size, formatted like '45 GB'
+#.
+#: ../src/gdu/gdu-volume.c:370
+#, c-format
+msgid "%s Swap Space"
+msgstr "%s ਸਵੈਪ ਥਾਂ"
+
+#. Translators: label for a data partition
+#. * %s is the size, formatted like '45 GB'
+#.
+#: ../src/gdu/gdu-volume.c:375
+#, c-format
+msgid "%s Data"
+msgstr "%s ਡਾਟਾ"
+
+#. Translators: label for a volume of unrecognized use
+#. * %s is the size, formatted like '45 GB'
+#.
+#: ../src/gdu/gdu-volume.c:381 ../src/gdu/gdu-volume.c:397
+#, c-format
+msgid "%s Unrecognized"
+msgstr "%s ਬਿਨ-ਕੈਟਾਗਰੀ"
+
+#. Translators: description for a volume of unrecognized use
+#: ../src/gdu/gdu-volume.c:383
+#| msgid "Unknown error"
+msgid "Unknown or Unused"
+msgstr "ਅਣਜਾਣ  ਜਾਂ ਨਾ-ਵਰਤੇ"
+
+#. Translators: label for a partition
+#. * %s is the size, formatted like '45 GB'
+#.
+#: ../src/gdu/gdu-volume.c:390 ../src/gdu/gdu-volume.c:392
+#, c-format
+msgid "%s Partition"
+msgstr "%s ਪਾਰਟੀਸ਼ਨ"
+
+#. Translators: The VPD name for a volume. The %d is the partition number
+#. * and the %s is the VPD name for the drive.
+#.
+#: ../src/gdu/gdu-volume.c:424, c-format
+#| msgid "Partition %d on %s"
+msgid "Partition %d of %s"
+msgstr "%2$s ਉੱਤੇ %1$d ਪਾਰਟੀਸ਼ਨ"
+
+#. Translators: The VPD name for a volume. The %d is the partition number.
+#.
+#: ../src/gdu/gdu-volume.c:430, c-format
+#| msgid "Partition"
+msgid "Partition %d"
+msgstr "%d ਪਾਰਟੀਸ਼ਨ"
+
+#. Translators: The VPD name for a whole-disk volume.
+#. * The %s is the VPD name for the drive.
+#.
+#: ../src/gdu/gdu-volume.c:438
+#, c-format
+msgid "Whole-disk volume on %s"
+msgstr "%s ਉੱਤੇ ਪੂਰਾ-ਡਿਸਕ ਵਾਲੀਅਮ"
+
+#. Translators: The VPD name for a whole-disk volume.
+#.
+#: ../src/gdu/gdu-volume.c:443
+msgid "Whole-disk volume"
+msgstr "ਪੂਰਾ-ਡਿਸਕ ਵਾਲੀਅਮ"
+
+#. Translators: label for an unallocated space on a disk
+#. * %s is the size, formatted like '45 GB'
+#.
+#: ../src/gdu/gdu-volume-hole.c:150, c-format
+#| msgid "Free"
+msgid "%s Free"
+msgstr "%s ਖਾਲੀ"
+
+#: ../src/gdu/gdu-volume-hole.c:159 ../src/palimpsest/gdu-shell.c:418
+msgid "Unallocated Space"
+msgstr "ਨਾ-ਵਰਤੀ ਖਾਲੀ ਥਾਂ"
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:144
+msgid "Read Error Rate"
+msgstr "ਰੀਡ ਗਲਤੀ ਰੇਟ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:145
+msgid ""
+"Frequency of errors while reading raw data from the disk. A non-zero value "
+"indicates a problem with either the disk surface or read/write heads"
+msgstr ""
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:154
+msgid "Throughput Performance"
+msgstr "ਥਰੂਪੁੱਟ ਕਾਰਗੁਜ਼ਾਰੀ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:155
+msgid "Average efficiency of the disk"
+msgstr "ਡਿਸਕ ਦੀ ਔਸਤ ਕਾਰਗੁਜ਼ਾਰੀ"
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:162
+msgid "Spinup Time"
+msgstr "ਸਪਿਨਅੱਪ ਟਾਈਮ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:163
+#| msgid "Time needed to spin up the disk."
+msgid "Time needed to spin up the disk"
+msgstr "ਡਿਸਕ ਨੂੰ ਘੁੰਮਣ ਲਈ ਲੋੜੀਦਾ ਸਮਾਂ"
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:170
+msgid "Start/Stop Count"
+msgstr "ਗਿਣਤੀ ਚਾਲੂ/ਰੋਕੋ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:171
+msgid "Number of spindle start/stop cycles"
+msgstr ""
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:178
+msgid "Reallocated Sector Count"
+msgstr "ਸੈਕਟਰ ਗਿਣਟੀ ਮੁੜ-ਜਾਰੀ ਕਰੋ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:179
+msgid ""
+"Count of remapped sectors. When the hard drive finds a read/write/"
+"verification error, it mark the sector as \"reallocated\" and transfers data "
+"to a special reserved area (spare area)"
+msgstr ""
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:188
+msgid "Read Channel Margin"
+msgstr "ਚੈਨਲ ਪੜ੍ਹਨ ਅੰਤਰ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:189
+msgid "Margin of a channel while reading data."
+msgstr "ਡਾਟਾ ਪੜ੍ਹਨ ਦੌਰਾਨ ਚੈਨਲ ਦਾ ਅੰਤਰ"
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:196
+msgid "Seek Error Rate"
+msgstr "ਸੀਕ ਗਲਤੀ ਰੇਟ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:197
+#| msgid "Frequency of errors while positioning."
+msgid "Frequency of errors while positioning"
+msgstr "ਸਥਿਤ ਕਰਨ ਦੇ ਦੌਰਾਨ ਗਲਤੀਆਂ ਦੀ ਫਰੀਕਿਊਂਸੀ ਹੈ"
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:204
+msgid "Seek Timer Performance"
+msgstr "ਸੀਕ ਟਾਈਮਰ ਕਾਰਗੁਜ਼ਾਰੀ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:205
+msgid "Average efficiency of operatings while positioning"
+msgstr ""
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:212
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:536
+msgid "Power-On Hours"
+msgstr "ਪਾਵਰ-ਆਨ ਘੰਟੇ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:213
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:537
+#, fuzzy
+#| msgid "Number of hours in general operational state."
+msgid "Number of hours elapsed in the power-on state"
+msgstr "ਆਮ ਓਪਰੇਸ਼ਨ ਹਾਲਤ ਵਿੱਚ ਹੋਣ ਦੀ ਘੰਟਿਆਂ ਦੀ ਗਿਣਤੀ ਹੈ।"
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:220
+msgid "Spinup Retry Count"
+msgstr "ਸਪਿਨਅੱਪ ਰੀ-ਟਰਾਈ ਗਿਣਤੀ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:221
+msgid "Number of retry attempts to spin up"
+msgstr ""
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:228
+msgid "Calibration Retry Count"
+msgstr "ਕੈਲੀਬਰੇਸ਼ਨ ਰੀ-ਟਰਾਈ ਗਿਣਤੀ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:229
+msgid "Number of attempts to calibrate the device"
+msgstr ""
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:236
+msgid "Power Cycle Count"
+msgstr "ਪਾਵਰ ਸਾਈਕਲ ਗਿਣਤੀ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:237
+#, fuzzy
+#| msgid "Number of power-on events."
+msgid "Number of power-on events"
+msgstr "ਪਾਵਰ-ਆਨ ਈਵੈਂਟਾਂ ਦੀ ਗਿਣਤੀ ਹੈ।"
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:244
+msgid "Soft read error rate"
+msgstr "ਸਾਫਟ ਰੀਡ ਗਲਤੀ ਰੇਟ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:245
+#, fuzzy
+#| msgid "Frequency of errors while positioning."
+msgid "Frequency of 'program' errors while reading from the disk"
+msgstr "ਸਥਿਤ ਕਰਨ ਦੇ ਦੌਰਾਨ ਗਲਤੀਆਂ ਦੀ ਫਰੀਕਿਊਂਸੀ ਹੈ।"
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:252
+msgid "Reported Uncorrectable Errors"
+msgstr "ਨਾ-ਠੀਕ ਹੋਣਯੋਗ ਗਲਤੀਆਂ ਬਾਰੇ ਰਿਪੋਰਟ ਦਿੱਤੀ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:253
+msgid "Number of errors that could not be recovered using hardware ECC"
+msgstr ""
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:260
+msgid "High Fly Writes"
+msgstr ""
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:261
+msgid "Number of times a recording head is flying outside its normal operating range"
+msgstr ""
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:268
+#| msgid "Temperature"
+msgid "Airflow Temperature"
+msgstr "ਹਵਾ-ਵਹਾ ਤਾਪਮਾਨ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:269
+#| msgid "Temperature of the drive."
+msgid "Airflow temperature of the drive"
+msgstr "ਡਰਾਇਵ ਦਾ ਹਵਾ-ਵਹਾ ਤਾਪਮਾਨ ਹੈ।"
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:276
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:446
+msgid "G-sense Error Rate"
+msgstr "ਜੀ-ਸੈਂਸ ਗਲਤੀ ਰੇਟ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:277
+msgid "Frequency of mistakes as a result of impact loads"
+msgstr ""
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:284
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:503
+msgid "Power-off Retract Count"
+msgstr ""
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:285
+#, fuzzy
+#| msgid "Number of power-on events."
+msgid "Number of power-off or emergency retract cycles"
+msgstr "ਪਾਵਰ-ਆਨ ਈਵੈਂਟਾਂ ਦੀ ਗਿਣਤੀ ਹੈ।"
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:292
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:479
+msgid "Load/Unload Cycle Count"
+msgstr "ਸਾਈਕਲ ਗਿਣਤੀ ਲੋਡ/ਅਣ-ਲੋਡ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:293
+msgid "Number of cycles into landing zone position"
+msgstr ""
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:300
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:519
+msgid "Temperature"
+msgstr "ਤਾਪਮਾਨ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:301
+#| msgid "Current internal temperature in degrees Celsius."
+msgid "Current internal temperature of the drive"
+msgstr "ਡਰਾਇਵ ਦਾ ਮੌਜੂਦਾ ਅੰਦਰੂਨੀ ਤਾਪਮਾਨ ਹੈ"
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:308
+msgid "Hardware ECC Recovered"
+msgstr "ਹਾਰਡਵੇਅਰ ECC ਮੁੜ-ਪ੍ਰਾਪਤ ਕੀਤਾ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:309
+#, fuzzy
+#| msgid "Number of ECC errors."
+msgid "Number of ECC on-the-fly errors"
+msgstr "ECC ਗਲਤੀਆਂ ਦੀ ਗਿਣਤੀ ਹੈ।"
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:316
+msgid "Reallocation Count"
+msgstr "ਰੀ-ਐਲੋਕੇਸ਼ਨ ਗਿਣਤੀ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:317
+msgid ""
+"Number of remapping operations. The raw value of this attribute shows the "
+"total number of (successful and unsuccessful) attempts to transfer data from "
+"reallocated sectors to a spare area"
+msgstr ""
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:327
+msgid "Current Pending Sector Count"
+msgstr "ਮੌਜੂਦਾ ਬਾਕੀ ਸੈਕਟਰ ਗਿਣਤੀ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:328
+msgid ""
+"Number of sectors waiting to be remapped. If the sector waiting to be "
+"remapped is subsequently written or read successfully, this value is "
+"decreased and the sector is not remapped. Read errors on the sector will not "
+"remap the sector, it will only be remapped on a failed write attempt"
+msgstr ""
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:339
+msgid "Uncorrectable Sector Count"
+msgstr "ਨਾ-ਠੀਕ ਕਰਨ ਯੋਗ ਸੈਕਟਰ ਗਿਣਤੀ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:340
+msgid ""
+"The total number of uncorrectable errors when reading/writing a sector. A "
+"rise in the value of this attribute indicates defects of the disk surface "
+"and/or problems in the mechanical subsystem"
+msgstr ""
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:349
+msgid "UDMA CRC Error Rate"
+msgstr "UDMA CRC ਗਲਤੀ ਰੇਟ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:350
+#, fuzzy
+#| msgid "Number of ECC errors."
+msgid "Number of CRC errors during UDMA mode"
+msgstr "ECC ਗਲਤੀਆਂ ਦੀ ਗਿਣਤੀ ਹੈ।"
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:357
+msgid "Write Error Rate"
+msgstr "ਰਾਈਟ ਗਲਤੀ ਰੇਟ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:358
+msgid ""
+"Number of errors while writing to disk (or) multi-zone error rate (or) "
+"flying-height"
+msgstr ""
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:365
+msgid "Soft Read Error Rate"
+msgstr "ਸਾਫਟ ਰੀਡ ਗਲਤੀ ਰੇਟ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:366
+#| msgid "Number of ECC errors."
+msgid "Number of off-track errors"
+msgstr "ਆਫ਼-ਟਰੈਕ ਗਲਤੀਆਂ ਦੀ ਗਿਣਤੀ ਹੈ।"
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:373
+msgid "Data Address Mark Errors"
+msgstr "ਡਿਸਕ ਐਡਰੈੱਸ ਮਾਰਕ ਗਲਤੀਆਂ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:374
+msgid "Number of Data Address Mark (DAM) errors (or) vendor-specific"
+msgstr ""
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:381
+msgid "Run Out Cancel"
+msgstr "ਰਨ ਆਉਟ ਰੱਦ ਕਰੋ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:382
+#| msgid "Number of ECC errors."
+msgid "Number of ECC errors"
+msgstr "ECC ਗਲਤੀਆਂ ਦੀ ਗਿਣਤੀ ਹੈ।"
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:389
+msgid "Soft ECC correction"
+msgstr "ਸਾਫਟ ECC ਸੋਧ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:390
+msgid "Number of errors corrected by software ECC"
+msgstr ""
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:397
+msgid "Thermal Asperity Rate"
+msgstr ""
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:398
+msgid "Number of Thermal Asperity Rate errors"
+msgstr ""
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:405
+msgid "Flying Height"
+msgstr "ਫਲਾਇੰਗ ਹਾਈਟ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:406
+msgid "Height of heads above the disk surface"
+msgstr "ਡਿਸਕ ਤਲ ਉੱਤੇ ਹੈੱਡ ਦੀ ਉਚਾਈ ਹੈ"
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:413
+msgid "Spin High Current"
+msgstr "ਸਪਿਨ ਹਾਈ ਕਰੰਟ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:414
+msgid "Amount of high current used to spin up the drive"
+msgstr ""
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:421
+msgid "Spin Buzz"
+msgstr ""
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:422
+#, fuzzy
+#| msgid "Time needed to spin up the disk."
+msgid "Number of buzz routines to spin up the drive"
+msgstr "ਡਿਸਕ ਨੂੰ ਘੁੰਮਣ ਲਈ ਲੋੜੀਦਾ ਟਾਈਮ।"
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:429
+msgid "Offline Seek Performance"
+msgstr "ਆਫਲਾਈਨ ਸੀਕ ਕਾਰਗੁਜ਼ਾਰੀ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:430
+msgid "Drive's seek performance during offline operations"
+msgstr "ਆਫਲਾਈਨ ਓਪਰੇਸ਼ਨਾਂ ਦੇ ਦੌਰਾਨ ਡਰਾਇਵ ਦੀ ਸੀਕ ਕਾਰਗੁਜ਼ਾਰੀ"
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:437
+msgid "Disk Shift"
+msgstr "ਡਿਸਕ ਸ਼ਿਫਟ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:438
+msgid ""
+"Shift of disk is possible as a result of strong shock loading in the store, "
+"as a result of falling (or) temperature"
+msgstr ""
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:447
+msgid "Number of errors as a result of impact loads as detected by a shock sensor"
+msgstr ""
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:454
+msgid "Loaded Hours"
+msgstr "ਲੋਡ ਕੀਤੇ ਘੰਟੇ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:455
+#| msgid "Number of hours in general operational state."
+msgid "Number of hours in general operational state"
+msgstr "ਆਮ ਓਪਰੇਸ਼ਨ ਹਾਲਤ ਵਿੱਚ ਹੋਣ ਦੀ ਘੰਟਿਆਂ ਦੀ ਗਿਣਤੀ ਹੈ"
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:462
+msgid "Load/Unload Retry Count"
+msgstr "ਮੁੜ-ਟਰਾਈ ਗਿਣਤੀ ਲੋਡ/ਅਣਲੋਡ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:463
+msgid ""
+"Loading on drive caused by numerous recurrences of operations, like reading, "
+"recording, positioning of heads, etc"
+msgstr ""
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:471
+msgid "Load Friction"
+msgstr ""
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:472
+msgid "Load on drive cause by friction in mechanical parts of the store"
+msgstr ""
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:480
+#| msgid "Total number of load cycles."
+msgid "Total number of load cycles"
+msgstr "ਲੋਡ ਸਾਈਕਲਾਂ ਦੀਆਂ ਕੁੱਲ ਗਿਣਤੀ ਹੈ"
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:487
+msgid "Load-in Time"
+msgstr "ਲੋਡ-ਇਨ ਟਾਈਮ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:488
+#, fuzzy
+#| msgid "General time for loading in a drive."
+msgid "General time for loading in a drive"
+msgstr "ਇੱਕ ਡਰਾਇਵ ਵਿੱਚ ਲੋਡ ਕਰਨ ਲਈ ਆਮ ਟਾਈਮ ਹੈ।"
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:495
+msgid "Torque Amplification Count"
+msgstr ""
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:496
+msgid "Quantity efforts of the rotating moment of a drive"
+msgstr ""
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:504
+#, fuzzy
+#| msgid "Number of power-on events."
+msgid "Number of power-off retract events"
+msgstr "ਪਾਵਰ-ਆਨ ਈਵੈਂਟਾਂ ਦੀ ਗਿਣਤੀ ਹੈ।"
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:511
+msgid "GMR Head Amplitude"
+msgstr "GMR ਹੈੱਡ ਐਪਲੀਫਿਕੇਸ਼ਨ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:512
+msgid "Amplitude of heads trembling (GMR-head) in running mode"
+msgstr ""
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:520
+#| msgid "Temperature of the drive."
+msgid "Temperature of the drive"
+msgstr "ਡਰਾਇਵ ਦਾ ਤਾਪਮਾਨ"
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:527
+msgid "Endurance Remaining"
+msgstr ""
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:528
+msgid ""
+"Number of physical erase cycles completed on the drive as a percentage of "
+"the maximum physical erase cycles the drive supports"
+msgstr ""
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:544
+msgid "Uncorrectable ECC Count"
+msgstr "ਨਾ-ਠੀਕ ਕਰਨ ਯੋਗ ECC ਗਿਣਤੀ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:545
+#, fuzzy
+#| msgid "Number of ECC errors."
+msgid "Number of uncorrectable ECC errors"
+msgstr "ECC ਗਲਤੀਆਂ ਦੀ ਗਿਣਤੀ ਹੈ।"
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:552
+msgid "Good Block Rate"
+msgstr "ਚੰਗੇ ਬਲਾਕ ਦਰ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:553
+msgid ""
+"Number of available reserved blocks as a percentage of the total number of "
+"reserved blocks"
+msgstr ""
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:561
+msgid "Head Flying Hours"
+msgstr "ਹੈੱਡ ਫਲਾਇੰਗ ਘੰਟੇ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:562
+msgid "Time while head is positioning"
+msgstr ""
+
+#. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:569
+msgid "Read Error Retry Rate"
+msgstr ""
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:570
+msgid "Number of errors while reading from a disk"
+msgstr "ਡਿਸਕ ਤੋਂ ਪੜ੍ਹਨ ਦੌਰਾਨ ਗਲਤੀਆਂ ਦੀ ਗਿਣਤੀ"
+
+#. Translators: This is shown in the attribute treeview when no description is found.
+#. * %d is the attribute number.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:819, c-format
+#| msgid "No description for attribute %d."
+msgid "No description for attribute %d"
+msgstr "ਗੁਣ %d ਲਈ ਕੋਈ ਵੇਰਵਾ ਨਹੀਂ ਹੈ"
+
+#. Translators: This is shown in the tree view for the normalized value of an attribute (0-254)
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:896
+msgid "Normalized:"
+msgstr "ਨਾਰਮੇਲਾਈਜ਼:"
+
+#. Translators: This is shown in the tree view for the worst value of an attribute (0-254)
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:898
+msgid "Worst:"
+msgstr "ਬੁਰਾ:"
+
+#. Translators: This is shown in the tree view for the threshold of an attribute (0-254)
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:900
+msgid "Threshold:"
+msgstr "ਥਰੈਸ਼ਹੋਲਡ:"
+
+#. Translators: This is shown in the tree view for the interpreted/pretty value of an attribute
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:902
+#| msgctxt "SMART attribute"
+#| msgid "Value"
+msgid "Value:"
+msgstr "ਮੁੱਲ:"
+
+#. Translators: This is used in the attribute treview when normalized/worst/treshold
+#. * value isn't available
+#. Translators: Shown in the treeview for an attribute we don't know the status about
+#. Translators: Used in the treeview for the pretty/interpreted value of an attribute
+#. * where the value cannot be interpreted
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:952
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:960
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:968
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1064
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2181
+msgid "N/A"
+msgstr "N/A"
+
+#. Translators: Shown in the treeview for a failing attribute
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1046
+#| msgctxt "RAID status"
+#| msgid "Repairing"
+msgid "Failing"
+msgstr "ਫੇਲ੍ਹ ਹੋ ਰਹੀ ਹੈ"
+
+#. Translators: Shown in the treeview for an attribute that failed in the past
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1049
+msgid "Failed in the past"
+msgstr "ਪਹਿਲਾਂ ਫੇਲ੍ਹ ਹੋਈ"
+
+#. Translators: Shown in the treeview for an attribute that we want to warn about
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1053
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1061
+#| msgctxt "RAID status"
+#| msgid "Repairing"
+msgid "Warning"
+msgstr "ਚੇਤਾਵਨੀ"
+
+#. Translators: Shown in the treeview for an attribute that is good
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1056
+msgid "Good"
+msgstr "ਠੀਕ"
+
+#. Translators: Shown in the "Run self-test" dialog
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1234
+#| msgid "Select what ATA SMART self test to run"
+msgid "Select what SMART self test to run"
+msgstr "ਚੁਣੋ ਕਿ ਕਿਹੜੇ SMART ਖੁਦ ਟੈਸਟ ਚਲਾਉਣੇ ਹਨ"
+
+#. Translators: Shown in the "Run self-test" dialog
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1245
+msgid ""
+"The tests may take a very long time to complete depending on the speed and "
+"size of the disk. You can continue using your system while the test is "
+"running."
+msgstr ""
+
+#. Translators: Radio button for short test
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1254
+msgid "_Short (usually less than ten minutes)"
+msgstr "ਸੰਖੇਪ (_S) (ਅਕਸਰ ੧੦ ਮਿੰਟ ਤੋਂ ਘੱਟ ਲੱਗਦੇ ਹਨ)"
+
+#. Translators: Radio button for extended test
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1257
+msgid "_Extended (usually tens of minutes)"
+msgstr "ਪੂਰਾ (_E) (ਅਕਸਰ ਬਹੁਤ ਮਿੰਟ)"
+
+#. Translators: Radio button for conveyance test
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1260
+msgid "C_onveyance (usually less than ten minutes)"
+msgstr "ਸੌਖੇ (_o) (ਅਕਸਰ ੧੦ ਮਿੰਟਾਂ ਤੋਂ ਘੱਟ ਸਮਾਂ ਲੱਗਦਾ ਹੈ)"
+
+#. Translators: Button in "Run self-test dialog"
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1268
+msgid "_Initiate Self Test"
+msgstr "ਖੁਦ ਟੈਸਟ ਸ਼ੁਰੂ ਕਰੋ(_I)"
+
+#. Translators: Used in the drive combo-box to indicate the health status is unknown
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1343
+msgid "Health status is unknown"
+msgstr "ਸਿਹਤ ਹਾਲਤ ਅਣਜਾਣ ਹੈ"
+
+#. Translators: Used in the drive combo-box to indicate SMART is not enabled
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1348
+msgid "SMART is not enabled"
+msgstr "SMART ਚਾਲੂ ਨਹੀਂ ਹੈ"
+
+#. Translators: Used in the drive combo-box to indicate SMART is not available
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1351
+#: ../src/palimpsest/gdu-shell.c:310
+msgid "SMART is not available"
+msgstr "SMART ਉਪਲੱਬਧ ਨਹੀਂ ਹੈ"
+
+#. Translators: Title of the SMART dialog
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1505
+msgid "SMART Data"
+msgstr "SMART ਡਾਟਾ"
+
+#. Translators: Label used before the drive combo box
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1536
+#| msgid "%s Drive"
+msgid "_Drive:"
+msgstr "ਡਰਾਇਵ(_D):"
+
+#. Translators: Heading used in the main dialog for the SMART status
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1584
+#| msgctxt "SMART attribute"
+#| msgid "Status"
+msgid "Status"
+msgstr "ਹਾਲਤ"
+
+#. ------------------------------
+#. updated
+#. Translators: Tooltip for the Updated item in the status table
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1607
+msgid ""
+"Time since SMART data was last read – SMART data is updated every 30 minutes "
+"unless the disk is sleeping"
+msgstr ""
+
+#. Translators: Item name in the status table
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1614
+msgid "Updated:"
+msgstr "ਅੱਪਡੇਟ ਕੀਤਾ:"
+
+#. Translators: Used in the status table when data is currently being updated
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1621
+#| msgid "Preparing..."
+msgid "Updating..."
+msgstr "ਅੱਪਡੇਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ..."
+
+#. Translators: Tooltip for the "Update Now" hyperlink
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1640
+msgid "Reads SMART data from the disk, waking it up if necessary"
+msgstr ""
+
+#. Translators: Text used in the hyperlink in the status table to update the SMART status
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1642
+#| msgid "Updates:"
+msgid "Update now"
+msgstr "ਹੁਣੇ ਅੱਪਡੇਟ"
+
+#. ------------------------------
+#. self-tests
+#. Translators: Tooltip for the Self-tests item in the status table
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1668
+msgid "The result of the last self-test that ran on the disk"
+msgstr ""
+
+#. Translators: Item name in the status table
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1674
+msgid "Self-tests:"
+msgstr "ਖੁਦ-ਟੈਸਟ:"
+
+#. Translators: Tooltip for the "Run self-test" hyperlink
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1695
+msgid "Initiates a self-test on the drive"
+msgstr ""
+
+#. Translators: Text used in the hyperlink in the status table to run a self-test
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1697
+msgid "Run self-test"
+msgstr "ਖੁਦ-ਟੈਸਟ ਚਲਾਓ"
+
+#. Translators: Tooptip for the "Cancel" hyperlink
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1714
+msgid "Cancels the currently running test"
+msgstr "ਮੌਜੂਦਾ ਚੱਲ ਰਿਹਾ ਟੈਸਟ ਰੱਦ ਕਰੋ"
+
+#. Translators: Text used in the hyperlink in the status table to cancel a self-test
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1716
+#| msgid "_Cancel"
+msgid "Cancel"
+msgstr "ਰੱਦ ਕਰੋ"
+
+#. ------------------------------
+#. model
+#. Translators: Tooltip for the "Model Name:" item in the status table
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1742
+msgid "The name of the model of the disk"
+msgstr "ਡਿਸਕ ਦੇ ਮਾਡਲ ਦਾ ਨਾਂ"
+
+#. Translators: Item name in the status table
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1748
+msgid "Model Name:"
+msgstr "ਮਾਡਲ ਨਾਂ:"
+
+#. ------------------------------
+#. firmware
+#. Translators: Tooltip for the "Firmware Version:" item in the status table
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1766
+msgid "The firmware version of the disk"
+msgstr "ਡਿਸਕ ਦਾ ਫਿਰਮਵੇਅਰ ਵਰਜਨ"
+
+#. Translators: Item name in the status table
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1772
+msgid "Firmware Version:"
+msgstr "ਫਿਰਮਵੇਅਰ ਵਰਜਨ:"
+
+#. ------------------------------
+#. serial
+#. Translators: Tooltip for the "Serial:" item in the status table
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1790
+#| msgid "Temperature of the drive."
+msgid "The serial number of the disk"
+msgstr "ਡਿਸਕ ਦਾ ਸੀਰਿਅਲ ਨੰਬਰ"
+
+#. Translators: Item name in the status table
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1796
+msgid "Serial Number:"
+msgstr "ਸੀਰਿਅਲ ਨੰਬਰ:"
+
+#. ------------------------------
+#. power on hours
+#. Translators: Tooltip for the "Powered On:" item in the status table
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1814
+msgid "The amount of elapsed time the disk has been in a powered-up state"
+msgstr ""
+
+#. Translators: Item name in the status table
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1820
+msgid "Powered On:"
+msgstr "ਪਾਵਰ ਚਾਲੂ:"
+
+#. ------------------------------
+#. temperature
+#. Translators: Tooltip for the "Temperature:" item in the status table
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1838
+#| msgid "Temperature of the drive."
+msgid "The temperature of the disk"
+msgstr "ਡਿਸਕ ਦਾ ਤਾਪਮਾਨ"
+
+#. Translators: Item name in the status table
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1844
+msgid "Temperature:"
+msgstr "ਤਾਪਮਾਨ:"
+
+#. ------------------------------
+#. bad sectors
+#. Translators: Tooltip for the "Bad Sectors" item in the status table
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1862
+msgid "The sum of pending and reallocated bad sectors"
+msgstr ""
+
+#. Translators: Item name in the status table
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1868
+#| msgid "%d Sector"
+#| msgid_plural "%d Sectors"
+msgid "Bad Sectors:"
+msgstr "ਨਿਕਾਰਾ ਸੈਕਟਰ:"
+
+#. ------------------------------
+#. self assessment
+#. Translators: Tooltip for the "Self Assessment" item in the status table
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1884
+msgid "The assessment from the disk itself whether it is about to fail"
+msgstr ""
+
+#. Translators: Item name in the status table
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1890
+#| msgid "Assessment:"
+msgid "Self Assessment:"
+msgstr "ਖੁਦ ਪੜਤਾਲ:"
+
+#. ------------------------------
+#. overall assessment
+#. Translators: Tooltip for the "Overall Assessment" in the status table
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1906
+msgid "An overall assessment of the health of the disk"
+msgstr ""
+
+#. Translators: Item name in the status table
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1912
+#| msgid "Assessment:"
+msgid "Overall Assessment:"
+msgstr "ਸੰਖੇਪ ਪੜਤਾਲ:"
+
+#. ------------------------------
+#. Translators: Tooltip for the "Do not warn if disk is failing" check button
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1936
+msgid "Leave unchecked to get notified if the disk starts failing"
+msgstr ""
+
+#. Translators: Check button in the status table
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1939
+#| msgid "A hard disk is failing"
+msgid "Don't _warn me if the disk is failing"
+msgstr "ਜੇ ਡਿਸਕ ਫੇਲ੍ਹ ਹੋ ਰਹੀ ਹੋਵੇ ਤਾਂ ਮੈਨੂੰ ਚੇਤਾਵਨੀ ਨਾ ਦਿਓ(_w)"
+
+#. Translators: Heading used in the main dialog for SMART attributes
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1954
+#| msgctxt "SMART attribute"
+#| msgid "Attribute"
+msgid "_Attributes"
+msgstr "ਗੁਣ(_A)"
+
+#. Translators: This string is used as the column title in the treeview for the Attribute ID (0-255)
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1988
+#| msgctxt "SMART attribute"
+#| msgid "ID"
+msgid "ID"
+msgstr "ID"
+
+#. Translators: This string is used as the column title in the treeview for the attribute name and description
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2000
+#| msgctxt "SMART attribute"
+#| msgid "Attribute"
+msgid "Attribute"
+msgstr "ਗੁਣ"
+
+#. Translators: This string is used as the column title in the treeview for the assessment of the attribute
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2017
+#| msgid "Assessment:"
+msgid "Assessment"
+msgstr "ਪੜਤਾਲ"
+
+#. Translators: This string is used as the column title in the treeview for the value of the attribute
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2036
+#| msgctxt "SMART attribute"
+#| msgid "Value"
+msgid "Value"
+msgstr "ਮੁੱਲ"
+
+#. Translators: Used in the treeview for the pretty/interpreted value of an attribute
+#. * for a time-based unit that exceed one year
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2130
+#, c-format
+msgid "%.1f years"
+msgstr "%.1f ਸਾਲ"
+
+#. Translators: Used in the treeview for the pretty/interpreted value of an attribute
+#. * for a time-based unit that exceed one day
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2134, c-format
+#| msgid "%.3g days"
+msgid "%.1f days"
+msgstr "%.1f ਦਿਨ"
+
+#. Translators: Used in the treeview for the pretty/interpreted value of an attribute
+#. * for a time-based unit that exceed one hour
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2138, c-format
+#| msgid "%.3g hours"
+msgid "%.1f hours"
+msgstr "%.1f ਘੰਟੇ"
+
+#. Translators: Used in the treeview for the pretty/interpreted value of an attribute
+#. * for a time-based unit that exceed one minute
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2142, c-format
+#| msgid "%.1f kbit/s"
+msgid "%.1f minutes"
+msgstr "%.1f ਮਿੰਟ"
+
+#. Translators: Used in the treeview for the pretty/interpreted value of an attribute
+#. * for a time-based unit that exceed one second
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2146, c-format
+#| msgid "%.3g secs"
+msgid "%.1f seconds"
+msgstr "%.1f ਸਕਿੰਟ"
+
+#. Translators: Used in the treeview for the pretty/interpreted value of an attribute
+#. * for a time-based unit that is counted in milliseconds
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2150
+msgid "%"
+msgstr "%"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2158, c-format
+#| msgid "%d Sector"
+#| msgid_plural "%d Sectors"
+msgid "%d sector"
+msgid_plural "%d sectors"
+msgstr[0] "%d ਸੈਕਟਰ"
+msgstr[1] "%d ਸੈਕਟਰ"
+
+#. Translators: Used in the treeview for the pretty/interpreted value of an attribute
+#. * for a temperature-based unit - first %f is the temperature in degrees Celcius, second %f
+#. * is the temperature in degrees Fahrenheit
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2170, c-format
+#| msgid "%.3g° C / %.3g° F"
+msgid "%.0f° C / %.0f° F"
+msgstr "%.0f° C / %.0f° F"
+
+#. Translators: Used in the tooltip for a row in the attribute treeview - please keep
+#. * "(Pre-Fail)" in English
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2238
+#, fuzzy
+#| msgid "Failure is a sign of old age."
+msgid "Failure is a sign of imminent disk failure (Pre-Fail)"
+msgstr "ਫੇਲ੍ਹ ਹੋਣਾ ਪੁਰਾਣਾ ਹੋਣ ਦੀ ਨਿਸ਼ਾਨੀ ਹੈ।"
+
+#. Translators: Used in the tooltip for a row in the attribute treeview - please keep
+#. * "(Old-Age)" in English
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2242
+#| msgid "Failure is a sign of old age."
+msgid "Failure is a sign of old age (Old-Age)"
+msgstr "ਫੇਲ੍ਹ ਹੋਣਾ ਪੁਰਾਣਾ ਹੋਣ ਦੀ ਨਿਸ਼ਾਨੀ ਹੈ। (ਪੁਰਾਣੀ)"
+
+#. Translators: Used in the tooltip for a row in the attribute treeview - please keep
+#. * "(Online)" in English
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2248
+#| msgid "Every time data is collected."
+msgid "Every time data is collected (Online)"
+msgstr "ਹਰ ਸਮੇਂ ਡਾਟਾ ਇੱਕਠਾ ਕੀਤਾ। (ਆਨਲਾਈਨ)"
+
+#. Translators: Used in the tooltip for a row in the attribute treeview - please keep
+#. * "(Not Online)" in English
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2252
+msgid "Only during off-line activities (Not Online)"
+msgstr ""
+
+#. Translators: Used in the tooltip for a row in the attribute treeview.
+#. * First %s is the type of the attribute (Pre-Fail or Old-Age).
+#. * Second %s is the update type (Online or Not Online).
+#. * The six %x is the raw data of the attribute.
+#.
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2260
+#, c-format
+msgid ""
+"Type: %s\n"
+"Updates: %s\n"
+"Raw: 0x%02x%02x%02x%02x%02x%02x"
+msgstr ""
+"ਕਿਸਮ: %s\n"
+"ਅੱਪਡੇਟ: %s\n"
+"ਰਾਅ: 0x%02x%02x%02x%02x%02x%02x"
+
+#. Translators: Shown in the "Overall Assessment" item in the status table
+#. * when no drive is currently selected
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2465
+#| msgid "No Media Detected"
+msgid "No drive selected"
+msgstr "ਕੋਈ ਡਰਾਇਵ ਨਹੀਂ ਚੁਣੀ"
+
+#. Translators: Shown in the "Overall Assessment" item in the status table
+#. * when SMART is not available
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2472
+#| msgid "ATA SMART not Supported"
+msgid "SMART not supported"
+msgstr "SMART ਸਹਾਇਕ ਨਹੀਂ ਹੈ"
+
+#. Translators: Shown in the "Overall Assessment" item in the status table
+#. * when SMART is supported but data was never collected
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2480
+msgid "SMART data never collected"
+msgstr "SMART ਡਾਟਾ ਕਦੇ ਵੀ ਨਹੀਂ ਲਿਆ ਗਿਆ"
+
+#. Translators: Shown in the "Overall Assessment" item in the status table
+#. * when the SMART data is malformed
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2487
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2493
+msgid "SMART data is malformed"
+msgstr "SMART ਡਾਟਾ ਨਿਕਾਰਾ ਹੈ"
+
+#. Translators: Shown in the "Self-assessment" item in the status table
+#. * when the self-assessment of the drive is PASSED
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2529
+#| msgctxt "ATA SMART status"
+#| msgid "Passed"
+msgid "Passed"
+msgstr "ਪਾਸ ਹੈ"
+
+#. Translators: Shown in the "Self-assessment" item in
+#. * the status table when the self-assessment of the
+#. * drive is FAILING
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2535
+msgid "FAILING"
+msgstr "ਫੇਲ੍ਹ ਹੋ ਰਿਹਾ ਹੈ"
+
+#. Translators: Shown in the "Bad Sectors" item in the status table
+#. * when we the disk has no bad sectors
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2547
+msgid "None"
+msgstr "ਕੋਈ ਨਹੀਂ"
+
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2552, c-format
+#| msgid "%d Sector"
+#| msgid_plural "%d Sectors"
+msgid "%d bad sector"
+msgid_plural "%d bad sectors"
+msgstr[0] "%d ਨਿਕਾਰਾ ਸੈਕਟਰ"
+msgstr[1] "%d ਨਿਕਾਰਾ ਸੈਕਟਰ"
+
+#. Translators: Shown in the "Self-tests" item in the status table
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2590
+msgid "Last self-test completed OK"
+msgstr "ਆਖਰੀ ਖੁਦ ਟੈਸਟ ਠੀਕ ਪੂਰਾ ਹੋਇਆ"
+
+#. Translators: Shown in the "Self-tests" item in the status table
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2594
+#| msgid "Operation was cancelled"
+msgid "Last self-test was cancelled"
+msgstr "ਆਖਰੀ ਖੁਦ-ਟੈਸਟ ਰੱਦ ਕੀਤਾ ਗਿਆ"
+
+#. Translators: Shown in the "Self-tests" item in the status table
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2598
+#| msgctxt "ATA SMART test result"
+#| msgid "Cancelled (with hard or soft reset)"
+msgid "Last self-test was cancelled (with hard or soft reset)"
+msgstr "ਆਖਰੀ ਖੁਦ-ਟੈਸਟ ਰੱਦ ਕੀਤਾ (ਹਾਰਡ ਜਾਂ ਸੌਫਟ ਰੀਸੈੱਟ)"
+
+#. Translators: Shown in the "Self-tests" item in the status table
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2602
+#| msgctxt "ATA SMART test result"
+#| msgid "Not completed (a fatal error might have occured)"
+msgid "Last self-test not completed (a fatal error might have occured)"
+msgstr "ਆਖਰੀ ਟੈਸਟ ਪੂਰਾ ਨਹੀਂ ਹੋਇਆ (ਇੱਕ ਘਾਤਕ ਗਲਤੀ ਆਈ ਜਾਪਦੀ ਹੈ)"
+
+#. Translators: Shown in the "Self-tests" item in the status table
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2606
+msgid "Last self-test FAILED (Electrical)"
+msgstr "ਆਖਰੀ ਖੁਦ-ਟੈਸਟ ਫੇਲ੍ਹ ਹੋਇਆ (ਬਿਜਲੀ ਕਰਕੇ)"
+
+#. Translators: Shown in the "Self-tests" item in the status table
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2611
+msgid "Last self-test FAILED (Servo)"
+msgstr ""
+
+#. Translators: Shown in the "Self-tests" item in the status table
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2616
+msgid "Last self-test FAILED (Read)"
+msgstr "ਆਖਰੀ ਖੁਦ ਟੈਸਟ ਫੇਲ੍ਹ ਹੋਇਆ (ਪੜ੍ਹਨ)"
+
+#. Translators: Shown in the "Self-tests" item in the status table
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2621
+msgid "Last self-test FAILED (Suspected of having handled damage)"
+msgstr ""
+
+#. Translators: Shown in the "Self-tests" item in the status table
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2626
+msgid "Self-test is in progress"
+msgstr "ਖੁਦ-ਟੈਸਟ ਜਾਰੀ ਹੈ"
+
+#. Translators: Shown in the "Self-tests" item in the status table when a test is underway
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2749
+msgid "Short self-test in progress: "
+msgstr "ਛੋਟਾ ਖੁਦ-ਟੈਸਟ ਜਾਰੀ ਹੈ: "
+
+#. Translators: Shown in the "Self-tests" item in the status table when a test is underway
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2753
+msgid "Extended self-test in progress: "
+msgstr "ਪੂਰਾ ਖੁਦ-ਟੈਸਟ ਜਾਰੀ ਹੈ: "
+
+#. Translators: Shown in the "Self-tests" item in the status table when a test is underway
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2757
+msgid "Conveyance self-test in progress: "
+msgstr "ਸੌਖਾ ਖੁਦ-ਟੈਸਟ ਜਾਰੀ ਹੈ: "
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:217
+#: ../src/playground/grid/gdu-grid-view.c:325
+msgid "Pool"
+msgstr "ਪੂਲ"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:218
+#| msgid "The pool of devices to show"
+msgid "The pool of devices"
+msgstr "ਜੰਤਰਾਂ ਦਾ ਪੂਲ"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:230
+#| msgid "RAID device %s"
+msgid "RAID Level"
+msgstr "RAID ਲੈਵਲ"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:231
+#| msgid "The selected filesystem type"
+msgid "The selected RAID level"
+msgstr "ਚੁਣਿਆ ਰੇਡ ਲੈਵਲ"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:241
+#| msgid "_Name:"
+msgid "Name"
+msgstr "ਨਾਂ"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:242
+#| msgid "The requested filesystem label"
+msgid "The requested name for the array"
+msgstr "ਅਰੇ ਲਈ ਮੰਗਿਆ ਨਾਂ"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:252
+#: ../src/gdu-gtk/gdu-size-widget.c:242
+#| msgid "_Size:"
+msgid "Size"
+msgstr "ਸਾਈਜ਼"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:253
+#| msgid "The requested filesystem label"
+msgid "The requested size of the array"
+msgstr "ਅਰੇ ਦਾ ਮੰਗਿਆ ਸਾਈਜ਼"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:265
+#| msgid "Components:"
+msgid "Component Size"
+msgstr "ਭਾਗ ਸਾਈਜ਼"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:266
+#| msgid "The minimum size of the element"
+msgid "The size of each component"
+msgstr "ਹਰੇਕ ਭਾਗ ਦਾ ਸਾਈਜ਼"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:278
+#| msgid "Percent Size"
+msgid "Stripe Size"
+msgstr "ਸਟਰੀਪ ਸਾਈਜ਼"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:279
+#, fuzzy
+#| msgid "The requested filesystem label"
+msgid "The requested stripe size of the array"
+msgstr "ਮੰਗਿਆ ਫਾਇਲ-ਸਿਸਟਮ ਲੇਬਲ"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:291
+#| msgid "%s Drive"
+msgid "Drives"
+msgstr "ਡਰਾਇਵ"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:292
+msgid "Array of drives to use for the array"
+msgstr "ਅਰੇ ਲਈ ਵਰਤਣ ਵਾਸਤੇ ਡਰਾਇਵਾਂ ਦੀ ਅਰੇ"
+
+#. Translators: This is shown in the Details column.
+#. * %s is the component size e.g. '42 GB'.
+#.
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:740
+#, c-format
+msgid "The disk will be partitioned and a %s partition will be created"
+msgstr "ਡਿਸਕ ਦੇ ਪਾਰਟੀਸ਼ਨ ਕੀਤੇ ਜਾਣਗੇ ਅਤੇ %s ਪਾਰਟੀਸ਼ਨ ਬਣਾਏ ਜਾਣਗੇ।"
+
+#. Translators: This is shown in the Details column.
+#. * %s is the component size e.g. '42 GB'.
+#.
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:747, c-format
+#| msgid "No file system will be created."
+msgid "A %s partition will be created"
+msgstr "%s ਪਾਰਟੀਸ਼ਨ ਬਣਾਇਆ ਜਾਵੇਗਾ"
+
+#. Translators: This is shown in the Details column.
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:754
+msgid "The disk will be partitioned and a partition will be created"
+msgstr "ਡਿਸਕ ਉੱਤੇ ਪਾਰਟੀਸ਼ਨ ਕੀਤੇ ਜਾਣਗੇ ਅਤੇ ਇੱਕ ਪਾਰਟੀਸ਼ਨ ਬਣਾਇਆ ਜਾਵੇਗਾ"
+
+#. Translators: This is shown in the Details column.
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:758
+#| msgid "No file system will be created."
+msgid "A partition will be created"
+msgstr "ਪਾਰਟੀਸ਼ਨ ਬਣਾਇਆ ਜਾਵੇਗਾ"
+
+#. Translators: This is shown in the Details column.
+#. * %s is the component size e.g. '42 GB'.
+#.
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:771
+#, c-format
+msgid "Whole disk is uninitialized. %s available for use"
+msgstr "ਪੂਰੀ ਡਿਸਕ ਸ਼ੁਰੂ ਨਹੀਂ ਕੀਤੀ ਹੋਈ ਹੈ। ਵਰਤਣ ਲਈ %s ਉਪਲੱਬਧ"
+
+#. Translators: This is shown in the Details column.
+#. * %s is the component size e.g. '42 GB'.
+#.
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:778
+#, c-format
+msgid "%s available for use"
+msgstr "ਵਰਤਣ ਲਈ %s ਉਪਲੱਬਧ"
+
+#. Translators: This is shown in the Details column.
+#. * %s is the component size e.g. '42 GB'.
+#.
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:784
+#, c-format
+msgid "The disk has no partitions. %s available for use"
+msgstr "ਡਿਸਕ ਉੱਤੇ ਕੋਈ ਪਾਰਟੀਸ਼ਨ ਨਹੀਂ ਹੈ। ਵਰਤਣ ਲਈ %s ਉਪਲੱਬਧ"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:789, c-format
+#| msgid "The disk has bad sectors."
+msgid "The disk has %d partition"
+msgid_plural "The disk has %d partitions"
+msgstr[0] "ਡਿਸਕ ਉੱਤੇ %d ਪਾਰਟੀਸ਼ਨ ਹੈ"
+msgstr[1] "ਡਿਸਕ ਉੱਤੇ %d ਪਾਰਟੀਸ਼ਨ ਹਨ"
+
+#. Translators: This is shown in the Details column.
+#. * First %s is the dngettext() result of "The disk has %d partitions.".
+#. * Second %s is the component size e.g. '42 GB'.
+#.
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:797
+#, c-format
+msgid "%s. Largest contiguous free block is %s"
+msgstr "%s। ਸਭ ਤੋਂ ਵੱਡਾ ਲਗਾਤਾਰ ਖਾਲੀ ਬਲਾਕ %s ਹੈ"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:894
+#| msgid "Starting RAID Array"
+msgid "Create RAID Array"
+msgstr "ਰੇਡ ਅਰੇ ਸ਼ੁਰੂ ਕਰੋ"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:899
+#: ../src/palimpsest/gdu-section-create-partition-table.c:103
+#: ../src/palimpsest/gdu-section-unrecognized.c:267
+msgid "C_reate"
+msgstr "ਬਣਾਓ(_r)"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:913
+msgid "General"
+msgstr "ਆਮ"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:934
+#| msgid "RAID Type:"
+msgid "RAID _Level:"
+msgstr "RAID ਲੈਵਲ(_L):"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:973
+#| msgid "Array Name:"
+msgid "Array _Name:"
+msgstr "ਅਰੇ ਨਾਂ(_N):"
+
+#. Translators: This is the default name to use for the new array.
+#. * Keep length of UTF-8 representation of the translation of "New RAID Array" to less than
+#. * 32 bytes since that's the on-disk-format limit.
+#.
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:981
+#| msgid "Checking RAID Array"
+msgid "New RAID Array"
+msgstr "ਨਵੀਂ ਰੇਡ ਅਰੇ"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:997
+msgid "Stripe S_ize:"
+msgstr "ਸਟਰੀਪ ਸ਼ਾਈਜ(_i):"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:1007
+msgid "4 KiB"
+msgstr "4 KiB"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:1009
+msgid "8 KiB"
+msgstr "8 KiB"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:1011
+msgid "16 KiB"
+msgstr "16 KiB"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:1013
+msgid "32 KiB"
+msgstr "32 KiB"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:1015
+msgid "64 KiB"
+msgstr "64 KiB"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:1017
+msgid "128 KiB"
+msgstr "128 KiB"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:1019
+msgid "256 KiB"
+msgstr "256 KiB"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:1021
+msgid "512 KiB"
+msgstr "512 KiB"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:1023
+msgid "1 MiB"
+msgstr "1 MiB"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:1040
+#| msgid "Array Size:"
+msgid "Array _Size:"
+msgstr "ਅਰੇ ਸਾਈਜ਼(_S):"
+
+#. Tranlators: this string is used for the column header
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:1076
+msgid "Use"
+msgstr "ਵਰਤੋਂ"
+
+#. Tranlators: this string is used for the column header
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:1096
+msgid "Disk"
+msgstr "ਡਿਸਕ"
+
+#. Tranlators: this string is used for the column header
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:1120
+#| msgid "_Details:"
+msgid "Details"
+msgstr "ਵੇਰਵਾ"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:1156
+msgid "Disks"
+msgstr "ਡਿਸਕਾਂ"
+
+#. Translators: This is for the tip text shown in the dialog.
+#. * First %s is the short localized name for the RAID level, e.g. "RAID-1".
+#.
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:1451
+#, c-format
+msgid "Insufficient number disks to create a %s array."
+msgstr "%s ਅਰੇ ਬਣਾਉਣ ਲਈ ਡਿਸਕਾਂ ਦੀ ਗਿਣਤੀ ਪੂਰੀ ਨਹੀਂ।"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:1470
+#, c-format
+msgid "To create a %s array, select %d disks."
+msgid_plural "To create a %s array, select %d disks."
+msgstr[0] "ਅਰੇ %s ਬਣਾਉਣ ਲਈ %d ਡਿਸਕਾਂ ਚੁਣੋ।"
+msgstr[1] "ਅਰੇ %s ਬਣਾਉਣ ਲਈ %d ਡਿਸਕਾਂ ਚੁਣੋ।"
+
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:1477
+#, c-format
+msgid "To create a %s array, select %d more disks."
+msgid_plural "To create a %s array, select %d more disks."
+msgstr[0] ""
+msgstr[1] ""
+
+#. Translators: This is for the tip text shown in the dialog.
+#. * First %s is the size e.g. '42 GB'.
+#. * Second %s is the short localized name for the RAID level, e.g. "RAID-1".
+#. * Third parameter is the number of disks to use (always greater than 1).
+#.
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:1507
+#, c-format
+msgid "To create a %s %s array on %d disks, press \"Create\""
+msgstr "%3$d ਡਿਸਕਾਂ ਉੱਤੇ %1$s %2$s ਅਰੇ ਬਣਾਉਣ ਲਈ \"ਬਣਾਓ\" ਦੱਬੋ"
+
+#: ../src/gdu-gtk/gdu-gtk.c:171
+msgctxt "application name"
+msgid "Bourne Again Shell"
+msgstr "ਬਰਾਊਨ ਅਗੇਨ ਸ਼ੈੱਲ"
+
+#: ../src/gdu-gtk/gdu-gtk.c:176
+#| msgid "C Shell"
+msgctxt "application name"
+msgid "Bourne Shell"
+msgstr "ਬਰਾਊਨ ਸ਼ੈੱਲ"
+
+#: ../src/gdu-gtk/gdu-gtk.c:181
+#| msgid "C Shell"
+msgctxt "application name"
+msgid "C Shell"
+msgstr "C ਸੈੱਲ"
+
+#: ../src/gdu-gtk/gdu-gtk.c:186
+#| msgid "C Shell"
+msgctxt "application name"
+msgid "TENEX C Shell"
+msgstr "ਟੀਨੀਕਸ C ਸੈੱਲ"
+
+#: ../src/gdu-gtk/gdu-gtk.c:191
+#| msgid "Z Shell"
+msgctxt "application name"
+msgid "Z Shell"
+msgstr "Z ਸੈੱਲ"
+
+#: ../src/gdu-gtk/gdu-gtk.c:196
+#| msgid "C Shell"
+msgctxt "application name"
+msgid "Korn Shell"
+msgstr "ਕਰੋਨ ਸੈੱਲ"
+
+#: ../src/gdu-gtk/gdu-gtk.c:200
+#| msgid "Process Viewer (top)"
+msgctxt "application name"
+msgid "Process Viewer (top)"
+msgstr "ਪਰੋਸੈੱਸ ਵਿਊਰ (top)"
+
+#: ../src/gdu-gtk/gdu-gtk.c:204
+#| msgid "Terminal Pager (less)"
+msgctxt "application name"
+msgid "Terminal Pager (less)"
+msgstr "ਟਰਮੀਨਲ ਪੇਜ਼ਰ (ਘੱਟ)"
+
+#: ../src/gdu-gtk/gdu-gtk.c:216
+#| msgid "Unknown"
+msgctxt "application name"
+msgid "Unknown"
+msgstr "ਅਣਜਾਣ"
+
+#: ../src/gdu-gtk/gdu-gtk.c:227
+#, c-format
+msgid "uid: %d  pid: %d  program: %s"
+msgstr "uid: %d  pid: %d  ਪਰੋਗਰਾਮ: %s"
+
+#: ../src/gdu-gtk/gdu-gtk.c:232
+#, c-format
+msgid "pid: %d  program: %s"
+msgstr "pid: %d  ਪਰੋਗਰਾਮ: %s"
+
+#. Translators: %d is the partition number, %s the name of the disk
+#: ../src/gdu-gtk/gdu-gtk.c:331 ../src/gdu-gtk/gdu-gtk.c:915
+#: ../src/gdu-gtk/gdu-gtk.c:1053
+#, c-format
+msgid "Partition %d on %s"
+msgstr "%2$s ਉੱਤੇ %1$d ਪਾਰਟੀਸ਼ਨ"
+
+#: ../src/gdu-gtk/gdu-gtk.c:367
+msgid "Cannot unmount volume"
+msgstr "ਵਾਲੀਅਮ ਅਣ-ਮਾਊਂਟ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ"
+
+#: ../src/gdu-gtk/gdu-gtk.c:377
+msgid ""
+"One or more applications are using the volume. Quit the applications, and "
+"then try unmounting again."
+msgstr ""
+
+#: ../src/gdu-gtk/gdu-gtk.c:418 ../src/palimpsest/gdu-shell.c:1939
+msgid "_Unmount"
+msgstr "ਅਣ-ਮਾਊਂਟ(_U)"
+
+#: ../src/gdu-gtk/gdu-gtk.c:495
+msgid "Passphrases do not match"
+msgstr "ਸ਼ਬਦ ਮਿਲਦਾ ਨਹੀਂ"
+
+#: ../src/gdu-gtk/gdu-gtk.c:502
+msgid "Passphrases do not differ"
+msgstr "ਸ਼ਬਦ ਵੱਖਰਾ ਨਹੀਂ"
+
+#: ../src/gdu-gtk/gdu-gtk.c:508
+msgid "Passphrase can't be empty"
+msgstr "ਸ਼ਬਦ ਖਾਲੀ ਨਹੀਂ ਹੋ ਸਕਦਾ ਹੈ"
+
+#: ../src/gdu-gtk/gdu-gtk.c:580
+msgid "Cr_eate"
+msgstr "ਬਣਾਓ(_e)"
+
+#: ../src/gdu-gtk/gdu-gtk.c:582
+msgid "Change _Passphrase"
+msgstr "ਸ਼ਬਦ ਬਦਲੋ(_P)"
+
+#: ../src/gdu-gtk/gdu-gtk.c:584 ../src/palimpsest/gdu-shell.c:1942
+msgid "_Unlock"
+msgstr "ਅਣ-ਲਾਕ(_U)"
+
+#: ../src/gdu-gtk/gdu-gtk.c:613
+msgid "To create an encrypted device, choose a passphrase to protect it"
+msgstr "ਇੰਕ੍ਰਿਪਟ ਕੀਤਾ ਜੰਤਰ ਬਣਾਉਣ ਵਾਸਤੇ ਸ਼ਬਦ ਸੁਰੱਖਿਆ ਲਈ ਚੁਣੋ"
+
+#: ../src/gdu-gtk/gdu-gtk.c:616
+msgid "To change the passphrase, enter both the current and new passphrase"
+msgstr "ਸ਼ਬਦ ਬਦਲਣ ਲਈ, ਦੋਵੇਂ ਮੌਜੂਦਾ ਅਤੇ ਨਵਾਂ ਸ਼ਬਦ ਦਿਓ।"
+
+#: ../src/gdu-gtk/gdu-gtk.c:619
+msgid "Data on this device is stored in an encrypted form protected by a passphrase"
+msgstr ""
+"ਇਸ ਜੰਤਰ ਉੱਤੇ ਸਟੋਰ ਕੀਤਾ ਡਾਟਾ ਸ਼ਬਦ ਨਾਲ ਸੁਰੱਖਿਅਤ ਕਰਕੇ ਇੰਕ੍ਰਿਪਟ ਕੀਤੇ ਰੂਪ ਵਿੱਚ ਰੱਖਿਆ ਜਾਵੇਗਾ।"
+
+#: ../src/gdu-gtk/gdu-gtk.c:632
+msgid ""
+"Data on this device will be stored in an encrypted form protected by a "
+"passphrase."
+msgstr ""
+
+#: ../src/gdu-gtk/gdu-gtk.c:635
+msgid "Data on this device is stored in an encrypted form protected by a passphrase."
+msgstr "ਇਸ ਜੰਤਰ ਉੱਤੇ ਸਟੋਰ ਕੀਤਾ ਡਾਟਾ ਸ਼ਬਦ ਨਾਲ ਸੁਰੱਖਿਅਤ ਕਰਕੇ ਇੰਕ੍ਰਿਪਟ ਕੀਤੇ ਰੂਪ ਵਿੱਚ ਹੈ।"
+
+#: ../src/gdu-gtk/gdu-gtk.c:638
+msgid "To make the data available for use, enter the passphrase for the device."
+msgstr "ਵਰਤਣ ਲਈ ਡਾਟਾ ਉਪਲੱਬਧ ਕਰਵਾਉਣ ਵਾਸਤੇ, ਜੰਤਰ ਉੱਤੇ ਸ਼ਬਦ ਦਿਓ।"
+
+#: ../src/gdu-gtk/gdu-gtk.c:647
+msgid "Incorrect Passphrase. Try again."
+msgstr "ਗਲਤ ਸ਼ਬਦ ਹੈ। ਮੁੜ-ਟਰਾਈ ਕਰੋ।"
+
+#: ../src/gdu-gtk/gdu-gtk.c:671
+msgid "C_urrent Passphrase:"
+msgstr "ਮੌਜੂਦਾ ਸ਼ਬਦ(_u):"
+
+#: ../src/gdu-gtk/gdu-gtk.c:685
+msgid "_New Passphrase:"
+msgstr "ਨਵਾਂ ਸ਼ਬਦ(_N):"
+
+#: ../src/gdu-gtk/gdu-gtk.c:698
+msgid "_Verify Passphrase:"
+msgstr "ਸ਼ਬਦ ਜਾਂਚ(_V):"
+
+#: ../src/gdu-gtk/gdu-gtk.c:740
+msgid "_Passphrase:"
+msgstr "ਸ਼ਬਦ(_P):"
+
+#: ../src/gdu-gtk/gdu-gtk.c:755
+msgid "_Forget passphrase immediately"
+msgstr "ਸ਼ਬਦ ਤੁਰੰਤ ਭੁੱਲ ਜਾਓ(_F)"
+
+#: ../src/gdu-gtk/gdu-gtk.c:758
+msgid "Remember passphrase until you _log out"
+msgstr "ਜਦੋਂ ਤੱਕ ਮੈਂ ਲਾਗਆਉਟ ਨਾਲ ਕਰਾਂ, ਸ਼ਬਦ ਯਾਦ ਰੱਖੋ(_l)"
+
+#: ../src/gdu-gtk/gdu-gtk.c:761
+msgid "_Remember forever"
+msgstr "ਹਮੇਸ਼ਾਂ ਯਾਦ ਰੱਖੋ(_R)"
+
+#: ../src/gdu-gtk/gdu-gtk.c:822
+msgid "Enter Passphrase"
+msgstr "ਸ਼ਬਦ ਦਿਓ"
+
+#: ../src/gdu-gtk/gdu-gtk.c:1241
+msgid "Empty (don't create a file system)"
+msgstr "ਖਾਲੀ (ਫਾਇਲ ਸਿਸਟਮ ਨਾ ਬਣਾਓ)"
+
+#: ../src/gdu-gtk/gdu-gtk.c:1262
+msgid "Empty"
+msgstr "ਖਾਲੀ"
+
+#: ../src/gdu-gtk/gdu-gtk.c:1270
+msgid "Extended Partition"
+msgstr "ਐਕਸੈਂਡ ਪਾਰਟੀਸ਼ਨ"
+
+#: ../src/gdu-gtk/gdu-gtk.c:1529 ../src/palimpsest/gdu-shell.c:221
+#: ../src/palimpsest/gdu-shell.c:251
+msgid "Master Boot Record"
+msgstr "ਮਾਸਟਰ ਬੂਟ ਰਿਕਾਰਡ"
+
+#: ../src/gdu-gtk/gdu-gtk.c:1539
+msgid "Don't partition"
+msgstr "ਪਾਰਟੀਸ਼ਨ ਨਾ ਕਰੋ"
+
+#: ../src/gdu-gtk/gdu-size-widget.c:243
+msgid "The currently selected size"
+msgstr "ਮੌਜੂਦਾ ਚੁਣਿਆ ਸਾਈਜ਼"
+
+#: ../src/gdu-gtk/gdu-size-widget.c:256
+#: ../src/playground/grid/gdu-grid-element.c:897
+msgid "Minimum Size"
+msgstr "ਘੱਟੋ-ਘੱਟ ਸਾਈਜ਼"
+
+#: ../src/gdu-gtk/gdu-size-widget.c:257
+#| msgid "The minimum size of the element"
+msgid "The minimum size that can be selected"
+msgstr "ਘੱਟੋ-ਘੱਟ ਸਾਈਜ਼, ਜੋ ਚੁਣਿਆ ਜਾ ਸਕਦਾ ਹੈ"
+
+#: ../src/gdu-gtk/gdu-size-widget.c:270
+#| msgid "Minimum Size"
+msgid "Maximum Size"
+msgstr "ਘੱਟੋ-ਘੱਟ ਸਾਈਜ਼"
+
+#: ../src/gdu-gtk/gdu-size-widget.c:271
+#| msgid "The minimum size of the element"
+msgid "The maximum size that can be selected"
+msgstr "ਵੱਧੋ-ਵੱਧ ਸਾਈਜ਼, ਜੋ ਚੁਣਿਆ ਜਾ ਸਕਦਾ ਹੈ"
+
+#: ../src/gdu-gtk/gdu-time-label.c:70
+#, c-format
+msgid "Less than a minute ago"
+msgstr "ਇੱਕ ਮਿੰਟ ਤੋਂ ਘੱਟ ਚਿਰ ਪਹਿਲਾਂ"
+
+#: ../src/gdu-gtk/gdu-time-label.c:74, c-format
+#| msgid "%d minutes ago"
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "%d ਮਿੰਟ ਪਹਿਲਾਂ"
+msgstr[1] "%d ਮਿੰਟ ਪਹਿਲਾਂ"
+
+#: ../src/gdu-gtk/gdu-time-label.c:81, c-format
+#| msgid "%d hours ago"
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] "%d ਘੰਟਾ ਪਹਿਲਾਂ"
+msgstr[1] "%d ਘੰਟੇ ਪਹਿਲਾਂ"
+
+#. Translators: this is a verb
+#: ../src/nautilus-extension/nautilus-gdu.c:225
+msgid "_Format..."
+msgstr "ਫਾਰਮੈਟ(_F)..."
+
+#: ../src/nautilus-extension/nautilus-gdu.c:226
+msgid "Create new filesystem on the selected device"
+msgstr "ਚੁਣੇ ਜੰਤਰ ਉੱਤੇ ਨਵਾਂ ਫਾਇਲ ਸਿਸਟਮ ਬਣਾਓ"
+
+#. Translators: %s is the name of the device
+#: ../src/notification/gdu-slow-unmount-dialog.c:162
+#, c-format
+msgid "It's now safe to remove \"%s\"."
+msgstr "\"%s\" ਨੂੰ ਹਟਾਉਣਾ ਹੁਣ ਠੀਕ ਹੈ।"
+
+#. Translators: %s is the name of the device
+#: ../src/notification/gdu-slow-unmount-dialog.c:233
+#, c-format
+msgid "Writing data to \"%s\"..."
+msgstr "ਡਾਟਾ \"%s\" ਉੱਤੇ ਲਿਖਿਆ ਜਾ ਰਿਹਾ ਹੈ..."
+
+#: ../src/notification/gdu-slow-unmount-dialog.c:248
+msgid ""
+"To prevent data loss, wait until this has finished before removing media or "
+"disconnecting the device."
+msgstr ""
+"ਡਾਟਾ ਖਤਮ ਹੋਣ ਤੋਂ ਬਚਣ ਲਈ, ਮੀਡਿਆ ਨੂੰ ਹਟਾਉਣ ਜਾਂ ਜੰਤਰ ਨੂੰ ਡਿਸਕ-ਕੁਨੈਕਟ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਇਹ "
+"ਪੂਰਾ ਹੋਣ ਦੀ ਉਡੀਕ ਕਰੋ।"
+
+#: ../src/notification/notification-main.c:170
+msgid "One or more disks are failing"
+msgstr "ਇੱਕ ਜਾਂ ਵੱਧ ਡਿਸਕਾਂ ਫੇਲ੍ਹ ਹੋ ਰਹੀਆਂ ਹਨ"
+
+#. Translators: This is used as the title of the notification
+#: ../src/notification/notification-main.c:535
+#| msgid "A hard disk is failing"
+msgid "A hard disk may be failing"
+msgstr "ਹਾਰਡ ਡਿਸਕ ਫੇਲ੍ਹ ਹੋ ਸਕਦੀ ਹੈ"
+
+#. Translators: This is used as the text of the notification
+#: ../src/notification/notification-main.c:537
+msgid ""
+"One or more hard disks report health problems. Click the icon to get more "
+"information."
+msgstr ""
+"ਇੱਕ ਜਾਂ ਵੱਧ ਹਾਰਡ ਡਿਸਕਾਂ ਨੇ ਸਿਹਤ ਸਮੱਸਿਆ ਬਾਰੇ ਰਿਪੋਰਟ ਦਿੱਤੀ ਹੈ। ਹੋਰ ਜਾਣਕਾਰੀ ਲੈਣ ਲਈ ਆਈਕਾਨ ਉੱਤੇ "
+"ਕਲਿੱਕ ਕਰੋ।"
+
+#: ../src/palimpsest/gdu-main.c:121
+msgid "Volume to show"
+msgstr "ਵੇਖਾਉਣ ਲਈ ਵਾਲੀਅਮ"
+
+#: ../src/palimpsest/gdu-main.c:122
+msgid "Drive to show"
+msgstr "ਵੇਖਾਉਣ ਲਈ ਡਰਾਇਵ"
+
+#: ../src/palimpsest/gdu-section-create-partition-table.c:56
+msgid "Error creating partition table"
+msgstr "ਪਾਰਟੀਸ਼ਨ ਟੇਬਲ ਬਣਾਉਣ ਦੌਰਾਨ ਗਲਤੀ"
+
+#: ../src/palimpsest/gdu-section-create-partition-table.c:85
+msgid "Are you sure you want to format the disk, deleting existing data ?"
+msgstr "ਕੀ ਤੁਸੀਂ ਡਿਸਕ ਨੂੰ ਫਾਰਮੈਟ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ, ਮੌਜੂਦਾ ਡਾਟਾ ਹਟਾਇਆ ਜਾਵੇਗਾ?"
+
+#: ../src/palimpsest/gdu-section-create-partition-table.c:88
+#: ../src/palimpsest/gdu-section-unrecognized.c:251
+#: ../src/palimpsest/gdu-shell.c:1535
+#, c-format
+msgid ""
+"All data on the media in \"%s\" will be irrecovably erased. Make sure "
+"important data is backed up. This action cannot be undone."
+msgstr ""
+
+#: ../src/palimpsest/gdu-section-create-partition-table.c:93
+#: ../src/palimpsest/gdu-section-unrecognized.c:256
+#: ../src/palimpsest/gdu-shell.c:1540
+#, c-format
+msgid ""
+"All data on the drive \"%s\" will be irrecovably erased. Make sure important "
+"data is backed up. This action cannot be undone."
+msgstr ""
+
+#: ../src/palimpsest/gdu-section-create-partition-table.c:181
+msgid "Create Partition Table"
+msgstr "ਪਾਰਟੀਸ਼ਨ ਟੇਬਲ ਬਣਾਓ"
+
+#: ../src/palimpsest/gdu-section-create-partition-table.c:194
+msgid ""
+"To create a new partition table, select the partition table type and then "
+"press \"Create\". All existing data will be lost."
+msgstr ""
+
+#. Translators: 'Type' means partition type here
+#: ../src/palimpsest/gdu-section-create-partition-table.c:210
+#: ../src/palimpsest/gdu-section-partition.c:573
+msgid "Ty_pe:"
+msgstr "ਟਾਈਪ(_p):"
+
+#: ../src/palimpsest/gdu-section-create-partition-table.c:238
+#: ../src/palimpsest/gdu-section-unrecognized.c:498
+msgid "Create"
+msgstr "ਬਣਾਓ"
+
+#: ../src/palimpsest/gdu-section-encrypted.c:253
+msgid ""
+"The volume contains encrypted data that can be unlocked with a passphrase. "
+"The passphrase can optionally be stored in the keyring."
+msgstr ""
+
+#: ../src/palimpsest/gdu-section-encrypted.c:266
+msgid "Change Pa_ssphrase..."
+msgstr "ਸ਼ਬਦ ਬਦਲੋ(_s)..."
+
+#: ../src/palimpsest/gdu-section-encrypted.c:272
+msgid "F_orget Passphrase"
+msgstr "ਸ਼ਬਦ ਭੁੱਲ ਜਾਓ(_o)"
+
+#: ../src/palimpsest/gdu-section-filesystem.c:135
+msgid "Error setting file system label"
+msgstr "ਫਾਇਲ ਸਿਸਟਮ ਲੇਬਲ ਸੈੱਟ ਕਰਨ ਦੌਰਾਨ ਗਲਤੀ"
+
+#: ../src/palimpsest/gdu-section-filesystem.c:207
+msgid "Mountable Filesystem"
+msgstr "ਮਾਊਂਟ ਕਰਨ ਯੋਗ ਫਾਇਲ ਸਿਸਟਮ"
+
+#: ../src/palimpsest/gdu-section-filesystem.c:220
+msgid "The volume contains a mountable filesystem."
+msgstr "ਵਾਲੀਅਮ ਉੱਤੇ ਮਾਊਂਟ ਹੋਣ ਯੋਗ ਫਾਇਥ ਸਿਸਟਮ ਹੈ।"
+
+#. Translators: 'label' means filesystem label here
+#: ../src/palimpsest/gdu-section-filesystem.c:236
+#: ../src/palimpsest/gdu-section-unallocated.c:663
+#: ../src/palimpsest/gdu-section-unrecognized.c:427
+msgid "_Label:"
+msgstr "ਲੇਬਲ(_L):"
+
+#: ../src/palimpsest/gdu-section-filesystem.c:246
+msgid "Change"
+msgstr "ਬਦਲਾਅ"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:75
+msgid "Error adding component"
+msgstr "ਭਾਗ ਸ਼ਾਮਲ ਕਰਨ ਲਈ ਗਲਤੀ"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:153
+#, c-format
+msgid "Select a volume to use as component in the array \"%s\""
+msgstr ""
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:158
+msgid ""
+"Only volumes of acceptable sizes can be selected. You may need to manually "
+"create new volumes of acceptable sizes."
+msgstr ""
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:182
+msgid "Add _Volume"
+msgstr "ਵਾਲੀਅਮ ਸ਼ਾਮਲ(_V)"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:313
+msgid "Error removing component"
+msgstr "ਭਾਗ ਹਟਾਉਣ ਦੌਰਾਨ ਗਲਤੀ"
+
+#. confirmation dialog
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:398
+msgid "Are you sure you want to remove the component from the array ?"
+msgstr "ਕੀ ਤੁਸੀਂ ਅਰੇ ਵਿੱਚੋਂ ਭਾਗ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:400
+#, c-format
+msgid ""
+"The data on component \"%s\" of the RAID Array \"%s\" will be irrecovably "
+"erased and the RAID Array might be degraded. Make sure important data is "
+"backed up. This action cannot be undone."
+msgstr ""
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:411
+msgid "_Remove Component"
+msgstr "ਭਾਗ ਹਟਾਓ(_R)"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:695
+#| msgid "Mirrored (RAID-1)"
+msgctxt "RAID component type"
+msgid "Striped (RAID-0)"
+msgstr "ਸਟਰਿੱਪ (RAID-0)"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:697
+#| msgid "Mirrored (RAID-1)"
+msgctxt "RAID component type"
+msgid "Mirrored (RAID-1)"
+msgstr "ਮਿੱਰਰ (RAID-1)"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:699
+#| msgid "RAID-4"
+msgctxt "RAID component type"
+msgid "RAID-4"
+msgstr "RAID-4"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:701
+#| msgid "RAID-5"
+msgctxt "RAID component type"
+msgid "RAID-5"
+msgstr "RAID-5"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:703
+#| msgid "RAID-6"
+msgctxt "RAID component type"
+msgid "RAID-6"
+msgstr "RAID-6"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:705
+#| msgid "Linear (Just a Bunch Of Disks)"
+msgctxt "RAID component type"
+msgid "Linear (Just a Bunch Of Disks)"
+msgstr "ਲੀਨੀਅਰ (ਕੁਝ ਕੁ ਡਿਸਕਾਂ ਦਾ ਸਮੂਹ)"
+
+#. Translators: %d is the number of components in the RAID
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:713, c-format
+#| msgid "%d Components"
+msgid "%d Component"
+msgid_plural "%d Components"
+msgstr[0] "%d ਭਾਗ"
+msgstr[1] "%d ਭਾਗ"
+
+#. Translators: %d is the number of components in the RAID,
+#. * %s is the size of each component, formatted like '45 GB'
+#.
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:718, c-format
+#| msgid "%d Components"
+msgid "%d Component (%s)"
+msgid_plural "%d Components (%s each)"
+msgstr[0] "%d ਭਾਗ (%s)"
+msgstr[1] "%d ਭਾਗ (%s ਹਰੇਕ)"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:730
+msgctxt "RAID status"
+msgid "Not running, partially assembled"
+msgstr ""
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:738
+msgctxt "RAID status"
+msgid "Not running"
+msgstr "ਨਹੀਂ ਚੱਲ ਰਿਹਾ"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:740
+msgctxt "RAID status"
+msgid "Not running, can only start degraded"
+msgstr ""
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:742
+msgctxt "RAID status"
+msgid "Not running, not enough components to start"
+msgstr "ਚੱਲ ਨਹੀਂ ਰਿਹਾ, ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਲੋੜੀਦੇ ਭਾਗ ਨਹੀਂ"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:761
+msgctxt "RAID status"
+msgid "Degraded"
+msgstr "ਡੀਗਰੇਡ ਕੀਤਾ"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:765
+msgctxt "RAID status"
+msgid "Running"
+msgstr "ਚੱਲ ਰਿਹਾ ਹੈ"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:770
+msgctxt "RAID status"
+msgid "Reshaping"
+msgstr ""
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:773
+msgctxt "RAID status"
+msgid "Resyncing"
+msgstr "ਮੁੜ-ਸੈਕਰੋਨਾਈਜ਼"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:776
+msgctxt "RAID status"
+msgid "Repairing"
+msgstr "ਰਿਪੇਅਰ ਜਾਰੀ"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:779
+msgctxt "RAID status"
+msgid "Recovering"
+msgstr "ਰਿਕਵਰੀ ਜਾਰੀ"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:782
+msgctxt "RAID status"
+msgid "Checking"
+msgstr "ਚੈੱਕ ਕੀਤਾ ਜਾ ਰਿਹਾ"
+
+#. Translators: this string tells about an ongoing synchronization.
+#. * %3.01f is replaced by the percentage of completion
+#. * %s is replaced by the speed of the operation
+#.
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:790
+#, c-format
+msgctxt "RAID status"
+msgid " @ %3.01f%% (%s)"
+msgstr " @ %3.01f%% (%s)"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:856
+msgctxt "Linux MD slave state"
+msgid "Faulty"
+msgstr "ਨੁਕਸ"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:861
+msgctxt "Linux MD slave state"
+msgid "In Sync"
+msgstr "ਸੈਕਰੋ ਵਿਚ"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:863
+msgctxt "Linux MD slave state"
+msgid "Writemostly"
+msgstr "ਬਹੁਤ ਲਿਖਿਆ"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:865
+msgctxt "Linux MD slave state"
+msgid "Blocked"
+msgstr "ਬਲਾਕ"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:867
+msgctxt "Linux MD slave state"
+msgid "Spare"
+msgstr "ਵਾਧੂ"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:958
+msgid "Array Name:"
+msgstr "ਅਰੇ ਨਾਂ:"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:974
+msgid "Home Host:"
+msgstr "ਹੋਮ ਹੋਸਟ:"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:990
+msgid "Array Size:"
+msgstr "ਅਰੇ ਸਾਈਜ਼:"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:1006
+msgid "RAID Type:"
+msgstr "RAID ਟਾਈਪ:"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:1022
+msgid "Components:"
+msgstr "ਭਾਗ:"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:1038
+msgid "State:"
+msgstr "ਹਾਲਤ:"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:1069
+msgid "A_ttach"
+msgstr "ਅਟੈਚ(_t)"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:1075
+msgid ""
+"Attaches the stale component to the RAID array. After attachment, data from "
+"the array will be synchronized on the component."
+msgstr ""
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:1079
+#: ../src/palimpsest/gdu-shell.c:1941
+msgid "_Detach"
+msgstr "ਵੱਖ ਕਰੋ(_D)"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:1085
+msgid ""
+"Detaches the running component from the RAID array. Data on the component "
+"will be erased and the component will be ready for other use."
+msgstr ""
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:1089
+msgid "_Add..."
+msgstr "ਸ਼ਾਮਲ(_A)..."
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:1095
+msgid ""
+"Adds a new component to the running RAID array. Use this when replacing a "
+"failed component or adding a hot spare."
+msgstr ""
+
+#. Translators: this is a verb, as in 'check for consistency'
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:1099
+msgid "Chec_k"
+msgstr "ਚੈੱਕ ਕਰੋ(_k)"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:1103
+msgid "Starts checking the RAID array for redundancy"
+msgstr ""
+
+#. Translators: this is a verb, as in 'repair this RAID array'
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:1106
+msgid "_Repair"
+msgstr "ਰਿਪੇਅਰ(_R)"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:1110
+msgid "Starts repairing the RAID array"
+msgstr "ਰੇਡ ਅਰੇ ਰਿਪੇਅਰ ਕਰਨੀ ਸ਼ੁਰੂ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
+
+#: ../src/palimpsest/gdu-section-linux-md-drive.c:1128
+msgid "State"
+msgstr "ਹਾਲਤ"
+
+#: ../src/palimpsest/gdu-section-no-media.c:126
+msgid "To format or edit media, insert it into the drive and wait a few seconds."
+msgstr "ਮੀਡਿਆ ਫਾਰਮੈਟ ਕਰਨ ਜਾਂ ਸੋਧਣ ਲਈ, ਮੀਡਿਆ ਨੂੰ ਡਰਾਇਵ ਵਿੱਚ ਪਾਓ ਅਤੇ ਕੁਝ ਸਕਿੰਟਾਂ ਲਈ ਉਡੀਕੋ।"
+
+#: ../src/palimpsest/gdu-section-no-media.c:137
+msgid "_Detect Media"
+msgstr "ਮੀਡਿਆ ਖੋਜ(_D)"
+
+#: ../src/palimpsest/gdu-section-partition.c:60
+msgid "Error deleting partition"
+msgstr "ਪਾਰਟੀਸ਼ਨ ਹਟਾਉਣ ਦੌਰਾਨ ਗਲਤੀ"
+
+#: ../src/palimpsest/gdu-section-partition.c:112
+msgid "Are you sure you want to remove the partition, deleting existing data ?"
+msgstr "ਕੀ ਤੁਸੀਂ ਪਾਰਟੀਸ਼ਨ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ, ਮੌਜੂਦਾ ਡਾਟਾ ਹਟਾਇਆ ਜਾਵੇਗਾ?"
+
+#: ../src/palimpsest/gdu-section-partition.c:117
+#, c-format
+msgid ""
+"All data on partition %d with name \"%s\" on the media in \"%s\" and all "
+"partitions contained in this extended partition will be irrecovably erased.\n"
+"\n"
+"Make sure important data is backed up. This action cannot be undone."
+msgstr ""
+
+#: ../src/palimpsest/gdu-section-partition.c:127
+#, c-format
+msgid ""
+"All data on partition %d with name \"%s\" on the media in \"%s\" will be "
+"irrecovably erased.\n"
+"\n"
+"Make sure important data is backed up. This action cannot be undone."
+msgstr ""
+
+#: ../src/palimpsest/gdu-section-partition.c:137
+#, c-format
+msgid ""
+"All data on partition %d on the media in \"%s\" and all partitions contained "
+"in this extended partition will be irrecovably erased.\n"
+"\n"
+"Make sure important data is backed up. This action cannot be undone."
+msgstr ""
+
+#: ../src/palimpsest/gdu-section-partition.c:146
+#, c-format
+msgid ""
+"All data on partition %d on the media in \"%s\" will be irrecovably erased.\n"
+"\n"
+"Make sure important data is backed up. This action cannot be undone."
+msgstr ""
+
+#: ../src/palimpsest/gdu-section-partition.c:157
+#, c-format
+msgid ""
+"All data on partition %d with name \"%s\" of \"%s\" and all partitions "
+"contained in this extended partition will be irrecovably erased.\n"
+"\n"
+"Make sure important data is backed up. This action cannot be undone."
+msgstr ""
+
+#: ../src/palimpsest/gdu-section-partition.c:167
+#, c-format
+msgid ""
+"All data on partition %d with name \"%s\" of \"%s\" will be irrecovably "
+"erased.\n"
+"\n"
+"Make sure important data is backed up. This action cannot be undone."
+msgstr ""
+
+#: ../src/palimpsest/gdu-section-partition.c:177
+#, c-format
+msgid ""
+"All data on partition %d of \"%s\" and all partitions contained in this "
+"extended partition will be irrecovably erased.\n"
+"\n"
+"Make sure important data is backed up. This action cannot be undone."
+msgstr ""
+
+#: ../src/palimpsest/gdu-section-partition.c:186
+#, c-format
+msgid ""
+"All data on partition %d of \"%s\" will be irrecovably erased.\n"
+"\n"
+"Make sure important data is backed up. This action cannot be undone."
+msgstr ""
+
+#: ../src/palimpsest/gdu-section-partition.c:200
+msgid "_Delete Partition"
+msgstr "ਪਾਰਟੀਸ਼ਨ ਹਟਾਓ(_D)"
+
+#: ../src/palimpsest/gdu-section-partition.c:407
+msgid "Error modifying partition"
+msgstr "ਪਾਰਟੀਸ਼ਨ ਸੋਧਣ ਦੌਰਾਨ ਗਲਤੀ"
+
+#: ../src/palimpsest/gdu-section-partition.c:528
+msgid "Partition"
+msgstr "ਪਾਰਟੀਸ਼ਨ"
+
+#: ../src/palimpsest/gdu-section-partition.c:541
+msgid ""
+"The attributes of the partition can be edited. The partition can also be "
+"deleted to make room for other data."
+msgstr ""
+
+#: ../src/palimpsest/gdu-section-partition.c:558
+msgid "Part_ition Label:"
+msgstr "ਪਾਰਟੀਸ਼ਨ ਲੇਬਲ(_i):"
+
+#. flags
+#. used by mbr, apm
+#: ../src/palimpsest/gdu-section-partition.c:587
+msgid "_Bootable"
+msgstr "ਬੂਟਹੋਣ-ਯੋਗ(_B)"
+
+#. used by gpt
+#: ../src/palimpsest/gdu-section-partition.c:595
+msgid "Required / Firm_ware"
+msgstr "ਲੋੜੀਦਾ / ਫਿਰਮਵੇਅਰ(_w)"
+
+#: ../src/palimpsest/gdu-section-partition.c:607
+msgid "Delete the partition"
+msgstr "ਪਾਰਟੀਸ਼ਨ ਹਟਾਓ"
+
+#: ../src/palimpsest/gdu-section-partition.c:611
+msgid "_Revert"
+msgstr "ਰੀਵਰਟ(_R)"
+
+#: ../src/palimpsest/gdu-section-partition.c:616
+msgid "Apply the changes made"
+msgstr "ਕੀਤੇ ਬਦਲਾਅ ਲਾਗੂ ਕਰੋ"
+
+#: ../src/palimpsest/gdu-section-swapspace.c:95
+msgid "The volume contains swap space."
+msgstr "ਵਾਲੀਅਮ ਸਵੈਪ ਥਾਂ ਰੱਖਦਾ ਹੈ।"
+
+#: ../src/palimpsest/gdu-section-unallocated.c:91
+#: ../src/palimpsest/gdu-section-unrecognized.c:148
+msgid "Error creating partition"
+msgstr "ਪਾਰਟੀਸ਼ਨ ਬਣਾਉਣ ਦੌਰਾਨ ਗਲਤੀ"
+
+#: ../src/palimpsest/gdu-section-unallocated.c:407
+msgid ""
+"This is the last primary partition that can be created. If you need more "
+"partitions, you can create an Extended Partition."
+msgstr ""
+
+#: ../src/palimpsest/gdu-section-unallocated.c:416
+msgid ""
+"No more partitions can be created. You may want to delete an existing "
+"partition and then create an Extended Partition."
+msgstr ""
+
+#: ../src/palimpsest/gdu-section-unallocated.c:601
+msgid "Create Partition"
+msgstr "ਪਾਰਟੀਸ਼ਨ ਬਣਾਓ"
+
+#: ../src/palimpsest/gdu-section-unallocated.c:614
+msgid ""
+"To create a new partition, select the size and whether to create a file "
+"system. The partition type, label and flags can be changed after creation."
+msgstr ""
+
+#: ../src/palimpsest/gdu-section-unallocated.c:629
+msgid "_Size:"
+msgstr "ਸਾਈਜ਼(_S):"
+
+#. Translators: unit label for a control that determines partition size in megabytes
+#: ../src/palimpsest/gdu-section-unallocated.c:651
+msgid "MB"
+msgstr "MB"
+
+#. whether to chown fs root for user
+#: ../src/palimpsest/gdu-section-unallocated.c:702
+#: ../src/palimpsest/gdu-section-unrecognized.c:464
+msgid "T_ake ownership of file system"
+msgstr "ਫਾਇਲ ਸਿਸਟਮ ਦੀ ਓਨਰਸ਼ਿਪ ਲਵੋ(_a)"
+
+#: ../src/palimpsest/gdu-section-unallocated.c:705
+#: ../src/palimpsest/gdu-section-unrecognized.c:467
+msgid ""
+"The selected file system has a concept of file ownership. If checked, the "
+"created file system will be owned by you. If not checked, only the super "
+"user can access the file system."
+msgstr ""
+
+#. whether to encrypt underlying device
+#: ../src/palimpsest/gdu-section-unallocated.c:715
+#: ../src/palimpsest/gdu-section-unrecognized.c:477
+msgid "Encr_ypt underlying device"
+msgstr ""
+
+#: ../src/palimpsest/gdu-section-unallocated.c:717
+#: ../src/palimpsest/gdu-section-unrecognized.c:479
+msgid ""
+"Encryption protects your data, requiring a passphrase to be entered before "
+"the file system can be used. May decrease performance and may not be "
+"compatible if you use the media on other operating systems."
+msgstr ""
+
+#: ../src/palimpsest/gdu-section-unallocated.c:734
+msgid "Create partition"
+msgstr "ਪਾਰਟੀਸ਼ਨ ਬਣਾਓ"
+
+#: ../src/palimpsest/gdu-section-unrecognized.c:231
+msgid "Are you sure you want to create a new file system, deleting existing data ?"
+msgstr "ਕੀ ਤੁਸੀਂ ਨਵਾਂ ਫਾਇਲ ਸਿਸਟਮ ਬਣਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ, ਮੌਜੂਦਾ ਡਾਟਾ ਹਟਾ ਕੇ?"
+
+#: ../src/palimpsest/gdu-section-unrecognized.c:235
+#: ../src/palimpsest/gdu-shell.c:1519
+#, c-format
+msgid ""
+"All data on partition %d on the media in \"%s\" will be irrecovably erased. "
+"Make sure important data is backed up. This action cannot be undone."
+msgstr ""
+
+#: ../src/palimpsest/gdu-section-unrecognized.c:242
+#: ../src/palimpsest/gdu-shell.c:1526
+#, c-format
+msgid ""
+"All data on partition %d of \"%s\" will be irrecovably erased. Make sure "
+"important data is backed up. This action cannot be undone."
+msgstr ""
+
+#: ../src/palimpsest/gdu-section-unrecognized.c:397
+msgid "Create File System"
+msgstr "ਫਾਇਲ ਸਿਸਟਮ ਬਣਾਓ"
+
+#: ../src/palimpsest/gdu-section-unrecognized.c:410
+msgid ""
+"To create a new file system on the device, select the type and label and "
+"then press \"Create\". All existing data will be lost."
+msgstr ""
+
+#: ../src/palimpsest/gdu-shell.c:203
+#| msgid "Unknown"
+msgid "Unknown Size"
+msgstr "ਅਣਜਾਣ ਸਾਈਜ਼"
+
+#. Translators: 'scheme' refers to a partition table format here, like 'mbr' or 'gpt'
+#: ../src/palimpsest/gdu-shell.c:226 ../src/palimpsest/gdu-shell.c:255
+#, c-format
+msgid "Unknown Scheme: %s"
+msgstr "ਅਣਜਾਣ ਸਕੀਮ: %s"
+
+#. Translators: %s is the name of the partition table format, like 'Master Boot Record'
+#: ../src/palimpsest/gdu-shell.c:231
+#, c-format
+msgid "Partitioned Media (%s)"
+msgstr "ਪਾਰਟੀਸ਼ਨ ਮੀਡਿਆ (%s)"
+
+#: ../src/palimpsest/gdu-shell.c:236
+msgid "Unpartitioned Media"
+msgstr "ਅਣ-ਪਾਰਟੀਸ਼ਨ ਮੀਡਿਆ"
+
+#: ../src/palimpsest/gdu-shell.c:242 ../src/palimpsest/gdu-shell.c:266
+#: ../src/palimpsest/gdu-shell.c:363
+#, c-format
+msgid "Unrecognized"
+msgstr "ਬੇਪਛਾਣ"
+
+#: ../src/palimpsest/gdu-shell.c:273
+msgid "Linux Software RAID"
+msgstr "ਲੀਨਕਸ ਸਾਫਟਵੇਅਰ ਰੇਡ"
+
+#: ../src/palimpsest/gdu-shell.c:294
+#, c-format
+msgid "SMART status: %s"
+msgstr "SMART ਹਾਲਤ: %s"
+
+#. Translators: this the SMART hyperlink tooltip
+#: ../src/palimpsest/gdu-shell.c:302
+msgid "View details about SMART for this disk"
+msgstr "ਇਸ ਡਿਸਕ ਲਈ ਸਮਾਰਟ ਬਾਰੇ ਵੇਰਵਾ ਵੇਖੋ"
+
+#. Translators: this is the text for the SMART hyperlink
+#: ../src/palimpsest/gdu-shell.c:304
+msgid "More Information"
+msgstr "ਹੋਰ ਜਾਣਕਾਰੀ"
+
+#: ../src/palimpsest/gdu-shell.c:318 ../src/palimpsest/gdu-shell.c:387
+#: ../src/palimpsest/gdu-shell.c:422
+#, c-format
+msgid "%s (Read Only)"
+msgstr "%s (ਕੇਵਲ ਪੜ੍ਹਨ ਲਈ)"
+
+#: ../src/palimpsest/gdu-shell.c:325
+msgid "Not running"
+msgstr "ਚੱਲ ਨਹੀਂ ਰਿਹਾ"
+
+#: ../src/palimpsest/gdu-shell.c:341
+#, c-format
+msgid "%s File System"
+msgstr "%s ਫਾਇਲ ਸਿਸਟਮ"
+
+#: ../src/palimpsest/gdu-shell.c:352
+msgid "Encrypted LUKS Device"
+msgstr "ਇੰਕ੍ਰਿਪਟ ਕੀਤਾ LUKS ਜੰਤਰ"
+
+#: ../src/palimpsest/gdu-shell.c:359
+msgid "Data"
+msgstr "ਡਾਟਾ"
+
+#: ../src/palimpsest/gdu-shell.c:368
+msgid "Cleartext LUKS Device"
+msgstr "ਕਲੀਅਰਟੈਕਸਟ LUKS ਜੰਤਰ"
+
+#: ../src/palimpsest/gdu-shell.c:375
+#, c-format
+msgid "Partition %d (%s)"
+msgstr "ਪਾਰਟੀਸ਼ਨ %d (%s)"
+
+#: ../src/palimpsest/gdu-shell.c:928
+msgid "Error checking file system on device"
+msgstr "ਜੰਤਰ ਉੱਤੇ ਫਾਇਲ ਸਿਸਟਮ ਚੈੱਕ ਕਰਨ ਦੌਰਾਨ ਗਲਤੀ"
+
+#: ../src/palimpsest/gdu-shell.c:943
+#, c-format
+msgid "File system check on \"%s\" completed"
+msgstr "\"%s\" ਉੱਤੇ ਫਾਇਲ ਸਿਸਟਮ ਚੈੱਕ ਕਰਨਾ ਪੂਰਾ ਹੋਇਆ"
+
+#: ../src/palimpsest/gdu-shell.c:947
+msgid "File system is clean."
+msgstr "ਫਾਇਲ ਸਿਸਟਮ ਸਾਫ਼ ਹੈ।"
+
+#: ../src/palimpsest/gdu-shell.c:950
+msgid "File system is <b>NOT</b> clean."
+msgstr "ਫਾਇਲ ਸਿਸਟਮ ਸਾਫ਼ <b>ਨਹੀਂ</b> ਹੈ।"
+
+#: ../src/palimpsest/gdu-shell.c:1036
+msgid "Error unmounting device"
+msgstr "ਜੰਤਰ ਅਣ-ਮਾਊਂਟ ਕਰਨ ਲਈ ਗਲਤੀ"
+
+#: ../src/palimpsest/gdu-shell.c:1090
+msgid "Error ejecting device"
+msgstr "ਜੰਤਰ ਬਾਹਰ ਕੱਢਣ ਲਈ ਗਲਤੀ"
+
+#: ../src/palimpsest/gdu-shell.c:1121
+msgid "Error detaching device"
+msgstr "ਜੰਤਰ ਵੱਖ ਕਰਨ ਦੌਰਾਨ ਗਲਤੀ"
+
+#: ../src/palimpsest/gdu-shell.c:1218
+msgid "Error unlocking device"
+msgstr "ਜੰਤਰ ਅਣ-ਲਾਕ ਕਰਨ ਦੌਰਾਨ ਗਲਤੀ"
+
+#: ../src/palimpsest/gdu-shell.c:1283
+msgid "Error locking encrypted device"
+msgstr "ਇੰਕ੍ਰਿਪਟ ਕੀਤੇ ਜੰਤਰ ਨੂੰ ਲਾਕ ਕਰਨ ਦੌਰਾਨ ਗਲਤੀ"
+
+#: ../src/palimpsest/gdu-shell.c:1320
+#, c-format
+msgid "There was an error starting the drive \"%s\"."
+msgstr "ਡਰਾਇਵ \"%s\" ਸ਼ੁਰੂ ਕਰਨ ਦੌਰਾਨ ਗਲਤੀ ਸੀ।"
+
+#: ../src/palimpsest/gdu-shell.c:1374
+#, c-format
+msgid "Are you sure you want to start the drive \"%s\" in degraded mode ?"
+msgstr "ਕੀ ਤੁਸੀਂ ਡਰਾਇਵ \"%s\" ਨੂੰ ਡੀਗਰੇਡ ਮੋਡ ਵਿੱਚ ਸ਼ੁਰੂ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?"
+
+#: ../src/palimpsest/gdu-shell.c:1378
+msgid ""
+"Starting a RAID array in degraded mode means that the RAID volume is no "
+"longer tolerant to drive failures. Data on the volume may be irrevocably "
+"lost if a drive fails."
+msgstr ""
+
+#: ../src/palimpsest/gdu-shell.c:1383
+msgid "_Start Array"
+msgstr "ਅਰੇ ਸ਼ੁਰੂ ਕਰੋ(_S)"
+
+#: ../src/palimpsest/gdu-shell.c:1411
+#, c-format
+msgid "There was an error stopping the drive \"%s\"."
+msgstr "ਡਰਾਇਵ \"%s\" ਰੋਕਣ ਦੌਰਾਨ ਗਲਤੀ ਆਈ ਹੈ।"
+
+#: ../src/palimpsest/gdu-shell.c:1463
+msgid "Error erasing data"
+msgstr "ਡਾਟਾ ਸਾਫ਼ ਕਰਨ ਦੌਰਾਨ ਗਲਤੀ"
+
+#: ../src/palimpsest/gdu-shell.c:1515
+msgid "Are you sure you want to erase the device ?"
+msgstr "ਕੀ ਤੁਸੀਂ ਜੰਤਰ ਨੂੰ ਸਾਫ਼ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?"
+
+#: ../src/palimpsest/gdu-shell.c:1551 ../src/palimpsest/gdu-shell.c:1946
+msgid "_Erase"
+msgstr "ਸਾਫ਼ ਕਰੋ(_E)"
+
+#: ../src/palimpsest/gdu-shell.c:1626
+#| msgid "Removing Component from RAID Array"
+msgid "Error creating component for RAID array"
+msgstr "RAID ਅਰੇ ਲਈ ਭਾਗ ਬਣਾਉਣ ਦੌਰਾਨ ਗਲਤੀ"
+
+#: ../src/palimpsest/gdu-shell.c:1653
+#, fuzzy
+#| msgid "Error creating partition table"
+msgid "Error creating partition table for component for RAID array"
+msgstr "ਪਾਰਟੀਸ਼ਨ ਟੇਬਲ ਬਣਾਉਣ ਦੌਰਾਨ ਗਲਤੀ"
+
+#: ../src/palimpsest/gdu-shell.c:1679
+#| msgid "Error creating partition"
+msgid "Error creating RAID array"
+msgstr "ਰੇਡ ਅਰੇ ਬਣਾਉਣ ਦੌਰਾਨ ਗਲਤੀ"
+
+#: ../src/palimpsest/gdu-shell.c:1870 ../src/palimpsest/gdu-shell.c:2198
+msgid "Palimpsest Disk Utility"
+msgstr "ਪਾਲੀਮਪਸਿਸਟ ਡਿਸਕ ਸਹੂਲਤ"
+
+#: ../src/palimpsest/gdu-shell.c:1875
+msgid "translator-credits"
+msgstr ""
+"ਅਮਨਪਰੀਤ ਸਿੰਘ ਆਲਮ, ੨੦੦੯\n"
+"http://www.satluj.com"
+
+#: ../src/palimpsest/gdu-shell.c:1931
+msgid "_File"
+msgstr "ਫਾਇਲ(_F)"
+
+#: ../src/palimpsest/gdu-shell.c:1932
+#| msgid "_Name:"
+msgid "_New"
+msgstr "ਨਵਾਂ(_N)"
+
+#: ../src/palimpsest/gdu-shell.c:1933
+#| msgid "Starting RAID Array"
+msgid "Software _RAID Array"
+msgstr "ਸਾਫਟਵੇਅਰ ਰੇਡ ਅਰੇ(_R)"
+
+#: ../src/palimpsest/gdu-shell.c:1933
+#| msgid "Starts repairing the RAID array"
+msgid "Create a new Software RAID array"
+msgstr "ਨਵੀਂ ਸਾਫਟਵੇਅਰ ਰੇਡ ਅਰੇ ਬਣਾਓ"
+
+#: ../src/palimpsest/gdu-shell.c:1934
+msgid "_Edit"
+msgstr "ਸੋਧ(_E)"
+
+#: ../src/palimpsest/gdu-shell.c:1935 ../src/palimpsest/gdu-shell.c:1950
+msgid "_Help"
+msgstr "ਮੱਦਦ(_H)"
+
+#: ../src/palimpsest/gdu-shell.c:1937
+msgid "_Check File System"
+msgstr "ਫਾਇਲ ਸਿਸਟਮ ਚੈੱਕ ਕਰੋ(_C)"
+
+#: ../src/palimpsest/gdu-shell.c:1937
+msgid "Check the file system"
+msgstr "ਫਾਇਲ ਸਿਸਟਮ ਚੈੱਕ ਕਰੋ"
+
+#: ../src/palimpsest/gdu-shell.c:1938
+msgid "_Mount"
+msgstr "ਮਾਊਂਟ ਕਰੋ(_M)"
+
+#: ../src/palimpsest/gdu-shell.c:1938
+msgid "Mount the filesystem on device"
+msgstr "ਜੰਤਰ ਉੱਤੇ ਫਾਇਲ ਸਿਸਟਮ ਮਾਊਂਟ ਕਰੋ"
+
+#: ../src/palimpsest/gdu-shell.c:1939
+msgid "Unmount the filesystem"
+msgstr "ਫਾਇਲ ਸਿਸਟਮ ਅਣ-ਮਾਊਂਟ"
+
+#: ../src/palimpsest/gdu-shell.c:1940
+msgid "_Eject"
+msgstr "ਬਾਹਰ ਕੱਢੋ(_E)"
+
+#: ../src/palimpsest/gdu-shell.c:1940
+msgid "Eject media from the device"
+msgstr "ਜੰਤਰ ਤੋਂ ਮੀਡਿਆ ਬਾਹਰ ਕੱਢੋ"
+
+#: ../src/palimpsest/gdu-shell.c:1941
+msgid "Detach the device from the system, powering it off"
+msgstr "ਜੰਤਰ ਨੂੰ ਸਿਸਟਮ ਤੋਂ ਵੱਖ ਕਰਕੇ ਬੰਦ ਕਰੋ"
+
+#: ../src/palimpsest/gdu-shell.c:1942
+msgid "Unlock the encrypted device, making the data available in cleartext"
+msgstr "ਇੰਕ੍ਰਿਪਟ ਕੀਤਾ ਜੰਤਰ ਅਣ-ਲਾਕ ਕਰੋ, ਡਾਟੇ ਨੂੰ ਪਲੇਨ ਟੈਕਸਟ ਵਿੱਚ ਉਪਲੱਬਧ ਕਰਵਾਉ"
+
+#: ../src/palimpsest/gdu-shell.c:1943
+msgid "_Lock"
+msgstr "ਲਾਕ ਕਰੋ(_L)"
+
+#: ../src/palimpsest/gdu-shell.c:1943
+msgid "Lock the encrypted device, making the cleartext data unavailable"
+msgstr "ਇੰਕ੍ਰਿਪਟ ਕੀਤੇ ਜੰਤਰ ਨੂੰ ਲਾਕ ਕਰੋ, ਪਲੇਨ ਟੈਕਸਟ ਡਾਟੇ ਨੂੰ ਅਣ-ਉਪਲੱਬਧ ਬਣਾਓ"
+
+#: ../src/palimpsest/gdu-shell.c:1944
+msgid "_Start"
+msgstr "ਸ਼ੁਰੂ(_S)"
+
+#: ../src/palimpsest/gdu-shell.c:1944
+msgid "Start the array"
+msgstr "ਅਰੇ ਸ਼ੁਰੂ ਕਰੋ"
+
+#: ../src/palimpsest/gdu-shell.c:1945
+msgid "_Stop"
+msgstr "ਰੋਕੋ(_S)"
+
+#: ../src/palimpsest/gdu-shell.c:1945
+msgid "Stop the array"
+msgstr "ਅਰੇ ਰੋਕੋ"
+
+#: ../src/palimpsest/gdu-shell.c:1946
+msgid "Erase the contents of the device"
+msgstr "ਜੰਤਰ ਦੀ ਸਮੱਗਰੀ ਮਿਟਾਓ"
+
+#: ../src/palimpsest/gdu-shell.c:1949
+msgid "_Quit"
+msgstr "ਬਾਹਰ(_Q)"
+
+#: ../src/palimpsest/gdu-shell.c:1949
+msgid "Quit"
+msgstr "ਬਾਹਰ ਜਾਓ"
+
+#: ../src/palimpsest/gdu-shell.c:1950
+msgid "Get Help on Palimpsest Disk Utility"
+msgstr "ਪਾਲੀਮਪਸਿਸਟ ਡਿਸਕ ਸਹੂਲਤ ਲਈ ਮੱਦਦ ਲਵੋ"
+
+#: ../src/palimpsest/gdu-shell.c:1951
+msgid "_About"
+msgstr "ਇਸ ਬਾਰੇ(_A)"
+
+#: ../src/palimpsest/gdu-shell.c:2030
+msgid "An error occured"
+msgstr "ਗਲਤੀ ਆਈ ਹੈ"
+
+#: ../src/palimpsest/gdu-shell.c:2039
+msgid "The operation failed."
+msgstr "ਓਪਰੇਸ਼ਨ ਫੇਲ੍ਹ ਹੋਇਆ।"
+
+#: ../src/palimpsest/gdu-shell.c:2042
+msgid "The device is busy."
+msgstr "ਜੰਤਰ ਰੁੱਝਿਆ ਹੈ।"
+
+#: ../src/palimpsest/gdu-shell.c:2045
+#| msgid "The operation was cancelled."
+msgid "The operation was canceled."
+msgstr "ਓਪਰੇਸ਼ਨ ਰੱਦ ਕੀਤਾ।"
+
+#: ../src/palimpsest/gdu-shell.c:2048
+msgid "The daemon is being inhibited."
+msgstr "ਡੈਮਨ ਇੰਹਿਬਿਟ ਹੈ।"
+
+#: ../src/palimpsest/gdu-shell.c:2051
+msgid "An invalid option was passed."
+msgstr "ਅਢੁੱਕਵੀਂ ਚੋਣ ਦਿੱਤੀ ਗਈ।"
+
+#: ../src/palimpsest/gdu-shell.c:2054
+msgid "The operation is not supported."
+msgstr "ਓਪਰੇਸ਼ਨ ਸਹਾਇਕ ਨਹੀਂ ਹੈ।"
+
+#: ../src/palimpsest/gdu-shell.c:2057
+msgid "Getting ATA SMART data would wake up the device."
+msgstr "ATA SMART ਡਾਟਾ ਲੈਣ ਨਾਲ ਜੰਤਰ ਜਾਗ ਪਵੇਗਾ।"
+
+#: ../src/palimpsest/gdu-shell.c:2060
+msgid "Permission denied."
+msgstr "ਅਧਿਕਾਰ ਪਾਬੰਦੀ ਹੈ।"
+
+#: ../src/palimpsest/gdu-shell.c:2063
+msgid "Unknown error"
+msgstr "ਅਣਜਾਣ ਗਲਤੀ"
+
+#: ../src/palimpsest/gdu-shell.c:2099
+msgid "_Details:"
+msgstr "ਵੇਰਵਾ(_D):"
+
+#: ../src/palimpsest/gdu-shell.c:2236
+msgid "<small>_Cancel</small>"
+msgstr "<small>ਰੱਦ ਕਰੋ(_C)</small>"
+
+#: ../src/playground/grid/gdu-grid-details.c:134
+#: ../src/playground/grid/gdu-grid-element.c:877
+msgid "View"
+msgstr "ਵੇਖੋ"
+
+#: ../src/playground/grid/gdu-grid-details.c:135
+msgid "The view to show details for"
+msgstr "ਇਸ ਲਈ ਵੇਰਵੇ ਵੇਖਣ ਲਈ ਵੇਖੋ"
+
+#: ../src/playground/grid/gdu-grid-details.c:196
+msgid "Device:"
+msgstr "ਜੰਤਰ:"
+
+#: ../src/playground/grid/gdu-grid-element.c:557
+msgid "Extended"
+msgstr "ਐਕਸਟੈਂਡ"
+
+#: ../src/playground/grid/gdu-grid-element.c:560
+msgid "Encrypted"
+msgstr "ਇੰਕ੍ਰਿਪਟ ਕੀਤਾ"
+
+#: ../src/playground/grid/gdu-grid-element.c:563
+msgid "Free"
+msgstr "ਖਾਲੀ"
+
+#: ../src/playground/grid/gdu-grid-element.c:878
+msgid "The GduGridView object that the element is associated with"
+msgstr ""
+
+#: ../src/playground/grid/gdu-grid-element.c:887
+msgid "Presentable"
+msgstr "ਪੇਸ਼ਕਰਨਯੋਗ"
+
+#: ../src/playground/grid/gdu-grid-element.c:888
+msgid "The presentable shown or NULL if this is a element representing lack of media"
+msgstr ""
+
+#: ../src/playground/grid/gdu-grid-element.c:898
+msgid "The minimum size of the element"
+msgstr "ਐਲੀਮੈਂਟ ਦਾ ਘੱਟੋ-ਘੱਟ ਸਾਈਜ਼"
+
+#: ../src/playground/grid/gdu-grid-element.c:909
+msgid "Percent Size"
+msgstr "ਫੀਸਦੀ ਸਾਈਜ਼"
+
+#: ../src/playground/grid/gdu-grid-element.c:910
+msgid ""
+"The size in percent that this element should claim or 0 to always claim the "
+"specified minimum size"
+msgstr ""
+
+#: ../src/playground/grid/gdu-grid-element.c:921
+msgid "Flags"
+msgstr "ਫਲੈਗ"
+
+#: ../src/playground/grid/gdu-grid-element.c:922
+msgid "Flags for the element"
+msgstr "ਐਲੀਮੈਂਟ ਲਈ ਫਲੈਗ"
+
+#: ../src/playground/grid/gdu-grid-view.c:326
+msgid "The pool of devices to show"
+msgstr "ਵੇਖਣ ਲਈ ਜੰਤਰਾਂ ਦਾ ਪੂਲ"
+
+#~ msgid "%s (%s)"
+#~ msgstr "%s (%s)"
+
+#~ msgid "%.*f %s"
+#~ msgstr "%.*f %s"
+
+#~ msgid "JBOD"
+#~ msgstr "JBOD"
+
+#~ msgid "%s %s (%s)"
+#~ msgstr "%s %s (%s)"
+
+#~ msgid "%s Unallocated"
+#~ msgstr "%s ਨਾ-ਜਾਰੀ"
+
+#~ msgid "1 minute ago"
+#~ msgstr "1 ਮਿੰਟ ਪਹਿਲਾਂ"
+
+#~ msgid "1 hour ago"
+#~ msgstr "1 ਘੰਟਾ ਪਹਿਲਾਂ"
+
+#~ msgid "%.3g mins"
+#~ msgstr "%.3g ਮਿੰਟ"
+
+#~ msgid "Retrieving..."
+#~ msgstr "ਲਿਆ ਜਾ ਰਿਹਾ ਹੈ..."
+
+#~ msgid "One or more attributes exceeding threshold."
+#~ msgstr "ਇੱਕ ਜਾਂ ਵੱਧ ਗੁਣ ਸੀਮਾ (ਥਰੈਸ਼ਹੋਲਡ) ਤੋਂ ਟੱਪ ਰਹੇ ਹਨ।"
+
+#~ msgctxt "ATA SMART status"
+#~ msgid "FAILING"
+#~ msgstr "ਫੇਲ੍ਹ ਹੋ ਰਿਹਾ ਹੈ"
+
+#~ msgid ""
+#~ "Drive failure expected in less than 24 hours. Save all data immediately."
+#~ msgstr "ਡਰਾਇਵ 24 ਘੰਟਿਆਂ ਤੋਂ ਘੱਟ ਸਮੇਂ ਵਿੱਚ ਫੇਲ੍ਹ ਹੋਣ ਦੀ ਸੰਭਵਾਨਾ ਹੈ। ਸਭ ਡਾਟਾ ਤੁਰੰਤ ਸੰਭਾਲ ਲਵੋ।"
+
+#~ msgctxt "ATA SMART status"
+#~ msgid "Unknown"
+#~ msgstr "ਅਣਜਾਣ"
+
+#~ msgctxt "ATA SMART test result"
+#~ msgid "Completed OK"
+#~ msgstr "ਪੂਰਾ ਕੀਤਾ, ਠੀਕ ਹੈ"
+
+#~ msgctxt "ATA SMART test result"
+#~ msgid "Cancelled"
+#~ msgstr "ਰੱਦ ਕੀਤਾ"
+
+#~ msgctxt "ATA SMART test result"
+#~ msgid "FAILED"
+#~ msgstr "ਫੇਲ੍ਹ ਹੈ"
+
+#~ msgctxt "ATA SMART test result"
+#~ msgid "(Electrical)"
+#~ msgstr "(ਇਲੈਕਟ੍ਰੀਕਲ)"
+
+#~ msgctxt "ATA SMART test result"
+#~ msgid "(Servo)"
+#~ msgstr "(ਸਰਵੋ)"
+
+#~ msgctxt "ATA SMART test result"
+#~ msgid "(Read)"
+#~ msgstr "(ਰੀਡ)"
+
+#~ msgctxt "ATA SMART test result"
+#~ msgid "In progress"
+#~ msgstr "ਜਾਰੀ ਹੈ"
+
+#~ msgctxt "ATA SMART test result"
+#~ msgid "Unknown"
+#~ msgstr "ਅਣਜਾਣ"
+
+#~ msgctxt "ATA SMART graph label"
+#~ msgid "%g°"
+#~ msgstr "%g°"
+
+#~ msgctxt "ATA SMART graph label"
+#~ msgid "now"
+#~ msgstr "ਹੁਣ"
+
+#~ msgctxt "ATA SMART graph label"
+#~ msgid "%dm"
+#~ msgstr "%dm"
+
+#~ msgctxt "ATA SMART graph label"
+#~ msgid "%dh"
+#~ msgstr "%dh"
+
+#~ msgctxt "ATA SMART graph label"
+#~ msgid "%dh %dm"
+#~ msgstr "%dh %dm"
+
+#~ msgctxt "ATA SMART graph label"
+#~ msgid "%dd"
+#~ msgstr "%dd"
+
+#~ msgctxt "ATA SMART graph label"
+#~ msgid "%dd %dh"
+#~ msgstr "%dd %dh"
+
+#~ msgctxt "ATA SMART graph label"
+#~ msgid "%dd %dh %dm"
+#~ msgstr "%dd %dh %dm"
+
+#~ msgid "ATA SMART Attributes"
+#~ msgstr "ATA SMART ਗੁਣ"
+
+#~ msgid "View:"
+#~ msgstr "ਵੇਖੋ:"
+
+#~ msgid "6 hours"
+#~ msgstr "6 ਘੰਟੇ"
+
+#~ msgid "24 hours"
+#~ msgstr "24 ਘੰਟੇ"
+
+#~ msgid "3 days"
+#~ msgstr "3 ਦਿਨ"
+
+#~ msgid "12 days"
+#~ msgstr "12 ਦਿਨ"
+
+#~ msgid "36 days"
+#~ msgstr "36 ਦਿਨ"
+
+#~ msgid "96 days"
+#~ msgstr "96 ਦਿਨ"
+
+#~ msgid "Online"
+#~ msgstr "ਆਨਲਾਈਨ"
+
+#~ msgid "Offline"
+#~ msgstr "ਆਫਲਾਈਨ"
+
+#~ msgid "Only when performing a self-test."
+#~ msgstr "ਜਦੋਂ ਖੁਦ-ਟੈਸਟ ਕੀਤੇ ਜਾਣ।"
+
+#~ msgid "Pre-fail"
+#~ msgstr "ਪਹਿਲਾਂ-ਫੇਲ੍ਹ"
+
+#~ msgid "Old-age"
+#~ msgstr "ਪੁਰਾਣੀ"
+
+#~ msgid "Type:"
+#~ msgstr "ਟਾਈਪ:"
+
+#~ msgid "Description:"
+#~ msgstr "ਵੇਰਵਾ:"
+
+#~ msgid "OK"
+#~ msgstr "ਠੀਕ ਹੈ"
+
+#~ msgid "Error initiating ATA SMART Self Test"
+#~ msgstr "ATA SMART ਖੁਦ ਟੈਸਟ ਸ਼ੁਰੂ ਕਰਨ ਵਿੱਚ ਗਲਤੀ"
+
+#~ msgid "ATA SMART Self Test"
+#~ msgstr "ATA SMART ਖੁਦ ਟੈਸਟ"
+
+#~ msgid "Health"
+#~ msgstr "ਸਿਹਤ"
+
+#~ msgid "Last Test:"
+#~ msgstr "ਆਖਰੀ ਟੈਸਟ:"
+
+#~ msgid "Refresh ATA SMART data from the device"
+#~ msgstr "ਜੰਤਰ ਤੋਂ ATA SMART ਡਾਟਾ ਤਾਜ਼ਾ ਕਰੋ"
+
+#~ msgid "Show ATA SMART Historical Data"
+#~ msgstr "ATA SMART ਅਤੀਤ ਡਾਟਾ ਵੇਖੋ"
+
+#~ msgid "%d Components (%s each)"
+#~ msgstr "%d ਭਾਗ (%s ਹਰੇਕ)"
+
+#~ msgid "Connected via %s"
+#~ msgstr "%s ਰਾਹੀਂ ਕੁਨੈਕਟ ਹੈ"
+
+#~ msgid "Are you sure you want to format the volume?"
+#~ msgstr "ਕੀ ਤੁਸੀਂ ਵਾਲੀਅਮ ਨੂੰ ਫਾਰਮੈਟ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?"
+
+#~ msgid "Open volume in Palimpsest Disk Utility"
+#~ msgstr "ਪਾਲੀਮਪਸਿਸਟ ਡਿਸਕ ਸਹੂਲਤ ਵਿੱਚ ਵਾਲੀਅਮ ਖੋਲ੍ਹੋ"
+
+#~ msgid "Error creating filesystem"
+#~ msgstr "ਫਾਇਲ ਸਿਸਟਮ ਬਣਾਉਣ ਦੌਰਾਨ ਗਲਤੀ"
+
+#~ msgid "Operations should go here"
+#~ msgstr "ਓਪਰੇਸ਼ਨ ਇੱਥੇ ਜਾਣੇ ਚਾਹੀਦੇ ਹਨ"

@@ -32,6 +32,10 @@
 <link linkend="void">void</link>                <link linkend="gdu-drive-deactivate">gdu_drive_deactivate</link>                (<link linkend="GduDrive">GduDrive</link> *drive,
                                                          <link linkend="GduDriveDeactivateFunc">GduDriveDeactivateFunc</link> callback,
                                                          <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-drive-has-unallocated-space">gdu_drive_has_unallocated_space</link>     (<link linkend="GduDrive">GduDrive</link> *drive,
+                                                         <link linkend="gboolean">gboolean</link> *out_whole_disk_is_unitialized,
+                                                         <link linkend="guint64">guint64</link> *out_largest_segment,
+                                                         <link linkend="GduPresentable">GduPresentable</link> **out_presentable);
 </synopsis>
 </refsynopsisdiv>
 
@@ -169,6 +173,56 @@ component available).</para>
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>user_data</parameter>&#160;:</term>
 <listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-drive-has-unallocated-space" role="function">
+<title>gdu_drive_has_unallocated_space ()</title>
+<indexterm zone="gdu-drive-has-unallocated-space"><primary sortas="gdu_drive_has_unallocated_space">gdu_drive_has_unallocated_space</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_drive_has_unallocated_space     (<link linkend="GduDrive">GduDrive</link> *drive,
+                                                         <link linkend="gboolean">gboolean</link> *out_whole_disk_is_unitialized,
+                                                         <link linkend="guint64">guint64</link> *out_largest_segment,
+                                                         <link linkend="GduPresentable">GduPresentable</link> **out_presentable);</programlisting>
+<para>
+This method computes the largest contigious free block of
+unallocated space on <parameter>drive</parameter>.
+</para>
+<para>
+If <parameter>drive</parameter> uses removable media and there is no media inserted,
+<link linkend="FALSE--CAPS"><literal>FALSE</literal></link> is returned.
+</para>
+<para>
+If <parameter>drive</parameter> appears to be completely uninitialized (such as a hard
+disk full of zeros), <parameter>out_whole_disk_is_unitialized</parameter> is set to
+<link linkend="TRUE--CAPS"><literal>TRUE</literal></link>, the size of the media/disk is returned in
+<parameter>out_largest_segment</parameter> and <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> is returned. Note that this can
+also happen if <parameter>drive</parameter> contains signatures unknown to the operating system
+so be careful.
+</para>
+<para>
+If the disk is partitioned and unallocated space exists but no more
+partitions can be created (due to e.g. four primary partitions on a
+MBR partitioned disk), this method returns <link linkend="FALSE--CAPS"><literal>FALSE</literal></link> but
+<parameter>out_largest_segment</parameter> will be set to a non-zero value.
+</para>
+<para>
+Additionally, <parameter>out_presentable</parameter> will be set to either a
+<link linkend="GduVolumeHole"><type>GduVolumeHole</type></link> (if the disk is partitioned and has free space) or
+the <link linkend="GduDrive"><type>GduDrive</type></link> (if the disk is uninitialized).</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>drive</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GduDrive"><type>GduDrive</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out_whole_disk_is_unitialized</parameter>&#160;:</term>
+<listitem><simpara> Return location for whether <parameter>drive</parameter> is uninitialized or <link linkend="NULL--CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out_largest_segment</parameter>&#160;:</term>
+<listitem><simpara> Return location biggest contigious free block of <parameter>drive</parameter> or <link linkend="NULL--CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out_presentable</parameter>&#160;:</term>
+<listitem><simpara> Return location for the presentable that represents free space or <link linkend="NULL--CAPS"><literal>NULL</literal></link>. Free
+with <link linkend="g-object-unref"><function>g_object_unref()</function></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if <parameter>drive</parameter> has unallocated space, <link linkend="FALSE--CAPS"><literal>FALSE</literal></link> otherwise.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 

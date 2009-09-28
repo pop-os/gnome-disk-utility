@@ -31,7 +31,6 @@
 #include "gdu-private.h"
 #include "gdu-pool.h"
 #include "gdu-device.h"
-#include "gdu-ata-smart-attribute.h"
 #include "devkit-disks-device-glue.h"
 
 /* --- SUCKY CODE BEGIN --- */
@@ -73,6 +72,7 @@ typedef struct
         char   **device_mount_paths;
         uid_t    device_mounted_by_uid;
         gboolean device_presentation_hide;
+        gboolean device_presentation_nopolicy;
         char    *device_presentation_name;
         char    *device_presentation_icon_name;
         guint64  device_size;
@@ -117,7 +117,9 @@ typedef struct
         char   **drive_media_compatibility;
         char    *drive_media;
         gboolean drive_is_media_ejectable;
-        gboolean drive_requires_eject;
+        gboolean drive_can_detach;
+        gboolean drive_can_spindown;
+        gboolean drive_is_rotational;
 
         gboolean optical_disc_is_blank;
         gboolean optical_disc_is_appendable;
@@ -127,25 +129,10 @@ typedef struct
         guint optical_disc_num_sessions;
 
         gboolean drive_ata_smart_is_available;
-        gboolean drive_ata_smart_is_failing;
-        gboolean drive_ata_smart_is_failing_valid;
-        gboolean drive_ata_smart_has_bad_sectors;
-        gboolean drive_ata_smart_has_bad_attributes;
-        gdouble drive_ata_smart_temperature_kelvin;
-        guint64 drive_ata_smart_power_on_seconds;
         guint64 drive_ata_smart_time_collected;
-        guint drive_ata_smart_offline_data_collection_status;
-        guint drive_ata_smart_offline_data_collection_seconds;
-        guint drive_ata_smart_self_test_execution_status;
-        guint drive_ata_smart_self_test_execution_percent_remaining;
-        gboolean drive_ata_smart_short_and_extended_self_test_available;
-        gboolean drive_ata_smart_conveyance_self_test_available;
-        gboolean drive_ata_smart_start_self_test_available;
-        gboolean drive_ata_smart_abort_self_test_available;
-        guint drive_ata_smart_short_self_test_polling_minutes;
-        guint drive_ata_smart_extended_self_test_polling_minutes;
-        guint drive_ata_smart_conveyance_self_test_polling_minutes;
-        GValue drive_ata_smart_attributes;
+        gchar *drive_ata_smart_status;
+        gchar *drive_ata_smart_blob;
+        gsize drive_ata_smart_blob_size;
 
         char    *linux_md_component_level;
         int      linux_md_component_num_raid_devices;
@@ -175,234 +162,211 @@ collect_props (const char *key, const GValue *value, DeviceProperties *props)
 {
         gboolean handled = TRUE;
 
-        if (strcmp (key, "native-path") == 0)
+        if (strcmp (key, "NativePath") == 0)
                 props->native_path = g_strdup (g_value_get_string (value));
 
-        else if (strcmp (key, "device-detection-time") == 0)
+        else if (strcmp (key, "DeviceDetectionTime") == 0)
                 props->device_detection_time = g_value_get_uint64 (value);
-        else if (strcmp (key, "device-media-detection-time") == 0)
+        else if (strcmp (key, "DeviceMediaDetectionTime") == 0)
                 props->device_media_detection_time = g_value_get_uint64 (value);
-        else if (strcmp (key, "device-major") == 0)
+        else if (strcmp (key, "DeviceMajor") == 0)
                 props->device_major = g_value_get_int64 (value);
-        else if (strcmp (key, "device-minor") == 0)
+        else if (strcmp (key, "DeviceMinor") == 0)
                 props->device_minor = g_value_get_int64 (value);
-        else if (strcmp (key, "device-file") == 0)
+        else if (strcmp (key, "DeviceFile") == 0)
                 props->device_file = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "device-file-by-id") == 0)
+        else if (strcmp (key, "DeviceFileById") == 0)
                 props->device_file_by_id = g_strdupv (g_value_get_boxed (value));
-        else if (strcmp (key, "device-file-by-path") == 0)
+        else if (strcmp (key, "DeviceFileByPath") == 0)
                 props->device_file_by_path = g_strdupv (g_value_get_boxed (value));
-        else if (strcmp (key, "device-is-system-internal") == 0)
+        else if (strcmp (key, "DeviceIsSystemInternal") == 0)
                 props->device_is_system_internal = g_value_get_boolean (value);
-        else if (strcmp (key, "device-is-partition") == 0)
+        else if (strcmp (key, "DeviceIsPartition") == 0)
                 props->device_is_partition = g_value_get_boolean (value);
-        else if (strcmp (key, "device-is-partition-table") == 0)
+        else if (strcmp (key, "DeviceIsPartitionTable") == 0)
                 props->device_is_partition_table = g_value_get_boolean (value);
-        else if (strcmp (key, "device-is-removable") == 0)
+        else if (strcmp (key, "DeviceIsRemovable") == 0)
                 props->device_is_removable = g_value_get_boolean (value);
-        else if (strcmp (key, "device-is-media-available") == 0)
+        else if (strcmp (key, "DeviceIsMediaAvailable") == 0)
                 props->device_is_media_available = g_value_get_boolean (value);
-        else if (strcmp (key, "device-is-media-change-detected") == 0)
+        else if (strcmp (key, "DeviceIsMediaChangeDetected") == 0)
                 props->device_is_media_change_detected = g_value_get_boolean (value);
-        else if (strcmp (key, "device-is-media-change-detection-polling") == 0)
+        else if (strcmp (key, "DeviceIsMediaChangeDetectionPolling") == 0)
                 props->device_is_media_change_detection_polling = g_value_get_boolean (value);
-        else if (strcmp (key, "device-is-media-change-detection-inhibitable") == 0)
+        else if (strcmp (key, "DeviceIsMediaChangeDetectionInhibitable") == 0)
                 props->device_is_media_change_detection_inhibitable = g_value_get_boolean (value);
-        else if (strcmp (key, "device-is-media-change-detection-inhibited") == 0)
+        else if (strcmp (key, "DeviceIsMediaChangeDetectionInhibited") == 0)
                 props->device_is_media_change_detection_inhibited = g_value_get_boolean (value);
-        else if (strcmp (key, "device-is-read-only") == 0)
+        else if (strcmp (key, "DeviceIsReadOnly") == 0)
                 props->device_is_read_only = g_value_get_boolean (value);
-        else if (strcmp (key, "device-is-drive") == 0)
+        else if (strcmp (key, "DeviceIsDrive") == 0)
                 props->device_is_drive = g_value_get_boolean (value);
-        else if (strcmp (key, "device-is-optical-disc") == 0)
+        else if (strcmp (key, "DeviceIsOpticalDisc") == 0)
                 props->device_is_optical_disc = g_value_get_boolean (value);
-        else if (strcmp (key, "device-is-luks") == 0)
+        else if (strcmp (key, "DeviceIsLuks") == 0)
                 props->device_is_luks = g_value_get_boolean (value);
-        else if (strcmp (key, "device-is-luks-cleartext") == 0)
+        else if (strcmp (key, "DeviceIsLuksCleartext") == 0)
                 props->device_is_luks_cleartext = g_value_get_boolean (value);
-        else if (strcmp (key, "device-is-linux-md-component") == 0)
+        else if (strcmp (key, "DeviceIsLinuxMdComponent") == 0)
                 props->device_is_linux_md_component = g_value_get_boolean (value);
-        else if (strcmp (key, "device-is-linux-md") == 0)
+        else if (strcmp (key, "DeviceIsLinuxMd") == 0)
                 props->device_is_linux_md = g_value_get_boolean (value);
-        else if (strcmp (key, "device-is-mounted") == 0)
+        else if (strcmp (key, "DeviceIsMounted") == 0)
                 props->device_is_mounted = g_value_get_boolean (value);
-        else if (strcmp (key, "device-mount-paths") == 0)
+        else if (strcmp (key, "DeviceMountPaths") == 0)
                 props->device_mount_paths = g_strdupv (g_value_get_boxed (value));
-        else if (strcmp (key, "device-mounted-by-uid") == 0)
+        else if (strcmp (key, "DeviceMountedByUid") == 0)
                 props->device_mounted_by_uid = g_value_get_uint (value);
-        else if (strcmp (key, "device-presentation-hide") == 0)
+        else if (strcmp (key, "DevicePresentationHide") == 0)
                 props->device_presentation_hide = g_value_get_boolean (value);
-        else if (strcmp (key, "device-presentation-name") == 0)
+        else if (strcmp (key, "DevicePresentationNopolicy") == 0)
+                props->device_presentation_nopolicy = g_value_get_boolean (value);
+        else if (strcmp (key, "DevicePresentationName") == 0)
                 props->device_presentation_name = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "device-presentation-icon-name") == 0)
+        else if (strcmp (key, "DevicePresentationIconName") == 0)
                 props->device_presentation_icon_name = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "device-size") == 0)
+        else if (strcmp (key, "DeviceSize") == 0)
                 props->device_size = g_value_get_uint64 (value);
-        else if (strcmp (key, "device-block-size") == 0)
+        else if (strcmp (key, "DeviceBlockSize") == 0)
                 props->device_block_size = g_value_get_uint64 (value);
 
-        else if (strcmp (key, "job-in-progress") == 0)
+        else if (strcmp (key, "JobInProgress") == 0)
                 props->job_in_progress = g_value_get_boolean (value);
-        else if (strcmp (key, "job-id") == 0)
+        else if (strcmp (key, "JobId") == 0)
                 props->job_id = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "job-initiated-by-uid") == 0)
+        else if (strcmp (key, "JobInitiatedByUid") == 0)
                 props->job_initiated_by_uid = g_value_get_uint (value);
-        else if (strcmp (key, "job-is-cancellable") == 0)
+        else if (strcmp (key, "JobIsCancellable") == 0)
                 props->job_is_cancellable = g_value_get_boolean (value);
-        else if (strcmp (key, "job-percentage") == 0)
+        else if (strcmp (key, "JobPercentage") == 0)
                 props->job_percentage = g_value_get_double (value);
 
-        else if (strcmp (key, "id-usage") == 0)
+        else if (strcmp (key, "IdUsage") == 0)
                 props->id_usage = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "id-type") == 0)
+        else if (strcmp (key, "IdType") == 0)
                 props->id_type = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "id-version") == 0)
+        else if (strcmp (key, "IdVersion") == 0)
                 props->id_version = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "id-uuid") == 0)
+        else if (strcmp (key, "IdUuid") == 0)
                 props->id_uuid = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "id-label") == 0)
+        else if (strcmp (key, "IdLabel") == 0)
                 props->id_label = g_strdup (g_value_get_string (value));
 
-        else if (strcmp (key, "partition-slave") == 0)
+        else if (strcmp (key, "PartitionSlave") == 0)
                 props->partition_slave = g_strdup (g_value_get_boxed (value));
-        else if (strcmp (key, "partition-scheme") == 0)
+        else if (strcmp (key, "PartitionScheme") == 0)
                 props->partition_scheme = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "partition-number") == 0)
+        else if (strcmp (key, "PartitionNumber") == 0)
                 props->partition_number = g_value_get_int (value);
-        else if (strcmp (key, "partition-type") == 0)
+        else if (strcmp (key, "PartitionType") == 0)
                 props->partition_type = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "partition-label") == 0)
+        else if (strcmp (key, "PartitionLabel") == 0)
                 props->partition_label = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "partition-uuid") == 0)
+        else if (strcmp (key, "PartitionUuid") == 0)
                 props->partition_uuid = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "partition-flags") == 0)
+        else if (strcmp (key, "PartitionFlags") == 0)
                 props->partition_flags = g_strdupv (g_value_get_boxed (value));
-        else if (strcmp (key, "partition-offset") == 0)
+        else if (strcmp (key, "PartitionOffset") == 0)
                 props->partition_offset = g_value_get_uint64 (value);
-        else if (strcmp (key, "partition-size") == 0)
+        else if (strcmp (key, "PartitionSize") == 0)
                 props->partition_size = g_value_get_uint64 (value);
 
-        else if (strcmp (key, "partition-table-scheme") == 0)
+        else if (strcmp (key, "PartitionTableScheme") == 0)
                 props->partition_table_scheme = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "partition-table-count") == 0)
+        else if (strcmp (key, "PartitionTableCount") == 0)
                 props->partition_table_count = g_value_get_int (value);
 
-        else if (strcmp (key, "luks-holder") == 0)
+        else if (strcmp (key, "LuksHolder") == 0)
                 props->luks_holder = g_strdup (g_value_get_boxed (value));
 
-        else if (strcmp (key, "luks-cleartext-slave") == 0)
+        else if (strcmp (key, "LuksCleartextSlave") == 0)
                 props->luks_cleartext_slave = g_strdup (g_value_get_boxed (value));
-        else if (strcmp (key, "luks-cleartext-unlocked-by-uid") == 0)
+        else if (strcmp (key, "LuksCleartextUnlockedByUid") == 0)
                 props->luks_cleartext_unlocked_by_uid = g_value_get_uint (value);
 
-        else if (strcmp (key, "drive-vendor") == 0)
+        else if (strcmp (key, "DriveVendor") == 0)
                 props->drive_vendor = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "drive-model") == 0)
+        else if (strcmp (key, "DriveModel") == 0)
                 props->drive_model = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "drive-revision") == 0)
+        else if (strcmp (key, "DriveRevision") == 0)
                 props->drive_revision = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "drive-serial") == 0)
+        else if (strcmp (key, "DriveSerial") == 0)
                 props->drive_serial = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "drive-connection-interface") == 0)
+        else if (strcmp (key, "DriveConnectionInterface") == 0)
                 props->drive_connection_interface = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "drive-connection-speed") == 0)
+        else if (strcmp (key, "DriveConnectionSpeed") == 0)
                 props->drive_connection_speed = g_value_get_uint64 (value);
-        else if (strcmp (key, "drive-media-compatibility") == 0)
+        else if (strcmp (key, "DriveMediaCompatibility") == 0)
                 props->drive_media_compatibility = g_strdupv (g_value_get_boxed (value));
-        else if (strcmp (key, "drive-media") == 0)
+        else if (strcmp (key, "DriveMedia") == 0)
                 props->drive_media = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "drive-is-media-ejectable") == 0)
+        else if (strcmp (key, "DriveIsMediaEjectable") == 0)
                 props->drive_is_media_ejectable = g_value_get_boolean (value);
-        else if (strcmp (key, "drive-requires-eject") == 0)
-                props->drive_requires_eject = g_value_get_boolean (value);
+        else if (strcmp (key, "DriveCanDetach") == 0)
+                props->drive_can_detach = g_value_get_boolean (value);
+        else if (strcmp (key, "DriveCanSpindown") == 0)
+                props->drive_can_spindown = g_value_get_boolean (value);
+        else if (strcmp (key, "DriveIsRotational") == 0)
+                props->drive_is_rotational = g_value_get_boolean (value);
 
-        else if (strcmp (key, "optical-disc-is-blank") == 0)
+        else if (strcmp (key, "OpticalDiscIsBlank") == 0)
                 props->optical_disc_is_blank = g_value_get_boolean (value);
-        else if (strcmp (key, "optical-disc-is-appendable") == 0)
+        else if (strcmp (key, "OpticalDiscIsAppendable") == 0)
                 props->optical_disc_is_appendable = g_value_get_boolean (value);
-        else if (strcmp (key, "optical-disc-is-closed") == 0)
+        else if (strcmp (key, "OpticalDiscIsClosed") == 0)
                 props->optical_disc_is_closed = g_value_get_boolean (value);
-        else if (strcmp (key, "optical-disc-num-tracks") == 0)
+        else if (strcmp (key, "OpticalDiscNumTracks") == 0)
                 props->optical_disc_num_tracks = g_value_get_uint (value);
-        else if (strcmp (key, "optical-disc-num-audio-tracks") == 0)
+        else if (strcmp (key, "OpticalDiscNumAudioTracks") == 0)
                 props->optical_disc_num_audio_tracks = g_value_get_uint (value);
-        else if (strcmp (key, "optical-disc-num-sessions") == 0)
+        else if (strcmp (key, "OpticalDiscNumSessions") == 0)
                 props->optical_disc_num_sessions = g_value_get_uint (value);
 
-        else if (strcmp (key, "drive-ata-smart-is-available") == 0)
+        else if (strcmp (key, "DriveAtaSmartIsAvailable") == 0)
                 props->drive_ata_smart_is_available = g_value_get_boolean (value);
-        else if (strcmp (key, "drive-ata-smart-is-failing") == 0)
-                props->drive_ata_smart_is_failing = g_value_get_boolean (value);
-        else if (strcmp (key, "drive-ata-smart-is-failing-valid") == 0)
-                props->drive_ata_smart_is_failing_valid = g_value_get_boolean (value);
-        else if (strcmp (key, "drive-ata-smart-has-bad-sectors") == 0)
-                props->drive_ata_smart_has_bad_sectors = g_value_get_boolean (value);
-        else if (strcmp (key, "drive-ata-smart-has-bad-attributes") == 0)
-                props->drive_ata_smart_has_bad_attributes = g_value_get_boolean (value);
-        else if (strcmp (key, "drive-ata-smart-temperature-kelvin") == 0)
-                props->drive_ata_smart_temperature_kelvin = g_value_get_double (value);
-        else if (strcmp (key, "drive-ata-smart-power-on-seconds") == 0)
-                props->drive_ata_smart_power_on_seconds = g_value_get_uint64 (value);
-        else if (strcmp (key, "drive-ata-smart-time-collected") == 0)
+        else if (strcmp (key, "DriveAtaSmartTimeCollected") == 0)
                 props->drive_ata_smart_time_collected = g_value_get_uint64 (value);
-        else if (strcmp (key, "drive-ata-smart-offline-data-collection-status") == 0)
-                props->drive_ata_smart_offline_data_collection_status = g_value_get_uint (value);
-        else if (strcmp (key, "drive-ata-smart-offline-data-collection-seconds") == 0)
-                props->drive_ata_smart_offline_data_collection_seconds = g_value_get_uint (value);
-        else if (strcmp (key, "drive-ata-smart-self-test-execution-status") == 0)
-                props->drive_ata_smart_self_test_execution_status = g_value_get_uint (value);
-        else if (strcmp (key, "drive-ata-smart-self-test-execution-percent-remaining") == 0)
-                props->drive_ata_smart_self_test_execution_percent_remaining = g_value_get_uint (value);
-        else if (strcmp (key, "drive-ata-smart-short-and-extended-self-test-available") == 0)
-                props->drive_ata_smart_short_and_extended_self_test_available = g_value_get_boolean (value);
-        else if (strcmp (key, "drive-ata-smart-conveyance-self-test-available") == 0)
-                props->drive_ata_smart_conveyance_self_test_available = g_value_get_boolean (value);
-        else if (strcmp (key, "drive-ata-smart-start-self-test-available") == 0)
-                props->drive_ata_smart_start_self_test_available = g_value_get_boolean (value);
-        else if (strcmp (key, "drive-ata-smart-abort-self-test-available") == 0)
-                props->drive_ata_smart_abort_self_test_available = g_value_get_boolean (value);
-        else if (strcmp (key, "drive-ata-smart-short-self-test-polling-minutes") == 0)
-                props->drive_ata_smart_short_self_test_polling_minutes = g_value_get_uint (value);
-        else if (strcmp (key, "drive-ata-smart-extended-self-test-polling-minutes") == 0)
-                props->drive_ata_smart_extended_self_test_polling_minutes = g_value_get_uint (value);
-        else if (strcmp (key, "drive-ata-smart-conveyance-self-test-polling-minutes") == 0)
-                props->drive_ata_smart_conveyance_self_test_polling_minutes = g_value_get_uint (value);
-        else if (strcmp (key, "drive-ata-smart-attributes") == 0) {
-                g_value_copy (value, &(props->drive_ata_smart_attributes));
+        else if (strcmp (key, "DriveAtaSmartStatus") == 0)
+                props->drive_ata_smart_status = g_strdup (g_value_get_string (value));
+        else if (strcmp (key, "DriveAtaSmartBlob") == 0) {
+                GArray *a = g_value_get_boxed (value);
+                g_free (props->drive_ata_smart_blob);
+                props->drive_ata_smart_blob = g_memdup (a->data, a->len);
+                props->drive_ata_smart_blob_size = a->len;
         }
 
-        else if (strcmp (key, "linux-md-component-level") == 0)
+        else if (strcmp (key, "LinuxMdComponentLevel") == 0)
                 props->linux_md_component_level = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "linux-md-component-num-raid-devices") == 0)
+        else if (strcmp (key, "LinuxMdComponentNumRaidDevices") == 0)
                 props->linux_md_component_num_raid_devices = g_value_get_int (value);
-        else if (strcmp (key, "linux-md-component-uuid") == 0)
+        else if (strcmp (key, "LinuxMdComponentUuid") == 0)
                 props->linux_md_component_uuid = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "linux-md-component-home-host") == 0)
+        else if (strcmp (key, "LinuxMdComponentHomeHost") == 0)
                 props->linux_md_component_home_host = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "linux-md-component-name") == 0)
+        else if (strcmp (key, "LinuxMdComponentName") == 0)
                 props->linux_md_component_name = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "linux-md-component-version") == 0)
+        else if (strcmp (key, "LinuxMdComponentVersion") == 0)
                 props->linux_md_component_version = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "linux-md-component-holder") == 0)
+        else if (strcmp (key, "LinuxMdComponentHolder") == 0)
                 props->linux_md_component_holder = g_strdup (g_value_get_boxed (value));
-        else if (strcmp (key, "linux-md-component-state") == 0)
+        else if (strcmp (key, "LinuxMdComponentState") == 0)
                 props->linux_md_component_state = g_strdupv (g_value_get_boxed (value));
 
-        else if (strcmp (key, "linux-md-state") == 0)
+        else if (strcmp (key, "LinuxMdState") == 0)
                 props->linux_md_state = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "linux-md-level") == 0)
+        else if (strcmp (key, "LinuxMdLevel") == 0)
                 props->linux_md_level = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "linux-md-num-raid-devices") == 0)
+        else if (strcmp (key, "LinuxMdNumRaidDevices") == 0)
                 props->linux_md_num_raid_devices = g_value_get_int (value);
-        else if (strcmp (key, "linux-md-uuid") == 0)
+        else if (strcmp (key, "LinuxMdUuid") == 0)
                 props->linux_md_uuid = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "linux-md-home-host") == 0)
+        else if (strcmp (key, "LinuxMdHomeHost") == 0)
                 props->linux_md_home_host = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "linux-md-name") == 0)
+        else if (strcmp (key, "LinuxMdName") == 0)
                 props->linux_md_name = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "linux-md-version") == 0)
+        else if (strcmp (key, "LinuxMdVersion") == 0)
                 props->linux_md_version = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "linux-md-slaves") == 0) {
+        else if (strcmp (key, "LinuxMdSlaves") == 0) {
                 int n;
                 GPtrArray *object_paths;
 
@@ -413,13 +377,13 @@ collect_props (const char *key, const GValue *value, DeviceProperties *props)
                         props->linux_md_slaves[n] = g_strdup (object_paths->pdata[n]);
                 props->linux_md_slaves[n] = NULL;
         }
-        else if (strcmp (key, "linux-md-is-degraded") == 0)
+        else if (strcmp (key, "LinuxMdIsDegraded") == 0)
                 props->linux_md_is_degraded = g_value_get_boolean (value);
-        else if (strcmp (key, "linux-md-sync-action") == 0)
+        else if (strcmp (key, "LinuxMdSyncAction") == 0)
                 props->linux_md_sync_action = g_strdup (g_value_get_string (value));
-        else if (strcmp (key, "linux-md-sync-percentage") == 0)
+        else if (strcmp (key, "LinuxMdSyncPercentage") == 0)
                 props->linux_md_sync_percentage = g_value_get_double (value);
-        else if (strcmp (key, "linux-md-sync-speed") == 0)
+        else if (strcmp (key, "LinuxMdSyncSpeed") == 0)
                 props->linux_md_sync_speed = g_value_get_uint64 (value);
 
         else
@@ -461,7 +425,8 @@ device_properties_free (DeviceProperties *props)
         g_strfreev (props->drive_media_compatibility);
         g_free (props->drive_media);
 
-        g_value_unset (&(props->drive_ata_smart_attributes));
+        g_free (props->drive_ata_smart_status);
+        g_free (props->drive_ata_smart_blob);
 
         g_free (props->linux_md_component_level);
         g_free (props->linux_md_component_uuid);
@@ -493,8 +458,6 @@ device_properties_get (DBusGConnection *bus,
         const char *ifname = "org.freedesktop.DeviceKit.Disks.Device";
 
         props = g_new0 (DeviceProperties, 1);
-        g_value_init (&(props->drive_ata_smart_attributes),
-                      dbus_g_type_get_collection ("GPtrArray", ATA_SMART_ATTRIBUTE_STRUCT_TYPE));
 
 	prop_proxy = dbus_g_proxy_new_for_name (bus,
                                                 "org.freedesktop.DeviceKit.Disks",
@@ -889,6 +852,12 @@ gdu_device_get_presentation_hide (GduDevice *device)
         return device->priv->props->device_presentation_hide;
 }
 
+gboolean
+gdu_device_get_presentation_nopolicy (GduDevice *device)
+{
+        return device->priv->props->device_presentation_nopolicy;
+}
+
 const char *
 gdu_device_get_presentation_name (GduDevice *device)
 {
@@ -1096,7 +1065,26 @@ gdu_device_drive_get_is_media_ejectable (GduDevice *device)
 gboolean
 gdu_device_drive_get_requires_eject (GduDevice *device)
 {
-        return device->priv->props->drive_requires_eject;
+        /* TODO: remove once GVfs isn't using this anymore */
+        return FALSE;
+}
+
+gboolean
+gdu_device_drive_get_can_detach (GduDevice *device)
+{
+        return device->priv->props->drive_can_detach;
+}
+
+gboolean
+gdu_device_drive_get_can_spindown (GduDevice *device)
+{
+        return device->priv->props->drive_can_spindown;
+}
+
+gboolean
+gdu_device_drive_get_is_rotational (GduDevice *device)
+{
+        return device->priv->props->drive_is_rotational;
 }
 
 gboolean
@@ -1263,149 +1251,26 @@ gdu_device_drive_ata_smart_get_is_available (GduDevice *device)
         return device->priv->props->drive_ata_smart_is_available;
 }
 
-gboolean
-gdu_device_drive_ata_smart_get_is_failing (GduDevice *device)
-{
-        return device->priv->props->drive_ata_smart_is_failing;
-}
-
-gboolean
-gdu_device_drive_ata_smart_get_is_failing_valid (GduDevice *device)
-{
-        return device->priv->props->drive_ata_smart_is_failing_valid;
-}
-
-gboolean
-gdu_device_drive_ata_smart_get_has_bad_sectors (GduDevice *device)
-{
-        return device->priv->props->drive_ata_smart_has_bad_sectors;
-}
-
-gboolean
-gdu_device_drive_ata_smart_get_has_bad_attributes (GduDevice *device)
-{
-        return device->priv->props->drive_ata_smart_has_bad_attributes;
-}
-
-gdouble
-gdu_device_drive_ata_smart_get_temperature_kelvin (GduDevice *device)
-{
-        return device->priv->props->drive_ata_smart_temperature_kelvin;
-}
-
-guint64 gdu_device_drive_ata_smart_get_power_on_seconds (GduDevice *device)
-{
-        return device->priv->props->drive_ata_smart_power_on_seconds;
-}
-
 guint64
 gdu_device_drive_ata_smart_get_time_collected (GduDevice *device)
 {
         return device->priv->props->drive_ata_smart_time_collected;
 }
 
-GduAtaSmartOfflineDataCollectionStatus
-gdu_device_drive_ata_smart_get_offline_data_collection_status (GduDevice *device)
+const gchar *
+gdu_device_drive_ata_smart_get_status (GduDevice *device)
 {
-        return device->priv->props->drive_ata_smart_offline_data_collection_status;
+        return device->priv->props->drive_ata_smart_status;
 }
 
-guint
-gdu_device_drive_ata_smart_get_offline_data_collection_seconds (GduDevice *device)
+gconstpointer
+gdu_device_drive_ata_smart_get_blob (GduDevice *device, gsize *out_size)
 {
-        return device->priv->props->drive_ata_smart_offline_data_collection_seconds;
-}
+        gconstpointer ret;
 
-GduAtaSmartSelfTestExecutionStatus
-gdu_device_drive_ata_smart_get_self_test_execution_status (GduDevice *device)
-{
-        return device->priv->props->drive_ata_smart_self_test_execution_status;
-}
-
-guint
-gdu_device_drive_ata_smart_get_self_test_execution_percent_remaining (GduDevice *device)
-{
-        return device->priv->props->drive_ata_smart_self_test_execution_percent_remaining;
-}
-
-gboolean
-gdu_device_drive_ata_smart_get_short_and_extended_self_test_available (GduDevice *device)
-{
-        return device->priv->props->drive_ata_smart_short_and_extended_self_test_available;
-}
-
-gboolean
-gdu_device_drive_ata_smart_get_conveyance_self_test_available (GduDevice *device)
-{
-        return device->priv->props->drive_ata_smart_conveyance_self_test_available;
-}
-
-gboolean
-gdu_device_drive_ata_smart_get_start_self_test_available (GduDevice *device)
-{
-        return device->priv->props->drive_ata_smart_start_self_test_available;
-}
-
-gboolean
-gdu_device_drive_ata_smart_get_abort_self_test_available (GduDevice *device)
-{
-        return device->priv->props->drive_ata_smart_abort_self_test_available;
-}
-
-guint
-gdu_device_drive_ata_smart_get_short_self_test_polling_minutes (GduDevice *device)
-{
-        return device->priv->props->drive_ata_smart_short_self_test_polling_minutes;
-}
-
-guint
-gdu_device_drive_ata_smart_get_extended_self_test_polling_minutes (GduDevice *device)
-{
-        return device->priv->props->drive_ata_smart_extended_self_test_polling_minutes;
-}
-
-guint
-gdu_device_drive_ata_smart_get_conveyance_self_test_polling_minutes (GduDevice *device)
-{
-        return device->priv->props->drive_ata_smart_conveyance_self_test_polling_minutes;
-}
-
-GList *
-gdu_device_drive_ata_smart_get_attributes (GduDevice *device)
-{
-        GList *ret;
-        GPtrArray *p;
-        guint n;
-
-        ret = NULL;
-
-        p = g_value_get_boxed (&(device->priv->props->drive_ata_smart_attributes));
-        for (n = 0; n < p->len; n++) {
-                ret = g_list_prepend (ret, _gdu_ata_smart_attribute_new (p->pdata[n]));
-        }
-
-        return ret;
-}
-
-GduAtaSmartAttribute *
-gdu_device_drive_ata_smart_get_attribute (GduDevice *device, const gchar *attr_name)
-{
-        GList *attrs;
-        GList *l;
-        GduAtaSmartAttribute *ret;
-
-        ret = NULL;
-
-        attrs = gdu_device_drive_ata_smart_get_attributes (device);
-        for (l = attrs; l != NULL; l = l->next) {
-                GduAtaSmartAttribute *a = GDU_ATA_SMART_ATTRIBUTE (l->data);
-                if (g_strcmp0 (attr_name, gdu_ata_smart_attribute_get_name (a)) == 0) {
-                        ret = g_object_ref (a);
-                        break;
-                }
-        }
-        g_list_foreach (attrs, (GFunc) g_object_unref, NULL);
-        g_list_free (attrs);
+        ret = device->priv->props->drive_ata_smart_blob;
+        if (out_size != NULL)
+                *out_size = device->priv->props->drive_ata_smart_blob_size;
 
         return ret;
 }
@@ -2192,6 +2057,49 @@ gdu_device_op_linux_md_stop (GduDevice                         *device,
 
 typedef struct {
         GduDevice *device;
+        GduDeviceLinuxMdCheckCompletedFunc callback;
+        gpointer user_data;
+} LinuxMdCheckData;
+
+static void
+op_check_linux_md_array_cb (DBusGProxy *proxy, guint64 num_errors, GError *error, gpointer user_data)
+{
+        LinuxMdCheckData *data = user_data;
+        _gdu_error_fixup (error);
+        if (data->callback != NULL)
+                data->callback (data->device, num_errors, error, data->user_data);
+        g_object_unref (data->device);
+        g_free (data);
+}
+
+void
+gdu_device_op_linux_md_check (GduDevice                           *device,
+                              gchar                              **options,
+                              GduDeviceLinuxMdCheckCompletedFunc   callback,
+                              gpointer                             user_data)
+{
+        gchar *null_options[16];
+        LinuxMdCheckData *data;
+
+        data = g_new0 (LinuxMdCheckData, 1);
+        data->device = g_object_ref (device);
+        data->callback = callback;
+        data->user_data = user_data;
+
+        null_options[0] = NULL;
+        if (options == NULL)
+                options = null_options;
+
+        org_freedesktop_DeviceKit_Disks_Device_linux_md_check_async (device->priv->proxy,
+                                                                     (const char **) options,
+                                                                     op_check_linux_md_array_cb,
+                                                                     data);
+}
+
+/* -------------------------------------------------------------------------------- */
+
+typedef struct {
+        GduDevice *device;
         GduDeviceLinuxMdAddComponentCompletedFunc callback;
         gpointer user_data;
 } LinuxMdAddComponentData;
@@ -2317,94 +2225,6 @@ gdu_device_op_cancel_job (GduDevice *device, GduDeviceCancelJobCompletedFunc cal
 
 typedef struct {
         GduDevice *device;
-        GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc callback;
-        gpointer user_data;
-} DriveAtaSmartGetHistoricalDataData;
-
-static GList *
-op_ata_smart_historical_data_compute_ret (GPtrArray *historical_data)
-{
-        GList *ret;
-        int n;
-
-        ret = NULL;
-        for (n = 0; n < (int) historical_data->len; n++) {
-                ret = g_list_prepend (ret, _gdu_ata_smart_historical_data_new (historical_data->pdata[n]));
-        }
-        ret = g_list_reverse (ret);
-        return ret;
-}
-
-static void
-op_ata_smart_historical_data_cb (DBusGProxy *proxy, GPtrArray *historical_data, GError *error, gpointer user_data)
-{
-        DriveAtaSmartGetHistoricalDataData *data = user_data;
-        GList *ret;
-
-        _gdu_error_fixup (error);
-
-        ret = NULL;
-        if (historical_data != NULL && error == NULL)
-                ret = op_ata_smart_historical_data_compute_ret (historical_data);
-
-        if (data->callback == NULL)
-                data->callback (data->device, ret, error, data->user_data);
-
-        g_object_unref (data->device);
-        g_free (data);
-}
-
-void
-gdu_device_drive_ata_smart_get_historical_data (GduDevice                                         *device,
-                                                guint64                                            since,
-                                                guint64                                            until,
-                                                guint64                                            spacing,
-                                                GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc  callback,
-                                                gpointer                                           user_data)
-{
-        DriveAtaSmartGetHistoricalDataData *data;
-
-        data = g_new0 (DriveAtaSmartGetHistoricalDataData, 1);
-        data->device = g_object_ref (device);
-        data->callback = callback;
-        data->user_data = user_data;
-
-        org_freedesktop_DeviceKit_Disks_Device_drive_ata_smart_get_historical_data_async (device->priv->proxy,
-                                                                                          since,
-                                                                                          until,
-                                                                                          spacing,
-                                                                                          op_ata_smart_historical_data_cb,
-                                                                                          data);
-}
-
-GList *
-gdu_device_drive_ata_smart_get_historical_data_sync (GduDevice  *device,
-                                                     guint64     since,
-                                                     guint64     until,
-                                                     guint64     spacing,
-                                                     GError    **error)
-{
-        GList *ret;
-        GPtrArray *historical_data;
-
-        ret = NULL;
-        if (!org_freedesktop_DeviceKit_Disks_Device_drive_ata_smart_get_historical_data (device->priv->proxy,
-                                                                                         since,
-                                                                                         until,
-                                                                                         spacing,
-                                                                                         &historical_data,
-                                                                                         error))
-                goto out;
-
-        ret = op_ata_smart_historical_data_compute_ret (historical_data);
-out:
-        return ret;
-}
-
-/* -------------------------------------------------------------------------------- */
-
-typedef struct {
-        GduDevice *device;
         GduDeviceDriveEjectCompletedFunc callback;
         gpointer user_data;
 } DriveEjectData;
@@ -2438,6 +2258,45 @@ gdu_device_op_drive_eject (GduDevice                        *device,
                                                                   (const char **) options,
                                                                   op_eject_cb,
                                                                   data);
+}
+
+/* -------------------------------------------------------------------------------- */
+
+typedef struct {
+        GduDevice *device;
+        GduDeviceDriveDetachCompletedFunc callback;
+        gpointer user_data;
+} DriveDetachData;
+
+static void
+op_detach_cb (DBusGProxy *proxy, GError *error, gpointer user_data)
+{
+        DriveDetachData *data = user_data;
+        _gdu_error_fixup (error);
+        if (data->callback != NULL)
+                data->callback (data->device, error, data->user_data);
+        g_object_unref (data->device);
+        g_free (data);
+}
+
+void
+gdu_device_op_drive_detach (GduDevice                        *device,
+                           GduDeviceDriveDetachCompletedFunc  callback,
+                           gpointer                           user_data)
+{
+        char *options[16];
+        DriveDetachData *data;
+
+        data = g_new0 (DriveDetachData, 1);
+        data->device = g_object_ref (device);
+        data->callback = callback;
+        data->user_data = user_data;
+        options[0] = NULL;
+
+        org_freedesktop_DeviceKit_Disks_Device_drive_detach_async (device->priv->proxy,
+                                                                   (const char **) options,
+                                                                   op_detach_cb,
+                                                                   data);
 }
 
 /* -------------------------------------------------------------------------------- */

@@ -29,10 +29,29 @@
 #include <glib-object.h>
 #include <gdu/gdu.h>
 #include <gtk/gtk.h>
+#include <gdu-gtk/gdu-gtk-enums.h>
 
 G_BEGIN_DECLS
 
-typedef struct GduTimeLabel             GduTimeLabel;
+typedef struct GduSample                   GduSample;
+typedef struct GduColor                    GduColor;
+typedef struct GduCurve                    GduCurve;
+typedef struct GduGraph                    GduGraph;
+typedef struct GduTimeLabel                GduTimeLabel;
+typedef struct GduAtaSmartDialog           GduAtaSmartDialog;
+typedef struct GduSpinner                  GduSpinner;
+
+struct GduPoolTreeModel;
+typedef struct GduPoolTreeModel         GduPoolTreeModel;
+
+struct GduPoolTreeView;
+typedef struct GduPoolTreeView          GduPoolTreeView;
+
+struct GduCreateLinuxMdDialog;
+typedef struct GduCreateLinuxMdDialog   GduCreateLinuxMdDialog;
+
+struct GduSizeWidget;
+typedef struct GduSizeWidget            GduSizeWidget;
 
 G_END_DECLS
 

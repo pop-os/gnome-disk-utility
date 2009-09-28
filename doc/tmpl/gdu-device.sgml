@@ -34,6 +34,8 @@ GduDevice
 
 </para>
 
+@:
+
 @gdudevice: the object which received the signal.
 
 <!-- ##### SIGNAL GduDevice::job-changed ##### -->
@@ -41,12 +43,16 @@ GduDevice
 
 </para>
 
+@:
+
 @gdudevice: the object which received the signal.
 
 <!-- ##### SIGNAL GduDevice::removed ##### -->
 <para>
 
 </para>
+
+@:
 
 @gdudevice: the object which received the signal.
 
@@ -69,6 +75,33 @@ GduDevice
 
 
 <!-- ##### FUNCTION gdu_device_get_pool ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_get_dev ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_get_detection_time ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_get_media_detection_time ##### -->
 <para>
 
 </para>
@@ -266,7 +299,34 @@ GduDevice
 @Returns: 
 
 
+<!-- ##### FUNCTION gdu_device_get_mount_paths ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
 <!-- ##### FUNCTION gdu_device_get_mounted_by_uid ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_get_presentation_hide ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_get_presentation_nopolicy ##### -->
 <para>
 
 </para>
@@ -321,6 +381,15 @@ GduDevice
 
 
 <!-- ##### FUNCTION gdu_device_job_is_cancellable ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_job_get_percentage ##### -->
 <para>
 
 </para>
@@ -590,6 +659,33 @@ GduDevice
 @Returns: 
 
 
+<!-- ##### FUNCTION gdu_device_drive_get_can_detach ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_drive_get_can_spindown ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_drive_get_is_rotational ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
 <!-- ##### FUNCTION gdu_device_optical_disc_get_is_blank ##### -->
 <para>
 
@@ -824,90 +920,7 @@ GduDevice
 @Returns: 
 
 
-<!-- ##### ENUM GduAtaSmartOfflineDataCollectionStatus ##### -->
-<para>
-
-</para>
-
-@GDU_ATA_SMART_OFFLINE_DATA_COLLECTION_STATUS_NEVER: 
-@GDU_ATA_SMART_OFFLINE_DATA_COLLECTION_STATUS_SUCCESS: 
-@GDU_ATA_SMART_OFFLINE_DATA_COLLECTION_STATUS_INPROGRESS: 
-@GDU_ATA_SMART_OFFLINE_DATA_COLLECTION_STATUS_SUSPENDED: 
-@GDU_ATA_SMART_OFFLINE_DATA_COLLECTION_STATUS_ABORTED: 
-@GDU_ATA_SMART_OFFLINE_DATA_COLLECTION_STATUS_FATAL: 
-@GDU_ATA_SMART_OFFLINE_DATA_COLLECTION_STATUS_UNKNOWN: 
-
-<!-- ##### ENUM GduAtaSmartSelfTestExecutionStatus ##### -->
-<para>
-
-</para>
-
-@GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_SUCCESS_OR_NEVER: 
-@GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_ABORTED: 
-@GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_INTERRUPTED: 
-@GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_FATAL: 
-@GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_ERROR_UNKNOWN: 
-@GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_ERROR_ELECTRICAL: 
-@GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_ERROR_SERVO: 
-@GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_ERROR_READ: 
-@GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_ERROR_HANDLING: 
-@GDU_ATA_SMART_SELF_TEST_EXECUTION_STATUS_INPROGRESS: 
-
 <!-- ##### FUNCTION gdu_device_drive_ata_smart_get_is_available ##### -->
-<para>
-
-</para>
-
-@device: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gdu_device_drive_ata_smart_get_is_failing ##### -->
-<para>
-
-</para>
-
-@device: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gdu_device_drive_ata_smart_get_is_failing_valid ##### -->
-<para>
-
-</para>
-
-@device: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gdu_device_drive_ata_smart_get_has_bad_sectors ##### -->
-<para>
-
-</para>
-
-@device: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gdu_device_drive_ata_smart_get_has_bad_attributes ##### -->
-<para>
-
-</para>
-
-@device: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gdu_device_drive_ata_smart_get_temperature_kelvin ##### -->
-<para>
-
-</para>
-
-@device: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gdu_device_drive_ata_smart_get_power_on_seconds ##### -->
 <para>
 
 </para>
@@ -925,7 +938,7 @@ GduDevice
 @Returns: 
 
 
-<!-- ##### FUNCTION gdu_device_drive_ata_smart_get_offline_data_collection_status ##### -->
+<!-- ##### FUNCTION gdu_device_drive_ata_smart_get_status ##### -->
 <para>
 
 </para>
@@ -934,112 +947,13 @@ GduDevice
 @Returns: 
 
 
-<!-- ##### FUNCTION gdu_device_drive_ata_smart_get_offline_data_collection_seconds ##### -->
+<!-- ##### FUNCTION gdu_device_drive_ata_smart_get_blob ##### -->
 <para>
 
 </para>
 
 @device: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gdu_device_drive_ata_smart_get_self_test_execution_status ##### -->
-<para>
-
-</para>
-
-@device: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gdu_device_drive_ata_smart_get_self_test_execution_percent_remaining ##### -->
-<para>
-
-</para>
-
-@device: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gdu_device_drive_ata_smart_get_short_and_extended_self_test_available ##### -->
-<para>
-
-</para>
-
-@device: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gdu_device_drive_ata_smart_get_conveyance_self_test_available ##### -->
-<para>
-
-</para>
-
-@device: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gdu_device_drive_ata_smart_get_start_self_test_available ##### -->
-<para>
-
-</para>
-
-@device: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gdu_device_drive_ata_smart_get_abort_self_test_available ##### -->
-<para>
-
-</para>
-
-@device: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gdu_device_drive_ata_smart_get_short_self_test_polling_minutes ##### -->
-<para>
-
-</para>
-
-@device: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gdu_device_drive_ata_smart_get_extended_self_test_polling_minutes ##### -->
-<para>
-
-</para>
-
-@device: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gdu_device_drive_ata_smart_get_conveyance_self_test_polling_minutes ##### -->
-<para>
-
-</para>
-
-@device: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gdu_device_drive_ata_smart_get_attributes ##### -->
-<para>
-
-</para>
-
-@device: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gdu_device_drive_ata_smart_get_attribute ##### -->
-<para>
-
-</para>
-
-@device: 
-@attr_name: 
+@out_size: 
 @Returns: 
 
 
@@ -1183,6 +1097,17 @@ GduDevice
 @user_data: 
 
 
+<!-- ##### FUNCTION gdu_device_op_linux_md_check ##### -->
+<para>
+
+</para>
+
+@device: 
+@options: 
+@callback: 
+@user_data: 
+
+
 <!-- ##### FUNCTION gdu_device_op_linux_md_add_component ##### -->
 <para>
 
@@ -1248,32 +1173,6 @@ GduDevice
 @user_data: 
 
 
-<!-- ##### FUNCTION gdu_device_drive_ata_smart_get_historical_data ##### -->
-<para>
-
-</para>
-
-@device: 
-@since: 
-@until: 
-@spacing: 
-@callback: 
-@user_data: 
-
-
-<!-- ##### FUNCTION gdu_device_drive_ata_smart_get_historical_data_sync ##### -->
-<para>
-
-</para>
-
-@device: 
-@since: 
-@until: 
-@spacing: 
-@error: 
-@Returns: 
-
-
 <!-- ##### FUNCTION gdu_device_filesystem_list_open_files ##### -->
 <para>
 
@@ -1295,6 +1194,16 @@ GduDevice
 
 
 <!-- ##### FUNCTION gdu_device_op_drive_eject ##### -->
+<para>
+
+</para>
+
+@device: 
+@callback: 
+@user_data: 
+
+
+<!-- ##### FUNCTION gdu_device_op_drive_detach ##### -->
 <para>
 
 </para>

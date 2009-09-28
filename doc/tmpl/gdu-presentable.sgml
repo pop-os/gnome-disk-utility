@@ -30,6 +30,8 @@ gdu-presentable
 @get_device: 
 @get_enclosing_presentable: 
 @get_name: 
+@get_description: 
+@get_vpd_name: 
 @get_icon: 
 @get_offset: 
 @get_size: 
@@ -65,6 +67,24 @@ gdu-presentable
 
 
 <!-- ##### FUNCTION gdu_presentable_get_name ##### -->
+<para>
+
+</para>
+
+@presentable: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_presentable_get_description ##### -->
+<para>
+
+</para>
+
+@presentable: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_presentable_get_vpd_name ##### -->
 <para>
 
 </para>

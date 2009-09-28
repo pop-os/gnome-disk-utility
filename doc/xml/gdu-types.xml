@@ -17,7 +17,7 @@
 
 <refsynopsisdiv id="gnome-disk-utility-gdu-types.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
-<anchor id="GduPool"/><anchor id="GduDevice"/><anchor id="GduPresentable"/><anchor id="GduDrive"/><anchor id="GduLinuxMdDrive"/><anchor id="GduVolume"/><anchor id="GduVolumeHole"/><anchor id="GduKnownFilesystem"/><anchor id="GduProcess"/><anchor id="GduAtaSmartHistoricalData"/><anchor id="GduAtaSmartAttribute"/>
+<anchor id="GduPool"/><anchor id="GduDevice"/><anchor id="GduPresentable"/><anchor id="GduDrive"/><anchor id="GduLinuxMdDrive"/><anchor id="GduVolume"/><anchor id="GduVolumeHole"/><anchor id="GduKnownFilesystem"/><anchor id="GduProcess"/>
 <synopsis>
                     <link linkend="GduPool-struct">GduPool</link>;
                     <link linkend="GduDevice-struct">GduDevice</link>;
@@ -28,8 +28,6 @@
                     <link linkend="GduVolumeHole-struct">GduVolumeHole</link>;
                     <link linkend="GduKnownFilesystem-struct">GduKnownFilesystem</link>;
                     <link linkend="GduProcess-struct">GduProcess</link>;
-                    <link linkend="GduAtaSmartHistoricalData-struct">GduAtaSmartHistoricalData</link>;
-                    <link linkend="GduAtaSmartAttribute-struct">GduAtaSmartAttribute</link>;
 </synopsis>
 </refsynopsisdiv>
 
@@ -72,14 +70,6 @@
 <synopsis>
   <link linkend="GObject">GObject</link>
    +----GduProcess
-</synopsis>
-<synopsis>
-  <link linkend="GObject">GObject</link>
-   +----GduAtaSmartHistoricalData
-</synopsis>
-<synopsis>
-  <link linkend="GObject">GObject</link>
-   +----GduAtaSmartAttribute
 </synopsis>
 </refsect1>
 
@@ -189,16 +179,6 @@ GduPresentable is implemented by
 <indexterm zone="GduProcess-struct"><primary sortas="GduProcess">GduProcess</primary></indexterm><programlisting>typedef struct _GduProcess GduProcess;</programlisting>
 <para>
 </para></refsect2>
-<refsect2 id="GduAtaSmartHistoricalData-struct" role="struct">
-<title>GduAtaSmartHistoricalData</title>
-<indexterm zone="GduAtaSmartHistoricalData-struct"><primary sortas="GduAtaSmartHistoricalData">GduAtaSmartHistoricalData</primary></indexterm><programlisting>typedef struct _GduAtaSmartHistoricalData GduAtaSmartHistoricalData;</programlisting>
-<para>
-</para></refsect2>
-<refsect2 id="GduAtaSmartAttribute-struct" role="struct">
-<title>GduAtaSmartAttribute</title>
-<indexterm zone="GduAtaSmartAttribute-struct"><primary sortas="GduAtaSmartAttribute">GduAtaSmartAttribute</primary></indexterm><programlisting>typedef struct _GduAtaSmartAttribute GduAtaSmartAttribute;</programlisting>
-<para>
-</para></refsect2>
 
 </refsect1>
 
@@ -211,9 +191,7 @@ GduPresentable is implemented by
 <para>
 Emitted when <parameter>device</parameter> is added to <parameter>pool</parameter>.</para>
 <para>
-</para>
-@:
-@:<variablelist role="params">
+</para><variablelist role="params">
 <varlistentry><term><parameter>pool</parameter>&#160;:</term>
 <listitem><simpara> The <link linkend="GduPool"><type>GduPool</type></link> emitting the signal.
 </simpara></listitem></varlistentry>
@@ -229,9 +207,7 @@ Emitted when <parameter>device</parameter> is added to <parameter>pool</paramete
 <para>
 Emitted when <parameter>device</parameter> is changed.</para>
 <para>
-</para>
-@:
-@:<variablelist role="params">
+</para><variablelist role="params">
 <varlistentry><term><parameter>pool</parameter>&#160;:</term>
 <listitem><simpara> The <link linkend="GduPool"><type>GduPool</type></link> emitting the signal.
 </simpara></listitem></varlistentry>
@@ -247,9 +223,7 @@ Emitted when <parameter>device</parameter> is changed.</para>
 <para>
 Emitted when job status on <parameter>device</parameter> changes.</para>
 <para>
-</para>
-@:
-@:<variablelist role="params">
+</para><variablelist role="params">
 <varlistentry><term><parameter>pool</parameter>&#160;:</term>
 <listitem><simpara> The <link linkend="GduPool"><type>GduPool</type></link> emitting the signal.
 </simpara></listitem></varlistentry>
@@ -266,9 +240,7 @@ Emitted when job status on <parameter>device</parameter> changes.</para>
 Emitted when <parameter>device</parameter> is removed from <parameter>pool</parameter>. Recipients
 should release references to <parameter>device</parameter>.</para>
 <para>
-</para>
-@:
-@:<variablelist role="params">
+</para><variablelist role="params">
 <varlistentry><term><parameter>pool</parameter>&#160;:</term>
 <listitem><simpara> The <link linkend="GduPool"><type>GduPool</type></link> emitting the signal.
 </simpara></listitem></varlistentry>
@@ -284,9 +256,7 @@ should release references to <parameter>device</parameter>.</para>
 <para>
 Emitted when <parameter>presentable</parameter> is added to <parameter>pool</parameter>.</para>
 <para>
-</para>
-@:
-@:<variablelist role="params">
+</para><variablelist role="params">
 <varlistentry><term><parameter>pool</parameter>&#160;:</term>
 <listitem><simpara> The <link linkend="GduPool"><type>GduPool</type></link> emitting the signal.
 </simpara></listitem></varlistentry>
@@ -302,9 +272,7 @@ Emitted when <parameter>presentable</parameter> is added to <parameter>pool</par
 <para>
 Emitted when <parameter>presentable</parameter> changes.</para>
 <para>
-</para>
-@:
-@:<variablelist role="params">
+</para><variablelist role="params">
 <varlistentry><term><parameter>pool</parameter>&#160;:</term>
 <listitem><simpara> The <link linkend="GduPool"><type>GduPool</type></link> emitting the signal.
 </simpara></listitem></varlistentry>
@@ -320,9 +288,7 @@ Emitted when <parameter>presentable</parameter> changes.</para>
 <para>
 Emitted when job status on <parameter>presentable</parameter> changes.</para>
 <para>
-</para>
-@:
-@:<variablelist role="params">
+</para><variablelist role="params">
 <varlistentry><term><parameter>pool</parameter>&#160;:</term>
 <listitem><simpara> The <link linkend="GduPool"><type>GduPool</type></link> emitting the signal.
 </simpara></listitem></varlistentry>
@@ -339,9 +305,7 @@ Emitted when job status on <parameter>presentable</parameter> changes.</para>
 Emitted when <parameter>presentable</parameter> is removed from <parameter>pool</parameter>. Recipients
 should release references to <parameter>presentable</parameter>.</para>
 <para>
-</para>
-@:
-@:<variablelist role="params">
+</para><variablelist role="params">
 <varlistentry><term><parameter>pool</parameter>&#160;:</term>
 <listitem><simpara> The <link linkend="GduPool"><type>GduPool</type></link> emitting the signal.
 </simpara></listitem></varlistentry>
@@ -354,18 +318,33 @@ should release references to <parameter>presentable</parameter>.</para>
 <indexterm zone="GduDevice-changed"><primary sortas="GduDevice::changed">GduDevice::changed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="GduDevice">GduDevice</link> *gdudevice,
                                                         <link linkend="gpointer">gpointer</link>   user_data)      : Run Last</programlisting>
 <para>
-</para>
-@:</refsect2><refsect2 id="GduDevice-job-changed" role="signal"><title>The <literal>&quot;job-changed&quot;</literal> signal</title>
+</para><variablelist role="params">
+<varlistentry><term><parameter>gdudevice</parameter>&#160;:</term>
+<listitem><simpara>the object which received the signal.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="GduDevice-job-changed" role="signal"><title>The <literal>&quot;job-changed&quot;</literal> signal</title>
 <indexterm zone="GduDevice-job-changed"><primary sortas="GduDevice::job-changed">GduDevice::job-changed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="GduDevice">GduDevice</link> *gdudevice,
                                                         <link linkend="gpointer">gpointer</link>   user_data)      : Run Last</programlisting>
 <para>
-</para>
-@:</refsect2><refsect2 id="GduDevice-removed" role="signal"><title>The <literal>&quot;removed&quot;</literal> signal</title>
+</para><variablelist role="params">
+<varlistentry><term><parameter>gdudevice</parameter>&#160;:</term>
+<listitem><simpara>the object which received the signal.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="GduDevice-removed" role="signal"><title>The <literal>&quot;removed&quot;</literal> signal</title>
 <indexterm zone="GduDevice-removed"><primary sortas="GduDevice::removed">GduDevice::removed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="GduDevice">GduDevice</link> *gdudevice,
                                                         <link linkend="gpointer">gpointer</link>   user_data)      : Run Last</programlisting>
 <para>
-</para>
-@:</refsect2><refsect2 id="GduPresentable-changed" role="signal"><title>The <literal>&quot;changed&quot;</literal> signal</title>
+</para><variablelist role="params">
+<varlistentry><term><parameter>gdudevice</parameter>&#160;:</term>
+<listitem><simpara>the object which received the signal.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="GduPresentable-changed" role="signal"><title>The <literal>&quot;changed&quot;</literal> signal</title>
 <indexterm zone="GduPresentable-changed"><primary sortas="GduPresentable::changed">GduPresentable::changed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="GduPresentable">GduPresentable</link> *presentable,
                                                         <link linkend="gpointer">gpointer</link>        user_data)        : Run Last</programlisting>
 <para>

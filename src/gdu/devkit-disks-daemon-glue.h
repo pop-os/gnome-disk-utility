@@ -253,6 +253,81 @@ static
 inline
 #endif
 gboolean
+org_freedesktop_DeviceKit_Disks_drive_set_all_spindown_timeouts (DBusGProxy *proxy, const gint IN_timeout_seconds, const char ** IN_options, char ** OUT_cookie, GError **error)
+
+{
+  return dbus_g_proxy_call (proxy, "DriveSetAllSpindownTimeouts", error, G_TYPE_INT, IN_timeout_seconds, G_TYPE_STRV, IN_options, G_TYPE_INVALID, G_TYPE_STRING, OUT_cookie, G_TYPE_INVALID);
+}
+
+typedef void (*org_freedesktop_DeviceKit_Disks_drive_set_all_spindown_timeouts_reply) (DBusGProxy *proxy, char * OUT_cookie, GError *error, gpointer userdata);
+
+static void
+org_freedesktop_DeviceKit_Disks_drive_set_all_spindown_timeouts_async_callback (DBusGProxy *proxy, DBusGProxyCall *call, void *user_data)
+{
+  DBusGAsyncData *data = (DBusGAsyncData*) user_data;
+  GError *error = NULL;
+  char * OUT_cookie;
+  dbus_g_proxy_end_call (proxy, call, &error, G_TYPE_STRING, &OUT_cookie, G_TYPE_INVALID);
+  (*(org_freedesktop_DeviceKit_Disks_drive_set_all_spindown_timeouts_reply)data->cb) (proxy, OUT_cookie, error, data->userdata);
+  return;
+}
+
+static
+#ifdef G_HAVE_INLINE
+inline
+#endif
+DBusGProxyCall*
+org_freedesktop_DeviceKit_Disks_drive_set_all_spindown_timeouts_async (DBusGProxy *proxy, const gint IN_timeout_seconds, const char ** IN_options, org_freedesktop_DeviceKit_Disks_drive_set_all_spindown_timeouts_reply callback, gpointer userdata)
+
+{
+  DBusGAsyncData *stuff;
+  stuff = g_slice_new (DBusGAsyncData);
+  stuff->cb = G_CALLBACK (callback);
+  stuff->userdata = userdata;
+  return dbus_g_proxy_begin_call (proxy, "DriveSetAllSpindownTimeouts", org_freedesktop_DeviceKit_Disks_drive_set_all_spindown_timeouts_async_callback, stuff, _dbus_glib_async_data_free, G_TYPE_INT, IN_timeout_seconds, G_TYPE_STRV, IN_options, G_TYPE_INVALID);
+}
+static
+#ifdef G_HAVE_INLINE
+inline
+#endif
+gboolean
+org_freedesktop_DeviceKit_Disks_drive_unset_all_spindown_timeouts (DBusGProxy *proxy, const char * IN_cookie, GError **error)
+
+{
+  return dbus_g_proxy_call (proxy, "DriveUnsetAllSpindownTimeouts", error, G_TYPE_STRING, IN_cookie, G_TYPE_INVALID, G_TYPE_INVALID);
+}
+
+typedef void (*org_freedesktop_DeviceKit_Disks_drive_unset_all_spindown_timeouts_reply) (DBusGProxy *proxy, GError *error, gpointer userdata);
+
+static void
+org_freedesktop_DeviceKit_Disks_drive_unset_all_spindown_timeouts_async_callback (DBusGProxy *proxy, DBusGProxyCall *call, void *user_data)
+{
+  DBusGAsyncData *data = (DBusGAsyncData*) user_data;
+  GError *error = NULL;
+  dbus_g_proxy_end_call (proxy, call, &error, G_TYPE_INVALID);
+  (*(org_freedesktop_DeviceKit_Disks_drive_unset_all_spindown_timeouts_reply)data->cb) (proxy, error, data->userdata);
+  return;
+}
+
+static
+#ifdef G_HAVE_INLINE
+inline
+#endif
+DBusGProxyCall*
+org_freedesktop_DeviceKit_Disks_drive_unset_all_spindown_timeouts_async (DBusGProxy *proxy, const char * IN_cookie, org_freedesktop_DeviceKit_Disks_drive_unset_all_spindown_timeouts_reply callback, gpointer userdata)
+
+{
+  DBusGAsyncData *stuff;
+  stuff = g_slice_new (DBusGAsyncData);
+  stuff->cb = G_CALLBACK (callback);
+  stuff->userdata = userdata;
+  return dbus_g_proxy_begin_call (proxy, "DriveUnsetAllSpindownTimeouts", org_freedesktop_DeviceKit_Disks_drive_unset_all_spindown_timeouts_async_callback, stuff, _dbus_glib_async_data_free, G_TYPE_STRING, IN_cookie, G_TYPE_INVALID);
+}
+static
+#ifdef G_HAVE_INLINE
+inline
+#endif
+gboolean
 org_freedesktop_DeviceKit_Disks_linux_md_start (DBusGProxy *proxy, const GPtrArray* IN_components, const char ** IN_options, char** OUT_device, GError **error)
 
 {
@@ -285,6 +360,44 @@ org_freedesktop_DeviceKit_Disks_linux_md_start_async (DBusGProxy *proxy, const G
   stuff->cb = G_CALLBACK (callback);
   stuff->userdata = userdata;
   return dbus_g_proxy_begin_call (proxy, "LinuxMdStart", org_freedesktop_DeviceKit_Disks_linux_md_start_async_callback, stuff, _dbus_glib_async_data_free, dbus_g_type_get_collection ("GPtrArray", DBUS_TYPE_G_OBJECT_PATH), IN_components, G_TYPE_STRV, IN_options, G_TYPE_INVALID);
+}
+static
+#ifdef G_HAVE_INLINE
+inline
+#endif
+gboolean
+org_freedesktop_DeviceKit_Disks_linux_md_create (DBusGProxy *proxy, const GPtrArray* IN_components, const char * IN_level, const guint64 IN_stripe_size, const char * IN_name, const char ** IN_options, char** OUT_device, GError **error)
+
+{
+  return dbus_g_proxy_call (proxy, "LinuxMdCreate", error, dbus_g_type_get_collection ("GPtrArray", DBUS_TYPE_G_OBJECT_PATH), IN_components, G_TYPE_STRING, IN_level, G_TYPE_UINT64, IN_stripe_size, G_TYPE_STRING, IN_name, G_TYPE_STRV, IN_options, G_TYPE_INVALID, DBUS_TYPE_G_OBJECT_PATH, OUT_device, G_TYPE_INVALID);
+}
+
+typedef void (*org_freedesktop_DeviceKit_Disks_linux_md_create_reply) (DBusGProxy *proxy, char *OUT_device, GError *error, gpointer userdata);
+
+static void
+org_freedesktop_DeviceKit_Disks_linux_md_create_async_callback (DBusGProxy *proxy, DBusGProxyCall *call, void *user_data)
+{
+  DBusGAsyncData *data = (DBusGAsyncData*) user_data;
+  GError *error = NULL;
+  char* OUT_device;
+  dbus_g_proxy_end_call (proxy, call, &error, DBUS_TYPE_G_OBJECT_PATH, &OUT_device, G_TYPE_INVALID);
+  (*(org_freedesktop_DeviceKit_Disks_linux_md_create_reply)data->cb) (proxy, OUT_device, error, data->userdata);
+  return;
+}
+
+static
+#ifdef G_HAVE_INLINE
+inline
+#endif
+DBusGProxyCall*
+org_freedesktop_DeviceKit_Disks_linux_md_create_async (DBusGProxy *proxy, const GPtrArray* IN_components, const char * IN_level, const guint64 IN_stripe_size, const char * IN_name, const char ** IN_options, org_freedesktop_DeviceKit_Disks_linux_md_create_reply callback, gpointer userdata)
+
+{
+  DBusGAsyncData *stuff;
+  stuff = g_slice_new (DBusGAsyncData);
+  stuff->cb = G_CALLBACK (callback);
+  stuff->userdata = userdata;
+  return dbus_g_proxy_begin_call (proxy, "LinuxMdCreate", org_freedesktop_DeviceKit_Disks_linux_md_create_async_callback, stuff, _dbus_glib_async_data_free, dbus_g_type_get_collection ("GPtrArray", DBUS_TYPE_G_OBJECT_PATH), IN_components, G_TYPE_STRING, IN_level, G_TYPE_UINT64, IN_stripe_size, G_TYPE_STRING, IN_name, G_TYPE_STRV, IN_options, G_TYPE_INVALID);
 }
 static
 #ifdef G_HAVE_INLINE

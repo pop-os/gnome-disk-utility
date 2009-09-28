@@ -28,64 +28,64 @@ gdu-types
 
 </para>
 
-@: 
-@: 
+@gdupool: the object which received the signal.
+@arg1: 
 
 <!-- ##### SIGNAL GduPool::device-changed ##### -->
 <para>
 
 </para>
 
-@: 
-@: 
+@gdupool: the object which received the signal.
+@arg1: 
 
 <!-- ##### SIGNAL GduPool::device-job-changed ##### -->
 <para>
 
 </para>
 
-@: 
-@: 
+@gdupool: the object which received the signal.
+@arg1: 
 
 <!-- ##### SIGNAL GduPool::device-removed ##### -->
 <para>
 
 </para>
 
-@: 
-@: 
+@gdupool: the object which received the signal.
+@arg1: 
 
 <!-- ##### SIGNAL GduPool::presentable-added ##### -->
 <para>
 
 </para>
 
-@: 
-@: 
+@gdupool: the object which received the signal.
+@arg1: 
 
 <!-- ##### SIGNAL GduPool::presentable-changed ##### -->
 <para>
 
 </para>
 
-@: 
-@: 
+@gdupool: the object which received the signal.
+@arg1: 
 
 <!-- ##### SIGNAL GduPool::presentable-job-changed ##### -->
 <para>
 
 </para>
 
-@: 
-@: 
+@gdupool: the object which received the signal.
+@arg1: 
 
 <!-- ##### SIGNAL GduPool::presentable-removed ##### -->
 <para>
 
 </para>
 
-@: 
-@: 
+@gdupool: the object which received the signal.
+@arg1: 
 
 <!-- ##### STRUCT GduDevice ##### -->
 <para>
@@ -98,21 +98,21 @@ gdu-types
 
 </para>
 
-@: 
+@gdudevice: the object which received the signal.
 
 <!-- ##### SIGNAL GduDevice::job-changed ##### -->
 <para>
 
 </para>
 
-@: 
+@gdudevice: the object which received the signal.
 
 <!-- ##### SIGNAL GduDevice::removed ##### -->
 <para>
 
 </para>
 
-@: 
+@gdudevice: the object which received the signal.
 
 <!-- ##### STRUCT GduPresentable ##### -->
 <para>
@@ -172,18 +172,6 @@ gdu-types
 
 
 <!-- ##### STRUCT GduProcess ##### -->
-<para>
-
-</para>
-
-
-<!-- ##### STRUCT GduAtaSmartHistoricalData ##### -->
-<para>
-
-</para>
-
-
-<!-- ##### STRUCT GduAtaSmartAttribute ##### -->
 <para>
 
 </para>

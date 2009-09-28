@@ -47,6 +47,13 @@
                                                          <link linkend="GPtrArray">GPtrArray</link> *component_objpaths,
                                                          <link linkend="GduPoolLinuxMdStartCompletedFunc">GduPoolLinuxMdStartCompletedFunc</link> callback,
                                                          <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                <link linkend="gdu-pool-op-linux-md-create">gdu_pool_op_linux_md_create</link>         (<link linkend="GduPool">GduPool</link> *pool,
+                                                         <link linkend="GPtrArray">GPtrArray</link> *component_objpaths,
+                                                         const <link linkend="gchar">gchar</link> *level,
+                                                         <link linkend="guint64">guint64</link> stripe_size,
+                                                         const <link linkend="gchar">gchar</link> *name,
+                                                         <link linkend="GduPoolLinuxMdCreateCompletedFunc">GduPoolLinuxMdCreateCompletedFunc</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
 </synopsis>
 </refsynopsisdiv>
 
@@ -339,6 +346,41 @@ Starts a Linux md Software Array.</para>
 <listitem><simpara> User data to pass to <parameter>callback</parameter>.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
+<refsect2 id="gdu-pool-op-linux-md-create" role="function">
+<title>gdu_pool_op_linux_md_create ()</title>
+<indexterm zone="gdu-pool-op-linux-md-create"><primary sortas="gdu_pool_op_linux_md_create">gdu_pool_op_linux_md_create</primary></indexterm><programlisting><link linkend="void">void</link>                gdu_pool_op_linux_md_create         (<link linkend="GduPool">GduPool</link> *pool,
+                                                         <link linkend="GPtrArray">GPtrArray</link> *component_objpaths,
+                                                         const <link linkend="gchar">gchar</link> *level,
+                                                         <link linkend="guint64">guint64</link> stripe_size,
+                                                         const <link linkend="gchar">gchar</link> *name,
+                                                         <link linkend="GduPoolLinuxMdCreateCompletedFunc">GduPoolLinuxMdCreateCompletedFunc</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+Creates a Linux md Software Array.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>pool</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GduPool"><type>GduPool</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>component_objpaths</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GPtrArray"><type>GPtrArray</type></link> of object paths.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>level</parameter>&#160;:</term>
+<listitem><simpara> RAID level.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>stripe_size</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>name</parameter>&#160;:</term>
+<listitem><simpara> Name of array.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> Callback function.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara> User data to pass to <parameter>callback</parameter>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
 
 </refsect1>
 
@@ -351,7 +393,9 @@ Starts a Linux md Software Array.</para>
 <para>
 Emitted when <parameter>device</parameter> is added to <parameter>pool</parameter>.</para>
 <para>
-</para><variablelist role="params">
+</para>
+@:
+@:<variablelist role="params">
 <varlistentry><term><parameter>pool</parameter>&#160;:</term>
 <listitem><simpara> The <link linkend="GduPool"><type>GduPool</type></link> emitting the signal.
 </simpara></listitem></varlistentry>
@@ -367,7 +411,9 @@ Emitted when <parameter>device</parameter> is added to <parameter>pool</paramete
 <para>
 Emitted when <parameter>device</parameter> is changed.</para>
 <para>
-</para><variablelist role="params">
+</para>
+@:
+@:<variablelist role="params">
 <varlistentry><term><parameter>pool</parameter>&#160;:</term>
 <listitem><simpara> The <link linkend="GduPool"><type>GduPool</type></link> emitting the signal.
 </simpara></listitem></varlistentry>
@@ -383,7 +429,9 @@ Emitted when <parameter>device</parameter> is changed.</para>
 <para>
 Emitted when job status on <parameter>device</parameter> changes.</para>
 <para>
-</para><variablelist role="params">
+</para>
+@:
+@:<variablelist role="params">
 <varlistentry><term><parameter>pool</parameter>&#160;:</term>
 <listitem><simpara> The <link linkend="GduPool"><type>GduPool</type></link> emitting the signal.
 </simpara></listitem></varlistentry>
@@ -400,7 +448,9 @@ Emitted when job status on <parameter>device</parameter> changes.</para>
 Emitted when <parameter>device</parameter> is removed from <parameter>pool</parameter>. Recipients
 should release references to <parameter>device</parameter>.</para>
 <para>
-</para><variablelist role="params">
+</para>
+@:
+@:<variablelist role="params">
 <varlistentry><term><parameter>pool</parameter>&#160;:</term>
 <listitem><simpara> The <link linkend="GduPool"><type>GduPool</type></link> emitting the signal.
 </simpara></listitem></varlistentry>
@@ -416,7 +466,9 @@ should release references to <parameter>device</parameter>.</para>
 <para>
 Emitted when <parameter>presentable</parameter> is added to <parameter>pool</parameter>.</para>
 <para>
-</para><variablelist role="params">
+</para>
+@:
+@:<variablelist role="params">
 <varlistentry><term><parameter>pool</parameter>&#160;:</term>
 <listitem><simpara> The <link linkend="GduPool"><type>GduPool</type></link> emitting the signal.
 </simpara></listitem></varlistentry>
@@ -432,7 +484,9 @@ Emitted when <parameter>presentable</parameter> is added to <parameter>pool</par
 <para>
 Emitted when <parameter>presentable</parameter> changes.</para>
 <para>
-</para><variablelist role="params">
+</para>
+@:
+@:<variablelist role="params">
 <varlistentry><term><parameter>pool</parameter>&#160;:</term>
 <listitem><simpara> The <link linkend="GduPool"><type>GduPool</type></link> emitting the signal.
 </simpara></listitem></varlistentry>
@@ -448,7 +502,9 @@ Emitted when <parameter>presentable</parameter> changes.</para>
 <para>
 Emitted when job status on <parameter>presentable</parameter> changes.</para>
 <para>
-</para><variablelist role="params">
+</para>
+@:
+@:<variablelist role="params">
 <varlistentry><term><parameter>pool</parameter>&#160;:</term>
 <listitem><simpara> The <link linkend="GduPool"><type>GduPool</type></link> emitting the signal.
 </simpara></listitem></varlistentry>
@@ -465,7 +521,9 @@ Emitted when job status on <parameter>presentable</parameter> changes.</para>
 Emitted when <parameter>presentable</parameter> is removed from <parameter>pool</parameter>. Recipients
 should release references to <parameter>presentable</parameter>.</para>
 <para>
-</para><variablelist role="params">
+</para>
+@:
+@:<variablelist role="params">
 <varlistentry><term><parameter>pool</parameter>&#160;:</term>
 <listitem><simpara> The <link linkend="GduPool"><type>GduPool</type></link> emitting the signal.
 </simpara></listitem></varlistentry>

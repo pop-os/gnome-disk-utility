@@ -100,6 +100,28 @@ gdu-util
 </para>
 
 @linux_md_raid_level: 
+@long_string: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_linux_md_get_raid_level_description ##### -->
+<para>
+
+</para>
+
+@linux_md_raid_level: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_util_ata_smart_status_to_desc ##### -->
+<para>
+
+</para>
+
+@status: 
+@out_highlight: 
+@out_action_text: 
+@out_icon: 
 @Returns: 
 
 

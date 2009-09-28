@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>GduPresentable</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.74.3">
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
 <link rel="home" href="index.html" title="Disk Utility Library Reference Manual">
 <link rel="up" href="ref-core.html" title="API Reference">
 <link rel="prev" href="GduDevice.html" title="GduDevice">
@@ -27,7 +27,7 @@
                 <a href="#gnome-disk-utility-gdu-presentable.description" class="shortcut">Description</a>
 </td></tr>
 </table>
-<div class="refentry" lang="en">
+<div class="refentry" title="GduPresentable">
 <a name="gnome-disk-utility-gdu-presentable"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
@@ -36,7 +36,7 @@
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
-<div class="refsynopsisdiv">
+<div class="refsynopsisdiv" title="Synopsis">
 <a name="gnome-disk-utility-gdu-presentable.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
                     <a class="link" href="gnome-disk-utility-gdu-presentable.html#GduPresentableIface" title="GduPresentableIface">GduPresentableIface</a>;
@@ -46,7 +46,15 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 <a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *         <a class="link" href="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-device" title="gdu_presentable_get_device ()">gdu_presentable_get_device</a>          (GduPresentable *presentable);
 GduPresentable *    <a class="link" href="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-enclosing-presentable" title="gdu_presentable_get_enclosing_presentable ()">gdu_presentable_get_enclosing_presentable</a>
                                                         (GduPresentable *presentable);
-char *              <a class="link" href="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-name" title="gdu_presentable_get_name ()">gdu_presentable_get_name</a>            (GduPresentable *presentable);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *             <a class="link" href="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-name" title="gdu_presentable_get_name ()">gdu_presentable_get_name</a>            (GduPresentable *presentable);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *             <a class="link" href="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-description" title="gdu_presentable_get_description ()">gdu_presentable_get_description</a>     (GduPresentable *presentable);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *             <a class="link" href="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-vpd-name" title="gdu_presentable_get_vpd_name ()">gdu_presentable_get_vpd_name</a>        (GduPresentable *presentable);
 <a
 href="http://library.gnome.org/devel/gio/unstable/GIcon.html"
 >GIcon</a> *             <a class="link" href="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-icon" title="gdu_presentable_get_icon ()">gdu_presentable_get_icon</a>            (GduPresentable *presentable);
@@ -77,7 +85,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
                                                          GduPresentable *b);
 </pre>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Description">
 <a name="gnome-disk-utility-gdu-presentable.description"></a><h2>Description</h2>
 <p>
 All storage devices in <code class="literal">UNIX</code> and
@@ -237,9 +245,9 @@ the functions on <a class="link" href="GduDevice.html" title="GduDevice"><span c
 <p>
 </p>
 </div>
-<div class="refsect1" lang="en">
+<div class="refsect1" title="Details">
 <a name="gnome-disk-utility-gdu-presentable.details"></a><h2>Details</h2>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="GduPresentableIface">
 <a name="GduPresentableIface"></a><h3>GduPresentableIface</h3>
 <pre class="programlisting">typedef struct {
         GTypeInterface g_iface;
@@ -253,7 +261,9 @@ the functions on <a class="link" href="GduDevice.html" title="GduDevice"><span c
         const gchar *    (*get_id)                    (GduPresentable *presentable);
         GduDevice *      (*get_device)                (GduPresentable *presentable);
         GduPresentable * (*get_enclosing_presentable) (GduPresentable *presentable);
-        char *           (*get_name)                  (GduPresentable *presentable);
+        gchar *          (*get_name)                  (GduPresentable *presentable);
+        gchar *          (*get_description)           (GduPresentable *presentable);
+        gchar *          (*get_vpd_name)              (GduPresentable *presentable);
         GIcon *          (*get_icon)                  (GduPresentable *presentable);
         guint64          (*get_offset)                (GduPresentable *presentable);
         guint64          (*get_size)                  (GduPresentable *presentable);
@@ -314,6 +324,16 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NUL
 </td>
 </tr>
 <tr>
+<td><p><span class="term"><em class="structfield"><code>get_description</code></em> ()</span></p></td>
+<td> Returns a description of the presentable suitable for presentation in an user interface.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>get_vpd_name</code></em> ()</span></p></td>
+<td> Returns a name for the presentable suitable for UI that includes Vital Product Pata.
+</td>
+</tr>
+<tr>
 <td><p><span class="term"><em class="structfield"><code>get_icon</code></em> ()</span></p></td>
 <td> Returns an icon suitable for display in an user interface.
 </td>
@@ -347,7 +367,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NUL
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdu_presentable_get_id ()">
 <a name="gdu-presentable-get-id"></a><h3>gdu_presentable_get_id ()</h3>
 <pre class="programlisting">const <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
@@ -374,7 +394,7 @@ owned by <em class="parameter"><code>presentable</code></em>.
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdu_presentable_get_device ()">
 <a name="gdu-presentable-get-device"></a><h3>gdu_presentable_get_device ()</h3>
 <pre class="programlisting"><a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *         gdu_presentable_get_device          (GduPresentable *presentable);</pre>
 <p>
@@ -401,7 +421,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NUL
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdu_presentable_get_enclosing_presentable ()">
 <a name="gdu-presentable-get-enclosing-presentable"></a><h3>gdu_presentable_get_enclosing_presentable ()</h3>
 <pre class="programlisting">GduPresentable *    gdu_presentable_get_enclosing_presentable
                                                         (GduPresentable *presentable);</pre>
@@ -433,12 +453,29 @@ must unref the object.
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdu_presentable_get_name ()">
 <a name="gdu-presentable-get-name"></a><h3>gdu_presentable_get_name ()</h3>
-<pre class="programlisting">char *              gdu_presentable_get_name            (GduPresentable *presentable);</pre>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *             gdu_presentable_get_name            (GduPresentable *presentable);</pre>
 <p>
 Gets a name for <em class="parameter"><code>presentable</code></em> suitable for presentation in an user
-interface.</p>
+interface.
+</p>
+<p>
+For drives (e.g. <a class="link" href="GduDrive.html" title="GduDrive"><span class="type">GduDrive</span></a>) this could be "80G Solid-State Disk",
+"500G Hard Disk", "CompactFlash Drive", "CD/DVD Drive"
+</p>
+<p>
+For volumes (e.g. <a class="link" href="GduVolume.html" title="GduVolume"><span class="type">GduVolume</span></a>) this string could be "Fedora
+(Rawhide)" (for filesystems with labels), "48G Free" (for
+unallocated space), "2GB Swap Space" (for swap), "430GB RAID
+Component" (for RAID components) and so on.
+</p>
+<p>
+Constrast with <a class="link" href="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-vpd-name" title="gdu_presentable_get_vpd_name ()"><code class="function">gdu_presentable_get_vpd_name()</code></a> that returns a name
+based on Vital Product Data including things such as the name of
+the vendor, the model name and so on.</p>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -460,7 +497,80 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Memory-Allocation.html#g
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdu_presentable_get_description ()">
+<a name="gdu-presentable-get-description"></a><h3>gdu_presentable_get_description ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *             gdu_presentable_get_description     (GduPresentable *presentable);</pre>
+<p>
+Gets a description for <em class="parameter"><code>presentable</code></em> suitable for presentation in an user
+interface.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>presentable</code></em> :</span></p></td>
+<td> A <span class="type">GduPresentable</span>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The description. Caller must free the string with <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Memory-Allocation.html#g-free"
+><code class="function">g_free()</code></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_presentable_get_vpd_name ()">
+<a name="gdu-presentable-get-vpd-name"></a><h3>gdu_presentable_get_vpd_name ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *             gdu_presentable_get_vpd_name        (GduPresentable *presentable);</pre>
+<p>
+Gets a name for <em class="parameter"><code>presentable</code></em> suitable for presentation in an user
+interface that includes Vital Product Data details such as the name
+of the vendor, the model name and so on.
+</p>
+<p>
+For drives (e.g. <a class="link" href="GduDrive.html" title="GduDrive"><span class="type">GduDrive</span></a>) this typically includes the
+vendor/model strings obtained from the hardware, for example
+"MATSHITA DVD/CDRW UJDA775" or "ATA INTEL SSDSA2MH080G1GC".
+</p>
+<p>
+For volumes (e.g. <a class="link" href="GduVolume.html" title="GduVolume"><span class="type">GduVolume</span></a>) this includes information about e.g.
+partition infomation for example "Whole-disk volume on ATA INTEL
+SSDSA2MH080G1GC", "Partition 2 of ATA INTEL SSDSA2MH080G1GC".
+</p>
+<p>
+Contrast with <a class="link" href="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-name" title="gdu_presentable_get_name ()"><code class="function">gdu_presentable_get_name()</code></a> that may not include this
+information.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>presentable</code></em> :</span></p></td>
+<td> A <span class="type">GduPresentable</span>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The name. Caller must free the string with <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Memory-Allocation.html#g-free"
+><code class="function">g_free()</code></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_presentable_get_icon ()">
 <a name="gdu-presentable-get-icon"></a><h3>gdu_presentable_get_icon ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/gio/unstable/GIcon.html"
@@ -490,7 +600,7 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdu_presentable_get_offset ()">
 <a name="gdu-presentable-get-offset"></a><h3>gdu_presentable_get_offset ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
@@ -517,7 +627,7 @@ underlying main block device</p>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdu_presentable_get_size ()">
 <a name="gdu-presentable-get-size"></a><h3>gdu_presentable_get_size ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
@@ -543,7 +653,7 @@ Gets the size of <em class="parameter"><code>presentable</code></em>.</p>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdu_presentable_get_pool ()">
 <a name="gdu-presentable-get-pool"></a><h3>gdu_presentable_get_pool ()</h3>
 <pre class="programlisting"><a class="link" href="GduPool.html" title="GduPool">GduPool</a> *           gdu_presentable_get_pool            (GduPresentable *presentable);</pre>
 <p>
@@ -567,7 +677,7 @@ Gets the <a class="link" href="GduPool.html" title="GduPool"><span class="type">
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdu_presentable_is_allocated ()">
 <a name="gdu-presentable-is-allocated"></a><h3>gdu_presentable_is_allocated ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
@@ -593,7 +703,7 @@ Determines if <em class="parameter"><code>presentable</code></em> represents an 
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdu_presentable_is_recognized ()">
 <a name="gdu-presentable-is-recognized"></a><h3>gdu_presentable_is_recognized ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
@@ -620,7 +730,7 @@ it's a file system, encrypted data or swap space.</p>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdu_presentable_get_toplevel ()">
 <a name="gdu-presentable-get-toplevel"></a><h3>gdu_presentable_get_toplevel ()</h3>
 <pre class="programlisting">GduPresentable *    gdu_presentable_get_toplevel        (GduPresentable *presentable);</pre>
 <p>
@@ -647,7 +757,7 @@ unref the object when done with it
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdu_presentable_hash ()">
 <a name="gdu-presentable-hash"></a><h3>gdu_presentable_hash ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
@@ -671,7 +781,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdu_presentable_equals ()">
 <a name="gdu-presentable-equals"></a><h3>gdu_presentable_equals ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
@@ -701,7 +811,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolea
 </table></div>
 </div>
 <hr>
-<div class="refsect2" lang="en">
+<div class="refsect2" title="gdu_presentable_compare ()">
 <a name="gdu-presentable-compare"></a><h3>gdu_presentable_compare ()</h3>
 <pre class="programlisting"><a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"

@@ -86,3 +86,15 @@ GduDrive
 @user_data: 
 
 
+<!-- ##### FUNCTION gdu_drive_has_unallocated_space ##### -->
+<para>
+
+</para>
+
+@drive: 
+@out_whole_disk_is_unitialized: 
+@out_largest_segment: 
+@out_presentable: 
+@Returns: 
+
+

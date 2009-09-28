@@ -96,6 +96,11 @@ typedef void (*GduDeviceLinuxMdStopCompletedFunc) (GduDevice    *device,
                                                    GError       *error,
                                                    gpointer      user_data);
 
+typedef void (*GduDeviceLinuxMdCheckCompletedFunc) (GduDevice    *device,
+                                                    guint         num_errors,
+                                                    GError       *error,
+                                                    gpointer      user_data);
+
 typedef void (*GduDeviceLinuxMdAddComponentCompletedFunc) (GduDevice    *device,
                                                            GError       *error,
                                                            gpointer      user_data);
@@ -117,11 +122,6 @@ typedef void (*GduDeviceCancelJobCompletedFunc) (GduDevice  *device,
                                                  GError     *error,
                                                  gpointer    user_data);
 
-typedef void (*GduDeviceDriveAtaSmartGetHistoricalDataCompletedFunc) (GduDevice *device,
-                                                                      GList     *smart_data,
-                                                                      GError    *error,
-                                                                      gpointer   user_data);
-
 typedef void (*GduDeviceFilesystemListOpenFilesCompletedFunc) (GduDevice    *device,
                                                                GList        *processes,
                                                                GError       *error,
@@ -131,6 +131,10 @@ typedef void (*GduDeviceFilesystemListOpenFilesCompletedFunc) (GduDevice    *dev
 typedef void (*GduDeviceDriveEjectCompletedFunc) (GduDevice    *device,
                                                   GError       *error,
                                                   gpointer      user_data);
+
+typedef void (*GduDeviceDriveDetachCompletedFunc) (GduDevice    *device,
+                                                   GError       *error,
+                                                   gpointer      user_data);
 
 typedef void (*GduDeviceDrivePollMediaCompletedFunc) (GduDevice    *device,
                                                       GError       *error,
@@ -143,6 +147,11 @@ typedef void (*GduPoolLinuxMdStartCompletedFunc) (GduPool    *pool,
                                                   char       *assembled_array_object_path,
                                                   GError     *error,
                                                   gpointer    user_data);
+
+typedef void (*GduPoolLinuxMdCreateCompletedFunc) (GduPool    *pool,
+                                                   char       *array_object_path,
+                                                   GError     *error,
+                                                   gpointer    user_data);
 
 /* ---------------------------------------------------------------------------------------------------- */
 /* GduDrive */
