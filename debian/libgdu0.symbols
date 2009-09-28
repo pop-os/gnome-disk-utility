@@ -1,59 +1,15 @@
 libgdu.so.0 libgdu0 #MINVER#
- gdu_ata_smart_attribute_get_current@Base 0.3
- gdu_ata_smart_attribute_get_current_valid@Base 0.3
- gdu_ata_smart_attribute_get_flags@Base 0.3
- gdu_ata_smart_attribute_get_good@Base 0.3
- gdu_ata_smart_attribute_get_good_valid@Base 0.3
- gdu_ata_smart_attribute_get_id@Base 0.3
- gdu_ata_smart_attribute_get_localized_description@Base 0.3
- gdu_ata_smart_attribute_get_localized_name@Base 0.3
- gdu_ata_smart_attribute_get_name@Base 0.3
- gdu_ata_smart_attribute_get_online@Base 0.3
- gdu_ata_smart_attribute_get_prefailure@Base 0.3
- gdu_ata_smart_attribute_get_pretty_unit@Base 0.3
- gdu_ata_smart_attribute_get_pretty_value@Base 0.3
- gdu_ata_smart_attribute_get_threshold@Base 0.3
- gdu_ata_smart_attribute_get_threshold_valid@Base 0.3
- gdu_ata_smart_attribute_get_type@Base 0.3
- gdu_ata_smart_attribute_get_worst@Base 0.3
- gdu_ata_smart_attribute_get_worst_valid@Base 0.3
- gdu_ata_smart_historical_data_get_attribute@Base 0.3
- gdu_ata_smart_historical_data_get_attributes@Base 0.3
- gdu_ata_smart_historical_data_get_has_bad_attributes@Base 0.3
- gdu_ata_smart_historical_data_get_has_bad_sectors@Base 0.3
- gdu_ata_smart_historical_data_get_is_failing@Base 0.3
- gdu_ata_smart_historical_data_get_is_failing_valid@Base 0.3
- gdu_ata_smart_historical_data_get_power_on_seconds@Base 0.3
- gdu_ata_smart_historical_data_get_temperature_kelvin@Base 0.3
- gdu_ata_smart_historical_data_get_time_collected@Base 0.3
- gdu_ata_smart_historical_data_get_type@Base 0.3
- gdu_device_drive_ata_smart_get_abort_self_test_available@Base 0.3
- gdu_device_drive_ata_smart_get_attribute@Base 0.3
- gdu_device_drive_ata_smart_get_attributes@Base 0.3
- gdu_device_drive_ata_smart_get_conveyance_self_test_available@Base 0.3
- gdu_device_drive_ata_smart_get_conveyance_self_test_polling_minutes@Base 0.3
- gdu_device_drive_ata_smart_get_extended_self_test_polling_minutes@Base 0.3
- gdu_device_drive_ata_smart_get_has_bad_attributes@Base 0.3
- gdu_device_drive_ata_smart_get_has_bad_sectors@Base 0.3
- gdu_device_drive_ata_smart_get_historical_data@Base 0.3
- gdu_device_drive_ata_smart_get_historical_data_sync@Base 0.3
+ gdu_device_drive_ata_smart_get_blob@Base 2.28.0
  gdu_device_drive_ata_smart_get_is_available@Base 0.3
- gdu_device_drive_ata_smart_get_is_failing@Base 0.3
- gdu_device_drive_ata_smart_get_is_failing_valid@Base 0.3
- gdu_device_drive_ata_smart_get_offline_data_collection_seconds@Base 0.3
- gdu_device_drive_ata_smart_get_offline_data_collection_status@Base 0.3
- gdu_device_drive_ata_smart_get_power_on_seconds@Base 0.3
- gdu_device_drive_ata_smart_get_self_test_execution_percent_remaining@Base 0.3
- gdu_device_drive_ata_smart_get_self_test_execution_status@Base 0.3
- gdu_device_drive_ata_smart_get_short_and_extended_self_test_available@Base 0.3
- gdu_device_drive_ata_smart_get_short_self_test_polling_minutes@Base 0.3
- gdu_device_drive_ata_smart_get_start_self_test_available@Base 0.3
- gdu_device_drive_ata_smart_get_temperature_kelvin@Base 0.3
+ gdu_device_drive_ata_smart_get_status@Base 2.28.0
  gdu_device_drive_ata_smart_get_time_collected@Base 0.3
  gdu_device_drive_ata_smart_refresh_data@Base 0.3
+ gdu_device_drive_get_can_detach@Base 0.4
+ gdu_device_drive_get_can_spindown@Base 0.5
  gdu_device_drive_get_connection_interface@Base 0.2
  gdu_device_drive_get_connection_speed@Base 0.2
  gdu_device_drive_get_is_media_ejectable@Base 0.2
+ gdu_device_drive_get_is_rotational@Base 0.5
  gdu_device_drive_get_media@Base 0.2
  gdu_device_drive_get_media_compatibility@Base 0.2
  gdu_device_drive_get_model@Base 0.2
@@ -77,6 +33,7 @@ libgdu.so.0 libgdu0 #MINVER#
  gdu_device_get_presentation_hide@Base 0.3
  gdu_device_get_presentation_icon_name@Base 0.2
  gdu_device_get_presentation_name@Base 0.2
+ gdu_device_get_presentation_nopolicy@Base 0.5
  gdu_device_get_size@Base 0.2
  gdu_device_get_type@Base 0.2
  gdu_device_id_get_label@Base 0.2
@@ -131,6 +88,7 @@ libgdu.so.0 libgdu0 #MINVER#
  gdu_device_luks_get_holder@Base 0.2
  gdu_device_op_cancel_job@Base 0.2
  gdu_device_op_drive_ata_smart_initiate_selftest@Base 0.3
+ gdu_device_op_drive_detach@Base 0.4
  gdu_device_op_drive_eject@Base 0.2
  gdu_device_op_drive_poll_media@Base 0.2
  gdu_device_op_filesystem_check@Base 0.2
@@ -139,6 +97,7 @@ libgdu.so.0 libgdu0 #MINVER#
  gdu_device_op_filesystem_set_label@Base 0.2
  gdu_device_op_filesystem_unmount@Base 0.2
  gdu_device_op_linux_md_add_component@Base 0.2
+ gdu_device_op_linux_md_check@Base 0.4
  gdu_device_op_linux_md_remove_component@Base 0.2
  gdu_device_op_linux_md_stop@Base 0.2
  gdu_device_op_luks_change_passphrase@Base 0.2
@@ -170,9 +129,9 @@ libgdu.so.0 libgdu0 #MINVER#
  gdu_drive_can_deactivate@Base 0.2
  gdu_drive_deactivate@Base 0.2
  gdu_drive_get_type@Base 0.2
+ gdu_drive_has_unallocated_space@Base 0.5
  gdu_drive_is_activatable@Base 0.2
  gdu_drive_is_active@Base 0.2
- gdu_error_check_polkit_not_authorized@Base 0.2
  gdu_error_quark@Base 0.2
  gdu_get_job_description@Base 0.2
  gdu_known_filesystem_get_can_create@Base 0.2
@@ -194,6 +153,7 @@ libgdu.so.0 libgdu0 #MINVER#
  gdu_linux_md_drive_get_slaves@Base 0.2
  gdu_linux_md_drive_get_type@Base 0.2
  gdu_linux_md_drive_has_slave@Base 0.2
+ gdu_linux_md_get_raid_level_description@Base 0.5
  gdu_linux_md_get_raid_level_for_display@Base 0.2
  gdu_marshal_VOID__BOOLEAN_STRING_UINT_BOOLEAN_DOUBLE@Base 0.3
  gdu_marshal_VOID__STRING_BOOLEAN_STRING_UINT_BOOLEAN_DOUBLE@Base 0.3
@@ -211,10 +171,12 @@ libgdu.so.0 libgdu0 #MINVER#
  gdu_pool_get_volume_by_device@Base 0.2
  gdu_pool_is_daemon_inhibited@Base 0.2
  gdu_pool_new@Base 0.2
+ gdu_pool_op_linux_md_create@Base 0.5
  gdu_pool_op_linux_md_start@Base 0.2
  gdu_pool_supports_luks_devices@Base 0.2
  gdu_presentable_compare@Base 0.2
  gdu_presentable_equals@Base 0.2
+ gdu_presentable_get_description@Base 0.5
  gdu_presentable_get_device@Base 0.2
  gdu_presentable_get_enclosing_presentable@Base 0.2
  gdu_presentable_get_icon@Base 0.2
@@ -225,6 +187,7 @@ libgdu.so.0 libgdu0 #MINVER#
  gdu_presentable_get_size@Base 0.2
  gdu_presentable_get_toplevel@Base 0.2
  gdu_presentable_get_type@Base 0.2
+ gdu_presentable_get_vpd_name@Base 0.5
  gdu_presentable_hash@Base 0.2
  gdu_presentable_is_allocated@Base 0.2
  gdu_presentable_is_recognized@Base 0.2
@@ -233,6 +196,7 @@ libgdu.so.0 libgdu0 #MINVER#
  gdu_process_get_id@Base 0.2
  gdu_process_get_owner@Base 0.2
  gdu_process_get_type@Base 0.2
+ gdu_util_ata_smart_status_to_desc@Base 2.28.0
  gdu_util_delete_secret@Base 0.2
  gdu_util_fstype_get_description@Base 0.2
  gdu_util_get_connection_for_display@Base 0.2

@@ -11,14 +11,12 @@ Build-Depends: debhelper (>= 7),
  gtk-doc-tools,
  gnome-doc-utils,
  rarian-compat | scrollkeeper,
- devicekit-disks,
  libdbus-glib-1-dev (>= 0.76),
  libglib2.0-dev (>= 2.16),
- libgtk2.0-dev (>= 2.6.0),
- libpolkit-dbus-dev (>= 0.7),
- libpolkit-gnome-dev (>= 0.7),
+ libgtk2.0-dev (>= 2.17.2),
+ devicekit-disks (>= 007),
+ libatasmart-dev (>= 0.14),
  libgnome-keyring-dev (>= 2.22),
- libsexy-dev (>= 0.1.11),
  libunique-dev (>= 1.0),
  libnotify-dev (>= 0.3.0),
  libnautilus-extension-dev (>= 2.24)
@@ -29,7 +27,7 @@ Homepage: http://git.gnome.org/cgit/gnome-disk-utility/
 
 Package: gnome-disk-utility
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, devicekit-disks
+Depends: ${shlibs:Depends}, ${misc:Depends}, devicekit-disks (>= 007)
 Description: manage and configure disk drives and media
  palimpsest (from the gnome-disk-utility project) is a tool to manage disk
  drives and media:
@@ -66,7 +64,7 @@ Description: GTK+ standard dialog library for libgdu
 Package: libgdu-dev
 Architecture: any
 Section: libdevel
-Depends: libgdu0 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}, libglib2.0-dev (>= 2.16), libpolkit-dev
+Depends: libgdu0 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}, libglib2.0-dev (>= 2.16)
 Description: GObject based Disk Utility Library - development files
  The gnome-disk-utility library provides an user-space interface to the
  DeviceKit-disks objects and properties (such as drives, volumes, SMART data),
@@ -78,7 +76,7 @@ Description: GObject based Disk Utility Library - development files
 Package: libgdu-gtk-dev
 Architecture: any
 Section: libdevel
-Depends: libgdu-gtk0 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}, libgdu-dev, libpolkit-gnome-dev, libgtk2.0-dev
+Depends: libgdu-gtk0 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}, libgdu-dev, libgtk2.0-dev
 Description: GTK+ standard dialog library for libgdu - development files
  The gdu-gtk library provides standard GTK+ dialogs for handling media
  operations, like entering secrets for encrypted drives or confirmation dialogs

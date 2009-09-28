@@ -1,4 +1,37 @@
 libgdu-gtk.so.0 libgdu-gtk0 #MINVER#
+ gdu_ata_smart_dialog_get_type@Base 2.28.0
+ gdu_ata_smart_dialog_new@Base 2.28.0
+ gdu_create_linux_md_dialog_get_component_size@Base 0.5
+ gdu_create_linux_md_dialog_get_drives@Base 0.5
+ gdu_create_linux_md_dialog_get_level@Base 0.5
+ gdu_create_linux_md_dialog_get_name@Base 0.5
+ gdu_create_linux_md_dialog_get_size@Base 0.5
+ gdu_create_linux_md_dialog_get_stripe_size@Base 0.5
+ gdu_create_linux_md_dialog_get_type@Base 0.5
+ gdu_create_linux_md_dialog_new@Base 0.5
+ gdu_pool_tree_model_column_get_type@Base 0.5
+ gdu_pool_tree_model_flags_get_type@Base 0.5
+ gdu_pool_tree_model_get_iter_for_presentable@Base 0.5
+ gdu_pool_tree_model_get_type@Base 0.5
+ gdu_pool_tree_model_new@Base 0.5
+ gdu_pool_tree_view_flags_get_type@Base 0.5
+ gdu_pool_tree_view_get_selected_presentable@Base 0.5
+ gdu_pool_tree_view_get_type@Base 0.5
+ gdu_pool_tree_view_new@Base 0.5
+ gdu_pool_tree_view_select_first_presentable@Base 0.5
+ gdu_pool_tree_view_select_presentable@Base 0.5
+ gdu_size_widget_get_max_size@Base 0.5
+ gdu_size_widget_get_min_size@Base 0.5
+ gdu_size_widget_get_size@Base 0.5
+ gdu_size_widget_get_type@Base 0.5
+ gdu_size_widget_new@Base 0.5
+ gdu_size_widget_set_max_size@Base 0.5
+ gdu_size_widget_set_min_size@Base 0.5
+ gdu_size_widget_set_size@Base 0.5
+ gdu_spinner_get_type@Base 2.28.0
+ gdu_spinner_new@Base 2.28.0
+ gdu_spinner_start@Base 2.28.0
+ gdu_spinner_stop@Base 2.28.0
  gdu_time_label_get_type@Base 0.3
  gdu_time_label_new@Base 0.3
  gdu_time_label_set_time@Base 0.3

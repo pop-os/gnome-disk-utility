@@ -1,8 +1,21 @@
-gnome-disk-utility (0.3-3) UNRELEASED; urgency=low
+gnome-disk-utility (2.28.0-1) UNRELEASED; urgency=low
 
   [ Martin Pitt ]
+  * New upstream version:
+    - Port to PolicyKit-1 (which essentially means to drop all the PK code).
+    - Follow GNOME release cycle now.
+    - Lots of bug fixes and translation updates.
+    - Land new ATA SMART user interface (requires DK-disks 007).
+  * debian/control:
+    - Drop old libpolkit*-dev build and binary dependencies.
+    - Bump devicekit-disks build/binary dependency to >= 007.
+    - Bump libgtk2.0-dev and libatasmart-dev build dependencies as required by
+      upstream.
+    - Drop libsexy-dev build dependency, not necessary any more.
   * debian/control: Add alternative build dependency "rarian-compat", the
     successor of scrollkeeper.
+  * debian/libgdu0.symbols, debian/libgdu-gtk0.symbols: Update for new
+    release.
 
  -- Michael Biebl <biebl@debian.org>  Mon, 22 Jun 2009 14:47:08 +0200
 
