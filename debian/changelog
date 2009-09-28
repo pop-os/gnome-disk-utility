@@ -16,6 +16,7 @@ gnome-disk-utility (2.28.0-1) UNRELEASED; urgency=low
     successor of scrollkeeper.
   * debian/libgdu0.symbols, debian/libgdu-gtk0.symbols: Update for new
     release.
+  * debian/control: Bump Standards-Version to 3.8.3 (no changes necessary).
 
  -- Michael Biebl <biebl@debian.org>  Mon, 22 Jun 2009 14:47:08 +0200
 
