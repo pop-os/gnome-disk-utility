@@ -2,7 +2,7 @@ Source: gnome-disk-utility
 Section: admin
 Priority: optional
 Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.org>
-Uploaders: Michael Biebl <biebl@debian.org>
+Uploaders: Michael Biebl <biebl@debian.org>, Martin Pitt <mpitt@debian.org>
 Build-Depends: debhelper (>= 7),
  cdbs,
  autotools-dev,
