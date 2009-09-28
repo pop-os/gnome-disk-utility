@@ -1,6 +1,5 @@
-gnome-disk-utility (2.28.0-1) UNRELEASED; urgency=low
+gnome-disk-utility (2.28.0-1) unstable; urgency=low
 
-  [ Martin Pitt ]
   * New upstream version:
     - Port to PolicyKit-1 (which essentially means to drop all the PK code).
     - Follow GNOME release cycle now.
@@ -24,7 +23,7 @@ gnome-disk-utility (2.28.0-1) UNRELEASED; urgency=low
     Also, simplify and sort the file lists.
   * debian/control: Added myself to uploaders, with Michael's consent.
 
- -- Michael Biebl <biebl@debian.org>  Mon, 22 Jun 2009 14:47:08 +0200
+ -- Martin Pitt <mpitt@debian.org>  Mon, 28 Sep 2009 17:15:02 +0200
 
 gnome-disk-utility (0.3-2) experimental; urgency=low
 
