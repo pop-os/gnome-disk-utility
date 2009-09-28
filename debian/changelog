@@ -20,6 +20,8 @@ gnome-disk-utility (2.28.0-1) UNRELEASED; urgency=low
   * debian/rules: When building for Ubuntu, update palimpsest .desktop's
     Category field to appear in System → Administration instead of Apps →
     System Tools.
+  * debian/*.install: Drop debian/tmp/ prefix, since we use dh compat 7.
+    Also, simplify and sort the file lists.
 
  -- Michael Biebl <biebl@debian.org>  Mon, 22 Jun 2009 14:47:08 +0200
 
