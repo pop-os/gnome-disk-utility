@@ -6,6 +6,7 @@ Uploaders: Michael Biebl <biebl@debian.org>, Martin Pitt <mpitt@debian.org>
 Build-Depends: debhelper (>= 7),
  cdbs,
  autotools-dev,
+ quilt,
  pkg-config,
  lsb-release,
  xsltproc,
