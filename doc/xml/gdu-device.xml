@@ -1969,8 +1969,7 @@ complex.</para>
 <indexterm zone="GduDevice-changed"><primary sortas="GduDevice::changed">GduDevice::changed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="GduDevice">GduDevice</link> *gdudevice,
                                                         <link linkend="gpointer">gpointer</link>   user_data)      : Run Last</programlisting>
 <para>
-</para>
-@:<variablelist role="params">
+</para><variablelist role="params">
 <varlistentry><term><parameter>gdudevice</parameter>&#160;:</term>
 <listitem><simpara>the object which received the signal.
 </simpara></listitem></varlistentry>
@@ -1980,8 +1979,7 @@ complex.</para>
 <indexterm zone="GduDevice-job-changed"><primary sortas="GduDevice::job-changed">GduDevice::job-changed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="GduDevice">GduDevice</link> *gdudevice,
                                                         <link linkend="gpointer">gpointer</link>   user_data)      : Run Last</programlisting>
 <para>
-</para>
-@:<variablelist role="params">
+</para><variablelist role="params">
 <varlistentry><term><parameter>gdudevice</parameter>&#160;:</term>
 <listitem><simpara>the object which received the signal.
 </simpara></listitem></varlistentry>
@@ -1991,8 +1989,7 @@ complex.</para>
 <indexterm zone="GduDevice-removed"><primary sortas="GduDevice::removed">GduDevice::removed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="GduDevice">GduDevice</link> *gdudevice,
                                                         <link linkend="gpointer">gpointer</link>   user_data)      : Run Last</programlisting>
 <para>
-</para>
-@:<variablelist role="params">
+</para><variablelist role="params">
 <varlistentry><term><parameter>gdudevice</parameter>&#160;:</term>
 <listitem><simpara>the object which received the signal.
 </simpara></listitem></varlistentry>
