@@ -34,8 +34,6 @@ GduDevice
 
 </para>
 
-@:
-
 @gdudevice: the object which received the signal.
 
 <!-- ##### SIGNAL GduDevice::job-changed ##### -->
@@ -43,16 +41,12 @@ GduDevice
 
 </para>
 
-@:
-
 @gdudevice: the object which received the signal.
 
 <!-- ##### SIGNAL GduDevice::removed ##### -->
 <para>
 
 </para>
-
-@:
 
 @gdudevice: the object which received the signal.
 

@@ -393,9 +393,7 @@ Creates a Linux md Software Array.</para>
 <para>
 Emitted when <parameter>device</parameter> is added to <parameter>pool</parameter>.</para>
 <para>
-</para>
-@:
-@:<variablelist role="params">
+</para><variablelist role="params">
 <varlistentry><term><parameter>pool</parameter>&#160;:</term>
 <listitem><simpara> The <link linkend="GduPool"><type>GduPool</type></link> emitting the signal.
 </simpara></listitem></varlistentry>
@@ -411,9 +409,7 @@ Emitted when <parameter>device</parameter> is added to <parameter>pool</paramete
 <para>
 Emitted when <parameter>device</parameter> is changed.</para>
 <para>
-</para>
-@:
-@:<variablelist role="params">
+</para><variablelist role="params">
 <varlistentry><term><parameter>pool</parameter>&#160;:</term>
 <listitem><simpara> The <link linkend="GduPool"><type>GduPool</type></link> emitting the signal.
 </simpara></listitem></varlistentry>
@@ -429,9 +425,7 @@ Emitted when <parameter>device</parameter> is changed.</para>
 <para>
 Emitted when job status on <parameter>device</parameter> changes.</para>
 <para>
-</para>
-@:
-@:<variablelist role="params">
+</para><variablelist role="params">
 <varlistentry><term><parameter>pool</parameter>&#160;:</term>
 <listitem><simpara> The <link linkend="GduPool"><type>GduPool</type></link> emitting the signal.
 </simpara></listitem></varlistentry>
@@ -448,9 +442,7 @@ Emitted when job status on <parameter>device</parameter> changes.</para>
 Emitted when <parameter>device</parameter> is removed from <parameter>pool</parameter>. Recipients
 should release references to <parameter>device</parameter>.</para>
 <para>
-</para>
-@:
-@:<variablelist role="params">
+</para><variablelist role="params">
 <varlistentry><term><parameter>pool</parameter>&#160;:</term>
 <listitem><simpara> The <link linkend="GduPool"><type>GduPool</type></link> emitting the signal.
 </simpara></listitem></varlistentry>
@@ -466,9 +458,7 @@ should release references to <parameter>device</parameter>.</para>
 <para>
 Emitted when <parameter>presentable</parameter> is added to <parameter>pool</parameter>.</para>
 <para>
-</para>
-@:
-@:<variablelist role="params">
+</para><variablelist role="params">
 <varlistentry><term><parameter>pool</parameter>&#160;:</term>
 <listitem><simpara> The <link linkend="GduPool"><type>GduPool</type></link> emitting the signal.
 </simpara></listitem></varlistentry>
@@ -484,9 +474,7 @@ Emitted when <parameter>presentable</parameter> is added to <parameter>pool</par
 <para>
 Emitted when <parameter>presentable</parameter> changes.</para>
 <para>
-</para>
-@:
-@:<variablelist role="params">
+</para><variablelist role="params">
 <varlistentry><term><parameter>pool</parameter>&#160;:</term>
 <listitem><simpara> The <link linkend="GduPool"><type>GduPool</type></link> emitting the signal.
 </simpara></listitem></varlistentry>
@@ -502,9 +490,7 @@ Emitted when <parameter>presentable</parameter> changes.</para>
 <para>
 Emitted when job status on <parameter>presentable</parameter> changes.</para>
 <para>
-</para>
-@:
-@:<variablelist role="params">
+</para><variablelist role="params">
 <varlistentry><term><parameter>pool</parameter>&#160;:</term>
 <listitem><simpara> The <link linkend="GduPool"><type>GduPool</type></link> emitting the signal.
 </simpara></listitem></varlistentry>
@@ -521,9 +507,7 @@ Emitted when job status on <parameter>presentable</parameter> changes.</para>
 Emitted when <parameter>presentable</parameter> is removed from <parameter>pool</parameter>. Recipients
 should release references to <parameter>presentable</parameter>.</para>
 <para>
-</para>
-@:
-@:<variablelist role="params">
+</para><variablelist role="params">
 <varlistentry><term><parameter>pool</parameter>&#160;:</term>
 <listitem><simpara> The <link linkend="GduPool"><type>GduPool</type></link> emitting the signal.
 </simpara></listitem></varlistentry>
