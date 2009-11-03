@@ -1,9 +1,9 @@
-gnome-disk-utility (2.28.1-1) UNRELEASED; urgency=low
+gnome-disk-utility (2.28.1-1) unstable; urgency=low
 
   * New upstream bug fix release.
   * debian/rules: Enable quilt patch system. Add quilt build dependency.
 
- -- Martin Pitt <mpitt@debian.org>  Mon, 05 Oct 2009 16:06:53 +0200
+ -- Martin Pitt <mpitt@debian.org>  Tue, 03 Nov 2009 15:28:15 +0100
 
 gnome-disk-utility (2.28.0-1) unstable; urgency=low
 
