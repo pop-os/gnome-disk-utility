@@ -1,4 +1,4 @@
-gnome-disk-utility (2.28.1-2) UNRELEASED; urgency=low
+gnome-disk-utility (2.28.1-2) unstable; urgency=low
 
   * debian/patches/01-reiserfs-support.patch
     - Add support for ReiserFS.
@@ -8,7 +8,7 @@ gnome-disk-utility (2.28.1-2) UNRELEASED; urgency=low
   * debian/patches/99-autoreconf.patch
     - Run autoreconf for the changes in 02-link-against-libx11-for-xkb.patch.
 
- -- Michael Biebl <biebl@debian.org>  Tue, 17 Nov 2009 12:53:45 -0600
+ -- Michael Biebl <biebl@debian.org>  Tue, 17 Nov 2009 13:01:13 -0600
 
 gnome-disk-utility (2.28.1-1) unstable; urgency=low
 
