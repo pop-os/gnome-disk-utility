@@ -1,0 +1,1536 @@
+Index: gnome-disk-utility/Makefile.in
+===================================================================
+--- gnome-disk-utility.orig/Makefile.in	2009-11-06 20:19:51.736462690 +0100
++++ gnome-disk-utility/Makefile.in	2009-11-06 20:19:39.760455448 +0100
+@@ -235,6 +235,8 @@
+ USE_NLS = @USE_NLS@
+ VERSION = @VERSION@
+ WARN_CFLAGS = @WARN_CFLAGS@
++X11_CFLAGS = @X11_CFLAGS@
++X11_LIBS = @X11_LIBS@
+ XGETTEXT = @XGETTEXT@
+ abs_builddir = @abs_builddir@
+ abs_srcdir = @abs_srcdir@
+Index: gnome-disk-utility/aclocal.m4
+===================================================================
+--- gnome-disk-utility.orig/aclocal.m4	2009-11-06 20:19:53.400464065 +0100
++++ gnome-disk-utility/aclocal.m4	2009-11-06 20:19:27.980457775 +0100
+@@ -3402,13 +3402,10 @@
+   # before this can be enabled.
+   hardcode_into_libs=yes
+ 
+-  # Add ABI-specific directories to the system library path.
+-  sys_lib_dlsearch_path_spec="/lib64 /usr/lib64 /lib /usr/lib"
+-
+   # Append ld.so.conf contents to the search path
+   if test -f /etc/ld.so.conf; then
+     lt_ld_extra=`awk '/^include / { system(sprintf("cd /etc; cat %s 2>/dev/null", \[$]2)); skip = 1; } { if (!skip) print \[$]0; skip = 0; }' < /etc/ld.so.conf | $SED -e 's/#.*//;/^[	 ]*hwcap[	 ]/d;s/[:,	]/ /g;s/=[^=]*$//;s/=[^= ]* / /g;/^$/d' | tr '\n' ' '`
+-    sys_lib_dlsearch_path_spec="$sys_lib_dlsearch_path_spec $lt_ld_extra"
++    sys_lib_dlsearch_path_spec="/lib /usr/lib $lt_ld_extra"
+   fi
+ 
+   # We used to test for /lib/ld.so.1 and disable shared libraries on
+@@ -3420,6 +3417,18 @@
+   dynamic_linker='GNU/Linux ld.so'
+   ;;
+ 
++netbsdelf*-gnu)
++  version_type=linux
++  need_lib_prefix=no
++  need_version=no
++  library_names_spec='${libname}${release}${shared_ext}$versuffix ${libname}${release}${shared_ext}$major ${libname}${shared_ext}'
++  soname_spec='${libname}${release}${shared_ext}$major'
++  shlibpath_var=LD_LIBRARY_PATH
++  shlibpath_overrides_runpath=no
++  hardcode_into_libs=yes
++  dynamic_linker='NetBSD ld.elf_so'
++  ;;
++
+ netbsd*)
+   version_type=sunos
+   need_lib_prefix=no
+@@ -4011,7 +4020,7 @@
+   lt_cv_deplibs_check_method=pass_all
+   ;;
+ 
+-netbsd*)
++netbsd* | netbsdelf*-gnu)
+   if echo __ELF__ | $CC -E - | $GREP __ELF__ > /dev/null; then
+     lt_cv_deplibs_check_method='match_pattern /lib[[^/]]+(\.so\.[[0-9]]+\.[[0-9]]+|_pic\.a)$'
+   else
+@@ -4692,7 +4701,7 @@
+ 	    ;;
+ 	esac
+ 	;;
+-      netbsd*)
++      netbsd* | netbsdelf*-gnu)
+ 	;;
+       *qnx* | *nto*)
+         # QNX uses GNU C++, but need to define -shared option too, otherwise
+@@ -5117,6 +5126,9 @@
+   cygwin* | mingw* | cegcc*)
+     _LT_TAGVAR(export_symbols_cmds, $1)='$NM $libobjs $convenience | $global_symbol_pipe | $SED -e '\''/^[[BCDGRS]][[ ]]/s/.*[[ ]]\([[^ ]]*\)/\1 DATA/;/^.*[[ ]]__nm__/s/^.*[[ ]]__nm__\([[^ ]]*\)[[ ]][[^ ]]*/\1 DATA/;/^I[[ ]]/d;/^[[AITW]][[ ]]/s/.* //'\'' | sort | uniq > $export_symbols'
+   ;;
++  linux* | k*bsd*-gnu)
++    _LT_TAGVAR(link_all_deplibs, $1)=no
++  ;;
+   *)
+     _LT_TAGVAR(export_symbols_cmds, $1)='$NM $libobjs $convenience | $global_symbol_pipe | $SED '\''s/.* //'\'' | sort | uniq > $export_symbols'
+   ;;
+@@ -5181,6 +5193,9 @@
+   openbsd*)
+     with_gnu_ld=no
+     ;;
++  linux* | k*bsd*-gnu)
++    _LT_TAGVAR(link_all_deplibs, $1)=no
++    ;;
+   esac
+ 
+   _LT_TAGVAR(ld_shlibs, $1)=yes
+@@ -5363,7 +5378,7 @@
+       fi
+       ;;
+ 
+-    netbsd*)
++    netbsd* | netbsdelf*-gnu)
+       if echo __ELF__ | $CC -E - | $GREP __ELF__ >/dev/null; then
+ 	_LT_TAGVAR(archive_cmds, $1)='$LD -Bshareable $libobjs $deplibs $linker_flags -o $lib'
+ 	wlarc=
+@@ -5538,6 +5553,7 @@
+ 	if test "$aix_use_runtimelinking" = yes; then
+ 	  shared_flag="$shared_flag "'${wl}-G'
+ 	fi
++	_LT_TAGVAR(link_all_deplibs, $1)=no
+       else
+ 	# not using gcc
+ 	if test "$host_cpu" = ia64; then
+@@ -5776,7 +5792,7 @@
+       _LT_TAGVAR(link_all_deplibs, $1)=yes
+       ;;
+ 
+-    netbsd*)
++    netbsd* | netbsdelf*-gnu)
+       if echo __ELF__ | $CC -E - | $GREP __ELF__ >/dev/null; then
+ 	_LT_TAGVAR(archive_cmds, $1)='$LD -Bshareable -o $lib $libobjs $deplibs $linker_flags'  # a.out
+       else
+@@ -8985,14 +9001,16 @@
+ # _PKG_CONFIG([VARIABLE], [COMMAND], [MODULES])
+ # ---------------------------------------------
+ m4_define([_PKG_CONFIG],
+-[if test -n "$$1"; then
+-    pkg_cv_[]$1="$$1"
+- elif test -n "$PKG_CONFIG"; then
+-    PKG_CHECK_EXISTS([$3],
+-                     [pkg_cv_[]$1=`$PKG_CONFIG --[]$2 "$3" 2>/dev/null`],
+-		     [pkg_failed=yes])
+- else
+-    pkg_failed=untried
++[if test -n "$PKG_CONFIG"; then
++    if test -n "$$1"; then
++        pkg_cv_[]$1="$$1"
++    else
++        PKG_CHECK_EXISTS([$3],
++                         [pkg_cv_[]$1=`$PKG_CONFIG --[]$2 "$3" 2>/dev/null`],
++			 [pkg_failed=yes])
++    fi
++else
++	pkg_failed=untried
+ fi[]dnl
+ ])# _PKG_CONFIG
+ 
+@@ -9036,9 +9054,9 @@
+ if test $pkg_failed = yes; then
+         _PKG_SHORT_ERRORS_SUPPORTED
+         if test $_pkg_short_errors_supported = yes; then
+-	        $1[]_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "$2" 2>&1`
++	        $1[]_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "$2"`
+         else 
+-	        $1[]_PKG_ERRORS=`$PKG_CONFIG --print-errors "$2" 2>&1`
++	        $1[]_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "$2"`
+         fi
+ 	# Put the nasty error message in config.log where it belongs
+ 	echo "$$1[]_PKG_ERRORS" >&AS_MESSAGE_LOG_FD
+Index: gnome-disk-utility/configure
+===================================================================
+--- gnome-disk-utility.orig/configure	2009-11-06 20:19:51.816459200 +0100
++++ gnome-disk-utility/configure	2009-11-06 20:19:34.828455733 +0100
+@@ -844,6 +844,8 @@
+ SCROLLKEEPER_CONFIG
+ LIBATASMART_LIBS
+ LIBATASMART_CFLAGS
++X11_LIBS
++X11_CFLAGS
+ DEVKIT_DISKS_LIBS
+ DEVKIT_DISKS_CFLAGS
+ LIBNOTIFY_LIBS
+@@ -1053,6 +1055,8 @@
+ LIBNOTIFY_LIBS
+ DEVKIT_DISKS_CFLAGS
+ DEVKIT_DISKS_LIBS
++X11_CFLAGS
++X11_LIBS
+ LIBATASMART_CFLAGS
+ LIBATASMART_LIBS
+ NAUTILUS_CFLAGS
+@@ -1770,6 +1774,8 @@
+               C compiler flags for DEVKIT_DISKS, overriding pkg-config
+   DEVKIT_DISKS_LIBS
+               linker flags for DEVKIT_DISKS, overriding pkg-config
++  X11_CFLAGS  C compiler flags for X11, overriding pkg-config
++  X11_LIBS    linker flags for X11, overriding pkg-config
+   LIBATASMART_CFLAGS
+               C compiler flags for LIBATASMART, overriding pkg-config
+   LIBATASMART_LIBS
+@@ -5116,13 +5122,13 @@
+ else
+   lt_cv_nm_interface="BSD nm"
+   echo "int some_variable = 0;" > conftest.$ac_ext
+-  (eval echo "\"\$as_me:5119: $ac_compile\"" >&5)
++  (eval echo "\"\$as_me:5125: $ac_compile\"" >&5)
+   (eval "$ac_compile" 2>conftest.err)
+   cat conftest.err >&5
+-  (eval echo "\"\$as_me:5122: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
++  (eval echo "\"\$as_me:5128: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
+   (eval "$NM \"conftest.$ac_objext\"" 2>conftest.err > conftest.out)
+   cat conftest.err >&5
+-  (eval echo "\"\$as_me:5125: output\"" >&5)
++  (eval echo "\"\$as_me:5131: output\"" >&5)
+   cat conftest.out >&5
+   if $GREP 'External.*some_variable' conftest.out > /dev/null; then
+     lt_cv_nm_interface="MS dumpbin"
+@@ -5592,7 +5598,7 @@
+   lt_cv_deplibs_check_method=pass_all
+   ;;
+ 
+-netbsd*)
++netbsd* | netbsdelf*-gnu)
+   if echo __ELF__ | $CC -E - | $GREP __ELF__ > /dev/null; then
+     lt_cv_deplibs_check_method='match_pattern /lib[^/]+(\.so\.[0-9]+\.[0-9]+|_pic\.a)$'
+   else
+@@ -6327,7 +6333,7 @@
+   ;;
+ *-*-irix6*)
+   # Find out which ABI we are using.
+-  echo '#line 6330 "configure"' > conftest.$ac_ext
++  echo '#line 6336 "configure"' > conftest.$ac_ext
+   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
+   (eval $ac_compile) 2>&5
+   ac_status=$?
+@@ -7765,11 +7771,11 @@
+    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
+    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
+    -e 's:$: $lt_compiler_flag:'`
+-   (eval echo "\"\$as_me:7768: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:7774: $lt_compile\"" >&5)
+    (eval "$lt_compile" 2>conftest.err)
+    ac_status=$?
+    cat conftest.err >&5
+-   echo "$as_me:7772: \$? = $ac_status" >&5
++   echo "$as_me:7778: \$? = $ac_status" >&5
+    if (exit $ac_status) && test -s "$ac_outfile"; then
+      # The compiler can only warn and ignore the option if not recognized
+      # So say no if there are warnings other than the usual output.
+@@ -8104,11 +8110,11 @@
+    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
+    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
+    -e 's:$: $lt_compiler_flag:'`
+-   (eval echo "\"\$as_me:8107: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:8113: $lt_compile\"" >&5)
+    (eval "$lt_compile" 2>conftest.err)
+    ac_status=$?
+    cat conftest.err >&5
+-   echo "$as_me:8111: \$? = $ac_status" >&5
++   echo "$as_me:8117: \$? = $ac_status" >&5
+    if (exit $ac_status) && test -s "$ac_outfile"; then
+      # The compiler can only warn and ignore the option if not recognized
+      # So say no if there are warnings other than the usual output.
+@@ -8209,11 +8215,11 @@
+    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
+    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
+    -e 's:$: $lt_compiler_flag:'`
+-   (eval echo "\"\$as_me:8212: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:8218: $lt_compile\"" >&5)
+    (eval "$lt_compile" 2>out/conftest.err)
+    ac_status=$?
+    cat out/conftest.err >&5
+-   echo "$as_me:8216: \$? = $ac_status" >&5
++   echo "$as_me:8222: \$? = $ac_status" >&5
+    if (exit $ac_status) && test -s out/conftest2.$ac_objext
+    then
+      # The compiler can only warn and ignore the option if not recognized
+@@ -8264,11 +8270,11 @@
+    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
+    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
+    -e 's:$: $lt_compiler_flag:'`
+-   (eval echo "\"\$as_me:8267: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:8273: $lt_compile\"" >&5)
+    (eval "$lt_compile" 2>out/conftest.err)
+    ac_status=$?
+    cat out/conftest.err >&5
+-   echo "$as_me:8271: \$? = $ac_status" >&5
++   echo "$as_me:8277: \$? = $ac_status" >&5
+    if (exit $ac_status) && test -s out/conftest2.$ac_objext
+    then
+      # The compiler can only warn and ignore the option if not recognized
+@@ -8383,6 +8389,9 @@
+   openbsd*)
+     with_gnu_ld=no
+     ;;
++  linux* | k*bsd*-gnu)
++    link_all_deplibs=no
++    ;;
+   esac
+ 
+   ld_shlibs=yes
+@@ -8565,7 +8574,7 @@
+       fi
+       ;;
+ 
+-    netbsd*)
++    netbsd* | netbsdelf*-gnu)
+       if echo __ELF__ | $CC -E - | $GREP __ELF__ >/dev/null; then
+ 	archive_cmds='$LD -Bshareable $libobjs $deplibs $linker_flags -o $lib'
+ 	wlarc=
+@@ -8740,6 +8749,7 @@
+ 	if test "$aix_use_runtimelinking" = yes; then
+ 	  shared_flag="$shared_flag "'${wl}-G'
+ 	fi
++	link_all_deplibs=no
+       else
+ 	# not using gcc
+ 	if test "$host_cpu" = ia64; then
+@@ -9154,7 +9164,7 @@
+       link_all_deplibs=yes
+       ;;
+ 
+-    netbsd*)
++    netbsd* | netbsdelf*-gnu)
+       if echo __ELF__ | $CC -E - | $GREP __ELF__ >/dev/null; then
+ 	archive_cmds='$LD -Bshareable -o $lib $libobjs $deplibs $linker_flags'  # a.out
+       else
+@@ -10116,13 +10126,10 @@
+   # before this can be enabled.
+   hardcode_into_libs=yes
+ 
+-  # Add ABI-specific directories to the system library path.
+-  sys_lib_dlsearch_path_spec="/lib64 /usr/lib64 /lib /usr/lib"
+-
+   # Append ld.so.conf contents to the search path
+   if test -f /etc/ld.so.conf; then
+     lt_ld_extra=`awk '/^include / { system(sprintf("cd /etc; cat %s 2>/dev/null", \$2)); skip = 1; } { if (!skip) print \$0; skip = 0; }' < /etc/ld.so.conf | $SED -e 's/#.*//;/^[	 ]*hwcap[	 ]/d;s/[:,	]/ /g;s/=[^=]*$//;s/=[^= ]* / /g;/^$/d' | tr '\n' ' '`
+-    sys_lib_dlsearch_path_spec="$sys_lib_dlsearch_path_spec $lt_ld_extra"
++    sys_lib_dlsearch_path_spec="/lib /usr/lib $lt_ld_extra"
+   fi
+ 
+   # We used to test for /lib/ld.so.1 and disable shared libraries on
+@@ -10134,6 +10141,18 @@
+   dynamic_linker='GNU/Linux ld.so'
+   ;;
+ 
++netbsdelf*-gnu)
++  version_type=linux
++  need_lib_prefix=no
++  need_version=no
++  library_names_spec='${libname}${release}${shared_ext}$versuffix ${libname}${release}${shared_ext}$major ${libname}${shared_ext}'
++  soname_spec='${libname}${release}${shared_ext}$major'
++  shlibpath_var=LD_LIBRARY_PATH
++  shlibpath_overrides_runpath=no
++  hardcode_into_libs=yes
++  dynamic_linker='NetBSD ld.elf_so'
++  ;;
++
+ netbsd*)
+   version_type=sunos
+   need_lib_prefix=no
+@@ -11067,7 +11086,7 @@
+   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
+   lt_status=$lt_dlunknown
+   cat > conftest.$ac_ext <<_LT_EOF
+-#line 11070 "configure"
++#line 11089 "configure"
+ #include "confdefs.h"
+ 
+ #if HAVE_DLFCN_H
+@@ -11163,7 +11182,7 @@
+   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
+   lt_status=$lt_dlunknown
+   cat > conftest.$ac_ext <<_LT_EOF
+-#line 11166 "configure"
++#line 11185 "configure"
+ #include "confdefs.h"
+ 
+ #if HAVE_DLFCN_H
+@@ -12002,10 +12021,11 @@
+ { $as_echo "$as_me:$LINENO: checking for GLIB2" >&5
+ $as_echo_n "checking for GLIB2... " >&6; }
+ 
+-if test -n "$GLIB2_CFLAGS"; then
+-    pkg_cv_GLIB2_CFLAGS="$GLIB2_CFLAGS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$GLIB2_CFLAGS"; then
++        pkg_cv_GLIB2_CFLAGS="$GLIB2_CFLAGS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"glib-2.0 >= \$GLIB2_REQUIRED\"") >&5
+   ($PKG_CONFIG --exists --print-errors "glib-2.0 >= $GLIB2_REQUIRED") 2>&5
+   ac_status=$?
+@@ -12015,13 +12035,15 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+-if test -n "$GLIB2_LIBS"; then
+-    pkg_cv_GLIB2_LIBS="$GLIB2_LIBS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$GLIB2_LIBS"; then
++        pkg_cv_GLIB2_LIBS="$GLIB2_LIBS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"glib-2.0 >= \$GLIB2_REQUIRED\"") >&5
+   ($PKG_CONFIG --exists --print-errors "glib-2.0 >= $GLIB2_REQUIRED") 2>&5
+   ac_status=$?
+@@ -12031,8 +12053,9 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+ 
+ 
+@@ -12045,9 +12068,9 @@
+         _pkg_short_errors_supported=no
+ fi
+         if test $_pkg_short_errors_supported = yes; then
+-	        GLIB2_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "glib-2.0 >= $GLIB2_REQUIRED" 2>&1`
++	        GLIB2_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "glib-2.0 >= $GLIB2_REQUIRED"`
+         else
+-	        GLIB2_PKG_ERRORS=`$PKG_CONFIG --print-errors "glib-2.0 >= $GLIB2_REQUIRED" 2>&1`
++	        GLIB2_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "glib-2.0 >= $GLIB2_REQUIRED"`
+         fi
+ 	# Put the nasty error message in config.log where it belongs
+ 	echo "$GLIB2_PKG_ERRORS" >&5
+@@ -12111,10 +12134,11 @@
+ { $as_echo "$as_me:$LINENO: checking for GOBJECT2" >&5
+ $as_echo_n "checking for GOBJECT2... " >&6; }
+ 
+-if test -n "$GOBJECT2_CFLAGS"; then
+-    pkg_cv_GOBJECT2_CFLAGS="$GOBJECT2_CFLAGS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$GOBJECT2_CFLAGS"; then
++        pkg_cv_GOBJECT2_CFLAGS="$GOBJECT2_CFLAGS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gobject-2.0 >= \$GOBJECT2_REQUIRED\"") >&5
+   ($PKG_CONFIG --exists --print-errors "gobject-2.0 >= $GOBJECT2_REQUIRED") 2>&5
+   ac_status=$?
+@@ -12124,13 +12148,15 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+-if test -n "$GOBJECT2_LIBS"; then
+-    pkg_cv_GOBJECT2_LIBS="$GOBJECT2_LIBS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$GOBJECT2_LIBS"; then
++        pkg_cv_GOBJECT2_LIBS="$GOBJECT2_LIBS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gobject-2.0 >= \$GOBJECT2_REQUIRED\"") >&5
+   ($PKG_CONFIG --exists --print-errors "gobject-2.0 >= $GOBJECT2_REQUIRED") 2>&5
+   ac_status=$?
+@@ -12140,8 +12166,9 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+ 
+ 
+@@ -12154,9 +12181,9 @@
+         _pkg_short_errors_supported=no
+ fi
+         if test $_pkg_short_errors_supported = yes; then
+-	        GOBJECT2_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "gobject-2.0 >= $GOBJECT2_REQUIRED" 2>&1`
++	        GOBJECT2_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "gobject-2.0 >= $GOBJECT2_REQUIRED"`
+         else
+-	        GOBJECT2_PKG_ERRORS=`$PKG_CONFIG --print-errors "gobject-2.0 >= $GOBJECT2_REQUIRED" 2>&1`
++	        GOBJECT2_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "gobject-2.0 >= $GOBJECT2_REQUIRED"`
+         fi
+ 	# Put the nasty error message in config.log where it belongs
+ 	echo "$GOBJECT2_PKG_ERRORS" >&5
+@@ -12220,10 +12247,11 @@
+ { $as_echo "$as_me:$LINENO: checking for GIO2" >&5
+ $as_echo_n "checking for GIO2... " >&6; }
+ 
+-if test -n "$GIO2_CFLAGS"; then
+-    pkg_cv_GIO2_CFLAGS="$GIO2_CFLAGS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$GIO2_CFLAGS"; then
++        pkg_cv_GIO2_CFLAGS="$GIO2_CFLAGS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gio-2.0 >= \$GIO2_REQUIRED\"") >&5
+   ($PKG_CONFIG --exists --print-errors "gio-2.0 >= $GIO2_REQUIRED") 2>&5
+   ac_status=$?
+@@ -12233,13 +12261,15 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+-if test -n "$GIO2_LIBS"; then
+-    pkg_cv_GIO2_LIBS="$GIO2_LIBS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$GIO2_LIBS"; then
++        pkg_cv_GIO2_LIBS="$GIO2_LIBS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gio-2.0 >= \$GIO2_REQUIRED\"") >&5
+   ($PKG_CONFIG --exists --print-errors "gio-2.0 >= $GIO2_REQUIRED") 2>&5
+   ac_status=$?
+@@ -12249,8 +12279,9 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+ 
+ 
+@@ -12263,9 +12294,9 @@
+         _pkg_short_errors_supported=no
+ fi
+         if test $_pkg_short_errors_supported = yes; then
+-	        GIO2_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "gio-2.0 >= $GIO2_REQUIRED" 2>&1`
++	        GIO2_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "gio-2.0 >= $GIO2_REQUIRED"`
+         else
+-	        GIO2_PKG_ERRORS=`$PKG_CONFIG --print-errors "gio-2.0 >= $GIO2_REQUIRED" 2>&1`
++	        GIO2_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "gio-2.0 >= $GIO2_REQUIRED"`
+         fi
+ 	# Put the nasty error message in config.log where it belongs
+ 	echo "$GIO2_PKG_ERRORS" >&5
+@@ -12329,10 +12360,11 @@
+ { $as_echo "$as_me:$LINENO: checking for GIO_UNIX2" >&5
+ $as_echo_n "checking for GIO_UNIX2... " >&6; }
+ 
+-if test -n "$GIO_UNIX2_CFLAGS"; then
+-    pkg_cv_GIO_UNIX2_CFLAGS="$GIO_UNIX2_CFLAGS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$GIO_UNIX2_CFLAGS"; then
++        pkg_cv_GIO_UNIX2_CFLAGS="$GIO_UNIX2_CFLAGS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gio-unix-2.0 >= \$GIO2_REQUIRED\"") >&5
+   ($PKG_CONFIG --exists --print-errors "gio-unix-2.0 >= $GIO2_REQUIRED") 2>&5
+   ac_status=$?
+@@ -12342,13 +12374,15 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+-if test -n "$GIO_UNIX2_LIBS"; then
+-    pkg_cv_GIO_UNIX2_LIBS="$GIO_UNIX2_LIBS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$GIO_UNIX2_LIBS"; then
++        pkg_cv_GIO_UNIX2_LIBS="$GIO_UNIX2_LIBS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gio-unix-2.0 >= \$GIO2_REQUIRED\"") >&5
+   ($PKG_CONFIG --exists --print-errors "gio-unix-2.0 >= $GIO2_REQUIRED") 2>&5
+   ac_status=$?
+@@ -12358,8 +12392,9 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+ 
+ 
+@@ -12372,9 +12407,9 @@
+         _pkg_short_errors_supported=no
+ fi
+         if test $_pkg_short_errors_supported = yes; then
+-	        GIO_UNIX2_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "gio-unix-2.0 >= $GIO2_REQUIRED" 2>&1`
++	        GIO_UNIX2_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "gio-unix-2.0 >= $GIO2_REQUIRED"`
+         else
+-	        GIO_UNIX2_PKG_ERRORS=`$PKG_CONFIG --print-errors "gio-unix-2.0 >= $GIO2_REQUIRED" 2>&1`
++	        GIO_UNIX2_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "gio-unix-2.0 >= $GIO2_REQUIRED"`
+         fi
+ 	# Put the nasty error message in config.log where it belongs
+ 	echo "$GIO_UNIX2_PKG_ERRORS" >&5
+@@ -12438,10 +12473,11 @@
+ { $as_echo "$as_me:$LINENO: checking for GTHREAD2" >&5
+ $as_echo_n "checking for GTHREAD2... " >&6; }
+ 
+-if test -n "$GTHREAD2_CFLAGS"; then
+-    pkg_cv_GTHREAD2_CFLAGS="$GTHREAD2_CFLAGS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$GTHREAD2_CFLAGS"; then
++        pkg_cv_GTHREAD2_CFLAGS="$GTHREAD2_CFLAGS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gthread-2.0 >= \$GLIB2_REQUIRED\"") >&5
+   ($PKG_CONFIG --exists --print-errors "gthread-2.0 >= $GLIB2_REQUIRED") 2>&5
+   ac_status=$?
+@@ -12451,13 +12487,15 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+-if test -n "$GTHREAD2_LIBS"; then
+-    pkg_cv_GTHREAD2_LIBS="$GTHREAD2_LIBS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$GTHREAD2_LIBS"; then
++        pkg_cv_GTHREAD2_LIBS="$GTHREAD2_LIBS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gthread-2.0 >= \$GLIB2_REQUIRED\"") >&5
+   ($PKG_CONFIG --exists --print-errors "gthread-2.0 >= $GLIB2_REQUIRED") 2>&5
+   ac_status=$?
+@@ -12467,8 +12505,9 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+ 
+ 
+@@ -12481,9 +12520,9 @@
+         _pkg_short_errors_supported=no
+ fi
+         if test $_pkg_short_errors_supported = yes; then
+-	        GTHREAD2_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "gthread-2.0 >= $GLIB2_REQUIRED" 2>&1`
++	        GTHREAD2_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "gthread-2.0 >= $GLIB2_REQUIRED"`
+         else
+-	        GTHREAD2_PKG_ERRORS=`$PKG_CONFIG --print-errors "gthread-2.0 >= $GLIB2_REQUIRED" 2>&1`
++	        GTHREAD2_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "gthread-2.0 >= $GLIB2_REQUIRED"`
+         fi
+ 	# Put the nasty error message in config.log where it belongs
+ 	echo "$GTHREAD2_PKG_ERRORS" >&5
+@@ -12547,10 +12586,11 @@
+ { $as_echo "$as_me:$LINENO: checking for DBUS_GLIB" >&5
+ $as_echo_n "checking for DBUS_GLIB... " >&6; }
+ 
+-if test -n "$DBUS_GLIB_CFLAGS"; then
+-    pkg_cv_DBUS_GLIB_CFLAGS="$DBUS_GLIB_CFLAGS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$DBUS_GLIB_CFLAGS"; then
++        pkg_cv_DBUS_GLIB_CFLAGS="$DBUS_GLIB_CFLAGS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"dbus-glib-1 >= \$DBUS_GLIB_REQUIRED\"") >&5
+   ($PKG_CONFIG --exists --print-errors "dbus-glib-1 >= $DBUS_GLIB_REQUIRED") 2>&5
+   ac_status=$?
+@@ -12560,13 +12600,15 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+-if test -n "$DBUS_GLIB_LIBS"; then
+-    pkg_cv_DBUS_GLIB_LIBS="$DBUS_GLIB_LIBS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$DBUS_GLIB_LIBS"; then
++        pkg_cv_DBUS_GLIB_LIBS="$DBUS_GLIB_LIBS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"dbus-glib-1 >= \$DBUS_GLIB_REQUIRED\"") >&5
+   ($PKG_CONFIG --exists --print-errors "dbus-glib-1 >= $DBUS_GLIB_REQUIRED") 2>&5
+   ac_status=$?
+@@ -12576,8 +12618,9 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+ 
+ 
+@@ -12590,9 +12633,9 @@
+         _pkg_short_errors_supported=no
+ fi
+         if test $_pkg_short_errors_supported = yes; then
+-	        DBUS_GLIB_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "dbus-glib-1 >= $DBUS_GLIB_REQUIRED" 2>&1`
++	        DBUS_GLIB_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "dbus-glib-1 >= $DBUS_GLIB_REQUIRED"`
+         else
+-	        DBUS_GLIB_PKG_ERRORS=`$PKG_CONFIG --print-errors "dbus-glib-1 >= $DBUS_GLIB_REQUIRED" 2>&1`
++	        DBUS_GLIB_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "dbus-glib-1 >= $DBUS_GLIB_REQUIRED"`
+         fi
+ 	# Put the nasty error message in config.log where it belongs
+ 	echo "$DBUS_GLIB_PKG_ERRORS" >&5
+@@ -12656,10 +12699,11 @@
+ { $as_echo "$as_me:$LINENO: checking for GNOME_KEYRING" >&5
+ $as_echo_n "checking for GNOME_KEYRING... " >&6; }
+ 
+-if test -n "$GNOME_KEYRING_CFLAGS"; then
+-    pkg_cv_GNOME_KEYRING_CFLAGS="$GNOME_KEYRING_CFLAGS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$GNOME_KEYRING_CFLAGS"; then
++        pkg_cv_GNOME_KEYRING_CFLAGS="$GNOME_KEYRING_CFLAGS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gnome-keyring-1 >= \$GNOME_KEYRING_REQUIRED\"") >&5
+   ($PKG_CONFIG --exists --print-errors "gnome-keyring-1 >= $GNOME_KEYRING_REQUIRED") 2>&5
+   ac_status=$?
+@@ -12669,13 +12713,15 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+-if test -n "$GNOME_KEYRING_LIBS"; then
+-    pkg_cv_GNOME_KEYRING_LIBS="$GNOME_KEYRING_LIBS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$GNOME_KEYRING_LIBS"; then
++        pkg_cv_GNOME_KEYRING_LIBS="$GNOME_KEYRING_LIBS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gnome-keyring-1 >= \$GNOME_KEYRING_REQUIRED\"") >&5
+   ($PKG_CONFIG --exists --print-errors "gnome-keyring-1 >= $GNOME_KEYRING_REQUIRED") 2>&5
+   ac_status=$?
+@@ -12685,8 +12731,9 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+ 
+ 
+@@ -12699,9 +12746,9 @@
+         _pkg_short_errors_supported=no
+ fi
+         if test $_pkg_short_errors_supported = yes; then
+-	        GNOME_KEYRING_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "gnome-keyring-1 >= $GNOME_KEYRING_REQUIRED" 2>&1`
++	        GNOME_KEYRING_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "gnome-keyring-1 >= $GNOME_KEYRING_REQUIRED"`
+         else
+-	        GNOME_KEYRING_PKG_ERRORS=`$PKG_CONFIG --print-errors "gnome-keyring-1 >= $GNOME_KEYRING_REQUIRED" 2>&1`
++	        GNOME_KEYRING_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "gnome-keyring-1 >= $GNOME_KEYRING_REQUIRED"`
+         fi
+ 	# Put the nasty error message in config.log where it belongs
+ 	echo "$GNOME_KEYRING_PKG_ERRORS" >&5
+@@ -12765,10 +12812,11 @@
+ { $as_echo "$as_me:$LINENO: checking for GTK2" >&5
+ $as_echo_n "checking for GTK2... " >&6; }
+ 
+-if test -n "$GTK2_CFLAGS"; then
+-    pkg_cv_GTK2_CFLAGS="$GTK2_CFLAGS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$GTK2_CFLAGS"; then
++        pkg_cv_GTK2_CFLAGS="$GTK2_CFLAGS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gtk+-2.0 >= \$GTK2_REQUIRED\"") >&5
+   ($PKG_CONFIG --exists --print-errors "gtk+-2.0 >= $GTK2_REQUIRED") 2>&5
+   ac_status=$?
+@@ -12778,13 +12826,15 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+-if test -n "$GTK2_LIBS"; then
+-    pkg_cv_GTK2_LIBS="$GTK2_LIBS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$GTK2_LIBS"; then
++        pkg_cv_GTK2_LIBS="$GTK2_LIBS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gtk+-2.0 >= \$GTK2_REQUIRED\"") >&5
+   ($PKG_CONFIG --exists --print-errors "gtk+-2.0 >= $GTK2_REQUIRED") 2>&5
+   ac_status=$?
+@@ -12794,8 +12844,9 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+ 
+ 
+@@ -12808,9 +12859,9 @@
+         _pkg_short_errors_supported=no
+ fi
+         if test $_pkg_short_errors_supported = yes; then
+-	        GTK2_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "gtk+-2.0 >= $GTK2_REQUIRED" 2>&1`
++	        GTK2_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "gtk+-2.0 >= $GTK2_REQUIRED"`
+         else
+-	        GTK2_PKG_ERRORS=`$PKG_CONFIG --print-errors "gtk+-2.0 >= $GTK2_REQUIRED" 2>&1`
++	        GTK2_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "gtk+-2.0 >= $GTK2_REQUIRED"`
+         fi
+ 	# Put the nasty error message in config.log where it belongs
+ 	echo "$GTK2_PKG_ERRORS" >&5
+@@ -12874,10 +12925,11 @@
+ { $as_echo "$as_me:$LINENO: checking for UNIQUE" >&5
+ $as_echo_n "checking for UNIQUE... " >&6; }
+ 
+-if test -n "$UNIQUE_CFLAGS"; then
+-    pkg_cv_UNIQUE_CFLAGS="$UNIQUE_CFLAGS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$UNIQUE_CFLAGS"; then
++        pkg_cv_UNIQUE_CFLAGS="$UNIQUE_CFLAGS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"unique-1.0 >= \$UNIQUE_REQUIRED\"") >&5
+   ($PKG_CONFIG --exists --print-errors "unique-1.0 >= $UNIQUE_REQUIRED") 2>&5
+   ac_status=$?
+@@ -12887,13 +12939,15 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+-if test -n "$UNIQUE_LIBS"; then
+-    pkg_cv_UNIQUE_LIBS="$UNIQUE_LIBS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$UNIQUE_LIBS"; then
++        pkg_cv_UNIQUE_LIBS="$UNIQUE_LIBS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"unique-1.0 >= \$UNIQUE_REQUIRED\"") >&5
+   ($PKG_CONFIG --exists --print-errors "unique-1.0 >= $UNIQUE_REQUIRED") 2>&5
+   ac_status=$?
+@@ -12903,8 +12957,9 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+ 
+ 
+@@ -12917,9 +12972,9 @@
+         _pkg_short_errors_supported=no
+ fi
+         if test $_pkg_short_errors_supported = yes; then
+-	        UNIQUE_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "unique-1.0 >= $UNIQUE_REQUIRED" 2>&1`
++	        UNIQUE_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "unique-1.0 >= $UNIQUE_REQUIRED"`
+         else
+-	        UNIQUE_PKG_ERRORS=`$PKG_CONFIG --print-errors "unique-1.0 >= $UNIQUE_REQUIRED" 2>&1`
++	        UNIQUE_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "unique-1.0 >= $UNIQUE_REQUIRED"`
+         fi
+ 	# Put the nasty error message in config.log where it belongs
+ 	echo "$UNIQUE_PKG_ERRORS" >&5
+@@ -12983,10 +13038,11 @@
+ { $as_echo "$as_me:$LINENO: checking for LIBNOTIFY" >&5
+ $as_echo_n "checking for LIBNOTIFY... " >&6; }
+ 
+-if test -n "$LIBNOTIFY_CFLAGS"; then
+-    pkg_cv_LIBNOTIFY_CFLAGS="$LIBNOTIFY_CFLAGS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$LIBNOTIFY_CFLAGS"; then
++        pkg_cv_LIBNOTIFY_CFLAGS="$LIBNOTIFY_CFLAGS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"libnotify  >= \$LIBNOTIFY_REQUIRED\"") >&5
+   ($PKG_CONFIG --exists --print-errors "libnotify  >= $LIBNOTIFY_REQUIRED") 2>&5
+   ac_status=$?
+@@ -12996,13 +13052,15 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+-if test -n "$LIBNOTIFY_LIBS"; then
+-    pkg_cv_LIBNOTIFY_LIBS="$LIBNOTIFY_LIBS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$LIBNOTIFY_LIBS"; then
++        pkg_cv_LIBNOTIFY_LIBS="$LIBNOTIFY_LIBS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"libnotify  >= \$LIBNOTIFY_REQUIRED\"") >&5
+   ($PKG_CONFIG --exists --print-errors "libnotify  >= $LIBNOTIFY_REQUIRED") 2>&5
+   ac_status=$?
+@@ -13012,8 +13070,9 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+ 
+ 
+@@ -13026,9 +13085,9 @@
+         _pkg_short_errors_supported=no
+ fi
+         if test $_pkg_short_errors_supported = yes; then
+-	        LIBNOTIFY_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "libnotify  >= $LIBNOTIFY_REQUIRED" 2>&1`
++	        LIBNOTIFY_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "libnotify  >= $LIBNOTIFY_REQUIRED"`
+         else
+-	        LIBNOTIFY_PKG_ERRORS=`$PKG_CONFIG --print-errors "libnotify  >= $LIBNOTIFY_REQUIRED" 2>&1`
++	        LIBNOTIFY_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "libnotify  >= $LIBNOTIFY_REQUIRED"`
+         fi
+ 	# Put the nasty error message in config.log where it belongs
+ 	echo "$LIBNOTIFY_PKG_ERRORS" >&5
+@@ -13092,10 +13151,11 @@
+ { $as_echo "$as_me:$LINENO: checking for DEVKIT_DISKS" >&5
+ $as_echo_n "checking for DEVKIT_DISKS... " >&6; }
+ 
+-if test -n "$DEVKIT_DISKS_CFLAGS"; then
+-    pkg_cv_DEVKIT_DISKS_CFLAGS="$DEVKIT_DISKS_CFLAGS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$DEVKIT_DISKS_CFLAGS"; then
++        pkg_cv_DEVKIT_DISKS_CFLAGS="$DEVKIT_DISKS_CFLAGS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"DeviceKit-disks  >= \$DEVKIT_DISKS_REQUIRED\"") >&5
+   ($PKG_CONFIG --exists --print-errors "DeviceKit-disks  >= $DEVKIT_DISKS_REQUIRED") 2>&5
+   ac_status=$?
+@@ -13105,13 +13165,15 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+-if test -n "$DEVKIT_DISKS_LIBS"; then
+-    pkg_cv_DEVKIT_DISKS_LIBS="$DEVKIT_DISKS_LIBS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$DEVKIT_DISKS_LIBS"; then
++        pkg_cv_DEVKIT_DISKS_LIBS="$DEVKIT_DISKS_LIBS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"DeviceKit-disks  >= \$DEVKIT_DISKS_REQUIRED\"") >&5
+   ($PKG_CONFIG --exists --print-errors "DeviceKit-disks  >= $DEVKIT_DISKS_REQUIRED") 2>&5
+   ac_status=$?
+@@ -13121,8 +13183,9 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+ 
+ 
+@@ -13135,9 +13198,9 @@
+         _pkg_short_errors_supported=no
+ fi
+         if test $_pkg_short_errors_supported = yes; then
+-	        DEVKIT_DISKS_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "DeviceKit-disks  >= $DEVKIT_DISKS_REQUIRED" 2>&1`
++	        DEVKIT_DISKS_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "DeviceKit-disks  >= $DEVKIT_DISKS_REQUIRED"`
+         else
+-	        DEVKIT_DISKS_PKG_ERRORS=`$PKG_CONFIG --print-errors "DeviceKit-disks  >= $DEVKIT_DISKS_REQUIRED" 2>&1`
++	        DEVKIT_DISKS_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "DeviceKit-disks  >= $DEVKIT_DISKS_REQUIRED"`
+         fi
+ 	# Put the nasty error message in config.log where it belongs
+ 	echo "$DEVKIT_DISKS_PKG_ERRORS" >&5
+@@ -13197,15 +13260,129 @@
+ 	:
+ fi
+ 
++pkg_failed=no
++{ $as_echo "$as_me:$LINENO: checking for X11" >&5
++$as_echo_n "checking for X11... " >&6; }
++
++if test -n "$PKG_CONFIG"; then
++    if test -n "$X11_CFLAGS"; then
++        pkg_cv_X11_CFLAGS="$X11_CFLAGS"
++    else
++        if test -n "$PKG_CONFIG" && \
++    { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"x11\"") >&5
++  ($PKG_CONFIG --exists --print-errors "x11") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:$LINENO: \$? = $ac_status" >&5
++  (exit $ac_status); }; then
++  pkg_cv_X11_CFLAGS=`$PKG_CONFIG --cflags "x11" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++    fi
++else
++	pkg_failed=untried
++fi
++if test -n "$PKG_CONFIG"; then
++    if test -n "$X11_LIBS"; then
++        pkg_cv_X11_LIBS="$X11_LIBS"
++    else
++        if test -n "$PKG_CONFIG" && \
++    { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"x11\"") >&5
++  ($PKG_CONFIG --exists --print-errors "x11") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:$LINENO: \$? = $ac_status" >&5
++  (exit $ac_status); }; then
++  pkg_cv_X11_LIBS=`$PKG_CONFIG --libs "x11" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++    fi
++else
++	pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        X11_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "x11"`
++        else
++	        X11_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "x11"`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$X11_PKG_ERRORS" >&5
++
++	{ { $as_echo "$as_me:$LINENO: error: Package requirements (x11) were not met:
++
++$X11_PKG_ERRORS
++
++Consider adjusting the PKG_CONFIG_PATH environment variable if you
++installed software in a non-standard prefix.
++
++Alternatively, you may set the environment variables X11_CFLAGS
++and X11_LIBS to avoid the need to call pkg-config.
++See the pkg-config man page for more details.
++" >&5
++$as_echo "$as_me: error: Package requirements (x11) were not met:
++
++$X11_PKG_ERRORS
++
++Consider adjusting the PKG_CONFIG_PATH environment variable if you
++installed software in a non-standard prefix.
++
++Alternatively, you may set the environment variables X11_CFLAGS
++and X11_LIBS to avoid the need to call pkg-config.
++See the pkg-config man page for more details.
++" >&2;}
++   { (exit 1); exit 1; }; }
++elif test $pkg_failed = untried; then
++	{ { $as_echo "$as_me:$LINENO: error: in \`$ac_pwd':" >&5
++$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
++{ { $as_echo "$as_me:$LINENO: error: The pkg-config script could not be found or is too old.  Make sure it
++is in your PATH or set the PKG_CONFIG environment variable to the full
++path to pkg-config.
++
++Alternatively, you may set the environment variables X11_CFLAGS
++and X11_LIBS to avoid the need to call pkg-config.
++See the pkg-config man page for more details.
++
++To get pkg-config, see <http://pkg-config.freedesktop.org/>.
++See \`config.log' for more details." >&5
++$as_echo "$as_me: error: The pkg-config script could not be found or is too old.  Make sure it
++is in your PATH or set the PKG_CONFIG environment variable to the full
++path to pkg-config.
++
++Alternatively, you may set the environment variables X11_CFLAGS
++and X11_LIBS to avoid the need to call pkg-config.
++See the pkg-config man page for more details.
++
++To get pkg-config, see <http://pkg-config.freedesktop.org/>.
++See \`config.log' for more details." >&2;}
++   { (exit 1); exit 1; }; }; }
++else
++	X11_CFLAGS=$pkg_cv_X11_CFLAGS
++	X11_LIBS=$pkg_cv_X11_LIBS
++        { $as_echo "$as_me:$LINENO: result: yes" >&5
++$as_echo "yes" >&6; }
++	:
++fi
++
+ 
+ pkg_failed=no
+ { $as_echo "$as_me:$LINENO: checking for LIBATASMART" >&5
+ $as_echo_n "checking for LIBATASMART... " >&6; }
+ 
+-if test -n "$LIBATASMART_CFLAGS"; then
+-    pkg_cv_LIBATASMART_CFLAGS="$LIBATASMART_CFLAGS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$LIBATASMART_CFLAGS"; then
++        pkg_cv_LIBATASMART_CFLAGS="$LIBATASMART_CFLAGS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"libatasmart >= 0.14\"") >&5
+   ($PKG_CONFIG --exists --print-errors "libatasmart >= 0.14") 2>&5
+   ac_status=$?
+@@ -13215,13 +13392,15 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+-if test -n "$LIBATASMART_LIBS"; then
+-    pkg_cv_LIBATASMART_LIBS="$LIBATASMART_LIBS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$LIBATASMART_LIBS"; then
++        pkg_cv_LIBATASMART_LIBS="$LIBATASMART_LIBS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"libatasmart >= 0.14\"") >&5
+   ($PKG_CONFIG --exists --print-errors "libatasmart >= 0.14") 2>&5
+   ac_status=$?
+@@ -13231,8 +13410,9 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+ 
+ 
+@@ -13245,9 +13425,9 @@
+         _pkg_short_errors_supported=no
+ fi
+         if test $_pkg_short_errors_supported = yes; then
+-	        LIBATASMART_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "libatasmart >= 0.14" 2>&1`
++	        LIBATASMART_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "libatasmart >= 0.14"`
+         else
+-	        LIBATASMART_PKG_ERRORS=`$PKG_CONFIG --print-errors "libatasmart >= 0.14" 2>&1`
++	        LIBATASMART_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "libatasmart >= 0.14"`
+         fi
+ 	# Put the nasty error message in config.log where it belongs
+ 	echo "$LIBATASMART_PKG_ERRORS" >&5
+@@ -15672,10 +15852,11 @@
+ { $as_echo "$as_me:$LINENO: checking for NAUTILUS" >&5
+ $as_echo_n "checking for NAUTILUS... " >&6; }
+ 
+-if test -n "$NAUTILUS_CFLAGS"; then
+-    pkg_cv_NAUTILUS_CFLAGS="$NAUTILUS_CFLAGS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$NAUTILUS_CFLAGS"; then
++        pkg_cv_NAUTILUS_CFLAGS="$NAUTILUS_CFLAGS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"libnautilus-extension >= \$NAUTILUS_REQUIRED\"") >&5
+   ($PKG_CONFIG --exists --print-errors "libnautilus-extension >= $NAUTILUS_REQUIRED") 2>&5
+   ac_status=$?
+@@ -15685,13 +15866,15 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+-if test -n "$NAUTILUS_LIBS"; then
+-    pkg_cv_NAUTILUS_LIBS="$NAUTILUS_LIBS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$NAUTILUS_LIBS"; then
++        pkg_cv_NAUTILUS_LIBS="$NAUTILUS_LIBS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"libnautilus-extension >= \$NAUTILUS_REQUIRED\"") >&5
+   ($PKG_CONFIG --exists --print-errors "libnautilus-extension >= $NAUTILUS_REQUIRED") 2>&5
+   ac_status=$?
+@@ -15701,8 +15884,9 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+ 
+ 
+@@ -15715,9 +15899,9 @@
+         _pkg_short_errors_supported=no
+ fi
+         if test $_pkg_short_errors_supported = yes; then
+-	        NAUTILUS_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "libnautilus-extension >= $NAUTILUS_REQUIRED" 2>&1`
++	        NAUTILUS_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "libnautilus-extension >= $NAUTILUS_REQUIRED"`
+         else
+-	        NAUTILUS_PKG_ERRORS=`$PKG_CONFIG --print-errors "libnautilus-extension >= $NAUTILUS_REQUIRED" 2>&1`
++	        NAUTILUS_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "libnautilus-extension >= $NAUTILUS_REQUIRED"`
+         fi
+ 	# Put the nasty error message in config.log where it belongs
+ 	echo "$NAUTILUS_PKG_ERRORS" >&5
+Index: gnome-disk-utility/data/Makefile.in
+===================================================================
+--- gnome-disk-utility.orig/data/Makefile.in	2009-11-06 20:19:53.484456326 +0100
++++ gnome-disk-utility/data/Makefile.in	2009-11-06 20:19:37.472455918 +0100
+@@ -245,6 +245,8 @@
+ USE_NLS = @USE_NLS@
+ VERSION = @VERSION@
+ WARN_CFLAGS = @WARN_CFLAGS@
++X11_CFLAGS = @X11_CFLAGS@
++X11_LIBS = @X11_LIBS@
+ XGETTEXT = @XGETTEXT@
+ abs_builddir = @abs_builddir@
+ abs_srcdir = @abs_srcdir@
+Index: gnome-disk-utility/data/icons/16x16/Makefile.in
+===================================================================
+--- gnome-disk-utility.orig/data/icons/16x16/Makefile.in	2009-11-06 20:19:53.640457469 +0100
++++ gnome-disk-utility/data/icons/16x16/Makefile.in	2009-11-06 20:19:37.568455012 +0100
+@@ -203,6 +203,8 @@
+ USE_NLS = @USE_NLS@
+ VERSION = @VERSION@
+ WARN_CFLAGS = @WARN_CFLAGS@
++X11_CFLAGS = @X11_CFLAGS@
++X11_LIBS = @X11_LIBS@
+ XGETTEXT = @XGETTEXT@
+ abs_builddir = @abs_builddir@
+ abs_srcdir = @abs_srcdir@
+Index: gnome-disk-utility/data/icons/22x22/Makefile.in
+===================================================================
+--- gnome-disk-utility.orig/data/icons/22x22/Makefile.in	2009-11-06 20:19:53.744461230 +0100
++++ gnome-disk-utility/data/icons/22x22/Makefile.in	2009-11-06 20:19:37.664454943 +0100
+@@ -203,6 +203,8 @@
+ USE_NLS = @USE_NLS@
+ VERSION = @VERSION@
+ WARN_CFLAGS = @WARN_CFLAGS@
++X11_CFLAGS = @X11_CFLAGS@
++X11_LIBS = @X11_LIBS@
+ XGETTEXT = @XGETTEXT@
+ abs_builddir = @abs_builddir@
+ abs_srcdir = @abs_srcdir@
+Index: gnome-disk-utility/data/icons/48x48/Makefile.in
+===================================================================
+--- gnome-disk-utility.orig/data/icons/48x48/Makefile.in	2009-11-06 20:19:53.848455766 +0100
++++ gnome-disk-utility/data/icons/48x48/Makefile.in	2009-11-06 20:19:37.760455728 +0100
+@@ -203,6 +203,8 @@
+ USE_NLS = @USE_NLS@
+ VERSION = @VERSION@
+ WARN_CFLAGS = @WARN_CFLAGS@
++X11_CFLAGS = @X11_CFLAGS@
++X11_LIBS = @X11_LIBS@
+ XGETTEXT = @XGETTEXT@
+ abs_builddir = @abs_builddir@
+ abs_srcdir = @abs_srcdir@
+Index: gnome-disk-utility/data/icons/Makefile.in
+===================================================================
+--- gnome-disk-utility.orig/data/icons/Makefile.in	2009-11-06 20:19:53.560460974 +0100
++++ gnome-disk-utility/data/icons/Makefile.in	2009-11-06 20:19:37.856454272 +0100
+@@ -219,6 +219,8 @@
+ USE_NLS = @USE_NLS@
+ VERSION = @VERSION@
+ WARN_CFLAGS = @WARN_CFLAGS@
++X11_CFLAGS = @X11_CFLAGS@
++X11_LIBS = @X11_LIBS@
+ XGETTEXT = @XGETTEXT@
+ abs_builddir = @abs_builddir@
+ abs_srcdir = @abs_srcdir@
+Index: gnome-disk-utility/data/icons/scalable/Makefile.in
+===================================================================
+--- gnome-disk-utility.orig/data/icons/scalable/Makefile.in	2009-11-06 20:19:53.940462179 +0100
++++ gnome-disk-utility/data/icons/scalable/Makefile.in	2009-11-06 20:19:37.952455885 +0100
+@@ -203,6 +203,8 @@
+ USE_NLS = @USE_NLS@
+ VERSION = @VERSION@
+ WARN_CFLAGS = @WARN_CFLAGS@
++X11_CFLAGS = @X11_CFLAGS@
++X11_LIBS = @X11_LIBS@
+ XGETTEXT = @XGETTEXT@
+ abs_builddir = @abs_builddir@
+ abs_srcdir = @abs_srcdir@
+Index: gnome-disk-utility/debian/.changelog.swp
+===================================================================
+Binary files gnome-disk-utility.orig/debian/.changelog.swp	2009-11-06 20:19:54.384460634 +0100 and /dev/null	1970-01-01 00:00:00.000000000 +0000 differ
+Index: gnome-disk-utility/doc/Makefile.in
+===================================================================
+--- gnome-disk-utility.orig/doc/Makefile.in	2009-11-06 20:19:51.888460554 +0100
++++ gnome-disk-utility/doc/Makefile.in	2009-11-06 20:19:38.072456638 +0100
+@@ -186,6 +186,8 @@
+ USE_NLS = @USE_NLS@
+ VERSION = @VERSION@
+ WARN_CFLAGS = @WARN_CFLAGS@
++X11_CFLAGS = @X11_CFLAGS@
++X11_LIBS = @X11_LIBS@
+ XGETTEXT = @XGETTEXT@
+ abs_builddir = @abs_builddir@
+ abs_srcdir = @abs_srcdir@
+Index: gnome-disk-utility/help/Makefile.in
+===================================================================
+--- gnome-disk-utility.orig/help/Makefile.in	2009-11-06 20:19:53.300460821 +0100
++++ gnome-disk-utility/help/Makefile.in	2009-11-06 20:19:38.208456642 +0100
+@@ -204,6 +204,8 @@
+ USE_NLS = @USE_NLS@
+ VERSION = @VERSION@
+ WARN_CFLAGS = @WARN_CFLAGS@
++X11_CFLAGS = @X11_CFLAGS@
++X11_LIBS = @X11_LIBS@
+ XGETTEXT = @XGETTEXT@
+ abs_builddir = @abs_builddir@
+ abs_srcdir = @abs_srcdir@
+Index: gnome-disk-utility/src/Makefile.in
+===================================================================
+--- gnome-disk-utility.orig/src/Makefile.in	2009-11-06 20:19:52.188459660 +0100
++++ gnome-disk-utility/src/Makefile.in	2009-11-06 20:19:38.304455189 +0100
+@@ -221,6 +221,8 @@
+ USE_NLS = @USE_NLS@
+ VERSION = @VERSION@
+ WARN_CFLAGS = @WARN_CFLAGS@
++X11_CFLAGS = @X11_CFLAGS@
++X11_LIBS = @X11_LIBS@
+ XGETTEXT = @XGETTEXT@
+ abs_builddir = @abs_builddir@
+ abs_srcdir = @abs_srcdir@
+Index: gnome-disk-utility/src/format-tool/Makefile.in
+===================================================================
+--- gnome-disk-utility.orig/src/format-tool/Makefile.in	2009-11-06 20:19:52.260457944 +0100
++++ gnome-disk-utility/src/format-tool/Makefile.in	2009-11-06 20:19:38.456455836 +0100
+@@ -227,6 +227,8 @@
+ USE_NLS = @USE_NLS@
+ VERSION = @VERSION@
+ WARN_CFLAGS = @WARN_CFLAGS@
++X11_CFLAGS = @X11_CFLAGS@
++X11_LIBS = @X11_LIBS@
+ XGETTEXT = @XGETTEXT@
+ abs_builddir = @abs_builddir@
+ abs_srcdir = @abs_srcdir@
+Index: gnome-disk-utility/src/gdu-gtk/Makefile.in
+===================================================================
+--- gnome-disk-utility.orig/src/gdu-gtk/Makefile.in	2009-11-06 20:19:52.620462458 +0100
++++ gnome-disk-utility/src/gdu-gtk/Makefile.in	2009-11-06 20:19:38.664463324 +0100
+@@ -254,6 +254,8 @@
+ USE_NLS = @USE_NLS@
+ VERSION = @VERSION@
+ WARN_CFLAGS = @WARN_CFLAGS@
++X11_CFLAGS = @X11_CFLAGS@
++X11_LIBS = @X11_LIBS@
+ XGETTEXT = @XGETTEXT@
+ abs_builddir = @abs_builddir@
+ abs_srcdir = @abs_srcdir@
+Index: gnome-disk-utility/src/gdu/Makefile.in
+===================================================================
+--- gnome-disk-utility.orig/src/gdu/Makefile.in	2009-11-06 20:19:52.804461324 +0100
++++ gnome-disk-utility/src/gdu/Makefile.in	2009-11-06 20:19:38.884456163 +0100
+@@ -249,6 +249,8 @@
+ USE_NLS = @USE_NLS@
+ VERSION = @VERSION@
+ WARN_CFLAGS = @WARN_CFLAGS@
++X11_CFLAGS = @X11_CFLAGS@
++X11_LIBS = @X11_LIBS@
+ XGETTEXT = @XGETTEXT@
+ abs_builddir = @abs_builddir@
+ abs_srcdir = @abs_srcdir@
+Index: gnome-disk-utility/src/nautilus-extension/Makefile.in
+===================================================================
+--- gnome-disk-utility.orig/src/nautilus-extension/Makefile.in	2009-11-06 20:19:52.112461430 +0100
++++ gnome-disk-utility/src/nautilus-extension/Makefile.in	2009-11-06 20:19:39.032455177 +0100
+@@ -245,6 +245,8 @@
+ USE_NLS = @USE_NLS@
+ VERSION = @VERSION@
+ WARN_CFLAGS = @WARN_CFLAGS@
++X11_CFLAGS = @X11_CFLAGS@
++X11_LIBS = @X11_LIBS@
+ XGETTEXT = @XGETTEXT@
+ abs_builddir = @abs_builddir@
+ abs_srcdir = @abs_srcdir@
+Index: gnome-disk-utility/src/notification/Makefile.in
+===================================================================
+--- gnome-disk-utility.orig/src/notification/Makefile.in	2009-11-06 20:19:52.720460115 +0100
++++ gnome-disk-utility/src/notification/Makefile.in	2009-11-06 20:19:39.172454566 +0100
+@@ -225,6 +225,8 @@
+ USE_NLS = @USE_NLS@
+ VERSION = @VERSION@
+ WARN_CFLAGS = @WARN_CFLAGS@
++X11_CFLAGS = @X11_CFLAGS@
++X11_LIBS = @X11_LIBS@
+ XGETTEXT = @XGETTEXT@
+ abs_builddir = @abs_builddir@
+ abs_srcdir = @abs_srcdir@
+Index: gnome-disk-utility/src/palimpsest/Makefile.in
+===================================================================
+--- gnome-disk-utility.orig/src/palimpsest/Makefile.in	2009-11-06 20:19:52.348457986 +0100
++++ gnome-disk-utility/src/palimpsest/Makefile.in	2009-11-06 20:19:39.396457133 +0100
+@@ -233,6 +233,8 @@
+ USE_NLS = @USE_NLS@
+ VERSION = @VERSION@
+ WARN_CFLAGS = @WARN_CFLAGS@
++X11_CFLAGS = @X11_CFLAGS@
++X11_LIBS = @X11_LIBS@
+ XGETTEXT = @XGETTEXT@
+ abs_builddir = @abs_builddir@
+ abs_srcdir = @abs_srcdir@
+Index: gnome-disk-utility/src/playground/Makefile.in
+===================================================================
+--- gnome-disk-utility.orig/src/playground/Makefile.in	2009-11-06 20:19:52.456459454 +0100
++++ gnome-disk-utility/src/playground/Makefile.in	2009-11-06 20:19:39.492455951 +0100
+@@ -219,6 +219,8 @@
+ USE_NLS = @USE_NLS@
+ VERSION = @VERSION@
+ WARN_CFLAGS = @WARN_CFLAGS@
++X11_CFLAGS = @X11_CFLAGS@
++X11_LIBS = @X11_LIBS@
+ XGETTEXT = @XGETTEXT@
+ abs_builddir = @abs_builddir@
+ abs_srcdir = @abs_srcdir@
+Index: gnome-disk-utility/src/playground/grid/Makefile.in
+===================================================================
+--- gnome-disk-utility.orig/src/playground/grid/Makefile.in	2009-11-06 20:19:52.528461081 +0100
++++ gnome-disk-utility/src/playground/grid/Makefile.in	2009-11-06 20:19:39.652454810 +0100
+@@ -55,7 +55,8 @@
+ grid_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+ 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+ 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+-	$(am__DEPENDENCIES_1) $(top_builddir)/src/gdu/libgdu.la \
++	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
++	$(top_builddir)/src/gdu/libgdu.la \
+ 	$(top_builddir)/src/gdu-gtk/libgdu-gtk.la
+ AM_V_lt = $(am__v_lt_$(V))
+ am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
+@@ -221,6 +222,8 @@
+ USE_NLS = @USE_NLS@
+ VERSION = @VERSION@
+ WARN_CFLAGS = @WARN_CFLAGS@
++X11_CFLAGS = @X11_CFLAGS@
++X11_LIBS = @X11_LIBS@
+ XGETTEXT = @XGETTEXT@
+ abs_builddir = @abs_builddir@
+ abs_srcdir = @abs_srcdir@
+@@ -303,6 +306,7 @@
+ 	$(GNOME_KEYRING_CFLAGS)				\
+ 	$(GTK2_CFLAGS)					\
+ 	$(LIBSEXY_CFLAGS)				\
++	$(X11_CFLAGS)					\
+ 	$(WARN_CFLAGS)					\
+ 	$(AM_CFLAGS)
+ 
+@@ -317,6 +321,7 @@
+ 	$(GNOME_KEYRING_LIBS)				\
+ 	$(GTK2_LIBS)					\
+ 	$(LIBSEXY_LIBS)					\
++	$(X11_LIBS)					\
+ 	$(INTLLIBS)					\
+ 	$(top_builddir)/src/gdu/libgdu.la		\
+ 	$(top_builddir)/src/gdu-gtk/libgdu-gtk.la

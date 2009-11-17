@@ -1,1 +1,3 @@
 01-reiserfs-support.patch
+02-link-against-libx11-for-xkb.patch
+99-autoreconf.patch
