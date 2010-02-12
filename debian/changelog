@@ -4,6 +4,10 @@ gnome-disk-utility (2.29.0~git20100212.5df348f-1) UNRELEASED; urgency=low
     - Port to udisks.
     - Grid based UI for palimpsest.
     - Initial support for LVM2.
+  * Remove patches
+    - debian/patches/01-reiserfs-support.patch (merged upstream)
+    - debian/patches/02-link-against-libx11-for-xkb.patch (merged upstream)
+    - debian/patches/99-autoreconf.patch (no longer required)
 
  -- Michael Biebl <biebl@debian.org>  Fri, 12 Feb 2010 14:19:59 +0100
 
