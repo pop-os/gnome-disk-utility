@@ -19,7 +19,9 @@
  * 02111-1307, USA.
  */
 
-#include <config.h>
+#include "config.h"
+#include <glib/gi18n-lib.h>
+
 #include <dbus/dbus-glib.h>
 #include <string.h>
 #include <stdlib.h>
@@ -27,14 +29,24 @@
 #include "gdu-pool.h"
 #include "gdu-presentable.h"
 #include "gdu-device.h"
+#include "gdu-adapter.h"
+#include "gdu-expander.h"
+#include "gdu-port.h"
 #include "gdu-drive.h"
 #include "gdu-linux-md-drive.h"
 #include "gdu-volume.h"
 #include "gdu-volume-hole.h"
+#include "gdu-hub.h"
 #include "gdu-known-filesystem.h"
 #include "gdu-private.h"
+#include "gdu-linux-lvm2-volume-group.h"
+#include "gdu-linux-lvm2-volume.h"
+#include "gdu-linux-lvm2-volume-hole.h"
 
-#include "devkit-disks-daemon-glue.h"
+#include "gdu-ssh-bridge.h"
+#include "gdu-error.h"
+
+#include "udisks-daemon-glue.h"
 #include "gdu-marshal.h"
 
 /**
@@ -42,14 +54,24 @@
  * @title: GduPool
  * @short_description: Enumerate and monitor storage devices
  *
- * The #GduPool object represents a connection to the DeviceKit-disks daemon.
+ * The #GduPool object represents a connection to the udisks daemon.
  */
 
 enum {
+        DISCONNECTED,
         DEVICE_ADDED,
         DEVICE_REMOVED,
         DEVICE_CHANGED,
         DEVICE_JOB_CHANGED,
+        ADAPTER_ADDED,
+        ADAPTER_REMOVED,
+        ADAPTER_CHANGED,
+        EXPANDER_ADDED,
+        EXPANDER_REMOVED,
+        EXPANDER_CHANGED,
+        PORT_ADDED,
+        PORT_REMOVED,
+        PORT_CHANGED,
         PRESENTABLE_ADDED,
         PRESENTABLE_REMOVED,
         PRESENTABLE_CHANGED,
@@ -60,8 +82,19 @@ enum {
 static GObjectClass *parent_class = NULL;
 static guint signals[LAST_SIGNAL] = { 0 };
 
+static void _gdu_pool_disconnect (GduPool *pool);
+
 struct _GduPoolPrivate
 {
+        gboolean is_disconnected;
+
+        GduPresentable *machine;
+
+        gchar *ssh_user_name;
+        gchar *ssh_address;
+        GPid ssh_pid;
+        guint ssh_child_watch_id;
+
         DBusGConnection *bus;
         DBusGProxy *proxy;
 
@@ -74,25 +107,43 @@ struct _GduPoolPrivate
 
         /* the current set of devices we know about */
         GHashTable *object_path_to_device;
+
+        /* the current set of adapters we know about */
+        GHashTable *object_path_to_adapter;
+
+        /* the current set of expanders we know about */
+        GHashTable *object_path_to_expander;
+
+        /* the current set of ports we know about */
+        GHashTable *object_path_to_port;
 };
 
 G_DEFINE_TYPE (GduPool, gdu_pool, G_TYPE_OBJECT);
 
+static void remove_all_objects_and_dbus_proxies (GduPool *pool);
+
 static void
 gdu_pool_finalize (GduPool *pool)
 {
-        dbus_g_connection_unref (pool->priv->bus);
-        g_object_unref (pool->priv->proxy);
+        g_print ("in gdu_pool_finalize()\n");
 
-        g_free (pool->priv->daemon_version);
-
-        g_list_foreach (pool->priv->known_filesystems, (GFunc) g_object_unref, NULL);
-        g_list_free (pool->priv->known_filesystems);
+        remove_all_objects_and_dbus_proxies (pool);
 
         g_hash_table_unref (pool->priv->object_path_to_device);
+        g_hash_table_unref (pool->priv->object_path_to_adapter);
+        g_hash_table_unref (pool->priv->object_path_to_expander);
+        g_hash_table_unref (pool->priv->object_path_to_port);
 
-        g_list_foreach (pool->priv->presentables, (GFunc) g_object_unref, NULL);
-        g_list_free (pool->priv->presentables);
+        if (pool->priv->ssh_child_watch_id > 0) {
+                g_source_remove (pool->priv->ssh_child_watch_id);
+                pool->priv->ssh_child_watch_id = 0;
+        }
+        if (pool->priv->ssh_pid > 0) {
+                kill (pool->priv->ssh_pid, SIGTERM);
+                pool->priv->ssh_pid = 0;
+        }
+
+        g_object_unref (pool->priv->machine);
 
         if (G_OBJECT_CLASS (parent_class)->finalize)
                 (* G_OBJECT_CLASS (parent_class)->finalize) (G_OBJECT (pool));
@@ -108,6 +159,25 @@ gdu_pool_class_init (GduPoolClass *klass)
         obj_class->finalize = (GObjectFinalizeFunc) gdu_pool_finalize;
 
         g_type_class_add_private (klass, sizeof (GduPoolPrivate));
+
+        /**
+         * GduPool::disconnected
+         * @pool: The #GduPool emitting the signal.
+         *
+         * Emitted when the underlying connection has been disconnected.
+         *
+         * If you hold a reference to @pool, now is a good time to give it up.
+         */
+        signals[DISCONNECTED] =
+                g_signal_new ("disconnected",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GduPoolClass, disconnected),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__VOID,
+                              G_TYPE_NONE,
+                              0);
 
         /**
          * GduPool::device-added
@@ -177,6 +247,163 @@ gdu_pool_class_init (GduPoolClass *klass)
                               g_cclosure_marshal_VOID__OBJECT,
                               G_TYPE_NONE, 1,
                               GDU_TYPE_DEVICE);
+
+        /**
+         * GduPool::adapter-added
+         * @pool: The #GduPool emitting the signal.
+         * @adapter: The #GduAdapter that was added.
+         *
+         * Emitted when @adapter is added to @pool.
+         **/
+        signals[ADAPTER_ADDED] =
+                g_signal_new ("adapter-added",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GduPoolClass, adapter_added),
+                              NULL, NULL,
+                              g_cclosure_marshal_VOID__OBJECT,
+                              G_TYPE_NONE, 1,
+                              GDU_TYPE_ADAPTER);
+
+        /**
+         * GduPool::adapter-removed
+         * @pool: The #GduPool emitting the signal.
+         * @adapter: The #GduAdapter that was removed.
+         *
+         * Emitted when @adapter is removed from @pool. Recipients
+         * should release references to @adapter.
+         **/
+        signals[ADAPTER_REMOVED] =
+                g_signal_new ("adapter-removed",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GduPoolClass, adapter_removed),
+                              NULL, NULL,
+                              g_cclosure_marshal_VOID__OBJECT,
+                              G_TYPE_NONE, 1,
+                              GDU_TYPE_ADAPTER);
+
+        /**
+         * GduPool::adapter-changed
+         * @pool: The #GduPool emitting the signal.
+         * @adapter: A #GduAdapter.
+         *
+         * Emitted when @adapter is changed.
+         **/
+        signals[ADAPTER_CHANGED] =
+                g_signal_new ("adapter-changed",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GduPoolClass, adapter_changed),
+                              NULL, NULL,
+                              g_cclosure_marshal_VOID__OBJECT,
+                              G_TYPE_NONE, 1,
+                              GDU_TYPE_ADAPTER);
+
+        /**
+         * GduPool::expander-added
+         * @pool: The #GduPool emitting the signal.
+         * @expander: The #GduExpander that was added.
+         *
+         * Emitted when @expander is added to @pool.
+         **/
+        signals[EXPANDER_ADDED] =
+                g_signal_new ("expander-added",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GduPoolClass, expander_added),
+                              NULL, NULL,
+                              g_cclosure_marshal_VOID__OBJECT,
+                              G_TYPE_NONE, 1,
+                              GDU_TYPE_EXPANDER);
+
+        /**
+         * GduPool::expander-removed
+         * @pool: The #GduPool emitting the signal.
+         * @expander: The #GduExpander that was removed.
+         *
+         * Emitted when @expander is removed from @pool. Recipients
+         * should release references to @expander.
+         **/
+        signals[EXPANDER_REMOVED] =
+                g_signal_new ("expander-removed",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GduPoolClass, expander_removed),
+                              NULL, NULL,
+                              g_cclosure_marshal_VOID__OBJECT,
+                              G_TYPE_NONE, 1,
+                              GDU_TYPE_EXPANDER);
+
+        /**
+         * GduPool::expander-changed
+         * @pool: The #GduPool emitting the signal.
+         * @expander: A #GduExpander.
+         *
+         * Emitted when @expander is changed.
+         **/
+        signals[EXPANDER_CHANGED] =
+                g_signal_new ("expander-changed",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GduPoolClass, expander_changed),
+                              NULL, NULL,
+                              g_cclosure_marshal_VOID__OBJECT,
+                              G_TYPE_NONE, 1,
+                              GDU_TYPE_EXPANDER);
+
+        /**
+         * GduPool::port-added
+         * @pool: The #GduPool emitting the signal.
+         * @port: The #GduPort that was added.
+         *
+         * Emitted when @port is added to @pool.
+         **/
+        signals[PORT_ADDED] =
+                g_signal_new ("port-added",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GduPoolClass, port_added),
+                              NULL, NULL,
+                              g_cclosure_marshal_VOID__OBJECT,
+                              G_TYPE_NONE, 1,
+                              GDU_TYPE_PORT);
+
+        /**
+         * GduPool::port-removed
+         * @pool: The #GduPool emitting the signal.
+         * @port: The #GduPort that was removed.
+         *
+         * Emitted when @port is removed from @pool. Recipients
+         * should release references to @port.
+         **/
+        signals[PORT_REMOVED] =
+                g_signal_new ("port-removed",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GduPoolClass, port_removed),
+                              NULL, NULL,
+                              g_cclosure_marshal_VOID__OBJECT,
+                              G_TYPE_NONE, 1,
+                              GDU_TYPE_PORT);
+
+        /**
+         * GduPool::port-changed
+         * @pool: The #GduPool emitting the signal.
+         * @port: A #GduPort.
+         *
+         * Emitted when @port is changed.
+         **/
+        signals[PORT_CHANGED] =
+                g_signal_new ("port-changed",
+                              G_TYPE_FROM_CLASS (klass),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GduPoolClass, port_changed),
+                              NULL, NULL,
+                              g_cclosure_marshal_VOID__OBJECT,
+                              G_TYPE_NONE, 1,
+                              GDU_TYPE_PORT);
+
 
         /**
          * GduPool::presentable-added
@@ -289,6 +516,21 @@ gdu_pool_init (GduPool *pool)
                                                                    g_str_equal,
                                                                    NULL,
                                                                    g_object_unref);
+
+        pool->priv->object_path_to_adapter = g_hash_table_new_full (g_str_hash,
+                                                                    g_str_equal,
+                                                                    NULL,
+                                                                    g_object_unref);
+
+        pool->priv->object_path_to_expander = g_hash_table_new_full (g_str_hash,
+                                                                     g_str_equal,
+                                                                     NULL,
+                                                                     g_object_unref);
+
+        pool->priv->object_path_to_port = g_hash_table_new_full (g_str_hash,
+                                                                 g_str_equal,
+                                                                 NULL,
+                                                                 g_object_unref);
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -599,17 +841,93 @@ get_holes_for_drive (GduPool   *pool,
         return ret;
 }
 
+static GduPresentable *
+ensure_hub (GduPool *pool,
+            GduPresentable **hub,
+            GList **presentables,
+            const gchar *name,
+            const gchar *vpd_name,
+            const gchar *icon_name)
+{
+        GIcon *icon;
+        GduPresentable *ret;
+
+        g_assert (hub != NULL);
+        g_assert (presentables != NULL);
+
+        if (*hub != NULL)
+                goto out;
+
+        icon = g_themed_icon_new_with_default_fallbacks (icon_name);
+        ret = GDU_PRESENTABLE (_gdu_hub_new (pool,
+                                             GDU_HUB_USAGE_MULTI_DISK_DEVICES,
+                                             NULL,                    /* adapter */
+                                             NULL,                    /* expander */
+                                             name,
+                                             vpd_name,
+                                             icon,
+                                             pool->priv->machine));
+        g_object_unref (icon);
+
+        *presentables = g_list_prepend (*presentables, ret);
+
+        *hub = ret;
+ out:
+        return *hub;
+}
+
+static GduPresentable *
+ensure_hub_multipath (GduPool *pool,
+                      GduPresentable **hub,
+                      GList **presentables)
+{
+        return ensure_hub (pool, hub, presentables,
+                           _("Multipath Devices"),
+                           _("Drives with multiple I/O paths"),
+                           "gdu-category-multipath");
+}
+
+static GduPresentable *
+ensure_hub_raid_lvm (GduPool *pool,
+                     GduPresentable **hub,
+                     GList **presentables)
+{
+        return ensure_hub (pool, hub, presentables,
+                           _("Multi-disk Devices"),
+                           _("RAID, LVM and other logical drives"),
+                           "gdu-category-multidisk");
+}
+
+static GduPresentable *
+ensure_hub_peripheral (GduPool *pool,
+                       GduPresentable **hub,
+                       GList **presentables)
+{
+        return ensure_hub (pool, hub, presentables,
+                           _("Peripheral Devices"),
+                           _("USB, Firewire and other peripherals"),
+                           "gdu-category-peripheral");
+}
+
 static void
 recompute_presentables (GduPool *pool)
 {
         GList *l;
         GList *devices;
+        GList *adapters;
+        GList *expanders;
         GList *new_partitioned_drives;
         GList *new_presentables;
         GList *added_presentables;
         GList *removed_presentables;
         GHashTable *hash_map_from_drive_to_extended_partition;
         GHashTable *hash_map_from_linux_md_uuid_to_drive;
+        GHashTable *hash_map_from_linux_lvm2_group_uuid_to_vg;
+        GHashTable *hash_map_from_adapter_objpath_to_hub;
+        GHashTable *hash_map_from_expander_objpath_to_hub;
+        GduPresentable *hub_raid_lvm;
+        GduPresentable *hub_multipath;
+        GduPresentable *hub_peripheral;
 
         /* The general strategy for (re-)computing presentables is rather brute force; we
          * compute the complete set of presentables every time and diff it against the
@@ -624,6 +942,8 @@ recompute_presentables (GduPool *pool)
         new_presentables = NULL;
         new_partitioned_drives = NULL;
 
+        new_presentables = g_list_prepend (new_presentables, g_object_ref (pool->priv->machine));
+
         hash_map_from_drive_to_extended_partition = g_hash_table_new_full ((GHashFunc) gdu_presentable_hash,
                                                                            (GEqualFunc) gdu_presentable_equals,
                                                                            NULL,
@@ -633,6 +953,99 @@ recompute_presentables (GduPool *pool)
                                                                       g_str_equal,
                                                                       NULL,
                                                                       NULL);
+
+        hash_map_from_linux_lvm2_group_uuid_to_vg = g_hash_table_new_full (g_str_hash,
+                                                                           g_str_equal,
+                                                                           NULL,
+                                                                           NULL);
+
+        hash_map_from_adapter_objpath_to_hub = g_hash_table_new_full (g_str_hash,
+                                                                      g_str_equal,
+                                                                      NULL,
+                                                                      NULL);
+
+        hash_map_from_expander_objpath_to_hub = g_hash_table_new_full (g_str_hash,
+                                                                       g_str_equal,
+                                                                       NULL,
+                                                                       NULL);
+
+        hub_raid_lvm = NULL;
+        hub_multipath = NULL;
+        hub_peripheral = NULL;
+
+        /* First add all HBAs as Hub objects */
+        adapters = gdu_pool_get_adapters (pool);
+        for (l = adapters; l != NULL; l = l->next) {
+                GduAdapter *adapter = GDU_ADAPTER (l->data);
+                GduHub *hub;
+
+                hub = _gdu_hub_new (pool,
+                                    GDU_HUB_USAGE_ADAPTER,
+                                    adapter,
+                                    NULL,      /* expander */
+                                    NULL,      /* name */
+                                    NULL,      /* vpd_name */
+                                    NULL,      /* icon */
+                                    pool->priv->machine);  /* enclosing_presentable */
+
+                g_hash_table_insert (hash_map_from_adapter_objpath_to_hub,
+                                     (gpointer) gdu_adapter_get_object_path (adapter),
+                                     hub);
+
+                new_presentables = g_list_prepend (new_presentables, hub);
+        } /* for all adapters */
+
+        /* Then all expanders */
+        expanders = gdu_pool_get_expanders (pool);
+        for (l = expanders; l != NULL; l = l->next) {
+                GduExpander *expander = GDU_EXPANDER (l->data);
+                GduAdapter *adapter;
+                GduHub *hub;
+                gchar **port_object_paths;
+                GduPresentable *expander_parent;
+
+                /* we are guaranteed that upstream ports all stem from the same expander or
+                 * host adapter - so just pick the first one */
+                expander_parent = NULL;
+                port_object_paths = gdu_expander_get_upstream_ports (expander);
+                if (port_object_paths != NULL && port_object_paths[0] != NULL) {
+                        GduPort *port;
+
+                        port = gdu_pool_get_port_by_object_path (pool, port_object_paths[0]);
+
+                        /* For now, always choose the adapter as the parent - this is *probably*
+                         * the right thing (e.g. what people expect) to do _anyway_ because of
+                         * the way expanders are daisy-chained
+                         */
+                        if (port != NULL) {
+                                const gchar *adapter_object_path;
+                                adapter_object_path = gdu_port_get_adapter (port);
+                                adapter = gdu_pool_get_adapter_by_object_path (pool, adapter_object_path);
+                                expander_parent = g_hash_table_lookup (hash_map_from_adapter_objpath_to_hub,
+                                                                       adapter_object_path);
+                                g_object_unref (port);
+                        }
+                }
+
+                g_warn_if_fail (expander_parent != NULL);
+                g_warn_if_fail (adapter != NULL);
+
+                hub = _gdu_hub_new (pool,
+                                    GDU_HUB_USAGE_EXPANDER,
+                                    adapter,
+                                    expander,
+                                    NULL,      /* name */
+                                    NULL,      /* vpd_name */
+                                    NULL,      /* icon */
+                                    expander_parent);
+                g_object_unref (adapter);
+
+                g_hash_table_insert (hash_map_from_expander_objpath_to_hub,
+                                     (gpointer) gdu_expander_get_object_path (expander),
+                                     hub);
+
+                new_presentables = g_list_prepend (new_presentables, hub);
+        } /* for all expanders */
 
         /* TODO: Ensure that pool->priv->devices is in topological sort order, then just loop
          *       through it and handle devices sequentially.
@@ -657,6 +1070,7 @@ recompute_presentables (GduPool *pool)
 
                         if (gdu_device_is_linux_md (device)) {
                                 const gchar *uuid;
+                                GduPresentable *linux_md_parent;
 
                                 uuid = gdu_device_linux_md_get_uuid (device);
 
@@ -664,8 +1078,13 @@ recompute_presentables (GduPool *pool)
                                 if (uuid != NULL && strlen (uuid) == 0)
                                         uuid = NULL;
 
+                                /* TODO: Create transient GduHub object for all RAID arrays? */
+                                linux_md_parent = ensure_hub_raid_lvm (pool,
+                                                                       &hub_raid_lvm,
+                                                                       &new_presentables);
+
                                 if (uuid != NULL) {
-                                        drive = GDU_DRIVE (_gdu_linux_md_drive_new (pool, uuid, NULL));
+                                        drive = GDU_DRIVE (_gdu_linux_md_drive_new (pool, uuid, NULL, linux_md_parent));
 
                                         /* Due to the topological sorting of devices, we are guaranteed that
                                          * that running Linux MD arrays come before the slaves.
@@ -678,12 +1097,63 @@ recompute_presentables (GduPool *pool)
                                 } else {
                                         drive = GDU_DRIVE (_gdu_linux_md_drive_new (pool,
                                                                                     NULL,
-                                                                                    gdu_device_get_device_file (device)));
+                                                                                    gdu_device_get_device_file (device),
+                                                                                    linux_md_parent));
                                 }
 
 
                         } else {
-                                drive = _gdu_drive_new_from_device (pool, device);
+                                GduPresentable *drive_parent;
+                                gchar **port_object_paths;
+
+                                drive_parent = NULL;
+
+                                /* we are guaranteed that upstream ports all stem from the same expander or
+                                 * host adapter - so just pick the first one */
+                                port_object_paths = gdu_device_drive_get_ports (device);
+                                if (port_object_paths != NULL && port_object_paths[0] != NULL) {
+                                        GduPort *port;
+
+                                        port = gdu_pool_get_port_by_object_path (pool, port_object_paths[0]);
+                                        /* choose the expander, if available, otherwise the adapter */
+                                        if (port != NULL) {
+                                                const gchar *parent_object_path;
+                                                const gchar *adapter_object_path;
+
+                                                parent_object_path = gdu_port_get_parent (port);
+                                                adapter_object_path = gdu_port_get_adapter (port);
+                                                if (g_strcmp0 (parent_object_path, adapter_object_path) != 0) {
+                                                        drive_parent = g_hash_table_lookup (hash_map_from_expander_objpath_to_hub,
+                                                                                            parent_object_path);
+                                                } else {
+                                                        drive_parent = g_hash_table_lookup (hash_map_from_adapter_objpath_to_hub,
+                                                                                            adapter_object_path);
+                                                }
+                                                g_object_unref (port);
+                                        }
+                                }
+
+                                /* Group all Multipath devices in the virtual "Multi-path Devices" Hub */
+                                if (gdu_device_is_linux_dmmp (device)) {
+                                        g_warn_if_fail (drive_parent == NULL);
+                                        drive_parent = ensure_hub_multipath (pool,
+                                                                             &hub_multipath,
+                                                                             &new_presentables);
+                                }
+
+                                /* If there's no parent it could be because the device is connected via
+                                 * USB, Firewire or SDIO and udisks doesn't generate Adapter or Expander
+                                 * objects for it.
+                                 *
+                                 * We group these devices in the virtual "Peripheral Devices" Hub
+                                 */
+                                if (drive_parent == NULL) {
+                                        drive_parent = ensure_hub_peripheral (pool,
+                                                                              &hub_peripheral,
+                                                                              &new_presentables);
+                                }
+
+                                drive = _gdu_drive_new_from_device (pool, device, drive_parent);
                         }
                         new_presentables = g_list_prepend (new_presentables, drive);
 
@@ -774,19 +1244,110 @@ recompute_presentables (GduPool *pool)
                         volume = _gdu_volume_new_from_device (pool, device, enclosing_luks_device);
                         new_presentables = g_list_prepend (new_presentables, volume);
 
+                } else if (gdu_device_is_linux_lvm2_lv (device)) {
+
+                        /* Do nothing - this is handled when creating the Lvm2VolumeGroup object below */
+
                 } else {
-                        g_debug ("Don't know how to handle device %s", gdu_device_get_device_file (device));
+                        g_warning ("Don't know how to handle device %s", gdu_device_get_device_file (device));
                 }
 
-                /* Ensure we have a GduLinuxMdDrive for non-running arrays */
+                /* Ensure we have a GduLinuxLvm2VolumeGroup even if the volume group isn't running */
+                if (gdu_device_is_linux_lvm2_pv (device)) {
+                        GduLinuxLvm2VolumeGroup *vg;
+                        const gchar *vg_uuid;
+
+                        vg_uuid = gdu_device_linux_lvm2_pv_get_group_uuid (device);
+
+                        /* First, see if we have a volume group for this UUID already */
+                        vg = g_hash_table_lookup (hash_map_from_linux_lvm2_group_uuid_to_vg, vg_uuid);
+                        if (vg == NULL) {
+                                gchar **lvs;
+                                guint n;
+                                guint64 unallocated_size;
+
+                                /* otherwise create one */
+                                vg = _gdu_linux_lvm2_volume_group_new (pool,
+                                                                       vg_uuid,
+                                                                       ensure_hub_raid_lvm (pool,
+                                                                                            &hub_raid_lvm,
+                                                                                            &new_presentables));
+                                g_hash_table_insert (hash_map_from_linux_lvm2_group_uuid_to_vg, (gpointer) vg_uuid, vg);
+                                new_presentables = g_list_prepend (new_presentables, vg);
+
+                                /* and create logical volume objects as well */
+                                lvs = gdu_device_linux_lvm2_pv_get_group_logical_volumes (device);
+                                for (n = 0; lvs != NULL && lvs[n] != NULL; n++) {
+                                        const gchar *lv_desc = lvs[n];
+                                        gchar **tokens;
+                                        gchar *name;
+                                        gchar *uuid;
+                                        guint64 size;
+                                        guint m;
+
+                                        tokens = g_strsplit (lv_desc, ";", 0);
+                                        for (m = 0; tokens[m] != NULL; m++) {
+                                                /* TODO: we need to unescape values */
+                                                if (g_str_has_prefix (tokens[m], "name="))
+                                                        name = g_strdup (tokens[m] + 5);
+                                                else if (g_str_has_prefix (tokens[m], "uuid="))
+                                                        uuid = g_strdup (tokens[m] + 5);
+                                                else if (g_str_has_prefix (tokens[m], "size="))
+                                                        size = g_ascii_strtoull (tokens[m] + 5, NULL, 10);
+                                        }
+
+                                        if (name != NULL && uuid != NULL && size > 0) {
+                                                GduLinuxLvm2Volume *volume;
+
+                                                volume = _gdu_linux_lvm2_volume_new (pool,
+                                                                                     vg_uuid,
+                                                                                     uuid,
+                                                                                     GDU_PRESENTABLE (vg));
+
+                                                new_presentables = g_list_prepend (new_presentables, volume);
+
+                                        } else {
+                                                g_warning ("Malformed LMV2 LV in group with UUID %s: "
+                                                           "pos=%d name=%s uuid=%s size=%" G_GUINT64_FORMAT,
+                                                           vg_uuid,
+                                                           n,
+                                                           name,
+                                                           uuid,
+                                                           size);
+                                        }
+
+                                        g_free (name);
+                                        g_free (uuid);
+                                        g_strfreev (tokens);
+                                } /* foreach LV in VG */
+
+                                /* Create a GduLinuxLvm2VolumeHole for unallocated space - TODO: use 1% or
+                                 * something based on extent size... instead of 1MB
+                                 */
+                                unallocated_size = gdu_device_linux_lvm2_pv_get_group_unallocated_size (device);
+                                if (unallocated_size >= 1000 * 1000) {
+                                        GduLinuxLvm2VolumeHole *volume_hole;
+                                        volume_hole = _gdu_linux_lvm2_volume_hole_new (pool,
+                                                                                       GDU_PRESENTABLE (vg));
+                                        new_presentables = g_list_prepend (new_presentables, volume_hole);
+                                }
+                        }
+                }
+
+                /* Ensure we have a GduLinuxMdDrive for each non-running arrays */
                 if (gdu_device_is_linux_md_component (device)) {
                         const gchar *uuid;
 
                         uuid = gdu_device_linux_md_component_get_uuid (device);
                         if (g_hash_table_lookup (hash_map_from_linux_md_uuid_to_drive, uuid) == NULL) {
                                 GduDrive *drive;
+                                GduPresentable *linux_md_parent;
 
-                                drive = GDU_DRIVE (_gdu_linux_md_drive_new (pool, uuid, NULL));
+                                linux_md_parent = ensure_hub_raid_lvm (pool,
+                                                                       &hub_raid_lvm,
+                                                                       &new_presentables);
+
+                                drive = GDU_DRIVE (_gdu_linux_md_drive_new (pool, uuid, NULL, linux_md_parent));
                                 new_presentables = g_list_prepend (new_presentables, drive);
 
                                 g_hash_table_insert (hash_map_from_linux_md_uuid_to_drive,
@@ -815,6 +1376,9 @@ recompute_presentables (GduPool *pool)
         g_list_free (new_partitioned_drives);
         g_hash_table_unref (hash_map_from_drive_to_extended_partition);
         g_hash_table_unref (hash_map_from_linux_md_uuid_to_drive);
+        g_hash_table_unref (hash_map_from_linux_lvm2_group_uuid_to_vg);
+        g_hash_table_unref (hash_map_from_adapter_objpath_to_hub);
+        g_hash_table_unref (hash_map_from_expander_objpath_to_hub);
 
         /* figure out the diff */
         new_presentables = g_list_sort (new_presentables, (GCompareFunc) gdu_presentable_compare);
@@ -847,10 +1411,22 @@ recompute_presentables (GduPool *pool)
                 /* rewrite all enclosing_presentable references for presentables we are going to add
                  * such that they really refer to presentables _previously_ added
                  */
-                if (GDU_IS_VOLUME (p))
+                if (GDU_IS_HUB (p))
+                        _gdu_hub_rewrite_enclosing_presentable (GDU_HUB (p));
+                else if (GDU_IS_DRIVE (p))
+                        _gdu_drive_rewrite_enclosing_presentable (GDU_DRIVE (p));
+                else if (GDU_IS_LINUX_MD_DRIVE (p))
+                        _gdu_linux_md_drive_rewrite_enclosing_presentable (GDU_LINUX_MD_DRIVE (p));
+                else if (GDU_IS_VOLUME (p))
                         _gdu_volume_rewrite_enclosing_presentable (GDU_VOLUME (p));
                 else if (GDU_IS_VOLUME_HOLE (p))
                         _gdu_volume_hole_rewrite_enclosing_presentable (GDU_VOLUME_HOLE (p));
+                else if (GDU_IS_LINUX_LVM2_VOLUME_GROUP (p))
+                        _gdu_linux_lvm2_volume_group_rewrite_enclosing_presentable (GDU_LINUX_LVM2_VOLUME_GROUP (p));
+                else if (GDU_IS_LINUX_LVM2_VOLUME (p))
+                        _gdu_linux_lvm2_volume_rewrite_enclosing_presentable (GDU_LINUX_LVM2_VOLUME (p));
+                else if (GDU_IS_LINUX_LVM2_VOLUME_HOLE (p))
+                        _gdu_linux_lvm2_volume_hole_rewrite_enclosing_presentable (GDU_LINUX_LVM2_VOLUME_HOLE (p));
 
                 g_debug ("Added presentable %s %p", gdu_presentable_get_id (p), p);
 
@@ -868,6 +1444,10 @@ recompute_presentables (GduPool *pool)
         g_list_free (new_presentables);
         g_list_foreach (devices, (GFunc) g_object_unref, NULL);
         g_list_free (devices);
+        g_list_foreach (adapters, (GFunc) g_object_unref, NULL);
+        g_list_free (adapters);
+        g_list_foreach (expanders, (GFunc) g_object_unref, NULL);
+        g_list_free (expanders);
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -990,6 +1570,278 @@ device_job_changed_signal_handler (DBusGProxy *proxy,
         }
 }
 
+/* ---------------------------------------------------------------------------------------------------- */
+
+static void
+adapter_changed_signal_handler (DBusGProxy *proxy, const char *object_path, gpointer user_data);
+
+static void
+adapter_added_signal_handler (DBusGProxy *proxy, const char *object_path, gpointer user_data)
+{
+        GduPool *pool;
+        GduAdapter *adapter;
+
+        pool = GDU_POOL (user_data);
+
+        adapter = gdu_pool_get_adapter_by_object_path (pool, object_path);
+        if (adapter != NULL) {
+                g_object_unref (adapter);
+                g_warning ("Treating add for previously added adapter %s as change", object_path);
+                adapter_changed_signal_handler (proxy, object_path, user_data);
+                goto out;
+        }
+
+        adapter = _gdu_adapter_new_from_object_path (pool, object_path);
+        if (adapter == NULL)
+                goto out;
+
+        g_hash_table_insert (pool->priv->object_path_to_adapter,
+                             (gpointer) gdu_adapter_get_object_path (adapter),
+                             adapter);
+        g_signal_emit (pool, signals[ADAPTER_ADDED], 0, adapter);
+        //g_debug ("Added adapter %s", object_path);
+
+        recompute_presentables (pool);
+
+ out:
+        ;
+}
+
+static void
+adapter_removed_signal_handler (DBusGProxy *proxy, const char *object_path, gpointer user_data)
+{
+        GduPool *pool;
+        GduAdapter *adapter;
+
+        pool = GDU_POOL (user_data);
+
+        adapter = gdu_pool_get_adapter_by_object_path (pool, object_path);
+        if (adapter == NULL) {
+                g_warning ("No adapter to remove for remove %s", object_path);
+                goto out;
+        }
+
+        g_hash_table_remove (pool->priv->object_path_to_adapter,
+                             gdu_adapter_get_object_path (adapter));
+        g_signal_emit (pool, signals[ADAPTER_REMOVED], 0, adapter);
+        g_signal_emit_by_name (adapter, "removed");
+        g_object_unref (adapter);
+        g_debug ("Removed adapter %s", object_path);
+
+        recompute_presentables (pool);
+
+ out:
+        ;
+}
+
+static void
+adapter_changed_signal_handler (DBusGProxy *proxy, const char *object_path, gpointer user_data)
+{
+        GduPool *pool;
+        GduAdapter *adapter;
+
+        pool = GDU_POOL (user_data);
+
+        adapter = gdu_pool_get_adapter_by_object_path (pool, object_path);
+        if (adapter == NULL) {
+                g_warning ("Ignoring change event on non-existant adapter %s", object_path);
+                goto out;
+        }
+
+        if (_gdu_adapter_changed (adapter)) {
+                g_signal_emit (pool, signals[ADAPTER_CHANGED], 0, adapter);
+                g_signal_emit_by_name (adapter, "changed");
+        }
+        g_object_unref (adapter);
+
+        recompute_presentables (pool);
+
+ out:
+        ;
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+static void
+expander_changed_signal_handler (DBusGProxy *proxy, const char *object_path, gpointer user_data);
+
+static void
+expander_added_signal_handler (DBusGProxy *proxy, const char *object_path, gpointer user_data)
+{
+        GduPool *pool;
+        GduExpander *expander;
+
+        pool = GDU_POOL (user_data);
+
+        expander = gdu_pool_get_expander_by_object_path (pool, object_path);
+        if (expander != NULL) {
+                g_object_unref (expander);
+                g_warning ("Treating add for previously added expander %s as change", object_path);
+                expander_changed_signal_handler (proxy, object_path, user_data);
+                goto out;
+        }
+
+        expander = _gdu_expander_new_from_object_path (pool, object_path);
+        if (expander == NULL)
+                goto out;
+
+        g_hash_table_insert (pool->priv->object_path_to_expander,
+                             (gpointer) gdu_expander_get_object_path (expander),
+                             expander);
+        g_signal_emit (pool, signals[EXPANDER_ADDED], 0, expander);
+        //g_debug ("Added expander %s", object_path);
+
+        recompute_presentables (pool);
+
+ out:
+        ;
+}
+
+static void
+expander_removed_signal_handler (DBusGProxy *proxy, const char *object_path, gpointer user_data)
+{
+        GduPool *pool;
+        GduExpander *expander;
+
+        pool = GDU_POOL (user_data);
+
+        expander = gdu_pool_get_expander_by_object_path (pool, object_path);
+        if (expander == NULL) {
+                g_warning ("No expander to remove for remove %s", object_path);
+                goto out;
+        }
+
+        g_hash_table_remove (pool->priv->object_path_to_expander,
+                             gdu_expander_get_object_path (expander));
+        g_signal_emit (pool, signals[EXPANDER_REMOVED], 0, expander);
+        g_signal_emit_by_name (expander, "removed");
+        g_object_unref (expander);
+        g_debug ("Removed expander %s", object_path);
+
+        recompute_presentables (pool);
+
+ out:
+        ;
+}
+
+static void
+expander_changed_signal_handler (DBusGProxy *proxy, const char *object_path, gpointer user_data)
+{
+        GduPool *pool;
+        GduExpander *expander;
+
+        pool = GDU_POOL (user_data);
+
+        expander = gdu_pool_get_expander_by_object_path (pool, object_path);
+        if (expander == NULL) {
+                g_warning ("Ignoring change event on non-existant expander %s", object_path);
+                goto out;
+        }
+
+        if (_gdu_expander_changed (expander)) {
+                g_signal_emit (pool, signals[EXPANDER_CHANGED], 0, expander);
+                g_signal_emit_by_name (expander, "changed");
+        }
+        g_object_unref (expander);
+
+        recompute_presentables (pool);
+
+ out:
+        ;
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+static void
+port_changed_signal_handler (DBusGProxy *proxy, const char *object_path, gpointer user_data);
+
+static void
+port_added_signal_handler (DBusGProxy *proxy, const char *object_path, gpointer user_data)
+{
+        GduPool *pool;
+        GduPort *port;
+
+        pool = GDU_POOL (user_data);
+
+        port = gdu_pool_get_port_by_object_path (pool, object_path);
+        if (port != NULL) {
+                g_object_unref (port);
+                g_warning ("Treating add for previously added port %s as change", object_path);
+                port_changed_signal_handler (proxy, object_path, user_data);
+                goto out;
+        }
+
+        port = _gdu_port_new_from_object_path (pool, object_path);
+        if (port == NULL)
+                goto out;
+
+        g_hash_table_insert (pool->priv->object_path_to_port,
+                             (gpointer) gdu_port_get_object_path (port),
+                             port);
+        g_signal_emit (pool, signals[PORT_ADDED], 0, port);
+        //g_debug ("Added port %s", object_path);
+
+        recompute_presentables (pool);
+
+ out:
+        ;
+}
+
+static void
+port_removed_signal_handler (DBusGProxy *proxy, const char *object_path, gpointer user_data)
+{
+        GduPool *pool;
+        GduPort *port;
+
+        pool = GDU_POOL (user_data);
+
+        port = gdu_pool_get_port_by_object_path (pool, object_path);
+        if (port == NULL) {
+                g_warning ("No port to remove for remove %s", object_path);
+                goto out;
+        }
+
+        g_hash_table_remove (pool->priv->object_path_to_port,
+                             gdu_port_get_object_path (port));
+        g_signal_emit (pool, signals[PORT_REMOVED], 0, port);
+        g_signal_emit_by_name (port, "removed");
+        g_object_unref (port);
+        g_debug ("Removed port %s", object_path);
+
+        recompute_presentables (pool);
+
+ out:
+        ;
+}
+
+static void
+port_changed_signal_handler (DBusGProxy *proxy, const char *object_path, gpointer user_data)
+{
+        GduPool *pool;
+        GduPort *port;
+
+        pool = GDU_POOL (user_data);
+
+        port = gdu_pool_get_port_by_object_path (pool, object_path);
+        if (port == NULL) {
+                g_warning ("Ignoring change event on non-existant port %s", object_path);
+                goto out;
+        }
+
+        if (_gdu_port_changed (port)) {
+                g_signal_emit (pool, signals[PORT_CHANGED], 0, port);
+                g_signal_emit_by_name (port, "changed");
+        }
+        g_object_unref (port);
+
+        recompute_presentables (pool);
+
+ out:
+        ;
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
 static gboolean
 get_properties (GduPool *pool)
 {
@@ -1004,20 +1856,21 @@ get_properties (GduPool *pool)
         ret = FALSE;
 
 	prop_proxy = dbus_g_proxy_new_for_name (pool->priv->bus,
-                                                "org.freedesktop.DeviceKit.Disks",
-                                                "/org/freedesktop/DeviceKit/Disks",
+                                                "org.freedesktop.UDisks",
+                                                "/org/freedesktop/UDisks",
                                                 "org.freedesktop.DBus.Properties");
         error = NULL;
         if (!dbus_g_proxy_call (prop_proxy,
                                 "GetAll",
                                 &error,
                                 G_TYPE_STRING,
-                                "org.freedesktop.DeviceKit.Disks",
+                                "org.freedesktop.UDisks",
                                 G_TYPE_INVALID,
                                 dbus_g_type_get_map ("GHashTable", G_TYPE_STRING, G_TYPE_VALUE),
                                 &hash_table,
                                 G_TYPE_INVALID)) {
-                g_debug ("Error calling GetAll() when retrieving properties for /: %s", error->message);
+                g_debug ("Error calling GetAll() retrieving properties for /org/freedesktop/UDisks: %s",
+                         error->message);
                 g_error_free (error);
                 goto out;
         }
@@ -1058,30 +1911,106 @@ out:
         return ret;
 }
 
+
 /**
  * gdu_pool_new:
  *
  * Create a new #GduPool object.
  *
  * Returns: A #GduPool object. Caller must free this object using g_object_unref().
- **/
+ */
 GduPool *
 gdu_pool_new (void)
 {
-        int n;
-        GPtrArray *devices;
         GduPool *pool;
         GError *error;
 
+        error = NULL;
+        pool = gdu_pool_new_for_address (NULL, NULL, &error);
+        if (pool == NULL) {
+                g_printerr ("======================================================================\n"
+                            "Error constructing GduPool: %s\n"
+                            "\n"
+                            "This error suggests there's a problem with your udisks or D-Bus installation.\n"
+                            "======================================================================\n",
+                            error->message);
+        }
+
+        return pool;
+}
+
+DBusGConnection *
+_gdu_pool_get_connection (GduPool *pool)
+{
+        return pool->priv->bus;
+}
+
+static void
+on_ssh_process_terminated (GPid     pid,
+                           gint     status,
+                           gpointer user_data)
+{
+        GduPool *pool = GDU_POOL (user_data);
+
+        g_print ("wohoo, ssh process has been terminated\n");
+
+        /* need to take a temp ref since receivers of the ::disconnected signal
+         * may unref the pool
+         */
+        g_object_ref (pool);
+
+        _gdu_pool_disconnect (pool);
+
+        g_spawn_close_pid (pid);
+
+        g_source_remove (pool->priv->ssh_child_watch_id);
+        pool->priv->ssh_child_watch_id = 0;
+        pool->priv->ssh_pid = 0;
+
+        g_object_unref (pool);
+}
+
+GduPool *
+gdu_pool_new_for_address (const gchar     *ssh_user_name,
+                          const gchar     *ssh_address,
+                          GError         **error)
+{
+        int n;
+        GPtrArray *devices;
+        GPtrArray *adapters;
+        GPtrArray *expanders;
+        GPtrArray *ports;
+        GduPool *pool;
+        GError *local_error;
+
+        local_error = NULL;
+
         pool = GDU_POOL (g_object_new (GDU_TYPE_POOL, NULL));
 
-        error = NULL;
-        pool->priv->bus = dbus_g_bus_get (DBUS_BUS_SYSTEM, &error);
-        if (pool->priv->bus == NULL) {
-                g_warning ("Couldn't connect to system bus: %s", error->message);
-                g_error_free (error);
-                goto error;
+        if (ssh_address == NULL) {
+                pool->priv->bus = dbus_g_bus_get (DBUS_BUS_SYSTEM, error);
+                if (pool->priv->bus == NULL) {
+                        goto error;
+                }
+        } else {
+                pool->priv->bus = _gdu_ssh_bridge_connect (ssh_user_name,
+                                                           ssh_address,
+                                                           &(pool->priv->ssh_pid),
+                                                           error);
+                if (pool->priv->bus == NULL) {
+                        goto error;
+                }
+                pool->priv->ssh_user_name = g_strdup (ssh_user_name);
+                pool->priv->ssh_address  = g_strdup (ssh_address);
+
+                /* Watch the ssh process */
+                //g_print ("pid is %d\n", pool->priv->ssh_pid);
+                pool->priv->ssh_child_watch_id = g_child_watch_add (pool->priv->ssh_pid,
+                                                                    on_ssh_process_terminated,
+                                                                    pool);
         }
+
+        pool->priv->machine = GDU_PRESENTABLE (_gdu_machine_new (pool));
 
         dbus_g_object_register_marshaller (
                 gdu_marshal_VOID__STRING_BOOLEAN_STRING_UINT_BOOLEAN_DOUBLE,
@@ -1095,9 +2024,9 @@ gdu_pool_new (void)
                 G_TYPE_INVALID);
 
 	pool->priv->proxy = dbus_g_proxy_new_for_name (pool->priv->bus,
-                                                       "org.freedesktop.DeviceKit.Disks",
-                                                       "/org/freedesktop/DeviceKit/Disks",
-                                                       "org.freedesktop.DeviceKit.Disks");
+                                                       "org.freedesktop.UDisks",
+                                                       "/org/freedesktop/UDisks",
+                                                       "org.freedesktop.UDisks");
         dbus_g_proxy_add_signal (pool->priv->proxy, "DeviceAdded", DBUS_TYPE_G_OBJECT_PATH, G_TYPE_INVALID);
         dbus_g_proxy_add_signal (pool->priv->proxy, "DeviceRemoved", DBUS_TYPE_G_OBJECT_PATH, G_TYPE_INVALID);
         dbus_g_proxy_add_signal (pool->priv->proxy, "DeviceChanged", DBUS_TYPE_G_OBJECT_PATH, G_TYPE_INVALID);
@@ -1111,6 +2040,12 @@ gdu_pool_new (void)
                                  G_TYPE_DOUBLE,
                                  G_TYPE_INVALID);
 
+        /* get the properties on the daemon object */
+        if (!get_properties (pool)) {
+                g_warning ("Couldn't get daemon properties");
+                goto error;
+        }
+
         dbus_g_proxy_connect_signal (pool->priv->proxy, "DeviceAdded",
                                      G_CALLBACK (device_added_signal_handler), pool, NULL);
         dbus_g_proxy_connect_signal (pool->priv->proxy, "DeviceRemoved",
@@ -1120,17 +2055,42 @@ gdu_pool_new (void)
         dbus_g_proxy_connect_signal (pool->priv->proxy, "DeviceJobChanged",
                                      G_CALLBACK (device_job_changed_signal_handler), pool, NULL);
 
-        /* get the properties on the daemon object at / */
-        if (!get_properties (pool)) {
-                g_warning ("Couldn't get daemon properties");
-                goto error;
-        }
+        dbus_g_proxy_add_signal (pool->priv->proxy, "AdapterAdded", DBUS_TYPE_G_OBJECT_PATH, G_TYPE_INVALID);
+        dbus_g_proxy_add_signal (pool->priv->proxy, "AdapterRemoved", DBUS_TYPE_G_OBJECT_PATH, G_TYPE_INVALID);
+        dbus_g_proxy_add_signal (pool->priv->proxy, "AdapterChanged", DBUS_TYPE_G_OBJECT_PATH, G_TYPE_INVALID);
+        dbus_g_proxy_connect_signal (pool->priv->proxy, "AdapterAdded",
+                                     G_CALLBACK (adapter_added_signal_handler), pool, NULL);
+        dbus_g_proxy_connect_signal (pool->priv->proxy, "AdapterRemoved",
+                                     G_CALLBACK (adapter_removed_signal_handler), pool, NULL);
+        dbus_g_proxy_connect_signal (pool->priv->proxy, "AdapterChanged",
+                                     G_CALLBACK (adapter_changed_signal_handler), pool, NULL);
+
+        dbus_g_proxy_add_signal (pool->priv->proxy, "ExpanderAdded", DBUS_TYPE_G_OBJECT_PATH, G_TYPE_INVALID);
+        dbus_g_proxy_add_signal (pool->priv->proxy, "ExpanderRemoved", DBUS_TYPE_G_OBJECT_PATH, G_TYPE_INVALID);
+        dbus_g_proxy_add_signal (pool->priv->proxy, "ExpanderChanged", DBUS_TYPE_G_OBJECT_PATH, G_TYPE_INVALID);
+        dbus_g_proxy_connect_signal (pool->priv->proxy, "ExpanderAdded",
+                                     G_CALLBACK (expander_added_signal_handler), pool, NULL);
+        dbus_g_proxy_connect_signal (pool->priv->proxy, "ExpanderRemoved",
+                                     G_CALLBACK (expander_removed_signal_handler), pool, NULL);
+        dbus_g_proxy_connect_signal (pool->priv->proxy, "ExpanderChanged",
+                                     G_CALLBACK (expander_changed_signal_handler), pool, NULL);
+
+        dbus_g_proxy_add_signal (pool->priv->proxy, "PortAdded", DBUS_TYPE_G_OBJECT_PATH, G_TYPE_INVALID);
+        dbus_g_proxy_add_signal (pool->priv->proxy, "PortRemoved", DBUS_TYPE_G_OBJECT_PATH, G_TYPE_INVALID);
+        dbus_g_proxy_add_signal (pool->priv->proxy, "PortChanged", DBUS_TYPE_G_OBJECT_PATH, G_TYPE_INVALID);
+        dbus_g_proxy_connect_signal (pool->priv->proxy, "PortAdded",
+                                     G_CALLBACK (port_added_signal_handler), pool, NULL);
+        dbus_g_proxy_connect_signal (pool->priv->proxy, "PortRemoved",
+                                     G_CALLBACK (port_removed_signal_handler), pool, NULL);
+        dbus_g_proxy_connect_signal (pool->priv->proxy, "PortChanged",
+                                     G_CALLBACK (port_changed_signal_handler), pool, NULL);
 
         /* prime the list of devices */
-        error = NULL;
-        if (!org_freedesktop_DeviceKit_Disks_enumerate_devices (pool->priv->proxy, &devices, &error)) {
-                g_warning ("Couldn't enumerate devices: %s", error->message);
-                g_error_free (error);
+        if (!org_freedesktop_UDisks_enumerate_devices (pool->priv->proxy, &devices, &local_error)) {
+                g_set_error (error, GDU_ERROR, GDU_ERROR_FAILED,
+                             _("Error enumerating devices: %s"),
+                             local_error->message);
+                g_error_free (local_error);
                 goto error;
         }
 
@@ -1151,12 +2111,88 @@ gdu_pool_new (void)
         g_ptr_array_foreach (devices, (GFunc) g_free, NULL);
         g_ptr_array_free (devices, TRUE);
 
+        /* prime the list of adapters */
+        if (!org_freedesktop_UDisks_enumerate_adapters (pool->priv->proxy, &adapters, &local_error)) {
+                g_set_error (error, GDU_ERROR, GDU_ERROR_FAILED,
+                             _("Error enumerating adapters: %s"),
+                             local_error->message);
+                g_error_free (local_error);
+                goto error;
+        }
+        for (n = 0; n < (int) adapters->len; n++) {
+                const char *object_path;
+                GduAdapter *adapter;
+
+                object_path = adapters->pdata[n];
+
+                adapter = _gdu_adapter_new_from_object_path (pool, object_path);
+
+                g_hash_table_insert (pool->priv->object_path_to_adapter,
+                                     (gpointer) gdu_adapter_get_object_path (adapter),
+                                     adapter);
+        }
+        g_ptr_array_foreach (adapters, (GFunc) g_free, NULL);
+        g_ptr_array_free (adapters, TRUE);
+
+        /* prime the list of expanders */
+        if (!org_freedesktop_UDisks_enumerate_expanders (pool->priv->proxy, &expanders, &local_error)) {
+                g_set_error (error, GDU_ERROR, GDU_ERROR_FAILED,
+                             _("Error enumerating expanders: %s"),
+                             local_error->message);
+                g_error_free (local_error);
+                goto error;
+        }
+        for (n = 0; n < (int) expanders->len; n++) {
+                const char *object_path;
+                GduExpander *expander;
+
+                object_path = expanders->pdata[n];
+
+                expander = _gdu_expander_new_from_object_path (pool, object_path);
+
+                g_hash_table_insert (pool->priv->object_path_to_expander,
+                                     (gpointer) gdu_expander_get_object_path (expander),
+                                     expander);
+        }
+        g_ptr_array_foreach (expanders, (GFunc) g_free, NULL);
+        g_ptr_array_free (expanders, TRUE);
+
+        /* prime the list of ports */
+        if (!org_freedesktop_UDisks_enumerate_ports (pool->priv->proxy, &ports, &local_error)) {
+                g_set_error (error, GDU_ERROR, GDU_ERROR_FAILED,
+                             _("Error enumerating ports: %s"),
+                             local_error->message);
+                g_error_free (local_error);
+                goto error;
+        }
+        for (n = 0; n < (int) ports->len; n++) {
+                const char *object_path;
+                GduPort *port;
+
+                object_path = ports->pdata[n];
+
+                port = _gdu_port_new_from_object_path (pool, object_path);
+
+                g_hash_table_insert (pool->priv->object_path_to_port,
+                                     (gpointer) gdu_port_get_object_path (port),
+                                     port);
+        }
+        g_ptr_array_foreach (ports, (GFunc) g_free, NULL);
+        g_ptr_array_free (ports, TRUE);
+
+        /* and finally compute all presentables */
         recompute_presentables (pool);
 
         return pool;
 
 error:
         g_object_unref (pool);
+        if (error != NULL && *error == NULL) {
+                g_set_error (error,
+                             GDU_ERROR,
+                             GDU_ERROR_FAILED,
+                             "(unspecified error)");
+        }
         return NULL;
 }
 
@@ -1176,9 +2212,75 @@ gdu_pool_get_by_object_path (GduPool *pool, const char *object_path)
         GduDevice *ret;
 
         ret = g_hash_table_lookup (pool->priv->object_path_to_device, object_path);
-        if (ret != NULL)
+        if (ret != NULL) {
                 g_object_ref (ret);
+        }
+        return ret;
+}
 
+/**
+ * gdu_pool_get_adapter_by_object_path:
+ * @pool: the pool
+ * @object_path: the D-Bus object path
+ *
+ * Looks up #GduAdapter object for @object_path.
+ *
+ * Returns: A #GduAdapter object for @object_path, otherwise
+ * #NULL. Caller must unref this object using g_object_unref().
+ **/
+GduAdapter *
+gdu_pool_get_adapter_by_object_path (GduPool *pool, const char *object_path)
+{
+        GduAdapter *ret;
+
+        ret = g_hash_table_lookup (pool->priv->object_path_to_adapter, object_path);
+        if (ret != NULL) {
+                g_object_ref (ret);
+        }
+        return ret;
+}
+
+/**
+ * gdu_pool_get_expander_by_object_path:
+ * @pool: the pool
+ * @object_path: the D-Bus object path
+ *
+ * Looks up #GduExpander object for @object_path.
+ *
+ * Returns: A #GduExpander object for @object_path, otherwise
+ * #NULL. Caller must unref this object using g_object_unref().
+ **/
+GduExpander *
+gdu_pool_get_expander_by_object_path (GduPool *pool, const char *object_path)
+{
+        GduExpander *ret;
+
+        ret = g_hash_table_lookup (pool->priv->object_path_to_expander, object_path);
+        if (ret != NULL) {
+                g_object_ref (ret);
+        }
+        return ret;
+}
+
+/**
+ * gdu_pool_get_by_object_path:
+ * @pool: the pool
+ * @object_path: the D-Bus object path
+ *
+ * Looks up #GduPort object for @object_path.
+ *
+ * Returns: A #GduPort object for @object_path, otherwise
+ * #NULL. Caller must unref this object using g_object_unref().
+ **/
+GduPort *
+gdu_pool_get_port_by_object_path (GduPool *pool, const char *object_path)
+{
+        GduPort *ret;
+
+        ret = g_hash_table_lookup (pool->priv->object_path_to_port, object_path);
+        if (ret != NULL) {
+                g_object_ref (ret);
+        }
         return ret;
 }
 
@@ -1365,6 +2467,69 @@ gdu_pool_get_devices (GduPool *pool)
 }
 
 /**
+ * gdu_pool_get_adapters:
+ * @pool: A #GduPool.
+ *
+ * Get a list of all adapters.
+ *
+ * Returns: A #GList of #GduAdapter objects. Caller must free this
+ * (unref all objects, then use g_list_free()).
+ **/
+GList *
+gdu_pool_get_adapters (GduPool *pool)
+{
+        GList *ret;
+
+        ret = NULL;
+
+        ret = g_hash_table_get_values (pool->priv->object_path_to_adapter);
+        g_list_foreach (ret, (GFunc) g_object_ref, NULL);
+        return ret;
+}
+
+/**
+ * gdu_pool_get_expanders:
+ * @pool: A #GduPool.
+ *
+ * Get a list of all expanders.
+ *
+ * Returns: A #GList of #GduExpander objects. Caller must free this
+ * (unref all objects, then use g_list_free()).
+ **/
+GList *
+gdu_pool_get_expanders (GduPool *pool)
+{
+        GList *ret;
+
+        ret = NULL;
+
+        ret = g_hash_table_get_values (pool->priv->object_path_to_expander);
+        g_list_foreach (ret, (GFunc) g_object_ref, NULL);
+        return ret;
+}
+
+/**
+ * gdu_pool_get_ports:
+ * @pool: A #GduPool.
+ *
+ * Get a list of all ports.
+ *
+ * Returns: A #GList of #GduPort objects. Caller must free this
+ * (unref all objects, then use g_list_free()).
+ **/
+GList *
+gdu_pool_get_ports (GduPool *pool)
+{
+        GList *ret;
+
+        ret = NULL;
+
+        ret = g_hash_table_get_values (pool->priv->object_path_to_port);
+        g_list_foreach (ret, (GFunc) g_object_ref, NULL);
+        return ret;
+}
+
+/**
  * gdu_pool_get_presentables:
  * @pool: A #GduPool
  *
@@ -1496,6 +2661,32 @@ gdu_pool_get_drive_by_device (GduPool *pool, GduDevice *device)
         return ret;
 }
 
+GduLinuxMdDrive *
+gdu_pool_get_linux_md_drive_by_uuid (GduPool *pool, const gchar *uuid)
+{
+        GduLinuxMdDrive *ret;
+        GList *l;
+
+        /* TODO: use lookaside hash table */
+
+        ret = NULL;
+
+        for (l = pool->priv->presentables; l != NULL; l = l->next) {
+                GduPresentable *p = GDU_PRESENTABLE (l->data);
+
+                if (! GDU_IS_LINUX_MD_DRIVE (p))
+                        continue;
+
+                if (g_strcmp0 (uuid, gdu_linux_md_drive_get_uuid (GDU_LINUX_MD_DRIVE (p))) == 0) {
+                        ret = g_object_ref (p);
+                        goto out;
+                }
+        }
+
+ out:
+        return ret;
+}
+
 GduPresentable *
 gdu_pool_get_presentable_by_id (GduPool *pool, const gchar *id)
 {
@@ -1519,6 +2710,51 @@ gdu_pool_get_presentable_by_id (GduPool *pool, const gchar *id)
         return ret;
 }
 
+gboolean
+gdu_pool_has_presentable (GduPool *pool, GduPresentable *presentable)
+{
+        gboolean ret;
+
+        ret = (g_list_find (pool->priv->presentables, presentable) != NULL);
+
+        return ret;
+}
+
+
+
+GduPresentable *
+gdu_pool_get_hub_by_object_path (GduPool *pool, const gchar *object_path)
+{
+        GduPresentable *ret;
+        GList *l;
+
+        /* TODO: use lookaside hash table */
+
+        ret = NULL;
+        for (l = pool->priv->presentables; l != NULL && ret == NULL; l = l->next) {
+                GduPresentable *p = GDU_PRESENTABLE (l->data);
+                GduAdapter *a;
+                GduExpander *e;
+
+                if (!GDU_IS_HUB (p))
+                        continue;
+
+                a = gdu_hub_get_adapter (GDU_HUB (p));
+                e = gdu_hub_get_expander (GDU_HUB (p));
+
+                if (g_strcmp0 (gdu_adapter_get_object_path (a), object_path) == 0) {
+                        ret = g_object_ref (p);
+                } else if (e != NULL && g_strcmp0 (gdu_expander_get_object_path (e), object_path) == 0) {
+                        ret = g_object_ref (p);
+                }
+
+                g_object_unref (a);
+                if (e != NULL)
+                        g_object_unref (e);
+        }
+
+        return ret;
+}
 
 /* ---------------------------------------------------------------------------------------------------- */
 
@@ -1564,11 +2800,11 @@ gdu_pool_op_linux_md_start (GduPool *pool,
         data->callback = callback;
         data->user_data = user_data;
 
-        org_freedesktop_DeviceKit_Disks_linux_md_start_async (pool->priv->proxy,
-                                                              component_objpaths,
-                                                              (const char **) options,
-                                                              op_linux_md_start_cb,
-                                                              data);
+        org_freedesktop_UDisks_linux_md_start_async (pool->priv->proxy,
+                                                     component_objpaths,
+                                                     (const char **) options,
+                                                     op_linux_md_start_cb,
+                                                     data);
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -1620,14 +2856,434 @@ gdu_pool_op_linux_md_create (GduPool *pool,
         data->callback = callback;
         data->user_data = user_data;
 
-        org_freedesktop_DeviceKit_Disks_linux_md_create_async (pool->priv->proxy,
-                                                               component_objpaths,
-                                                               level,
-                                                               stripe_size,
-                                                               name,
-                                                               (const char **) options,
-                                                               op_linux_md_create_cb,
-                                                               data);
+        org_freedesktop_UDisks_linux_md_create_async (pool->priv->proxy,
+                                                      component_objpaths,
+                                                      level,
+                                                      stripe_size,
+                                                      name,
+                                                      (const char **) options,
+                                                      op_linux_md_create_cb,
+                                                      data);
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+typedef struct {
+        GduPool *pool;
+        GduPoolLinuxLvm2VGStartCompletedFunc callback;
+        gpointer user_data;
+} LinuxLvm2VGStartData;
+
+static void
+op_linux_lvm2_vg_start_cb (DBusGProxy *proxy, GError *error, gpointer user_data)
+{
+        LinuxLvm2VGStartData *data = user_data;
+        _gdu_error_fixup (error);
+        if (data->callback != NULL)
+                data->callback (data->pool, error, data->user_data);
+        g_object_unref (data->pool);
+        g_free (data);
+}
+
+void
+gdu_pool_op_linux_lvm2_vg_start (GduPool *pool,
+                                 const gchar *uuid,
+                                 GduPoolLinuxLvm2VGStartCompletedFunc callback,
+                                 gpointer user_data)
+{
+        LinuxLvm2VGStartData *data;
+        char *options[16];
+
+        options[0] = NULL;
+
+        data = g_new0 (LinuxLvm2VGStartData, 1);
+        data->pool = g_object_ref (pool);
+        data->callback = callback;
+        data->user_data = user_data;
+
+        org_freedesktop_UDisks_linux_lvm2_vg_start_async (pool->priv->proxy,
+                                                          uuid,
+                                                          (const char **) options,
+                                                          op_linux_lvm2_vg_start_cb,
+                                                          data);
+}
+
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+typedef struct {
+        GduPool *pool;
+        GduPoolLinuxLvm2VGStopCompletedFunc callback;
+        gpointer user_data;
+} LinuxLvm2VGStopData;
+
+static void
+op_linux_lvm2_vg_stop_cb (DBusGProxy *proxy, GError *error, gpointer user_data)
+{
+        LinuxLvm2VGStopData *data = user_data;
+        _gdu_error_fixup (error);
+        if (data->callback != NULL)
+                data->callback (data->pool, error, data->user_data);
+        g_object_unref (data->pool);
+        g_free (data);
+}
+
+void
+gdu_pool_op_linux_lvm2_vg_stop (GduPool *pool,
+                                const gchar *uuid,
+                                GduPoolLinuxLvm2VGStopCompletedFunc callback,
+                                gpointer user_data)
+{
+        LinuxLvm2VGStopData *data;
+        char *options[16];
+
+        options[0] = NULL;
+
+        data = g_new0 (LinuxLvm2VGStopData, 1);
+        data->pool = g_object_ref (pool);
+        data->callback = callback;
+        data->user_data = user_data;
+
+        org_freedesktop_UDisks_linux_lvm2_vg_stop_async (pool->priv->proxy,
+                                                          uuid,
+                                                          (const char **) options,
+                                                          op_linux_lvm2_vg_stop_cb,
+                                                          data);
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+typedef struct {
+        GduPool *pool;
+        GduPoolLinuxLvm2LVStartCompletedFunc callback;
+        gpointer user_data;
+} LinuxLvm2LVStartData;
+
+static void
+op_linux_lvm2_lv_start_cb (DBusGProxy *proxy, GError *error, gpointer user_data)
+{
+        LinuxLvm2LVStartData *data = user_data;
+        _gdu_error_fixup (error);
+        if (data->callback != NULL)
+                data->callback (data->pool, error, data->user_data);
+        g_object_unref (data->pool);
+        g_free (data);
+}
+
+void
+gdu_pool_op_linux_lvm2_lv_start (GduPool *pool,
+                                 const gchar *group_uuid,
+                                 const gchar *uuid,
+                                 GduPoolLinuxLvm2LVStartCompletedFunc callback,
+                                 gpointer user_data)
+{
+        LinuxLvm2LVStartData *data;
+        char *options[16];
+
+        options[0] = NULL;
+
+        data = g_new0 (LinuxLvm2LVStartData, 1);
+        data->pool = g_object_ref (pool);
+        data->callback = callback;
+        data->user_data = user_data;
+
+        org_freedesktop_UDisks_linux_lvm2_lv_start_async (pool->priv->proxy,
+                                                          group_uuid,
+                                                          uuid,
+                                                          (const char **) options,
+                                                          op_linux_lvm2_lv_start_cb,
+                                                          data);
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+
+typedef struct {
+        GduPool *pool;
+        GduPoolLinuxLvm2VGSetNameCompletedFunc callback;
+        gpointer user_data;
+} LinuxLvm2VGSetNameData;
+
+static void
+op_linux_lvm2_vg_set_name_cb (DBusGProxy *proxy, GError *error, gpointer user_data)
+{
+        LinuxLvm2VGSetNameData *data = user_data;
+        _gdu_error_fixup (error);
+        if (data->callback != NULL)
+                data->callback (data->pool, error, data->user_data);
+        g_object_unref (data->pool);
+        g_free (data);
+}
+
+void
+gdu_pool_op_linux_lvm2_vg_set_name (GduPool *pool,
+                                    const gchar *uuid,
+                                    const gchar *new_name,
+                                    GduPoolLinuxLvm2VGSetNameCompletedFunc callback,
+                                    gpointer user_data)
+{
+        LinuxLvm2VGSetNameData *data;
+
+        data = g_new0 (LinuxLvm2VGSetNameData, 1);
+        data->pool = g_object_ref (pool);
+        data->callback = callback;
+        data->user_data = user_data;
+
+        org_freedesktop_UDisks_linux_lvm2_vg_set_name_async (pool->priv->proxy,
+                                                             uuid,
+                                                             new_name,
+                                                             op_linux_lvm2_vg_set_name_cb,
+                                                             data);
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+typedef struct {
+        GduPool *pool;
+        GduPoolLinuxLvm2LVSetNameCompletedFunc callback;
+        gpointer user_data;
+} LinuxLvm2LVSetNameData;
+
+static void
+op_linux_lvm2_lv_set_name_cb (DBusGProxy *proxy, GError *error, gpointer user_data)
+{
+        LinuxLvm2LVSetNameData *data = user_data;
+        _gdu_error_fixup (error);
+        if (data->callback != NULL)
+                data->callback (data->pool, error, data->user_data);
+        g_object_unref (data->pool);
+        g_free (data);
+}
+
+void
+gdu_pool_op_linux_lvm2_lv_set_name (GduPool *pool,
+                                    const gchar *group_uuid,
+                                    const gchar *uuid,
+                                    const gchar *new_name,
+                                    GduPoolLinuxLvm2LVSetNameCompletedFunc callback,
+                                    gpointer user_data)
+{
+        LinuxLvm2LVSetNameData *data;
+
+        data = g_new0 (LinuxLvm2LVSetNameData, 1);
+        data->pool = g_object_ref (pool);
+        data->callback = callback;
+        data->user_data = user_data;
+
+        org_freedesktop_UDisks_linux_lvm2_lv_set_name_async (pool->priv->proxy,
+                                                             group_uuid,
+                                                             uuid,
+                                                             new_name,
+                                                             op_linux_lvm2_lv_set_name_cb,
+                                                             data);
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+typedef struct {
+        GduPool *pool;
+        GduPoolLinuxLvm2LVRemoveCompletedFunc callback;
+        gpointer user_data;
+} LinuxLvm2LVRemoveData;
+
+static void
+op_linux_lvm2_lv_remove_cb (DBusGProxy *proxy, GError *error, gpointer user_data)
+{
+        LinuxLvm2LVRemoveData *data = user_data;
+        _gdu_error_fixup (error);
+        if (data->callback != NULL)
+                data->callback (data->pool, error, data->user_data);
+        g_object_unref (data->pool);
+        g_free (data);
+}
+
+void
+gdu_pool_op_linux_lvm2_lv_remove (GduPool *pool,
+                                  const gchar *group_uuid,
+                                  const gchar *uuid,
+                                  GduPoolLinuxLvm2LVRemoveCompletedFunc callback,
+                                  gpointer user_data)
+{
+        LinuxLvm2LVRemoveData *data;
+        char *options[16];
+
+        options[0] = NULL;
+
+        data = g_new0 (LinuxLvm2LVRemoveData, 1);
+        data->pool = g_object_ref (pool);
+        data->callback = callback;
+        data->user_data = user_data;
+
+        org_freedesktop_UDisks_linux_lvm2_lv_remove_async (pool->priv->proxy,
+                                                           group_uuid,
+                                                           uuid,
+                                                           (const char **) options,
+                                                           op_linux_lvm2_lv_remove_cb,
+                                                           data);
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+typedef struct {
+        GduPool *pool;
+        GduPoolLinuxLvm2LVCreateCompletedFunc callback;
+        gpointer user_data;
+} LinuxLvm2LVCreateData;
+
+static void
+op_linux_lvm2_lv_create_cb (DBusGProxy *proxy,
+                            char       *create_logical_volume_object_path,
+                            GError *error,
+                            gpointer user_data)
+{
+        LinuxLvm2LVCreateData *data = user_data;
+        _gdu_error_fixup (error);
+        if (data->callback != NULL)
+                data->callback (data->pool, create_logical_volume_object_path, error, data->user_data);
+        g_object_unref (data->pool);
+        g_free (data);
+}
+
+void
+gdu_pool_op_linux_lvm2_lv_create (GduPool *pool,
+                                  const gchar *group_uuid,
+                                  const gchar *name,
+                                  guint64 size,
+                                  guint num_stripes,
+                                  guint64 stripe_size,
+                                  guint num_mirrors,
+                                  const char                             *fstype,
+                                  const char                             *fslabel,
+                                  const char                             *encrypt_passphrase,
+                                  gboolean                                fs_take_ownership,
+                                  GduPoolLinuxLvm2LVCreateCompletedFunc callback,
+                                  gpointer user_data)
+{
+        LinuxLvm2LVCreateData *data;
+        char *options[16];
+        char *fsoptions[16];
+        guint n;
+
+        data = g_new0 (LinuxLvm2LVCreateData, 1);
+        data->pool = g_object_ref (pool);
+        data->callback = callback;
+        data->user_data = user_data;
+
+        options[0] = NULL;
+
+        n = 0;
+        if (fslabel != NULL && strlen (fslabel) > 0) {
+                fsoptions[n++] = g_strdup_printf ("label=%s", fslabel);
+        }
+        if (encrypt_passphrase != NULL && strlen (encrypt_passphrase) > 0) {
+                fsoptions[n++] = g_strdup_printf ("luks_encrypt=%s", encrypt_passphrase);
+        }
+        if (fs_take_ownership) {
+                fsoptions[n++] = g_strdup_printf ("take_ownership_uid=%d", getuid ());
+                fsoptions[n++] = g_strdup_printf ("take_ownership_gid=%d", getgid ());
+        }
+        fsoptions[n] = NULL;
+
+        org_freedesktop_UDisks_linux_lvm2_lv_create_async (pool->priv->proxy,
+                                                           group_uuid,
+                                                           name,
+                                                           size,
+                                                           num_stripes,
+                                                           stripe_size,
+                                                           num_mirrors,
+                                                           (const char **) options,
+                                                           fstype,
+                                                           (const char **) fsoptions,
+                                                           op_linux_lvm2_lv_create_cb,
+                                                           data);
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+typedef struct {
+        GduPool *pool;
+        GduPoolLinuxLvm2VGAddPVCompletedFunc callback;
+        gpointer user_data;
+} LinuxLvm2VGAddPVData;
+
+static void
+op_linux_lvm2_vg_add_pv_cb (DBusGProxy *proxy, GError *error, gpointer user_data)
+{
+        LinuxLvm2VGAddPVData *data = user_data;
+        _gdu_error_fixup (error);
+        if (data->callback != NULL)
+                data->callback (data->pool, error, data->user_data);
+        g_object_unref (data->pool);
+        g_free (data);
+}
+
+void
+gdu_pool_op_linux_lvm2_vg_add_pv (GduPool *pool,
+                                  const gchar *uuid,
+                                  const gchar *physical_volume_object_path,
+                                  GduPoolLinuxLvm2VGAddPVCompletedFunc callback,
+                                  gpointer user_data)
+{
+        LinuxLvm2VGAddPVData *data;
+        char *options[16];
+
+        options[0] = NULL;
+
+        data = g_new0 (LinuxLvm2VGAddPVData, 1);
+        data->pool = g_object_ref (pool);
+        data->callback = callback;
+        data->user_data = user_data;
+
+        org_freedesktop_UDisks_linux_lvm2_vg_add_pv_async (pool->priv->proxy,
+                                                           uuid,
+                                                           physical_volume_object_path,
+                                                           (const gchar **) options,
+                                                           op_linux_lvm2_vg_add_pv_cb,
+                                                           data);
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+typedef struct {
+        GduPool *pool;
+        GduPoolLinuxLvm2VGRemovePVCompletedFunc callback;
+        gpointer user_data;
+} LinuxLvm2VGRemovePVData;
+
+static void
+op_linux_lvm2_vg_remove_pv_cb (DBusGProxy *proxy, GError *error, gpointer user_data)
+{
+        LinuxLvm2VGRemovePVData *data = user_data;
+        _gdu_error_fixup (error);
+        if (data->callback != NULL)
+                data->callback (data->pool, error, data->user_data);
+        g_object_unref (data->pool);
+        g_free (data);
+}
+
+void
+gdu_pool_op_linux_lvm2_vg_remove_pv (GduPool *pool,
+                                     const gchar *vg_uuid,
+                                     const gchar *pv_uuid,
+                                     GduPoolLinuxLvm2VGRemovePVCompletedFunc callback,
+                                     gpointer user_data)
+{
+        LinuxLvm2VGRemovePVData *data;
+        char *options[16];
+
+        options[0] = NULL;
+
+        data = g_new0 (LinuxLvm2VGRemovePVData, 1);
+        data->pool = g_object_ref (pool);
+        data->callback = callback;
+        data->user_data = user_data;
+
+        org_freedesktop_UDisks_linux_lvm2_vg_remove_pv_async (pool->priv->proxy,
+                                                              vg_uuid,
+                                                              pv_uuid,
+                                                              (const gchar **) options,
+                                                              op_linux_lvm2_vg_remove_pv_cb,
+                                                              data);
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -1636,9 +3292,9 @@ gdu_pool_op_linux_md_create (GduPool *pool,
  * gdu_pool_get_daemon_version:
  * @pool: A #GduPool.
  *
- * Get the version of the DeviceKit-daemon on the system.
+ * Get the version of the udisks on the system.
  *
- * Returns: The version of DeviceKit-disks daemon. Caller must free
+ * Returns: The version of udisks daemon. Caller must free
  * this string using g_free().
  **/
 char *
@@ -1668,15 +3324,15 @@ gdu_pool_is_daemon_inhibited (GduPool *pool)
         ret = TRUE;
 
 	prop_proxy = dbus_g_proxy_new_for_name (pool->priv->bus,
-                                                "org.freedesktop.DeviceKit.Disks",
-                                                "/org/freedesktop/DeviceKit/Disks",
+                                                "org.freedesktop.UDisks",
+                                                "/org/freedesktop/UDisks",
                                                 "org.freedesktop.DBus.Properties");
         error = NULL;
         if (!dbus_g_proxy_call (prop_proxy,
                                 "Get",
                                 &error,
                                 G_TYPE_STRING,
-                                "org.freedesktop.DeviceKit.Disks",
+                                "org.freedesktop.UDisks",
                                 G_TYPE_STRING,
                                 "daemon-is-inhibited",
                                 G_TYPE_INVALID,
@@ -1701,7 +3357,7 @@ gdu_pool_is_daemon_inhibited (GduPool *pool)
  * gdu_pool_get_known_filesystems:
  * @pool: A #GduPool.
  *
- * Get a list of file systems known to the DeviceKit-disks daemon.
+ * Get a list of file systems known to the udisks daemon.
  *
  * Returns: A #GList of #GduKnownFilesystem objects. Caller must free
  * this (unref all objects, then use g_list_free()).
@@ -1748,7 +3404,7 @@ out:
  * gdu_pool_supports_luks_devices:
  * @pool: A #GduPool.
  *
- * Determine if the DeviceKit-disks daemon supports LUKS encrypted
+ * Determine if the udisks daemon supports LUKS encrypted
  * devices.
  *
  * Returns: #TRUE only if the daemon supports LUKS encrypted devices.
@@ -1759,4 +3415,54 @@ gdu_pool_supports_luks_devices (GduPool *pool)
         return pool->priv->supports_luks_devices;
 }
 
+const gchar *
+gdu_pool_get_ssh_user_name (GduPool *pool)
+{
+        return pool->priv->ssh_user_name;
+}
 
+const gchar *
+gdu_pool_get_ssh_address (GduPool *pool)
+{
+        return pool->priv->ssh_address;
+}
+
+static void
+remove_all_objects_and_dbus_proxies (GduPool *pool)
+{
+        g_free (pool->priv->daemon_version);
+        pool->priv->daemon_version = NULL;
+
+        g_list_foreach (pool->priv->known_filesystems, (GFunc) g_object_unref, NULL);
+        g_list_free (pool->priv->known_filesystems);
+        pool->priv->known_filesystems = NULL;
+
+        g_hash_table_remove_all (pool->priv->object_path_to_device);
+        g_hash_table_remove_all (pool->priv->object_path_to_adapter);
+        g_hash_table_remove_all (pool->priv->object_path_to_expander);
+        g_hash_table_remove_all (pool->priv->object_path_to_port);
+
+        g_list_foreach (pool->priv->presentables, (GFunc) g_object_unref, NULL);
+        g_list_free (pool->priv->presentables);
+        pool->priv->presentables = NULL;
+
+        if (pool->priv->proxy != NULL) {
+                g_object_unref (pool->priv->proxy);
+                pool->priv->proxy = NULL;
+        }
+
+        if (pool->priv->bus != NULL) {
+                dbus_g_connection_unref (pool->priv->bus);
+                pool->priv->bus = NULL;
+        }
+}
+
+static void
+_gdu_pool_disconnect (GduPool *pool)
+{
+        g_return_if_fail (!pool->priv->is_disconnected);
+
+        remove_all_objects_and_dbus_proxies (pool);
+        pool->priv->is_disconnected = TRUE;
+        g_signal_emit (pool, signals[DISCONNECTED], 0);
+}

@@ -74,4 +74,49 @@ typedef enum {
         GDU_POOL_TREE_MODEL_FLAGS_NO_UNALLOCATABLE_DRIVES   = (1<<2),
 } GduPoolTreeModelFlags;
 
+/**
+ * GduFormatDialogFlags:
+ * @GDU_FORMAT_DIALOG_FLAGS_NONE: No flags set.
+ * @GDU_FORMAT_DIALOG_FLAGS_SIMPLE: Show a simple form of the dialog.
+ * @GDU_FORMAT_DIALOG_FLAGS_DISK_UTILITY_BUTTON: Show a "Disk Utility" button.
+ * @GDU_FORMAT_DIALOG_FLAGS_ALLOW_MSDOS_EXTENDED: Allow selecting a MS-DOS extended partition instead of a file system.
+ *
+ * Flags used when creating a #GduFormatDialog.
+ */
+typedef enum {
+        GDU_FORMAT_DIALOG_FLAGS_NONE = 0,
+        GDU_FORMAT_DIALOG_FLAGS_SIMPLE = (1<<0),
+        GDU_FORMAT_DIALOG_FLAGS_DISK_UTILITY_BUTTON = (1<<1),
+        GDU_FORMAT_DIALOG_FLAGS_ALLOW_MSDOS_EXTENDED = (1<<2)
+} GduFormatDialogFlags;
+
+/**
+ * GduDiskSelectionWidgetFlags:
+ * @GDU_DISK_SELECTION_WIDGET_FLAGS_NONE: No flags set.
+ * @GDU_DISK_SELECTION_WIDGET_FLAGS_ALLOW_MULTIPLE: Allow multiple disks to be selected.
+ * @GDU_DISK_SELECTION_WIDGET_FLAGS_ALLOW_DISKS_WITH_INSUFFICIENT_SPACE: If set, disks with less
+ * space than #GduDiskSelectionWidget:component-size will be eligible for selection.
+ *
+ * Flags used when creating a #GduDiskSelectionWidget.
+ */
+typedef enum {
+        GDU_DISK_SELECTION_WIDGET_FLAGS_NONE = 0,
+        GDU_DISK_SELECTION_WIDGET_FLAGS_ALLOW_MULTIPLE = (1<<0),
+        GDU_DISK_SELECTION_WIDGET_FLAGS_ALLOW_DISKS_WITH_INSUFFICIENT_SPACE = (1<<1)
+} GduDiskSelectionWidgetFlags;
+
+/**
+ * GduAddComponentLinuxMdFlags:
+ * @GDU_ADD_COMPONENT_LINUX_MD_FLAGS_NONE: No flags set.
+ * @GDU_ADD_COMPONENT_LINUX_MD_FLAGS_SPARE: The dialog is for selecting a spare.
+ * @GDU_ADD_COMPONENT_LINUX_MD_FLAGS_EXPANSION: The dialog is for selecting a device used for expansion.
+ *
+ * Flags used when creating a #GduAddComponentLinuxMdDialog.
+ */
+typedef enum {
+        GDU_ADD_COMPONENT_LINUX_MD_FLAGS_NONE = 0,
+        GDU_ADD_COMPONENT_LINUX_MD_FLAGS_SPARE = (1<<0),
+        GDU_ADD_COMPONENT_LINUX_MD_FLAGS_EXPANSION = (1<<1)
+} GduAddComponentLinuxMdFlags;
+
 #endif /* GDU_GTK_ENUMS_H */

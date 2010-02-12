@@ -19,9 +19,10 @@
  * 02111-1307, USA.
  */
 
-#include <config.h>
-#include <string.h>
+#include "config.h"
 #include <glib/gi18n-lib.h>
+
+#include <string.h>
 #include <dbus/dbus-glib.h>
 
 #include "gdu-private.h"
@@ -61,6 +62,8 @@ struct _GduLinuxMdDrivePrivate
         gchar *device_file;
 
         gchar *id;
+
+        GduPresentable *enclosing_presentable;
 };
 
 static GObjectClass *parent_class = NULL;
@@ -117,6 +120,9 @@ gdu_linux_md_drive_finalize (GObject *object)
 
         g_free (drive->priv->uuid);
         g_free (drive->priv->device_file);
+
+        if (drive->priv->enclosing_presentable != NULL)
+                g_object_unref (drive->priv->enclosing_presentable);
 
         if (G_OBJECT_CLASS (parent_class)->finalize)
                 (* G_OBJECT_CLASS (parent_class)->finalize) (G_OBJECT (drive));
@@ -325,6 +331,7 @@ device_job_changed (GduPool *pool, GduDevice *device, gpointer user_data)
  * @pool: A #GduPool.
  * @uuid: The UUID for the array.
  * @device_file: The device file for the array.
+ * @enclosing_presentable: The enclosing presentable
  *
  * Creates a new #GduLinuxMdDrive. Note that only one of @uuid and
  * @device_file may be %NULL.
@@ -332,7 +339,8 @@ device_job_changed (GduPool *pool, GduDevice *device, gpointer user_data)
 GduLinuxMdDrive *
 _gdu_linux_md_drive_new (GduPool      *pool,
                          const gchar  *uuid,
-                         const gchar  *device_file)
+                         const gchar  *device_file,
+                         GduPresentable *enclosing_presentable)
 {
         GduLinuxMdDrive *drive;
 
@@ -349,9 +357,14 @@ _gdu_linux_md_drive_new (GduPool      *pool,
                 g_signal_connect (drive->priv->pool, "device-job-changed", G_CALLBACK (device_job_changed), drive);
                 prime_devices (drive);
         } else {
-                drive->priv->id = g_strdup_printf ("linux_md_%s", device_file);
+                drive->priv->id = g_strdup_printf ("linux_md_%s_enclosed_by_%s",
+                                                   device_file,
+                                                   enclosing_presentable != NULL ? gdu_presentable_get_id (enclosing_presentable) : "(none)");
                 drive->priv->device = gdu_pool_get_by_device_file (pool, device_file);
         }
+
+        drive->priv->enclosing_presentable =
+                enclosing_presentable != NULL ? g_object_ref (enclosing_presentable) : NULL;
 
         return drive;
 }
@@ -377,6 +390,12 @@ gdu_linux_md_drive_has_slave    (GduLinuxMdDrive  *drive,
                                  GduDevice            *device)
 {
         return g_list_find (drive->priv->slaves, device) != NULL;
+}
+
+const gchar *
+gdu_linux_md_drive_get_uuid (GduLinuxMdDrive *drive)
+{
+        return drive->priv->uuid;
 }
 
 /**
@@ -464,6 +483,9 @@ gdu_linux_md_drive_get_device (GduPresentable *presentable)
 static GduPresentable *
 gdu_linux_md_drive_get_enclosing_presentable (GduPresentable *presentable)
 {
+        GduLinuxMdDrive *drive = GDU_LINUX_MD_DRIVE (presentable);
+        if (drive->priv->enclosing_presentable != NULL)
+                return g_object_ref (drive->priv->enclosing_presentable);
         return NULL;
 }
 
@@ -489,12 +511,13 @@ get_names_and_desc (GduPresentable  *presentable,
         ret_desc = NULL;
         ret_vpd = NULL;
         strsize = NULL;
+        level_str = NULL;
 
         /* TODO: Maybe guess size from level, num_raid_devices and component_size? */
         if (drive->priv->device != NULL) {
                 guint64 size;
                 size = gdu_device_get_size (drive->priv->device);
-                strsize = gdu_util_get_size_for_display (size, FALSE);
+                strsize = gdu_util_get_size_for_display (size, FALSE, FALSE);
         }
 
         if (drive->priv->slaves != NULL) {
@@ -512,12 +535,12 @@ get_names_and_desc (GduPresentable  *presentable,
                 if (name == NULL || strlen (name) == 0) {
                         if (strsize != NULL) {
                                 /* Translators: First %s is the size, second %s is a RAID level, e.g. 'RAID-5' */
-                                ret = g_strdup_printf (_("%s %s Drive"),
+                                ret = g_strdup_printf (_("%s %s Array"),
                                                        strsize,
                                                        level_str);
                         } else {
                                 /* Translators: %s is a RAID level, e.g. 'RAID-5' */
-                                ret = g_strdup_printf (_("%s Drive"),
+                                ret = g_strdup_printf (_("%s Array"),
                                                        level_str);
                         }
                 } else {
@@ -566,20 +589,23 @@ get_names_and_desc (GduPresentable  *presentable,
                         }
                 }
 
-                g_free (level_str);
-
         } else if (drive->priv->device != NULL) {
                 /* Translators: First %s is a device file such as /dev/sda4
                  * second %s is the state of the device
                  */
-                ret = g_strdup_printf (_("RAID device %s (%s)"),
+                ret = g_strdup_printf (_("RAID Array %s (%s)"),
                                        gdu_device_get_device_file (drive->priv->device),
                                        gdu_device_linux_md_get_state (drive->priv->device));
         } else {
-                g_warn_if_fail (drive->priv->device_file != NULL);
-
                 /* Translators: %s is a device file such as /dev/sda4 */
-                ret = g_strdup_printf (_("RAID device %s"), drive->priv->device_file);
+                ret = g_strdup_printf (_("RAID device %s"),
+                                       drive->priv->device_file != NULL ? drive->priv->device_file : "(unknown)");
+        }
+
+        /* Fallback for level_str */
+        if (level_str == NULL) {
+                /* Translators: fallback for level */
+                level_str = g_strdup (C_("RAID Level fallback", "RAID"));
         }
 
         /* Fallback for description */
@@ -590,11 +616,13 @@ get_names_and_desc (GduPresentable  *presentable,
         /* Fallback for VPD name */
         if (ret_vpd == NULL) {
                 if (strsize != NULL) {
-                        /* Translators: %s is the size e.g. '45 GB' */
-                        ret_vpd = g_strdup_printf (_("%s Software RAID"),
-                                                   strsize);
+                        /* Translators: first %s is the size e.g. '45 GB', second %s is the level e.g. 'RAID-5' */
+                        ret_vpd = g_strdup_printf (_("%s %s Array"),
+                                                   strsize,
+                                                   level_str);
                 } else {
-                        ret_vpd = g_strdup (_("Software RAID"));
+                        /* Translators: %s is the level e.g. 'RAID-5' */
+                        ret_vpd = g_strdup_printf (_("%s Array"), level_str);
                 }
         }
 
@@ -609,6 +637,7 @@ get_names_and_desc (GduPresentable  *presentable,
                 g_free (ret_vpd);
 
         g_free (strsize);
+        g_free (level_str);
 
         return ret;
 }
@@ -646,7 +675,35 @@ gdu_linux_md_drive_get_vpd_name (GduPresentable *presentable)
 static GIcon *
 gdu_linux_md_drive_get_icon (GduPresentable *presentable)
 {
-        return g_themed_icon_new_with_default_fallbacks ("gdu-raid-array");
+        GduLinuxMdDrive *drive = GDU_LINUX_MD_DRIVE (presentable);
+        const gchar *emblem_name;
+        const gchar *level;
+
+        level = NULL;
+        if (drive->priv->slaves != NULL) {
+                level = gdu_device_linux_md_component_get_level (GDU_DEVICE (drive->priv->slaves->data));
+        } else if (drive->priv->device != NULL) {
+                level = gdu_device_linux_md_get_level (drive->priv->device);
+        }
+
+        emblem_name = NULL;
+        if (g_strcmp0 (level, "linear") == 0) {
+                emblem_name = "gdu-emblem-raid-linear";
+        } else if (g_strcmp0 (level, "raid0") == 0) {
+                emblem_name = "gdu-emblem-raid0";
+        } else if (g_strcmp0 (level, "raid1") == 0) {
+                emblem_name = "gdu-emblem-raid1";
+        } else if (g_strcmp0 (level, "raid4") == 0) {
+                emblem_name = "gdu-emblem-raid4";
+        } else if (g_strcmp0 (level, "raid5") == 0) {
+                emblem_name = "gdu-emblem-raid5";
+        } else if (g_strcmp0 (level, "raid6") == 0) {
+                emblem_name = "gdu-emblem-raid6";
+        } else if (g_strcmp0 (level, "raid10") == 0) {
+                emblem_name = "gdu-emblem-raid10";
+        }
+
+        return gdu_util_get_emblemed_icon ("gdu-multidisk-drive", emblem_name);
 }
 
 static guint64
@@ -745,6 +802,34 @@ gdu_linux_md_drive_presentable_iface_init (GduPresentableIface *iface)
         iface->get_pool                  = gdu_linux_md_drive_get_pool;
         iface->is_allocated              = gdu_linux_md_drive_is_allocated;
         iface->is_recognized             = gdu_linux_md_drive_is_recognized;
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+void
+_gdu_linux_md_drive_rewrite_enclosing_presentable (GduLinuxMdDrive *drive)
+{
+        if (drive->priv->enclosing_presentable != NULL) {
+                const gchar *enclosing_presentable_id;
+                GduPresentable *new_enclosing_presentable;
+
+                enclosing_presentable_id = gdu_presentable_get_id (drive->priv->enclosing_presentable);
+
+                new_enclosing_presentable = gdu_pool_get_presentable_by_id (drive->priv->pool,
+                                                                            enclosing_presentable_id);
+                if (new_enclosing_presentable == NULL) {
+                        g_warning ("Error rewriting enclosing_presentable for %s, no such id %s",
+                                   drive->priv->id,
+                                   enclosing_presentable_id);
+                        goto out;
+                }
+
+                g_object_unref (drive->priv->enclosing_presentable);
+                drive->priv->enclosing_presentable = new_enclosing_presentable;
+        }
+
+ out:
+        ;
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -1004,4 +1089,50 @@ gdu_linux_md_drive_deactivate (GduDrive               *_drive,
         gdu_device_op_linux_md_stop (drive->priv->device,
                                      deactivation_completed,
                                      deactivation_data_new (drive, callback, user_data));
+}
+
+gchar *
+gdu_linux_md_drive_get_slave_state_markup (GduLinuxMdDrive  *drive,
+                                           GduDevice        *slave)
+{
+        gchar *slave_state_str;
+
+        slave_state_str = NULL;
+        if (gdu_drive_is_active (GDU_DRIVE (drive))) {
+                GduLinuxMdDriveSlaveFlags slave_flags;
+                GPtrArray *slave_state;
+                gchar *s;
+
+                slave_flags = gdu_linux_md_drive_get_slave_flags (drive, slave);
+
+                slave_state = g_ptr_array_new_with_free_func (g_free);
+                if (slave_flags & GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_NOT_ATTACHED)
+                        g_ptr_array_add (slave_state, g_strdup (C_("Linux MD slave state", "Not Attached")));
+                if (slave_flags & GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_FAULTY) {
+                        s = g_strconcat ("<span foreground='red'><b>",
+                                         C_("Linux MD slave state", "Faulty"),
+                                         "</b></span>", NULL);
+                        g_ptr_array_add (slave_state, s);
+                }
+                if (slave_flags & GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_IN_SYNC)
+                        g_ptr_array_add (slave_state, g_strdup (C_("Linux MD slave state", "Fully Synchronized")));
+                if (slave_flags & GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_WRITEMOSTLY)
+                        g_ptr_array_add (slave_state, g_strdup (C_("Linux MD slave state", "Writemostly")));
+                if (slave_flags & GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_BLOCKED)
+                        g_ptr_array_add (slave_state, g_strdup (C_("Linux MD slave state", "Blocked")));
+                if (slave_flags & GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_SPARE) {
+                        if (gdu_device_linux_md_component_get_position (slave) >= 0) {
+                                g_ptr_array_add (slave_state, g_strdup (C_("Linux MD slave state",
+                                                                           "Partially Synchronized")));
+                        } else {
+                                g_ptr_array_add (slave_state, g_strdup (C_("Linux MD slave state", "Spare")));
+                        }
+                }
+                g_ptr_array_add (slave_state, NULL);
+                slave_state_str = g_strjoinv (", ", (gchar **) slave_state->pdata);
+                g_ptr_array_free (slave_state, TRUE);
+
+        }
+
+        return slave_state_str;
 }

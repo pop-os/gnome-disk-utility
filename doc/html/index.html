@@ -5,10 +5,11 @@
 <title>Disk Utility Library Reference Manual</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
 <link rel="home" href="index.html" title="Disk Utility Library Reference Manual">
-<link rel="next" href="ref-core.html" title="API Reference">
-<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="next" href="ref-libgdu.html" title="libgdu API Reference">
+<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
-<link rel="reference" href="ref-core.html" title="API Reference">
+<link rel="reference" href="ref-libgdu.html" title="libgdu API Reference">
+<link rel="reference" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <div class="book" title="Disk Utility Library Reference Manual">
@@ -23,11 +24,11 @@
 	    <code class="email">&lt;<a class="email" href="mailto:david@fubar.dk">david@fubar.dk</a>&gt;</code><br>
 	  </p></div></div>
 </div></div></div>
-<div><p class="releaseinfo">Version 2.28.1
+<div><p class="releaseinfo">Version 2.29.0
 </p></div>
 <div><p class="copyright">Copyright © 2007 The Disk Utility Library Authors</p></div>
 <div><div class="legalnotice" title="Legal Notice">
-<a name="id511690"></a><p>
+<a name="id2654165"></a><p>
 	Permission is granted to copy, distribute and/or modify this
 	document under the terms of the <em class="citetitle">GNU Free
 	Documentation License</em>, Version 1.1 or any later
@@ -59,11 +60,8 @@
 <hr>
 </div>
 <div class="toc"><dl>
-<dt><span class="reference"><a href="ref-core.html">I. API Reference</a></span></dt>
+<dt><span class="reference"><a href="ref-libgdu.html">I. libgdu API Reference</a></span></dt>
 <dd><dl>
-<dt>
-<span class="refentrytitle"><a href="gnome-disk-utility-gdu-error.html">GduError</a></span><span class="refpurpose"> — Error helper functions</span>
-</dt>
 <dt>
 <span class="refentrytitle"><a href="GduPool.html">GduPool</a></span><span class="refpurpose"> — Enumerate and monitor storage devices</span>
 </dt>
@@ -71,7 +69,7 @@
 <span class="refentrytitle"><a href="GduDevice.html">GduDevice</a></span><span class="refpurpose"></span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="gnome-disk-utility-gdu-presentable.html">GduPresentable</a></span><span class="refpurpose"> — Interface for devices presentable to the end user</span>
+<span class="refentrytitle"><a href="GduPresentable.html">GduPresentable</a></span><span class="refpurpose"> — Interface for devices presentable to the end user</span>
 </dt>
 <dt>
 <span class="refentrytitle"><a href="GduDrive.html">GduDrive</a></span><span class="refpurpose"> — Drives</span>
@@ -86,7 +84,10 @@
 <span class="refentrytitle"><a href="GduVolumeHole.html">GduVolumeHole</a></span><span class="refpurpose"> — Unallocated regions of partitioned devices</span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="GduKnownFilesystem.html">GduKnownFilesystem</a></span><span class="refpurpose"></span>
+<span class="refentrytitle"><a href="gnome-disk-utility-gdu-callbacks.html">Callbacks</a></span><span class="refpurpose"> — Callback function types</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="gnome-disk-utility-gdu-error.html">GduError</a></span><span class="refpurpose"> — Error helper functions</span>
 </dt>
 <dt>
 <span class="refentrytitle"><a href="GduProcess.html">GduProcess</a></span><span class="refpurpose"></span>
@@ -95,13 +96,73 @@
 <span class="refentrytitle"><a href="gnome-disk-utility-gdu-util.html">gdu-util</a></span><span class="refpurpose"></span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="gnome-disk-utility-gdu-callbacks.html">Callbacks</a></span><span class="refpurpose"> — Callback function types</span>
+<span class="refentrytitle"><a href="GduKnownFilesystem.html">GduKnownFilesystem</a></span><span class="refpurpose"></span>
+</dt>
+</dl></dd>
+<dt><span class="reference"><a href="ref-libgdu-gtk.html">II. libgdu-gtk API Reference</a></span></dt>
+<dd><dl>
+<dt>
+<span class="refentrytitle"><a href="gnome-disk-utility-gdu-details-element.html">gdu-details-element</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="gnome-disk-utility-gdu-details-table.html">gdu-details-table</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="gnome-disk-utility-gdu-button-element.html">gdu-button-element</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="gnome-disk-utility-gdu-button-table.html">gdu-button-table</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="gnome-disk-utility-gdu-dialog.html">gdu-dialog</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="gnome-disk-utility-gdu-ata-smart-dialog.html">gdu-ata-smart-dialog</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="gnome-disk-utility-gdu-create-linux-md-dialog.html">gdu-create-linux-md-dialog</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="gnome-disk-utility-gdu-edit-partition-dialog.html">gdu-edit-partition-dialog</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="gnome-disk-utility-gdu-error-dialog.html">gdu-error-dialog</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="gnome-disk-utility-gdu-confirmation-dialog.html">gdu-confirmation-dialog</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="gnome-disk-utility-gdu-gtk-enums.html">gdu-gtk-enums</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="gnome-disk-utility-gdu-gtk-enumtypes.html">gdu-gtk-enumtypes</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="gnome-disk-utility-gdu-gtk.html">gdu-gtk</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="gnome-disk-utility-gdu-pool-tree-model.html">gdu-pool-tree-model</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="gnome-disk-utility-gdu-pool-tree-view.html">gdu-pool-tree-view</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="gnome-disk-utility-gdu-size-widget.html">gdu-size-widget</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="gnome-disk-utility-gdu-spinner.html">gdu-spinner</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="gnome-disk-utility-gdu-time-label.html">gdu-time-label</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="gnome-disk-utility-gdu-volume-grid.html">gdu-volume-grid</a></span><span class="refpurpose"></span>
 </dt>
 </dl></dd>
 </dl></div>
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.11</div>
+          Generated by GTK-Doc V1.13</div>
 </body>
 </html>

@@ -1,0 +1,112 @@
+<!-- ##### SECTION Title ##### -->
+GduLinuxLvm2VolumeGroup
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GduLinuxLvm2VolumeGroupPrivate ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT GduLinuxLvm2VolumeGroup ##### -->
+<para>
+
+</para>
+
+@parent: 
+
+<!-- ##### ENUM GduLinuxLvm2VolumeGroupState ##### -->
+<para>
+
+</para>
+
+@GDU_LINUX_LVM2_VOLUME_GROUP_STATE_NOT_RUNNING: 
+@GDU_LINUX_LVM2_VOLUME_GROUP_STATE_PARTIALLY_RUNNING: 
+@GDU_LINUX_LVM2_VOLUME_GROUP_STATE_RUNNING: 
+
+<!-- ##### FUNCTION gdu_linux_lvm2_volume_group_get_uuid ##### -->
+<para>
+
+</para>
+
+@vg: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_linux_lvm2_volume_group_get_state ##### -->
+<para>
+
+</para>
+
+@vg: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_linux_lvm2_volume_group_get_pv_device ##### -->
+<para>
+
+</para>
+
+@vg: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_linux_lvm2_volume_group_get_num_lvs ##### -->
+<para>
+
+</para>
+
+@vg: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_linux_lvm2_volume_group_get_lv_info ##### -->
+<para>
+
+</para>
+
+@vg: 
+@lv_uuid: 
+@out_position: 
+@out_name: 
+@out_size: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_linux_lvm2_volume_group_get_pv_info ##### -->
+<para>
+
+</para>
+
+@vg: 
+@pv_uuid: 
+@out_position: 
+@out_size: 
+@out_allocated_size: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_linux_lvm2_volume_group_get_compute_new_lv_name ##### -->
+<para>
+
+</para>
+
+@vg: 
+@Returns: 
+
+

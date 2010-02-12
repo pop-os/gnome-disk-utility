@@ -1,3 +1,5 @@
+NULL =
+
 icondir = $(datadir)/icons/hicolor/scalable/apps
 icon_DATA =				\
 	palimpsest.svg			\
@@ -19,7 +21,26 @@ icon_DATA =				\
 	gdu-error.svg			\
 	gdu-warning.svg			\
 	gdu-unmountable.svg		\
-	nautilus-gdu.svg
+	nautilus-gdu.svg		\
+	gdu-multidisk-drive.svg		\
+	gdu-hba.svg			\
+	gdu-expander.svg		\
+	gdu-category-multidisk.svg	\
+	gdu-category-multipath.svg	\
+	gdu-category-peripheral.svg	\
+	gdu-emblem-mp.svg		\
+	gdu-emblem-mp-component.svg	\
+	gdu-emblem-lvm-vg.svg		\
+	gdu-emblem-lvm-lv.svg		\
+	gdu-emblem-raid-linear.svg	\
+	gdu-emblem-raid0.svg		\
+	gdu-emblem-raid1.svg		\
+	gdu-emblem-raid3.svg		\
+	gdu-emblem-raid4.svg		\
+	gdu-emblem-raid5.svg		\
+	gdu-emblem-raid6.svg		\
+	gdu-emblem-raid10.svg		\
+	$(NULL)
 
 EXTRA_DIST = \
 	$(icon_DATA)

@@ -31,15 +31,35 @@
 
 G_BEGIN_DECLS
 
+/* TODO: should have enum type files etc */
+
+typedef enum {
+        GDU_HUB_USAGE_ADAPTER,
+        GDU_HUB_USAGE_EXPANDER,
+        GDU_HUB_USAGE_MULTI_DISK_DEVICES,
+        GDU_HUB_USAGE_MULTI_PATH_DEVICES,
+} GduHubUsage;
+
+
 /* forward type definitions */
 
 typedef struct _GduPool                   GduPool;
 typedef struct _GduDevice                 GduDevice;
+typedef struct _GduAdapter                GduAdapter;
+typedef struct _GduExpander               GduExpander;
+typedef struct _GduPort                   GduPort;
+
 typedef struct _GduPresentable            GduPresentable; /* Dummy typedef */
+
 typedef struct _GduDrive                  GduDrive;
 typedef struct _GduLinuxMdDrive           GduLinuxMdDrive;
+typedef struct _GduLinuxLvm2VolumeGroup   GduLinuxLvm2VolumeGroup;
 typedef struct _GduVolume                 GduVolume;
 typedef struct _GduVolumeHole             GduVolumeHole;
+typedef struct _GduLinuxLvm2Volume        GduLinuxLvm2Volume;
+typedef struct _GduLinuxLvm2VolumeHole    GduLinuxLvm2VolumeHole;
+typedef struct _GduHub                    GduHub;
+typedef struct _GduMachine                GduMachine;
 
 typedef struct _GduKnownFilesystem        GduKnownFilesystem;
 typedef struct _GduProcess                GduProcess;

@@ -1,0 +1,118 @@
+<!-- ##### SECTION Title ##### -->
+gdu-format-dialog
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### TYPEDEF GduFormatDialogClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF GduFormatDialogPrivate ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdu_format_dialog_new ##### -->
+<para>
+
+</para>
+
+@parent: 
+@presentable: 
+@flags: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_format_dialog_new_for_drive ##### -->
+<para>
+
+</para>
+
+@parent: 
+@device: 
+@flags: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_format_dialog_new_for_volume ##### -->
+<para>
+
+</para>
+
+@parent: 
+@device: 
+@flags: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_format_dialog_get_fs_type ##### -->
+<para>
+
+</para>
+
+@dialog: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_format_dialog_get_fs_label ##### -->
+<para>
+
+</para>
+
+@dialog: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_format_dialog_get_fs_options ##### -->
+<para>
+
+</para>
+
+@dialog: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_format_dialog_get_encrypt ##### -->
+<para>
+
+</para>
+
+@dialog: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_format_dialog_get_take_ownership ##### -->
+<para>
+
+</para>
+
+@dialog: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_format_dialog_get_table ##### -->
+<para>
+
+</para>
+
+@dialog: 
+@Returns: 
+
+

@@ -1,0 +1,271 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>gdu-size-widget</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="Disk Utility Library Reference Manual">
+<link rel="up" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
+<link rel="prev" href="gnome-disk-utility-gdu-pool-tree-view.html" title="gdu-pool-tree-view">
+<link rel="next" href="gnome-disk-utility-gdu-spinner.html" title="gdu-spinner">
+<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-libgdu.html" title="libgdu API Reference">
+<link rel="reference" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="gnome-disk-utility-gdu-pool-tree-view.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-libgdu-gtk.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Disk Utility Library Reference Manual</th>
+<td><a accesskey="n" href="gnome-disk-utility-gdu-spinner.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#gnome-disk-utility-gdu-size-widget.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#gnome-disk-utility-gdu-size-widget.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry" title="gdu-size-widget">
+<a name="gnome-disk-utility-gdu-size-widget"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="gnome-disk-utility-gdu-size-widget.top_of_page"></a>gdu-size-widget</span></h2>
+<p>gdu-size-widget</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="gnome-disk-utility-gdu-size-widget.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">typedef             <a class="link" href="gnome-disk-utility-gdu-size-widget.html#GduSizeWidgetClass" title="GduSizeWidgetClass">GduSizeWidgetClass</a>;
+typedef             <a class="link" href="gnome-disk-utility-gdu-size-widget.html#GduSizeWidgetPrivate" title="GduSizeWidgetPrivate">GduSizeWidgetPrivate</a>;
+<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-details-element.html#changed" title="changed ()">changed</a>                             (<span class="returnvalue">GduSizeWidget</span> *widget);
+<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a>*          <a class="link" href="gnome-disk-utility-gdu-size-widget.html#gdu-size-widget-new" title="gdu_size_widget_new ()">gdu_size_widget_new</a>                 (<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a> size,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a> min_size,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a> max_size);
+<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-size-widget.html#gdu-size-widget-set-size" title="gdu_size_widget_set_size ()">gdu_size_widget_set_size</a>            (<span class="returnvalue">GduSizeWidget</span> *widget,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a> size);
+<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-size-widget.html#gdu-size-widget-set-min-size" title="gdu_size_widget_set_min_size ()">gdu_size_widget_set_min_size</a>        (<span class="returnvalue">GduSizeWidget</span> *widget,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a> min_size);
+<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-size-widget.html#gdu-size-widget-set-max-size" title="gdu_size_widget_set_max_size ()">gdu_size_widget_set_max_size</a>        (<span class="returnvalue">GduSizeWidget</span> *widget,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a> max_size);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a>             <a class="link" href="gnome-disk-utility-gdu-size-widget.html#gdu-size-widget-get-size" title="gdu_size_widget_get_size ()">gdu_size_widget_get_size</a>            (<span class="returnvalue">GduSizeWidget</span> *widget);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a>             <a class="link" href="gnome-disk-utility-gdu-size-widget.html#gdu-size-widget-get-min-size" title="gdu_size_widget_get_min_size ()">gdu_size_widget_get_min_size</a>        (<span class="returnvalue">GduSizeWidget</span> *widget);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a>             <a class="link" href="gnome-disk-utility-gdu-size-widget.html#gdu-size-widget-get-max-size" title="gdu_size_widget_get_max_size ()">gdu_size_widget_get_max_size</a>        (<span class="returnvalue">GduSizeWidget</span> *widget);
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="gnome-disk-utility-gdu-size-widget.description"></a><h2>Description</h2>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="gnome-disk-utility-gdu-size-widget.details"></a><h2>Details</h2>
+<div class="refsect2" title="GduSizeWidgetClass">
+<a name="GduSizeWidgetClass"></a><h3>GduSizeWidgetClass</h3>
+<pre class="programlisting">typedef struct GduSizeWidgetClass   GduSizeWidgetClass;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GduSizeWidgetPrivate">
+<a name="GduSizeWidgetPrivate"></a><h3>GduSizeWidgetPrivate</h3>
+<pre class="programlisting">typedef struct GduSizeWidgetPrivate GduSizeWidgetPrivate;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="changed ()">
+<a name="changed"></a><h3>changed ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                changed                             (<span class="returnvalue">GduSizeWidget</span> *widget);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>widget</code></em> :</span></p></td>
+<td>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_size_widget_new ()">
+<a name="gdu-size-widget-new"></a><h3>gdu_size_widget_new ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a>*          gdu_size_widget_new                 (<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a> size,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a> min_size,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a> max_size);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>size</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>min_size</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>max_size</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_size_widget_set_size ()">
+<a name="gdu-size-widget-set-size"></a><h3>gdu_size_widget_set_size ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdu_size_widget_set_size            (<span class="returnvalue">GduSizeWidget</span> *widget,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a> size);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>widget</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>size</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_size_widget_set_min_size ()">
+<a name="gdu-size-widget-set-min-size"></a><h3>gdu_size_widget_set_min_size ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdu_size_widget_set_min_size        (<span class="returnvalue">GduSizeWidget</span> *widget,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a> min_size);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>widget</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>min_size</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_size_widget_set_max_size ()">
+<a name="gdu-size-widget-set-max-size"></a><h3>gdu_size_widget_set_max_size ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdu_size_widget_set_max_size        (<span class="returnvalue">GduSizeWidget</span> *widget,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a> max_size);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>widget</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>max_size</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_size_widget_get_size ()">
+<a name="gdu-size-widget-get-size"></a><h3>gdu_size_widget_get_size ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a>             gdu_size_widget_get_size            (<span class="returnvalue">GduSizeWidget</span> *widget);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>widget</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_size_widget_get_min_size ()">
+<a name="gdu-size-widget-get-min-size"></a><h3>gdu_size_widget_get_min_size ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a>             gdu_size_widget_get_min_size        (<span class="returnvalue">GduSizeWidget</span> *widget);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>widget</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_size_widget_get_max_size ()">
+<a name="gdu-size-widget-get-max-size"></a><h3>gdu_size_widget_get_max_size ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a>             gdu_size_widget_get_max_size        (<span class="returnvalue">GduSizeWidget</span> *widget);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>widget</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.13</div>
+</body>
+</html>

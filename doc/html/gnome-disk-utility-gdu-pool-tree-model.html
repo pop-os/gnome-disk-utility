@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>gdu-pool-tree-model</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="Disk Utility Library Reference Manual">
+<link rel="up" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
+<link rel="prev" href="gnome-disk-utility-gdu-gtk.html" title="gdu-gtk">
+<link rel="next" href="gnome-disk-utility-gdu-pool-tree-view.html" title="gdu-pool-tree-view">
+<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-libgdu.html" title="libgdu API Reference">
+<link rel="reference" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="gnome-disk-utility-gdu-gtk.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-libgdu-gtk.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Disk Utility Library Reference Manual</th>
+<td><a accesskey="n" href="gnome-disk-utility-gdu-pool-tree-view.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#gnome-disk-utility-gdu-pool-tree-model.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#gnome-disk-utility-gdu-pool-tree-model.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry" title="gdu-pool-tree-model">
+<a name="gnome-disk-utility-gdu-pool-tree-model"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="gnome-disk-utility-gdu-pool-tree-model.top_of_page"></a>gdu-pool-tree-model</span></h2>
+<p>gdu-pool-tree-model</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="gnome-disk-utility-gdu-pool-tree-model.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">typedef             <a class="link" href="gnome-disk-utility-gdu-pool-tree-model.html#GduPoolTreeModelClass" title="GduPoolTreeModelClass">GduPoolTreeModelClass</a>;
+typedef             <a class="link" href="gnome-disk-utility-gdu-pool-tree-model.html#GduPoolTreeModelPrivate" title="GduPoolTreeModelPrivate">GduPoolTreeModelPrivate</a>;
+<span class="returnvalue">GduPoolTreeModel</span> *  <a class="link" href="gnome-disk-utility-gdu-pool-tree-model.html#gdu-pool-tree-model-new" title="gdu_pool_tree_model_new ()">gdu_pool_tree_model_new</a>             (<a href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"><span class="returnvalue">GPtrArray</span></a> *pools,
+                                                         <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *root,
+                                                         <a class="link" href="gnome-disk-utility-gdu-gtk-enums.html#GduPoolTreeModelFlags" title="enum GduPoolTreeModelFlags"><span class="returnvalue">GduPoolTreeModelFlags</span></a> flags);
+<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-pool-tree-model.html#gdu-pool-tree-model-set-pools" title="gdu_pool_tree_model_set_pools ()">gdu_pool_tree_model_set_pools</a>       (<span class="returnvalue">GduPoolTreeModel</span> *model,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"><span class="returnvalue">GPtrArray</span></a> *pools);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="gnome-disk-utility-gdu-pool-tree-model.html#gdu-pool-tree-model-get-iter-for-presentable" title="gdu_pool_tree_model_get_iter_for_presentable ()">gdu_pool_tree_model_get_iter_for_presentable</a>
+                                                        (<span class="returnvalue">GduPoolTreeModel</span> *model,
+                                                         <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *presentable,
+                                                         <a href="http://library.gnome.org/devel/gtk/unstable/GtkTreeModel.html#GtkTreeIter"><span class="returnvalue">GtkTreeIter</span></a> *out_iter);
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="gnome-disk-utility-gdu-pool-tree-model.description"></a><h2>Description</h2>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="gnome-disk-utility-gdu-pool-tree-model.details"></a><h2>Details</h2>
+<div class="refsect2" title="GduPoolTreeModelClass">
+<a name="GduPoolTreeModelClass"></a><h3>GduPoolTreeModelClass</h3>
+<pre class="programlisting">typedef struct GduPoolTreeModelClass       GduPoolTreeModelClass;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GduPoolTreeModelPrivate">
+<a name="GduPoolTreeModelPrivate"></a><h3>GduPoolTreeModelPrivate</h3>
+<pre class="programlisting">typedef struct GduPoolTreeModelPrivate     GduPoolTreeModelPrivate;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="gdu_pool_tree_model_new ()">
+<a name="gdu-pool-tree-model-new"></a><h3>gdu_pool_tree_model_new ()</h3>
+<pre class="programlisting"><span class="returnvalue">GduPoolTreeModel</span> *  gdu_pool_tree_model_new             (<a href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"><span class="returnvalue">GPtrArray</span></a> *pools,
+                                                         <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *root,
+                                                         <a class="link" href="gnome-disk-utility-gdu-gtk-enums.html#GduPoolTreeModelFlags" title="enum GduPoolTreeModelFlags"><span class="returnvalue">GduPoolTreeModelFlags</span></a> flags);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pools</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>root</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>flags</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_pool_tree_model_set_pools ()">
+<a name="gdu-pool-tree-model-set-pools"></a><h3>gdu_pool_tree_model_set_pools ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdu_pool_tree_model_set_pools       (<span class="returnvalue">GduPoolTreeModel</span> *model,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"><span class="returnvalue">GPtrArray</span></a> *pools);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pools</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_pool_tree_model_get_iter_for_presentable ()">
+<a name="gdu-pool-tree-model-get-iter-for-presentable"></a><h3>gdu_pool_tree_model_get_iter_for_presentable ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gdu_pool_tree_model_get_iter_for_presentable
+                                                        (<span class="returnvalue">GduPoolTreeModel</span> *model,
+                                                         <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *presentable,
+                                                         <a href="http://library.gnome.org/devel/gtk/unstable/GtkTreeModel.html#GtkTreeIter"><span class="returnvalue">GtkTreeIter</span></a> *out_iter);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>model</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>presentable</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>out_iter</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.13</div>
+</body>
+</html>

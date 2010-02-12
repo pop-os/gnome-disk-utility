@@ -80,3 +80,13 @@ GduLinuxMdDrive
 @Returns: 
 
 
+<!-- ##### FUNCTION gdu_linux_md_drive_get_slave_state_markup ##### -->
+<para>
+
+</para>
+
+@drive: 
+@slave: 
+@Returns: 
+
+

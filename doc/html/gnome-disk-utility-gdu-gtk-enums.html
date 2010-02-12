@@ -1,0 +1,273 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>gdu-gtk-enums</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="Disk Utility Library Reference Manual">
+<link rel="up" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
+<link rel="prev" href="gnome-disk-utility-gdu-confirmation-dialog.html" title="gdu-confirmation-dialog">
+<link rel="next" href="gnome-disk-utility-gdu-gtk-enumtypes.html" title="gdu-gtk-enumtypes">
+<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-libgdu.html" title="libgdu API Reference">
+<link rel="reference" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="gnome-disk-utility-gdu-confirmation-dialog.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-libgdu-gtk.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Disk Utility Library Reference Manual</th>
+<td><a accesskey="n" href="gnome-disk-utility-gdu-gtk-enumtypes.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#gnome-disk-utility-gdu-gtk-enums.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#gnome-disk-utility-gdu-gtk-enums.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry" title="gdu-gtk-enums">
+<a name="gnome-disk-utility-gdu-gtk-enums"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="gnome-disk-utility-gdu-gtk-enums.top_of_page"></a>gdu-gtk-enums</span></h2>
+<p>gdu-gtk-enums</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="gnome-disk-utility-gdu-gtk-enums.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">enum                <a class="link" href="gnome-disk-utility-gdu-gtk-enums.html#GduPoolTreeModelColumn" title="enum GduPoolTreeModelColumn">GduPoolTreeModelColumn</a>;
+enum                <a class="link" href="gnome-disk-utility-gdu-gtk-enums.html#GduPoolTreeViewFlags" title="enum GduPoolTreeViewFlags">GduPoolTreeViewFlags</a>;
+enum                <a class="link" href="gnome-disk-utility-gdu-gtk-enums.html#GduPoolTreeModelFlags" title="enum GduPoolTreeModelFlags">GduPoolTreeModelFlags</a>;
+enum                <a class="link" href="gnome-disk-utility-gdu-gtk-enums.html#GduFormatDialogFlags" title="enum GduFormatDialogFlags">GduFormatDialogFlags</a>;
+enum                <a class="link" href="gnome-disk-utility-gdu-gtk-enums.html#GduDiskSelectionWidgetFlags" title="enum GduDiskSelectionWidgetFlags">GduDiskSelectionWidgetFlags</a>;
+enum                <a class="link" href="gnome-disk-utility-gdu-gtk-enums.html#GduAddComponentLinuxMdFlags" title="enum GduAddComponentLinuxMdFlags">GduAddComponentLinuxMdFlags</a>;
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="gnome-disk-utility-gdu-gtk-enums.description"></a><h2>Description</h2>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="gnome-disk-utility-gdu-gtk-enums.details"></a><h2>Details</h2>
+<div class="refsect2" title="enum GduPoolTreeModelColumn">
+<a name="GduPoolTreeModelColumn"></a><h3>enum GduPoolTreeModelColumn</h3>
+<pre class="programlisting">typedef enum {
+        GDU_POOL_TREE_MODEL_COLUMN_ICON,
+        GDU_POOL_TREE_MODEL_COLUMN_NAME,
+        GDU_POOL_TREE_MODEL_COLUMN_VPD_NAME,
+        GDU_POOL_TREE_MODEL_COLUMN_DESCRIPTION,
+        GDU_POOL_TREE_MODEL_COLUMN_PRESENTABLE,
+        GDU_POOL_TREE_MODEL_COLUMN_VISIBLE,
+        GDU_POOL_TREE_MODEL_COLUMN_TOGGLED,
+        GDU_POOL_TREE_MODEL_COLUMN_CAN_BE_TOGGLED,
+} GduPoolTreeModelColumn;
+</pre>
+<p>
+Columns used in <span class="type">GduPoolTreeModel</span>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="GDU-POOL-TREE-MODEL-COLUMN-ICON:CAPS"></a><span class="term"><code class="literal">GDU_POOL_TREE_MODEL_COLUMN_ICON</code></span></p></td>
+<td> The <a href="http://library.gnome.org/devel/gio/unstable/GIcon.html"><span class="type">GIcon</span></a> for the presentable.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-POOL-TREE-MODEL-COLUMN-NAME:CAPS"></a><span class="term"><code class="literal">GDU_POOL_TREE_MODEL_COLUMN_NAME</code></span></p></td>
+<td> Human readable name of the presentable, e.g. "80 GB Solid-state Disk" or
+"Fedora (Rawhide)".
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-POOL-TREE-MODEL-COLUMN-VPD-NAME:CAPS"></a><span class="term"><code class="literal">GDU_POOL_TREE_MODEL_COLUMN_VPD_NAME</code></span></p></td>
+<td> Name for the presentable derived from Vital Product Data,
+e.g. "ATA INTEL SSDSA2MH080G1GC".
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-POOL-TREE-MODEL-COLUMN-DESCRIPTION:CAPS"></a><span class="term"><code class="literal">GDU_POOL_TREE_MODEL_COLUMN_DESCRIPTION</code></span></p></td>
+<td> Human readable description of the presentable, e.g. "MBR Partition Table"
+or "32GB Linux ext3".
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-POOL-TREE-MODEL-COLUMN-PRESENTABLE:CAPS"></a><span class="term"><code class="literal">GDU_POOL_TREE_MODEL_COLUMN_PRESENTABLE</code></span></p></td>
+<td> The <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="type">GduPresentable</span></a> object.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-POOL-TREE-MODEL-COLUMN-VISIBLE:CAPS"></a><span class="term"><code class="literal">GDU_POOL_TREE_MODEL_COLUMN_VISIBLE</code></span></p></td>
+<td> Whether the item is visible.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-POOL-TREE-MODEL-COLUMN-TOGGLED:CAPS"></a><span class="term"><code class="literal">GDU_POOL_TREE_MODEL_COLUMN_TOGGLED</code></span></p></td>
+<td> Whether the item is toggled.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-POOL-TREE-MODEL-COLUMN-CAN-BE-TOGGLED:CAPS"></a><span class="term"><code class="literal">GDU_POOL_TREE_MODEL_COLUMN_CAN_BE_TOGGLED</code></span></p></td>
+<td> Whether the item can be toggled.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="enum GduPoolTreeViewFlags">
+<a name="GduPoolTreeViewFlags"></a><h3>enum GduPoolTreeViewFlags</h3>
+<pre class="programlisting">typedef enum {
+        GDU_POOL_TREE_VIEW_FLAGS_NONE        = 0,
+        GDU_POOL_TREE_VIEW_FLAGS_SHOW_TOGGLE = (1&lt;&lt;0),
+} GduPoolTreeViewFlags;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="enum GduPoolTreeModelFlags">
+<a name="GduPoolTreeModelFlags"></a><h3>enum GduPoolTreeModelFlags</h3>
+<pre class="programlisting">typedef enum {
+        GDU_POOL_TREE_MODEL_FLAGS_NONE                      = 0,
+        GDU_POOL_TREE_MODEL_FLAGS_NO_VOLUMES                = (1&lt;&lt;0),
+        GDU_POOL_TREE_MODEL_FLAGS_NO_UNALLOCATABLE_DRIVES   = (1&lt;&lt;2),
+} GduPoolTreeModelFlags;
+</pre>
+<p>
+Flags used when creating a <span class="type">GduPoolTreeModel</span>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="GDU-POOL-TREE-MODEL-FLAGS-NONE:CAPS"></a><span class="term"><code class="literal">GDU_POOL_TREE_MODEL_FLAGS_NONE</code></span></p></td>
+<td> No flags set.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-POOL-TREE-MODEL-FLAGS-NO-VOLUMES:CAPS"></a><span class="term"><code class="literal">GDU_POOL_TREE_MODEL_FLAGS_NO_VOLUMES</code></span></p></td>
+<td> Don't include presentables representing volumes or holes.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-POOL-TREE-MODEL-FLAGS-NO-UNALLOCATABLE-DRIVES:CAPS"></a><span class="term"><code class="literal">GDU_POOL_TREE_MODEL_FLAGS_NO_UNALLOCATABLE_DRIVES</code></span></p></td>
+<td> Don't include drives that cannot be allocated to e.g. a RAID array.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="enum GduFormatDialogFlags">
+<a name="GduFormatDialogFlags"></a><h3>enum GduFormatDialogFlags</h3>
+<pre class="programlisting">typedef enum {
+        GDU_FORMAT_DIALOG_FLAGS_NONE = 0,
+        GDU_FORMAT_DIALOG_FLAGS_SIMPLE = (1&lt;&lt;0),
+        GDU_FORMAT_DIALOG_FLAGS_DISK_UTILITY_BUTTON = (1&lt;&lt;1),
+        GDU_FORMAT_DIALOG_FLAGS_ALLOW_MSDOS_EXTENDED = (1&lt;&lt;2)
+} GduFormatDialogFlags;
+</pre>
+<p>
+Flags used when creating a <span class="type">GduFormatDialog</span>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="GDU-FORMAT-DIALOG-FLAGS-NONE:CAPS"></a><span class="term"><code class="literal">GDU_FORMAT_DIALOG_FLAGS_NONE</code></span></p></td>
+<td> No flags set.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-FORMAT-DIALOG-FLAGS-SIMPLE:CAPS"></a><span class="term"><code class="literal">GDU_FORMAT_DIALOG_FLAGS_SIMPLE</code></span></p></td>
+<td> Show a simple form of the dialog.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-FORMAT-DIALOG-FLAGS-DISK-UTILITY-BUTTON:CAPS"></a><span class="term"><code class="literal">GDU_FORMAT_DIALOG_FLAGS_DISK_UTILITY_BUTTON</code></span></p></td>
+<td> Show a "Disk Utility" button.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-FORMAT-DIALOG-FLAGS-ALLOW-MSDOS-EXTENDED:CAPS"></a><span class="term"><code class="literal">GDU_FORMAT_DIALOG_FLAGS_ALLOW_MSDOS_EXTENDED</code></span></p></td>
+<td> Allow selecting a MS-DOS extended partition instead of a file system.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="enum GduDiskSelectionWidgetFlags">
+<a name="GduDiskSelectionWidgetFlags"></a><h3>enum GduDiskSelectionWidgetFlags</h3>
+<pre class="programlisting">typedef enum {
+        GDU_DISK_SELECTION_WIDGET_FLAGS_NONE = 0,
+        GDU_DISK_SELECTION_WIDGET_FLAGS_ALLOW_MULTIPLE = (1&lt;&lt;0),
+        GDU_DISK_SELECTION_WIDGET_FLAGS_ALLOW_DISKS_WITH_INSUFFICIENT_SPACE = (1&lt;&lt;1)
+} GduDiskSelectionWidgetFlags;
+</pre>
+<p>
+Flags used when creating a <span class="type">GduDiskSelectionWidget</span>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="GDU-DISK-SELECTION-WIDGET-FLAGS-NONE:CAPS"></a><span class="term"><code class="literal">GDU_DISK_SELECTION_WIDGET_FLAGS_NONE</code></span></p></td>
+<td> No flags set.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-DISK-SELECTION-WIDGET-FLAGS-ALLOW-MULTIPLE:CAPS"></a><span class="term"><code class="literal">GDU_DISK_SELECTION_WIDGET_FLAGS_ALLOW_MULTIPLE</code></span></p></td>
+<td> Allow multiple disks to be selected.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-DISK-SELECTION-WIDGET-FLAGS-ALLOW-DISKS-WITH-INSUFFICIENT-SPACE:CAPS"></a><span class="term"><code class="literal">GDU_DISK_SELECTION_WIDGET_FLAGS_ALLOW_DISKS_WITH_INSUFFICIENT_SPACE</code></span></p></td>
+<td> If set, disks with less
+space than <span class="type">"component-size"</span> will be eligible for selection.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="enum GduAddComponentLinuxMdFlags">
+<a name="GduAddComponentLinuxMdFlags"></a><h3>enum GduAddComponentLinuxMdFlags</h3>
+<pre class="programlisting">typedef enum {
+        GDU_ADD_COMPONENT_LINUX_MD_FLAGS_NONE = 0,
+        GDU_ADD_COMPONENT_LINUX_MD_FLAGS_SPARE = (1&lt;&lt;0),
+        GDU_ADD_COMPONENT_LINUX_MD_FLAGS_EXPANSION = (1&lt;&lt;1)
+} GduAddComponentLinuxMdFlags;
+</pre>
+<p>
+Flags used when creating a <span class="type">GduAddComponentLinuxMdDialog</span>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="GDU-ADD-COMPONENT-LINUX-MD-FLAGS-NONE:CAPS"></a><span class="term"><code class="literal">GDU_ADD_COMPONENT_LINUX_MD_FLAGS_NONE</code></span></p></td>
+<td> No flags set.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-ADD-COMPONENT-LINUX-MD-FLAGS-SPARE:CAPS"></a><span class="term"><code class="literal">GDU_ADD_COMPONENT_LINUX_MD_FLAGS_SPARE</code></span></p></td>
+<td> The dialog is for selecting a spare.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-ADD-COMPONENT-LINUX-MD-FLAGS-EXPANSION:CAPS"></a><span class="term"><code class="literal">GDU_ADD_COMPONENT_LINUX_MD_FLAGS_EXPANSION</code></span></p></td>
+<td> The dialog is for selecting a device used for expansion.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.13</div>
+</body>
+</html>

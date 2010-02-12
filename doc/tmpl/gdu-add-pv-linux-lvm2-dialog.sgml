@@ -1,0 +1,59 @@
+<!-- ##### SECTION Title ##### -->
+gdu-add-pv-linux-lvm2-dialog
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### TYPEDEF GduAddPvLinuxLvm2DialogClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF GduAddPvLinuxLvm2DialogPrivate ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdu_add_pv_linux_lvm2_dialog_new ##### -->
+<para>
+
+</para>
+
+@parent: 
+@vg: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_add_pv_linux_lvm2_dialog_get_drive ##### -->
+<para>
+
+</para>
+
+@dialog: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_add_pv_linux_lvm2_dialog_get_size ##### -->
+<para>
+
+</para>
+
+@dialog: 
+@Returns: 
+
+

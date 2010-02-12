@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>gdu-button-table</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="Disk Utility Library Reference Manual">
+<link rel="up" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
+<link rel="prev" href="gnome-disk-utility-gdu-button-element.html" title="gdu-button-element">
+<link rel="next" href="gnome-disk-utility-gdu-dialog.html" title="gdu-dialog">
+<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-libgdu.html" title="libgdu API Reference">
+<link rel="reference" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="gnome-disk-utility-gdu-button-element.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-libgdu-gtk.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Disk Utility Library Reference Manual</th>
+<td><a accesskey="n" href="gnome-disk-utility-gdu-dialog.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#gnome-disk-utility-gdu-button-table.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#gnome-disk-utility-gdu-button-table.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry" title="gdu-button-table">
+<a name="gnome-disk-utility-gdu-button-table"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="gnome-disk-utility-gdu-button-table.top_of_page"></a>gdu-button-table</span></h2>
+<p>gdu-button-table</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="gnome-disk-utility-gdu-button-table.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">typedef             <a class="link" href="gnome-disk-utility-gdu-button-table.html#GduButtonTableClass" title="GduButtonTableClass">GduButtonTableClass</a>;
+typedef             <a class="link" href="gnome-disk-utility-gdu-button-table.html#GduButtonTablePrivate" title="GduButtonTablePrivate">GduButtonTablePrivate</a>;
+<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a>*          <a class="link" href="gnome-disk-utility-gdu-button-table.html#gdu-button-table-new" title="gdu_button_table_new ()">gdu_button_table_new</a>                (<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a> num_columns,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"><span class="returnvalue">GPtrArray</span></a> *elements);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a>               <a class="link" href="gnome-disk-utility-gdu-button-table.html#gdu-button-table-get-num-columns" title="gdu_button_table_get_num_columns ()">gdu_button_table_get_num_columns</a>    (<span class="returnvalue">GduButtonTable</span> *table);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"><span class="returnvalue">GPtrArray</span></a> *         <a class="link" href="gnome-disk-utility-gdu-button-table.html#gdu-button-table-get-elements" title="gdu_button_table_get_elements ()">gdu_button_table_get_elements</a>       (<span class="returnvalue">GduButtonTable</span> *table);
+<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-button-table.html#gdu-button-table-set-num-columns" title="gdu_button_table_set_num_columns ()">gdu_button_table_set_num_columns</a>    (<span class="returnvalue">GduButtonTable</span> *table,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a> num_columns);
+<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-button-table.html#gdu-button-table-set-elements" title="gdu_button_table_set_elements ()">gdu_button_table_set_elements</a>       (<span class="returnvalue">GduButtonTable</span> *table,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"><span class="returnvalue">GPtrArray</span></a> *elements);
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="gnome-disk-utility-gdu-button-table.description"></a><h2>Description</h2>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="gnome-disk-utility-gdu-button-table.details"></a><h2>Details</h2>
+<div class="refsect2" title="GduButtonTableClass">
+<a name="GduButtonTableClass"></a><h3>GduButtonTableClass</h3>
+<pre class="programlisting">typedef struct GduButtonTableClass   GduButtonTableClass;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GduButtonTablePrivate">
+<a name="GduButtonTablePrivate"></a><h3>GduButtonTablePrivate</h3>
+<pre class="programlisting">typedef struct GduButtonTablePrivate GduButtonTablePrivate;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="gdu_button_table_new ()">
+<a name="gdu-button-table-new"></a><h3>gdu_button_table_new ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a>*          gdu_button_table_new                (<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a> num_columns,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"><span class="returnvalue">GPtrArray</span></a> *elements);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>num_columns</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>elements</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_button_table_get_num_columns ()">
+<a name="gdu-button-table-get-num-columns"></a><h3>gdu_button_table_get_num_columns ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a>               gdu_button_table_get_num_columns    (<span class="returnvalue">GduButtonTable</span> *table);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>table</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_button_table_get_elements ()">
+<a name="gdu-button-table-get-elements"></a><h3>gdu_button_table_get_elements ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"><span class="returnvalue">GPtrArray</span></a> *         gdu_button_table_get_elements       (<span class="returnvalue">GduButtonTable</span> *table);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>table</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_button_table_set_num_columns ()">
+<a name="gdu-button-table-set-num-columns"></a><h3>gdu_button_table_set_num_columns ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdu_button_table_set_num_columns    (<span class="returnvalue">GduButtonTable</span> *table,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a> num_columns);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>table</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>num_columns</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_button_table_set_elements ()">
+<a name="gdu-button-table-set-elements"></a><h3>gdu_button_table_set_elements ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdu_button_table_set_elements       (<span class="returnvalue">GduButtonTable</span> *table,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"><span class="returnvalue">GPtrArray</span></a> *elements);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>table</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>elements</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.13</div>
+</body>
+</html>

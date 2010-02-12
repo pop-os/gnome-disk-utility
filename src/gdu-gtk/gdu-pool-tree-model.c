@@ -20,8 +20,9 @@
  * Author: David Zeuthen <davidz@redhat.com>
  */
 
-#include <config.h>
+#include "config.h"
 #include <glib/gi18n-lib.h>
+
 #include <string.h>
 
 #include "gdu-gtk.h"
@@ -29,8 +30,10 @@
 
 struct GduPoolTreeModelPrivate
 {
-        GduPool *pool;
+        GPtrArray *pools;
+        GduPresentable *root;
         GduPoolTreeModelFlags flags;
+        gboolean constructed;
 };
 
 G_DEFINE_TYPE (GduPoolTreeModel, gdu_pool_tree_model, GTK_TYPE_TREE_STORE)
@@ -38,7 +41,8 @@ G_DEFINE_TYPE (GduPoolTreeModel, gdu_pool_tree_model, GTK_TYPE_TREE_STORE)
 enum
 {
         PROP_0,
-        PROP_POOL,
+        PROP_ROOT,
+        PROP_POOLS,
         PROP_FLAGS,
 };
 
@@ -60,6 +64,18 @@ static void add_presentable        (GduPoolTreeModel *model,
 /* ---------------------------------------------------------------------------------------------------- */
 
 static void
+disconnect_from_pool_cb (GduPool  *pool,
+                         gpointer  user_data)
+{
+        GduPoolTreeModel *model = GDU_POOL_TREE_MODEL (user_data);
+        g_signal_handlers_disconnect_by_func (pool, on_presentable_added, model);
+        g_signal_handlers_disconnect_by_func (pool, on_presentable_removed, model);
+        g_signal_handlers_disconnect_by_func (pool, on_presentable_changed, model);
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+static void
 gdu_pool_tree_model_set_property (GObject      *object,
                                   guint         prop_id,
                                   const GValue *value,
@@ -68,8 +84,13 @@ gdu_pool_tree_model_set_property (GObject      *object,
         GduPoolTreeModel *model = GDU_POOL_TREE_MODEL (object);
 
         switch (prop_id) {
-        case PROP_POOL:
-                model->priv->pool = g_value_dup_object (value);
+        case PROP_POOLS:
+                gdu_pool_tree_model_set_pools (model, g_value_get_boxed (value));
+                break;
+
+        case PROP_ROOT:
+                if (g_value_get_object (value) != NULL)
+                        model->priv->root = g_value_dup_object (value);
                 break;
 
         case PROP_FLAGS:
@@ -84,15 +105,19 @@ gdu_pool_tree_model_set_property (GObject      *object,
 
 static void
 gdu_pool_tree_model_get_property (GObject     *object,
-                             guint        prop_id,
-                             GValue      *value,
-                             GParamSpec  *pspec)
+                                  guint        prop_id,
+                                  GValue      *value,
+                                  GParamSpec  *pspec)
 {
         GduPoolTreeModel *model = GDU_POOL_TREE_MODEL (object);
 
         switch (prop_id) {
-        case PROP_POOL:
-                g_value_set_object (value, model->priv->pool);
+        case PROP_POOLS:
+                g_value_set_boxed (value, model->priv->pools);
+                break;
+
+        case PROP_ROOT:
+                g_value_set_object (value, model->priv->root);
                 break;
 
         case PROP_FLAGS:
@@ -110,11 +135,10 @@ gdu_pool_tree_model_finalize (GObject *object)
 {
         GduPoolTreeModel *model = GDU_POOL_TREE_MODEL (object);
 
-        g_signal_handlers_disconnect_by_func (model->priv->pool, on_presentable_added, model);
-        g_signal_handlers_disconnect_by_func (model->priv->pool, on_presentable_removed, model);
-        g_signal_handlers_disconnect_by_func (model->priv->pool, on_presentable_changed, model);
-
-        g_object_unref (model->priv->pool);
+        if (model->priv->pools != NULL) {
+                g_ptr_array_foreach (model->priv->pools, (GFunc) disconnect_from_pool_cb, model);
+                g_ptr_array_unref (model->priv->pools);
+        }
 
         if (G_OBJECT_CLASS (gdu_pool_tree_model_parent_class)->finalize != NULL)
                 G_OBJECT_CLASS (gdu_pool_tree_model_parent_class)->finalize (object);
@@ -149,12 +173,35 @@ presentable_sort_func (GtkTreeModel *model,
 }
 
 static void
+do_coldplug (GduPoolTreeModel *model)
+{
+        guint n;
+
+        /* remove all.. */
+        gtk_tree_store_clear (GTK_TREE_STORE (model));
+
+        /* then coldplug it back */
+        for (n = 0; n < model->priv->pools->len; n++) {
+                GduPool *pool = GDU_POOL (model->priv->pools->pdata[n]);
+                GList *presentables;
+                GList *l;
+
+                presentables = gdu_pool_get_presentables (pool);
+                for (l = presentables; l != NULL; l = l->next) {
+                        GduPresentable *presentable = GDU_PRESENTABLE (l->data);
+
+                        add_presentable (model, presentable, NULL);
+                        g_object_unref (presentable);
+                }
+                g_list_free (presentables);
+        }
+}
+
+static void
 gdu_pool_tree_model_constructed (GObject *object)
 {
         GduPoolTreeModel *model = GDU_POOL_TREE_MODEL (object);
         GType column_types[8];
-        GList *presentables;
-        GList *l;
 
         column_types[0] = G_TYPE_ICON;
         column_types[1] = G_TYPE_STRING;
@@ -165,46 +212,63 @@ gdu_pool_tree_model_constructed (GObject *object)
         column_types[6] = G_TYPE_BOOLEAN;
         column_types[7] = G_TYPE_BOOLEAN;
 
-        gtk_tree_store_set_column_types (GTK_TREE_STORE (object),
+        gtk_tree_store_set_column_types (GTK_TREE_STORE (model),
                                          G_N_ELEMENTS (column_types),
                                          column_types);
 
-        gtk_tree_sortable_set_sort_func (GTK_TREE_SORTABLE (object),
+        gtk_tree_sortable_set_sort_func (GTK_TREE_SORTABLE (model),
                                          GDU_POOL_TREE_MODEL_COLUMN_PRESENTABLE,
                                          presentable_sort_func,
                                          NULL,
                                          NULL);
 
-        gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (object),
+        gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (model),
                                               GDU_POOL_TREE_MODEL_COLUMN_PRESENTABLE,
                                               GTK_SORT_ASCENDING);
 
-        /* coldplug */
-        presentables = gdu_pool_get_presentables (model->priv->pool);
-        for (l = presentables; l != NULL; l = l->next) {
-                GduPresentable *presentable = GDU_PRESENTABLE (l->data);
+        model->priv->constructed = TRUE;
 
-                add_presentable (model, presentable, NULL);
-                g_object_unref (presentable);
-        }
-        g_list_free (presentables);
-
-        /* add/remove/change when the pool reports presentable add/remove/change */
-        g_signal_connect (model->priv->pool,
-                          "presentable-added",
-                          G_CALLBACK (on_presentable_added),
-                          model);
-        g_signal_connect (model->priv->pool,
-                          "presentable-removed",
-                          G_CALLBACK (on_presentable_removed),
-                          model);
-        g_signal_connect (model->priv->pool,
-                          "presentable-changed",
-                          G_CALLBACK (on_presentable_changed),
-                          model);
+        do_coldplug (model);
 
         if (G_OBJECT_CLASS (gdu_pool_tree_model_parent_class)->constructed != NULL)
                 G_OBJECT_CLASS (gdu_pool_tree_model_parent_class)->constructed (object);
+}
+
+void
+gdu_pool_tree_model_set_pools (GduPoolTreeModel      *model,
+                               GPtrArray             *pools)
+{
+        guint n;
+
+        /* Do a deep copy here */
+        if (model->priv->pools != NULL) {
+                g_ptr_array_foreach (model->priv->pools, (GFunc) disconnect_from_pool_cb, model);
+                g_ptr_array_unref (model->priv->pools);
+        }
+
+        model->priv->pools = g_ptr_array_new_with_free_func (g_object_unref);
+        for (n = 0; pools != NULL && n < pools->len; n++) {
+                GduPool *pool = GDU_POOL (pools->pdata[n]);
+
+                g_signal_connect (pool,
+                                  "presentable-added",
+                                  G_CALLBACK (on_presentable_added),
+                                  model);
+                g_signal_connect (pool,
+                                  "presentable-removed",
+                                  G_CALLBACK (on_presentable_removed),
+                                  model);
+                g_signal_connect (pool,
+                                  "presentable-changed",
+                                  G_CALLBACK (on_presentable_changed),
+                                  model);
+
+                g_ptr_array_add (model->priv->pools, g_object_ref (pool));
+        }
+
+        /* only do coldplug if we have been constructed as the result depends on the value of the flags */
+        if (model->priv->constructed)
+                do_coldplug (model);
 }
 
 static void
@@ -220,16 +284,32 @@ gdu_pool_tree_model_class_init (GduPoolTreeModelClass *klass)
         g_type_class_add_private (klass, sizeof (GduPoolTreeModelPrivate));
 
         /**
-         * GduPoolTreeModel:pool:
+         * GduPoolTreeModel:pools:
          *
-         * The pool used.
+         * The pools displayed - this must be a #GPtrArray of #GduPool objects.
          */
         g_object_class_install_property (gobject_class,
-                                         PROP_POOL,
-                                         g_param_spec_object ("pool",
+                                         PROP_POOLS,
+                                         g_param_spec_boxed ("pools",
+                                                             NULL,
+                                                             NULL,
+                                                             G_TYPE_PTR_ARRAY,
+                                                             G_PARAM_WRITABLE |
+                                                             G_PARAM_READABLE |
+                                                             G_PARAM_CONSTRUCT));
+
+        /**
+         * GduPoolTreeModel:root:
+         *
+         * %NULL to include all #GduPresentable objects in #GduPoolTreeModel:pool, otherwise only
+         * include presentables that are descendents of this #GduPresentable.
+         */
+        g_object_class_install_property (gobject_class,
+                                         PROP_ROOT,
+                                         g_param_spec_object ("root",
                                                               NULL,
                                                               NULL,
-                                                              GDU_TYPE_POOL,
+                                                              GDU_TYPE_PRESENTABLE,
                                                               G_PARAM_WRITABLE |
                                                               G_PARAM_READABLE |
                                                               G_PARAM_CONSTRUCT_ONLY));
@@ -254,15 +334,19 @@ gdu_pool_tree_model_class_init (GduPoolTreeModelClass *klass)
 static void
 gdu_pool_tree_model_init (GduPoolTreeModel *model)
 {
-        model->priv = G_TYPE_INSTANCE_GET_PRIVATE (model, GDU_TYPE_POOL_TREE_MODEL, GduPoolTreeModelPrivate);
+        model->priv = G_TYPE_INSTANCE_GET_PRIVATE (model,
+                                                   GDU_TYPE_POOL_TREE_MODEL,
+                                                   GduPoolTreeModelPrivate);
 }
 
 GduPoolTreeModel *
-gdu_pool_tree_model_new (GduPool               *pool,
+gdu_pool_tree_model_new (GPtrArray             *pools,
+                         GduPresentable        *root,
                          GduPoolTreeModelFlags  flags)
 {
         return GDU_POOL_TREE_MODEL (g_object_new (GDU_TYPE_POOL_TREE_MODEL,
-                                                  "pool", pool,
+                                                  "pools", pools,
+                                                  "root", root,
                                                   "flags", flags,
                                                   NULL));
 }
@@ -290,7 +374,7 @@ find_iter_by_presentable_foreach (GtkTreeModel *model,
                             iter,
                             GDU_POOL_TREE_MODEL_COLUMN_PRESENTABLE, &presentable,
                             -1);
-        if (presentable == fibd_data->presentable) {
+        if (g_strcmp0 (gdu_presentable_get_id (presentable), gdu_presentable_get_id (fibd_data->presentable)) == 0) {
                 fibd_data->found = TRUE;
                 fibd_data->iter = *iter;
                 ret = TRUE;
@@ -381,9 +465,37 @@ should_include_presentable (GduPoolTreeModel *model,
             (GDU_IS_VOLUME (presentable) || GDU_IS_VOLUME_HOLE (presentable)))
                 goto out;
 
+        if (model->priv->root != NULL) {
+                gboolean is_enclosed_by_root;
+                GduPresentable *p_iter;
+
+                is_enclosed_by_root = FALSE;
+                p_iter = g_object_ref (presentable);
+                do {
+                        GduPresentable *p;
+
+                        p = gdu_presentable_get_enclosing_presentable (p_iter);
+                        g_object_unref (p_iter);
+                        if (p == NULL)
+                                break;
+
+                        if (p == model->priv->root) {
+                                is_enclosed_by_root = TRUE;
+                                g_object_unref (p);
+                                break;
+                        }
+
+                        p_iter = p;
+
+                } while (TRUE);
+
+                if (!is_enclosed_by_root)
+                        goto out;
+        }
+
         if (GDU_IS_DRIVE (presentable)) {
                 if ((model->priv->flags & GDU_POOL_TREE_MODEL_FLAGS_NO_UNALLOCATABLE_DRIVES) &&
-                    (!gdu_drive_has_unallocated_space (GDU_DRIVE (presentable), NULL, NULL, NULL)))
+                    (!gdu_drive_can_create_volume (GDU_DRIVE (presentable), NULL, NULL, NULL, NULL)))
                         goto out;
         }
 
@@ -418,16 +530,20 @@ add_presentable (GduPoolTreeModel *model,
                 if (gdu_pool_tree_model_get_iter_for_presentable (model, enclosing_presentable, &iter2)) {
                         parent_iter = &iter2;
                 } else {
-                        /* add parent if it's not already added */
-                        g_warning ("No parent for %s", gdu_presentable_get_id (enclosing_presentable));
-                        add_presentable (model, enclosing_presentable, &iter2);
-                        parent_iter = &iter2;
+                        if (should_include_presentable (model, enclosing_presentable)) {
+                                /* add parent if it's not already added */
+                                g_warning ("No parent for %s", gdu_presentable_get_id (enclosing_presentable));
+                                add_presentable (model, enclosing_presentable, &iter2);
+                                parent_iter = &iter2;
+                        } else {
+                                /* parent explicitly excluded */
+                        }
                 }
                 g_object_unref (enclosing_presentable);
         }
 
 
-        /*g_debug ("adding %s (%p)", gdu_presentable_get_id (presentable), presentable);*/
+        /* g_debug ("adding %s (%p)", gdu_presentable_get_id (presentable), presentable); */
 
         gtk_tree_store_append (GTK_TREE_STORE (model),
                                &iter,
@@ -452,6 +568,8 @@ on_presentable_added (GduPool          *pool,
 {
         GduPoolTreeModel *model = GDU_POOL_TREE_MODEL (user_data);
 
+        /* g_debug ("on_added `%s' (%p)", gdu_presentable_get_id (presentable), presentable); */
+
         add_presentable (model, presentable, NULL);
 }
 
@@ -463,7 +581,10 @@ on_presentable_removed (GduPool          *pool,
         GduPoolTreeModel *model = GDU_POOL_TREE_MODEL (user_data);
         GtkTreeIter iter;
 
+        /* g_debug ("on_removed `%s' (%p)", gdu_presentable_get_id (presentable), presentable); */
+
         if (gdu_pool_tree_model_get_iter_for_presentable (model, presentable, &iter)) {
+                /* g_debug ("removed row for `%s' (%p)", gdu_presentable_get_id (presentable), presentable); */
                 gtk_tree_store_remove (GTK_TREE_STORE (model), &iter);
         }
 }
@@ -476,14 +597,17 @@ on_presentable_changed (GduPool          *pool,
         GduPoolTreeModel *model = GDU_POOL_TREE_MODEL (user_data);
         GtkTreeIter iter;
 
-        /* will do NOP if presentable has already been added */
-        add_presentable (model, presentable, NULL);
+        if (gdu_pool_has_presentable (pool, presentable)) {
+                /* g_debug ("on_changed `%s' (%p)", gdu_presentable_get_id (presentable), presentable); */
 
-        /* update name and icon */
-        if (gdu_pool_tree_model_get_iter_for_presentable (model, presentable, &iter)) {
+                /* will do NOP if presentable has already been added */
+                add_presentable (model, presentable, NULL);
 
-                set_data_for_presentable (model,
-                                          &iter,
-                                          presentable);
+                /* update name and icon */
+                if (gdu_pool_tree_model_get_iter_for_presentable (model, presentable, &iter)) {
+                        set_data_for_presentable (model,
+                                                  &iter,
+                                                  presentable);
+                }
         }
 }

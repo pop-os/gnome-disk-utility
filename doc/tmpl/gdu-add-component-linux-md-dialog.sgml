@@ -1,0 +1,60 @@
+<!-- ##### SECTION Title ##### -->
+gdu-add-component-linux-md-dialog
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### TYPEDEF GduAddComponentLinuxMdDialogClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF GduAddComponentLinuxMdDialogPrivate ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdu_add_component_linux_md_dialog_new ##### -->
+<para>
+
+</para>
+
+@parent: 
+@flags: 
+@linux_md_drive: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_add_component_linux_md_dialog_get_drives ##### -->
+<para>
+
+</para>
+
+@dialog: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_add_component_linux_md_dialog_get_size ##### -->
+<para>
+
+</para>
+
+@dialog: 
+@Returns: 
+
+
