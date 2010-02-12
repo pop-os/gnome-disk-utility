@@ -15,6 +15,8 @@ gnome-disk-utility (2.29.0~git20100212.5df348f-1) UNRELEASED; urgency=low
     - Replace Depends on devicekit-disks (>= 007) with
       udisks (>= 1.0.0~), udisks (<< 1.1.0).
     - Bump Standards-Version to 3.8.4. No further changes.
+  * debian/*.symbols
+    - Update symbols files for libgdu0 and libgdu-gtk0.
 
  -- Michael Biebl <biebl@debian.org>  Fri, 12 Feb 2010 14:19:59 +0100
 
