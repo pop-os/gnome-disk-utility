@@ -1,5 +1,6 @@
 gnome-disk-utility (2.29.0~git20100212.5df348f-1) UNRELEASED; urgency=low
 
+  [ Michael Biebl ]
   * Git snapshot of the upcoming 2.29.0 release:
     - Port to udisks.
     - Grid based UI for palimpsest.
@@ -17,6 +18,13 @@ gnome-disk-utility (2.29.0~git20100212.5df348f-1) UNRELEASED; urgency=low
     - Bump Standards-Version to 3.8.4. No further changes.
   * debian/*.symbols
     - Update symbols files for libgdu0 and libgdu-gtk0.
+
+  [ Martin Pitt ]
+  * Add 01_delay_autostart.patch: Delay autostart of the gdu daemon for 10
+    seconds. It is not needed immediately (thus no need to slow down initial
+    session startup) and is not visible permanently (thus it won't cause
+    visual disruptions later on). This depends on the patch in GNOME #608402,
+    and will be a no-op if that's not available.
 
  -- Michael Biebl <biebl@debian.org>  Fri, 12 Feb 2010 14:19:59 +0100
 
