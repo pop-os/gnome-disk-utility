@@ -71,6 +71,70 @@ gdu_pool_tree_model_flags_get_type (void)
   return g_define_type_id__volatile;
 }
 
+GType
+gdu_format_dialog_flags_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GFlagsValue values[] = {
+        { GDU_FORMAT_DIALOG_FLAGS_NONE, "GDU_FORMAT_DIALOG_FLAGS_NONE", "none" },
+        { GDU_FORMAT_DIALOG_FLAGS_SIMPLE, "GDU_FORMAT_DIALOG_FLAGS_SIMPLE", "simple" },
+        { GDU_FORMAT_DIALOG_FLAGS_DISK_UTILITY_BUTTON, "GDU_FORMAT_DIALOG_FLAGS_DISK_UTILITY_BUTTON", "disk-utility-button" },
+        { GDU_FORMAT_DIALOG_FLAGS_ALLOW_MSDOS_EXTENDED, "GDU_FORMAT_DIALOG_FLAGS_ALLOW_MSDOS_EXTENDED", "allow-msdos-extended" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_flags_register_static (g_intern_static_string ("GduFormatDialogFlags"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+
+GType
+gdu_disk_selection_widget_flags_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GFlagsValue values[] = {
+        { GDU_DISK_SELECTION_WIDGET_FLAGS_NONE, "GDU_DISK_SELECTION_WIDGET_FLAGS_NONE", "none" },
+        { GDU_DISK_SELECTION_WIDGET_FLAGS_ALLOW_MULTIPLE, "GDU_DISK_SELECTION_WIDGET_FLAGS_ALLOW_MULTIPLE", "allow-multiple" },
+        { GDU_DISK_SELECTION_WIDGET_FLAGS_ALLOW_DISKS_WITH_INSUFFICIENT_SPACE, "GDU_DISK_SELECTION_WIDGET_FLAGS_ALLOW_DISKS_WITH_INSUFFICIENT_SPACE", "allow-disks-with-insufficient-space" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_flags_register_static (g_intern_static_string ("GduDiskSelectionWidgetFlags"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+
+GType
+gdu_add_component_linux_md_flags_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GFlagsValue values[] = {
+        { GDU_ADD_COMPONENT_LINUX_MD_FLAGS_NONE, "GDU_ADD_COMPONENT_LINUX_MD_FLAGS_NONE", "none" },
+        { GDU_ADD_COMPONENT_LINUX_MD_FLAGS_SPARE, "GDU_ADD_COMPONENT_LINUX_MD_FLAGS_SPARE", "spare" },
+        { GDU_ADD_COMPONENT_LINUX_MD_FLAGS_EXPANSION, "GDU_ADD_COMPONENT_LINUX_MD_FLAGS_EXPANSION", "expansion" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_flags_register_static (g_intern_static_string ("GduAddComponentLinuxMdFlags"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+
 
 /* Generated data ends here */
 

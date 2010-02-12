@@ -19,9 +19,10 @@
  * 02111-1307, USA.
  */
 
-#include <config.h>
-#include <string.h>
+#include "config.h"
 #include <glib/gi18n-lib.h>
+
+#include <string.h>
 #include <dbus/dbus-glib.h>
 #include <stdlib.h>
 
@@ -226,7 +227,7 @@ get_names_and_desc (GduPresentable  *presentable,
         drive_media = NULL;
         strsize = NULL;
 
-        drive_presentable = gdu_presentable_get_toplevel (presentable);
+        drive_presentable = gdu_presentable_get_enclosing_presentable (presentable);
         if (drive_presentable != NULL) {
                 drive_device = gdu_presentable_get_device (drive_presentable);
                 if (drive_device != NULL)
@@ -238,7 +239,7 @@ get_names_and_desc (GduPresentable  *presentable,
                 size = gdu_device_partition_get_size (volume->priv->device);
         else
                 size = gdu_device_get_size (volume->priv->device);
-        strsize = gdu_util_get_size_for_display (size, FALSE);
+        strsize = gdu_util_get_size_for_display (size, FALSE, FALSE);
 
         presentation_name = gdu_device_get_presentation_name (volume->priv->device);
         if (presentation_name != NULL && strlen (presentation_name) > 0) {
@@ -344,20 +345,20 @@ get_names_and_desc (GduPresentable  *presentable,
                                 if (array_name != NULL && strlen (array_name) > 0) {
                                         /* Translators: label for a RAID component
                                          * First %s is the size, formatted like '45 GB'
+                                         * Second %s is the RAID level string, e.g 'RAID-5'
                                          */
-                                        result = g_strdup_printf (_("%s RAID Component"), strsize);
+                                        result = g_strdup_printf (_("%s %s Component"), strsize, level_str);
                                         /* Translators: description for a RAID component
                                          * First %s is the array name, e.g. 'My Photos RAID',
-                                         * second %s is the RAID level string, e.g 'RAID-5'
                                          */
-                                        result_desc = g_strdup_printf (_("Part of \"%s\" %s array"),
-                                                                       array_name,
-                                                                       level_str);
+                                        result_desc = g_strdup_printf (_("Part of \"%s\" array"),
+                                                                       array_name);
                                 } else {
                                         /* Translators: label for a RAID component
                                          * First %s is the size, formatted like '45 GB'
+                                         * Second %s is the RAID level string, e.g 'RAID-5'
                                          */
-                                        result = g_strdup_printf (_("%s RAID Component"), strsize);
+                                        result = g_strdup_printf (_("%s %s Component"), strsize, level_str);
                                         result_desc = g_strdup (level_str);
                                 }
 
@@ -414,7 +415,11 @@ get_names_and_desc (GduPresentable  *presentable,
 
                 drive_vpd_name = NULL;
                 if (volume->priv->enclosing_presentable != NULL) {
-                        drive_vpd_name = gdu_presentable_get_vpd_name (volume->priv->enclosing_presentable);
+                        if (GDU_IS_VOLUME (volume->priv->enclosing_presentable)) {
+                                drive_vpd_name = gdu_presentable_get_vpd_name (GDU_VOLUME (volume->priv->enclosing_presentable)->priv->enclosing_presentable);
+                        } else {
+                                drive_vpd_name = gdu_presentable_get_vpd_name (volume->priv->enclosing_presentable);
+                        }
                 }
 
                 if (gdu_device_is_partition (volume->priv->device)) {
@@ -520,12 +525,23 @@ gdu_volume_get_icon (GduPresentable *presentable)
                 goto out;
         }
 
-        p = gdu_presentable_get_toplevel (presentable);
+        p = gdu_presentable_get_enclosing_presentable (GDU_PRESENTABLE (presentable));
+        /* handle logical partitions enclosed by an extented partition */
+        if (GDU_IS_VOLUME (p)) {
+                GduPresentable *temp;
+                temp = p;
+                p = gdu_presentable_get_enclosing_presentable (p);
+                g_object_unref (temp);
+                if (!GDU_IS_DRIVE (p)) {
+                        g_object_unref (p);
+                        p = NULL;
+                }
+        }
         if (p == NULL)
                 goto out;
 
         if (GDU_IS_LINUX_MD_DRIVE (p)) {
-                name = "gdu-raid-array";
+                name = "gdu-multidisk-drive";
                 goto out;
         }
 
@@ -630,20 +646,6 @@ out:
         icon = g_themed_icon_new_with_default_fallbacks (name);
 
         if (usage != NULL && strcmp (usage, "crypto") == 0) {
-                GEmblem *emblem;
-                GIcon *padlock;
-                GIcon *emblemed_icon;
-
-                padlock = g_themed_icon_new ("gdu-encrypted-lock");
-                emblem = g_emblem_new_with_origin (padlock, G_EMBLEM_ORIGIN_DEVICE);
-
-                emblemed_icon = g_emblemed_icon_new (icon, emblem);
-                g_object_unref (icon);
-                icon = emblemed_icon;
-
-                g_object_unref (padlock);
-                g_object_unref (emblem);
-
         }
 
         if (gdu_device_is_luks_cleartext (volume->priv->device)) {

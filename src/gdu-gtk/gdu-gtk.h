@@ -36,6 +36,27 @@
 #include <gdu-gtk/gdu-create-linux-md-dialog.h>
 #include <gdu-gtk/gdu-ata-smart-dialog.h>
 #include <gdu-gtk/gdu-spinner.h>
+#include <gdu-gtk/gdu-volume-grid.h>
+#include <gdu-gtk/gdu-details-table.h>
+#include <gdu-gtk/gdu-details-element.h>
+#include <gdu-gtk/gdu-error-dialog.h>
+#include <gdu-gtk/gdu-confirmation-dialog.h>
+#include <gdu-gtk/gdu-button-element.h>
+#include <gdu-gtk/gdu-button-table.h>
+#include <gdu-gtk/gdu-dialog.h>
+#include <gdu-gtk/gdu-edit-partition-dialog.h>
+#include <gdu-gtk/gdu-format-dialog.h>
+#include <gdu-gtk/gdu-partition-dialog.h>
+#include <gdu-gtk/gdu-create-partition-dialog.h>
+#include <gdu-gtk/gdu-edit-name-dialog.h>
+#include <gdu-gtk/gdu-disk-selection-widget.h>
+#include <gdu-gtk/gdu-add-component-linux-md-dialog.h>
+#include <gdu-gtk/gdu-edit-linux-md-dialog.h>
+#include <gdu-gtk/gdu-edit-linux-lvm2-dialog.h>
+#include <gdu-gtk/gdu-drive-benchmark-dialog.h>
+#include <gdu-gtk/gdu-connect-to-server-dialog.h>
+#include <gdu-gtk/gdu-create-linux-lvm2-volume-dialog.h>
+#include <gdu-gtk/gdu-add-pv-linux-lvm2-dialog.h>
 #undef __GDU_GTK_INSIDE_GDU_GTK_H
 
 G_BEGIN_DECLS

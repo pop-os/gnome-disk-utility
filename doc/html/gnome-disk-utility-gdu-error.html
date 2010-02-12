@@ -5,26 +5,27 @@
 <title>GduError</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
 <link rel="home" href="index.html" title="Disk Utility Library Reference Manual">
-<link rel="up" href="ref-core.html" title="API Reference">
-<link rel="prev" href="ref-core.html" title="API Reference">
-<link rel="next" href="GduPool.html" title="GduPool">
-<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="up" href="ref-libgdu.html" title="libgdu API Reference">
+<link rel="prev" href="gnome-disk-utility-gdu-callbacks.html" title="Callbacks">
+<link rel="next" href="GduProcess.html" title="GduProcess">
+<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
-<link rel="reference" href="ref-core.html" title="API Reference">
+<link rel="reference" href="ref-libgdu.html" title="libgdu API Reference">
+<link rel="reference" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
 <tr valign="middle">
-<td><a accesskey="p" href="ref-core.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
-<td><a accesskey="u" href="ref-core.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="gnome-disk-utility-gdu-callbacks.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-libgdu.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">Disk Utility Library Reference Manual</th>
-<td><a accesskey="n" href="GduPool.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+<td><a accesskey="n" href="GduProcess.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
 <tr><td colspan="5" class="shortcuts">
 <a href="#gnome-disk-utility-gdu-error.synopsis" class="shortcut">Top</a>
-                 | 
-                <a href="#gnome-disk-utility-gdu-error.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#gnome-disk-utility-gdu-error.description" class="shortcut">Description</a>
 </td></tr>
 </table>
 <div class="refentry" title="GduError">
@@ -38,20 +39,15 @@
 </tr></table></div>
 <div class="refsynopsisdiv" title="Synopsis">
 <a name="gnome-disk-utility-gdu-error.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">
-enum                <a class="link" href="gnome-disk-utility-gdu-error.html#GduError" title="enum GduError">GduError</a>;
-#define             <a class="link" href="gnome-disk-utility-gdu-error.html#GDU-ERROR--CAPS" title="GDU_ERROR">GDU_ERROR</a>
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Quarks.html#GQuark"
->GQuark</a>              <a class="link" href="gnome-disk-utility-gdu-error.html#gdu-error-quark" title="gdu_error_quark ()">gdu_error_quark</a>                     (void);
+<pre class="synopsis">enum                <a class="link" href="gnome-disk-utility-gdu-error.html#GduError" title="enum GduError">GduError</a>;
+#define             <a class="link" href="gnome-disk-utility-gdu-error.html#GDU-ERROR:CAPS" title="GDU_ERROR">GDU_ERROR</a>
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Quarks.html#GQuark"><span class="returnvalue">GQuark</span></a>              <a class="link" href="gnome-disk-utility-gdu-error.html#gdu-error-quark" title="gdu_error_quark ()">gdu_error_quark</a>                     (void);
 </pre>
 </div>
 <div class="refsect1" title="Description">
 <a name="gnome-disk-utility-gdu-error.description"></a><h2>Description</h2>
 <p>
 Contains helper functions for reporting errors to the user.</p>
-<p>
-</p>
 </div>
 <div class="refsect1" title="Details">
 <a name="gnome-disk-utility-gdu-error.details"></a><h2>Details</h2>
@@ -67,53 +63,63 @@ Contains helper functions for reporting errors to the user.</p>
         GDU_ERROR_NOT_SUPPORTED,
         GDU_ERROR_ATA_SMART_WOULD_WAKEUP,
         GDU_ERROR_PERMISSION_DENIED,
+        GDU_ERROR_FILESYSTEM_DRIVER_MISSING,
+        GDU_ERROR_FILESYSTEM_TOOLS_MISSING
 } GduError;
 </pre>
 <p>
-Error codes in the <a class="link" href="gnome-disk-utility-gdu-error.html#GDU-ERROR--CAPS" title="GDU_ERROR"><span class="type">GDU_ERROR</span></a> domain.</p>
-<p>
-</p>
+Error codes in the <a class="link" href="gnome-disk-utility-gdu-error.html#GDU-ERROR:CAPS" title="GDU_ERROR"><span class="type">GDU_ERROR</span></a> domain.</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><a name="GDU-ERROR-FAILED--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_FAILED</code></span></p></td>
+<td><p><a name="GDU-ERROR-FAILED:CAPS"></a><span class="term"><code class="literal">GDU_ERROR_FAILED</code></span></p></td>
 <td> The operation failed.
 </td>
 </tr>
 <tr>
-<td><p><a name="GDU-ERROR-BUSY--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_BUSY</code></span></p></td>
+<td><p><a name="GDU-ERROR-BUSY:CAPS"></a><span class="term"><code class="literal">GDU_ERROR_BUSY</code></span></p></td>
 <td> The device is busy
 </td>
 </tr>
 <tr>
-<td><p><a name="GDU-ERROR-CANCELLED--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_CANCELLED</code></span></p></td>
+<td><p><a name="GDU-ERROR-CANCELLED:CAPS"></a><span class="term"><code class="literal">GDU_ERROR_CANCELLED</code></span></p></td>
 <td> The operation was cancelled
 </td>
 </tr>
 <tr>
-<td><p><a name="GDU-ERROR-INHIBITED--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_INHIBITED</code></span></p></td>
+<td><p><a name="GDU-ERROR-INHIBITED:CAPS"></a><span class="term"><code class="literal">GDU_ERROR_INHIBITED</code></span></p></td>
 <td> The daemon is being inhibited.
 </td>
 </tr>
 <tr>
-<td><p><a name="GDU-ERROR-INVALID-OPTION--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_INVALID_OPTION</code></span></p></td>
+<td><p><a name="GDU-ERROR-INVALID-OPTION:CAPS"></a><span class="term"><code class="literal">GDU_ERROR_INVALID_OPTION</code></span></p></td>
 <td> An invalid option was passed
 </td>
 </tr>
 <tr>
-<td><p><a name="GDU-ERROR-NOT-SUPPORTED--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_NOT_SUPPORTED</code></span></p></td>
+<td><p><a name="GDU-ERROR-NOT-SUPPORTED:CAPS"></a><span class="term"><code class="literal">GDU_ERROR_NOT_SUPPORTED</code></span></p></td>
 <td> Operation not supported.
 </td>
 </tr>
 <tr>
-<td><p><a name="GDU-ERROR-ATA-SMART-WOULD-WAKEUP--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_ATA_SMART_WOULD_WAKEUP</code></span></p></td>
+<td><p><a name="GDU-ERROR-ATA-SMART-WOULD-WAKEUP:CAPS"></a><span class="term"><code class="literal">GDU_ERROR_ATA_SMART_WOULD_WAKEUP</code></span></p></td>
 <td> Getting S.M.A.R.T. data for the device would require to spin it up.
 </td>
 </tr>
 <tr>
-<td><p><a name="GDU-ERROR-PERMISSION-DENIED--CAPS"></a><span class="term"><code class="literal">GDU_ERROR_PERMISSION_DENIED</code></span></p></td>
+<td><p><a name="GDU-ERROR-PERMISSION-DENIED:CAPS"></a><span class="term"><code class="literal">GDU_ERROR_PERMISSION_DENIED</code></span></p></td>
 <td> Permission denied.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-ERROR-FILESYSTEM-DRIVER-MISSING:CAPS"></a><span class="term"><code class="literal">GDU_ERROR_FILESYSTEM_DRIVER_MISSING</code></span></p></td>
+<td> The filesystem driver for a filesystem is not installed.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-ERROR-FILESYSTEM-TOOLS-MISSING:CAPS"></a><span class="term"><code class="literal">GDU_ERROR_FILESYSTEM_TOOLS_MISSING</code></span></p></td>
+<td> User-space tools to carry out the request action on a filesystem is not installed.
 </td>
 </tr>
 </tbody>
@@ -121,36 +127,26 @@ Error codes in the <a class="link" href="gnome-disk-utility-gdu-error.html#GDU-E
 </div>
 <hr>
 <div class="refsect2" title="GDU_ERROR">
-<a name="GDU-ERROR--CAPS"></a><h3>GDU_ERROR</h3>
+<a name="GDU-ERROR:CAPS"></a><h3>GDU_ERROR</h3>
 <pre class="programlisting">#define GDU_ERROR gdu_error_quark ()
 </pre>
 <p>
-Error domain used for errors reported from DeviceKit-disks daemon
+Error domain used for errors reported from udisks daemon
 via D-Bus. Note that not all remote errors are mapped to this
 domain. Errors in this domain will come from the <a class="link" href="gnome-disk-utility-gdu-error.html#GduError" title="enum GduError"><span class="type">GduError</span></a>
-enumeration. See <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
-><span class="type">GError</span></a> for more information on error domains.</p>
-<p>
-</p>
+enumeration. See <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> for more information on error domains.</p>
 </div>
 <hr>
 <div class="refsect2" title="gdu_error_quark ()">
 <a name="gdu-error-quark"></a><h3>gdu_error_quark ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Quarks.html#GQuark"
->GQuark</a>              gdu_error_quark                     (void);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Quarks.html#GQuark"><span class="returnvalue">GQuark</span></a>              gdu_error_quark                     (void);</pre>
 <p>
 Gets the <a class="link" href="gnome-disk-utility-gdu-error.html#GduError" title="enum GduError"><span class="type">GduError</span></a> Quark.</p>
-<p>
-</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> a <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Quarks.html#GQuark"
-><span class="type">GQuark</span></a>
+<td> a <a href="http://library.gnome.org/devel/glib/unstable/glib-Quarks.html#GQuark"><span class="type">GQuark</span></a>
 </td>
 </tr></tbody>
 </table></div>
@@ -159,6 +155,6 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Quarks.html#GQuark"
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.11</div>
+          Generated by GTK-Doc V1.13</div>
 </body>
 </html>

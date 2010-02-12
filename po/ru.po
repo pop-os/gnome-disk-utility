@@ -7,14 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-12 12:56+0300\n"
+"POT-Creation-Date: 2009-10-20 20:12+0300\n"
 "PO-Revision-Date: 2009-10-12 12:57+0300\n"
 "Last-Translator: Leonid Kanter <leon@asplinux.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../data/palimpsest.desktop.in.h:1
@@ -1039,7 +1040,8 @@ msgstr ""
 
 #: ../src/gdu/gdu-util.c:511
 msgid "Swap area used by the operating system for virtual memory."
-msgstr "Область подкачки, используемая операционной системой как виртуальная память."
+msgstr ""
+"Область подкачки, используемая операционной системой как виртуальная память."
 
 #: ../src/gdu/gdu-util.c:514
 msgid ""
@@ -1354,11 +1356,11 @@ msgstr "ДИСК БЛИЗОК К ВЫХОДУ ИЗ СТРОЯ"
 #. * the temperature of the disk
 #.
 #. Translators: Shown in the "Self-tests" item in the status table
-#: ../src/gdu/gdu-util.c:982 ../src/gdu-gtk/gdu-ata-smart-dialog.c:2524
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2542
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2562
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2571
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2633
+#: ../src/gdu/gdu-util.c:982 ../src/gdu-gtk/gdu-ata-smart-dialog.c:2527
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2545
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2565
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2574
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2636
 #: ../src/playground/grid/gdu-grid-element.c:566
 msgid "Unknown"
 msgstr "Неизвестно"
@@ -1725,10 +1727,11 @@ msgid "Reallocated Sector Count"
 msgstr "Количество перераспределённых секторов"
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:179
+#, fuzzy
 msgid ""
 "Count of remapped sectors. When the hard drive finds a read/write/"
-"verification error, it mark the sector as \"reallocated\" and transfers data "
-"to a special reserved area (spare area)"
+"verification error, it marks the sector as \"reallocated\" and transfers "
+"data to a special reserved area (spare area)"
 msgstr ""
 "Количество перераспределённых секторов. Когда жёсткий диск находит ошибку "
 "чтения/записи, он помечает сектор как «перераспределённый» и перемещает "
@@ -1764,7 +1767,8 @@ msgid "Seek Timer Performance"
 msgstr "Таймер производительности позиционирования"
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:205
-msgid "Average efficiency of operatings while positioning"
+#, fuzzy
+msgid "Average efficiency of operations while positioning"
 msgstr "Средняя производительность операций позиционирования"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
@@ -1845,7 +1849,8 @@ msgid "High Fly Writes"
 msgstr "High Fly Writes"
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:261
-msgid "Number of times a recording head is flying outside its normal operating range"
+msgid ""
+"Number of times a recording head is flying outside its normal operating range"
 msgstr ""
 "Количество раз когда записывающая головка парит за пределами зоны "
 "нормального функционирования"
@@ -2115,8 +2120,10 @@ msgstr ""
 "температурного режима"
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:447
-msgid "Number of errors as a result of impact loads as detected by a shock sensor"
-msgstr "Количество ошибок в результате ударных воздействий, выявленных датчиком удара"
+msgid ""
+"Number of errors as a result of impact loads as detected by a shock sensor"
+msgstr ""
+"Количество ошибок в результате ударных воздействий, выявленных датчиком удара"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -2152,7 +2159,8 @@ msgid "Load Friction"
 msgstr "Трение нагрузки"
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:472
-msgid "Load on drive cause by friction in mechanical parts of the store"
+#, fuzzy
+msgid "Load on drive caused by friction in mechanical parts of the store"
 msgstr "Загрузка устройства вызвана трением в механических частях"
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:480
@@ -2237,7 +2245,8 @@ msgstr "Количество резервных блоков"
 msgid ""
 "Number of available reserved blocks as a percentage of the total number of "
 "reserved blocks"
-msgstr "Процент доступных резервных блоков от общего количества резервных блоков"
+msgstr ""
+"Процент доступных резервных блоков от общего количества резервных блоков"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -2298,7 +2307,7 @@ msgstr "Значение:"
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:960
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:968
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1064
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2181
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2184
 msgid "N/A"
 msgstr "Н/Д"
 
@@ -2622,11 +2631,12 @@ msgstr "%.1f секунд"
 
 #. Translators: Used in the treeview for the pretty/interpreted value of an attribute
 #. * for a time-based unit that is counted in milliseconds
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2150
-msgid "%"
-msgstr "%"
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2152
+#, fuzzy, c-format
+msgid "%s msec"
+msgstr "%d сектор"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2158
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2161
 #, c-format
 msgid "%d sector"
 msgid_plural "%d sectors"
@@ -2637,14 +2647,14 @@ msgstr[2] "%d секторов"
 #. Translators: Used in the treeview for the pretty/interpreted value of an attribute
 #. * for a temperature-based unit - first %f is the temperature in degrees Celcius, second %f
 #. * is the temperature in degrees Fahrenheit
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2170
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2173
 #, c-format
 msgid "%.0f° C / %.0f° F"
 msgstr "%.0f° C / %.0f° Ф"
 
 #. Translators: Used in the tooltip for a row in the attribute treeview - please keep
 #. * "(Pre-Fail)" in English
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2238
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2241
 msgid "Failure is a sign of imminent disk failure (Pre-Fail)"
 msgstr ""
 "Ошибка является признаком быстрого выхода диска из строя (предварительный "
@@ -2652,19 +2662,19 @@ msgstr ""
 
 #. Translators: Used in the tooltip for a row in the attribute treeview - please keep
 #. * "(Old-Age)" in English
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2242
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2245
 msgid "Failure is a sign of old age (Old-Age)"
 msgstr "Ошибка является признаком износа (старое устройство)"
 
 #. Translators: Used in the tooltip for a row in the attribute treeview - please keep
 #. * "(Online)" in English
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2248
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2251
 msgid "Every time data is collected (Online)"
 msgstr "Данные собираются постоянно (онлайн)"
 
 #. Translators: Used in the tooltip for a row in the attribute treeview - please keep
 #. * "(Not Online)" in English
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2252
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2255
 msgid "Only during off-line activities (Not Online)"
 msgstr "Только во время офлайновой активности (не в онлайне)"
 
@@ -2673,7 +2683,7 @@ msgstr "Только во время офлайновой активности (
 #. * Second %s is the update type (Online or Not Online).
 #. * The six %x is the raw data of the attribute.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2260
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2263
 #, c-format
 msgid ""
 "Type: %s\n"
@@ -2686,49 +2696,49 @@ msgstr ""
 
 #. Translators: Shown in the "Overall Assessment" item in the status table
 #. * when no drive is currently selected
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2465
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2468
 msgid "No drive selected"
 msgstr "Диск не выбран"
 
 #. Translators: Shown in the "Overall Assessment" item in the status table
 #. * when SMART is not available
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2472
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2475
 msgid "SMART not supported"
 msgstr "SMART не поддерживается"
 
 #. Translators: Shown in the "Overall Assessment" item in the status table
 #. * when SMART is supported but data was never collected
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2480
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2483
 msgid "SMART data never collected"
 msgstr "Данные SMART не были собраны"
 
 #. Translators: Shown in the "Overall Assessment" item in the status table
 #. * when the SMART data is malformed
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2487
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2493
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2490
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2496
 msgid "SMART data is malformed"
 msgstr "Данные SMART не оформлены"
 
 #. Translators: Shown in the "Self-assessment" item in the status table
 #. * when the self-assessment of the drive is PASSED
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2529
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2532
 msgid "Passed"
 msgstr "Хорошее состояние"
 
 #. Translators: Shown in the "Self-assessment" item in
 #. * the status table when the self-assessment of the
 #. * drive is FAILING
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2535
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2538
 msgid "FAILING"
 msgstr "ВЫХОДИТ ИЗ СТРОЯ"
 
 #. Translators: Shown in the "Bad Sectors" item in the status table
 #. * when we the disk has no bad sectors
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2547
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2550
 msgid "None"
 msgstr "Отсутствуют"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2552
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2555
 #, c-format
 msgid "%d bad sector"
 msgid_plural "%d bad sectors"
@@ -2737,62 +2747,63 @@ msgstr[1] "%d повреждённых сектора"
 msgstr[2] "%d повреждённых секторов"
 
 #. Translators: Shown in the "Self-tests" item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2590
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2593
 msgid "Last self-test completed OK"
 msgstr "Последнее самотестирование завершено успешно"
 
 #. Translators: Shown in the "Self-tests" item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2594
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2597
 msgid "Last self-test was cancelled"
 msgstr "Последнее самотестирование было отменено"
 
 #. Translators: Shown in the "Self-tests" item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2598
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2601
 msgid "Last self-test was cancelled (with hard or soft reset)"
 msgstr "Последний тест был отменен (через тяжёлый или лёгкий сброс)"
 
 #. Translators: Shown in the "Self-tests" item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2602
-msgid "Last self-test not completed (a fatal error might have occured)"
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2605
+#, fuzzy
+msgid "Last self-test not completed (a fatal error might have occurred)"
 msgstr "Последний тест не завершён (возможно, возникла фатальная ошибка)"
 
 #. Translators: Shown in the "Self-tests" item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2606
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2609
 msgid "Last self-test FAILED (Electrical)"
 msgstr "Последний тест прошёл НЕУДАЧНО (Электроника)"
 
 #. Translators: Shown in the "Self-tests" item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2611
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2614
 msgid "Last self-test FAILED (Servo)"
 msgstr "Последний тест прошёл НЕУДАЧНО (Механика)"
 
 #. Translators: Shown in the "Self-tests" item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2616
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2619
 msgid "Last self-test FAILED (Read)"
 msgstr "Последний тест прошёл НЕУДАЧНО (Чтение)"
 
 #. Translators: Shown in the "Self-tests" item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2621
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2624
 msgid "Last self-test FAILED (Suspected of having handled damage)"
 msgstr "Последний тест выполнился НЕУДАЧНО (Подозрение на поломку управления)"
 
 #. Translators: Shown in the "Self-tests" item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2626
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2629
 msgid "Self-test is in progress"
 msgstr "Выполняется самодиагностика"
 
 #. Translators: Shown in the "Self-tests" item in the status table when a test is underway
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2749
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2752
 msgid "Short self-test in progress: "
 msgstr "Выполняется быстрая самодиагностика:"
 
 #. Translators: Shown in the "Self-tests" item in the status table when a test is underway
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2753
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2756
 msgid "Extended self-test in progress: "
 msgstr "Выполняется расширенная самодиагностика:"
 
 #. Translators: Shown in the "Self-tests" item in the status table when a test is underway
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2757
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2760
 msgid "Conveyance self-test in progress: "
 msgstr "Выполняется самодиагностика передачи:"
 
@@ -3018,21 +3029,21 @@ msgstr "Диски"
 #. * First %s is the short localized name for the RAID level, e.g. "RAID-1".
 #.
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:1451
-#, c-format
-msgid "Insufficient number disks to create a %s array."
+#, fuzzy, c-format
+msgid "Insufficient number of disks to create a %s array."
 msgstr "Недостаточно дисков для создания массива %s."
 
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:1470
-#, c-format
-msgid "To create a %s array, select %d disks."
+#, fuzzy, c-format
+msgid "To create a %s array, select a disk."
 msgid_plural "To create a %s array, select %d disks."
 msgstr[0] "Для создания массива %s выберите %d диск"
 msgstr[1] "Для создания массива %s выберите %d диска"
 msgstr[2] "Для создания массива %s выберите %d дисков"
 
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:1477
-#, c-format
-msgid "To create a %s array, select %d more disks."
+#, fuzzy, c-format
+msgid "To create a %s array, select one more disk."
 msgid_plural "To create a %s array, select %d more disks."
 msgstr[0] "Для создания массива %s выберите ещё %d диск"
 msgstr[1] "Для создания массива %s выберите ещё %d диска"
@@ -3159,7 +3170,8 @@ msgid "To change the passphrase, enter both the current and new passphrase"
 msgstr "Для изменения ключевой фразы введите старую и новую ключевые фразы"
 
 #: ../src/gdu-gtk/gdu-gtk.c:619
-msgid "Data on this device is stored in an encrypted form protected by a passphrase"
+msgid ""
+"Data on this device is stored in an encrypted form protected by a passphrase"
 msgstr ""
 "Данные на этом устройстве хранятся в зашифрованном виде, защищеном ключевой "
 "фразой."
@@ -3173,14 +3185,17 @@ msgstr ""
 "ключевой фразой."
 
 #: ../src/gdu-gtk/gdu-gtk.c:635
-msgid "Data on this device is stored in an encrypted form protected by a passphrase."
+msgid ""
+"Data on this device is stored in an encrypted form protected by a passphrase."
 msgstr ""
 "Данные на этом устройстве хранятся в зашифрованном виде, защищеном ключевой "
 "фразой."
 
 #: ../src/gdu-gtk/gdu-gtk.c:638
-msgid "To make the data available for use, enter the passphrase for the device."
-msgstr "Для разрешения доступа к данным введите ключевую фразу для этого устройства."
+msgid ""
+"To make the data available for use, enter the passphrase for the device."
+msgstr ""
+"Для разрешения доступа к данным введите ключевую фразу для этого устройства."
 
 #: ../src/gdu-gtk/gdu-gtk.c:647
 msgid "Incorrect Passphrase. Try again."
@@ -3282,11 +3297,11 @@ msgstr[1] "%d часа назад"
 msgstr[2] "%d часов назад"
 
 #. Translators: this is a verb
-#: ../src/nautilus-extension/nautilus-gdu.c:225
+#: ../src/nautilus-extension/nautilus-gdu.c:223
 msgid "_Format..."
 msgstr "_Форматировать..."
 
-#: ../src/nautilus-extension/nautilus-gdu.c:226
+#: ../src/nautilus-extension/nautilus-gdu.c:224
 msgid "Create new filesystem on the selected device"
 msgstr "Создать новую файловую систему на выбранном устройстве"
 
@@ -3342,14 +3357,15 @@ msgstr "Ошибка создания таблицы разделов"
 
 #: ../src/palimpsest/gdu-section-create-partition-table.c:85
 msgid "Are you sure you want to format the disk, deleting existing data ?"
-msgstr "Вы уверены что хотите отформатировать диск, удаляя существующие данные ?"
+msgstr ""
+"Вы уверены что хотите отформатировать диск, удаляя существующие данные ?"
 
 #: ../src/palimpsest/gdu-section-create-partition-table.c:88
 #: ../src/palimpsest/gdu-section-unrecognized.c:251
 #: ../src/palimpsest/gdu-shell.c:1535
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"All data on the media in \"%s\" will be irrecovably erased. Make sure "
+"All data on the media in \"%s\" will be irrevocably erased. Make sure "
 "important data is backed up. This action cannot be undone."
 msgstr ""
 "Все данные на носителе в «%s» будут безвозвратно уничтожены. Убедитесь в "
@@ -3358,9 +3374,9 @@ msgstr ""
 #: ../src/palimpsest/gdu-section-create-partition-table.c:93
 #: ../src/palimpsest/gdu-section-unrecognized.c:256
 #: ../src/palimpsest/gdu-shell.c:1540
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"All data on the drive \"%s\" will be irrecovably erased. Make sure important "
+"All data on the drive \"%s\" will be irrevocably erased. Make sure important "
 "data is backed up. This action cannot be undone."
 msgstr ""
 "Все данные на диске «%s» будут безвозвратно уничтожены. Убедитесь в наличии "
@@ -3463,9 +3479,9 @@ msgid "Are you sure you want to remove the component from the array ?"
 msgstr "Вы действительно хотите удалить компонент из массива ?"
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:400
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"The data on component \"%s\" of the RAID Array \"%s\" will be irrecovably "
+"The data on component \"%s\" of the RAID Array \"%s\" will be irrevocably "
 "erased and the RAID Array might be degraded. Make sure important data is "
 "backed up. This action cannot be undone."
 msgstr ""
@@ -3701,7 +3717,8 @@ msgid "State"
 msgstr "Состояние"
 
 #: ../src/palimpsest/gdu-section-no-media.c:126
-msgid "To format or edit media, insert it into the drive and wait a few seconds."
+msgid ""
+"To format or edit media, insert it into the drive and wait a few seconds."
 msgstr ""
 "Чтобы отформатировать или изменить носитель, вставьте его в устройство и "
 "подождите несколько секунд."
@@ -3719,10 +3736,10 @@ msgid "Are you sure you want to remove the partition, deleting existing data ?"
 msgstr "Вы действительно хотите удалить массив и все данные на нём?"
 
 #: ../src/palimpsest/gdu-section-partition.c:117
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "All data on partition %d with name \"%s\" on the media in \"%s\" and all "
-"partitions contained in this extended partition will be irrecovably erased.\n"
+"partitions contained in this extended partition will be irrevocably erased.\n"
 "\n"
 "Make sure important data is backed up. This action cannot be undone."
 msgstr ""
@@ -3732,10 +3749,10 @@ msgstr ""
 "Убедитесь в наличии резервной копии важных данных. Это действие необратимо."
 
 #: ../src/palimpsest/gdu-section-partition.c:127
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "All data on partition %d with name \"%s\" on the media in \"%s\" will be "
-"irrecovably erased.\n"
+"irrevocably erased.\n"
 "\n"
 "Make sure important data is backed up. This action cannot be undone."
 msgstr ""
@@ -3745,10 +3762,10 @@ msgstr ""
 "Убедитесь в наличии резервной копии важных данных. Это действие необратимо."
 
 #: ../src/palimpsest/gdu-section-partition.c:137
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "All data on partition %d on the media in \"%s\" and all partitions contained "
-"in this extended partition will be irrecovably erased.\n"
+"in this extended partition will be irrevocably erased.\n"
 "\n"
 "Make sure important data is backed up. This action cannot be undone."
 msgstr ""
@@ -3758,9 +3775,9 @@ msgstr ""
 "Убедитесь в наличии резервной копии важных данных. Это действие необратимо."
 
 #: ../src/palimpsest/gdu-section-partition.c:146
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"All data on partition %d on the media in \"%s\" will be irrecovably erased.\n"
+"All data on partition %d on the media in \"%s\" will be irrevocably erased.\n"
 "\n"
 "Make sure important data is backed up. This action cannot be undone."
 msgstr ""
@@ -3769,10 +3786,10 @@ msgstr ""
 "Убедитесь в наличии резервной копии важных данных. Это действие необратимо."
 
 #: ../src/palimpsest/gdu-section-partition.c:157
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "All data on partition %d with name \"%s\" of \"%s\" and all partitions "
-"contained in this extended partition will be irrecovably erased.\n"
+"contained in this extended partition will be irrevocably erased.\n"
 "\n"
 "Make sure important data is backed up. This action cannot be undone."
 msgstr ""
@@ -3782,9 +3799,9 @@ msgstr ""
 "Убедитесь в наличии резервной копии важных данных. Это действие необратимо."
 
 #: ../src/palimpsest/gdu-section-partition.c:167
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"All data on partition %d with name \"%s\" of \"%s\" will be irrecovably "
+"All data on partition %d with name \"%s\" of \"%s\" will be irrevocably "
 "erased.\n"
 "\n"
 "Make sure important data is backed up. This action cannot be undone."
@@ -3794,10 +3811,10 @@ msgstr ""
 "Убедитесь в наличии резервной копии важных данных. Это действие необратимо."
 
 #: ../src/palimpsest/gdu-section-partition.c:177
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "All data on partition %d of \"%s\" and all partitions contained in this "
-"extended partition will be irrecovably erased.\n"
+"extended partition will be irrevocably erased.\n"
 "\n"
 "Make sure important data is backed up. This action cannot be undone."
 msgstr ""
@@ -3807,9 +3824,9 @@ msgstr ""
 "Убедитесь в наличии резервной копии важных данных. Это действие необратимо."
 
 #: ../src/palimpsest/gdu-section-partition.c:186
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"All data on partition %d of \"%s\" will be irrecovably erased.\n"
+"All data on partition %d of \"%s\" will be irrevocably erased.\n"
 "\n"
 "Make sure important data is backed up. This action cannot be undone."
 msgstr ""
@@ -3946,16 +3963,17 @@ msgid "Create partition"
 msgstr "Создать раздел"
 
 #: ../src/palimpsest/gdu-section-unrecognized.c:231
-msgid "Are you sure you want to create a new file system, deleting existing data ?"
+msgid ""
+"Are you sure you want to create a new file system, deleting existing data ?"
 msgstr ""
 "Вы действительно хотите создать новую файловую систему и удалить все "
 "существующие данные?"
 
 #: ../src/palimpsest/gdu-section-unrecognized.c:235
 #: ../src/palimpsest/gdu-shell.c:1519
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"All data on partition %d on the media in \"%s\" will be irrecovably erased. "
+"All data on partition %d on the media in \"%s\" will be irrevocably erased. "
 "Make sure important data is backed up. This action cannot be undone."
 msgstr ""
 "Все данные в разделе %d на носителе в «%s» будут безвозвратно уничтожены. "
@@ -3963,9 +3981,9 @@ msgstr ""
 
 #: ../src/palimpsest/gdu-section-unrecognized.c:242
 #: ../src/palimpsest/gdu-shell.c:1526
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"All data on partition %d of \"%s\" will be irrecovably erased. Make sure "
+"All data on partition %d of \"%s\" will be irrevocably erased. Make sure "
 "important data is backed up. This action cannot be undone."
 msgstr ""
 "Все данные в разделе %d на «%s» будут безвозвратно уничтожены. Убедитесь в "
@@ -4229,7 +4247,8 @@ msgstr "За_блокировать"
 
 #: ../src/palimpsest/gdu-shell.c:1943
 msgid "Lock the encrypted device, making the cleartext data unavailable"
-msgstr "Заблокировать зашифрованное устройство, сделать читаемые данные недоступными"
+msgstr ""
+"Заблокировать зашифрованное устройство, сделать читаемые данные недоступными"
 
 #: ../src/palimpsest/gdu-shell.c:1944
 msgid "_Start"
@@ -4349,8 +4368,10 @@ msgid "Presentable"
 msgstr "Читаемый"
 
 #: ../src/playground/grid/gdu-grid-element.c:888
-msgid "The presentable shown or NULL if this is a element representing lack of media"
-msgstr "The presentable shown or NULL if this is a element representing lack of media"
+msgid ""
+"The presentable shown or NULL if this is a element representing lack of media"
+msgstr ""
+"The presentable shown or NULL if this is a element representing lack of media"
 
 #: ../src/playground/grid/gdu-grid-element.c:898
 msgid "The minimum size of the element"
@@ -4380,3 +4401,5 @@ msgstr "Флаги этого элемента"
 msgid "The pool of devices to show"
 msgstr "Пул отображаемых устройств"
 
+#~ msgid "%"
+#~ msgstr "%"

@@ -1,0 +1,55 @@
+<!-- ##### SECTION Title ##### -->
+gdu-spinner
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### TYPEDEF GduSpinnerClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF GduSpinnerPrivate ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdu_spinner_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_spinner_start ##### -->
+<para>
+
+</para>
+
+@spinner: 
+
+
+<!-- ##### FUNCTION gdu_spinner_stop ##### -->
+<para>
+
+</para>
+
+@spinner: 
+
+

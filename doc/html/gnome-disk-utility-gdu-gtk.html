@@ -1,0 +1,720 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>gdu-gtk</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="Disk Utility Library Reference Manual">
+<link rel="up" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
+<link rel="prev" href="gnome-disk-utility-gdu-gtk-enumtypes.html" title="gdu-gtk-enumtypes">
+<link rel="next" href="gnome-disk-utility-gdu-pool-tree-model.html" title="gdu-pool-tree-model">
+<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-libgdu.html" title="libgdu API Reference">
+<link rel="reference" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="gnome-disk-utility-gdu-gtk-enumtypes.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-libgdu-gtk.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Disk Utility Library Reference Manual</th>
+<td><a accesskey="n" href="gnome-disk-utility-gdu-pool-tree-model.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#gnome-disk-utility-gdu-gtk.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#gnome-disk-utility-gdu-gtk.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry" title="gdu-gtk">
+<a name="gnome-disk-utility-gdu-gtk"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="gnome-disk-utility-gdu-gtk.top_of_page"></a>gdu-gtk</span></h2>
+<p>gdu-gtk</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="gnome-disk-utility-gdu-gtk.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="gnome-disk-utility-gdu-gtk.html#gdu-util-dialog-show-filesystem-busy" title="gdu_util_dialog_show_filesystem_busy ()">gdu_util_dialog_show_filesystem_busy</a>
+                                                        (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *parent_window,
+                                                         <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *presentable);
+<span class="returnvalue">char</span> *              <a class="link" href="gnome-disk-utility-gdu-gtk.html#gdu-util-dialog-ask-for-new-secret" title="gdu_util_dialog_ask_for_new_secret ()">gdu_util_dialog_ask_for_new_secret</a>  (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *parent_window,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> *save_in_keyring,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> *save_in_keyring_session);
+<span class="returnvalue">char</span> *              <a class="link" href="gnome-disk-utility-gdu-gtk.html#gdu-util-dialog-ask-for-secret" title="gdu_util_dialog_ask_for_secret ()">gdu_util_dialog_ask_for_secret</a>      (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *parent_window,
+                                                         <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *presentable,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> bypass_keyring,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> indicate_wrong_passphrase,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> *asked_user);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="gnome-disk-utility-gdu-gtk.html#gdu-util-dialog-change-secret" title="gdu_util_dialog_change_secret ()">gdu_util_dialog_change_secret</a>       (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *parent_window,
+                                                         <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *presentable,
+                                                         <span class="returnvalue">char</span> **old_secret,
+                                                         <span class="returnvalue">char</span> **new_secret,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> *save_in_keyring,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> *save_in_keyring_session,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> bypass_keyring,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> indicate_wrong_passphrase);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="gnome-disk-utility-gdu-gtk.html#gdu-util-delete-confirmation-dialog" title="gdu_util_delete_confirmation_dialog ()">gdu_util_delete_confirmation_dialog</a> (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *parent_window,
+                                                         const <span class="returnvalue">char</span> *title,
+                                                         const <span class="returnvalue">char</span> *primary_text,
+                                                         const <span class="returnvalue">char</span> *secondary_text,
+                                                         const <span class="returnvalue">char</span> *affirmative_action_button_mnemonic);
+<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         <a class="link" href="gnome-disk-utility-gdu-gtk.html#gdu-util-fstype-combo-box-create" title="gdu_util_fstype_combo_box_create ()">gdu_util_fstype_combo_box_create</a>    (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <span class="returnvalue">char</span> *include_extended_partitions_for_scheme);
+<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-gtk.html#gdu-util-fstype-combo-box-rebuild" title="gdu_util_fstype_combo_box_rebuild ()">gdu_util_fstype_combo_box_rebuild</a>   (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *combo_box,
+                                                         <a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <span class="returnvalue">char</span> *include_extended_partitions_for_scheme);
+<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-gtk.html#gdu-util-fstype-combo-box-set-desc-label" title="gdu_util_fstype_combo_box_set_desc_label ()">gdu_util_fstype_combo_box_set_desc_label</a>
+                                                        (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *combo_box,
+                                                         <a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *desc_label);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="gnome-disk-utility-gdu-gtk.html#gdu-util-fstype-combo-box-select" title="gdu_util_fstype_combo_box_select ()">gdu_util_fstype_combo_box_select</a>    (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *combo_box,
+                                                         const <span class="returnvalue">char</span> *fstype);
+<span class="returnvalue">char</span> *              <a class="link" href="gnome-disk-utility-gdu-gtk.html#gdu-util-fstype-combo-box-get-selected" title="gdu_util_fstype_combo_box_get_selected ()">gdu_util_fstype_combo_box_get_selected</a>
+                                                        (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *combo_box);
+<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         <a class="link" href="gnome-disk-utility-gdu-gtk.html#gdu-util-part-type-combo-box-create" title="gdu_util_part_type_combo_box_create ()">gdu_util_part_type_combo_box_create</a> (const <span class="returnvalue">char</span> *part_scheme);
+<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-gtk.html#gdu-util-part-type-combo-box-rebuild" title="gdu_util_part_type_combo_box_rebuild ()">gdu_util_part_type_combo_box_rebuild</a>
+                                                        (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *combo_box,
+                                                         const <span class="returnvalue">char</span> *part_scheme);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="gnome-disk-utility-gdu-gtk.html#gdu-util-part-type-combo-box-select" title="gdu_util_part_type_combo_box_select ()">gdu_util_part_type_combo_box_select</a> (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *combo_box,
+                                                         const <span class="returnvalue">char</span> *part_type);
+<span class="returnvalue">char</span> *              <a class="link" href="gnome-disk-utility-gdu-gtk.html#gdu-util-part-type-combo-box-get-selected" title="gdu_util_part_type_combo_box_get_selected ()">gdu_util_part_type_combo_box_get_selected</a>
+                                                        (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *combo_box);
+<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         <a class="link" href="gnome-disk-utility-gdu-gtk.html#gdu-util-part-table-type-combo-box-create" title="gdu_util_part_table_type_combo_box_create ()">gdu_util_part_table_type_combo_box_create</a>
+                                                        (void);
+<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-gtk.html#gdu-util-part-table-type-combo-box-set-desc-label" title="gdu_util_part_table_type_combo_box_set_desc_label ()">gdu_util_part_table_type_combo_box_set_desc_label</a>
+                                                        (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *combo_box,
+                                                         <a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *desc_label);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="gnome-disk-utility-gdu-gtk.html#gdu-util-part-table-type-combo-box-select" title="gdu_util_part_table_type_combo_box_select ()">gdu_util_part_table_type_combo_box_select</a>
+                                                        (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *combo_box,
+                                                         const <span class="returnvalue">char</span> *part_table_type);
+<span class="returnvalue">char</span> *              <a class="link" href="gnome-disk-utility-gdu-gtk.html#gdu-util-part-table-type-combo-box-get-selected" title="gdu_util_part_table_type_combo_box_get_selected ()">gdu_util_part_table_type_combo_box_get_selected</a>
+                                                        (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *combo_box);
+<a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-gdk-pixbuf.html#GdkPixbuf"><span class="returnvalue">GdkPixbuf</span></a> *         <a class="link" href="gnome-disk-utility-gdu-gtk.html#gdu-util-get-pixbuf-for-presentable" title="gdu_util_get_pixbuf_for_presentable ()">gdu_util_get_pixbuf_for_presentable</a> (<a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *presentable,
+                                                         <a href="http://library.gnome.org/devel/gtk/unstable/gtk-Themeable-Stock-Images.html#GtkIconSize"><span class="returnvalue">GtkIconSize</span></a> size);
+<a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-gdk-pixbuf.html#GdkPixbuf"><span class="returnvalue">GdkPixbuf</span></a> *         <a class="link" href="gnome-disk-utility-gdu-gtk.html#gdu-util-get-pixbuf-for-presentable-at-pixel-size" title="gdu_util_get_pixbuf_for_presentable_at_pixel_size ()">gdu_util_get_pixbuf_for_presentable_at_pixel_size</a>
+                                                        (<a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *presentable,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a> pixel_size);
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="gnome-disk-utility-gdu-gtk.description"></a><h2>Description</h2>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="gnome-disk-utility-gdu-gtk.details"></a><h2>Details</h2>
+<div class="refsect2" title="gdu_util_dialog_show_filesystem_busy ()">
+<a name="gdu-util-dialog-show-filesystem-busy"></a><h3>gdu_util_dialog_show_filesystem_busy ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gdu_util_dialog_show_filesystem_busy
+                                                        (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *parent_window,
+                                                         <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *presentable);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>parent_window</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>presentable</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_util_dialog_ask_for_new_secret ()">
+<a name="gdu-util-dialog-ask-for-new-secret"></a><h3>gdu_util_dialog_ask_for_new_secret ()</h3>
+<pre class="programlisting"><span class="returnvalue">char</span> *              gdu_util_dialog_ask_for_new_secret  (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *parent_window,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> *save_in_keyring,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> *save_in_keyring_session);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>parent_window</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>save_in_keyring</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>save_in_keyring_session</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_util_dialog_ask_for_secret ()">
+<a name="gdu-util-dialog-ask-for-secret"></a><h3>gdu_util_dialog_ask_for_secret ()</h3>
+<pre class="programlisting"><span class="returnvalue">char</span> *              gdu_util_dialog_ask_for_secret      (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *parent_window,
+                                                         <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *presentable,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> bypass_keyring,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> indicate_wrong_passphrase,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> *asked_user);</pre>
+<p>
+Retrieves a secret from the user or the keyring (unless
+<em class="parameter"><code>bypass_keyring</code></em> is set to <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a>).</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>parent_window</code></em> :</span></p></td>
+<td> Parent window that dialog will be transient for or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><span class="type">NULL</span></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>presentable</code></em> :</span></p></td>
+<td> A <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="type">GduPresentable</span></a> with a <a class="link" href="GduDevice.html" title="GduDevice"><span class="type">GduDevice</span></a> that is encrypted.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>bypass_keyring</code></em> :</span></p></td>
+<td> Set to <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> to bypass the keyring.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>indicate_wrong_passphrase</code></em> :</span></p></td>
+<td> Set to <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> to display a message that the last
+entered passphrase was wrong
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>asked_user</code></em> :</span></p></td>
+<td> Whether the user was asked for the passphrase
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the secret or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><span class="type">NULL</span></a> if the user cancelled the dialog.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_util_dialog_change_secret ()">
+<a name="gdu-util-dialog-change-secret"></a><h3>gdu_util_dialog_change_secret ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gdu_util_dialog_change_secret       (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *parent_window,
+                                                         <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *presentable,
+                                                         <span class="returnvalue">char</span> **old_secret,
+                                                         <span class="returnvalue">char</span> **new_secret,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> *save_in_keyring,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> *save_in_keyring_session,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> bypass_keyring,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> indicate_wrong_passphrase);</pre>
+<p>
+Asks the user to change his secret. The secret in the keyring is
+not updated; that needs to be done manually using the functions
+<a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-delete-secret" title="gdu_util_delete_secret ()"><code class="function">gdu_util_delete_secret()</code></a> and <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-save-secret" title="gdu_util_save_secret ()"><code class="function">gdu_util_save_secret()</code></a>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>parent_window</code></em> :</span></p></td>
+<td> Parent window that dialog will be transient for or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><span class="type">NULL</span></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>presentable</code></em> :</span></p></td>
+<td> A <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="type">GduPresentable</span></a> with a <a class="link" href="GduDevice.html" title="GduDevice"><span class="type">GduDevice</span></a> that is encrypted.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>old_secret</code></em> :</span></p></td>
+<td> Return location for old secret.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>new_secret</code></em> :</span></p></td>
+<td> Return location for new secret.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>save_in_keyring</code></em> :</span></p></td>
+<td> Return location for whether the new secret should be saved in the keyring.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>save_in_keyring_session</code></em> :</span></p></td>
+<td> Return location for whether the new secret should be saved in the session keyring.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>bypass_keyring</code></em> :</span></p></td>
+<td> Set to <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> to bypass the keyring.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>indicate_wrong_passphrase</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><span class="type">TRUE</span></a> if the user agreed to change the secret.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_util_delete_confirmation_dialog ()">
+<a name="gdu-util-delete-confirmation-dialog"></a><h3>gdu_util_delete_confirmation_dialog ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gdu_util_delete_confirmation_dialog (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *parent_window,
+                                                         const <span class="returnvalue">char</span> *title,
+                                                         const <span class="returnvalue">char</span> *primary_text,
+                                                         const <span class="returnvalue">char</span> *secondary_text,
+                                                         const <span class="returnvalue">char</span> *affirmative_action_button_mnemonic);</pre>
+<p>
+Utility to show a confirmation dialog for deletion.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>parent_window</code></em> :</span></p></td>
+<td> parent window for transient dialog
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>title</code></em> :</span></p></td>
+<td> the title of the dialog
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>primary_text</code></em> :</span></p></td>
+<td> primary text
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>secondary_text</code></em> :</span></p></td>
+<td> secondary text
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>affirmative_action_button_mnemonic</code></em> :</span></p></td>
+<td> text to use on the affirmative action button
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if the user canceled, otherwise <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_util_fstype_combo_box_create ()">
+<a name="gdu-util-fstype-combo-box-create"></a><h3>gdu_util_fstype_combo_box_create ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         gdu_util_fstype_combo_box_create    (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <span class="returnvalue">char</span> *include_extended_partitions_for_scheme);</pre>
+<p>
+Get a combo box with the file system types that the DeviceKit-disks
+daemon can create.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td> A <a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a> object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>include_extended_partitions_for_scheme</code></em> :</span></p></td>
+<td> if not <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><span class="type">NULL</span></a>, includes
+extended partition types. This is currently only relevant for
+Master Boot Record ("mbr") where a single item "Extended Partition"
+will be returned.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A <a href="http://library.gnome.org/devel/gtk/unstable/GtkComboBox.html"><span class="type">GtkComboBox</span></a> widget
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_util_fstype_combo_box_rebuild ()">
+<a name="gdu-util-fstype-combo-box-rebuild"></a><h3>gdu_util_fstype_combo_box_rebuild ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdu_util_fstype_combo_box_rebuild   (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *combo_box,
+                                                         <a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <span class="returnvalue">char</span> *include_extended_partitions_for_scheme);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>combo_box</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>include_extended_partitions_for_scheme</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_util_fstype_combo_box_set_desc_label ()">
+<a name="gdu-util-fstype-combo-box-set-desc-label"></a><h3>gdu_util_fstype_combo_box_set_desc_label ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdu_util_fstype_combo_box_set_desc_label
+                                                        (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *combo_box,
+                                                         <a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *desc_label);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>combo_box</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>desc_label</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_util_fstype_combo_box_select ()">
+<a name="gdu-util-fstype-combo-box-select"></a><h3>gdu_util_fstype_combo_box_select ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gdu_util_fstype_combo_box_select    (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *combo_box,
+                                                         const <span class="returnvalue">char</span> *fstype);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>combo_box</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>fstype</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_util_fstype_combo_box_get_selected ()">
+<a name="gdu-util-fstype-combo-box-get-selected"></a><h3>gdu_util_fstype_combo_box_get_selected ()</h3>
+<pre class="programlisting"><span class="returnvalue">char</span> *              gdu_util_fstype_combo_box_get_selected
+                                                        (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *combo_box);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>combo_box</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_util_part_type_combo_box_create ()">
+<a name="gdu-util-part-type-combo-box-create"></a><h3>gdu_util_part_type_combo_box_create ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         gdu_util_part_type_combo_box_create (const <span class="returnvalue">char</span> *part_scheme);</pre>
+<p>
+Get a combo box with the partition types for a given scheme.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>part_scheme</code></em> :</span></p></td>
+<td> Partitioning scheme to get partitions types for.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A <a href="http://library.gnome.org/devel/gtk/unstable/GtkComboBox.html"><span class="type">GtkComboBox</span></a> widget
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_util_part_type_combo_box_rebuild ()">
+<a name="gdu-util-part-type-combo-box-rebuild"></a><h3>gdu_util_part_type_combo_box_rebuild ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdu_util_part_type_combo_box_rebuild
+                                                        (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *combo_box,
+                                                         const <span class="returnvalue">char</span> *part_scheme);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>combo_box</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>part_scheme</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_util_part_type_combo_box_select ()">
+<a name="gdu-util-part-type-combo-box-select"></a><h3>gdu_util_part_type_combo_box_select ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gdu_util_part_type_combo_box_select (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *combo_box,
+                                                         const <span class="returnvalue">char</span> *part_type);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>combo_box</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>part_type</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_util_part_type_combo_box_get_selected ()">
+<a name="gdu-util-part-type-combo-box-get-selected"></a><h3>gdu_util_part_type_combo_box_get_selected ()</h3>
+<pre class="programlisting"><span class="returnvalue">char</span> *              gdu_util_part_type_combo_box_get_selected
+                                                        (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *combo_box);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>combo_box</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_util_part_table_type_combo_box_create ()">
+<a name="gdu-util-part-table-type-combo-box-create"></a><h3>gdu_util_part_table_type_combo_box_create ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         gdu_util_part_table_type_combo_box_create
+                                                        (void);</pre>
+<p>
+Get a combo box with the partition tables types we can create.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A <a href="http://library.gnome.org/devel/gtk/unstable/GtkComboBox.html"><span class="type">GtkComboBox</span></a> widget
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_util_part_table_type_combo_box_set_desc_label ()">
+<a name="gdu-util-part-table-type-combo-box-set-desc-label"></a><h3>gdu_util_part_table_type_combo_box_set_desc_label ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdu_util_part_table_type_combo_box_set_desc_label
+                                                        (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *combo_box,
+                                                         <a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *desc_label);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>combo_box</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>desc_label</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_util_part_table_type_combo_box_select ()">
+<a name="gdu-util-part-table-type-combo-box-select"></a><h3>gdu_util_part_table_type_combo_box_select ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gdu_util_part_table_type_combo_box_select
+                                                        (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *combo_box,
+                                                         const <span class="returnvalue">char</span> *part_table_type);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>combo_box</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>part_table_type</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_util_part_table_type_combo_box_get_selected ()">
+<a name="gdu-util-part-table-type-combo-box-get-selected"></a><h3>gdu_util_part_table_type_combo_box_get_selected ()</h3>
+<pre class="programlisting"><span class="returnvalue">char</span> *              gdu_util_part_table_type_combo_box_get_selected
+                                                        (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *combo_box);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>combo_box</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_util_get_pixbuf_for_presentable ()">
+<a name="gdu-util-get-pixbuf-for-presentable"></a><h3>gdu_util_get_pixbuf_for_presentable ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-gdk-pixbuf.html#GdkPixbuf"><span class="returnvalue">GdkPixbuf</span></a> *         gdu_util_get_pixbuf_for_presentable (<a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *presentable,
+                                                         <a href="http://library.gnome.org/devel/gtk/unstable/gtk-Themeable-Stock-Images.html#GtkIconSize"><span class="returnvalue">GtkIconSize</span></a> size);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>presentable</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>size</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_util_get_pixbuf_for_presentable_at_pixel_size ()">
+<a name="gdu-util-get-pixbuf-for-presentable-at-pixel-size"></a><h3>gdu_util_get_pixbuf_for_presentable_at_pixel_size ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/gdk-pixbuf/unstable/gdk-pixbuf-gdk-pixbuf.html#GdkPixbuf"><span class="returnvalue">GdkPixbuf</span></a> *         gdu_util_get_pixbuf_for_presentable_at_pixel_size
+                                                        (<a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *presentable,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a> pixel_size);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>presentable</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pixel_size</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.13</div>
+</body>
+</html>

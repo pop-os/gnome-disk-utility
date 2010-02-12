@@ -1,0 +1,257 @@
+<!-- ##### SECTION Title ##### -->
+gdu-details-element
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### TYPEDEF GduDetailsElementClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF GduDetailsElementPrivate ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION changed ##### -->
+<para>
+
+</para>
+
+@widget: 
+
+
+<!-- ##### FUNCTION activated ##### -->
+<para>
+
+</para>
+
+@element: 
+@uri: 
+
+
+<!-- ##### FUNCTION gdu_details_element_new ##### -->
+<para>
+
+</para>
+
+@heading: 
+@text: 
+@tooltip: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_details_element_get_heading ##### -->
+<para>
+
+</para>
+
+@element: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_details_element_get_icon ##### -->
+<para>
+
+</para>
+
+@element: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_details_element_get_text ##### -->
+<para>
+
+</para>
+
+@element: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_details_element_get_time ##### -->
+<para>
+
+</para>
+
+@element: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_details_element_get_progress ##### -->
+<para>
+
+</para>
+
+@element: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_details_element_get_tooltip ##### -->
+<para>
+
+</para>
+
+@element: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_details_element_get_action_text ##### -->
+<para>
+
+</para>
+
+@element: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_details_element_get_action_uri ##### -->
+<para>
+
+</para>
+
+@element: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_details_element_get_action_tooltip ##### -->
+<para>
+
+</para>
+
+@element: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_details_element_get_is_spinning ##### -->
+<para>
+
+</para>
+
+@element: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_details_element_get_widget ##### -->
+<para>
+
+</para>
+
+@element: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_details_element_set_heading ##### -->
+<para>
+
+</para>
+
+@element: 
+@heading: 
+
+
+<!-- ##### FUNCTION gdu_details_element_set_icon ##### -->
+<para>
+
+</para>
+
+@element: 
+@icon: 
+
+
+<!-- ##### FUNCTION gdu_details_element_set_text ##### -->
+<para>
+
+</para>
+
+@element: 
+@text: 
+
+
+<!-- ##### FUNCTION gdu_details_element_set_time ##### -->
+<para>
+
+</para>
+
+@element: 
+@time: 
+
+
+<!-- ##### FUNCTION gdu_details_element_set_progress ##### -->
+<para>
+
+</para>
+
+@element: 
+@progress: 
+
+
+<!-- ##### FUNCTION gdu_details_element_set_tooltip ##### -->
+<para>
+
+</para>
+
+@element: 
+@tooltip: 
+
+
+<!-- ##### FUNCTION gdu_details_element_set_action_text ##### -->
+<para>
+
+</para>
+
+@element: 
+@action_text: 
+
+
+<!-- ##### FUNCTION gdu_details_element_set_action_uri ##### -->
+<para>
+
+</para>
+
+@element: 
+@action_uri: 
+
+
+<!-- ##### FUNCTION gdu_details_element_set_action_tooltip ##### -->
+<para>
+
+</para>
+
+@element: 
+@action_tooltip: 
+
+
+<!-- ##### FUNCTION gdu_details_element_set_is_spinning ##### -->
+<para>
+
+</para>
+
+@element: 
+@is_spinning: 
+
+
+<!-- ##### FUNCTION gdu_details_element_set_widget ##### -->
+<para>
+
+</para>
+
+@element: 
+@widget: 
+
+

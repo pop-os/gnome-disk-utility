@@ -101,9 +101,13 @@ typedef void (*GduDeviceLinuxMdCheckCompletedFunc) (GduDevice    *device,
                                                     GError       *error,
                                                     gpointer      user_data);
 
-typedef void (*GduDeviceLinuxMdAddComponentCompletedFunc) (GduDevice    *device,
-                                                           GError       *error,
-                                                           gpointer      user_data);
+typedef void (*GduDeviceLinuxMdAddSpareCompletedFunc) (GduDevice    *device,
+                                                       GError       *error,
+                                                       gpointer      user_data);
+
+typedef void (*GduDeviceLinuxMdExpandCompletedFunc) (GduDevice    *device,
+                                                     GError       *error,
+                                                     gpointer      user_data);
 
 typedef void (*GduDeviceLinuxMdRemoveComponentCompletedFunc) (GduDevice    *device,
                                                               GError       *error,
@@ -140,6 +144,17 @@ typedef void (*GduDeviceDrivePollMediaCompletedFunc) (GduDevice    *device,
                                                       GError       *error,
                                                       gpointer      user_data);
 
+typedef void (*GduDeviceDriveBenchmarkCompletedFunc) (GduDevice    *device,
+                                                      GPtrArray    *read_transfer_rate_results,
+                                                      GPtrArray    *write_transfer_rate_results,
+                                                      GPtrArray    *access_time_results,
+                                                      GError       *error,
+                                                      gpointer      user_data);
+
+typedef void (*GduDeviceLinuxLvm2LVStopCompletedFunc) (GduDevice  *device,
+                                                       GError     *error,
+                                                       gpointer    user_data);
+
 /* ---------------------------------------------------------------------------------------------------- */
 /* GduPool */
 
@@ -153,6 +168,43 @@ typedef void (*GduPoolLinuxMdCreateCompletedFunc) (GduPool    *pool,
                                                    GError     *error,
                                                    gpointer    user_data);
 
+typedef void (*GduPoolLinuxLvm2VGStartCompletedFunc) (GduPool    *pool,
+                                                      GError     *error,
+                                                      gpointer    user_data);
+
+typedef void (*GduPoolLinuxLvm2VGStopCompletedFunc) (GduPool    *pool,
+                                                     GError     *error,
+                                                     gpointer    user_data);
+
+typedef void (*GduPoolLinuxLvm2LVStartCompletedFunc) (GduPool    *pool,
+                                                      GError     *error,
+                                                      gpointer    user_data);
+
+typedef void (*GduPoolLinuxLvm2VGSetNameCompletedFunc) (GduPool    *pool,
+                                                        GError     *error,
+                                                        gpointer    user_data);
+
+typedef void (*GduPoolLinuxLvm2LVSetNameCompletedFunc) (GduPool    *pool,
+                                                        GError     *error,
+                                                        gpointer    user_data);
+
+typedef void (*GduPoolLinuxLvm2LVRemoveCompletedFunc) (GduPool    *pool,
+                                                       GError     *error,
+                                                       gpointer    user_data);
+
+typedef void (*GduPoolLinuxLvm2LVCreateCompletedFunc) (GduPool    *pool,
+                                                       char       *create_logical_volume_object_path,
+                                                       GError     *error,
+                                                       gpointer    user_data);
+
+typedef void (*GduPoolLinuxLvm2VGAddPVCompletedFunc) (GduPool    *pool,
+                                                      GError     *error,
+                                                      gpointer    user_data);
+
+typedef void (*GduPoolLinuxLvm2VGRemovePVCompletedFunc) (GduPool    *pool,
+                                                         GError     *error,
+                                                         gpointer    user_data);
+
 /* ---------------------------------------------------------------------------------------------------- */
 /* GduDrive */
 
@@ -164,6 +216,7 @@ typedef void (*GduDriveActivateFunc) (GduDrive  *drive,
 typedef void (*GduDriveDeactivateFunc) (GduDrive  *drive,
                                         GError    *error,
                                         gpointer   user_data);
+
 
 /* ---------------------------------------------------------------------------------------------------- */
 

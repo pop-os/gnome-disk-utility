@@ -1,0 +1,62 @@
+<!-- ##### SECTION Title ##### -->
+gdu-pool-tree-model
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### TYPEDEF GduPoolTreeModelClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF GduPoolTreeModelPrivate ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdu_pool_tree_model_new ##### -->
+<para>
+
+</para>
+
+@pools: 
+@root: 
+@flags: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_pool_tree_model_set_pools ##### -->
+<para>
+
+</para>
+
+@model: 
+@pools: 
+
+
+<!-- ##### FUNCTION gdu_pool_tree_model_get_iter_for_presentable ##### -->
+<para>
+
+</para>
+
+@model: 
+@presentable: 
+@out_iter: 
+@Returns: 
+
+

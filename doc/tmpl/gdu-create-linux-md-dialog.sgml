@@ -1,0 +1,95 @@
+<!-- ##### SECTION Title ##### -->
+gdu-create-linux-md-dialog
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### TYPEDEF GduCreateLinuxMdDialogClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF GduCreateLinuxMdDialogPrivate ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdu_create_linux_md_dialog_new ##### -->
+<para>
+
+</para>
+
+@parent: 
+@pool: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_create_linux_md_dialog_get_level ##### -->
+<para>
+
+</para>
+
+@dialog: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_create_linux_md_dialog_get_name ##### -->
+<para>
+
+</para>
+
+@dialog: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_create_linux_md_dialog_get_size ##### -->
+<para>
+
+</para>
+
+@dialog: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_create_linux_md_dialog_get_component_size ##### -->
+<para>
+
+</para>
+
+@dialog: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_create_linux_md_dialog_get_stripe_size ##### -->
+<para>
+
+</para>
+
+@dialog: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_create_linux_md_dialog_get_drives ##### -->
+<para>
+
+</para>
+
+@dialog: 
+@Returns: 
+
+

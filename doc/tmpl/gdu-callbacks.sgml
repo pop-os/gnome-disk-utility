@@ -161,7 +161,17 @@ gdu-callbacks
 @user_data: 
 
 
-<!-- ##### USER_FUNCTION GduDeviceLinuxMdAddComponentCompletedFunc ##### -->
+<!-- ##### USER_FUNCTION GduDeviceLinuxMdAddSpareCompletedFunc ##### -->
+<para>
+
+</para>
+
+@device: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduDeviceLinuxMdExpandCompletedFunc ##### -->
 <para>
 
 </para>
@@ -253,6 +263,29 @@ gdu-callbacks
 @user_data: 
 
 
+<!-- ##### USER_FUNCTION GduDeviceDriveBenchmarkCompletedFunc ##### -->
+<para>
+
+</para>
+
+@device: 
+@read_transfer_rate_results: 
+@write_transfer_rate_results: 
+@access_time_results: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduDeviceLinuxLvm2LVStopCompletedFunc ##### -->
+<para>
+
+</para>
+
+@device: 
+@error: 
+@user_data: 
+
+
 <!-- ##### USER_FUNCTION GduPoolLinuxMdStartCompletedFunc ##### -->
 <para>
 
@@ -271,6 +304,97 @@ gdu-callbacks
 
 @pool: 
 @array_object_path: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduPoolLinuxLvm2VGStartCompletedFunc ##### -->
+<para>
+
+</para>
+
+@pool: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduPoolLinuxLvm2VGStopCompletedFunc ##### -->
+<para>
+
+</para>
+
+@pool: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduPoolLinuxLvm2LVStartCompletedFunc ##### -->
+<para>
+
+</para>
+
+@pool: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduPoolLinuxLvm2VGSetNameCompletedFunc ##### -->
+<para>
+
+</para>
+
+@pool: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduPoolLinuxLvm2LVSetNameCompletedFunc ##### -->
+<para>
+
+</para>
+
+@pool: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduPoolLinuxLvm2LVRemoveCompletedFunc ##### -->
+<para>
+
+</para>
+
+@pool: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduPoolLinuxLvm2LVCreateCompletedFunc ##### -->
+<para>
+
+</para>
+
+@pool: 
+@create_logical_volume_object_path: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduPoolLinuxLvm2VGAddPVCompletedFunc ##### -->
+<para>
+
+</para>
+
+@pool: 
+@error: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION GduPoolLinuxLvm2VGRemovePVCompletedFunc ##### -->
+<para>
+
+</para>
+
+@pool: 
 @error: 
 @user_data: 
 

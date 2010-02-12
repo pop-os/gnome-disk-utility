@@ -1,7 +1,11 @@
+NULL =
 
 BUILT_SOURCES =                                         	\
-        devkit-disks-daemon-glue.h                      	\
-        devkit-disks-device-glue.h				\
+        udisks-daemon-glue.h                      	\
+        udisks-device-glue.h				\
+        udisks-adapter-glue.h				\
+        udisks-expander-glue.h				\
+        udisks-port-glue.h				\
 	gdu-marshal.h			gdu-marshal.c
 
 gdu-marshal.h: gdu-marshal.list
@@ -10,11 +14,20 @@ gdu-marshal.h: gdu-marshal.list
 gdu-marshal.c: gdu-marshal.list
 	echo "#include \"gdu-marshal.h\"" > $@ && glib-genmarshal $< --prefix=gdu_marshal --body >> $@
 
-devkit-disks-daemon-glue.h: /usr/share/dbus-1/interfaces/org.freedesktop.DeviceKit.Disks.xml Makefile.am
-	dbus-binding-tool --prefix=devkit_disks_daemon --mode=glib-client --output=devkit-disks-daemon-glue.h /usr/share/dbus-1/interfaces/org.freedesktop.DeviceKit.Disks.xml
+udisks-daemon-glue.h: /usr/share/dbus-1/interfaces/org.freedesktop.UDisks.xml Makefile.am
+	dbus-binding-tool --prefix=devkit_disks_daemon --mode=glib-client --output=udisks-daemon-glue.h /usr/share/dbus-1/interfaces/org.freedesktop.UDisks.xml
 
-devkit-disks-device-glue.h: /usr/share/dbus-1/interfaces/org.freedesktop.DeviceKit.Disks.Device.xml Makefile.am
-	dbus-binding-tool --prefix=devkit_disks_daemon --mode=glib-client --output=devkit-disks-device-glue.h /usr/share/dbus-1/interfaces/org.freedesktop.DeviceKit.Disks.Device.xml
+udisks-device-glue.h: /usr/share/dbus-1/interfaces/org.freedesktop.UDisks.Device.xml Makefile.am
+	dbus-binding-tool --prefix=devkit_disks_daemon --mode=glib-client --output=udisks-device-glue.h /usr/share/dbus-1/interfaces/org.freedesktop.UDisks.Device.xml
+
+udisks-adapter-glue.h: /usr/share/dbus-1/interfaces/org.freedesktop.UDisks.Adapter.xml Makefile.am
+	dbus-binding-tool --prefix=devkit_disks_daemon --mode=glib-client --output=udisks-adapter-glue.h /usr/share/dbus-1/interfaces/org.freedesktop.UDisks.Adapter.xml
+
+udisks-expander-glue.h: /usr/share/dbus-1/interfaces/org.freedesktop.UDisks.Expander.xml Makefile.am
+	dbus-binding-tool --prefix=devkit_disks_daemon --mode=glib-client --output=udisks-expander-glue.h /usr/share/dbus-1/interfaces/org.freedesktop.UDisks.Expander.xml
+
+udisks-port-glue.h: /usr/share/dbus-1/interfaces/org.freedesktop.UDisks.Port.xml Makefile.am
+	dbus-binding-tool --prefix=devkit_disks_daemon --mode=glib-client --output=udisks-port-glue.h /usr/share/dbus-1/interfaces/org.freedesktop.UDisks.Port.xml
 
 lib_LTLIBRARIES=libgdu.la
 
@@ -25,8 +38,14 @@ libgduinclude_HEADERS =              			\
 	gdu-types.h					\
 	gdu-callbacks.h					\
 	gdu-device.h					\
+	gdu-adapter.h					\
+	gdu-expander.h					\
+	gdu-port.h					\
 	gdu-drive.h					\
 	gdu-linux-md-drive.h				\
+	gdu-linux-lvm2-volume-group.h			\
+	gdu-linux-lvm2-volume-hole.h			\
+	gdu-linux-lvm2-volume.h				\
 	gdu-error.h					\
 	gdu-known-filesystem.h				\
 	gdu-pool.h					\
@@ -34,7 +53,10 @@ libgduinclude_HEADERS =              			\
 	gdu-process.h					\
 	gdu-util.h					\
 	gdu-volume.h					\
-	gdu-volume-hole.h
+	gdu-volume-hole.h				\
+	gdu-hub.h					\
+	gdu-machine.h					\
+	$(NULL)
 
 libgdu_la_SOURCES =                                					\
 						gdu.h					\
@@ -43,16 +65,26 @@ libgdu_la_SOURCES =                                					\
 	gdu-util.h				gdu-util.c				\
 	gdu-pool.c				gdu-pool.h				\
 	gdu-device.c				gdu-device.h				\
+	gdu-adapter.c				gdu-adapter.h				\
+	gdu-expander.c				gdu-expander.h				\
+	gdu-port.c				gdu-port.h				\
 	gdu-drive.c				gdu-drive.h				\
 	gdu-linux-md-drive.c			gdu-linux-md-drive.h			\
+	gdu-linux-lvm2-volume-group.c		gdu-linux-lvm2-volume-group.h		\
+	gdu-linux-lvm2-volume.c			gdu-linux-lvm2-volume.h			\
+	gdu-linux-lvm2-volume-hole.c		gdu-linux-lvm2-volume-hole.h		\
 	gdu-volume.c				gdu-volume.h				\
 	gdu-presentable.c			gdu-presentable.h			\
 	gdu-volume-hole.c			gdu-volume-hole.h			\
 	gdu-known-filesystem.c			gdu-known-filesystem.h			\
 	gdu-error.c				gdu-error.h				\
 	gdu-process.c				gdu-process.h				\
+	gdu-hub.c				gdu-hub.h				\
+	gdu-machine.c				gdu-machine.h				\
 						gdu-private.h				\
-	$(BUILT_SOURCES)
+	gdu-ssh-bridge.c			gdu-ssh-bridge.h			\
+	$(BUILT_SOURCES)								\
+	$(NULL)
 
 libgdu_la_CPPFLAGS = 					\
 	-I$(top_srcdir)/src				\

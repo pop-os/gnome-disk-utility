@@ -1,0 +1,33 @@
+<!-- ##### SECTION Title ##### -->
+GduMachine
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GduMachinePrivate ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT GduMachine ##### -->
+<para>
+
+</para>
+
+@parent: 
+@priv: 
+

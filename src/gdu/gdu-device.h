@@ -71,6 +71,7 @@ dev_t gdu_device_get_dev (GduDevice *device);
 guint64 gdu_device_get_detection_time (GduDevice *device);
 guint64 gdu_device_get_media_detection_time (GduDevice *device);
 const char *gdu_device_get_device_file (GduDevice *device);
+const char *gdu_device_get_device_file_presentation (GduDevice *device);
 guint64 gdu_device_get_size (GduDevice *device);
 guint64 gdu_device_get_block_size (GduDevice *device);
 gboolean gdu_device_is_removable (GduDevice *device);
@@ -89,6 +90,10 @@ gboolean gdu_device_is_luks (GduDevice *device);
 gboolean gdu_device_is_luks_cleartext (GduDevice *device);
 gboolean gdu_device_is_linux_md_component (GduDevice *device);
 gboolean gdu_device_is_linux_md (GduDevice *device);
+gboolean gdu_device_is_linux_lvm2_lv (GduDevice *device);
+gboolean gdu_device_is_linux_lvm2_pv (GduDevice *device);
+gboolean gdu_device_is_linux_dmmp (GduDevice *device);
+gboolean gdu_device_is_linux_dmmp_component (GduDevice *device);
 gboolean gdu_device_is_mounted (GduDevice *device);
 const char *gdu_device_get_mount_path (GduDevice *device);
 char **gdu_device_get_mount_paths (GduDevice *device);
@@ -132,6 +137,7 @@ const char *gdu_device_drive_get_vendor (GduDevice *device);
 const char *gdu_device_drive_get_model (GduDevice *device);
 const char *gdu_device_drive_get_revision (GduDevice *device);
 const char *gdu_device_drive_get_serial (GduDevice *device);
+const char *gdu_device_drive_get_wwn (GduDevice *device);
 const char *gdu_device_drive_get_connection_interface (GduDevice *device);
 guint64 gdu_device_drive_get_connection_speed (GduDevice *device);
 char **gdu_device_drive_get_media_compatibility (GduDevice *device);
@@ -141,6 +147,11 @@ gboolean gdu_device_drive_get_requires_eject (GduDevice *device);
 gboolean gdu_device_drive_get_can_detach (GduDevice *device);
 gboolean gdu_device_drive_get_can_spindown (GduDevice *device);
 gboolean gdu_device_drive_get_is_rotational (GduDevice *device);
+guint    gdu_device_drive_get_rotation_rate (GduDevice *device);
+const char *gdu_device_drive_get_write_cache (GduDevice *device);
+const char *gdu_device_drive_get_adapter (GduDevice *device);
+char **gdu_device_drive_get_ports (GduDevice *device);
+char **gdu_device_drive_get_similar_devices (GduDevice *device);
 
 gboolean gdu_device_optical_disc_get_is_blank (GduDevice *device);
 gboolean gdu_device_optical_disc_get_is_appendable (GduDevice *device);
@@ -150,6 +161,7 @@ guint gdu_device_optical_disc_get_num_audio_tracks (GduDevice *device);
 guint gdu_device_optical_disc_get_num_sessions (GduDevice *device);
 
 const char *gdu_device_linux_md_component_get_level (GduDevice *device);
+int         gdu_device_linux_md_component_get_position (GduDevice *device);
 int         gdu_device_linux_md_component_get_num_raid_devices (GduDevice *device);
 const char *gdu_device_linux_md_component_get_uuid (GduDevice *device);
 const char *gdu_device_linux_md_component_get_home_host (GduDevice *device);
@@ -171,6 +183,26 @@ const char *gdu_device_linux_md_get_sync_action (GduDevice *device);
 double      gdu_device_linux_md_get_sync_percentage (GduDevice *device);
 guint64     gdu_device_linux_md_get_sync_speed (GduDevice *device);
 
+const char *gdu_device_linux_lvm2_lv_get_name (GduDevice *device);
+const char *gdu_device_linux_lvm2_lv_get_uuid (GduDevice *device);
+const char *gdu_device_linux_lvm2_lv_get_group_name (GduDevice *device);
+const char *gdu_device_linux_lvm2_lv_get_group_uuid (GduDevice *device);
+
+const char *gdu_device_linux_lvm2_pv_get_uuid (GduDevice *device);
+guint       gdu_device_linux_lvm2_pv_get_num_metadata_areas (GduDevice *device);
+const char *gdu_device_linux_lvm2_pv_get_group_name (GduDevice *device);
+const char *gdu_device_linux_lvm2_pv_get_group_uuid (GduDevice *device);
+guint64     gdu_device_linux_lvm2_pv_get_group_size (GduDevice *device);
+guint64     gdu_device_linux_lvm2_pv_get_group_unallocated_size (GduDevice *device);
+guint64     gdu_device_linux_lvm2_pv_get_group_extent_size (GduDevice *device);
+guint64     gdu_device_linux_lvm2_pv_get_group_sequence_number (GduDevice *device);
+gchar     **gdu_device_linux_lvm2_pv_get_group_physical_volumes (GduDevice *device);
+gchar     **gdu_device_linux_lvm2_pv_get_group_logical_volumes (GduDevice *device);
+
+const char *gdu_device_linux_dmmp_component_get_holder (GduDevice *device);
+const char *gdu_device_linux_dmmp_get_name (GduDevice *device);
+char **gdu_device_linux_dmmp_get_slaves (GduDevice *device);
+const char *gdu_device_linux_dmmp_get_parameters (GduDevice *device);
 
 gboolean      gdu_device_drive_ata_smart_get_is_available (GduDevice *device);
 guint64       gdu_device_drive_ata_smart_get_time_collected (GduDevice *device);
@@ -274,10 +306,17 @@ void gdu_device_op_linux_md_check    (GduDevice                           *devic
 
 /* ---------------------------------------------------------------------------------------------------- */
 
-void gdu_device_op_linux_md_add_component (GduDevice                                 *device,
-                                           const char                                *component_objpath,
-                                           GduDeviceLinuxMdAddComponentCompletedFunc  callback,
-                                           gpointer                                   user_data);
+void gdu_device_op_linux_md_add_spare (GduDevice                             *device,
+                                       const char                            *component_objpath,
+                                       GduDeviceLinuxMdAddSpareCompletedFunc  callback,
+                                       gpointer                               user_data);
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+void gdu_device_op_linux_md_expand (GduDevice                           *device,
+                                    GPtrArray                           *component_objpaths,
+                                    GduDeviceLinuxMdExpandCompletedFunc  callback,
+                                    gpointer                             user_data);
 
 /* ---------------------------------------------------------------------------------------------------- */
 
@@ -343,6 +382,20 @@ void gdu_device_op_drive_detach                (GduDevice                       
 void gdu_device_op_drive_poll_media                 (GduDevice                        *device,
                                                      GduDeviceDrivePollMediaCompletedFunc   callback,
                                                      gpointer                          user_data);
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+void gdu_device_op_drive_benchmark (GduDevice                             *device,
+                                    gboolean                               do_write_benchmark,
+                                    const gchar* const *                   options,
+                                    GduDeviceDriveBenchmarkCompletedFunc   callback,
+                                    gpointer                               user_data);
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+void gdu_device_op_linux_lvm2_lv_stop     (GduDevice                             *device,
+                                           GduDeviceLinuxLvm2LVStopCompletedFunc  callback,
+                                           gpointer                               user_data);
 
 G_END_DECLS
 

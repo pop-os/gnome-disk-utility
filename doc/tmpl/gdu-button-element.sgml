@@ -1,0 +1,130 @@
+<!-- ##### SECTION Title ##### -->
+gdu-button-element
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### TYPEDEF GduButtonElementClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF GduButtonElementPrivate ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION changed ##### -->
+<para>
+
+</para>
+
+@widget: 
+
+
+<!-- ##### FUNCTION clicked ##### -->
+<para>
+
+</para>
+
+@element: 
+
+
+<!-- ##### FUNCTION gdu_button_element_new ##### -->
+<para>
+
+</para>
+
+@icon_name: 
+@primary_text: 
+@secondary_text: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_button_element_get_icon_name ##### -->
+<para>
+
+</para>
+
+@element: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_button_element_get_primary_text ##### -->
+<para>
+
+</para>
+
+@element: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_button_element_get_secondary_text ##### -->
+<para>
+
+</para>
+
+@element: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_button_element_get_visible ##### -->
+<para>
+
+</para>
+
+@element: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_button_element_set_icon_name ##### -->
+<para>
+
+</para>
+
+@element: 
+@icon_name: 
+
+
+<!-- ##### FUNCTION gdu_button_element_set_primary_text ##### -->
+<para>
+
+</para>
+
+@element: 
+@primary_text: 
+
+
+<!-- ##### FUNCTION gdu_button_element_set_secondary_text ##### -->
+<para>
+
+</para>
+
+@element: 
+@primary_text: 
+
+
+<!-- ##### FUNCTION gdu_button_element_set_visible ##### -->
+<para>
+
+</para>
+
+@element: 
+@visible: 
+
+

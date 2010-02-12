@@ -24,9 +24,9 @@
  */
 
 #include "config.h"
+#include <glib/gi18n.h>
 
 #include <glib-object.h>
-#include <glib/gi18n-lib.h>
 #include <glib/gthread.h>
 #include <gio/gio.h>
 #include <gdu/gdu.h>
@@ -34,7 +34,6 @@
 #include <gtk/gtk.h>
 #include <stdlib.h>
 
-#include "gdu-format-dialog.h"
 #include "gdu-format-progress-dialog.h"
 
 typedef struct
@@ -146,7 +145,7 @@ unmount_cb (GObject      *source_object,
         GMount *mount = G_MOUNT (source_object);
         UnmountData *data = user_data;
 
-        g_mount_unmount_finish (mount, res, &data->error);
+        g_mount_unmount_with_operation_finish (mount, res, &data->error);
 
         g_main_loop_quit (data->loop);
 }
@@ -289,7 +288,9 @@ main (int argc, char *argv[])
         if (toplevel != NULL && GDU_IS_DRIVE (toplevel)) {
                 drive_name = gdu_presentable_get_name (toplevel);
         }
-        size_str = gdu_util_get_size_for_display (gdu_device_get_size (device), FALSE);
+        size_str = gdu_util_get_size_for_display (gdu_device_get_size (device),
+                                                  FALSE,
+                                                  FALSE);
 
         if (drive_name != NULL) {
                 if (gdu_device_is_partition (device)) {
@@ -328,8 +329,12 @@ main (int argc, char *argv[])
                                                    gdu_device_get_device_file (device));
         }
 
-        dialog = gdu_format_dialog_new (NULL, GDU_VOLUME (volume));
+        dialog = gdu_format_dialog_new (NULL, /* no parent window */
+                                        volume,
+                                        GDU_FORMAT_DIALOG_FLAGS_SIMPLE |
+                                        GDU_FORMAT_DIALOG_FLAGS_DISK_UTILITY_BUTTON);
         gtk_window_set_title (GTK_WINDOW (dialog), format_desc);
+        gtk_window_set_icon_name (GTK_WINDOW (dialog), "nautilus-gdu");
         gtk_widget_show_all (dialog);
 
         response = gtk_dialog_run (GTK_DIALOG (dialog));
@@ -368,7 +373,6 @@ main (int argc, char *argv[])
         }
 
         take_ownership = (g_strcmp0 (fs_type, "vfat") != 0);
-
 
         format_data = g_new0 (FormatData, 1);
         format_data->loop = loop;

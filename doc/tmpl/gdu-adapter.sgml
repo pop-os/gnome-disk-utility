@@ -1,0 +1,103 @@
+<!-- ##### SECTION Title ##### -->
+GduAdapter
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GduAdapterPrivate ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT GduAdapter ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdu_adapter_get_object_path ##### -->
+<para>
+
+</para>
+
+@adapter: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_adapter_get_pool ##### -->
+<para>
+
+</para>
+
+@adapter: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_adapter_get_native_path ##### -->
+<para>
+
+</para>
+
+@adapter: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_adapter_get_vendor ##### -->
+<para>
+
+</para>
+
+@adapter: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_adapter_get_model ##### -->
+<para>
+
+</para>
+
+@adapter: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_adapter_get_driver ##### -->
+<para>
+
+</para>
+
+@adapter: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_adapter_get_fabric ##### -->
+<para>
+
+</para>
+
+@adapter: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_adapter_get_num_ports ##### -->
+<para>
+
+</para>
+
+@adapter: 
+@Returns: 
+
+
