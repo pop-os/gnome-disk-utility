@@ -16,12 +16,13 @@ Build-Depends: debhelper (>= 7),
  libdbus-glib-1-dev (>= 0.76),
  libglib2.0-dev (>= 2.16),
  libgtk2.0-dev (>= 2.17.2),
- devicekit-disks (>= 007),
+ udisks (>= 1.0.0~),
  libatasmart-dev (>= 0.14),
  libgnome-keyring-dev (>= 2.22),
  libunique-dev (>= 1.0),
  libnotify-dev (>= 0.3.0),
- libnautilus-extension-dev (>= 2.24)
+ libnautilus-extension-dev (>= 2.24),
+ libavahi-ui-dev (>= 0.6.25)
 Standards-Version: 3.8.3
 Vcs-Git: git://git.debian.org/git/pkg-utopia/gnome-disk-utility.git
 Vcs-Browser: http://git.debian.org/?p=pkg-utopia/gnome-disk-utility.git;a=summary
@@ -29,7 +30,7 @@ Homepage: http://git.gnome.org/cgit/gnome-disk-utility/
 
 Package: gnome-disk-utility
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, devicekit-disks (>= 007)
+Depends: ${shlibs:Depends}, ${misc:Depends}, udisks (>= 1.0.0~), udisks (<< 1.1.0)
 Description: manage and configure disk drives and media
  palimpsest (from the gnome-disk-utility project) is a tool to manage disk
  drives and media:
@@ -38,7 +39,7 @@ Description: manage and configure disk drives and media
   * Mount and unmount partitions.
   * Query S.M.A.R.T. attributes.
  .
- It utilizes DeviceKit-disks.
+ It utilizes udisks.
 
 Package: libgdu0
 Architecture: any
@@ -46,7 +47,7 @@ Section: libs
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: GObject based Disk Utility Library
  The gnome-disk-utility library provides an user-space interface to the
- DeviceKit-disks objects and properties (such as drives, volumes, SMART data),
+ udisks objects and properties (such as drives, volumes, SMART data),
  and operations (such as mounting, unmounting, creating and checking
  partitions).
  .
@@ -69,7 +70,7 @@ Section: libdevel
 Depends: libgdu0 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}, libglib2.0-dev (>= 2.16)
 Description: GObject based Disk Utility Library - development files
  The gnome-disk-utility library provides an user-space interface to the
- DeviceKit-disks objects and properties (such as drives, volumes, SMART data),
+ udisks objects and properties (such as drives, volumes, SMART data),
  and operations (such as mounting, unmounting, creating and checking
  partitions).
  .

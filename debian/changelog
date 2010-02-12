@@ -8,6 +8,12 @@ gnome-disk-utility (2.29.0~git20100212.5df348f-1) UNRELEASED; urgency=low
     - debian/patches/01-reiserfs-support.patch (merged upstream)
     - debian/patches/02-link-against-libx11-for-xkb.patch (merged upstream)
     - debian/patches/99-autoreconf.patch (no longer required)
+  * debian/control
+    - Update package descriptions for the DeviceKit-disks → udisks renaming.
+    - Add Build-Depends on libavahi-ui-dev (>= 0.6.25), and replace
+      devicekit-disks (>= 007) Build-Depends with udisks (>= 1.0.0~).
+    - Replace Depends on devicekit-disks (>= 007) with
+      udisks (>= 1.0.0~), udisks (<< 1.1.0).
 
  -- Michael Biebl <biebl@debian.org>  Fri, 12 Feb 2010 14:19:59 +0100
 
