@@ -1,0 +1,597 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="gnome-disk-utility-gdu-presentable">
+<refmeta>
+<refentrytitle role="top_of_page" id="gnome-disk-utility-gdu-presentable.top_of_page">GduPresentable</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GNOME-DISK-UTILITY Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GduPresentable</refname>
+<refpurpose>Interface for devices presentable to the end user</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gnome-disk-utility-gdu-presentable.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="GduPresentableIface">GduPresentableIface</link>;
+const <link linkend="gchar">gchar</link> *       <link linkend="gdu-presentable-get-id">gdu_presentable_get_id</link>              (<link linkend="GduPresentable">GduPresentable</link> *presentable);
+<link linkend="GduDevice">GduDevice</link> *         <link linkend="gdu-presentable-get-device">gdu_presentable_get_device</link>          (<link linkend="GduPresentable">GduPresentable</link> *presentable);
+<link linkend="GduPresentable">GduPresentable</link> *    <link linkend="gdu-presentable-get-enclosing-presentable">gdu_presentable_get_enclosing_presentable</link>
+                                                        (<link linkend="GduPresentable">GduPresentable</link> *presentable);
+<link linkend="gchar">gchar</link> *             <link linkend="gdu-presentable-get-name">gdu_presentable_get_name</link>            (<link linkend="GduPresentable">GduPresentable</link> *presentable);
+<link linkend="gchar">gchar</link> *             <link linkend="gdu-presentable-get-description">gdu_presentable_get_description</link>     (<link linkend="GduPresentable">GduPresentable</link> *presentable);
+<link linkend="gchar">gchar</link> *             <link linkend="gdu-presentable-get-vpd-name">gdu_presentable_get_vpd_name</link>        (<link linkend="GduPresentable">GduPresentable</link> *presentable);
+<link linkend="GIcon">GIcon</link> *             <link linkend="gdu-presentable-get-icon">gdu_presentable_get_icon</link>            (<link linkend="GduPresentable">GduPresentable</link> *presentable);
+<link linkend="guint64">guint64</link>             <link linkend="gdu-presentable-get-offset">gdu_presentable_get_offset</link>          (<link linkend="GduPresentable">GduPresentable</link> *presentable);
+<link linkend="guint64">guint64</link>             <link linkend="gdu-presentable-get-size">gdu_presentable_get_size</link>            (<link linkend="GduPresentable">GduPresentable</link> *presentable);
+<link linkend="GduPool">GduPool</link> *           <link linkend="gdu-presentable-get-pool">gdu_presentable_get_pool</link>            (<link linkend="GduPresentable">GduPresentable</link> *presentable);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-presentable-is-allocated">gdu_presentable_is_allocated</link>        (<link linkend="GduPresentable">GduPresentable</link> *presentable);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-presentable-is-recognized">gdu_presentable_is_recognized</link>       (<link linkend="GduPresentable">GduPresentable</link> *presentable);
+<link linkend="GduPresentable">GduPresentable</link> *    <link linkend="gdu-presentable-get-toplevel">gdu_presentable_get_toplevel</link>        (<link linkend="GduPresentable">GduPresentable</link> *presentable);
+<link linkend="guint">guint</link>               <link linkend="gdu-presentable-hash">gdu_presentable_hash</link>                (<link linkend="GduPresentable">GduPresentable</link> *presentable);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-presentable-equals">gdu_presentable_equals</link>              (<link linkend="GduPresentable">GduPresentable</link> *a,
+                                                         <link linkend="GduPresentable">GduPresentable</link> *b);
+<link linkend="gint">gint</link>                <link linkend="gdu-presentable-compare">gdu_presentable_compare</link>             (<link linkend="GduPresentable">GduPresentable</link> *a,
+                                                         <link linkend="GduPresentable">GduPresentable</link> *b);
+<link linkend="GList">GList</link> *             <link linkend="gdu-presentable-get-enclosed">gdu_presentable_get_enclosed</link>        (<link linkend="GduPresentable">GduPresentable</link> *presentable);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-presentable-encloses">gdu_presentable_encloses</link>            (<link linkend="GduPresentable">GduPresentable</link> *a,
+                                                         <link linkend="GduPresentable">GduPresentable</link> *b);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gnome-disk-utility-gdu-presentable.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+All storage devices in <literal>UNIX</literal> and
+<literal>UNIX</literal>-like operating systems are mostly
+represented by so-called <literal>block</literal> devices at the
+kernel/user-land interface. UNIX block devices, including
+information and operations are represented by the <link linkend="GduDevice"><type>GduDevice</type></link> class.
+</para>
+<para>
+However, from an user-interface point of view, it's useful to make
+a finer-grained distinction; for example it's useful to make a
+distinction between drives (e.g. a phyiscal hard disk, optical
+drives) and volumes (e.g. a mountable file system).
+</para>
+<para>
+As such, classes encapsulating aspects of a UNIX block device (such
+as it being drive, volume, empty space) that are interesting to
+present in the user interface all implement the <link linkend="GduPresentable"><type>GduPresentable</type></link>
+interface. This interface provides lowest-common denominator
+functionality assisting in the creation of user interfaces; name
+and icons are easily available as well as hierarchical grouping
+in terms of parent/child relationships. Thus, several classes
+such as <link linkend="GduVolume"><type>GduVolume</type></link>, <link linkend="GduDrive"><type>GduDrive</type></link> and others implement the
+<link linkend="GduPresentable"><type>GduPresentable</type></link> interface
+</para>
+<para>
+For example, if a device (<literal>/dev/sda</literal>) is
+partitioned into two partitions (<literal>/dev/sda1</literal> and
+<literal>/dev/sda2</literal>), the parent/child relation look looks
+like this
+</para>
+<para>
+<programlisting>
+GduDrive     (/dev/sda)
+  GduVolume  (/dev/sda1)
+  GduVolume  (/dev/sda2)
+</programlisting>
+</para>
+<para>
+Some partitioning schemes (notably Master Boot Record) have a
+concept of nested partition tables. Supposed
+<literal>/dev/sda2</literal> is an extended partition and
+<literal>/dev/sda5</literal> and <literal>/dev/sda6</literal> are
+logical partitions:
+</para>
+<para>
+<programlisting>
+GduDrive       (/dev/sda)
+  GduVolume    (/dev/sda1)
+  GduVolume    (/dev/sda2)
+    GduVolume  (/dev/sda5)
+    GduVolume  (/dev/sda6)
+</programlisting>
+</para>
+<para>
+The <link linkend="gdu-presentable-get-offset"><function>gdu_presentable_get_offset()</function></link> function can be used to
+determine the ordering; this function will return the offset
+of a <link linkend="GduPresentable"><type>GduPresentable</type></link> relative to the topmost enclosing device.
+</para>
+<para>
+Now, consider the case where there are "holes", e.g. where
+there exists one or more regions on the partitioned device
+not occupied by any partitions. In that case, the <link linkend="GduPool"><type>GduPool</type></link>
+object will create <link linkend="GduVolumeHole"><type>GduVolumeHole</type></link> objects to patch the holes:
+</para>
+<para>
+<programlisting>
+GduDrive           (/dev/sda)
+  GduVolume        (/dev/sda1)
+  GduVolume        (/dev/sda2)
+    GduVolume      (/dev/sda5)
+    GduVolumeHole  (no device)
+    GduVolume      (/dev/sda6)
+  GduVolumeHole    (no device)
+</programlisting>
+</para>
+<para>
+Also, some devices are not partitioned. For example, the UNIX
+block device <literal>/dev/sr0</literal> refers to both the
+optical drive and (if any medium is present) the contents of
+the optical disc inserted into the disc. In that case, the
+following structure will be created:
+</para>
+<para>
+<programlisting>
+GduDrive     (/dev/sr0)
+  GduVolume  (/dev/sr0)
+</programlisting>
+</para>
+<para>
+If no media is available, only a single <link linkend="GduDrive"><type>GduDrive</type></link> object will
+exist:
+</para>
+<para>
+<programlisting>
+GduDrive     (/dev/sr0)
+</programlisting>
+</para>
+<para>
+Finally, unlocked LUKS Encrypted devices are represented as
+children of their encrypted counter parts, for example:
+</para>
+<para>
+<programlisting>
+GduDrive       (/dev/sda)
+  GduVolume    (/dev/sda1)
+  GduVolume    (/dev/sda2)
+    GduVolume  (/dev/dm-0)
+</programlisting>
+</para>
+<para>
+Some devices, like RAID and LVM devices, needs to be assembled from
+components (e.g. "activated" or "started". This is encapsulated in
+the <link linkend="GduActivatableDrive"><type>GduActivatableDrive</type></link> class; this is not much different from
+<link linkend="GduDrive"><type>GduDrive</type></link> except that there only is a <link linkend="GduDevice"><type>GduDevice</type></link> assoicated with
+the object when the device itself is started. For example:
+</para>
+<para>
+<programlisting>
+GduActivatableDrive     (no device)
+</programlisting>
+</para>
+<para>
+will be created (e.g. synthesized) as soon as the first component
+of the activatable drive is available. When activated, the
+<link linkend="GduActivatableDrive"><type>GduActivatableDrive</type></link> will gain a <link linkend="GduDevice"><type>GduDevice</type></link> and the hierarchy looks
+somewhat like this
+</para>
+<para>
+<programlisting>
+GduActivatableDrive     (/dev/md0)
+  GduVolume             (/dev/md0)
+</programlisting>
+</para>
+<para>
+To sum up, the <link linkend="GduPresentable"><type>GduPresentable</type></link> interface (and classes implementing
+it such as <link linkend="GduDrive"><type>GduDrive</type></link> and <link linkend="GduVolume"><type>GduVolume</type></link>) describe how a drive / medium
+is organized such that it's easy to compose an user interface. To
+perform operations on devices, use <link linkend="gdu-presentable-get-device"><function>gdu_presentable_get_device()</function></link> and
+the functions on <link linkend="GduDevice"><type>GduDevice</type></link>.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gnome-disk-utility-gdu-presentable.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GduPresentableIface" role="struct">
+<title>GduPresentableIface</title>
+<indexterm zone="GduPresentableIface"><primary sortas="GduPresentableIface">GduPresentableIface</primary></indexterm><programlisting>typedef struct {
+        GTypeInterface g_iface;
+
+        /* signals */
+        void (*changed)     (GduPresentable *presentable);
+        void (*removed)     (GduPresentable *presentable);
+        void (*job_changed) (GduPresentable *presentable);
+
+        /* virtual table */
+        const gchar *    (*get_id)                    (GduPresentable *presentable);
+        GduDevice *      (*get_device)                (GduPresentable *presentable);
+        GduPresentable * (*get_enclosing_presentable) (GduPresentable *presentable);
+        gchar *          (*get_name)                  (GduPresentable *presentable);
+        gchar *          (*get_description)           (GduPresentable *presentable);
+        gchar *          (*get_vpd_name)              (GduPresentable *presentable);
+        GIcon *          (*get_icon)                  (GduPresentable *presentable);
+        guint64          (*get_offset)                (GduPresentable *presentable);
+        guint64          (*get_size)                  (GduPresentable *presentable);
+        GduPool *        (*get_pool)                  (GduPresentable *presentable);
+        gboolean         (*is_allocated)              (GduPresentable *presentable);
+        gboolean         (*is_recognized)             (GduPresentable *presentable);
+} GduPresentableIface;
+</programlisting>
+<para>
+Interface for <link linkend="GduPresentable"><type>GduPresentable</type></link> implementations.</para>
+<para>
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="GTypeInterface">GTypeInterface</link>&#160;<structfield>g_iface</structfield>;</term>
+<listitem><simpara> The parent interface.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>changed</structfield>&#160;()</term>
+<listitem><simpara> Signal emitted when the presentable is changed.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>removed</structfield>&#160;()</term>
+<listitem><simpara> Signal emitted when the presentable is removed. Recipients should release all references to the object.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>job_changed</structfield>&#160;()</term>
+<listitem><simpara> Signal emitted when the job state on the underlying <link linkend="GduDevice"><type>GduDevice</type></link> changes.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>get_id</structfield>&#160;()</term>
+<listitem><simpara> Returns a unique id for the presentable.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>get_device</structfield>&#160;()</term>
+<listitem><simpara> Returns the underlying <link linkend="GduDevice"><type>GduDevice</type></link>.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>get_enclosing_presentable</structfield>&#160;()</term>
+<listitem><simpara> Returns the <link linkend="GduPresentable"><type>GduPresentable</type></link> that is the parent or <link linkend="NULL--CAPS"><type>NULL</type></link> if there is no parent.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>get_name</structfield>&#160;()</term>
+<listitem><simpara> Returns a name for the presentable suitable for presentation in an user interface.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>get_description</structfield>&#160;()</term>
+<listitem><simpara> Returns a description of the presentable suitable for presentation in an user interface.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>get_vpd_name</structfield>&#160;()</term>
+<listitem><simpara> Returns a name for the presentable suitable for UI that includes Vital Product Pata.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>get_icon</structfield>&#160;()</term>
+<listitem><simpara> Returns an icon suitable for display in an user interface.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>get_offset</structfield>&#160;()</term>
+<listitem><simpara> Returns where the data represented by the presentable starts on the underlying main block device.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>get_size</structfield>&#160;()</term>
+<listitem><simpara> Returns the size of the presentable or zero if not allocated.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>get_pool</structfield>&#160;()</term>
+<listitem><simpara> Returns the <link linkend="GduPool"><type>GduPool</type></link> object that the presentable was obtained from.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>is_allocated</structfield>&#160;()</term>
+<listitem><simpara> Returns whether the presentable is allocated or whether it represents free space.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>is_recognized</structfield>&#160;()</term>
+<listitem><simpara> Returns whether the contents of the presentable are recognized (e.g. well-known file system type).
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-presentable-get-id" role="function">
+<title>gdu_presentable_get_id ()</title>
+<indexterm zone="gdu-presentable-get-id"><primary sortas="gdu_presentable_get_id">gdu_presentable_get_id</primary></indexterm><programlisting>const <link linkend="gchar">gchar</link> *       gdu_presentable_get_id              (<link linkend="GduPresentable">GduPresentable</link> *presentable);</programlisting>
+<para>
+Gets a stable identifier for <parameter>presentable</parameter>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>presentable</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GduPresentable"><type>GduPresentable</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> An stable identifier for <parameter>presentable</parameter>. Do not free, the string is
+owned by <parameter>presentable</parameter>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-presentable-get-device" role="function">
+<title>gdu_presentable_get_device ()</title>
+<indexterm zone="gdu-presentable-get-device"><primary sortas="gdu_presentable_get_device">gdu_presentable_get_device</primary></indexterm><programlisting><link linkend="GduDevice">GduDevice</link> *         gdu_presentable_get_device          (<link linkend="GduPresentable">GduPresentable</link> *presentable);</programlisting>
+<para>
+Gets the underlying device for <parameter>presentable</parameter> if one is available.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>presentable</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GduPresentable"><type>GduPresentable</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> A <link linkend="GduDevice"><type>GduDevice</type></link> or <link linkend="NULL--CAPS"><type>NULL</type></link> if there are no underlying device of
+<parameter>presentable</parameter>. Caller must unref the object when done with it.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-presentable-get-enclosing-presentable" role="function">
+<title>gdu_presentable_get_enclosing_presentable ()</title>
+<indexterm zone="gdu-presentable-get-enclosing-presentable"><primary sortas="gdu_presentable_get_enclosing_presentable">gdu_presentable_get_enclosing_presentable</primary></indexterm><programlisting><link linkend="GduPresentable">GduPresentable</link> *    gdu_presentable_get_enclosing_presentable
+                                                        (<link linkend="GduPresentable">GduPresentable</link> *presentable);</programlisting>
+<para>
+Gets the <link linkend="GduPresentable"><type>GduPresentable</type></link> that is the parent of <parameter>presentable</parameter> or
+<link linkend="NULL--CAPS"><type>NULL</type></link> if there is no parent.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>presentable</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GduPresentable"><type>GduPresentable</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The <link linkend="GduPresentable"><type>GduPresentable</type></link> that is a parent of <parameter>presentable</parameter> or
+<link linkend="NULL--CAPS"><type>NULL</type></link> if <parameter>presentable</parameter> is the top-most presentable already. Caller
+must unref the object.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-presentable-get-name" role="function">
+<title>gdu_presentable_get_name ()</title>
+<indexterm zone="gdu-presentable-get-name"><primary sortas="gdu_presentable_get_name">gdu_presentable_get_name</primary></indexterm><programlisting><link linkend="gchar">gchar</link> *             gdu_presentable_get_name            (<link linkend="GduPresentable">GduPresentable</link> *presentable);</programlisting>
+<para>
+Gets a name for <parameter>presentable</parameter> suitable for presentation in an user
+interface.
+</para>
+<para>
+For drives (e.g. <link linkend="GduDrive"><type>GduDrive</type></link>) this could be "80G Solid-State Disk",
+"500G Hard Disk", "CompactFlash Drive", "CD/DVD Drive"
+</para>
+<para>
+For volumes (e.g. <link linkend="GduVolume"><type>GduVolume</type></link>) this string could be "Fedora
+(Rawhide)" (for filesystems with labels), "48G Free" (for
+unallocated space), "2GB Swap Space" (for swap), "430GB RAID
+Component" (for RAID components) and so on.
+</para>
+<para>
+Constrast with <link linkend="gdu-presentable-get-vpd-name"><function>gdu_presentable_get_vpd_name()</function></link> that returns a name
+based on Vital Product Data including things such as the name of
+the vendor, the model name and so on.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>presentable</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GduPresentable"><type>GduPresentable</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The name. Caller must free the string with <link linkend="g-free"><function>g_free()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-presentable-get-description" role="function">
+<title>gdu_presentable_get_description ()</title>
+<indexterm zone="gdu-presentable-get-description"><primary sortas="gdu_presentable_get_description">gdu_presentable_get_description</primary></indexterm><programlisting><link linkend="gchar">gchar</link> *             gdu_presentable_get_description     (<link linkend="GduPresentable">GduPresentable</link> *presentable);</programlisting>
+<para>
+Gets a description for <parameter>presentable</parameter> suitable for presentation in an user
+interface.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>presentable</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GduPresentable"><type>GduPresentable</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The description. Caller must free the string with <link linkend="g-free"><function>g_free()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-presentable-get-vpd-name" role="function">
+<title>gdu_presentable_get_vpd_name ()</title>
+<indexterm zone="gdu-presentable-get-vpd-name"><primary sortas="gdu_presentable_get_vpd_name">gdu_presentable_get_vpd_name</primary></indexterm><programlisting><link linkend="gchar">gchar</link> *             gdu_presentable_get_vpd_name        (<link linkend="GduPresentable">GduPresentable</link> *presentable);</programlisting>
+<para>
+Gets a name for <parameter>presentable</parameter> suitable for presentation in an user
+interface that includes Vital Product Data details such as the name
+of the vendor, the model name and so on.
+</para>
+<para>
+For drives (e.g. <link linkend="GduDrive"><type>GduDrive</type></link>) this typically includes the
+vendor/model strings obtained from the hardware, for example
+"MATSHITA DVD/CDRW UJDA775" or "ATA INTEL SSDSA2MH080G1GC".
+</para>
+<para>
+For volumes (e.g. <link linkend="GduVolume"><type>GduVolume</type></link>) this includes information about e.g.
+partition infomation for example "Whole-disk volume on ATA INTEL
+SSDSA2MH080G1GC", "Partition 2 of ATA INTEL SSDSA2MH080G1GC".
+</para>
+<para>
+Contrast with <link linkend="gdu-presentable-get-name"><function>gdu_presentable_get_name()</function></link> that may not include this
+information.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>presentable</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GduPresentable"><type>GduPresentable</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The name. Caller must free the string with <link linkend="g-free"><function>g_free()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-presentable-get-icon" role="function">
+<title>gdu_presentable_get_icon ()</title>
+<indexterm zone="gdu-presentable-get-icon"><primary sortas="gdu_presentable_get_icon">gdu_presentable_get_icon</primary></indexterm><programlisting><link linkend="GIcon">GIcon</link> *             gdu_presentable_get_icon            (<link linkend="GduPresentable">GduPresentable</link> *presentable);</programlisting>
+<para>
+Gets a <link linkend="GIcon"><type>GIcon</type></link> suitable for display in an user interface.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>presentable</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GduPresentable"><type>GduPresentable</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The icon. Caller must free this with <link linkend="g-object-unref"><function>g_object_unref()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-presentable-get-offset" role="function">
+<title>gdu_presentable_get_offset ()</title>
+<indexterm zone="gdu-presentable-get-offset"><primary sortas="gdu_presentable_get_offset">gdu_presentable_get_offset</primary></indexterm><programlisting><link linkend="guint64">guint64</link>             gdu_presentable_get_offset          (<link linkend="GduPresentable">GduPresentable</link> *presentable);</programlisting>
+<para>
+Gets where the data represented by the presentable starts on the
+underlying main block device</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>presentable</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GduPresentable"><type>GduPresentable</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Offset of <parameter>presentable</parameter> or 0 if <parameter>presentable</parameter> has no underlying device.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-presentable-get-size" role="function">
+<title>gdu_presentable_get_size ()</title>
+<indexterm zone="gdu-presentable-get-size"><primary sortas="gdu_presentable_get_size">gdu_presentable_get_size</primary></indexterm><programlisting><link linkend="guint64">guint64</link>             gdu_presentable_get_size            (<link linkend="GduPresentable">GduPresentable</link> *presentable);</programlisting>
+<para>
+Gets the size of <parameter>presentable</parameter>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>presentable</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GduPresentable"><type>GduPresentable</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The size of <parameter>presentable</parameter> or 0 if <parameter>presentable</parameter> has no underlying device.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-presentable-get-pool" role="function">
+<title>gdu_presentable_get_pool ()</title>
+<indexterm zone="gdu-presentable-get-pool"><primary sortas="gdu_presentable_get_pool">gdu_presentable_get_pool</primary></indexterm><programlisting><link linkend="GduPool">GduPool</link> *           gdu_presentable_get_pool            (<link linkend="GduPresentable">GduPresentable</link> *presentable);</programlisting>
+<para>
+Gets the <link linkend="GduPool"><type>GduPool</type></link> that <parameter>presentable</parameter> stems from.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>presentable</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GduPresentable"><type>GduPresentable</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> A <link linkend="GduPool"><type>GduPool</type></link>. Caller must unref object when done with it.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-presentable-is-allocated" role="function">
+<title>gdu_presentable_is_allocated ()</title>
+<indexterm zone="gdu-presentable-is-allocated"><primary sortas="gdu_presentable_is_allocated">gdu_presentable_is_allocated</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_presentable_is_allocated        (<link linkend="GduPresentable">GduPresentable</link> *presentable);</programlisting>
+<para>
+Determines if <parameter>presentable</parameter> represents an underlying block device with data.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>presentable</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GduPresentable"><type>GduPresentable</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Whether <parameter>presentable</parameter> is allocated.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-presentable-is-recognized" role="function">
+<title>gdu_presentable_is_recognized ()</title>
+<indexterm zone="gdu-presentable-is-recognized"><primary sortas="gdu_presentable_is_recognized">gdu_presentable_is_recognized</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_presentable_is_recognized       (<link linkend="GduPresentable">GduPresentable</link> *presentable);</programlisting>
+<para>
+Gets whether the contents of <parameter>presentable</parameter> are recognized; e.g. if
+it's a file system, encrypted data or swap space.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>presentable</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GduPresentable"><type>GduPresentable</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Whether <parameter>presentable</parameter> is recognized.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-presentable-get-toplevel" role="function">
+<title>gdu_presentable_get_toplevel ()</title>
+<indexterm zone="gdu-presentable-get-toplevel"><primary sortas="gdu_presentable_get_toplevel">gdu_presentable_get_toplevel</primary></indexterm><programlisting><link linkend="GduPresentable">GduPresentable</link> *    gdu_presentable_get_toplevel        (<link linkend="GduPresentable">GduPresentable</link> *presentable);</programlisting>
+<para>
+Gets the top-level presentable for a given presentable.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>presentable</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GduPresentable"><type>GduPresentable</type></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> A <link linkend="GduPresentable"><type>GduPresentable</type></link> or <link linkend="NULL--CAPS"><type>NULL</type></link> if <parameter>presentable</parameter> is the top-most presentable. Caller must
+unref the object when done with it
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-presentable-hash" role="function">
+<title>gdu_presentable_hash ()</title>
+<indexterm zone="gdu-presentable-hash"><primary sortas="gdu_presentable_hash">gdu_presentable_hash</primary></indexterm><programlisting><link linkend="guint">guint</link>               gdu_presentable_hash                (<link linkend="GduPresentable">GduPresentable</link> *presentable);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>presentable</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-presentable-equals" role="function">
+<title>gdu_presentable_equals ()</title>
+<indexterm zone="gdu-presentable-equals"><primary sortas="gdu_presentable_equals">gdu_presentable_equals</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_presentable_equals              (<link linkend="GduPresentable">GduPresentable</link> *a,
+                                                         <link linkend="GduPresentable">GduPresentable</link> *b);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>a</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>b</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-presentable-compare" role="function">
+<title>gdu_presentable_compare ()</title>
+<indexterm zone="gdu-presentable-compare"><primary sortas="gdu_presentable_compare">gdu_presentable_compare</primary></indexterm><programlisting><link linkend="gint">gint</link>                gdu_presentable_compare             (<link linkend="GduPresentable">GduPresentable</link> *a,
+                                                         <link linkend="GduPresentable">GduPresentable</link> *b);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>a</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>b</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-presentable-get-enclosed" role="function">
+<title>gdu_presentable_get_enclosed ()</title>
+<indexterm zone="gdu-presentable-get-enclosed"><primary sortas="gdu_presentable_get_enclosed">gdu_presentable_get_enclosed</primary></indexterm><programlisting><link linkend="GList">GList</link> *             gdu_presentable_get_enclosed        (<link linkend="GduPresentable">GduPresentable</link> *presentable);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>presentable</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-presentable-encloses" role="function">
+<title>gdu_presentable_encloses ()</title>
+<indexterm zone="gdu-presentable-encloses"><primary sortas="gdu_presentable_encloses">gdu_presentable_encloses</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_presentable_encloses            (<link linkend="GduPresentable">GduPresentable</link> *a,
+                                                         <link linkend="GduPresentable">GduPresentable</link> *b);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>a</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>b</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

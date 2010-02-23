@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="gnome-disk-utility-udisks-expander-glue">
+<refmeta>
+<refentrytitle role="top_of_page" id="gnome-disk-utility-udisks-expander-glue.top_of_page">udisks-expander-glue</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GNOME-DISK-UTILITY Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>udisks-expander-glue</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gnome-disk-utility-udisks-expander-glue.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+#define             <link linkend="DBUS-GLIB-CLIENT-WRAPPERS-org-freedesktop-UDisks-Expander">DBUS_GLIB_CLIENT_WRAPPERS_org_freedesktop_UDisks_Expander</link>
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gnome-disk-utility-udisks-expander-glue.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gnome-disk-utility-udisks-expander-glue.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="DBUS-GLIB-CLIENT-WRAPPERS-org-freedesktop-UDisks-Expander" role="macro">
+<title>DBUS_GLIB_CLIENT_WRAPPERS_org_freedesktop_UDisks_Expander</title>
+<indexterm zone="DBUS-GLIB-CLIENT-WRAPPERS-org-freedesktop-UDisks-Expander"><primary sortas="DBUS_GLIB_CLIENT_WRAPPERS_org_freedesktop_UDisks_Expander">DBUS_GLIB_CLIENT_WRAPPERS_org_freedesktop_UDisks_Expander</primary></indexterm><programlisting>#define DBUS_GLIB_CLIENT_WRAPPERS_org_freedesktop_UDisks_Expander
+</programlisting>
+<para>
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

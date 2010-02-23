@@ -1,0 +1,802 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="gnome-disk-utility-gdu-gtk-types">
+<refmeta>
+<refentrytitle role="top_of_page" id="gnome-disk-utility-gdu-gtk-types.top_of_page">gdu-gtk-types</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GNOME-DISK-UTILITY Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>gdu-gtk-types</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gnome-disk-utility-gdu-gtk-types.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+<anchor id="GduTimeLabel"/><anchor id="GduAtaSmartDialog"/><anchor id="GduSpinner"/><anchor id="GduPoolTreeModel"/><anchor id="GduPoolTreeView"/><anchor id="GduCreateLinuxMdDialog"/><anchor id="GduSizeWidget"/><anchor id="GduVolumeGrid"/><anchor id="GduDetailsTable"/><anchor id="GduDetailsElement"/><anchor id="GduErrorDialog"/><anchor id="GduConfirmationDialog"/><anchor id="GduButtonElement"/><anchor id="GduButtonTable"/><anchor id="GduDialog"/><anchor id="GduEditPartitionDialog"/>
+<synopsis>
+typedef             <link linkend="GduSample">GduSample</link>;
+typedef             <link linkend="GduColor">GduColor</link>;
+typedef             <link linkend="GduCurve">GduCurve</link>;
+typedef             <link linkend="GduGraph">GduGraph</link>;
+typedef             <link linkend="GduTimeLabel">GduTimeLabel</link>;
+typedef             <link linkend="GduAtaSmartDialog">GduAtaSmartDialog</link>;
+typedef             <link linkend="GduSpinner">GduSpinner</link>;
+typedef             <link linkend="GduPoolTreeModel">GduPoolTreeModel</link>;
+typedef             <link linkend="GduPoolTreeView">GduPoolTreeView</link>;
+typedef             <link linkend="GduCreateLinuxMdDialog">GduCreateLinuxMdDialog</link>;
+typedef             <link linkend="GduSizeWidget">GduSizeWidget</link>;
+typedef             <link linkend="GduVolumeGrid">GduVolumeGrid</link>;
+typedef             <link linkend="GduDetailsTable">GduDetailsTable</link>;
+typedef             <link linkend="GduDetailsElement">GduDetailsElement</link>;
+typedef             <link linkend="GduErrorDialog">GduErrorDialog</link>;
+typedef             <link linkend="GduConfirmationDialog">GduConfirmationDialog</link>;
+typedef             <link linkend="GduButtonElement">GduButtonElement</link>;
+typedef             <link linkend="GduButtonTable">GduButtonTable</link>;
+typedef             <link linkend="GduDialog">GduDialog</link>;
+typedef             <link linkend="GduEditPartitionDialog">GduEditPartitionDialog</link>;
+typedef             <link linkend="GduFormatDialog">GduFormatDialog</link>;
+typedef             <link linkend="GduPartitionDialog">GduPartitionDialog</link>;
+typedef             <link linkend="GduCreatePartitionDialog">GduCreatePartitionDialog</link>;
+typedef             <link linkend="GduCreateLinuxLvm2VolumeDialog">GduCreateLinuxLvm2VolumeDialog</link>;
+typedef             <link linkend="GduEditNameDialog">GduEditNameDialog</link>;
+typedef             <link linkend="GduDiskSelectionWidget">GduDiskSelectionWidget</link>;
+typedef             <link linkend="GduAddComponentLinuxMdDialog">GduAddComponentLinuxMdDialog</link>;
+typedef             <link linkend="GduEditLinuxMdDialog">GduEditLinuxMdDialog</link>;
+typedef             <link linkend="GduDriveBenchmarkDialog">GduDriveBenchmarkDialog</link>;
+typedef             <link linkend="GduConnectToServerDialog">GduConnectToServerDialog</link>;
+typedef             <link linkend="GduEditLinuxLvm2Dialog">GduEditLinuxLvm2Dialog</link>;
+typedef             <link linkend="GduAddPvLinuxLvm2Dialog">GduAddPvLinuxLvm2Dialog</link>;
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="gnome-disk-utility-gdu-gtk-types.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GInitiallyUnowned">GInitiallyUnowned</link>
+         +----<link linkend="GtkObject">GtkObject</link>
+               +----<link linkend="GtkWidget">GtkWidget</link>
+                     +----<link linkend="GtkMisc">GtkMisc</link>
+                           +----<link linkend="GtkLabel">GtkLabel</link>
+                                 +----GduTimeLabel
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GInitiallyUnowned">GInitiallyUnowned</link>
+         +----<link linkend="GtkObject">GtkObject</link>
+               +----<link linkend="GtkWidget">GtkWidget</link>
+                     +----<link linkend="GtkContainer">GtkContainer</link>
+                           +----<link linkend="GtkBin">GtkBin</link>
+                                 +----<link linkend="GtkWindow">GtkWindow</link>
+                                       +----<link linkend="GtkDialog">GtkDialog</link>
+                                             +----<link linkend="GduDialog">GduDialog</link>
+                                                   +----GduAtaSmartDialog
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GInitiallyUnowned">GInitiallyUnowned</link>
+         +----<link linkend="GtkObject">GtkObject</link>
+               +----<link linkend="GtkWidget">GtkWidget</link>
+                     +----<link linkend="GtkDrawingArea">GtkDrawingArea</link>
+                           +----GduSpinner
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GtkTreeStore">GtkTreeStore</link>
+         +----GduPoolTreeModel
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GInitiallyUnowned">GInitiallyUnowned</link>
+         +----<link linkend="GtkObject">GtkObject</link>
+               +----<link linkend="GtkWidget">GtkWidget</link>
+                     +----<link linkend="GtkContainer">GtkContainer</link>
+                           +----<link linkend="GtkTreeView">GtkTreeView</link>
+                                 +----GduPoolTreeView
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GInitiallyUnowned">GInitiallyUnowned</link>
+         +----<link linkend="GtkObject">GtkObject</link>
+               +----<link linkend="GtkWidget">GtkWidget</link>
+                     +----<link linkend="GtkContainer">GtkContainer</link>
+                           +----<link linkend="GtkBin">GtkBin</link>
+                                 +----<link linkend="GtkWindow">GtkWindow</link>
+                                       +----<link linkend="GtkDialog">GtkDialog</link>
+                                             +----GduCreateLinuxMdDialog
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GInitiallyUnowned">GInitiallyUnowned</link>
+         +----<link linkend="GtkObject">GtkObject</link>
+               +----<link linkend="GtkWidget">GtkWidget</link>
+                     +----<link linkend="GtkContainer">GtkContainer</link>
+                           +----<link linkend="GtkBox">GtkBox</link>
+                                 +----<link linkend="GtkHBox">GtkHBox</link>
+                                       +----GduSizeWidget
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GInitiallyUnowned">GInitiallyUnowned</link>
+         +----<link linkend="GtkObject">GtkObject</link>
+               +----<link linkend="GtkWidget">GtkWidget</link>
+                     +----<link linkend="GtkDrawingArea">GtkDrawingArea</link>
+                           +----GduVolumeGrid
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GInitiallyUnowned">GInitiallyUnowned</link>
+         +----<link linkend="GtkObject">GtkObject</link>
+               +----<link linkend="GtkWidget">GtkWidget</link>
+                     +----<link linkend="GtkContainer">GtkContainer</link>
+                           +----<link linkend="GtkBox">GtkBox</link>
+                                 +----<link linkend="GtkHBox">GtkHBox</link>
+                                       +----GduDetailsTable
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----GduDetailsElement
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GInitiallyUnowned">GInitiallyUnowned</link>
+         +----<link linkend="GtkObject">GtkObject</link>
+               +----<link linkend="GtkWidget">GtkWidget</link>
+                     +----<link linkend="GtkContainer">GtkContainer</link>
+                           +----<link linkend="GtkBin">GtkBin</link>
+                                 +----<link linkend="GtkWindow">GtkWindow</link>
+                                       +----<link linkend="GtkDialog">GtkDialog</link>
+                                             +----<link linkend="GduDialog">GduDialog</link>
+                                                   +----GduErrorDialog
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GInitiallyUnowned">GInitiallyUnowned</link>
+         +----<link linkend="GtkObject">GtkObject</link>
+               +----<link linkend="GtkWidget">GtkWidget</link>
+                     +----<link linkend="GtkContainer">GtkContainer</link>
+                           +----<link linkend="GtkBin">GtkBin</link>
+                                 +----<link linkend="GtkWindow">GtkWindow</link>
+                                       +----<link linkend="GtkDialog">GtkDialog</link>
+                                             +----<link linkend="GduDialog">GduDialog</link>
+                                                   +----GduConfirmationDialog
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----GduButtonElement
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GInitiallyUnowned">GInitiallyUnowned</link>
+         +----<link linkend="GtkObject">GtkObject</link>
+               +----<link linkend="GtkWidget">GtkWidget</link>
+                     +----<link linkend="GtkContainer">GtkContainer</link>
+                           +----<link linkend="GtkBox">GtkBox</link>
+                                 +----<link linkend="GtkHBox">GtkHBox</link>
+                                       +----GduButtonTable
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GInitiallyUnowned">GInitiallyUnowned</link>
+         +----<link linkend="GtkObject">GtkObject</link>
+               +----<link linkend="GtkWidget">GtkWidget</link>
+                     +----<link linkend="GtkContainer">GtkContainer</link>
+                           +----<link linkend="GtkBin">GtkBin</link>
+                                 +----<link linkend="GtkWindow">GtkWindow</link>
+                                       +----<link linkend="GtkDialog">GtkDialog</link>
+                                             +----GduDialog
+                                                   +----<link linkend="GduEditPartitionDialog">GduEditPartitionDialog</link>
+                                                   +----<link linkend="GduAtaSmartDialog">GduAtaSmartDialog</link>
+                                                   +----<link linkend="GduErrorDialog">GduErrorDialog</link>
+                                                   +----<link linkend="GduConfirmationDialog">GduConfirmationDialog</link>
+</synopsis>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GInitiallyUnowned">GInitiallyUnowned</link>
+         +----<link linkend="GtkObject">GtkObject</link>
+               +----<link linkend="GtkWidget">GtkWidget</link>
+                     +----<link linkend="GtkContainer">GtkContainer</link>
+                           +----<link linkend="GtkBin">GtkBin</link>
+                                 +----<link linkend="GtkWindow">GtkWindow</link>
+                                       +----<link linkend="GtkDialog">GtkDialog</link>
+                                             +----<link linkend="GduDialog">GduDialog</link>
+                                                   +----GduEditPartitionDialog
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="gnome-disk-utility-gdu-gtk-types.implemented-interfaces" role="impl_interfaces">
+<title role="impl_interfaces.title">Implemented Interfaces</title>
+<para>
+GduTimeLabel implements
+ <link linkend="AtkImplementorIface">AtkImplementorIface</link> and  <link linkend="GtkBuildable">GtkBuildable</link>.</para>
+<para>
+GduAtaSmartDialog implements
+ <link linkend="AtkImplementorIface">AtkImplementorIface</link> and  <link linkend="GtkBuildable">GtkBuildable</link>.</para>
+<para>
+GduSpinner implements
+ <link linkend="AtkImplementorIface">AtkImplementorIface</link> and  <link linkend="GtkBuildable">GtkBuildable</link>.</para>
+<para>
+GduPoolTreeModel implements
+ <link linkend="GtkTreeModel">GtkTreeModel</link>,  <link linkend="GtkTreeDragSource">GtkTreeDragSource</link>,  <link linkend="GtkTreeDragDest">GtkTreeDragDest</link>,  <link linkend="GtkTreeSortable">GtkTreeSortable</link> and  <link linkend="GtkBuildable">GtkBuildable</link>.</para>
+<para>
+GduPoolTreeView implements
+ <link linkend="AtkImplementorIface">AtkImplementorIface</link> and  <link linkend="GtkBuildable">GtkBuildable</link>.</para>
+<para>
+GduCreateLinuxMdDialog implements
+ <link linkend="AtkImplementorIface">AtkImplementorIface</link> and  <link linkend="GtkBuildable">GtkBuildable</link>.</para>
+<para>
+GduSizeWidget implements
+ <link linkend="AtkImplementorIface">AtkImplementorIface</link>,  <link linkend="GtkBuildable">GtkBuildable</link> and  <link linkend="GtkOrientable">GtkOrientable</link>.</para>
+<para>
+GduVolumeGrid implements
+ <link linkend="AtkImplementorIface">AtkImplementorIface</link> and  <link linkend="GtkBuildable">GtkBuildable</link>.</para>
+<para>
+GduDetailsTable implements
+ <link linkend="AtkImplementorIface">AtkImplementorIface</link>,  <link linkend="GtkBuildable">GtkBuildable</link> and  <link linkend="GtkOrientable">GtkOrientable</link>.</para>
+<para>
+GduErrorDialog implements
+ <link linkend="AtkImplementorIface">AtkImplementorIface</link> and  <link linkend="GtkBuildable">GtkBuildable</link>.</para>
+<para>
+GduConfirmationDialog implements
+ <link linkend="AtkImplementorIface">AtkImplementorIface</link> and  <link linkend="GtkBuildable">GtkBuildable</link>.</para>
+<para>
+GduButtonTable implements
+ <link linkend="AtkImplementorIface">AtkImplementorIface</link>,  <link linkend="GtkBuildable">GtkBuildable</link> and  <link linkend="GtkOrientable">GtkOrientable</link>.</para>
+<para>
+GduDialog implements
+ <link linkend="AtkImplementorIface">AtkImplementorIface</link> and  <link linkend="GtkBuildable">GtkBuildable</link>.</para>
+<para>
+GduEditPartitionDialog implements
+ <link linkend="AtkImplementorIface">AtkImplementorIface</link> and  <link linkend="GtkBuildable">GtkBuildable</link>.</para>
+</refsect1>
+
+
+<refsect1 id="gnome-disk-utility-gdu-gtk-types.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="GduTimeLabel--time">time</link>&quot;                     <link linkend="GduTimeLabelBoxedGTimeVal">GduTimeLabelBoxedGTimeVal</link>*  : Read / Write
+  &quot;<link linkend="GduSpinner--color">color</link>&quot;                    <link linkend="gchar">gchar</link>*                : Write / Construct
+  &quot;<link linkend="GduSpinner--lines">lines</link>&quot;                    <link linkend="guint">guint</link>                 : Write / Construct Only
+  &quot;<link linkend="GduPoolTreeModel--flags">flags</link>&quot;                    <link linkend="GduPoolTreeModelFlags">GduPoolTreeModelFlags</link>  : Read / Write / Construct Only
+  &quot;<link linkend="GduPoolTreeModel--pools">pools</link>&quot;                    <link linkend="GPtrArray">GPtrArray</link>*            : Read / Write / Construct
+  &quot;<link linkend="GduPoolTreeModel--root">root</link>&quot;                     <link linkend="GduPresentable">GduPresentable</link>*       : Read / Write / Construct Only
+  &quot;<link linkend="GduPoolTreeView--flags">flags</link>&quot;                    <link linkend="GduPoolTreeViewFlags">GduPoolTreeViewFlags</link>  : Read / Write / Construct Only
+  &quot;<link linkend="GduPoolTreeView--pool-tree-model">pool-tree-model</link>&quot;          <link linkend="GduPoolTreeModel">GduPoolTreeModel</link>*     : Read / Write / Construct Only
+  &quot;<link linkend="GduCreateLinuxMdDialog--component-size">component-size</link>&quot;           <link linkend="guint64">guint64</link>               : Read
+  &quot;<link linkend="GduCreateLinuxMdDialog--drives">drives</link>&quot;                   <link linkend="GPtrArray">GPtrArray</link>*            : Read
+  &quot;<link linkend="GduCreateLinuxMdDialog--level">level</link>&quot;                    <link linkend="gchar">gchar</link>*                : Read
+  &quot;<link linkend="GduCreateLinuxMdDialog--name">name</link>&quot;                     <link linkend="gchar">gchar</link>*                : Read
+  &quot;<link linkend="GduCreateLinuxMdDialog--pool">pool</link>&quot;                     <link linkend="GduPool">GduPool</link>*              : Read / Write / Construct Only
+  &quot;<link linkend="GduCreateLinuxMdDialog--size">size</link>&quot;                     <link linkend="guint64">guint64</link>               : Read
+  &quot;<link linkend="GduCreateLinuxMdDialog--stripe-size">stripe-size</link>&quot;              <link linkend="guint64">guint64</link>               : Read
+  &quot;<link linkend="GduSizeWidget--max-size">max-size</link>&quot;                 <link linkend="guint64">guint64</link>               : Read / Write / Construct
+  &quot;<link linkend="GduSizeWidget--min-size">min-size</link>&quot;                 <link linkend="guint64">guint64</link>               : Read / Write / Construct
+  &quot;<link linkend="GduSizeWidget--size">size</link>&quot;                     <link linkend="guint64">guint64</link>               : Read / Write / Construct
+  &quot;<link linkend="GduVolumeGrid--drive">drive</link>&quot;                    <link linkend="GduDrive">GduDrive</link>*             : Read / Write / Construct Only
+  &quot;<link linkend="GduDetailsTable--elements">elements</link>&quot;                 <link linkend="GPtrArray">GPtrArray</link>*            : Read / Write / Construct
+  &quot;<link linkend="GduDetailsTable--num-columns">num-columns</link>&quot;              <link linkend="guint">guint</link>                 : Read / Write / Construct
+  &quot;<link linkend="GduDetailsElement--action-text">action-text</link>&quot;              <link linkend="gchar">gchar</link>*                : Read / Write / Construct
+  &quot;<link linkend="GduDetailsElement--action-tooltip">action-tooltip</link>&quot;           <link linkend="gchar">gchar</link>*                : Read / Write / Construct
+  &quot;<link linkend="GduDetailsElement--action-uri">action-uri</link>&quot;               <link linkend="gchar">gchar</link>*                : Read / Write / Construct
+  &quot;<link linkend="GduDetailsElement--heading">heading</link>&quot;                  <link linkend="gchar">gchar</link>*                : Read / Write / Construct
+  &quot;<link linkend="GduDetailsElement--icon">icon</link>&quot;                     <link linkend="GIcon">GIcon</link>*                : Read / Write / Construct
+  &quot;<link linkend="GduDetailsElement--is-spinning">is-spinning</link>&quot;              <link linkend="gboolean">gboolean</link>              : Read / Write / Construct
+  &quot;<link linkend="GduDetailsElement--progress">progress</link>&quot;                 <link linkend="gdouble">gdouble</link>               : Read / Write / Construct
+  &quot;<link linkend="GduDetailsElement--text">text</link>&quot;                     <link linkend="gchar">gchar</link>*                : Read / Write / Construct
+  &quot;<link linkend="GduDetailsElement--time">time</link>&quot;                     <link linkend="guint64">guint64</link>               : Read / Write / Construct
+  &quot;<link linkend="GduDetailsElement--tooltip">tooltip</link>&quot;                  <link linkend="gchar">gchar</link>*                : Read / Write / Construct
+  &quot;<link linkend="GduDetailsElement--widget">widget</link>&quot;                   <link linkend="GtkWidget">GtkWidget</link>*            : Read / Write / Construct
+  &quot;<link linkend="GduErrorDialog--error">error</link>&quot;                    <link linkend="GduGError">GduGError</link>*            : Read / Write / Construct Only
+  &quot;<link linkend="GduErrorDialog--message">message</link>&quot;                  <link linkend="gchar">gchar</link>*                : Read / Write / Construct Only
+  &quot;<link linkend="GduConfirmationDialog--button-text">button-text</link>&quot;              <link linkend="gchar">gchar</link>*                : Read / Write / Construct Only
+  &quot;<link linkend="GduConfirmationDialog--message">message</link>&quot;                  <link linkend="gchar">gchar</link>*                : Read / Write / Construct Only
+  &quot;<link linkend="GduButtonElement--icon-name">icon-name</link>&quot;                <link linkend="gchar">gchar</link>*                : Read / Write / Construct
+  &quot;<link linkend="GduButtonElement--primary-text">primary-text</link>&quot;             <link linkend="gchar">gchar</link>*                : Read / Write / Construct
+  &quot;<link linkend="GduButtonElement--secondary-text">secondary-text</link>&quot;           <link linkend="gchar">gchar</link>*                : Read / Write / Construct
+  &quot;<link linkend="GduButtonElement--visible">visible</link>&quot;                  <link linkend="gboolean">gboolean</link>              : Read / Write / Construct
+  &quot;<link linkend="GduButtonTable--elements">elements</link>&quot;                 <link linkend="GPtrArray">GPtrArray</link>*            : Read / Write / Construct
+  &quot;<link linkend="GduButtonTable--num-columns">num-columns</link>&quot;              <link linkend="guint">guint</link>                 : Read / Write / Construct
+  &quot;<link linkend="GduDialog--drive-device">drive-device</link>&quot;             <link linkend="GduDevice">GduDevice</link>*            : Write / Construct Only
+  &quot;<link linkend="GduDialog--presentable">presentable</link>&quot;              <link linkend="GduPresentable">GduPresentable</link>*       : Read / Write / Construct Only
+  &quot;<link linkend="GduDialog--volume-device">volume-device</link>&quot;            <link linkend="GduDevice">GduDevice</link>*            : Write / Construct Only
+  &quot;<link linkend="GduEditPartitionDialog--partition-flags">partition-flags</link>&quot;          <link linkend="GStrv">GStrv</link>*                : Read
+  &quot;<link linkend="GduEditPartitionDialog--partition-label">partition-label</link>&quot;          <link linkend="gchar">gchar</link>*                : Read
+  &quot;<link linkend="GduEditPartitionDialog--partition-type">partition-type</link>&quot;           <link linkend="gchar">gchar</link>*                : Read
+</synopsis>
+</refsect1>
+
+<refsect1 id="gnome-disk-utility-gdu-gtk-types.signals" role="signal_proto">
+<title role="signal_proto.title">Signals</title>
+<synopsis>
+  &quot;<link linkend="GduSizeWidget-changed">changed</link>&quot;                                        : Run Last
+  &quot;<link linkend="GduVolumeGrid-changed">changed</link>&quot;                                        : Run Last
+  &quot;<link linkend="GduDetailsElement-activated">activated</link>&quot;                                      : Run Last
+  &quot;<link linkend="GduDetailsElement-changed">changed</link>&quot;                                        : Run Last
+  &quot;<link linkend="GduButtonElement-changed">changed</link>&quot;                                        : Run Last
+  &quot;<link linkend="GduButtonElement-clicked">clicked</link>&quot;                                        : Run Last
+</synopsis>
+</refsect1>
+
+
+<refsect1 id="gnome-disk-utility-gdu-gtk-types.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gnome-disk-utility-gdu-gtk-types.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GduSample" role="typedef">
+<title>GduSample</title>
+<indexterm zone="GduSample"><primary sortas="GduSample">GduSample</primary></indexterm><programlisting>typedef struct GduSample                      GduSample;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduColor" role="typedef">
+<title>GduColor</title>
+<indexterm zone="GduColor"><primary sortas="GduColor">GduColor</primary></indexterm><programlisting>typedef struct GduColor                       GduColor;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduCurve" role="typedef">
+<title>GduCurve</title>
+<indexterm zone="GduCurve"><primary sortas="GduCurve">GduCurve</primary></indexterm><programlisting>typedef struct GduCurve                       GduCurve;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduGraph" role="typedef">
+<title>GduGraph</title>
+<indexterm zone="GduGraph"><primary sortas="GduGraph">GduGraph</primary></indexterm><programlisting>typedef struct GduGraph                       GduGraph;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduTimeLabel" role="typedef">
+<title>GduTimeLabel</title>
+<indexterm zone="GduTimeLabel"><primary sortas="GduTimeLabel">GduTimeLabel</primary></indexterm><programlisting>typedef struct GduTimeLabel                   GduTimeLabel;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduAtaSmartDialog" role="typedef">
+<title>GduAtaSmartDialog</title>
+<indexterm zone="GduAtaSmartDialog"><primary sortas="GduAtaSmartDialog">GduAtaSmartDialog</primary></indexterm><programlisting>typedef struct GduAtaSmartDialog              GduAtaSmartDialog;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduSpinner" role="typedef">
+<title>GduSpinner</title>
+<indexterm zone="GduSpinner"><primary sortas="GduSpinner">GduSpinner</primary></indexterm><programlisting>typedef struct GduSpinner                     GduSpinner;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduPoolTreeModel" role="typedef">
+<title>GduPoolTreeModel</title>
+<indexterm zone="GduPoolTreeModel"><primary sortas="GduPoolTreeModel">GduPoolTreeModel</primary></indexterm><programlisting>typedef struct GduPoolTreeModel               GduPoolTreeModel;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduPoolTreeView" role="typedef">
+<title>GduPoolTreeView</title>
+<indexterm zone="GduPoolTreeView"><primary sortas="GduPoolTreeView">GduPoolTreeView</primary></indexterm><programlisting>typedef struct GduPoolTreeView                GduPoolTreeView;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduCreateLinuxMdDialog" role="typedef">
+<title>GduCreateLinuxMdDialog</title>
+<indexterm zone="GduCreateLinuxMdDialog"><primary sortas="GduCreateLinuxMdDialog">GduCreateLinuxMdDialog</primary></indexterm><programlisting>typedef struct GduCreateLinuxMdDialog         GduCreateLinuxMdDialog;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduSizeWidget" role="typedef">
+<title>GduSizeWidget</title>
+<indexterm zone="GduSizeWidget"><primary sortas="GduSizeWidget">GduSizeWidget</primary></indexterm><programlisting>typedef struct GduSizeWidget                  GduSizeWidget;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduVolumeGrid" role="typedef">
+<title>GduVolumeGrid</title>
+<indexterm zone="GduVolumeGrid"><primary sortas="GduVolumeGrid">GduVolumeGrid</primary></indexterm><programlisting>typedef struct GduVolumeGrid                  GduVolumeGrid;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduDetailsTable" role="typedef">
+<title>GduDetailsTable</title>
+<indexterm zone="GduDetailsTable"><primary sortas="GduDetailsTable">GduDetailsTable</primary></indexterm><programlisting>typedef struct GduDetailsTable                GduDetailsTable;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduDetailsElement" role="typedef">
+<title>GduDetailsElement</title>
+<indexterm zone="GduDetailsElement"><primary sortas="GduDetailsElement">GduDetailsElement</primary></indexterm><programlisting>typedef struct GduDetailsElement              GduDetailsElement;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduErrorDialog" role="typedef">
+<title>GduErrorDialog</title>
+<indexterm zone="GduErrorDialog"><primary sortas="GduErrorDialog">GduErrorDialog</primary></indexterm><programlisting>typedef struct GduErrorDialog                 GduErrorDialog;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduConfirmationDialog" role="typedef">
+<title>GduConfirmationDialog</title>
+<indexterm zone="GduConfirmationDialog"><primary sortas="GduConfirmationDialog">GduConfirmationDialog</primary></indexterm><programlisting>typedef struct GduConfirmationDialog          GduConfirmationDialog;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduButtonElement" role="typedef">
+<title>GduButtonElement</title>
+<indexterm zone="GduButtonElement"><primary sortas="GduButtonElement">GduButtonElement</primary></indexterm><programlisting>typedef struct GduButtonElement               GduButtonElement;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduButtonTable" role="typedef">
+<title>GduButtonTable</title>
+<indexterm zone="GduButtonTable"><primary sortas="GduButtonTable">GduButtonTable</primary></indexterm><programlisting>typedef struct GduButtonTable                 GduButtonTable;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduDialog" role="typedef">
+<title>GduDialog</title>
+<indexterm zone="GduDialog"><primary sortas="GduDialog">GduDialog</primary></indexterm><programlisting>typedef struct GduDialog                      GduDialog;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduEditPartitionDialog" role="typedef">
+<title>GduEditPartitionDialog</title>
+<indexterm zone="GduEditPartitionDialog"><primary sortas="GduEditPartitionDialog">GduEditPartitionDialog</primary></indexterm><programlisting>typedef struct GduEditPartitionDialog         GduEditPartitionDialog;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduFormatDialog" role="typedef">
+<title>GduFormatDialog</title>
+<indexterm zone="GduFormatDialog"><primary sortas="GduFormatDialog">GduFormatDialog</primary></indexterm><programlisting>typedef struct GduFormatDialog                GduFormatDialog;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduPartitionDialog" role="typedef">
+<title>GduPartitionDialog</title>
+<indexterm zone="GduPartitionDialog"><primary sortas="GduPartitionDialog">GduPartitionDialog</primary></indexterm><programlisting>typedef struct GduPartitionDialog             GduPartitionDialog;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduCreatePartitionDialog" role="typedef">
+<title>GduCreatePartitionDialog</title>
+<indexterm zone="GduCreatePartitionDialog"><primary sortas="GduCreatePartitionDialog">GduCreatePartitionDialog</primary></indexterm><programlisting>typedef struct GduCreatePartitionDialog       GduCreatePartitionDialog;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduCreateLinuxLvm2VolumeDialog" role="typedef">
+<title>GduCreateLinuxLvm2VolumeDialog</title>
+<indexterm zone="GduCreateLinuxLvm2VolumeDialog"><primary sortas="GduCreateLinuxLvm2VolumeDialog">GduCreateLinuxLvm2VolumeDialog</primary></indexterm><programlisting>typedef struct GduCreateLinuxLvm2VolumeDialog GduCreateLinuxLvm2VolumeDialog;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduEditNameDialog" role="typedef">
+<title>GduEditNameDialog</title>
+<indexterm zone="GduEditNameDialog"><primary sortas="GduEditNameDialog">GduEditNameDialog</primary></indexterm><programlisting>typedef struct GduEditNameDialog              GduEditNameDialog;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduDiskSelectionWidget" role="typedef">
+<title>GduDiskSelectionWidget</title>
+<indexterm zone="GduDiskSelectionWidget"><primary sortas="GduDiskSelectionWidget">GduDiskSelectionWidget</primary></indexterm><programlisting>typedef struct GduDiskSelectionWidget         GduDiskSelectionWidget;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduAddComponentLinuxMdDialog" role="typedef">
+<title>GduAddComponentLinuxMdDialog</title>
+<indexterm zone="GduAddComponentLinuxMdDialog"><primary sortas="GduAddComponentLinuxMdDialog">GduAddComponentLinuxMdDialog</primary></indexterm><programlisting>typedef struct GduAddComponentLinuxMdDialog   GduAddComponentLinuxMdDialog;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduEditLinuxMdDialog" role="typedef">
+<title>GduEditLinuxMdDialog</title>
+<indexterm zone="GduEditLinuxMdDialog"><primary sortas="GduEditLinuxMdDialog">GduEditLinuxMdDialog</primary></indexterm><programlisting>typedef struct GduEditLinuxMdDialog           GduEditLinuxMdDialog;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduDriveBenchmarkDialog" role="typedef">
+<title>GduDriveBenchmarkDialog</title>
+<indexterm zone="GduDriveBenchmarkDialog"><primary sortas="GduDriveBenchmarkDialog">GduDriveBenchmarkDialog</primary></indexterm><programlisting>typedef struct GduDriveBenchmarkDialog        GduDriveBenchmarkDialog;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduConnectToServerDialog" role="typedef">
+<title>GduConnectToServerDialog</title>
+<indexterm zone="GduConnectToServerDialog"><primary sortas="GduConnectToServerDialog">GduConnectToServerDialog</primary></indexterm><programlisting>typedef struct GduConnectToServerDialog       GduConnectToServerDialog;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduEditLinuxLvm2Dialog" role="typedef">
+<title>GduEditLinuxLvm2Dialog</title>
+<indexterm zone="GduEditLinuxLvm2Dialog"><primary sortas="GduEditLinuxLvm2Dialog">GduEditLinuxLvm2Dialog</primary></indexterm><programlisting>typedef struct GduEditLinuxLvm2Dialog         GduEditLinuxLvm2Dialog;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduAddPvLinuxLvm2Dialog" role="typedef">
+<title>GduAddPvLinuxLvm2Dialog</title>
+<indexterm zone="GduAddPvLinuxLvm2Dialog"><primary sortas="GduAddPvLinuxLvm2Dialog">GduAddPvLinuxLvm2Dialog</primary></indexterm><programlisting>typedef struct GduAddPvLinuxLvm2Dialog        GduAddPvLinuxLvm2Dialog;
+</programlisting>
+<para>
+</para></refsect2>
+
+</refsect1>
+<refsect1 id="gnome-disk-utility-gdu-gtk-types.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="GduTimeLabel--time" role="property"><title>The <literal>&quot;time&quot;</literal> property</title>
+<indexterm zone="GduTimeLabel--time"><primary sortas="GduTimeLabel:time">GduTimeLabel:time</primary></indexterm><programlisting>  &quot;time&quot;                     <link linkend="GduTimeLabelBoxedGTimeVal">GduTimeLabelBoxedGTimeVal</link>*  : Read / Write</programlisting>
+<para>
+The time (a <link linkend="GTimeVal"><type>GTimeVal</type></link>) used for computing the label of the string.</para>
+<para>
+</para></refsect2>
+<refsect2 id="GduSpinner--color" role="property"><title>The <literal>&quot;color&quot;</literal> property</title>
+<indexterm zone="GduSpinner--color"><primary sortas="GduSpinner:color">GduSpinner:color</primary></indexterm><programlisting>  &quot;color&quot;                    <link linkend="gchar">gchar</link>*                : Write / Construct</programlisting>
+<para>Main color.</para><para>Default value: "454545C8"</para>
+</refsect2>
+<refsect2 id="GduSpinner--lines" role="property"><title>The <literal>&quot;lines&quot;</literal> property</title>
+<indexterm zone="GduSpinner--lines"><primary sortas="GduSpinner:lines">GduSpinner:lines</primary></indexterm><programlisting>  &quot;lines&quot;                    <link linkend="guint">guint</link>                 : Write / Construct Only</programlisting>
+<para>The number of lines to animate.</para><para>Allowed values: &lt;= 20</para>
+<para>Default value: 12</para>
+</refsect2>
+<refsect2 id="GduPoolTreeModel--flags" role="property"><title>The <literal>&quot;flags&quot;</literal> property</title>
+<indexterm zone="GduPoolTreeModel--flags"><primary sortas="GduPoolTreeModel:flags">GduPoolTreeModel:flags</primary></indexterm><programlisting>  &quot;flags&quot;                    <link linkend="GduPoolTreeModelFlags">GduPoolTreeModelFlags</link>  : Read / Write / Construct Only</programlisting>
+<para>
+The flags for the model.</para>
+<para>
+</para></refsect2>
+<refsect2 id="GduPoolTreeModel--pools" role="property"><title>The <literal>&quot;pools&quot;</literal> property</title>
+<indexterm zone="GduPoolTreeModel--pools"><primary sortas="GduPoolTreeModel:pools">GduPoolTreeModel:pools</primary></indexterm><programlisting>  &quot;pools&quot;                    <link linkend="GPtrArray">GPtrArray</link>*            : Read / Write / Construct</programlisting>
+<para>
+The pools displayed - this must be a <link linkend="GPtrArray"><type>GPtrArray</type></link> of <link linkend="GduPool"><type>GduPool</type></link> objects.</para>
+<para>
+</para></refsect2>
+<refsect2 id="GduPoolTreeModel--root" role="property"><title>The <literal>&quot;root&quot;</literal> property</title>
+<indexterm zone="GduPoolTreeModel--root"><primary sortas="GduPoolTreeModel:root">GduPoolTreeModel:root</primary></indexterm><programlisting>  &quot;root&quot;                     <link linkend="GduPresentable">GduPresentable</link>*       : Read / Write / Construct Only</programlisting>
+<para>
+<link linkend="NULL--CAPS"><literal>NULL</literal></link> to include all <link linkend="GduPresentable"><type>GduPresentable</type></link> objects in <link linkend="GduPoolTreeModel--pool"><type>"pool"</type></link>, otherwise only
+include presentables that are descendents of this <link linkend="GduPresentable"><type>GduPresentable</type></link>.</para>
+<para>
+</para></refsect2>
+<refsect2 id="GduPoolTreeView--flags" role="property"><title>The <literal>&quot;flags&quot;</literal> property</title>
+<indexterm zone="GduPoolTreeView--flags"><primary sortas="GduPoolTreeView:flags">GduPoolTreeView:flags</primary></indexterm><programlisting>  &quot;flags&quot;                    <link linkend="GduPoolTreeViewFlags">GduPoolTreeViewFlags</link>  : Read / Write / Construct Only</programlisting>
+<para>
+Flags from the <link linkend="GduPoolTreeViewFlags"><type>GduPoolTreeViewFlags</type></link> enumeration to
+customize behavior of the view.</para>
+<para>
+</para></refsect2>
+<refsect2 id="GduPoolTreeView--pool-tree-model" role="property"><title>The <literal>&quot;pool-tree-model&quot;</literal> property</title>
+<indexterm zone="GduPoolTreeView--pool-tree-model"><primary sortas="GduPoolTreeView:pool-tree-model">GduPoolTreeView:pool-tree-model</primary></indexterm><programlisting>  &quot;pool-tree-model&quot;          <link linkend="GduPoolTreeModel">GduPoolTreeModel</link>*     : Read / Write / Construct Only</programlisting>
+<para>
+The <link linkend="GduPoolTreeModel"><type>GduPoolTreeModel</type></link> instance we are getting information from</para>
+<para>
+</para></refsect2>
+<refsect2 id="GduCreateLinuxMdDialog--component-size" role="property"><title>The <literal>&quot;component-size&quot;</literal> property</title>
+<indexterm zone="GduCreateLinuxMdDialog--component-size"><primary sortas="GduCreateLinuxMdDialog:component-size">GduCreateLinuxMdDialog:component-size</primary></indexterm><programlisting>  &quot;component-size&quot;           <link linkend="guint64">guint64</link>               : Read</programlisting>
+<para>The size of each component.</para><para>Default value: 0</para>
+</refsect2>
+<refsect2 id="GduCreateLinuxMdDialog--drives" role="property"><title>The <literal>&quot;drives&quot;</literal> property</title>
+<indexterm zone="GduCreateLinuxMdDialog--drives"><primary sortas="GduCreateLinuxMdDialog:drives">GduCreateLinuxMdDialog:drives</primary></indexterm><programlisting>  &quot;drives&quot;                   <link linkend="GPtrArray">GPtrArray</link>*            : Read</programlisting>
+<para>Array of drives to use for the array.</para></refsect2>
+<refsect2 id="GduCreateLinuxMdDialog--level" role="property"><title>The <literal>&quot;level&quot;</literal> property</title>
+<indexterm zone="GduCreateLinuxMdDialog--level"><primary sortas="GduCreateLinuxMdDialog:level">GduCreateLinuxMdDialog:level</primary></indexterm><programlisting>  &quot;level&quot;                    <link linkend="gchar">gchar</link>*                : Read</programlisting>
+<para>The selected RAID level.</para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="GduCreateLinuxMdDialog--name" role="property"><title>The <literal>&quot;name&quot;</literal> property</title>
+<indexterm zone="GduCreateLinuxMdDialog--name"><primary sortas="GduCreateLinuxMdDialog:name">GduCreateLinuxMdDialog:name</primary></indexterm><programlisting>  &quot;name&quot;                     <link linkend="gchar">gchar</link>*                : Read</programlisting>
+<para>The requested name for the array.</para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="GduCreateLinuxMdDialog--pool" role="property"><title>The <literal>&quot;pool&quot;</literal> property</title>
+<indexterm zone="GduCreateLinuxMdDialog--pool"><primary sortas="GduCreateLinuxMdDialog:pool">GduCreateLinuxMdDialog:pool</primary></indexterm><programlisting>  &quot;pool&quot;                     <link linkend="GduPool">GduPool</link>*              : Read / Write / Construct Only</programlisting>
+<para>The pool of devices.</para></refsect2>
+<refsect2 id="GduCreateLinuxMdDialog--size" role="property"><title>The <literal>&quot;size&quot;</literal> property</title>
+<indexterm zone="GduCreateLinuxMdDialog--size"><primary sortas="GduCreateLinuxMdDialog:size">GduCreateLinuxMdDialog:size</primary></indexterm><programlisting>  &quot;size&quot;                     <link linkend="guint64">guint64</link>               : Read</programlisting>
+<para>The requested size of the array.</para><para>Default value: 0</para>
+</refsect2>
+<refsect2 id="GduCreateLinuxMdDialog--stripe-size" role="property"><title>The <literal>&quot;stripe-size&quot;</literal> property</title>
+<indexterm zone="GduCreateLinuxMdDialog--stripe-size"><primary sortas="GduCreateLinuxMdDialog:stripe-size">GduCreateLinuxMdDialog:stripe-size</primary></indexterm><programlisting>  &quot;stripe-size&quot;              <link linkend="guint64">guint64</link>               : Read</programlisting>
+<para>The requested stripe size of the array.</para><para>Default value: 0</para>
+</refsect2>
+<refsect2 id="GduSizeWidget--max-size" role="property"><title>The <literal>&quot;max-size&quot;</literal> property</title>
+<indexterm zone="GduSizeWidget--max-size"><primary sortas="GduSizeWidget:max-size">GduSizeWidget:max-size</primary></indexterm><programlisting>  &quot;max-size&quot;                 <link linkend="guint64">guint64</link>               : Read / Write / Construct</programlisting>
+<para>The maximum size that can be selected.</para><para>Default value: 0</para>
+</refsect2>
+<refsect2 id="GduSizeWidget--min-size" role="property"><title>The <literal>&quot;min-size&quot;</literal> property</title>
+<indexterm zone="GduSizeWidget--min-size"><primary sortas="GduSizeWidget:min-size">GduSizeWidget:min-size</primary></indexterm><programlisting>  &quot;min-size&quot;                 <link linkend="guint64">guint64</link>               : Read / Write / Construct</programlisting>
+<para>The minimum size that can be selected.</para><para>Default value: 0</para>
+</refsect2>
+<refsect2 id="GduSizeWidget--size" role="property"><title>The <literal>&quot;size&quot;</literal> property</title>
+<indexterm zone="GduSizeWidget--size"><primary sortas="GduSizeWidget:size">GduSizeWidget:size</primary></indexterm><programlisting>  &quot;size&quot;                     <link linkend="guint64">guint64</link>               : Read / Write / Construct</programlisting>
+<para>The currently selected size.</para><para>Default value: 0</para>
+</refsect2>
+<refsect2 id="GduVolumeGrid--drive" role="property"><title>The <literal>&quot;drive&quot;</literal> property</title>
+<indexterm zone="GduVolumeGrid--drive"><primary sortas="GduVolumeGrid:drive">GduVolumeGrid:drive</primary></indexterm><programlisting>  &quot;drive&quot;                    <link linkend="GduDrive">GduDrive</link>*             : Read / Write / Construct Only</programlisting>
+<para>Drive to show volumes for.</para></refsect2>
+<refsect2 id="GduDetailsTable--elements" role="property"><title>The <literal>&quot;elements&quot;</literal> property</title>
+<indexterm zone="GduDetailsTable--elements"><primary sortas="GduDetailsTable:elements">GduDetailsTable:elements</primary></indexterm><programlisting>  &quot;elements&quot;                 <link linkend="GPtrArray">GPtrArray</link>*            : Read / Write / Construct</programlisting>
+<para></para></refsect2>
+<refsect2 id="GduDetailsTable--num-columns" role="property"><title>The <literal>&quot;num-columns&quot;</literal> property</title>
+<indexterm zone="GduDetailsTable--num-columns"><primary sortas="GduDetailsTable:num-columns">GduDetailsTable:num-columns</primary></indexterm><programlisting>  &quot;num-columns&quot;              <link linkend="guint">guint</link>                 : Read / Write / Construct</programlisting>
+<para></para><para>Allowed values: &gt;= 1</para>
+<para>Default value: 2</para>
+</refsect2>
+<refsect2 id="GduDetailsElement--action-text" role="property"><title>The <literal>&quot;action-text&quot;</literal> property</title>
+<indexterm zone="GduDetailsElement--action-text"><primary sortas="GduDetailsElement:action-text">GduDetailsElement:action-text</primary></indexterm><programlisting>  &quot;action-text&quot;              <link linkend="gchar">gchar</link>*                : Read / Write / Construct</programlisting>
+<para></para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="GduDetailsElement--action-tooltip" role="property"><title>The <literal>&quot;action-tooltip&quot;</literal> property</title>
+<indexterm zone="GduDetailsElement--action-tooltip"><primary sortas="GduDetailsElement:action-tooltip">GduDetailsElement:action-tooltip</primary></indexterm><programlisting>  &quot;action-tooltip&quot;           <link linkend="gchar">gchar</link>*                : Read / Write / Construct</programlisting>
+<para></para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="GduDetailsElement--action-uri" role="property"><title>The <literal>&quot;action-uri&quot;</literal> property</title>
+<indexterm zone="GduDetailsElement--action-uri"><primary sortas="GduDetailsElement:action-uri">GduDetailsElement:action-uri</primary></indexterm><programlisting>  &quot;action-uri&quot;               <link linkend="gchar">gchar</link>*                : Read / Write / Construct</programlisting>
+<para></para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="GduDetailsElement--heading" role="property"><title>The <literal>&quot;heading&quot;</literal> property</title>
+<indexterm zone="GduDetailsElement--heading"><primary sortas="GduDetailsElement:heading">GduDetailsElement:heading</primary></indexterm><programlisting>  &quot;heading&quot;                  <link linkend="gchar">gchar</link>*                : Read / Write / Construct</programlisting>
+<para></para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="GduDetailsElement--icon" role="property"><title>The <literal>&quot;icon&quot;</literal> property</title>
+<indexterm zone="GduDetailsElement--icon"><primary sortas="GduDetailsElement:icon">GduDetailsElement:icon</primary></indexterm><programlisting>  &quot;icon&quot;                     <link linkend="GIcon">GIcon</link>*                : Read / Write / Construct</programlisting>
+<para></para></refsect2>
+<refsect2 id="GduDetailsElement--is-spinning" role="property"><title>The <literal>&quot;is-spinning&quot;</literal> property</title>
+<indexterm zone="GduDetailsElement--is-spinning"><primary sortas="GduDetailsElement:is-spinning">GduDetailsElement:is-spinning</primary></indexterm><programlisting>  &quot;is-spinning&quot;              <link linkend="gboolean">gboolean</link>              : Read / Write / Construct</programlisting>
+<para></para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="GduDetailsElement--progress" role="property"><title>The <literal>&quot;progress&quot;</literal> property</title>
+<indexterm zone="GduDetailsElement--progress"><primary sortas="GduDetailsElement:progress">GduDetailsElement:progress</primary></indexterm><programlisting>  &quot;progress&quot;                 <link linkend="gdouble">gdouble</link>               : Read / Write / Construct</programlisting>
+<para></para><para>Default value: -1</para>
+</refsect2>
+<refsect2 id="GduDetailsElement--text" role="property"><title>The <literal>&quot;text&quot;</literal> property</title>
+<indexterm zone="GduDetailsElement--text"><primary sortas="GduDetailsElement:text">GduDetailsElement:text</primary></indexterm><programlisting>  &quot;text&quot;                     <link linkend="gchar">gchar</link>*                : Read / Write / Construct</programlisting>
+<para></para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="GduDetailsElement--time" role="property"><title>The <literal>&quot;time&quot;</literal> property</title>
+<indexterm zone="GduDetailsElement--time"><primary sortas="GduDetailsElement:time">GduDetailsElement:time</primary></indexterm><programlisting>  &quot;time&quot;                     <link linkend="guint64">guint64</link>               : Read / Write / Construct</programlisting>
+<para></para><para>Default value: 0</para>
+</refsect2>
+<refsect2 id="GduDetailsElement--tooltip" role="property"><title>The <literal>&quot;tooltip&quot;</literal> property</title>
+<indexterm zone="GduDetailsElement--tooltip"><primary sortas="GduDetailsElement:tooltip">GduDetailsElement:tooltip</primary></indexterm><programlisting>  &quot;tooltip&quot;                  <link linkend="gchar">gchar</link>*                : Read / Write / Construct</programlisting>
+<para></para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="GduDetailsElement--widget" role="property"><title>The <literal>&quot;widget&quot;</literal> property</title>
+<indexterm zone="GduDetailsElement--widget"><primary sortas="GduDetailsElement:widget">GduDetailsElement:widget</primary></indexterm><programlisting>  &quot;widget&quot;                   <link linkend="GtkWidget">GtkWidget</link>*            : Read / Write / Construct</programlisting>
+<para></para></refsect2>
+<refsect2 id="GduErrorDialog--error" role="property"><title>The <literal>&quot;error&quot;</literal> property</title>
+<indexterm zone="GduErrorDialog--error"><primary sortas="GduErrorDialog:error">GduErrorDialog:error</primary></indexterm><programlisting>  &quot;error&quot;                    <link linkend="GduGError">GduGError</link>*            : Read / Write / Construct Only</programlisting>
+<para></para></refsect2>
+<refsect2 id="GduErrorDialog--message" role="property"><title>The <literal>&quot;message&quot;</literal> property</title>
+<indexterm zone="GduErrorDialog--message"><primary sortas="GduErrorDialog:message">GduErrorDialog:message</primary></indexterm><programlisting>  &quot;message&quot;                  <link linkend="gchar">gchar</link>*                : Read / Write / Construct Only</programlisting>
+<para></para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="GduConfirmationDialog--button-text" role="property"><title>The <literal>&quot;button-text&quot;</literal> property</title>
+<indexterm zone="GduConfirmationDialog--button-text"><primary sortas="GduConfirmationDialog:button-text">GduConfirmationDialog:button-text</primary></indexterm><programlisting>  &quot;button-text&quot;              <link linkend="gchar">gchar</link>*                : Read / Write / Construct Only</programlisting>
+<para></para><para>Default value: "gtk-delete"</para>
+</refsect2>
+<refsect2 id="GduConfirmationDialog--message" role="property"><title>The <literal>&quot;message&quot;</literal> property</title>
+<indexterm zone="GduConfirmationDialog--message"><primary sortas="GduConfirmationDialog:message">GduConfirmationDialog:message</primary></indexterm><programlisting>  &quot;message&quot;                  <link linkend="gchar">gchar</link>*                : Read / Write / Construct Only</programlisting>
+<para></para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="GduButtonElement--icon-name" role="property"><title>The <literal>&quot;icon-name&quot;</literal> property</title>
+<indexterm zone="GduButtonElement--icon-name"><primary sortas="GduButtonElement:icon-name">GduButtonElement:icon-name</primary></indexterm><programlisting>  &quot;icon-name&quot;                <link linkend="gchar">gchar</link>*                : Read / Write / Construct</programlisting>
+<para></para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="GduButtonElement--primary-text" role="property"><title>The <literal>&quot;primary-text&quot;</literal> property</title>
+<indexterm zone="GduButtonElement--primary-text"><primary sortas="GduButtonElement:primary-text">GduButtonElement:primary-text</primary></indexterm><programlisting>  &quot;primary-text&quot;             <link linkend="gchar">gchar</link>*                : Read / Write / Construct</programlisting>
+<para></para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="GduButtonElement--secondary-text" role="property"><title>The <literal>&quot;secondary-text&quot;</literal> property</title>
+<indexterm zone="GduButtonElement--secondary-text"><primary sortas="GduButtonElement:secondary-text">GduButtonElement:secondary-text</primary></indexterm><programlisting>  &quot;secondary-text&quot;           <link linkend="gchar">gchar</link>*                : Read / Write / Construct</programlisting>
+<para></para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="GduButtonElement--visible" role="property"><title>The <literal>&quot;visible&quot;</literal> property</title>
+<indexterm zone="GduButtonElement--visible"><primary sortas="GduButtonElement:visible">GduButtonElement:visible</primary></indexterm><programlisting>  &quot;visible&quot;                  <link linkend="gboolean">gboolean</link>              : Read / Write / Construct</programlisting>
+<para></para><para>Default value: TRUE</para>
+</refsect2>
+<refsect2 id="GduButtonTable--elements" role="property"><title>The <literal>&quot;elements&quot;</literal> property</title>
+<indexterm zone="GduButtonTable--elements"><primary sortas="GduButtonTable:elements">GduButtonTable:elements</primary></indexterm><programlisting>  &quot;elements&quot;                 <link linkend="GPtrArray">GPtrArray</link>*            : Read / Write / Construct</programlisting>
+<para></para></refsect2>
+<refsect2 id="GduButtonTable--num-columns" role="property"><title>The <literal>&quot;num-columns&quot;</literal> property</title>
+<indexterm zone="GduButtonTable--num-columns"><primary sortas="GduButtonTable:num-columns">GduButtonTable:num-columns</primary></indexterm><programlisting>  &quot;num-columns&quot;              <link linkend="guint">guint</link>                 : Read / Write / Construct</programlisting>
+<para></para><para>Allowed values: &gt;= 1</para>
+<para>Default value: 2</para>
+</refsect2>
+<refsect2 id="GduDialog--drive-device" role="property"><title>The <literal>&quot;drive-device&quot;</literal> property</title>
+<indexterm zone="GduDialog--drive-device"><primary sortas="GduDialog:drive-device">GduDialog:drive-device</primary></indexterm><programlisting>  &quot;drive-device&quot;             <link linkend="GduDevice">GduDevice</link>*            : Write / Construct Only</programlisting>
+<para></para></refsect2>
+<refsect2 id="GduDialog--presentable" role="property"><title>The <literal>&quot;presentable&quot;</literal> property</title>
+<indexterm zone="GduDialog--presentable"><primary sortas="GduDialog:presentable">GduDialog:presentable</primary></indexterm><programlisting>  &quot;presentable&quot;              <link linkend="GduPresentable">GduPresentable</link>*       : Read / Write / Construct Only</programlisting>
+<para></para></refsect2>
+<refsect2 id="GduDialog--volume-device" role="property"><title>The <literal>&quot;volume-device&quot;</literal> property</title>
+<indexterm zone="GduDialog--volume-device"><primary sortas="GduDialog:volume-device">GduDialog:volume-device</primary></indexterm><programlisting>  &quot;volume-device&quot;            <link linkend="GduDevice">GduDevice</link>*            : Write / Construct Only</programlisting>
+<para></para></refsect2>
+<refsect2 id="GduEditPartitionDialog--partition-flags" role="property"><title>The <literal>&quot;partition-flags&quot;</literal> property</title>
+<indexterm zone="GduEditPartitionDialog--partition-flags"><primary sortas="GduEditPartitionDialog:partition-flags">GduEditPartitionDialog:partition-flags</primary></indexterm><programlisting>  &quot;partition-flags&quot;          <link linkend="GStrv">GStrv</link>*                : Read</programlisting>
+<para></para></refsect2>
+<refsect2 id="GduEditPartitionDialog--partition-label" role="property"><title>The <literal>&quot;partition-label&quot;</literal> property</title>
+<indexterm zone="GduEditPartitionDialog--partition-label"><primary sortas="GduEditPartitionDialog:partition-label">GduEditPartitionDialog:partition-label</primary></indexterm><programlisting>  &quot;partition-label&quot;          <link linkend="gchar">gchar</link>*                : Read</programlisting>
+<para></para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="GduEditPartitionDialog--partition-type" role="property"><title>The <literal>&quot;partition-type&quot;</literal> property</title>
+<indexterm zone="GduEditPartitionDialog--partition-type"><primary sortas="GduEditPartitionDialog:partition-type">GduEditPartitionDialog:partition-type</primary></indexterm><programlisting>  &quot;partition-type&quot;           <link linkend="gchar">gchar</link>*                : Read</programlisting>
+<para></para><para>Default value: NULL</para>
+</refsect2>
+</refsect1>
+
+<refsect1 id="gnome-disk-utility-gdu-gtk-types.signal-details" role="signals">
+<title role="signals.title">Signal Details</title>
+<refsect2 id="GduSizeWidget-changed" role="signal"><title>The <literal>&quot;changed&quot;</literal> signal</title>
+<indexterm zone="GduSizeWidget-changed"><primary sortas="GduSizeWidget::changed">GduSizeWidget::changed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="GduSizeWidget">GduSizeWidget</link> *gdusizewidget,
+                                                        <link linkend="gpointer">gpointer</link>       user_data)          : Run Last</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>gdusizewidget</parameter>&#160;:</term>
+<listitem><simpara>the object which received the signal.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="GduVolumeGrid-changed" role="signal"><title>The <literal>&quot;changed&quot;</literal> signal</title>
+<indexterm zone="GduVolumeGrid-changed"><primary sortas="GduVolumeGrid::changed">GduVolumeGrid::changed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="GduVolumeGrid">GduVolumeGrid</link> *gduvolumegrid,
+                                                        <link linkend="gpointer">gpointer</link>       user_data)          : Run Last</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>gduvolumegrid</parameter>&#160;:</term>
+<listitem><simpara>the object which received the signal.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="GduDetailsElement-activated" role="signal"><title>The <literal>&quot;activated&quot;</literal> signal</title>
+<indexterm zone="GduDetailsElement-activated"><primary sortas="GduDetailsElement::activated">GduDetailsElement::activated</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="GduDetailsElement">GduDetailsElement</link> *gdudetailselement,
+                                                        <link linkend="gchar">gchar</link>             *arg1,
+                                                        <link linkend="gpointer">gpointer</link>           user_data)              : Run Last</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>gdudetailselement</parameter>&#160;:</term>
+<listitem><simpara>the object which received the signal.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>arg1</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="GduDetailsElement-changed" role="signal"><title>The <literal>&quot;changed&quot;</literal> signal</title>
+<indexterm zone="GduDetailsElement-changed"><primary sortas="GduDetailsElement::changed">GduDetailsElement::changed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="GduDetailsElement">GduDetailsElement</link> *gdudetailselement,
+                                                        <link linkend="gpointer">gpointer</link>           user_data)              : Run Last</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>gdudetailselement</parameter>&#160;:</term>
+<listitem><simpara>the object which received the signal.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="GduButtonElement-changed" role="signal"><title>The <literal>&quot;changed&quot;</literal> signal</title>
+<indexterm zone="GduButtonElement-changed"><primary sortas="GduButtonElement::changed">GduButtonElement::changed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="GduButtonElement">GduButtonElement</link> *gdubuttonelement,
+                                                        <link linkend="gpointer">gpointer</link>          user_data)             : Run Last</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>gdubuttonelement</parameter>&#160;:</term>
+<listitem><simpara>the object which received the signal.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="GduButtonElement-clicked" role="signal"><title>The <literal>&quot;clicked&quot;</literal> signal</title>
+<indexterm zone="GduButtonElement-clicked"><primary sortas="GduButtonElement::clicked">GduButtonElement::clicked</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="GduButtonElement">GduButtonElement</link> *gdubuttonelement,
+                                                        <link linkend="gpointer">gpointer</link>          user_data)             : Run Last</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>gdubuttonelement</parameter>&#160;:</term>
+<listitem><simpara>the object which received the signal.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+</refsect1>
+
+
+
+</refentry>

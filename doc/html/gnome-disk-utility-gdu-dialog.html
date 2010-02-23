@@ -8,7 +8,7 @@
 <link rel="up" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
 <link rel="prev" href="gnome-disk-utility-gdu-button-table.html" title="gdu-button-table">
 <link rel="next" href="gnome-disk-utility-gdu-ata-smart-dialog.html" title="gdu-ata-smart-dialog">
-<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="reference" href="ref-libgdu.html" title="libgdu API Reference">
 <link rel="reference" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
@@ -24,8 +24,8 @@
 </tr>
 <tr><td colspan="5" class="shortcuts">
 <a href="#gnome-disk-utility-gdu-dialog.synopsis" class="shortcut">Top</a>
-                   | 
-                  <a href="#gnome-disk-utility-gdu-dialog.description" class="shortcut">Description</a>
+                 | 
+                <a href="#gnome-disk-utility-gdu-dialog.description" class="shortcut">Description</a>
 </td></tr>
 </table>
 <div class="refentry" title="gdu-dialog">
@@ -39,11 +39,12 @@
 </tr></table></div>
 <div class="refsynopsisdiv" title="Synopsis">
 <a name="gnome-disk-utility-gdu-dialog.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">typedef             <a class="link" href="gnome-disk-utility-gdu-dialog.html#GduDialogClass" title="GduDialogClass">GduDialogClass</a>;
+<pre class="synopsis">
+typedef             <a class="link" href="gnome-disk-utility-gdu-dialog.html#GduDialogClass" title="GduDialogClass">GduDialogClass</a>;
 typedef             <a class="link" href="gnome-disk-utility-gdu-dialog.html#GduDialogPrivate" title="GduDialogPrivate">GduDialogPrivate</a>;
-<a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *    <a class="link" href="gnome-disk-utility-gdu-dialog.html#gdu-dialog-get-presentable" title="gdu_dialog_get_presentable ()">gdu_dialog_get_presentable</a>          (<span class="returnvalue">GduDialog</span> *dialog);
-<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *         <a class="link" href="gnome-disk-utility-gdu-dialog.html#gdu-dialog-get-device" title="gdu_dialog_get_device ()">gdu_dialog_get_device</a>               (<span class="returnvalue">GduDialog</span> *dialog);
-<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *           <a class="link" href="gnome-disk-utility-gdu-dialog.html#gdu-dialog-get-pool" title="gdu_dialog_get_pool ()">gdu_dialog_get_pool</a>                 (<span class="returnvalue">GduDialog</span> *dialog);
+GduPresentable *    <a class="link" href="gnome-disk-utility-gdu-dialog.html#gdu-dialog-get-presentable" title="gdu_dialog_get_presentable ()">gdu_dialog_get_presentable</a>          (GduDialog *dialog);
+<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *         <a class="link" href="gnome-disk-utility-gdu-dialog.html#gdu-dialog-get-device" title="gdu_dialog_get_device ()">gdu_dialog_get_device</a>               (GduDialog *dialog);
+<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *           <a class="link" href="gnome-disk-utility-gdu-dialog.html#gdu-dialog-get-pool" title="gdu_dialog_get_pool ()">gdu_dialog_get_pool</a>                 (GduDialog *dialog);
 </pre>
 </div>
 <div class="refsect1" title="Description">
@@ -71,7 +72,7 @@ typedef             <a class="link" href="gnome-disk-utility-gdu-dialog.html#Gdu
 <hr>
 <div class="refsect2" title="gdu_dialog_get_presentable ()">
 <a name="gdu-dialog-get-presentable"></a><h3>gdu_dialog_get_presentable ()</h3>
-<pre class="programlisting"><a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *    gdu_dialog_get_presentable          (<span class="returnvalue">GduDialog</span> *dialog);</pre>
+<pre class="programlisting">GduPresentable *    gdu_dialog_get_presentable          (GduDialog *dialog);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -93,7 +94,7 @@ typedef             <a class="link" href="gnome-disk-utility-gdu-dialog.html#Gdu
 <hr>
 <div class="refsect2" title="gdu_dialog_get_device ()">
 <a name="gdu-dialog-get-device"></a><h3>gdu_dialog_get_device ()</h3>
-<pre class="programlisting"><a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *         gdu_dialog_get_device               (<span class="returnvalue">GduDialog</span> *dialog);</pre>
+<pre class="programlisting"><a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *         gdu_dialog_get_device               (GduDialog *dialog);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -115,7 +116,7 @@ typedef             <a class="link" href="gnome-disk-utility-gdu-dialog.html#Gdu
 <hr>
 <div class="refsect2" title="gdu_dialog_get_pool ()">
 <a name="gdu-dialog-get-pool"></a><h3>gdu_dialog_get_pool ()</h3>
-<pre class="programlisting"><a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *           gdu_dialog_get_pool                 (<span class="returnvalue">GduDialog</span> *dialog);</pre>
+<pre class="programlisting"><a class="link" href="GduPool.html" title="GduPool">GduPool</a> *           gdu_dialog_get_pool                 (GduDialog *dialog);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -138,6 +139,6 @@ typedef             <a class="link" href="gnome-disk-utility-gdu-dialog.html#Gdu
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.13</div>
+          Generated by GTK-Doc V1.11</div>
 </body>
 </html>

@@ -1,0 +1,201 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="gnome-disk-utility-gdu-format-dialog">
+<refmeta>
+<refentrytitle role="top_of_page" id="gnome-disk-utility-gdu-format-dialog.top_of_page">gdu-format-dialog</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GNOME-DISK-UTILITY Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>gdu-format-dialog</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gnome-disk-utility-gdu-format-dialog.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+typedef             <link linkend="GduFormatDialogClass">GduFormatDialogClass</link>;
+typedef             <link linkend="GduFormatDialogPrivate">GduFormatDialogPrivate</link>;
+<link linkend="GtkWidget">GtkWidget</link> *         <link linkend="gdu-format-dialog-new">gdu_format_dialog_new</link>               (<link linkend="GtkWindow">GtkWindow</link> *parent,
+                                                         <link linkend="GduPresentable">GduPresentable</link> *presentable,
+                                                         <link linkend="GduFormatDialogFlags">GduFormatDialogFlags</link> flags);
+<link linkend="GtkWidget">GtkWidget</link> *         <link linkend="gdu-format-dialog-new-for-drive">gdu_format_dialog_new_for_drive</link>     (<link linkend="GtkWindow">GtkWindow</link> *parent,
+                                                         <link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GduFormatDialogFlags">GduFormatDialogFlags</link> flags);
+<link linkend="GtkWidget">GtkWidget</link> *         <link linkend="gdu-format-dialog-new-for-volume">gdu_format_dialog_new_for_volume</link>    (<link linkend="GtkWindow">GtkWindow</link> *parent,
+                                                         <link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GduFormatDialogFlags">GduFormatDialogFlags</link> flags);
+<link linkend="gchar">gchar</link> *             <link linkend="gdu-format-dialog-get-fs-type">gdu_format_dialog_get_fs_type</link>       (<link linkend="GduFormatDialog">GduFormatDialog</link> *dialog);
+<link linkend="gchar">gchar</link> *             <link linkend="gdu-format-dialog-get-fs-label">gdu_format_dialog_get_fs_label</link>      (<link linkend="GduFormatDialog">GduFormatDialog</link> *dialog);
+<link linkend="gchar">gchar</link> **            <link linkend="gdu-format-dialog-get-fs-options">gdu_format_dialog_get_fs_options</link>    (<link linkend="GduFormatDialog">GduFormatDialog</link> *dialog);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-format-dialog-get-encrypt">gdu_format_dialog_get_encrypt</link>       (<link linkend="GduFormatDialog">GduFormatDialog</link> *dialog);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-format-dialog-get-take-ownership">gdu_format_dialog_get_take_ownership</link>
+                                                        (<link linkend="GduFormatDialog">GduFormatDialog</link> *dialog);
+<link linkend="GtkWidget">GtkWidget</link> *         <link linkend="gdu-format-dialog-get-table">gdu_format_dialog_get_table</link>         (<link linkend="GduFormatDialog">GduFormatDialog</link> *dialog);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gnome-disk-utility-gdu-format-dialog.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gnome-disk-utility-gdu-format-dialog.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GduFormatDialogClass" role="typedef">
+<title>GduFormatDialogClass</title>
+<indexterm zone="GduFormatDialogClass"><primary sortas="GduFormatDialogClass">GduFormatDialogClass</primary></indexterm><programlisting>typedef struct GduFormatDialogClass   GduFormatDialogClass;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduFormatDialogPrivate" role="typedef">
+<title>GduFormatDialogPrivate</title>
+<indexterm zone="GduFormatDialogPrivate"><primary sortas="GduFormatDialogPrivate">GduFormatDialogPrivate</primary></indexterm><programlisting>typedef struct GduFormatDialogPrivate GduFormatDialogPrivate;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="gdu-format-dialog-new" role="function">
+<title>gdu_format_dialog_new ()</title>
+<indexterm zone="gdu-format-dialog-new"><primary sortas="gdu_format_dialog_new">gdu_format_dialog_new</primary></indexterm><programlisting><link linkend="GtkWidget">GtkWidget</link> *         gdu_format_dialog_new               (<link linkend="GtkWindow">GtkWindow</link> *parent,
+                                                         <link linkend="GduPresentable">GduPresentable</link> *presentable,
+                                                         <link linkend="GduFormatDialogFlags">GduFormatDialogFlags</link> flags);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>parent</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>presentable</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>flags</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-format-dialog-new-for-drive" role="function">
+<title>gdu_format_dialog_new_for_drive ()</title>
+<indexterm zone="gdu-format-dialog-new-for-drive"><primary sortas="gdu_format_dialog_new_for_drive">gdu_format_dialog_new_for_drive</primary></indexterm><programlisting><link linkend="GtkWidget">GtkWidget</link> *         gdu_format_dialog_new_for_drive     (<link linkend="GtkWindow">GtkWindow</link> *parent,
+                                                         <link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GduFormatDialogFlags">GduFormatDialogFlags</link> flags);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>parent</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>flags</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-format-dialog-new-for-volume" role="function">
+<title>gdu_format_dialog_new_for_volume ()</title>
+<indexterm zone="gdu-format-dialog-new-for-volume"><primary sortas="gdu_format_dialog_new_for_volume">gdu_format_dialog_new_for_volume</primary></indexterm><programlisting><link linkend="GtkWidget">GtkWidget</link> *         gdu_format_dialog_new_for_volume    (<link linkend="GtkWindow">GtkWindow</link> *parent,
+                                                         <link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GduFormatDialogFlags">GduFormatDialogFlags</link> flags);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>parent</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>flags</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-format-dialog-get-fs-type" role="function">
+<title>gdu_format_dialog_get_fs_type ()</title>
+<indexterm zone="gdu-format-dialog-get-fs-type"><primary sortas="gdu_format_dialog_get_fs_type">gdu_format_dialog_get_fs_type</primary></indexterm><programlisting><link linkend="gchar">gchar</link> *             gdu_format_dialog_get_fs_type       (<link linkend="GduFormatDialog">GduFormatDialog</link> *dialog);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>dialog</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-format-dialog-get-fs-label" role="function">
+<title>gdu_format_dialog_get_fs_label ()</title>
+<indexterm zone="gdu-format-dialog-get-fs-label"><primary sortas="gdu_format_dialog_get_fs_label">gdu_format_dialog_get_fs_label</primary></indexterm><programlisting><link linkend="gchar">gchar</link> *             gdu_format_dialog_get_fs_label      (<link linkend="GduFormatDialog">GduFormatDialog</link> *dialog);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>dialog</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-format-dialog-get-fs-options" role="function">
+<title>gdu_format_dialog_get_fs_options ()</title>
+<indexterm zone="gdu-format-dialog-get-fs-options"><primary sortas="gdu_format_dialog_get_fs_options">gdu_format_dialog_get_fs_options</primary></indexterm><programlisting><link linkend="gchar">gchar</link> **            gdu_format_dialog_get_fs_options    (<link linkend="GduFormatDialog">GduFormatDialog</link> *dialog);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>dialog</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-format-dialog-get-encrypt" role="function">
+<title>gdu_format_dialog_get_encrypt ()</title>
+<indexterm zone="gdu-format-dialog-get-encrypt"><primary sortas="gdu_format_dialog_get_encrypt">gdu_format_dialog_get_encrypt</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_format_dialog_get_encrypt       (<link linkend="GduFormatDialog">GduFormatDialog</link> *dialog);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>dialog</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-format-dialog-get-take-ownership" role="function">
+<title>gdu_format_dialog_get_take_ownership ()</title>
+<indexterm zone="gdu-format-dialog-get-take-ownership"><primary sortas="gdu_format_dialog_get_take_ownership">gdu_format_dialog_get_take_ownership</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_format_dialog_get_take_ownership
+                                                        (<link linkend="GduFormatDialog">GduFormatDialog</link> *dialog);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>dialog</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-format-dialog-get-table" role="function">
+<title>gdu_format_dialog_get_table ()</title>
+<indexterm zone="gdu-format-dialog-get-table"><primary sortas="gdu_format_dialog_get_table">gdu_format_dialog_get_table</primary></indexterm><programlisting><link linkend="GtkWidget">GtkWidget</link> *         gdu_format_dialog_get_table         (<link linkend="GduFormatDialog">GduFormatDialog</link> *dialog);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>dialog</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

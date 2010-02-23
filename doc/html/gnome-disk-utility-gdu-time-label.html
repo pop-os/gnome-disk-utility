@@ -8,7 +8,7 @@
 <link rel="up" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
 <link rel="prev" href="gnome-disk-utility-gdu-spinner.html" title="gdu-spinner">
 <link rel="next" href="gnome-disk-utility-gdu-volume-grid.html" title="gdu-volume-grid">
-<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="reference" href="ref-libgdu.html" title="libgdu API Reference">
 <link rel="reference" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
@@ -24,8 +24,8 @@
 </tr>
 <tr><td colspan="5" class="shortcuts">
 <a href="#gnome-disk-utility-gdu-time-label.synopsis" class="shortcut">Top</a>
-                   | 
-                  <a href="#gnome-disk-utility-gdu-time-label.description" class="shortcut">Description</a>
+                 | 
+                <a href="#gnome-disk-utility-gdu-time-label.description" class="shortcut">Description</a>
 </td></tr>
 </table>
 <div class="refentry" title="gdu-time-label">
@@ -39,11 +39,18 @@
 </tr></table></div>
 <div class="refsynopsisdiv" title="Synopsis">
 <a name="gnome-disk-utility-gdu-time-label.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">typedef             <a class="link" href="gnome-disk-utility-gdu-time-label.html#GduTimeLabelClass" title="GduTimeLabelClass">GduTimeLabelClass</a>;
+<pre class="synopsis">
+typedef             <a class="link" href="gnome-disk-utility-gdu-time-label.html#GduTimeLabelClass" title="GduTimeLabelClass">GduTimeLabelClass</a>;
 typedef             <a class="link" href="gnome-disk-utility-gdu-time-label.html#GduTimeLabelPrivate" title="GduTimeLabelPrivate">GduTimeLabelPrivate</a>;
-<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         <a class="link" href="gnome-disk-utility-gdu-time-label.html#gdu-time-label-new" title="gdu_time_label_new ()">gdu_time_label_new</a>                  (<a href="http://library.gnome.org/devel/glib/unstable/glib-Date-and-Time-Functions.html#GTimeVal"><span class="returnvalue">GTimeVal</span></a> *time);
-<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-time-label.html#gdu-time-label-set-time" title="gdu_time_label_set_time ()">gdu_time_label_set_time</a>             (<span class="returnvalue">GduTimeLabel</span> *time_label,
-                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Date-and-Time-Functions.html#GTimeVal"><span class="returnvalue">GTimeVal</span></a> *time);
+<a
+href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"
+>GtkWidget</a> *         <a class="link" href="gnome-disk-utility-gdu-time-label.html#gdu-time-label-new" title="gdu_time_label_new ()">gdu_time_label_new</a>                  (<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Date-and-Time-Functions.html#GTimeVal"
+>GTimeVal</a> *time);
+void                <a class="link" href="gnome-disk-utility-gdu-time-label.html#gdu-time-label-set-time" title="gdu_time_label_set_time ()">gdu_time_label_set_time</a>             (GduTimeLabel *time_label,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Date-and-Time-Functions.html#GTimeVal"
+>GTimeVal</a> *time);
 </pre>
 </div>
 <div class="refsect1" title="Description">
@@ -71,7 +78,11 @@ typedef             <a class="link" href="gnome-disk-utility-gdu-time-label.html
 <hr>
 <div class="refsect2" title="gdu_time_label_new ()">
 <a name="gdu-time-label-new"></a><h3>gdu_time_label_new ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         gdu_time_label_new                  (<a href="http://library.gnome.org/devel/glib/unstable/glib-Date-and-Time-Functions.html#GTimeVal"><span class="returnvalue">GTimeVal</span></a> *time);</pre>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"
+>GtkWidget</a> *         gdu_time_label_new                  (<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Date-and-Time-Functions.html#GTimeVal"
+>GTimeVal</a> *time);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -93,8 +104,10 @@ typedef             <a class="link" href="gnome-disk-utility-gdu-time-label.html
 <hr>
 <div class="refsect2" title="gdu_time_label_set_time ()">
 <a name="gdu-time-label-set-time"></a><h3>gdu_time_label_set_time ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                gdu_time_label_set_time             (<span class="returnvalue">GduTimeLabel</span> *time_label,
-                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Date-and-Time-Functions.html#GTimeVal"><span class="returnvalue">GTimeVal</span></a> *time);</pre>
+<pre class="programlisting">void                gdu_time_label_set_time             (GduTimeLabel *time_label,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Date-and-Time-Functions.html#GTimeVal"
+>GTimeVal</a> *time);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -117,6 +130,6 @@ typedef             <a class="link" href="gnome-disk-utility-gdu-time-label.html
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.13</div>
+          Generated by GTK-Doc V1.11</div>
 </body>
 </html>

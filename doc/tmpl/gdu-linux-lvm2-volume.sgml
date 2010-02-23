@@ -9,10 +9,12 @@ GduLinuxLvm2Volume
 
 </para>
 
+
 <!-- ##### SECTION See_Also ##### -->
 <para>
 
 </para>
+
 
 <!-- ##### SECTION Stability_Level ##### -->
 
@@ -29,6 +31,15 @@ GduLinuxLvm2Volume
 </para>
 
 @parent: 
+
+<!-- ##### FUNCTION gdu_linux_lvm2_volume_get_name ##### -->
+<para>
+
+</para>
+
+@volume: 
+@Returns: 
+
 
 <!-- ##### FUNCTION gdu_linux_lvm2_volume_get_uuid ##### -->
 <para>

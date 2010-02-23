@@ -8,7 +8,7 @@
 <link rel="up" href="ref-libgdu.html" title="libgdu API Reference">
 <link rel="prev" href="GduLinuxMdDrive.html" title="GduLinuxMdDrive">
 <link rel="next" href="GduVolumeHole.html" title="GduVolumeHole">
-<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="reference" href="ref-libgdu.html" title="libgdu API Reference">
 <link rel="reference" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
@@ -24,12 +24,12 @@
 </tr>
 <tr><td colspan="5" class="shortcuts">
 <a href="#GduVolume.synopsis" class="shortcut">Top</a>
-                   | 
-                  <a href="#GduVolume.description" class="shortcut">Description</a>
-                   | 
-                  <a href="#GduVolume.object-hierarchy" class="shortcut">Object Hierarchy</a>
-                   | 
-                  <a href="#GduVolume.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
+                 | 
+                <a href="#GduVolume.description" class="shortcut">Description</a>
+                 | 
+                <a href="#GduVolume.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                 | 
+                <a href="#GduVolume.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
 </td></tr>
 </table>
 <div class="refentry" title="GduVolume">
@@ -43,14 +43,26 @@
 </tr></table></div>
 <div class="refsynopsisdiv" title="Synopsis">
 <a name="GduVolume.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">                    <a class="link" href="GduVolume.html#GduVolumePrivate" title="GduVolumePrivate">GduVolumePrivate</a>;
+<pre class="synopsis">
+enum                <a class="link" href="GduVolume.html#GduVolumeFlags" title="enum GduVolumeFlags">GduVolumeFlags</a>;
+                    <a class="link" href="GduVolume.html#GduVolumePrivate" title="GduVolumePrivate">GduVolumePrivate</a>;
                     <a class="link" href="GduVolume.html#GduVolume-struct" title="GduVolume">GduVolume</a>;
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduVolume.html#gdu-volume-is-allocated" title="gdu_volume_is_allocated ()">gdu_volume_is_allocated</a>             (<a class="link" href="GduVolume.html" title="GduVolume">GduVolume</a> *volume);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GduVolume.html#gdu-volume-is-recognized" title="gdu_volume_is_recognized ()">gdu_volume_is_recognized</a>            (<a class="link" href="GduVolume.html" title="GduVolume">GduVolume</a> *volume);
+<a class="link" href="GduVolume.html#GduVolumeFlags" title="enum GduVolumeFlags">GduVolumeFlags</a>      <a class="link" href="GduVolume.html#gdu-volume-get-flags" title="gdu_volume_get_flags ()">gdu_volume_get_flags</a>                (<a class="link" href="GduVolume.html" title="GduVolume">GduVolume</a> *volume);
+<a class="link" href="GduDrive.html" title="GduDrive">GduDrive</a> *          <a class="link" href="GduVolume.html#gdu-volume-get-drive" title="gdu_volume_get_drive ()">gdu_volume_get_drive</a>                (<a class="link" href="GduVolume.html" title="GduVolume">GduVolume</a> *volume);
 </pre>
 </div>
 <div class="refsect1" title="Object Hierarchy">
 <a name="GduVolume.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+  <a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
    +----GduVolume
 </pre>
 </div>
@@ -58,7 +70,7 @@
 <a name="GduVolume.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
 <p>
 GduVolume implements
- <a class="link" href="GduPresentable.html" title="GduPresentable">GduPresentable</a>.</p>
+ GduPresentable.</p>
 </div>
 <div class="refsect1" title="Description">
 <a name="GduVolume.description"></a><h2>Description</h2>
@@ -68,10 +80,52 @@ typically it represents partitions (for partitioned devices) or
 the whole file system (for e.g. optical discs and floppy disks).
 </p>
 <p>
-See the documentation for <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="type">GduPresentable</span></a> for the big picture.</p>
+See the documentation for <span class="type">GduPresentable</span> for the big picture.</p>
+<p>
+</p>
 </div>
 <div class="refsect1" title="Details">
 <a name="GduVolume.details"></a><h2>Details</h2>
+<div class="refsect2" title="enum GduVolumeFlags">
+<a name="GduVolumeFlags"></a><h3>enum GduVolumeFlags</h3>
+<pre class="programlisting">typedef enum {
+        GDU_VOLUME_FLAGS_NONE                   = 0x0000,
+        GDU_VOLUME_FLAGS_PARTITION              = (1&lt;&lt;0),
+        GDU_VOLUME_FLAGS_PARTITION_MBR_LOGICAL  = (1&lt;&lt;1),
+        GDU_VOLUME_FLAGS_PARTITION_MBR_EXTENDED = (1&lt;&lt;2)
+} GduVolumeFlags;
+</pre>
+<p>
+Various flags for describing a volume.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="GDU-VOLUME-FLAGS-NONE--CAPS"></a><span class="term"><code class="literal">GDU_VOLUME_FLAGS_NONE</code></span></p></td>
+<td> No flags set
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-VOLUME-FLAGS-PARTITION--CAPS"></a><span class="term"><code class="literal">GDU_VOLUME_FLAGS_PARTITION</code></span></p></td>
+<td> The volume is a partition.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-VOLUME-FLAGS-PARTITION-MBR-LOGICAL--CAPS"></a><span class="term"><code class="literal">GDU_VOLUME_FLAGS_PARTITION_MBR_LOGICAL</code></span></p></td>
+<td> The volume is a Logical Partition in the MBR partitioning scheme.
+</td>
+</tr>
+<tr>
+<td><p><a name="GDU-VOLUME-FLAGS-PARTITION-MBR-EXTENDED--CAPS"></a><span class="term"><code class="literal">GDU_VOLUME_FLAGS_PARTITION_MBR_EXTENDED</code></span></p></td>
+<td> The volume is an Extended Partition in the MBR partitioning scheme.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
 <div class="refsect2" title="GduVolumePrivate">
 <a name="GduVolumePrivate"></a><h3>GduVolumePrivate</h3>
 <pre class="programlisting">typedef struct _GduVolumePrivate GduVolumePrivate;</pre>
@@ -85,10 +139,102 @@ See the documentation for <a class="link" href="GduPresentable.html" title="GduP
 <p>
 </p>
 </div>
+<hr>
+<div class="refsect2" title="gdu_volume_is_allocated ()">
+<a name="gdu-volume-is-allocated"></a><h3>gdu_volume_is_allocated ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_volume_is_allocated             (<a class="link" href="GduVolume.html" title="GduVolume">GduVolume</a> *volume);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>volume</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_volume_is_recognized ()">
+<a name="gdu-volume-is-recognized"></a><h3>gdu_volume_is_recognized ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_volume_is_recognized            (<a class="link" href="GduVolume.html" title="GduVolume">GduVolume</a> *volume);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>volume</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_volume_get_flags ()">
+<a name="gdu-volume-get-flags"></a><h3>gdu_volume_get_flags ()</h3>
+<pre class="programlisting"><a class="link" href="GduVolume.html#GduVolumeFlags" title="enum GduVolumeFlags">GduVolumeFlags</a>      gdu_volume_get_flags                (<a class="link" href="GduVolume.html" title="GduVolume">GduVolume</a> *volume);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>volume</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_volume_get_drive ()">
+<a name="gdu-volume-get-drive"></a><h3>gdu_volume_get_drive ()</h3>
+<pre class="programlisting"><a class="link" href="GduDrive.html" title="GduDrive">GduDrive</a> *          gdu_volume_get_drive                (<a class="link" href="GduVolume.html" title="GduVolume">GduVolume</a> *volume);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>volume</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
 </div>
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.13</div>
+          Generated by GTK-Doc V1.11</div>
 </body>
 </html>

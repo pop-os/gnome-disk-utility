@@ -7,7 +7,7 @@
 <link rel="home" href="index.html" title="Disk Utility Library Reference Manual">
 <link rel="up" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
 <link rel="prev" href="gnome-disk-utility-gdu-time-label.html" title="gdu-time-label">
-<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="reference" href="ref-libgdu.html" title="libgdu API Reference">
 <link rel="reference" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
@@ -23,8 +23,8 @@
 </tr>
 <tr><td colspan="5" class="shortcuts">
 <a href="#gnome-disk-utility-gdu-volume-grid.synopsis" class="shortcut">Top</a>
-                   | 
-                  <a href="#gnome-disk-utility-gdu-volume-grid.description" class="shortcut">Description</a>
+                 | 
+                <a href="#gnome-disk-utility-gdu-volume-grid.description" class="shortcut">Description</a>
 </td></tr>
 </table>
 <div class="refentry" title="gdu-volume-grid">
@@ -38,13 +38,18 @@
 </tr></table></div>
 <div class="refsynopsisdiv" title="Synopsis">
 <a name="gnome-disk-utility-gdu-volume-grid.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">typedef             <a class="link" href="gnome-disk-utility-gdu-volume-grid.html#GduVolumeGridClass" title="GduVolumeGridClass">GduVolumeGridClass</a>;
+<pre class="synopsis">
+typedef             <a class="link" href="gnome-disk-utility-gdu-volume-grid.html#GduVolumeGridClass" title="GduVolumeGridClass">GduVolumeGridClass</a>;
 typedef             <a class="link" href="gnome-disk-utility-gdu-volume-grid.html#GduVolumeGridPrivate" title="GduVolumeGridPrivate">GduVolumeGridPrivate</a>;
-<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-details-element.html#changed" title="changed ()">changed</a>                             (<span class="returnvalue">GduSizeWidget</span> *widget);
-<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a>*          <a class="link" href="gnome-disk-utility-gdu-volume-grid.html#gdu-volume-grid-new" title="gdu_volume_grid_new ()">gdu_volume_grid_new</a>                 (<a class="link" href="GduDrive.html" title="GduDrive"><span class="returnvalue">GduDrive</span></a> *drive);
-<a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *    <a class="link" href="gnome-disk-utility-gdu-volume-grid.html#gdu-volume-grid-get-selected" title="gdu_volume_grid_get_selected ()">gdu_volume_grid_get_selected</a>        (<span class="returnvalue">GduVolumeGrid</span> *grid);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="gnome-disk-utility-gdu-volume-grid.html#gdu-volume-grid-select" title="gdu_volume_grid_select ()">gdu_volume_grid_select</a>              (<span class="returnvalue">GduVolumeGrid</span> *grid,
-                                                         <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *volume);
+void                <a class="link" href="gnome-disk-utility-gdu-details-element.html#changed" title="changed ()">changed</a>                             (GduVolumeGrid *grid);
+<a
+href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"
+>GtkWidget</a>*          <a class="link" href="gnome-disk-utility-gdu-volume-grid.html#gdu-volume-grid-new" title="gdu_volume_grid_new ()">gdu_volume_grid_new</a>                 (<a class="link" href="GduDrive.html" title="GduDrive">GduDrive</a> *drive);
+GduPresentable *    <a class="link" href="gnome-disk-utility-gdu-volume-grid.html#gdu-volume-grid-get-selected" title="gdu_volume_grid_get_selected ()">gdu_volume_grid_get_selected</a>        (GduVolumeGrid *grid);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="gnome-disk-utility-gdu-volume-grid.html#gdu-volume-grid-select" title="gdu_volume_grid_select ()">gdu_volume_grid_select</a>              (GduVolumeGrid *grid,
+                                                         GduPresentable *volume);
 </pre>
 </div>
 <div class="refsect1" title="Description">
@@ -72,13 +77,13 @@ typedef             <a class="link" href="gnome-disk-utility-gdu-volume-grid.htm
 <hr>
 <div class="refsect2" title="changed ()">
 <a name="changed"></a><h3>changed ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                changed                             (<span class="returnvalue">GduSizeWidget</span> *widget);</pre>
+<pre class="programlisting">void                changed                             (GduVolumeGrid *grid);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
-<td><p><span class="term"><em class="parameter"><code>widget</code></em> :</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>grid</code></em> :</span></p></td>
 <td>
 </td>
 </tr></tbody>
@@ -87,7 +92,9 @@ typedef             <a class="link" href="gnome-disk-utility-gdu-volume-grid.htm
 <hr>
 <div class="refsect2" title="gdu_volume_grid_new ()">
 <a name="gdu-volume-grid-new"></a><h3>gdu_volume_grid_new ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a>*          gdu_volume_grid_new                 (<a class="link" href="GduDrive.html" title="GduDrive"><span class="returnvalue">GduDrive</span></a> *drive);</pre>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"
+>GtkWidget</a>*          gdu_volume_grid_new                 (<a class="link" href="GduDrive.html" title="GduDrive">GduDrive</a> *drive);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -109,7 +116,7 @@ typedef             <a class="link" href="gnome-disk-utility-gdu-volume-grid.htm
 <hr>
 <div class="refsect2" title="gdu_volume_grid_get_selected ()">
 <a name="gdu-volume-grid-get-selected"></a><h3>gdu_volume_grid_get_selected ()</h3>
-<pre class="programlisting"><a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *    gdu_volume_grid_get_selected        (<span class="returnvalue">GduVolumeGrid</span> *grid);</pre>
+<pre class="programlisting">GduPresentable *    gdu_volume_grid_get_selected        (GduVolumeGrid *grid);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -131,8 +138,10 @@ typedef             <a class="link" href="gnome-disk-utility-gdu-volume-grid.htm
 <hr>
 <div class="refsect2" title="gdu_volume_grid_select ()">
 <a name="gdu-volume-grid-select"></a><h3>gdu_volume_grid_select ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gdu_volume_grid_select              (<span class="returnvalue">GduVolumeGrid</span> *grid,
-                                                         <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *volume);</pre>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_volume_grid_select              (GduVolumeGrid *grid,
+                                                         GduPresentable *volume);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -160,6 +169,6 @@ typedef             <a class="link" href="gnome-disk-utility-gdu-volume-grid.htm
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.13</div>
+          Generated by GTK-Doc V1.11</div>
 </body>
 </html>

@@ -5,7 +5,7 @@
     <sub name="libgdu API Reference" link="ref-libgdu.html">
       <sub name="GduPool" link="GduPool.html"/>
       <sub name="GduDevice" link="GduDevice.html"/>
-      <sub name="GduPresentable" link="GduPresentable.html"/>
+      <sub name="GduPresentable" link="gnome-disk-utility-gdu-presentable.html"/>
       <sub name="GduDrive" link="GduDrive.html"/>
       <sub name="GduLinuxMdDrive" link="GduLinuxMdDrive.html"/>
       <sub name="GduVolume" link="GduVolume.html"/>
@@ -155,6 +155,7 @@
     <function name="gdu_device_partition_get_number ()" link="GduDevice.html#gdu-device-partition-get-number"/>
     <function name="gdu_device_partition_get_offset ()" link="GduDevice.html#gdu-device-partition-get-offset"/>
     <function name="gdu_device_partition_get_size ()" link="GduDevice.html#gdu-device-partition-get-size"/>
+    <function name="gdu_device_partition_get_alignment_offset ()" link="GduDevice.html#gdu-device-partition-get-alignment-offset"/>
     <function name="gdu_device_partition_table_get_scheme ()" link="GduDevice.html#gdu-device-partition-table-get-scheme"/>
     <function name="gdu_device_partition_table_get_count ()" link="GduDevice.html#gdu-device-partition-table-get-count"/>
     <function name="gdu_device_luks_get_holder ()" link="GduDevice.html#gdu-device-luks-get-holder"/>
@@ -258,24 +259,25 @@
     <function name="The &quot;changed&quot; signal" link="GduDevice.html#GduDevice-changed"/>
     <function name="The &quot;job-changed&quot; signal" link="GduDevice.html#GduDevice-job-changed"/>
     <function name="The &quot;removed&quot; signal" link="GduDevice.html#GduDevice-removed"/>
-    <function name="gdu_presentable_get_id ()" link="GduPresentable.html#gdu-presentable-get-id"/>
-    <function name="gdu_presentable_get_device ()" link="GduPresentable.html#gdu-presentable-get-device"/>
-    <function name="gdu_presentable_get_enclosing_presentable ()" link="GduPresentable.html#gdu-presentable-get-enclosing-presentable"/>
-    <function name="gdu_presentable_get_name ()" link="GduPresentable.html#gdu-presentable-get-name"/>
-    <function name="gdu_presentable_get_description ()" link="GduPresentable.html#gdu-presentable-get-description"/>
-    <function name="gdu_presentable_get_vpd_name ()" link="GduPresentable.html#gdu-presentable-get-vpd-name"/>
-    <function name="gdu_presentable_get_icon ()" link="GduPresentable.html#gdu-presentable-get-icon"/>
-    <function name="gdu_presentable_get_offset ()" link="GduPresentable.html#gdu-presentable-get-offset"/>
-    <function name="gdu_presentable_get_size ()" link="GduPresentable.html#gdu-presentable-get-size"/>
-    <function name="gdu_presentable_get_pool ()" link="GduPresentable.html#gdu-presentable-get-pool"/>
-    <function name="gdu_presentable_is_allocated ()" link="GduPresentable.html#gdu-presentable-is-allocated"/>
-    <function name="gdu_presentable_is_recognized ()" link="GduPresentable.html#gdu-presentable-is-recognized"/>
-    <function name="gdu_presentable_get_toplevel ()" link="GduPresentable.html#gdu-presentable-get-toplevel"/>
-    <function name="gdu_presentable_hash ()" link="GduPresentable.html#gdu-presentable-hash"/>
-    <function name="gdu_presentable_equals ()" link="GduPresentable.html#gdu-presentable-equals"/>
-    <function name="gdu_presentable_compare ()" link="GduPresentable.html#gdu-presentable-compare"/>
-    <function name="gdu_presentable_get_enclosed ()" link="GduPresentable.html#gdu-presentable-get-enclosed"/>
-    <function name="gdu_presentable_encloses ()" link="GduPresentable.html#gdu-presentable-encloses"/>
+    <function name="GduPresentableIface" link="gnome-disk-utility-gdu-presentable.html#GduPresentableIface"/>
+    <function name="gdu_presentable_get_id ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-id"/>
+    <function name="gdu_presentable_get_device ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-device"/>
+    <function name="gdu_presentable_get_enclosing_presentable ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-enclosing-presentable"/>
+    <function name="gdu_presentable_get_name ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-name"/>
+    <function name="gdu_presentable_get_description ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-description"/>
+    <function name="gdu_presentable_get_vpd_name ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-vpd-name"/>
+    <function name="gdu_presentable_get_icon ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-icon"/>
+    <function name="gdu_presentable_get_offset ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-offset"/>
+    <function name="gdu_presentable_get_size ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-size"/>
+    <function name="gdu_presentable_get_pool ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-pool"/>
+    <function name="gdu_presentable_is_allocated ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-is-allocated"/>
+    <function name="gdu_presentable_is_recognized ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-is-recognized"/>
+    <function name="gdu_presentable_get_toplevel ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-toplevel"/>
+    <function name="gdu_presentable_hash ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-hash"/>
+    <function name="gdu_presentable_equals ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-equals"/>
+    <function name="gdu_presentable_compare ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-compare"/>
+    <function name="gdu_presentable_get_enclosed ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-enclosed"/>
+    <function name="gdu_presentable_encloses ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-encloses"/>
     <function name="GduDrivePrivate" link="GduDrive.html#GduDrivePrivate"/>
     <function name="enum GduCreateVolumeFlags" link="GduDrive.html#GduCreateVolumeFlags"/>
     <function name="GduDrive" link="GduDrive.html#GduDrive-struct"/>
@@ -289,6 +291,7 @@
     <function name="gdu_drive_create_volume ()" link="GduDrive.html#gdu-drive-create-volume"/>
     <function name="gdu_drive_create_volume_finish ()" link="GduDrive.html#gdu-drive-create-volume-finish"/>
     <function name="gdu_drive_count_mbr_partitions ()" link="GduDrive.html#gdu-drive-count-mbr-partitions"/>
+    <function name="gdu_drive_get_volumes ()" link="GduDrive.html#gdu-drive-get-volumes"/>
     <function name="GduLinuxMdDrivePrivate" link="GduLinuxMdDrive.html#GduLinuxMdDrivePrivate"/>
     <function name="GduLinuxMdDrive" link="GduLinuxMdDrive.html#GduLinuxMdDrive-struct"/>
     <function name="enum GduLinuxMdDriveSlaveFlags" link="GduLinuxMdDrive.html#GduLinuxMdDriveSlaveFlags"/>
@@ -297,8 +300,13 @@
     <function name="gdu_linux_md_drive_get_slaves ()" link="GduLinuxMdDrive.html#gdu-linux-md-drive-get-slaves"/>
     <function name="gdu_linux_md_drive_get_slave_flags ()" link="GduLinuxMdDrive.html#gdu-linux-md-drive-get-slave-flags"/>
     <function name="gdu_linux_md_drive_get_slave_state_markup ()" link="GduLinuxMdDrive.html#gdu-linux-md-drive-get-slave-state-markup"/>
+    <function name="enum GduVolumeFlags" link="GduVolume.html#GduVolumeFlags"/>
     <function name="GduVolumePrivate" link="GduVolume.html#GduVolumePrivate"/>
     <function name="GduVolume" link="GduVolume.html#GduVolume-struct"/>
+    <function name="gdu_volume_is_allocated ()" link="GduVolume.html#gdu-volume-is-allocated"/>
+    <function name="gdu_volume_is_recognized ()" link="GduVolume.html#gdu-volume-is-recognized"/>
+    <function name="gdu_volume_get_flags ()" link="GduVolume.html#gdu-volume-get-flags"/>
+    <function name="gdu_volume_get_drive ()" link="GduVolume.html#gdu-volume-get-drive"/>
     <function name="GduVolumeHolePrivate" link="GduVolumeHole.html#GduVolumeHolePrivate"/>
     <function name="GduVolumeHole" link="GduVolumeHole.html#GduVolumeHole-struct"/>
     <function name="GduDeviceFilesystemMountCompletedFunc ()" link="gnome-disk-utility-gdu-callbacks.html#GduDeviceFilesystemMountCompletedFunc"/>
@@ -341,7 +349,7 @@
     <function name="GduDriveActivateFunc ()" link="gnome-disk-utility-gdu-callbacks.html#GduDriveActivateFunc"/>
     <function name="GduDriveDeactivateFunc ()" link="gnome-disk-utility-gdu-callbacks.html#GduDriveDeactivateFunc"/>
     <function name="enum GduError" link="gnome-disk-utility-gdu-error.html#GduError"/>
-    <function name="GDU_ERROR" link="gnome-disk-utility-gdu-error.html#GDU-ERROR:CAPS"/>
+    <function name="GDU_ERROR" link="gnome-disk-utility-gdu-error.html#GDU-ERROR--CAPS"/>
     <function name="gdu_error_quark ()" link="gnome-disk-utility-gdu-error.html#gdu-error-quark"/>
     <function name="GduProcessPrivate" link="GduProcess.html#GduProcessPrivate"/>
     <function name="GduProcess" link="GduProcess.html#GduProcess-struct"/>
@@ -478,17 +486,17 @@
     <function name="enum GduDiskSelectionWidgetFlags" link="gnome-disk-utility-gdu-gtk-enums.html#GduDiskSelectionWidgetFlags"/>
     <function name="enum GduAddComponentLinuxMdFlags" link="gnome-disk-utility-gdu-gtk-enums.html#GduAddComponentLinuxMdFlags"/>
     <function name="gdu_pool_tree_model_column_get_type ()" link="gnome-disk-utility-gdu-gtk-enumtypes.html#gdu-pool-tree-model-column-get-type"/>
-    <function name="GDU_TYPE_POOL_TREE_MODEL_COLUMN" link="gnome-disk-utility-gdu-gtk-enumtypes.html#GDU-TYPE-POOL-TREE-MODEL-COLUMN:CAPS"/>
+    <function name="GDU_TYPE_POOL_TREE_MODEL_COLUMN" link="gnome-disk-utility-gdu-gtk-enumtypes.html#GDU-TYPE-POOL-TREE-MODEL-COLUMN--CAPS"/>
     <function name="gdu_pool_tree_view_flags_get_type ()" link="gnome-disk-utility-gdu-gtk-enumtypes.html#gdu-pool-tree-view-flags-get-type"/>
-    <function name="GDU_TYPE_POOL_TREE_VIEW_FLAGS" link="gnome-disk-utility-gdu-gtk-enumtypes.html#GDU-TYPE-POOL-TREE-VIEW-FLAGS:CAPS"/>
+    <function name="GDU_TYPE_POOL_TREE_VIEW_FLAGS" link="gnome-disk-utility-gdu-gtk-enumtypes.html#GDU-TYPE-POOL-TREE-VIEW-FLAGS--CAPS"/>
     <function name="gdu_pool_tree_model_flags_get_type ()" link="gnome-disk-utility-gdu-gtk-enumtypes.html#gdu-pool-tree-model-flags-get-type"/>
-    <function name="GDU_TYPE_POOL_TREE_MODEL_FLAGS" link="gnome-disk-utility-gdu-gtk-enumtypes.html#GDU-TYPE-POOL-TREE-MODEL-FLAGS:CAPS"/>
+    <function name="GDU_TYPE_POOL_TREE_MODEL_FLAGS" link="gnome-disk-utility-gdu-gtk-enumtypes.html#GDU-TYPE-POOL-TREE-MODEL-FLAGS--CAPS"/>
     <function name="gdu_format_dialog_flags_get_type ()" link="gnome-disk-utility-gdu-gtk-enumtypes.html#gdu-format-dialog-flags-get-type"/>
-    <function name="GDU_TYPE_FORMAT_DIALOG_FLAGS" link="gnome-disk-utility-gdu-gtk-enumtypes.html#GDU-TYPE-FORMAT-DIALOG-FLAGS:CAPS"/>
+    <function name="GDU_TYPE_FORMAT_DIALOG_FLAGS" link="gnome-disk-utility-gdu-gtk-enumtypes.html#GDU-TYPE-FORMAT-DIALOG-FLAGS--CAPS"/>
     <function name="gdu_disk_selection_widget_flags_get_type ()" link="gnome-disk-utility-gdu-gtk-enumtypes.html#gdu-disk-selection-widget-flags-get-type"/>
-    <function name="GDU_TYPE_DISK_SELECTION_WIDGET_FLAGS" link="gnome-disk-utility-gdu-gtk-enumtypes.html#GDU-TYPE-DISK-SELECTION-WIDGET-FLAGS:CAPS"/>
+    <function name="GDU_TYPE_DISK_SELECTION_WIDGET_FLAGS" link="gnome-disk-utility-gdu-gtk-enumtypes.html#GDU-TYPE-DISK-SELECTION-WIDGET-FLAGS--CAPS"/>
     <function name="gdu_add_component_linux_md_flags_get_type ()" link="gnome-disk-utility-gdu-gtk-enumtypes.html#gdu-add-component-linux-md-flags-get-type"/>
-    <function name="GDU_TYPE_ADD_COMPONENT_LINUX_MD_FLAGS" link="gnome-disk-utility-gdu-gtk-enumtypes.html#GDU-TYPE-ADD-COMPONENT-LINUX-MD-FLAGS:CAPS"/>
+    <function name="GDU_TYPE_ADD_COMPONENT_LINUX_MD_FLAGS" link="gnome-disk-utility-gdu-gtk-enumtypes.html#GDU-TYPE-ADD-COMPONENT-LINUX-MD-FLAGS--CAPS"/>
     <function name="gdu_util_dialog_show_filesystem_busy ()" link="gnome-disk-utility-gdu-gtk.html#gdu-util-dialog-show-filesystem-busy"/>
     <function name="gdu_util_dialog_ask_for_new_secret ()" link="gnome-disk-utility-gdu-gtk.html#gdu-util-dialog-ask-for-new-secret"/>
     <function name="gdu_util_dialog_ask_for_secret ()" link="gnome-disk-utility-gdu-gtk.html#gdu-util-dialog-ask-for-secret"/>

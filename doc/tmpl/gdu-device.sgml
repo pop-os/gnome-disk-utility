@@ -9,10 +9,12 @@ GduDevice
 
 </para>
 
+
 <!-- ##### SECTION See_Also ##### -->
 <para>
 
 </para>
+
 
 <!-- ##### SECTION Stability_Level ##### -->
 
@@ -555,6 +557,15 @@ GduDevice
 
 
 <!-- ##### FUNCTION gdu_device_partition_get_size ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_partition_get_alignment_offset ##### -->
 <para>
 
 </para>

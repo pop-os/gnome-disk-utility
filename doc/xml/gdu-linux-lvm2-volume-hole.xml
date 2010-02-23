@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="gnome-disk-utility-GduLinuxLvm2VolumeHole">
+<refmeta>
+<refentrytitle role="top_of_page" id="gnome-disk-utility-GduLinuxLvm2VolumeHole.top_of_page">GduLinuxLvm2VolumeHole</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GNOME-DISK-UTILITY Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GduLinuxLvm2VolumeHole</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gnome-disk-utility-GduLinuxLvm2VolumeHole.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="GduLinuxLvm2VolumeHolePrivate">GduLinuxLvm2VolumeHolePrivate</link>;
+                    <link linkend="GduLinuxLvm2VolumeHole">GduLinuxLvm2VolumeHole</link>;
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gnome-disk-utility-GduLinuxLvm2VolumeHole.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gnome-disk-utility-GduLinuxLvm2VolumeHole.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GduLinuxLvm2VolumeHolePrivate" role="struct">
+<title>GduLinuxLvm2VolumeHolePrivate</title>
+<indexterm zone="GduLinuxLvm2VolumeHolePrivate"><primary sortas="GduLinuxLvm2VolumeHolePrivate">GduLinuxLvm2VolumeHolePrivate</primary></indexterm><programlisting>typedef struct _GduLinuxLvm2VolumeHolePrivate GduLinuxLvm2VolumeHolePrivate;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduLinuxLvm2VolumeHole" role="struct">
+<title>GduLinuxLvm2VolumeHole</title>
+<indexterm zone="GduLinuxLvm2VolumeHole"><primary sortas="GduLinuxLvm2VolumeHole">GduLinuxLvm2VolumeHole</primary></indexterm><programlisting>typedef struct {
+        GduVolumeHole parent;
+} GduLinuxLvm2VolumeHole;
+</programlisting>
+<para>
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

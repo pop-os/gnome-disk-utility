@@ -8,7 +8,7 @@
 <link rel="up" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
 <link rel="prev" href="gnome-disk-utility-gdu-size-widget.html" title="gdu-size-widget">
 <link rel="next" href="gnome-disk-utility-gdu-time-label.html" title="gdu-time-label">
-<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="reference" href="ref-libgdu.html" title="libgdu API Reference">
 <link rel="reference" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
@@ -24,8 +24,8 @@
 </tr>
 <tr><td colspan="5" class="shortcuts">
 <a href="#gnome-disk-utility-gdu-spinner.synopsis" class="shortcut">Top</a>
-                   | 
-                  <a href="#gnome-disk-utility-gdu-spinner.description" class="shortcut">Description</a>
+                 | 
+                <a href="#gnome-disk-utility-gdu-spinner.description" class="shortcut">Description</a>
 </td></tr>
 </table>
 <div class="refentry" title="gdu-spinner">
@@ -39,11 +39,14 @@
 </tr></table></div>
 <div class="refsynopsisdiv" title="Synopsis">
 <a name="gnome-disk-utility-gdu-spinner.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">typedef             <a class="link" href="gnome-disk-utility-gdu-spinner.html#GduSpinnerClass" title="GduSpinnerClass">GduSpinnerClass</a>;
+<pre class="synopsis">
+typedef             <a class="link" href="gnome-disk-utility-gdu-spinner.html#GduSpinnerClass" title="GduSpinnerClass">GduSpinnerClass</a>;
 typedef             <a class="link" href="gnome-disk-utility-gdu-spinner.html#GduSpinnerPrivate" title="GduSpinnerPrivate">GduSpinnerPrivate</a>;
-<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         <a class="link" href="gnome-disk-utility-gdu-spinner.html#gdu-spinner-new" title="gdu_spinner_new ()">gdu_spinner_new</a>                     (void);
-<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-spinner.html#gdu-spinner-start" title="gdu_spinner_start ()">gdu_spinner_start</a>                   (<span class="returnvalue">GduSpinner</span> *spinner);
-<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-spinner.html#gdu-spinner-stop" title="gdu_spinner_stop ()">gdu_spinner_stop</a>                    (<span class="returnvalue">GduSpinner</span> *spinner);
+<a
+href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"
+>GtkWidget</a> *         <a class="link" href="gnome-disk-utility-gdu-spinner.html#gdu-spinner-new" title="gdu_spinner_new ()">gdu_spinner_new</a>                     (void);
+void                <a class="link" href="gnome-disk-utility-gdu-spinner.html#gdu-spinner-start" title="gdu_spinner_start ()">gdu_spinner_start</a>                   (GduSpinner *spinner);
+void                <a class="link" href="gnome-disk-utility-gdu-spinner.html#gdu-spinner-stop" title="gdu_spinner_stop ()">gdu_spinner_stop</a>                    (GduSpinner *spinner);
 </pre>
 </div>
 <div class="refsect1" title="Description">
@@ -71,9 +74,13 @@ typedef             <a class="link" href="gnome-disk-utility-gdu-spinner.html#Gd
 <hr>
 <div class="refsect2" title="gdu_spinner_new ()">
 <a name="gdu-spinner-new"></a><h3>gdu_spinner_new ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         gdu_spinner_new                     (void);</pre>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"
+>GtkWidget</a> *         gdu_spinner_new                     (void);</pre>
 <p>
 Returns a default spinner. Not yet started.</p>
+<p>
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
@@ -86,9 +93,11 @@ Returns a default spinner. Not yet started.</p>
 <hr>
 <div class="refsect2" title="gdu_spinner_start ()">
 <a name="gdu-spinner-start"></a><h3>gdu_spinner_start ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                gdu_spinner_start                   (<span class="returnvalue">GduSpinner</span> *spinner);</pre>
+<pre class="programlisting">void                gdu_spinner_start                   (GduSpinner *spinner);</pre>
 <p>
 Starts the animation</p>
+<p>
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
@@ -101,9 +110,11 @@ Starts the animation</p>
 <hr>
 <div class="refsect2" title="gdu_spinner_stop ()">
 <a name="gdu-spinner-stop"></a><h3>gdu_spinner_stop ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                gdu_spinner_stop                    (<span class="returnvalue">GduSpinner</span> *spinner);</pre>
+<pre class="programlisting">void                gdu_spinner_stop                    (GduSpinner *spinner);</pre>
 <p>
 Stops the animation</p>
+<p>
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
@@ -117,6 +128,6 @@ Stops the animation</p>
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.13</div>
+          Generated by GTK-Doc V1.11</div>
 </body>
 </html>

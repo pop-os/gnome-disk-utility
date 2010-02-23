@@ -9,13 +9,25 @@ GduVolume
 
 </para>
 
+
 <!-- ##### SECTION See_Also ##### -->
 <para>
 
 </para>
 
+
 <!-- ##### SECTION Stability_Level ##### -->
 
+
+<!-- ##### ENUM GduVolumeFlags ##### -->
+<para>
+
+</para>
+
+@GDU_VOLUME_FLAGS_NONE: 
+@GDU_VOLUME_FLAGS_PARTITION: 
+@GDU_VOLUME_FLAGS_PARTITION_MBR_LOGICAL: 
+@GDU_VOLUME_FLAGS_PARTITION_MBR_EXTENDED: 
 
 <!-- ##### STRUCT GduVolumePrivate ##### -->
 <para>
@@ -27,5 +39,41 @@ GduVolume
 <para>
 
 </para>
+
+
+<!-- ##### FUNCTION gdu_volume_is_allocated ##### -->
+<para>
+
+</para>
+
+@volume: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_volume_is_recognized ##### -->
+<para>
+
+</para>
+
+@volume: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_volume_get_flags ##### -->
+<para>
+
+</para>
+
+@volume: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_volume_get_drive ##### -->
+<para>
+
+</para>
+
+@volume: 
+@Returns: 
 
 
