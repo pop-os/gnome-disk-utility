@@ -155,6 +155,7 @@ libgdu.so.0 libgdu0 #MINVER#
  gdu_device_optical_disc_get_num_audio_tracks@Base 0.2
  gdu_device_optical_disc_get_num_sessions@Base 0.2
  gdu_device_optical_disc_get_num_tracks@Base 0.2
+ gdu_device_partition_get_alignment_offset@Base 2.29.0~git20100222.e85476
  gdu_device_partition_get_flags@Base 0.2
  gdu_device_partition_get_label@Base 0.2
  gdu_device_partition_get_number@Base 0.2
@@ -175,6 +176,7 @@ libgdu.so.0 libgdu0 #MINVER#
  gdu_drive_create_volume_finish@Base 2.29.0~git20100212.5df348f
  gdu_drive_deactivate@Base 0.2
  gdu_drive_get_type@Base 0.2
+ gdu_drive_get_volumes@Base 2.29.0~git20100222.e85476
  gdu_drive_is_activatable@Base 0.2
  gdu_drive_is_active@Base 0.2
  gdu_error_quark@Base 0.2
@@ -208,6 +210,7 @@ libgdu.so.0 libgdu0 #MINVER#
  gdu_known_filesystem_get_supports_unix_owners@Base 0.2
  gdu_known_filesystem_get_type@Base 0.2
  gdu_linux_lvm2_volume_get_group_uuid@Base 2.29.0~git20100212.5df348f
+ gdu_linux_lvm2_volume_get_name@Base 2.29.0~git20100222.e85476
  gdu_linux_lvm2_volume_get_type@Base 2.29.0~git20100212.5df348f
  gdu_linux_lvm2_volume_get_uuid@Base 2.29.0~git20100212.5df348f
  gdu_linux_lvm2_volume_group_get_compute_new_lv_name@Base 2.29.0~git20100212.5df348f
@@ -316,5 +319,9 @@ libgdu.so.0 libgdu0 #MINVER#
  gdu_util_part_table_type_get_description@Base 0.2
  gdu_util_part_type_foreach@Base 0.2
  gdu_util_save_secret@Base 0.2
+ gdu_volume_get_drive@Base 2.29.0~git20100222.e85476
+ gdu_volume_get_flags@Base 2.29.0~git20100222.e85476
  gdu_volume_get_type@Base 0.2
  gdu_volume_hole_get_type@Base 0.2
+ gdu_volume_is_allocated@Base 2.29.0~git20100222.e85476
+ gdu_volume_is_recognized@Base 2.29.0~git20100222.e85476
