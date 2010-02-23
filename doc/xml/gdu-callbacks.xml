@@ -1,0 +1,958 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="gnome-disk-utility-gdu-callbacks">
+<refmeta>
+<refentrytitle role="top_of_page" id="gnome-disk-utility-gdu-callbacks.top_of_page">Callbacks</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GNOME-DISK-UTILITY Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Callbacks</refname>
+<refpurpose>Callback function types</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gnome-disk-utility-gdu-callbacks.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+<link linkend="void">void</link>                (<link linkend="GduDeviceFilesystemMountCompletedFunc">*GduDeviceFilesystemMountCompletedFunc</link>)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="char">char</link> *mount_point,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduDeviceFilesystemUnmountCompletedFunc">*GduDeviceFilesystemUnmountCompletedFunc</link>)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduDeviceFilesystemCheckCompletedFunc">*GduDeviceFilesystemCheckCompletedFunc</link>)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="gboolean">gboolean</link> is_clean,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduDevicePartitionDeleteCompletedFunc">*GduDevicePartitionDeleteCompletedFunc</link>)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduDevicePartitionModifyCompletedFunc">*GduDevicePartitionModifyCompletedFunc</link>)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduDevicePartitionTableCreateCompletedFunc">*GduDevicePartitionTableCreateCompletedFunc</link>)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduDeviceLuksUnlockCompletedFunc">*GduDeviceLuksUnlockCompletedFunc</link>) (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="char">char</link> *object_path_of_cleartext_device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduDeviceLuksLockCompletedFunc">*GduDeviceLuksLockCompletedFunc</link>)   (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduDeviceLuksChangePassphraseCompletedFunc">*GduDeviceLuksChangePassphraseCompletedFunc</link>)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduDeviceFilesystemSetLabelCompletedFunc">*GduDeviceFilesystemSetLabelCompletedFunc</link>)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc">*GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc</link>)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduDeviceDriveAtaSmartRefreshDataCompletedFunc">*GduDeviceDriveAtaSmartRefreshDataCompletedFunc</link>)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduDeviceLinuxMdStopCompletedFunc">*GduDeviceLinuxMdStopCompletedFunc</link>)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduDeviceLinuxMdCheckCompletedFunc">*GduDeviceLinuxMdCheckCompletedFunc</link>)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="guint">guint</link> num_errors,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduDeviceLinuxMdAddSpareCompletedFunc">*GduDeviceLinuxMdAddSpareCompletedFunc</link>)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduDeviceLinuxMdExpandCompletedFunc">*GduDeviceLinuxMdExpandCompletedFunc</link>)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduDeviceLinuxMdRemoveComponentCompletedFunc">*GduDeviceLinuxMdRemoveComponentCompletedFunc</link>)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduDeviceFilesystemCreateCompletedFunc">*GduDeviceFilesystemCreateCompletedFunc</link>)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduDevicePartitionCreateCompletedFunc">*GduDevicePartitionCreateCompletedFunc</link>)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="char">char</link> *created_device_object_path,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduDeviceCancelJobCompletedFunc">*GduDeviceCancelJobCompletedFunc</link>)  (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduDeviceFilesystemListOpenFilesCompletedFunc">*GduDeviceFilesystemListOpenFilesCompletedFunc</link>)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GList">GList</link> *processes,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduDeviceDriveEjectCompletedFunc">*GduDeviceDriveEjectCompletedFunc</link>) (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduDeviceDriveDetachCompletedFunc">*GduDeviceDriveDetachCompletedFunc</link>)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduDeviceDrivePollMediaCompletedFunc">*GduDeviceDrivePollMediaCompletedFunc</link>)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduDeviceDriveBenchmarkCompletedFunc">*GduDeviceDriveBenchmarkCompletedFunc</link>)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GPtrArray">GPtrArray</link> *read_transfer_rate_results,
+                                                         <link linkend="GPtrArray">GPtrArray</link> *write_transfer_rate_results,
+                                                         <link linkend="GPtrArray">GPtrArray</link> *access_time_results,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduDeviceLinuxLvm2LVStopCompletedFunc">*GduDeviceLinuxLvm2LVStopCompletedFunc</link>)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduPoolLinuxMdStartCompletedFunc">*GduPoolLinuxMdStartCompletedFunc</link>) (<link linkend="GduPool">GduPool</link> *pool,
+                                                         <link linkend="char">char</link> *assembled_array_object_path,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduPoolLinuxMdCreateCompletedFunc">*GduPoolLinuxMdCreateCompletedFunc</link>)
+                                                        (<link linkend="GduPool">GduPool</link> *pool,
+                                                         <link linkend="char">char</link> *array_object_path,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduPoolLinuxLvm2VGStartCompletedFunc">*GduPoolLinuxLvm2VGStartCompletedFunc</link>)
+                                                        (<link linkend="GduPool">GduPool</link> *pool,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduPoolLinuxLvm2VGStopCompletedFunc">*GduPoolLinuxLvm2VGStopCompletedFunc</link>)
+                                                        (<link linkend="GduPool">GduPool</link> *pool,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduPoolLinuxLvm2LVStartCompletedFunc">*GduPoolLinuxLvm2LVStartCompletedFunc</link>)
+                                                        (<link linkend="GduPool">GduPool</link> *pool,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduPoolLinuxLvm2VGSetNameCompletedFunc">*GduPoolLinuxLvm2VGSetNameCompletedFunc</link>)
+                                                        (<link linkend="GduPool">GduPool</link> *pool,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduPoolLinuxLvm2LVSetNameCompletedFunc">*GduPoolLinuxLvm2LVSetNameCompletedFunc</link>)
+                                                        (<link linkend="GduPool">GduPool</link> *pool,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduPoolLinuxLvm2LVRemoveCompletedFunc">*GduPoolLinuxLvm2LVRemoveCompletedFunc</link>)
+                                                        (<link linkend="GduPool">GduPool</link> *pool,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduPoolLinuxLvm2LVCreateCompletedFunc">*GduPoolLinuxLvm2LVCreateCompletedFunc</link>)
+                                                        (<link linkend="GduPool">GduPool</link> *pool,
+                                                         <link linkend="char">char</link> *create_logical_volume_object_path,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduPoolLinuxLvm2VGAddPVCompletedFunc">*GduPoolLinuxLvm2VGAddPVCompletedFunc</link>)
+                                                        (<link linkend="GduPool">GduPool</link> *pool,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduPoolLinuxLvm2VGRemovePVCompletedFunc">*GduPoolLinuxLvm2VGRemovePVCompletedFunc</link>)
+                                                        (<link linkend="GduPool">GduPool</link> *pool,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduDriveActivateFunc">*GduDriveActivateFunc</link>)             (<link linkend="GduDrive">GduDrive</link> *drive,
+                                                         <link linkend="char">char</link> *assembled_drive_object_path,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="void">void</link>                (<link linkend="GduDriveDeactivateFunc">*GduDriveDeactivateFunc</link>)           (<link linkend="GduDrive">GduDrive</link> *drive,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gnome-disk-utility-gdu-callbacks.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Various callback function signatures.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gnome-disk-utility-gdu-callbacks.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GduDeviceFilesystemMountCompletedFunc" role="function">
+<title>GduDeviceFilesystemMountCompletedFunc ()</title>
+<indexterm zone="GduDeviceFilesystemMountCompletedFunc"><primary sortas="GduDeviceFilesystemMountCompletedFunc">GduDeviceFilesystemMountCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceFilesystemMountCompletedFunc)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="char">char</link> *mount_point,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>mount_point</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduDeviceFilesystemUnmountCompletedFunc" role="function">
+<title>GduDeviceFilesystemUnmountCompletedFunc ()</title>
+<indexterm zone="GduDeviceFilesystemUnmountCompletedFunc"><primary sortas="GduDeviceFilesystemUnmountCompletedFunc">GduDeviceFilesystemUnmountCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceFilesystemUnmountCompletedFunc)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduDeviceFilesystemCheckCompletedFunc" role="function">
+<title>GduDeviceFilesystemCheckCompletedFunc ()</title>
+<indexterm zone="GduDeviceFilesystemCheckCompletedFunc"><primary sortas="GduDeviceFilesystemCheckCompletedFunc">GduDeviceFilesystemCheckCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceFilesystemCheckCompletedFunc)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="gboolean">gboolean</link> is_clean,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>is_clean</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduDevicePartitionDeleteCompletedFunc" role="function">
+<title>GduDevicePartitionDeleteCompletedFunc ()</title>
+<indexterm zone="GduDevicePartitionDeleteCompletedFunc"><primary sortas="GduDevicePartitionDeleteCompletedFunc">GduDevicePartitionDeleteCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDevicePartitionDeleteCompletedFunc)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduDevicePartitionModifyCompletedFunc" role="function">
+<title>GduDevicePartitionModifyCompletedFunc ()</title>
+<indexterm zone="GduDevicePartitionModifyCompletedFunc"><primary sortas="GduDevicePartitionModifyCompletedFunc">GduDevicePartitionModifyCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDevicePartitionModifyCompletedFunc)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduDevicePartitionTableCreateCompletedFunc" role="function">
+<title>GduDevicePartitionTableCreateCompletedFunc ()</title>
+<indexterm zone="GduDevicePartitionTableCreateCompletedFunc"><primary sortas="GduDevicePartitionTableCreateCompletedFunc">GduDevicePartitionTableCreateCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDevicePartitionTableCreateCompletedFunc)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduDeviceLuksUnlockCompletedFunc" role="function">
+<title>GduDeviceLuksUnlockCompletedFunc ()</title>
+<indexterm zone="GduDeviceLuksUnlockCompletedFunc"><primary sortas="GduDeviceLuksUnlockCompletedFunc">GduDeviceLuksUnlockCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceLuksUnlockCompletedFunc) (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="char">char</link> *object_path_of_cleartext_device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>object_path_of_cleartext_device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduDeviceLuksLockCompletedFunc" role="function">
+<title>GduDeviceLuksLockCompletedFunc ()</title>
+<indexterm zone="GduDeviceLuksLockCompletedFunc"><primary sortas="GduDeviceLuksLockCompletedFunc">GduDeviceLuksLockCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceLuksLockCompletedFunc)   (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduDeviceLuksChangePassphraseCompletedFunc" role="function">
+<title>GduDeviceLuksChangePassphraseCompletedFunc ()</title>
+<indexterm zone="GduDeviceLuksChangePassphraseCompletedFunc"><primary sortas="GduDeviceLuksChangePassphraseCompletedFunc">GduDeviceLuksChangePassphraseCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceLuksChangePassphraseCompletedFunc)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduDeviceFilesystemSetLabelCompletedFunc" role="function">
+<title>GduDeviceFilesystemSetLabelCompletedFunc ()</title>
+<indexterm zone="GduDeviceFilesystemSetLabelCompletedFunc"><primary sortas="GduDeviceFilesystemSetLabelCompletedFunc">GduDeviceFilesystemSetLabelCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceFilesystemSetLabelCompletedFunc)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc" role="function">
+<title>GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc ()</title>
+<indexterm zone="GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc"><primary sortas="GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc">GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduDeviceDriveAtaSmartRefreshDataCompletedFunc" role="function">
+<title>GduDeviceDriveAtaSmartRefreshDataCompletedFunc ()</title>
+<indexterm zone="GduDeviceDriveAtaSmartRefreshDataCompletedFunc"><primary sortas="GduDeviceDriveAtaSmartRefreshDataCompletedFunc">GduDeviceDriveAtaSmartRefreshDataCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceDriveAtaSmartRefreshDataCompletedFunc)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduDeviceLinuxMdStopCompletedFunc" role="function">
+<title>GduDeviceLinuxMdStopCompletedFunc ()</title>
+<indexterm zone="GduDeviceLinuxMdStopCompletedFunc"><primary sortas="GduDeviceLinuxMdStopCompletedFunc">GduDeviceLinuxMdStopCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceLinuxMdStopCompletedFunc)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduDeviceLinuxMdCheckCompletedFunc" role="function">
+<title>GduDeviceLinuxMdCheckCompletedFunc ()</title>
+<indexterm zone="GduDeviceLinuxMdCheckCompletedFunc"><primary sortas="GduDeviceLinuxMdCheckCompletedFunc">GduDeviceLinuxMdCheckCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceLinuxMdCheckCompletedFunc)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="guint">guint</link> num_errors,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>num_errors</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduDeviceLinuxMdAddSpareCompletedFunc" role="function">
+<title>GduDeviceLinuxMdAddSpareCompletedFunc ()</title>
+<indexterm zone="GduDeviceLinuxMdAddSpareCompletedFunc"><primary sortas="GduDeviceLinuxMdAddSpareCompletedFunc">GduDeviceLinuxMdAddSpareCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceLinuxMdAddSpareCompletedFunc)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduDeviceLinuxMdExpandCompletedFunc" role="function">
+<title>GduDeviceLinuxMdExpandCompletedFunc ()</title>
+<indexterm zone="GduDeviceLinuxMdExpandCompletedFunc"><primary sortas="GduDeviceLinuxMdExpandCompletedFunc">GduDeviceLinuxMdExpandCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceLinuxMdExpandCompletedFunc)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduDeviceLinuxMdRemoveComponentCompletedFunc" role="function">
+<title>GduDeviceLinuxMdRemoveComponentCompletedFunc ()</title>
+<indexterm zone="GduDeviceLinuxMdRemoveComponentCompletedFunc"><primary sortas="GduDeviceLinuxMdRemoveComponentCompletedFunc">GduDeviceLinuxMdRemoveComponentCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceLinuxMdRemoveComponentCompletedFunc)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduDeviceFilesystemCreateCompletedFunc" role="function">
+<title>GduDeviceFilesystemCreateCompletedFunc ()</title>
+<indexterm zone="GduDeviceFilesystemCreateCompletedFunc"><primary sortas="GduDeviceFilesystemCreateCompletedFunc">GduDeviceFilesystemCreateCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceFilesystemCreateCompletedFunc)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduDevicePartitionCreateCompletedFunc" role="function">
+<title>GduDevicePartitionCreateCompletedFunc ()</title>
+<indexterm zone="GduDevicePartitionCreateCompletedFunc"><primary sortas="GduDevicePartitionCreateCompletedFunc">GduDevicePartitionCreateCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDevicePartitionCreateCompletedFunc)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="char">char</link> *created_device_object_path,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>created_device_object_path</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduDeviceCancelJobCompletedFunc" role="function">
+<title>GduDeviceCancelJobCompletedFunc ()</title>
+<indexterm zone="GduDeviceCancelJobCompletedFunc"><primary sortas="GduDeviceCancelJobCompletedFunc">GduDeviceCancelJobCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceCancelJobCompletedFunc)  (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduDeviceFilesystemListOpenFilesCompletedFunc" role="function">
+<title>GduDeviceFilesystemListOpenFilesCompletedFunc ()</title>
+<indexterm zone="GduDeviceFilesystemListOpenFilesCompletedFunc"><primary sortas="GduDeviceFilesystemListOpenFilesCompletedFunc">GduDeviceFilesystemListOpenFilesCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceFilesystemListOpenFilesCompletedFunc)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GList">GList</link> *processes,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>processes</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduDeviceDriveEjectCompletedFunc" role="function">
+<title>GduDeviceDriveEjectCompletedFunc ()</title>
+<indexterm zone="GduDeviceDriveEjectCompletedFunc"><primary sortas="GduDeviceDriveEjectCompletedFunc">GduDeviceDriveEjectCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceDriveEjectCompletedFunc) (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduDeviceDriveDetachCompletedFunc" role="function">
+<title>GduDeviceDriveDetachCompletedFunc ()</title>
+<indexterm zone="GduDeviceDriveDetachCompletedFunc"><primary sortas="GduDeviceDriveDetachCompletedFunc">GduDeviceDriveDetachCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceDriveDetachCompletedFunc)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduDeviceDrivePollMediaCompletedFunc" role="function">
+<title>GduDeviceDrivePollMediaCompletedFunc ()</title>
+<indexterm zone="GduDeviceDrivePollMediaCompletedFunc"><primary sortas="GduDeviceDrivePollMediaCompletedFunc">GduDeviceDrivePollMediaCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceDrivePollMediaCompletedFunc)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduDeviceDriveBenchmarkCompletedFunc" role="function">
+<title>GduDeviceDriveBenchmarkCompletedFunc ()</title>
+<indexterm zone="GduDeviceDriveBenchmarkCompletedFunc"><primary sortas="GduDeviceDriveBenchmarkCompletedFunc">GduDeviceDriveBenchmarkCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceDriveBenchmarkCompletedFunc)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GPtrArray">GPtrArray</link> *read_transfer_rate_results,
+                                                         <link linkend="GPtrArray">GPtrArray</link> *write_transfer_rate_results,
+                                                         <link linkend="GPtrArray">GPtrArray</link> *access_time_results,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>read_transfer_rate_results</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>write_transfer_rate_results</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>access_time_results</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduDeviceLinuxLvm2LVStopCompletedFunc" role="function">
+<title>GduDeviceLinuxLvm2LVStopCompletedFunc ()</title>
+<indexterm zone="GduDeviceLinuxLvm2LVStopCompletedFunc"><primary sortas="GduDeviceLinuxLvm2LVStopCompletedFunc">GduDeviceLinuxLvm2LVStopCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDeviceLinuxLvm2LVStopCompletedFunc)
+                                                        (<link linkend="GduDevice">GduDevice</link> *device,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduPoolLinuxMdStartCompletedFunc" role="function">
+<title>GduPoolLinuxMdStartCompletedFunc ()</title>
+<indexterm zone="GduPoolLinuxMdStartCompletedFunc"><primary sortas="GduPoolLinuxMdStartCompletedFunc">GduPoolLinuxMdStartCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduPoolLinuxMdStartCompletedFunc) (<link linkend="GduPool">GduPool</link> *pool,
+                                                         <link linkend="char">char</link> *assembled_array_object_path,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>pool</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>assembled_array_object_path</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduPoolLinuxMdCreateCompletedFunc" role="function">
+<title>GduPoolLinuxMdCreateCompletedFunc ()</title>
+<indexterm zone="GduPoolLinuxMdCreateCompletedFunc"><primary sortas="GduPoolLinuxMdCreateCompletedFunc">GduPoolLinuxMdCreateCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduPoolLinuxMdCreateCompletedFunc)
+                                                        (<link linkend="GduPool">GduPool</link> *pool,
+                                                         <link linkend="char">char</link> *array_object_path,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>pool</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>array_object_path</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduPoolLinuxLvm2VGStartCompletedFunc" role="function">
+<title>GduPoolLinuxLvm2VGStartCompletedFunc ()</title>
+<indexterm zone="GduPoolLinuxLvm2VGStartCompletedFunc"><primary sortas="GduPoolLinuxLvm2VGStartCompletedFunc">GduPoolLinuxLvm2VGStartCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduPoolLinuxLvm2VGStartCompletedFunc)
+                                                        (<link linkend="GduPool">GduPool</link> *pool,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>pool</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduPoolLinuxLvm2VGStopCompletedFunc" role="function">
+<title>GduPoolLinuxLvm2VGStopCompletedFunc ()</title>
+<indexterm zone="GduPoolLinuxLvm2VGStopCompletedFunc"><primary sortas="GduPoolLinuxLvm2VGStopCompletedFunc">GduPoolLinuxLvm2VGStopCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduPoolLinuxLvm2VGStopCompletedFunc)
+                                                        (<link linkend="GduPool">GduPool</link> *pool,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>pool</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduPoolLinuxLvm2LVStartCompletedFunc" role="function">
+<title>GduPoolLinuxLvm2LVStartCompletedFunc ()</title>
+<indexterm zone="GduPoolLinuxLvm2LVStartCompletedFunc"><primary sortas="GduPoolLinuxLvm2LVStartCompletedFunc">GduPoolLinuxLvm2LVStartCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduPoolLinuxLvm2LVStartCompletedFunc)
+                                                        (<link linkend="GduPool">GduPool</link> *pool,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>pool</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduPoolLinuxLvm2VGSetNameCompletedFunc" role="function">
+<title>GduPoolLinuxLvm2VGSetNameCompletedFunc ()</title>
+<indexterm zone="GduPoolLinuxLvm2VGSetNameCompletedFunc"><primary sortas="GduPoolLinuxLvm2VGSetNameCompletedFunc">GduPoolLinuxLvm2VGSetNameCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduPoolLinuxLvm2VGSetNameCompletedFunc)
+                                                        (<link linkend="GduPool">GduPool</link> *pool,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>pool</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduPoolLinuxLvm2LVSetNameCompletedFunc" role="function">
+<title>GduPoolLinuxLvm2LVSetNameCompletedFunc ()</title>
+<indexterm zone="GduPoolLinuxLvm2LVSetNameCompletedFunc"><primary sortas="GduPoolLinuxLvm2LVSetNameCompletedFunc">GduPoolLinuxLvm2LVSetNameCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduPoolLinuxLvm2LVSetNameCompletedFunc)
+                                                        (<link linkend="GduPool">GduPool</link> *pool,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>pool</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduPoolLinuxLvm2LVRemoveCompletedFunc" role="function">
+<title>GduPoolLinuxLvm2LVRemoveCompletedFunc ()</title>
+<indexterm zone="GduPoolLinuxLvm2LVRemoveCompletedFunc"><primary sortas="GduPoolLinuxLvm2LVRemoveCompletedFunc">GduPoolLinuxLvm2LVRemoveCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduPoolLinuxLvm2LVRemoveCompletedFunc)
+                                                        (<link linkend="GduPool">GduPool</link> *pool,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>pool</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduPoolLinuxLvm2LVCreateCompletedFunc" role="function">
+<title>GduPoolLinuxLvm2LVCreateCompletedFunc ()</title>
+<indexterm zone="GduPoolLinuxLvm2LVCreateCompletedFunc"><primary sortas="GduPoolLinuxLvm2LVCreateCompletedFunc">GduPoolLinuxLvm2LVCreateCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduPoolLinuxLvm2LVCreateCompletedFunc)
+                                                        (<link linkend="GduPool">GduPool</link> *pool,
+                                                         <link linkend="char">char</link> *create_logical_volume_object_path,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>pool</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>create_logical_volume_object_path</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduPoolLinuxLvm2VGAddPVCompletedFunc" role="function">
+<title>GduPoolLinuxLvm2VGAddPVCompletedFunc ()</title>
+<indexterm zone="GduPoolLinuxLvm2VGAddPVCompletedFunc"><primary sortas="GduPoolLinuxLvm2VGAddPVCompletedFunc">GduPoolLinuxLvm2VGAddPVCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduPoolLinuxLvm2VGAddPVCompletedFunc)
+                                                        (<link linkend="GduPool">GduPool</link> *pool,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>pool</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduPoolLinuxLvm2VGRemovePVCompletedFunc" role="function">
+<title>GduPoolLinuxLvm2VGRemovePVCompletedFunc ()</title>
+<indexterm zone="GduPoolLinuxLvm2VGRemovePVCompletedFunc"><primary sortas="GduPoolLinuxLvm2VGRemovePVCompletedFunc">GduPoolLinuxLvm2VGRemovePVCompletedFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduPoolLinuxLvm2VGRemovePVCompletedFunc)
+                                                        (<link linkend="GduPool">GduPool</link> *pool,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>pool</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduDriveActivateFunc" role="function">
+<title>GduDriveActivateFunc ()</title>
+<indexterm zone="GduDriveActivateFunc"><primary sortas="GduDriveActivateFunc">GduDriveActivateFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDriveActivateFunc)             (<link linkend="GduDrive">GduDrive</link> *drive,
+                                                         <link linkend="char">char</link> *assembled_drive_object_path,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>drive</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>assembled_drive_object_path</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduDriveDeactivateFunc" role="function">
+<title>GduDriveDeactivateFunc ()</title>
+<indexterm zone="GduDriveDeactivateFunc"><primary sortas="GduDriveDeactivateFunc">GduDriveDeactivateFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*GduDriveDeactivateFunc)           (<link linkend="GduDrive">GduDrive</link> *drive,
+                                                         <link linkend="GError">GError</link> *error,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>drive</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

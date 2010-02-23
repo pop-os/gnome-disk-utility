@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="gnome-disk-utility-gdu-error">
+<refmeta>
+<refentrytitle role="top_of_page" id="gnome-disk-utility-gdu-error.top_of_page">GduError</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GNOME-DISK-UTILITY Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GduError</refname>
+<refpurpose>Error helper functions</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gnome-disk-utility-gdu-error.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+enum                <link linkend="GduError">GduError</link>;
+#define             <link linkend="GDU-ERROR--CAPS">GDU_ERROR</link>
+<link linkend="GQuark">GQuark</link>              <link linkend="gdu-error-quark">gdu_error_quark</link>                     (void);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gnome-disk-utility-gdu-error.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Contains helper functions for reporting errors to the user.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gnome-disk-utility-gdu-error.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GduError" role="enum">
+<title>enum GduError</title>
+<indexterm zone="GduError"><primary sortas="GduError">GduError</primary></indexterm><programlisting>typedef enum
+{
+        GDU_ERROR_FAILED,
+        GDU_ERROR_BUSY,
+        GDU_ERROR_CANCELLED,
+        GDU_ERROR_INHIBITED,
+        GDU_ERROR_INVALID_OPTION,
+        GDU_ERROR_NOT_SUPPORTED,
+        GDU_ERROR_ATA_SMART_WOULD_WAKEUP,
+        GDU_ERROR_PERMISSION_DENIED,
+        GDU_ERROR_FILESYSTEM_DRIVER_MISSING,
+        GDU_ERROR_FILESYSTEM_TOOLS_MISSING
+} GduError;
+</programlisting>
+<para>
+Error codes in the <link linkend="GDU-ERROR--CAPS"><type>GDU_ERROR</type></link> domain.</para>
+<para>
+</para><variablelist role="enum">
+<varlistentry id="GDU-ERROR-FAILED--CAPS" role="constant">
+<term><literal>GDU_ERROR_FAILED</literal></term>
+<listitem><simpara> The operation failed.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-ERROR-BUSY--CAPS" role="constant">
+<term><literal>GDU_ERROR_BUSY</literal></term>
+<listitem><simpara> The device is busy
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-ERROR-CANCELLED--CAPS" role="constant">
+<term><literal>GDU_ERROR_CANCELLED</literal></term>
+<listitem><simpara> The operation was cancelled
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-ERROR-INHIBITED--CAPS" role="constant">
+<term><literal>GDU_ERROR_INHIBITED</literal></term>
+<listitem><simpara> The daemon is being inhibited.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-ERROR-INVALID-OPTION--CAPS" role="constant">
+<term><literal>GDU_ERROR_INVALID_OPTION</literal></term>
+<listitem><simpara> An invalid option was passed
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-ERROR-NOT-SUPPORTED--CAPS" role="constant">
+<term><literal>GDU_ERROR_NOT_SUPPORTED</literal></term>
+<listitem><simpara> Operation not supported.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-ERROR-ATA-SMART-WOULD-WAKEUP--CAPS" role="constant">
+<term><literal>GDU_ERROR_ATA_SMART_WOULD_WAKEUP</literal></term>
+<listitem><simpara> Getting S.M.A.R.T. data for the device would require to spin it up.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-ERROR-PERMISSION-DENIED--CAPS" role="constant">
+<term><literal>GDU_ERROR_PERMISSION_DENIED</literal></term>
+<listitem><simpara> Permission denied.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-ERROR-FILESYSTEM-DRIVER-MISSING--CAPS" role="constant">
+<term><literal>GDU_ERROR_FILESYSTEM_DRIVER_MISSING</literal></term>
+<listitem><simpara> The filesystem driver for a filesystem is not installed.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-ERROR-FILESYSTEM-TOOLS-MISSING--CAPS" role="constant">
+<term><literal>GDU_ERROR_FILESYSTEM_TOOLS_MISSING</literal></term>
+<listitem><simpara> User-space tools to carry out the request action on a filesystem is not installed.
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GDU-ERROR--CAPS" role="macro">
+<title>GDU_ERROR</title>
+<indexterm zone="GDU-ERROR--CAPS"><primary sortas="GDU_ERROR">GDU_ERROR</primary></indexterm><programlisting>#define GDU_ERROR gdu_error_quark ()
+</programlisting>
+<para>
+Error domain used for errors reported from udisks daemon
+via D-Bus. Note that not all remote errors are mapped to this
+domain. Errors in this domain will come from the <link linkend="GduError"><type>GduError</type></link>
+enumeration. See <link linkend="GError"><type>GError</type></link> for more information on error domains.</para>
+<para>
+</para></refsect2>
+<refsect2 id="gdu-error-quark" role="function">
+<title>gdu_error_quark ()</title>
+<indexterm zone="gdu-error-quark"><primary sortas="gdu_error_quark">gdu_error_quark</primary></indexterm><programlisting><link linkend="GQuark">GQuark</link>              gdu_error_quark                     (void);</programlisting>
+<para>
+Gets the <link linkend="GduError"><type>GduError</type></link> Quark.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GQuark"><type>GQuark</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

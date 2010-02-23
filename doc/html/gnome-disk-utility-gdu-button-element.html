@@ -8,7 +8,7 @@
 <link rel="up" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
 <link rel="prev" href="gnome-disk-utility-gdu-details-table.html" title="gdu-details-table">
 <link rel="next" href="gnome-disk-utility-gdu-button-table.html" title="gdu-button-table">
-<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="reference" href="ref-libgdu.html" title="libgdu API Reference">
 <link rel="reference" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
@@ -24,8 +24,8 @@
 </tr>
 <tr><td colspan="5" class="shortcuts">
 <a href="#gnome-disk-utility-gdu-button-element.synopsis" class="shortcut">Top</a>
-                   | 
-                  <a href="#gnome-disk-utility-gdu-button-element.description" class="shortcut">Description</a>
+                 | 
+                <a href="#gnome-disk-utility-gdu-button-element.description" class="shortcut">Description</a>
 </td></tr>
 </table>
 <div class="refentry" title="gdu-button-element">
@@ -39,27 +39,50 @@
 </tr></table></div>
 <div class="refsynopsisdiv" title="Synopsis">
 <a name="gnome-disk-utility-gdu-button-element.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">typedef             <a class="link" href="gnome-disk-utility-gdu-button-element.html#GduButtonElementClass" title="GduButtonElementClass">GduButtonElementClass</a>;
+<pre class="synopsis">
+typedef             <a class="link" href="gnome-disk-utility-gdu-button-element.html#GduButtonElementClass" title="GduButtonElementClass">GduButtonElementClass</a>;
 typedef             <a class="link" href="gnome-disk-utility-gdu-button-element.html#GduButtonElementPrivate" title="GduButtonElementPrivate">GduButtonElementPrivate</a>;
-<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-details-element.html#changed" title="changed ()">changed</a>                             (<span class="returnvalue">GduSizeWidget</span> *widget);
-<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-button-element.html#clicked" title="clicked ()">clicked</a>                             (<span class="returnvalue">GduButtonElement</span> *element);
-<span class="returnvalue">GduButtonElement</span>*   <a class="link" href="gnome-disk-utility-gdu-button-element.html#gdu-button-element-new" title="gdu_button_element_new ()">gdu_button_element_new</a>              (const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *icon_name,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *primary_text,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *secondary_text);
-const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="gnome-disk-utility-gdu-button-element.html#gdu-button-element-get-icon-name" title="gdu_button_element_get_icon_name ()">gdu_button_element_get_icon_name</a>    (<span class="returnvalue">GduButtonElement</span> *element);
-const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="gnome-disk-utility-gdu-button-element.html#gdu-button-element-get-primary-text" title="gdu_button_element_get_primary_text ()">gdu_button_element_get_primary_text</a> (<span class="returnvalue">GduButtonElement</span> *element);
-const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="gnome-disk-utility-gdu-button-element.html#gdu-button-element-get-secondary-text" title="gdu_button_element_get_secondary_text ()">gdu_button_element_get_secondary_text</a>
-                                                        (<span class="returnvalue">GduButtonElement</span> *element);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="gnome-disk-utility-gdu-button-element.html#gdu-button-element-get-visible" title="gdu_button_element_get_visible ()">gdu_button_element_get_visible</a>      (<span class="returnvalue">GduButtonElement</span> *element);
-<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-button-element.html#gdu-button-element-set-icon-name" title="gdu_button_element_set_icon_name ()">gdu_button_element_set_icon_name</a>    (<span class="returnvalue">GduButtonElement</span> *element,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *icon_name);
-<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-button-element.html#gdu-button-element-set-primary-text" title="gdu_button_element_set_primary_text ()">gdu_button_element_set_primary_text</a> (<span class="returnvalue">GduButtonElement</span> *element,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *primary_text);
-<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-button-element.html#gdu-button-element-set-secondary-text" title="gdu_button_element_set_secondary_text ()">gdu_button_element_set_secondary_text</a>
-                                                        (<span class="returnvalue">GduButtonElement</span> *element,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *primary_text);
-<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-button-element.html#gdu-button-element-set-visible" title="gdu_button_element_set_visible ()">gdu_button_element_set_visible</a>      (<span class="returnvalue">GduButtonElement</span> *element,
-                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> visible);
+void                <a class="link" href="gnome-disk-utility-gdu-details-element.html#changed" title="changed ()">changed</a>                             (GduVolumeGrid *grid);
+void                <a class="link" href="gnome-disk-utility-gdu-button-element.html#clicked" title="clicked ()">clicked</a>                             (GduButtonElement *element);
+GduButtonElement*   <a class="link" href="gnome-disk-utility-gdu-button-element.html#gdu-button-element-new" title="gdu_button_element_new ()">gdu_button_element_new</a>              (const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *icon_name,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *primary_text,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *secondary_text);
+const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *       <a class="link" href="gnome-disk-utility-gdu-button-element.html#gdu-button-element-get-icon-name" title="gdu_button_element_get_icon_name ()">gdu_button_element_get_icon_name</a>    (GduButtonElement *element);
+const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *       <a class="link" href="gnome-disk-utility-gdu-button-element.html#gdu-button-element-get-primary-text" title="gdu_button_element_get_primary_text ()">gdu_button_element_get_primary_text</a> (GduButtonElement *element);
+const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *       <a class="link" href="gnome-disk-utility-gdu-button-element.html#gdu-button-element-get-secondary-text" title="gdu_button_element_get_secondary_text ()">gdu_button_element_get_secondary_text</a>
+                                                        (GduButtonElement *element);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="gnome-disk-utility-gdu-button-element.html#gdu-button-element-get-visible" title="gdu_button_element_get_visible ()">gdu_button_element_get_visible</a>      (GduButtonElement *element);
+void                <a class="link" href="gnome-disk-utility-gdu-button-element.html#gdu-button-element-set-icon-name" title="gdu_button_element_set_icon_name ()">gdu_button_element_set_icon_name</a>    (GduButtonElement *element,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *icon_name);
+void                <a class="link" href="gnome-disk-utility-gdu-button-element.html#gdu-button-element-set-primary-text" title="gdu_button_element_set_primary_text ()">gdu_button_element_set_primary_text</a> (GduButtonElement *element,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *primary_text);
+void                <a class="link" href="gnome-disk-utility-gdu-button-element.html#gdu-button-element-set-secondary-text" title="gdu_button_element_set_secondary_text ()">gdu_button_element_set_secondary_text</a>
+                                                        (GduButtonElement *element,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *primary_text);
+void                <a class="link" href="gnome-disk-utility-gdu-button-element.html#gdu-button-element-set-visible" title="gdu_button_element_set_visible ()">gdu_button_element_set_visible</a>      (GduButtonElement *element,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a> visible);
 </pre>
 </div>
 <div class="refsect1" title="Description">
@@ -87,13 +110,13 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="changed ()">
 <a name="changed"></a><h3>changed ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                changed                             (<span class="returnvalue">GduSizeWidget</span> *widget);</pre>
+<pre class="programlisting">void                changed                             (GduVolumeGrid *grid);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
-<td><p><span class="term"><em class="parameter"><code>widget</code></em> :</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>grid</code></em> :</span></p></td>
 <td>
 </td>
 </tr></tbody>
@@ -102,7 +125,7 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="clicked ()">
 <a name="clicked"></a><h3>clicked ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                clicked                             (<span class="returnvalue">GduButtonElement</span> *element);</pre>
+<pre class="programlisting">void                clicked                             (GduButtonElement *element);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -117,9 +140,15 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="gdu_button_element_new ()">
 <a name="gdu-button-element-new"></a><h3>gdu_button_element_new ()</h3>
-<pre class="programlisting"><span class="returnvalue">GduButtonElement</span>*   gdu_button_element_new              (const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *icon_name,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *primary_text,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *secondary_text);</pre>
+<pre class="programlisting">GduButtonElement*   gdu_button_element_new              (const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *icon_name,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *primary_text,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *secondary_text);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -151,7 +180,9 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="gdu_button_element_get_icon_name ()">
 <a name="gdu-button-element-get-icon-name"></a><h3>gdu_button_element_get_icon_name ()</h3>
-<pre class="programlisting">const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdu_button_element_get_icon_name    (<span class="returnvalue">GduButtonElement</span> *element);</pre>
+<pre class="programlisting">const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *       gdu_button_element_get_icon_name    (GduButtonElement *element);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -173,7 +204,9 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="gdu_button_element_get_primary_text ()">
 <a name="gdu-button-element-get-primary-text"></a><h3>gdu_button_element_get_primary_text ()</h3>
-<pre class="programlisting">const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdu_button_element_get_primary_text (<span class="returnvalue">GduButtonElement</span> *element);</pre>
+<pre class="programlisting">const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *       gdu_button_element_get_primary_text (GduButtonElement *element);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -195,8 +228,10 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="gdu_button_element_get_secondary_text ()">
 <a name="gdu-button-element-get-secondary-text"></a><h3>gdu_button_element_get_secondary_text ()</h3>
-<pre class="programlisting">const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdu_button_element_get_secondary_text
-                                                        (<span class="returnvalue">GduButtonElement</span> *element);</pre>
+<pre class="programlisting">const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *       gdu_button_element_get_secondary_text
+                                                        (GduButtonElement *element);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -218,7 +253,9 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="gdu_button_element_get_visible ()">
 <a name="gdu-button-element-get-visible"></a><h3>gdu_button_element_get_visible ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gdu_button_element_get_visible      (<span class="returnvalue">GduButtonElement</span> *element);</pre>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_button_element_get_visible      (GduButtonElement *element);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -240,8 +277,10 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="gdu_button_element_set_icon_name ()">
 <a name="gdu-button-element-set-icon-name"></a><h3>gdu_button_element_set_icon_name ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                gdu_button_element_set_icon_name    (<span class="returnvalue">GduButtonElement</span> *element,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *icon_name);</pre>
+<pre class="programlisting">void                gdu_button_element_set_icon_name    (GduButtonElement *element,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *icon_name);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -263,8 +302,10 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="gdu_button_element_set_primary_text ()">
 <a name="gdu-button-element-set-primary-text"></a><h3>gdu_button_element_set_primary_text ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                gdu_button_element_set_primary_text (<span class="returnvalue">GduButtonElement</span> *element,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *primary_text);</pre>
+<pre class="programlisting">void                gdu_button_element_set_primary_text (GduButtonElement *element,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *primary_text);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -286,9 +327,11 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="gdu_button_element_set_secondary_text ()">
 <a name="gdu-button-element-set-secondary-text"></a><h3>gdu_button_element_set_secondary_text ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                gdu_button_element_set_secondary_text
-                                                        (<span class="returnvalue">GduButtonElement</span> *element,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *primary_text);</pre>
+<pre class="programlisting">void                gdu_button_element_set_secondary_text
+                                                        (GduButtonElement *element,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *primary_text);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -310,8 +353,10 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="gdu_button_element_set_visible ()">
 <a name="gdu-button-element-set-visible"></a><h3>gdu_button_element_set_visible ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                gdu_button_element_set_visible      (<span class="returnvalue">GduButtonElement</span> *element,
-                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> visible);</pre>
+<pre class="programlisting">void                gdu_button_element_set_visible      (GduButtonElement *element,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a> visible);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -334,6 +379,6 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.13</div>
+          Generated by GTK-Doc V1.11</div>
 </body>
 </html>

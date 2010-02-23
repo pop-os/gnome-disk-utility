@@ -9,10 +9,12 @@ gdu-volume-grid
 
 </para>
 
+
 <!-- ##### SECTION See_Also ##### -->
 <para>
 
 </para>
+
 
 <!-- ##### SECTION Stability_Level ##### -->
 
@@ -34,7 +36,7 @@ gdu-volume-grid
 
 </para>
 
-@widget: 
+@grid: 
 
 
 <!-- ##### FUNCTION gdu_volume_grid_new ##### -->

@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="gnome-disk-utility-gdu-connect-to-server-dialog">
+<refmeta>
+<refentrytitle role="top_of_page" id="gnome-disk-utility-gdu-connect-to-server-dialog.top_of_page">gdu-connect-to-server-dialog</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GNOME-DISK-UTILITY Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>gdu-connect-to-server-dialog</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gnome-disk-utility-gdu-connect-to-server-dialog.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+typedef             <link linkend="GduConnectToServerDialogClass">GduConnectToServerDialogClass</link>;
+typedef             <link linkend="GduConnectToServerDialogPrivate">GduConnectToServerDialogPrivate</link>;
+<link linkend="GtkWidget">GtkWidget</link>*          <link linkend="gdu-connect-to-server-dialog-new">gdu_connect_to_server_dialog_new</link>    (<link linkend="GtkWindow">GtkWindow</link> *parent);
+<link linkend="gchar">gchar</link> *             <link linkend="gdu-connect-to-server-dialog-get-user-name">gdu_connect_to_server_dialog_get_user_name</link>
+                                                        (<link linkend="GduConnectToServerDialog">GduConnectToServerDialog</link> *dialog);
+<link linkend="gchar">gchar</link> *             <link linkend="gdu-connect-to-server-dialog-get-address">gdu_connect_to_server_dialog_get_address</link>
+                                                        (<link linkend="GduConnectToServerDialog">GduConnectToServerDialog</link> *dialog);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gnome-disk-utility-gdu-connect-to-server-dialog.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gnome-disk-utility-gdu-connect-to-server-dialog.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GduConnectToServerDialogClass" role="typedef">
+<title>GduConnectToServerDialogClass</title>
+<indexterm zone="GduConnectToServerDialogClass"><primary sortas="GduConnectToServerDialogClass">GduConnectToServerDialogClass</primary></indexterm><programlisting>typedef struct GduConnectToServerDialogClass   GduConnectToServerDialogClass;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduConnectToServerDialogPrivate" role="typedef">
+<title>GduConnectToServerDialogPrivate</title>
+<indexterm zone="GduConnectToServerDialogPrivate"><primary sortas="GduConnectToServerDialogPrivate">GduConnectToServerDialogPrivate</primary></indexterm><programlisting>typedef struct GduConnectToServerDialogPrivate GduConnectToServerDialogPrivate;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="gdu-connect-to-server-dialog-new" role="function">
+<title>gdu_connect_to_server_dialog_new ()</title>
+<indexterm zone="gdu-connect-to-server-dialog-new"><primary sortas="gdu_connect_to_server_dialog_new">gdu_connect_to_server_dialog_new</primary></indexterm><programlisting><link linkend="GtkWidget">GtkWidget</link>*          gdu_connect_to_server_dialog_new    (<link linkend="GtkWindow">GtkWindow</link> *parent);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>parent</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-connect-to-server-dialog-get-user-name" role="function">
+<title>gdu_connect_to_server_dialog_get_user_name ()</title>
+<indexterm zone="gdu-connect-to-server-dialog-get-user-name"><primary sortas="gdu_connect_to_server_dialog_get_user_name">gdu_connect_to_server_dialog_get_user_name</primary></indexterm><programlisting><link linkend="gchar">gchar</link> *             gdu_connect_to_server_dialog_get_user_name
+                                                        (<link linkend="GduConnectToServerDialog">GduConnectToServerDialog</link> *dialog);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>dialog</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-connect-to-server-dialog-get-address" role="function">
+<title>gdu_connect_to_server_dialog_get_address ()</title>
+<indexterm zone="gdu-connect-to-server-dialog-get-address"><primary sortas="gdu_connect_to_server_dialog_get_address">gdu_connect_to_server_dialog_get_address</primary></indexterm><programlisting><link linkend="gchar">gchar</link> *             gdu_connect_to_server_dialog_get_address
+                                                        (<link linkend="GduConnectToServerDialog">GduConnectToServerDialog</link> *dialog);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>dialog</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

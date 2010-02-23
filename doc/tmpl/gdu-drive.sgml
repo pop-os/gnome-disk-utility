@@ -9,10 +9,12 @@ GduDrive
 
 </para>
 
+
 <!-- ##### SECTION See_Also ##### -->
 <para>
 
 </para>
+
 
 <!-- ##### SECTION Stability_Level ##### -->
 
@@ -140,6 +142,15 @@ GduDrive
 @drive: 
 @out_num_primary_partitions: 
 @out_has_extended_partition: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_drive_get_volumes ##### -->
+<para>
+
+</para>
+
+@drive: 
 @Returns: 
 
 

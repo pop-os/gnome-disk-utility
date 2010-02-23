@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="gnome-disk-utility-gdu-partition-dialog">
+<refmeta>
+<refentrytitle role="top_of_page" id="gnome-disk-utility-gdu-partition-dialog.top_of_page">gdu-partition-dialog</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GNOME-DISK-UTILITY Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>gdu-partition-dialog</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gnome-disk-utility-gdu-partition-dialog.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+typedef             <link linkend="GduPartitionDialogClass">GduPartitionDialogClass</link>;
+typedef             <link linkend="GduPartitionDialogPrivate">GduPartitionDialogPrivate</link>;
+<link linkend="GtkWidget">GtkWidget</link> *         <link linkend="gdu-partition-dialog-new">gdu_partition_dialog_new</link>            (<link linkend="GtkWindow">GtkWindow</link> *parent,
+                                                         <link linkend="GduPresentable">GduPresentable</link> *presentable);
+<link linkend="GtkWidget">GtkWidget</link> *         <link linkend="gdu-partition-dialog-new-for-drive">gdu_partition_dialog_new_for_drive</link>  (<link linkend="GtkWindow">GtkWindow</link> *parent,
+                                                         <link linkend="GduDevice">GduDevice</link> *device);
+<link linkend="gchar">gchar</link> *             <link linkend="gdu-partition-dialog-get-scheme">gdu_partition_dialog_get_scheme</link>     (<link linkend="GduPartitionDialog">GduPartitionDialog</link> *dialog);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gnome-disk-utility-gdu-partition-dialog.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gnome-disk-utility-gdu-partition-dialog.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GduPartitionDialogClass" role="typedef">
+<title>GduPartitionDialogClass</title>
+<indexterm zone="GduPartitionDialogClass"><primary sortas="GduPartitionDialogClass">GduPartitionDialogClass</primary></indexterm><programlisting>typedef struct GduPartitionDialogClass   GduPartitionDialogClass;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduPartitionDialogPrivate" role="typedef">
+<title>GduPartitionDialogPrivate</title>
+<indexterm zone="GduPartitionDialogPrivate"><primary sortas="GduPartitionDialogPrivate">GduPartitionDialogPrivate</primary></indexterm><programlisting>typedef struct GduPartitionDialogPrivate GduPartitionDialogPrivate;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="gdu-partition-dialog-new" role="function">
+<title>gdu_partition_dialog_new ()</title>
+<indexterm zone="gdu-partition-dialog-new"><primary sortas="gdu_partition_dialog_new">gdu_partition_dialog_new</primary></indexterm><programlisting><link linkend="GtkWidget">GtkWidget</link> *         gdu_partition_dialog_new            (<link linkend="GtkWindow">GtkWindow</link> *parent,
+                                                         <link linkend="GduPresentable">GduPresentable</link> *presentable);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>parent</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>presentable</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-partition-dialog-new-for-drive" role="function">
+<title>gdu_partition_dialog_new_for_drive ()</title>
+<indexterm zone="gdu-partition-dialog-new-for-drive"><primary sortas="gdu_partition_dialog_new_for_drive">gdu_partition_dialog_new_for_drive</primary></indexterm><programlisting><link linkend="GtkWidget">GtkWidget</link> *         gdu_partition_dialog_new_for_drive  (<link linkend="GtkWindow">GtkWindow</link> *parent,
+                                                         <link linkend="GduDevice">GduDevice</link> *device);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>parent</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>device</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-partition-dialog-get-scheme" role="function">
+<title>gdu_partition_dialog_get_scheme ()</title>
+<indexterm zone="gdu-partition-dialog-get-scheme"><primary sortas="gdu_partition_dialog_get_scheme">gdu_partition_dialog_get_scheme</primary></indexterm><programlisting><link linkend="gchar">gchar</link> *             gdu_partition_dialog_get_scheme     (<link linkend="GduPartitionDialog">GduPartitionDialog</link> *dialog);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>dialog</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

@@ -8,7 +8,7 @@
 <link rel="up" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
 <link rel="prev" href="gnome-disk-utility-gdu-pool-tree-model.html" title="gdu-pool-tree-model">
 <link rel="next" href="gnome-disk-utility-gdu-size-widget.html" title="gdu-size-widget">
-<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="reference" href="ref-libgdu.html" title="libgdu API Reference">
 <link rel="reference" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
@@ -24,8 +24,8 @@
 </tr>
 <tr><td colspan="5" class="shortcuts">
 <a href="#gnome-disk-utility-gdu-pool-tree-view.synopsis" class="shortcut">Top</a>
-                   | 
-                  <a href="#gnome-disk-utility-gdu-pool-tree-view.description" class="shortcut">Description</a>
+                 | 
+                <a href="#gnome-disk-utility-gdu-pool-tree-view.description" class="shortcut">Description</a>
 </td></tr>
 </table>
 <div class="refentry" title="gdu-pool-tree-view">
@@ -39,17 +39,20 @@
 </tr></table></div>
 <div class="refsynopsisdiv" title="Synopsis">
 <a name="gnome-disk-utility-gdu-pool-tree-view.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">typedef             <a class="link" href="gnome-disk-utility-gdu-pool-tree-view.html#GduPoolTreeViewClass" title="GduPoolTreeViewClass">GduPoolTreeViewClass</a>;
+<pre class="synopsis">
+typedef             <a class="link" href="gnome-disk-utility-gdu-pool-tree-view.html#GduPoolTreeViewClass" title="GduPoolTreeViewClass">GduPoolTreeViewClass</a>;
 typedef             <a class="link" href="gnome-disk-utility-gdu-pool-tree-view.html#GduPoolTreeViewPrivate" title="GduPoolTreeViewPrivate">GduPoolTreeViewPrivate</a>;
-<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         <a class="link" href="gnome-disk-utility-gdu-pool-tree-view.html#gdu-pool-tree-view-new" title="gdu_pool_tree_view_new ()">gdu_pool_tree_view_new</a>              (<span class="returnvalue">GduPoolTreeModel</span> *model,
-                                                         <a class="link" href="gnome-disk-utility-gdu-gtk-enums.html#GduPoolTreeViewFlags" title="enum GduPoolTreeViewFlags"><span class="returnvalue">GduPoolTreeViewFlags</span></a> flags);
-<a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *    <a class="link" href="gnome-disk-utility-gdu-pool-tree-view.html#gdu-pool-tree-view-get-selected-presentable" title="gdu_pool_tree_view_get_selected_presentable ()">gdu_pool_tree_view_get_selected_presentable</a>
-                                                        (<span class="returnvalue">GduPoolTreeView</span> *view);
-<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-pool-tree-view.html#gdu-pool-tree-view-select-presentable" title="gdu_pool_tree_view_select_presentable ()">gdu_pool_tree_view_select_presentable</a>
-                                                        (<span class="returnvalue">GduPoolTreeView</span> *view,
-                                                         <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *presentable);
-<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-pool-tree-view.html#gdu-pool-tree-view-select-first-presentable" title="gdu_pool_tree_view_select_first_presentable ()">gdu_pool_tree_view_select_first_presentable</a>
-                                                        (<span class="returnvalue">GduPoolTreeView</span> *view);
+<a
+href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"
+>GtkWidget</a> *         <a class="link" href="gnome-disk-utility-gdu-pool-tree-view.html#gdu-pool-tree-view-new" title="gdu_pool_tree_view_new ()">gdu_pool_tree_view_new</a>              (GduPoolTreeModel *model,
+                                                         <a class="link" href="gnome-disk-utility-gdu-gtk-enums.html#GduPoolTreeViewFlags" title="enum GduPoolTreeViewFlags">GduPoolTreeViewFlags</a> flags);
+GduPresentable *    <a class="link" href="gnome-disk-utility-gdu-pool-tree-view.html#gdu-pool-tree-view-get-selected-presentable" title="gdu_pool_tree_view_get_selected_presentable ()">gdu_pool_tree_view_get_selected_presentable</a>
+                                                        (GduPoolTreeView *view);
+void                <a class="link" href="gnome-disk-utility-gdu-pool-tree-view.html#gdu-pool-tree-view-select-presentable" title="gdu_pool_tree_view_select_presentable ()">gdu_pool_tree_view_select_presentable</a>
+                                                        (GduPoolTreeView *view,
+                                                         GduPresentable *presentable);
+void                <a class="link" href="gnome-disk-utility-gdu-pool-tree-view.html#gdu-pool-tree-view-select-first-presentable" title="gdu_pool_tree_view_select_first_presentable ()">gdu_pool_tree_view_select_first_presentable</a>
+                                                        (GduPoolTreeView *view);
 </pre>
 </div>
 <div class="refsect1" title="Description">
@@ -77,8 +80,10 @@ typedef             <a class="link" href="gnome-disk-utility-gdu-pool-tree-view.
 <hr>
 <div class="refsect2" title="gdu_pool_tree_view_new ()">
 <a name="gdu-pool-tree-view-new"></a><h3>gdu_pool_tree_view_new ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         gdu_pool_tree_view_new              (<span class="returnvalue">GduPoolTreeModel</span> *model,
-                                                         <a class="link" href="gnome-disk-utility-gdu-gtk-enums.html#GduPoolTreeViewFlags" title="enum GduPoolTreeViewFlags"><span class="returnvalue">GduPoolTreeViewFlags</span></a> flags);</pre>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"
+>GtkWidget</a> *         gdu_pool_tree_view_new              (GduPoolTreeModel *model,
+                                                         <a class="link" href="gnome-disk-utility-gdu-gtk-enums.html#GduPoolTreeViewFlags" title="enum GduPoolTreeViewFlags">GduPoolTreeViewFlags</a> flags);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -105,8 +110,8 @@ typedef             <a class="link" href="gnome-disk-utility-gdu-pool-tree-view.
 <hr>
 <div class="refsect2" title="gdu_pool_tree_view_get_selected_presentable ()">
 <a name="gdu-pool-tree-view-get-selected-presentable"></a><h3>gdu_pool_tree_view_get_selected_presentable ()</h3>
-<pre class="programlisting"><a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *    gdu_pool_tree_view_get_selected_presentable
-                                                        (<span class="returnvalue">GduPoolTreeView</span> *view);</pre>
+<pre class="programlisting">GduPresentable *    gdu_pool_tree_view_get_selected_presentable
+                                                        (GduPoolTreeView *view);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -128,9 +133,9 @@ typedef             <a class="link" href="gnome-disk-utility-gdu-pool-tree-view.
 <hr>
 <div class="refsect2" title="gdu_pool_tree_view_select_presentable ()">
 <a name="gdu-pool-tree-view-select-presentable"></a><h3>gdu_pool_tree_view_select_presentable ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                gdu_pool_tree_view_select_presentable
-                                                        (<span class="returnvalue">GduPoolTreeView</span> *view,
-                                                         <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *presentable);</pre>
+<pre class="programlisting">void                gdu_pool_tree_view_select_presentable
+                                                        (GduPoolTreeView *view,
+                                                         GduPresentable *presentable);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -152,8 +157,8 @@ typedef             <a class="link" href="gnome-disk-utility-gdu-pool-tree-view.
 <hr>
 <div class="refsect2" title="gdu_pool_tree_view_select_first_presentable ()">
 <a name="gdu-pool-tree-view-select-first-presentable"></a><h3>gdu_pool_tree_view_select_first_presentable ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                gdu_pool_tree_view_select_first_presentable
-                                                        (<span class="returnvalue">GduPoolTreeView</span> *view);</pre>
+<pre class="programlisting">void                gdu_pool_tree_view_select_first_presentable
+                                                        (GduPoolTreeView *view);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -169,6 +174,6 @@ typedef             <a class="link" href="gnome-disk-utility-gdu-pool-tree-view.
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.13</div>
+          Generated by GTK-Doc V1.11</div>
 </body>
 </html>

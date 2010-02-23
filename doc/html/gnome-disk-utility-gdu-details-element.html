@@ -8,7 +8,7 @@
 <link rel="up" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
 <link rel="prev" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
 <link rel="next" href="gnome-disk-utility-gdu-details-table.html" title="gdu-details-table">
-<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="reference" href="ref-libgdu.html" title="libgdu API Reference">
 <link rel="reference" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
@@ -24,8 +24,8 @@
 </tr>
 <tr><td colspan="5" class="shortcuts">
 <a href="#gnome-disk-utility-gdu-details-element.synopsis" class="shortcut">Top</a>
-                   | 
-                  <a href="#gnome-disk-utility-gdu-details-element.description" class="shortcut">Description</a>
+                 | 
+                <a href="#gnome-disk-utility-gdu-details-element.description" class="shortcut">Description</a>
 </td></tr>
 </table>
 <div class="refentry" title="gdu-details-element">
@@ -39,49 +39,102 @@
 </tr></table></div>
 <div class="refsynopsisdiv" title="Synopsis">
 <a name="gnome-disk-utility-gdu-details-element.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">typedef             <a class="link" href="gnome-disk-utility-gdu-details-element.html#GduDetailsElementClass" title="GduDetailsElementClass">GduDetailsElementClass</a>;
+<pre class="synopsis">
+typedef             <a class="link" href="gnome-disk-utility-gdu-details-element.html#GduDetailsElementClass" title="GduDetailsElementClass">GduDetailsElementClass</a>;
 typedef             <a class="link" href="gnome-disk-utility-gdu-details-element.html#GduDetailsElementPrivate" title="GduDetailsElementPrivate">GduDetailsElementPrivate</a>;
-<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-details-element.html#changed" title="changed ()">changed</a>                             (<span class="returnvalue">GduSizeWidget</span> *widget);
-<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-details-element.html#activated" title="activated ()">activated</a>                           (<span class="returnvalue">GduDetailsElement</span> *element,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *uri);
-<span class="returnvalue">GduDetailsElement</span>*  <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-new" title="gdu_details_element_new ()">gdu_details_element_new</a>             (const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *heading,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *text,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *tooltip);
-const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-get-heading" title="gdu_details_element_get_heading ()">gdu_details_element_get_heading</a>     (<span class="returnvalue">GduDetailsElement</span> *element);
-<a href="http://library.gnome.org/devel/gio/unstable/GIcon.html"><span class="returnvalue">GIcon</span></a> *             <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-get-icon" title="gdu_details_element_get_icon ()">gdu_details_element_get_icon</a>        (<span class="returnvalue">GduDetailsElement</span> *element);
-const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-get-text" title="gdu_details_element_get_text ()">gdu_details_element_get_text</a>        (<span class="returnvalue">GduDetailsElement</span> *element);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a>             <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-get-time" title="gdu_details_element_get_time ()">gdu_details_element_get_time</a>        (<span class="returnvalue">GduDetailsElement</span> *element);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-get-progress" title="gdu_details_element_get_progress ()">gdu_details_element_get_progress</a>    (<span class="returnvalue">GduDetailsElement</span> *element);
-const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-get-tooltip" title="gdu_details_element_get_tooltip ()">gdu_details_element_get_tooltip</a>     (<span class="returnvalue">GduDetailsElement</span> *element);
-const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-get-action-text" title="gdu_details_element_get_action_text ()">gdu_details_element_get_action_text</a> (<span class="returnvalue">GduDetailsElement</span> *element);
-const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-get-action-uri" title="gdu_details_element_get_action_uri ()">gdu_details_element_get_action_uri</a>  (<span class="returnvalue">GduDetailsElement</span> *element);
-const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-get-action-tooltip" title="gdu_details_element_get_action_tooltip ()">gdu_details_element_get_action_tooltip</a>
-                                                        (<span class="returnvalue">GduDetailsElement</span> *element);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-get-is-spinning" title="gdu_details_element_get_is_spinning ()">gdu_details_element_get_is_spinning</a> (<span class="returnvalue">GduDetailsElement</span> *element);
-<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-get-widget" title="gdu_details_element_get_widget ()">gdu_details_element_get_widget</a>      (<span class="returnvalue">GduDetailsElement</span> *element);
-<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-set-heading" title="gdu_details_element_set_heading ()">gdu_details_element_set_heading</a>     (<span class="returnvalue">GduDetailsElement</span> *element,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *heading);
-<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-set-icon" title="gdu_details_element_set_icon ()">gdu_details_element_set_icon</a>        (<span class="returnvalue">GduDetailsElement</span> *element,
-                                                         <a href="http://library.gnome.org/devel/gio/unstable/GIcon.html"><span class="returnvalue">GIcon</span></a> *icon);
-<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-set-text" title="gdu_details_element_set_text ()">gdu_details_element_set_text</a>        (<span class="returnvalue">GduDetailsElement</span> *element,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *text);
-<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-set-time" title="gdu_details_element_set_time ()">gdu_details_element_set_time</a>        (<span class="returnvalue">GduDetailsElement</span> *element,
-                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a> time);
-<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-set-progress" title="gdu_details_element_set_progress ()">gdu_details_element_set_progress</a>    (<span class="returnvalue">GduDetailsElement</span> *element,
-                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a> progress);
-<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-set-tooltip" title="gdu_details_element_set_tooltip ()">gdu_details_element_set_tooltip</a>     (<span class="returnvalue">GduDetailsElement</span> *element,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *tooltip);
-<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-set-action-text" title="gdu_details_element_set_action_text ()">gdu_details_element_set_action_text</a> (<span class="returnvalue">GduDetailsElement</span> *element,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *action_text);
-<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-set-action-uri" title="gdu_details_element_set_action_uri ()">gdu_details_element_set_action_uri</a>  (<span class="returnvalue">GduDetailsElement</span> *element,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *action_uri);
-<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-set-action-tooltip" title="gdu_details_element_set_action_tooltip ()">gdu_details_element_set_action_tooltip</a>
-                                                        (<span class="returnvalue">GduDetailsElement</span> *element,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *action_tooltip);
-<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-set-is-spinning" title="gdu_details_element_set_is_spinning ()">gdu_details_element_set_is_spinning</a> (<span class="returnvalue">GduDetailsElement</span> *element,
-                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> is_spinning);
-<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-set-widget" title="gdu_details_element_set_widget ()">gdu_details_element_set_widget</a>      (<span class="returnvalue">GduDetailsElement</span> *element,
-                                                         <a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *widget);
+void                <a class="link" href="gnome-disk-utility-gdu-details-element.html#changed" title="changed ()">changed</a>                             (GduVolumeGrid *grid);
+void                <a class="link" href="gnome-disk-utility-gdu-details-element.html#activated" title="activated ()">activated</a>                           (GduDetailsElement *element,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *uri);
+GduDetailsElement*  <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-new" title="gdu_details_element_new ()">gdu_details_element_new</a>             (const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *heading,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *text,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *tooltip);
+const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *       <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-get-heading" title="gdu_details_element_get_heading ()">gdu_details_element_get_heading</a>     (GduDetailsElement *element);
+<a
+href="http://library.gnome.org/devel/gio/unstable/GIcon.html"
+>GIcon</a> *             <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-get-icon" title="gdu_details_element_get_icon ()">gdu_details_element_get_icon</a>        (GduDetailsElement *element);
+const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *       <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-get-text" title="gdu_details_element_get_text ()">gdu_details_element_get_text</a>        (GduDetailsElement *element);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a>             <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-get-time" title="gdu_details_element_get_time ()">gdu_details_element_get_time</a>        (GduDetailsElement *element);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>             <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-get-progress" title="gdu_details_element_get_progress ()">gdu_details_element_get_progress</a>    (GduDetailsElement *element);
+const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *       <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-get-tooltip" title="gdu_details_element_get_tooltip ()">gdu_details_element_get_tooltip</a>     (GduDetailsElement *element);
+const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *       <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-get-action-text" title="gdu_details_element_get_action_text ()">gdu_details_element_get_action_text</a> (GduDetailsElement *element);
+const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *       <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-get-action-uri" title="gdu_details_element_get_action_uri ()">gdu_details_element_get_action_uri</a>  (GduDetailsElement *element);
+const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *       <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-get-action-tooltip" title="gdu_details_element_get_action_tooltip ()">gdu_details_element_get_action_tooltip</a>
+                                                        (GduDetailsElement *element);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-get-is-spinning" title="gdu_details_element_get_is_spinning ()">gdu_details_element_get_is_spinning</a> (GduDetailsElement *element);
+<a
+href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"
+>GtkWidget</a> *         <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-get-widget" title="gdu_details_element_get_widget ()">gdu_details_element_get_widget</a>      (GduDetailsElement *element);
+void                <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-set-heading" title="gdu_details_element_set_heading ()">gdu_details_element_set_heading</a>     (GduDetailsElement *element,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *heading);
+void                <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-set-icon" title="gdu_details_element_set_icon ()">gdu_details_element_set_icon</a>        (GduDetailsElement *element,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GIcon.html"
+>GIcon</a> *icon);
+void                <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-set-text" title="gdu_details_element_set_text ()">gdu_details_element_set_text</a>        (GduDetailsElement *element,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *text);
+void                <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-set-time" title="gdu_details_element_set_time ()">gdu_details_element_set_time</a>        (GduDetailsElement *element,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a> time);
+void                <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-set-progress" title="gdu_details_element_set_progress ()">gdu_details_element_set_progress</a>    (GduDetailsElement *element,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> progress);
+void                <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-set-tooltip" title="gdu_details_element_set_tooltip ()">gdu_details_element_set_tooltip</a>     (GduDetailsElement *element,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *tooltip);
+void                <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-set-action-text" title="gdu_details_element_set_action_text ()">gdu_details_element_set_action_text</a> (GduDetailsElement *element,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *action_text);
+void                <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-set-action-uri" title="gdu_details_element_set_action_uri ()">gdu_details_element_set_action_uri</a>  (GduDetailsElement *element,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *action_uri);
+void                <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-set-action-tooltip" title="gdu_details_element_set_action_tooltip ()">gdu_details_element_set_action_tooltip</a>
+                                                        (GduDetailsElement *element,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *action_tooltip);
+void                <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-set-is-spinning" title="gdu_details_element_set_is_spinning ()">gdu_details_element_set_is_spinning</a> (GduDetailsElement *element,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a> is_spinning);
+void                <a class="link" href="gnome-disk-utility-gdu-details-element.html#gdu-details-element-set-widget" title="gdu_details_element_set_widget ()">gdu_details_element_set_widget</a>      (GduDetailsElement *element,
+                                                         <a
+href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"
+>GtkWidget</a> *widget);
 </pre>
 </div>
 <div class="refsect1" title="Description">
@@ -109,13 +162,13 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="changed ()">
 <a name="changed"></a><h3>changed ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                changed                             (<span class="returnvalue">GduSizeWidget</span> *widget);</pre>
+<pre class="programlisting">void                changed                             (GduVolumeGrid *grid);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
-<td><p><span class="term"><em class="parameter"><code>widget</code></em> :</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>grid</code></em> :</span></p></td>
 <td>
 </td>
 </tr></tbody>
@@ -124,8 +177,10 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="activated ()">
 <a name="activated"></a><h3>activated ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                activated                           (<span class="returnvalue">GduDetailsElement</span> *element,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *uri);</pre>
+<pre class="programlisting">void                activated                           (GduDetailsElement *element,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *uri);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -147,9 +202,15 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="gdu_details_element_new ()">
 <a name="gdu-details-element-new"></a><h3>gdu_details_element_new ()</h3>
-<pre class="programlisting"><span class="returnvalue">GduDetailsElement</span>*  gdu_details_element_new             (const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *heading,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *text,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *tooltip);</pre>
+<pre class="programlisting">GduDetailsElement*  gdu_details_element_new             (const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *heading,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *text,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *tooltip);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -181,7 +242,9 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="gdu_details_element_get_heading ()">
 <a name="gdu-details-element-get-heading"></a><h3>gdu_details_element_get_heading ()</h3>
-<pre class="programlisting">const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdu_details_element_get_heading     (<span class="returnvalue">GduDetailsElement</span> *element);</pre>
+<pre class="programlisting">const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *       gdu_details_element_get_heading     (GduDetailsElement *element);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -203,7 +266,9 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="gdu_details_element_get_icon ()">
 <a name="gdu-details-element-get-icon"></a><h3>gdu_details_element_get_icon ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/gio/unstable/GIcon.html"><span class="returnvalue">GIcon</span></a> *             gdu_details_element_get_icon        (<span class="returnvalue">GduDetailsElement</span> *element);</pre>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/gio/unstable/GIcon.html"
+>GIcon</a> *             gdu_details_element_get_icon        (GduDetailsElement *element);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -225,7 +290,9 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="gdu_details_element_get_text ()">
 <a name="gdu-details-element-get-text"></a><h3>gdu_details_element_get_text ()</h3>
-<pre class="programlisting">const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdu_details_element_get_text        (<span class="returnvalue">GduDetailsElement</span> *element);</pre>
+<pre class="programlisting">const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *       gdu_details_element_get_text        (GduDetailsElement *element);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -247,7 +314,9 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="gdu_details_element_get_time ()">
 <a name="gdu-details-element-get-time"></a><h3>gdu_details_element_get_time ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a>             gdu_details_element_get_time        (<span class="returnvalue">GduDetailsElement</span> *element);</pre>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a>             gdu_details_element_get_time        (GduDetailsElement *element);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -269,7 +338,9 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="gdu_details_element_get_progress ()">
 <a name="gdu-details-element-get-progress"></a><h3>gdu_details_element_get_progress ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             gdu_details_element_get_progress    (<span class="returnvalue">GduDetailsElement</span> *element);</pre>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a>             gdu_details_element_get_progress    (GduDetailsElement *element);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -291,7 +362,9 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="gdu_details_element_get_tooltip ()">
 <a name="gdu-details-element-get-tooltip"></a><h3>gdu_details_element_get_tooltip ()</h3>
-<pre class="programlisting">const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdu_details_element_get_tooltip     (<span class="returnvalue">GduDetailsElement</span> *element);</pre>
+<pre class="programlisting">const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *       gdu_details_element_get_tooltip     (GduDetailsElement *element);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -313,7 +386,9 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="gdu_details_element_get_action_text ()">
 <a name="gdu-details-element-get-action-text"></a><h3>gdu_details_element_get_action_text ()</h3>
-<pre class="programlisting">const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdu_details_element_get_action_text (<span class="returnvalue">GduDetailsElement</span> *element);</pre>
+<pre class="programlisting">const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *       gdu_details_element_get_action_text (GduDetailsElement *element);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -335,7 +410,9 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="gdu_details_element_get_action_uri ()">
 <a name="gdu-details-element-get-action-uri"></a><h3>gdu_details_element_get_action_uri ()</h3>
-<pre class="programlisting">const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdu_details_element_get_action_uri  (<span class="returnvalue">GduDetailsElement</span> *element);</pre>
+<pre class="programlisting">const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *       gdu_details_element_get_action_uri  (GduDetailsElement *element);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -357,8 +434,10 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="gdu_details_element_get_action_tooltip ()">
 <a name="gdu-details-element-get-action-tooltip"></a><h3>gdu_details_element_get_action_tooltip ()</h3>
-<pre class="programlisting">const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       gdu_details_element_get_action_tooltip
-                                                        (<span class="returnvalue">GduDetailsElement</span> *element);</pre>
+<pre class="programlisting">const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *       gdu_details_element_get_action_tooltip
+                                                        (GduDetailsElement *element);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -380,7 +459,9 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="gdu_details_element_get_is_spinning ()">
 <a name="gdu-details-element-get-is-spinning"></a><h3>gdu_details_element_get_is_spinning ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gdu_details_element_get_is_spinning (<span class="returnvalue">GduDetailsElement</span> *element);</pre>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gdu_details_element_get_is_spinning (GduDetailsElement *element);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -402,7 +483,9 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="gdu_details_element_get_widget ()">
 <a name="gdu-details-element-get-widget"></a><h3>gdu_details_element_get_widget ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         gdu_details_element_get_widget      (<span class="returnvalue">GduDetailsElement</span> *element);</pre>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"
+>GtkWidget</a> *         gdu_details_element_get_widget      (GduDetailsElement *element);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -424,8 +507,10 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="gdu_details_element_set_heading ()">
 <a name="gdu-details-element-set-heading"></a><h3>gdu_details_element_set_heading ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                gdu_details_element_set_heading     (<span class="returnvalue">GduDetailsElement</span> *element,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *heading);</pre>
+<pre class="programlisting">void                gdu_details_element_set_heading     (GduDetailsElement *element,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *heading);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -447,8 +532,10 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="gdu_details_element_set_icon ()">
 <a name="gdu-details-element-set-icon"></a><h3>gdu_details_element_set_icon ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                gdu_details_element_set_icon        (<span class="returnvalue">GduDetailsElement</span> *element,
-                                                         <a href="http://library.gnome.org/devel/gio/unstable/GIcon.html"><span class="returnvalue">GIcon</span></a> *icon);</pre>
+<pre class="programlisting">void                gdu_details_element_set_icon        (GduDetailsElement *element,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GIcon.html"
+>GIcon</a> *icon);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -470,8 +557,10 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="gdu_details_element_set_text ()">
 <a name="gdu-details-element-set-text"></a><h3>gdu_details_element_set_text ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                gdu_details_element_set_text        (<span class="returnvalue">GduDetailsElement</span> *element,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *text);</pre>
+<pre class="programlisting">void                gdu_details_element_set_text        (GduDetailsElement *element,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *text);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -493,8 +582,10 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="gdu_details_element_set_time ()">
 <a name="gdu-details-element-set-time"></a><h3>gdu_details_element_set_time ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                gdu_details_element_set_time        (<span class="returnvalue">GduDetailsElement</span> *element,
-                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a> time);</pre>
+<pre class="programlisting">void                gdu_details_element_set_time        (GduDetailsElement *element,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
+>guint64</a> time);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -516,8 +607,10 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="gdu_details_element_set_progress ()">
 <a name="gdu-details-element-set-progress"></a><h3>gdu_details_element_set_progress ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                gdu_details_element_set_progress    (<span class="returnvalue">GduDetailsElement</span> *element,
-                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a> progress);</pre>
+<pre class="programlisting">void                gdu_details_element_set_progress    (GduDetailsElement *element,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gdouble"
+>gdouble</a> progress);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -539,8 +632,10 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="gdu_details_element_set_tooltip ()">
 <a name="gdu-details-element-set-tooltip"></a><h3>gdu_details_element_set_tooltip ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                gdu_details_element_set_tooltip     (<span class="returnvalue">GduDetailsElement</span> *element,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *tooltip);</pre>
+<pre class="programlisting">void                gdu_details_element_set_tooltip     (GduDetailsElement *element,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *tooltip);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -562,8 +657,10 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="gdu_details_element_set_action_text ()">
 <a name="gdu-details-element-set-action-text"></a><h3>gdu_details_element_set_action_text ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                gdu_details_element_set_action_text (<span class="returnvalue">GduDetailsElement</span> *element,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *action_text);</pre>
+<pre class="programlisting">void                gdu_details_element_set_action_text (GduDetailsElement *element,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *action_text);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -585,8 +682,10 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="gdu_details_element_set_action_uri ()">
 <a name="gdu-details-element-set-action-uri"></a><h3>gdu_details_element_set_action_uri ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                gdu_details_element_set_action_uri  (<span class="returnvalue">GduDetailsElement</span> *element,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *action_uri);</pre>
+<pre class="programlisting">void                gdu_details_element_set_action_uri  (GduDetailsElement *element,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *action_uri);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -608,9 +707,11 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="gdu_details_element_set_action_tooltip ()">
 <a name="gdu-details-element-set-action-tooltip"></a><h3>gdu_details_element_set_action_tooltip ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                gdu_details_element_set_action_tooltip
-                                                        (<span class="returnvalue">GduDetailsElement</span> *element,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *action_tooltip);</pre>
+<pre class="programlisting">void                gdu_details_element_set_action_tooltip
+                                                        (GduDetailsElement *element,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *action_tooltip);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -632,8 +733,10 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="gdu_details_element_set_is_spinning ()">
 <a name="gdu-details-element-set-is-spinning"></a><h3>gdu_details_element_set_is_spinning ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                gdu_details_element_set_is_spinning (<span class="returnvalue">GduDetailsElement</span> *element,
-                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> is_spinning);</pre>
+<pre class="programlisting">void                gdu_details_element_set_is_spinning (GduDetailsElement *element,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a> is_spinning);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -655,8 +758,10 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <hr>
 <div class="refsect2" title="gdu_details_element_set_widget ()">
 <a name="gdu-details-element-set-widget"></a><h3>gdu_details_element_set_widget ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                gdu_details_element_set_widget      (<span class="returnvalue">GduDetailsElement</span> *element,
-                                                         <a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *widget);</pre>
+<pre class="programlisting">void                gdu_details_element_set_widget      (GduDetailsElement *element,
+                                                         <a
+href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"
+>GtkWidget</a> *widget);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -679,6 +784,6 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.13</div>
+          Generated by GTK-Doc V1.11</div>
 </body>
 </html>

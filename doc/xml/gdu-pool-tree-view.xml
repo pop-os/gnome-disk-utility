@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="gnome-disk-utility-gdu-pool-tree-view">
+<refmeta>
+<refentrytitle role="top_of_page" id="gnome-disk-utility-gdu-pool-tree-view.top_of_page">gdu-pool-tree-view</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GNOME-DISK-UTILITY Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>gdu-pool-tree-view</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gnome-disk-utility-gdu-pool-tree-view.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+typedef             <link linkend="GduPoolTreeViewClass">GduPoolTreeViewClass</link>;
+typedef             <link linkend="GduPoolTreeViewPrivate">GduPoolTreeViewPrivate</link>;
+<link linkend="GtkWidget">GtkWidget</link> *         <link linkend="gdu-pool-tree-view-new">gdu_pool_tree_view_new</link>              (<link linkend="GduPoolTreeModel">GduPoolTreeModel</link> *model,
+                                                         <link linkend="GduPoolTreeViewFlags">GduPoolTreeViewFlags</link> flags);
+<link linkend="GduPresentable">GduPresentable</link> *    <link linkend="gdu-pool-tree-view-get-selected-presentable">gdu_pool_tree_view_get_selected_presentable</link>
+                                                        (<link linkend="GduPoolTreeView">GduPoolTreeView</link> *view);
+<link linkend="void">void</link>                <link linkend="gdu-pool-tree-view-select-presentable">gdu_pool_tree_view_select_presentable</link>
+                                                        (<link linkend="GduPoolTreeView">GduPoolTreeView</link> *view,
+                                                         <link linkend="GduPresentable">GduPresentable</link> *presentable);
+<link linkend="void">void</link>                <link linkend="gdu-pool-tree-view-select-first-presentable">gdu_pool_tree_view_select_first_presentable</link>
+                                                        (<link linkend="GduPoolTreeView">GduPoolTreeView</link> *view);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gnome-disk-utility-gdu-pool-tree-view.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gnome-disk-utility-gdu-pool-tree-view.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GduPoolTreeViewClass" role="typedef">
+<title>GduPoolTreeViewClass</title>
+<indexterm zone="GduPoolTreeViewClass"><primary sortas="GduPoolTreeViewClass">GduPoolTreeViewClass</primary></indexterm><programlisting>typedef struct GduPoolTreeViewClass       GduPoolTreeViewClass;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduPoolTreeViewPrivate" role="typedef">
+<title>GduPoolTreeViewPrivate</title>
+<indexterm zone="GduPoolTreeViewPrivate"><primary sortas="GduPoolTreeViewPrivate">GduPoolTreeViewPrivate</primary></indexterm><programlisting>typedef struct GduPoolTreeViewPrivate     GduPoolTreeViewPrivate;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="gdu-pool-tree-view-new" role="function">
+<title>gdu_pool_tree_view_new ()</title>
+<indexterm zone="gdu-pool-tree-view-new"><primary sortas="gdu_pool_tree_view_new">gdu_pool_tree_view_new</primary></indexterm><programlisting><link linkend="GtkWidget">GtkWidget</link> *         gdu_pool_tree_view_new              (<link linkend="GduPoolTreeModel">GduPoolTreeModel</link> *model,
+                                                         <link linkend="GduPoolTreeViewFlags">GduPoolTreeViewFlags</link> flags);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>flags</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-pool-tree-view-get-selected-presentable" role="function">
+<title>gdu_pool_tree_view_get_selected_presentable ()</title>
+<indexterm zone="gdu-pool-tree-view-get-selected-presentable"><primary sortas="gdu_pool_tree_view_get_selected_presentable">gdu_pool_tree_view_get_selected_presentable</primary></indexterm><programlisting><link linkend="GduPresentable">GduPresentable</link> *    gdu_pool_tree_view_get_selected_presentable
+                                                        (<link linkend="GduPoolTreeView">GduPoolTreeView</link> *view);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>view</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-pool-tree-view-select-presentable" role="function">
+<title>gdu_pool_tree_view_select_presentable ()</title>
+<indexterm zone="gdu-pool-tree-view-select-presentable"><primary sortas="gdu_pool_tree_view_select_presentable">gdu_pool_tree_view_select_presentable</primary></indexterm><programlisting><link linkend="void">void</link>                gdu_pool_tree_view_select_presentable
+                                                        (<link linkend="GduPoolTreeView">GduPoolTreeView</link> *view,
+                                                         <link linkend="GduPresentable">GduPresentable</link> *presentable);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>view</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>presentable</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-pool-tree-view-select-first-presentable" role="function">
+<title>gdu_pool_tree_view_select_first_presentable ()</title>
+<indexterm zone="gdu-pool-tree-view-select-first-presentable"><primary sortas="gdu_pool_tree_view_select_first_presentable">gdu_pool_tree_view_select_first_presentable</primary></indexterm><programlisting><link linkend="void">void</link>                gdu_pool_tree_view_select_first_presentable
+                                                        (<link linkend="GduPoolTreeView">GduPoolTreeView</link> *view);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>view</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

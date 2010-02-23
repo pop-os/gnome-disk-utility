@@ -60,6 +60,14 @@ static gboolean gdu_linux_lvm2_volume_group_is_activatable (GduDrive *drive);
 static gboolean gdu_linux_lvm2_volume_group_can_deactivate (GduDrive *drive);
 static gboolean gdu_linux_lvm2_volume_group_can_activate (GduDrive *drive, gboolean *out_degraded);
 
+static void gdu_linux_lvm2_volume_group_activate (GduDrive              *drive,
+                                                  GduDriveActivateFunc   callback,
+                                                  gpointer               user_data);
+
+static void gdu_linux_lvm2_volume_group_deactivate (GduDrive                *drive,
+                                                    GduDriveDeactivateFunc   callback,
+                                                    gpointer                 user_data);
+
 static gboolean gdu_linux_lvm2_volume_group_can_create_volume (GduDrive        *drive,
                                                                gboolean        *out_is_uninitialized,
                                                                guint64         *out_largest_contiguous_free_segment,
@@ -133,6 +141,8 @@ gdu_linux_lvm2_volume_group_class_init (GduLinuxLvm2VolumeGroupClass *klass)
         drive_class->can_create_volume     = gdu_linux_lvm2_volume_group_can_create_volume;
         drive_class->create_volume         = gdu_linux_lvm2_volume_group_create_volume;
         drive_class->create_volume_finish  = gdu_linux_lvm2_volume_group_create_volume_finish;
+        drive_class->activate              = gdu_linux_lvm2_volume_group_activate;
+        drive_class->deactivate            = gdu_linux_lvm2_volume_group_deactivate;
 }
 
 static void
@@ -521,32 +531,37 @@ _gdu_linux_lvm2_volume_group_rewrite_enclosing_presentable (GduLinuxLvm2VolumeGr
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
-
 /* GduDrive virtual method overrides */
 
 static gboolean
 gdu_linux_lvm2_volume_group_is_active (GduDrive *drive)
 {
-        return TRUE;
+        GduLinuxLvm2VolumeGroup *vg = GDU_LINUX_LVM2_VOLUME_GROUP (drive);
+        return gdu_linux_lvm2_volume_group_get_state (vg) != GDU_LINUX_LVM2_VOLUME_GROUP_STATE_NOT_RUNNING;
 }
 
 static gboolean
 gdu_linux_lvm2_volume_group_is_activatable (GduDrive *drive)
 {
-        return FALSE;
+        return TRUE;
 }
 
 static gboolean
 gdu_linux_lvm2_volume_group_can_deactivate (GduDrive *drive)
 {
-        return FALSE;
+        GduLinuxLvm2VolumeGroup *vg = GDU_LINUX_LVM2_VOLUME_GROUP (drive);
+        return gdu_linux_lvm2_volume_group_get_state (vg) != GDU_LINUX_LVM2_VOLUME_GROUP_STATE_NOT_RUNNING;
 }
 
 static gboolean
 gdu_linux_lvm2_volume_group_can_activate (GduDrive *drive,
                                           gboolean *out_degraded)
 {
-        return FALSE;
+        GduLinuxLvm2VolumeGroup *vg = GDU_LINUX_LVM2_VOLUME_GROUP (drive);
+        /* TODO: actually compute out_degraded and also return FALSE in case we can't even start in degraded mode */
+        if (out_degraded != NULL)
+                *out_degraded = FALSE;
+        return gdu_linux_lvm2_volume_group_get_state (vg) != GDU_LINUX_LVM2_VOLUME_GROUP_STATE_RUNNING;
 }
 
 static gboolean
@@ -964,3 +979,85 @@ gdu_linux_lvm2_volume_group_get_compute_new_lv_name (GduLinuxLvm2VolumeGroup *vg
 
         return g_string_free (s, FALSE);
 }
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+typedef struct
+{
+        GduDrive *drive;
+        GduDriveActivateFunc callback;
+        gpointer user_data;
+} VGStartData;
+
+static void
+vg_start_cb (GduPool    *pool,
+             GError     *error,
+             gpointer    user_data)
+{
+        VGStartData *data = user_data;
+
+        data->callback (data->drive, NULL, error, data->user_data);
+        g_object_unref (data->drive);
+        g_free (data);
+}
+
+static void
+gdu_linux_lvm2_volume_group_activate (GduDrive              *drive,
+                                      GduDriveActivateFunc   callback,
+                                      gpointer               user_data)
+{
+        GduLinuxLvm2VolumeGroup *vg = GDU_LINUX_LVM2_VOLUME_GROUP (drive);
+        VGStartData *data;
+
+        data = g_new0 (VGStartData, 1);
+        data->drive = g_object_ref (drive);
+        data->callback = callback;
+        data->user_data = user_data;
+
+        gdu_pool_op_linux_lvm2_vg_start (vg->priv->pool,
+                                         vg->priv->uuid,
+                                         vg_start_cb,
+                                         data);
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+typedef struct
+{
+        GduDrive *drive;
+        GduDriveDeactivateFunc callback;
+        gpointer user_data;
+} VGStopData;
+
+static void
+vg_stop_cb (GduPool    *pool,
+            GError     *error,
+            gpointer    user_data)
+{
+        VGStopData *data = user_data;
+
+        data->callback (data->drive, error, data->user_data);
+        g_object_unref (data->drive);
+        g_free (data);
+}
+
+static void
+gdu_linux_lvm2_volume_group_deactivate (GduDrive                *drive,
+                                        GduDriveDeactivateFunc   callback,
+                                        gpointer                 user_data)
+{
+        GduLinuxLvm2VolumeGroup *vg = GDU_LINUX_LVM2_VOLUME_GROUP (drive);
+        VGStopData *data;
+
+        data = g_new0 (VGStopData, 1);
+        data->drive = g_object_ref (drive);
+        data->callback = callback;
+        data->user_data = user_data;
+
+        gdu_pool_op_linux_lvm2_vg_stop (vg->priv->pool,
+                                        vg->priv->uuid,
+                                        vg_stop_cb,
+                                        data);
+}
+
+/* ---------------------------------------------------------------------------------------------------- */

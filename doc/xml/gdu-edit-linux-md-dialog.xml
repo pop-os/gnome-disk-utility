@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="gnome-disk-utility-gdu-edit-linux-md-dialog">
+<refmeta>
+<refentrytitle role="top_of_page" id="gnome-disk-utility-gdu-edit-linux-md-dialog.top_of_page">gdu-edit-linux-md-dialog</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GNOME-DISK-UTILITY Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>gdu-edit-linux-md-dialog</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gnome-disk-utility-gdu-edit-linux-md-dialog.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+typedef             <link linkend="GduEditLinuxMdDialogClass">GduEditLinuxMdDialogClass</link>;
+typedef             <link linkend="GduEditLinuxMdDialogPrivate">GduEditLinuxMdDialogPrivate</link>;
+<link linkend="void">void</link>                <link linkend="add-spare-button-clicked">add_spare_button_clicked</link>            (<link linkend="GduEditLinuxMdDialog">GduEditLinuxMdDialog</link> *dialog);
+<link linkend="void">void</link>                <link linkend="expand-button-clicked">expand_button_clicked</link>               (<link linkend="GduEditLinuxMdDialog">GduEditLinuxMdDialog</link> *dialog);
+<link linkend="void">void</link>                <link linkend="attach-button-clicked">attach_button_clicked</link>               (<link linkend="GduEditLinuxMdDialog">GduEditLinuxMdDialog</link> *dialog,
+                                                         <link linkend="GduDevice">GduDevice</link> *slave);
+<link linkend="void">void</link>                <link linkend="remove-button-clicked">remove_button_clicked</link>               (<link linkend="GduEditLinuxMdDialog">GduEditLinuxMdDialog</link> *dialog,
+                                                         <link linkend="GduDevice">GduDevice</link> *slave);
+<link linkend="GtkWidget">GtkWidget</link>*          <link linkend="gdu-edit-linux-md-dialog-new">gdu_edit_linux_md_dialog_new</link>        (<link linkend="GtkWindow">GtkWindow</link> *parent,
+                                                         <link linkend="GduLinuxMdDrive">GduLinuxMdDrive</link> *linux_md_drive);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gnome-disk-utility-gdu-edit-linux-md-dialog.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gnome-disk-utility-gdu-edit-linux-md-dialog.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GduEditLinuxMdDialogClass" role="typedef">
+<title>GduEditLinuxMdDialogClass</title>
+<indexterm zone="GduEditLinuxMdDialogClass"><primary sortas="GduEditLinuxMdDialogClass">GduEditLinuxMdDialogClass</primary></indexterm><programlisting>typedef struct GduEditLinuxMdDialogClass   GduEditLinuxMdDialogClass;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduEditLinuxMdDialogPrivate" role="typedef">
+<title>GduEditLinuxMdDialogPrivate</title>
+<indexterm zone="GduEditLinuxMdDialogPrivate"><primary sortas="GduEditLinuxMdDialogPrivate">GduEditLinuxMdDialogPrivate</primary></indexterm><programlisting>typedef struct GduEditLinuxMdDialogPrivate GduEditLinuxMdDialogPrivate;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="add-spare-button-clicked" role="function">
+<title>add_spare_button_clicked ()</title>
+<indexterm zone="add-spare-button-clicked"><primary sortas="add_spare_button_clicked">add_spare_button_clicked</primary></indexterm><programlisting><link linkend="void">void</link>                add_spare_button_clicked            (<link linkend="GduEditLinuxMdDialog">GduEditLinuxMdDialog</link> *dialog);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>dialog</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="expand-button-clicked" role="function">
+<title>expand_button_clicked ()</title>
+<indexterm zone="expand-button-clicked"><primary sortas="expand_button_clicked">expand_button_clicked</primary></indexterm><programlisting><link linkend="void">void</link>                expand_button_clicked               (<link linkend="GduEditLinuxMdDialog">GduEditLinuxMdDialog</link> *dialog);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>dialog</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="attach-button-clicked" role="function">
+<title>attach_button_clicked ()</title>
+<indexterm zone="attach-button-clicked"><primary sortas="attach_button_clicked">attach_button_clicked</primary></indexterm><programlisting><link linkend="void">void</link>                attach_button_clicked               (<link linkend="GduEditLinuxMdDialog">GduEditLinuxMdDialog</link> *dialog,
+                                                         <link linkend="GduDevice">GduDevice</link> *slave);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>dialog</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>slave</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="remove-button-clicked" role="function">
+<title>remove_button_clicked ()</title>
+<indexterm zone="remove-button-clicked"><primary sortas="remove_button_clicked">remove_button_clicked</primary></indexterm><programlisting><link linkend="void">void</link>                remove_button_clicked               (<link linkend="GduEditLinuxMdDialog">GduEditLinuxMdDialog</link> *dialog,
+                                                         <link linkend="GduDevice">GduDevice</link> *slave);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>dialog</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>slave</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-edit-linux-md-dialog-new" role="function">
+<title>gdu_edit_linux_md_dialog_new ()</title>
+<indexterm zone="gdu-edit-linux-md-dialog-new"><primary sortas="gdu_edit_linux_md_dialog_new">gdu_edit_linux_md_dialog_new</primary></indexterm><programlisting><link linkend="GtkWidget">GtkWidget</link>*          gdu_edit_linux_md_dialog_new        (<link linkend="GtkWindow">GtkWindow</link> *parent,
+                                                         <link linkend="GduLinuxMdDrive">GduLinuxMdDrive</link> *linux_md_drive);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>parent</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>linux_md_drive</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

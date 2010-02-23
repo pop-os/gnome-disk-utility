@@ -1,0 +1,211 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="gnome-disk-utility-GduLinuxLvm2VolumeGroup">
+<refmeta>
+<refentrytitle role="top_of_page" id="gnome-disk-utility-GduLinuxLvm2VolumeGroup.top_of_page">GduLinuxLvm2VolumeGroup</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GNOME-DISK-UTILITY Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GduLinuxLvm2VolumeGroup</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gnome-disk-utility-GduLinuxLvm2VolumeGroup.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="GduLinuxLvm2VolumeGroupPrivate">GduLinuxLvm2VolumeGroupPrivate</link>;
+                    <link linkend="GduLinuxLvm2VolumeGroup">GduLinuxLvm2VolumeGroup</link>;
+enum                <link linkend="GduLinuxLvm2VolumeGroupState">GduLinuxLvm2VolumeGroupState</link>;
+const <link linkend="gchar">gchar</link> *       <link linkend="gdu-linux-lvm2-volume-group-get-uuid">gdu_linux_lvm2_volume_group_get_uuid</link>
+                                                        (<link linkend="GduLinuxLvm2VolumeGroup">GduLinuxLvm2VolumeGroup</link> *vg);
+<link linkend="GduLinuxLvm2VolumeGroupState">GduLinuxLvm2VolumeGroupState</link>  <link linkend="gdu-linux-lvm2-volume-group-get-state">gdu_linux_lvm2_volume_group_get_state</link>
+                                                        (<link linkend="GduLinuxLvm2VolumeGroup">GduLinuxLvm2VolumeGroup</link> *vg);
+<link linkend="GduDevice">GduDevice</link> *         <link linkend="gdu-linux-lvm2-volume-group-get-pv-device">gdu_linux_lvm2_volume_group_get_pv_device</link>
+                                                        (<link linkend="GduLinuxLvm2VolumeGroup">GduLinuxLvm2VolumeGroup</link> *vg);
+<link linkend="guint">guint</link>               <link linkend="gdu-linux-lvm2-volume-group-get-num-lvs">gdu_linux_lvm2_volume_group_get_num_lvs</link>
+                                                        (<link linkend="GduLinuxLvm2VolumeGroup">GduLinuxLvm2VolumeGroup</link> *vg);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-linux-lvm2-volume-group-get-lv-info">gdu_linux_lvm2_volume_group_get_lv_info</link>
+                                                        (<link linkend="GduLinuxLvm2VolumeGroup">GduLinuxLvm2VolumeGroup</link> *vg,
+                                                         const <link linkend="gchar">gchar</link> *lv_uuid,
+                                                         <link linkend="guint">guint</link> *out_position,
+                                                         <link linkend="gchar">gchar</link> **out_name,
+                                                         <link linkend="guint64">guint64</link> *out_size);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-linux-lvm2-volume-group-get-pv-info">gdu_linux_lvm2_volume_group_get_pv_info</link>
+                                                        (<link linkend="GduLinuxLvm2VolumeGroup">GduLinuxLvm2VolumeGroup</link> *vg,
+                                                         const <link linkend="gchar">gchar</link> *pv_uuid,
+                                                         <link linkend="guint">guint</link> *out_position,
+                                                         <link linkend="guint64">guint64</link> *out_size,
+                                                         <link linkend="guint64">guint64</link> *out_allocated_size);
+<link linkend="gchar">gchar</link> *             <link linkend="gdu-linux-lvm2-volume-group-get-compute-new-lv-name">gdu_linux_lvm2_volume_group_get_compute_new_lv_name</link>
+                                                        (<link linkend="GduLinuxLvm2VolumeGroup">GduLinuxLvm2VolumeGroup</link> *vg);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gnome-disk-utility-GduLinuxLvm2VolumeGroup.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gnome-disk-utility-GduLinuxLvm2VolumeGroup.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GduLinuxLvm2VolumeGroupPrivate" role="struct">
+<title>GduLinuxLvm2VolumeGroupPrivate</title>
+<indexterm zone="GduLinuxLvm2VolumeGroupPrivate"><primary sortas="GduLinuxLvm2VolumeGroupPrivate">GduLinuxLvm2VolumeGroupPrivate</primary></indexterm><programlisting>typedef struct _GduLinuxLvm2VolumeGroupPrivate GduLinuxLvm2VolumeGroupPrivate;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduLinuxLvm2VolumeGroup" role="struct">
+<title>GduLinuxLvm2VolumeGroup</title>
+<indexterm zone="GduLinuxLvm2VolumeGroup"><primary sortas="GduLinuxLvm2VolumeGroup">GduLinuxLvm2VolumeGroup</primary></indexterm><programlisting>typedef struct {
+        GduDrive parent;
+} GduLinuxLvm2VolumeGroup;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduLinuxLvm2VolumeGroupState" role="enum">
+<title>enum GduLinuxLvm2VolumeGroupState</title>
+<indexterm zone="GduLinuxLvm2VolumeGroupState"><primary sortas="GduLinuxLvm2VolumeGroupState">GduLinuxLvm2VolumeGroupState</primary></indexterm><programlisting>typedef enum {
+        GDU_LINUX_LVM2_VOLUME_GROUP_STATE_NOT_RUNNING,
+        GDU_LINUX_LVM2_VOLUME_GROUP_STATE_PARTIALLY_RUNNING,
+        GDU_LINUX_LVM2_VOLUME_GROUP_STATE_RUNNING,
+} GduLinuxLvm2VolumeGroupState;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="gdu-linux-lvm2-volume-group-get-uuid" role="function">
+<title>gdu_linux_lvm2_volume_group_get_uuid ()</title>
+<indexterm zone="gdu-linux-lvm2-volume-group-get-uuid"><primary sortas="gdu_linux_lvm2_volume_group_get_uuid">gdu_linux_lvm2_volume_group_get_uuid</primary></indexterm><programlisting>const <link linkend="gchar">gchar</link> *       gdu_linux_lvm2_volume_group_get_uuid
+                                                        (<link linkend="GduLinuxLvm2VolumeGroup">GduLinuxLvm2VolumeGroup</link> *vg);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>vg</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-linux-lvm2-volume-group-get-state" role="function">
+<title>gdu_linux_lvm2_volume_group_get_state ()</title>
+<indexterm zone="gdu-linux-lvm2-volume-group-get-state"><primary sortas="gdu_linux_lvm2_volume_group_get_state">gdu_linux_lvm2_volume_group_get_state</primary></indexterm><programlisting><link linkend="GduLinuxLvm2VolumeGroupState">GduLinuxLvm2VolumeGroupState</link>  gdu_linux_lvm2_volume_group_get_state
+                                                        (<link linkend="GduLinuxLvm2VolumeGroup">GduLinuxLvm2VolumeGroup</link> *vg);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>vg</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-linux-lvm2-volume-group-get-pv-device" role="function">
+<title>gdu_linux_lvm2_volume_group_get_pv_device ()</title>
+<indexterm zone="gdu-linux-lvm2-volume-group-get-pv-device"><primary sortas="gdu_linux_lvm2_volume_group_get_pv_device">gdu_linux_lvm2_volume_group_get_pv_device</primary></indexterm><programlisting><link linkend="GduDevice">GduDevice</link> *         gdu_linux_lvm2_volume_group_get_pv_device
+                                                        (<link linkend="GduLinuxLvm2VolumeGroup">GduLinuxLvm2VolumeGroup</link> *vg);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>vg</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-linux-lvm2-volume-group-get-num-lvs" role="function">
+<title>gdu_linux_lvm2_volume_group_get_num_lvs ()</title>
+<indexterm zone="gdu-linux-lvm2-volume-group-get-num-lvs"><primary sortas="gdu_linux_lvm2_volume_group_get_num_lvs">gdu_linux_lvm2_volume_group_get_num_lvs</primary></indexterm><programlisting><link linkend="guint">guint</link>               gdu_linux_lvm2_volume_group_get_num_lvs
+                                                        (<link linkend="GduLinuxLvm2VolumeGroup">GduLinuxLvm2VolumeGroup</link> *vg);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>vg</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-linux-lvm2-volume-group-get-lv-info" role="function">
+<title>gdu_linux_lvm2_volume_group_get_lv_info ()</title>
+<indexterm zone="gdu-linux-lvm2-volume-group-get-lv-info"><primary sortas="gdu_linux_lvm2_volume_group_get_lv_info">gdu_linux_lvm2_volume_group_get_lv_info</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_linux_lvm2_volume_group_get_lv_info
+                                                        (<link linkend="GduLinuxLvm2VolumeGroup">GduLinuxLvm2VolumeGroup</link> *vg,
+                                                         const <link linkend="gchar">gchar</link> *lv_uuid,
+                                                         <link linkend="guint">guint</link> *out_position,
+                                                         <link linkend="gchar">gchar</link> **out_name,
+                                                         <link linkend="guint64">guint64</link> *out_size);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>vg</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>lv_uuid</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out_position</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out_name</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out_size</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-linux-lvm2-volume-group-get-pv-info" role="function">
+<title>gdu_linux_lvm2_volume_group_get_pv_info ()</title>
+<indexterm zone="gdu-linux-lvm2-volume-group-get-pv-info"><primary sortas="gdu_linux_lvm2_volume_group_get_pv_info">gdu_linux_lvm2_volume_group_get_pv_info</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_linux_lvm2_volume_group_get_pv_info
+                                                        (<link linkend="GduLinuxLvm2VolumeGroup">GduLinuxLvm2VolumeGroup</link> *vg,
+                                                         const <link linkend="gchar">gchar</link> *pv_uuid,
+                                                         <link linkend="guint">guint</link> *out_position,
+                                                         <link linkend="guint64">guint64</link> *out_size,
+                                                         <link linkend="guint64">guint64</link> *out_allocated_size);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>vg</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>pv_uuid</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out_position</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out_size</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out_allocated_size</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-linux-lvm2-volume-group-get-compute-new-lv-name" role="function">
+<title>gdu_linux_lvm2_volume_group_get_compute_new_lv_name ()</title>
+<indexterm zone="gdu-linux-lvm2-volume-group-get-compute-new-lv-name"><primary sortas="gdu_linux_lvm2_volume_group_get_compute_new_lv_name">gdu_linux_lvm2_volume_group_get_compute_new_lv_name</primary></indexterm><programlisting><link linkend="gchar">gchar</link> *             gdu_linux_lvm2_volume_group_get_compute_new_lv_name
+                                                        (<link linkend="GduLinuxLvm2VolumeGroup">GduLinuxLvm2VolumeGroup</link> *vg);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>vg</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

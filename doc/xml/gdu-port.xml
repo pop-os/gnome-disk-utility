@@ -1,0 +1,150 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="GduPort">
+<refmeta>
+<refentrytitle role="top_of_page" id="GduPort.top_of_page">GduPort</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GNOME-DISK-UTILITY Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GduPort</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="GduPort.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="GduPortPrivate">GduPortPrivate</link>;
+                    <link linkend="GduPort-struct">GduPort</link>;
+const <link linkend="char">char</link> *        <link linkend="gdu-port-get-object-path">gdu_port_get_object_path</link>            (<link linkend="GduPort">GduPort</link> *port);
+<link linkend="GduPool">GduPool</link> *           <link linkend="gdu-port-get-pool">gdu_port_get_pool</link>                   (<link linkend="GduPort">GduPort</link> *port);
+const <link linkend="gchar">gchar</link> *       <link linkend="gdu-port-get-native-path">gdu_port_get_native_path</link>            (<link linkend="GduPort">GduPort</link> *port);
+const <link linkend="gchar">gchar</link> *       <link linkend="gdu-port-get-adapter">gdu_port_get_adapter</link>                (<link linkend="GduPort">GduPort</link> *port);
+const <link linkend="gchar">gchar</link> *       <link linkend="gdu-port-get-parent">gdu_port_get_parent</link>                 (<link linkend="GduPort">GduPort</link> *port);
+<link linkend="gint">gint</link>                <link linkend="gdu-port-get-number">gdu_port_get_number</link>                 (<link linkend="GduPort">GduPort</link> *port);
+const <link linkend="gchar">gchar</link> *       <link linkend="gdu-port-get-connector-type">gdu_port_get_connector_type</link>         (<link linkend="GduPort">GduPort</link> *port);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="GduPort.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----GduPort
+</synopsis>
+</refsect1>
+
+
+
+
+
+
+
+
+<refsect1 id="GduPort.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="GduPort.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GduPortPrivate" role="struct">
+<title>GduPortPrivate</title>
+<indexterm zone="GduPortPrivate"><primary sortas="GduPortPrivate">GduPortPrivate</primary></indexterm><programlisting>typedef struct _GduPortPrivate GduPortPrivate;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduPort-struct" role="struct">
+<title>GduPort</title>
+<indexterm zone="GduPort-struct"><primary sortas="GduPort">GduPort</primary></indexterm><programlisting>typedef struct _GduPort GduPort;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="gdu-port-get-object-path" role="function">
+<title>gdu_port_get_object_path ()</title>
+<indexterm zone="gdu-port-get-object-path"><primary sortas="gdu_port_get_object_path">gdu_port_get_object_path</primary></indexterm><programlisting>const <link linkend="char">char</link> *        gdu_port_get_object_path            (<link linkend="GduPort">GduPort</link> *port);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>port</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-port-get-pool" role="function">
+<title>gdu_port_get_pool ()</title>
+<indexterm zone="gdu-port-get-pool"><primary sortas="gdu_port_get_pool">gdu_port_get_pool</primary></indexterm><programlisting><link linkend="GduPool">GduPool</link> *           gdu_port_get_pool                   (<link linkend="GduPort">GduPort</link> *port);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>port</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-port-get-native-path" role="function">
+<title>gdu_port_get_native_path ()</title>
+<indexterm zone="gdu-port-get-native-path"><primary sortas="gdu_port_get_native_path">gdu_port_get_native_path</primary></indexterm><programlisting>const <link linkend="gchar">gchar</link> *       gdu_port_get_native_path            (<link linkend="GduPort">GduPort</link> *port);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>port</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-port-get-adapter" role="function">
+<title>gdu_port_get_adapter ()</title>
+<indexterm zone="gdu-port-get-adapter"><primary sortas="gdu_port_get_adapter">gdu_port_get_adapter</primary></indexterm><programlisting>const <link linkend="gchar">gchar</link> *       gdu_port_get_adapter                (<link linkend="GduPort">GduPort</link> *port);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>port</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-port-get-parent" role="function">
+<title>gdu_port_get_parent ()</title>
+<indexterm zone="gdu-port-get-parent"><primary sortas="gdu_port_get_parent">gdu_port_get_parent</primary></indexterm><programlisting>const <link linkend="gchar">gchar</link> *       gdu_port_get_parent                 (<link linkend="GduPort">GduPort</link> *port);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>port</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-port-get-number" role="function">
+<title>gdu_port_get_number ()</title>
+<indexterm zone="gdu-port-get-number"><primary sortas="gdu_port_get_number">gdu_port_get_number</primary></indexterm><programlisting><link linkend="gint">gint</link>                gdu_port_get_number                 (<link linkend="GduPort">GduPort</link> *port);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>port</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-port-get-connector-type" role="function">
+<title>gdu_port_get_connector_type ()</title>
+<indexterm zone="gdu-port-get-connector-type"><primary sortas="gdu_port_get_connector_type">gdu_port_get_connector_type</primary></indexterm><programlisting>const <link linkend="gchar">gchar</link> *       gdu_port_get_connector_type         (<link linkend="GduPort">GduPort</link> *port);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>port</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="gnome-disk-utility-gdu-pool-tree-model">
+<refmeta>
+<refentrytitle role="top_of_page" id="gnome-disk-utility-gdu-pool-tree-model.top_of_page">gdu-pool-tree-model</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GNOME-DISK-UTILITY Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>gdu-pool-tree-model</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gnome-disk-utility-gdu-pool-tree-model.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+typedef             <link linkend="GduPoolTreeModelClass">GduPoolTreeModelClass</link>;
+typedef             <link linkend="GduPoolTreeModelPrivate">GduPoolTreeModelPrivate</link>;
+<link linkend="GduPoolTreeModel">GduPoolTreeModel</link> *  <link linkend="gdu-pool-tree-model-new">gdu_pool_tree_model_new</link>             (<link linkend="GPtrArray">GPtrArray</link> *pools,
+                                                         <link linkend="GduPresentable">GduPresentable</link> *root,
+                                                         <link linkend="GduPoolTreeModelFlags">GduPoolTreeModelFlags</link> flags);
+<link linkend="void">void</link>                <link linkend="gdu-pool-tree-model-set-pools">gdu_pool_tree_model_set_pools</link>       (<link linkend="GduPoolTreeModel">GduPoolTreeModel</link> *model,
+                                                         <link linkend="GPtrArray">GPtrArray</link> *pools);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-pool-tree-model-get-iter-for-presentable">gdu_pool_tree_model_get_iter_for_presentable</link>
+                                                        (<link linkend="GduPoolTreeModel">GduPoolTreeModel</link> *model,
+                                                         <link linkend="GduPresentable">GduPresentable</link> *presentable,
+                                                         <link linkend="GtkTreeIter">GtkTreeIter</link> *out_iter);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gnome-disk-utility-gdu-pool-tree-model.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gnome-disk-utility-gdu-pool-tree-model.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GduPoolTreeModelClass" role="typedef">
+<title>GduPoolTreeModelClass</title>
+<indexterm zone="GduPoolTreeModelClass"><primary sortas="GduPoolTreeModelClass">GduPoolTreeModelClass</primary></indexterm><programlisting>typedef struct GduPoolTreeModelClass       GduPoolTreeModelClass;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduPoolTreeModelPrivate" role="typedef">
+<title>GduPoolTreeModelPrivate</title>
+<indexterm zone="GduPoolTreeModelPrivate"><primary sortas="GduPoolTreeModelPrivate">GduPoolTreeModelPrivate</primary></indexterm><programlisting>typedef struct GduPoolTreeModelPrivate     GduPoolTreeModelPrivate;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="gdu-pool-tree-model-new" role="function">
+<title>gdu_pool_tree_model_new ()</title>
+<indexterm zone="gdu-pool-tree-model-new"><primary sortas="gdu_pool_tree_model_new">gdu_pool_tree_model_new</primary></indexterm><programlisting><link linkend="GduPoolTreeModel">GduPoolTreeModel</link> *  gdu_pool_tree_model_new             (<link linkend="GPtrArray">GPtrArray</link> *pools,
+                                                         <link linkend="GduPresentable">GduPresentable</link> *root,
+                                                         <link linkend="GduPoolTreeModelFlags">GduPoolTreeModelFlags</link> flags);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>pools</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>root</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>flags</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-pool-tree-model-set-pools" role="function">
+<title>gdu_pool_tree_model_set_pools ()</title>
+<indexterm zone="gdu-pool-tree-model-set-pools"><primary sortas="gdu_pool_tree_model_set_pools">gdu_pool_tree_model_set_pools</primary></indexterm><programlisting><link linkend="void">void</link>                gdu_pool_tree_model_set_pools       (<link linkend="GduPoolTreeModel">GduPoolTreeModel</link> *model,
+                                                         <link linkend="GPtrArray">GPtrArray</link> *pools);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>pools</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-pool-tree-model-get-iter-for-presentable" role="function">
+<title>gdu_pool_tree_model_get_iter_for_presentable ()</title>
+<indexterm zone="gdu-pool-tree-model-get-iter-for-presentable"><primary sortas="gdu_pool_tree_model_get_iter_for_presentable">gdu_pool_tree_model_get_iter_for_presentable</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_pool_tree_model_get_iter_for_presentable
+                                                        (<link linkend="GduPoolTreeModel">GduPoolTreeModel</link> *model,
+                                                         <link linkend="GduPresentable">GduPresentable</link> *presentable,
+                                                         <link linkend="GtkTreeIter">GtkTreeIter</link> *out_iter);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>model</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>presentable</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out_iter</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

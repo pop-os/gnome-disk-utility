@@ -8,7 +8,7 @@
 <link rel="up" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
 <link rel="prev" href="gnome-disk-utility-gdu-edit-partition-dialog.html" title="gdu-edit-partition-dialog">
 <link rel="next" href="gnome-disk-utility-gdu-confirmation-dialog.html" title="gdu-confirmation-dialog">
-<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="reference" href="ref-libgdu.html" title="libgdu API Reference">
 <link rel="reference" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
@@ -24,8 +24,8 @@
 </tr>
 <tr><td colspan="5" class="shortcuts">
 <a href="#gnome-disk-utility-gdu-error-dialog.synopsis" class="shortcut">Top</a>
-                   | 
-                  <a href="#gnome-disk-utility-gdu-error-dialog.description" class="shortcut">Description</a>
+                 | 
+                <a href="#gnome-disk-utility-gdu-error-dialog.description" class="shortcut">Description</a>
 </td></tr>
 </table>
 <div class="refentry" title="gdu-error-dialog">
@@ -39,20 +39,45 @@
 </tr></table></div>
 <div class="refsynopsisdiv" title="Synopsis">
 <a name="gnome-disk-utility-gdu-error-dialog.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">typedef             <a class="link" href="gnome-disk-utility-gdu-error-dialog.html#GduErrorDialogClass" title="GduErrorDialogClass">GduErrorDialogClass</a>;
+<pre class="synopsis">
+typedef             <a class="link" href="gnome-disk-utility-gdu-error-dialog.html#GduErrorDialogClass" title="GduErrorDialogClass">GduErrorDialogClass</a>;
 typedef             <a class="link" href="gnome-disk-utility-gdu-error-dialog.html#GduErrorDialogPrivate" title="GduErrorDialogPrivate">GduErrorDialogPrivate</a>;
-<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         <a class="link" href="gnome-disk-utility-gdu-error-dialog.html#gdu-error-dialog-new" title="gdu_error_dialog_new ()">gdu_error_dialog_new</a>                (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWindow.html"><span class="returnvalue">GtkWindow</span></a> *parent,
-                                                         <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *presentable,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *message,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> *error);
-<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         <a class="link" href="gnome-disk-utility-gdu-error-dialog.html#gdu-error-dialog-new-for-drive" title="gdu_error_dialog_new_for_drive ()">gdu_error_dialog_new_for_drive</a>      (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWindow.html"><span class="returnvalue">GtkWindow</span></a> *parent,
-                                                         <a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *message,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> *error);
-<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         <a class="link" href="gnome-disk-utility-gdu-error-dialog.html#gdu-error-dialog-new-for-volume" title="gdu_error_dialog_new_for_volume ()">gdu_error_dialog_new_for_volume</a>     (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWindow.html"><span class="returnvalue">GtkWindow</span></a> *parent,
-                                                         <a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *message,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> *error);
+<a
+href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"
+>GtkWidget</a> *         <a class="link" href="gnome-disk-utility-gdu-error-dialog.html#gdu-error-dialog-new" title="gdu_error_dialog_new ()">gdu_error_dialog_new</a>                (<a
+href="http://library.gnome.org/devel/gtk/unstable/GtkWindow.html"
+>GtkWindow</a> *parent,
+                                                         GduPresentable *presentable,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *message,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> *error);
+<a
+href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"
+>GtkWidget</a> *         <a class="link" href="gnome-disk-utility-gdu-error-dialog.html#gdu-error-dialog-new-for-drive" title="gdu_error_dialog_new_for_drive ()">gdu_error_dialog_new_for_drive</a>      (<a
+href="http://library.gnome.org/devel/gtk/unstable/GtkWindow.html"
+>GtkWindow</a> *parent,
+                                                         <a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *message,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> *error);
+<a
+href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"
+>GtkWidget</a> *         <a class="link" href="gnome-disk-utility-gdu-error-dialog.html#gdu-error-dialog-new-for-volume" title="gdu_error_dialog_new_for_volume ()">gdu_error_dialog_new_for_volume</a>     (<a
+href="http://library.gnome.org/devel/gtk/unstable/GtkWindow.html"
+>GtkWindow</a> *parent,
+                                                         <a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *message,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> *error);
 </pre>
 </div>
 <div class="refsect1" title="Description">
@@ -80,10 +105,18 @@ typedef             <a class="link" href="gnome-disk-utility-gdu-error-dialog.ht
 <hr>
 <div class="refsect2" title="gdu_error_dialog_new ()">
 <a name="gdu-error-dialog-new"></a><h3>gdu_error_dialog_new ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         gdu_error_dialog_new                (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWindow.html"><span class="returnvalue">GtkWindow</span></a> *parent,
-                                                         <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *presentable,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *message,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> *error);</pre>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"
+>GtkWidget</a> *         gdu_error_dialog_new                (<a
+href="http://library.gnome.org/devel/gtk/unstable/GtkWindow.html"
+>GtkWindow</a> *parent,
+                                                         GduPresentable *presentable,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *message,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> *error);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -120,10 +153,18 @@ typedef             <a class="link" href="gnome-disk-utility-gdu-error-dialog.ht
 <hr>
 <div class="refsect2" title="gdu_error_dialog_new_for_drive ()">
 <a name="gdu-error-dialog-new-for-drive"></a><h3>gdu_error_dialog_new_for_drive ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         gdu_error_dialog_new_for_drive      (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWindow.html"><span class="returnvalue">GtkWindow</span></a> *parent,
-                                                         <a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *message,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> *error);</pre>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"
+>GtkWidget</a> *         gdu_error_dialog_new_for_drive      (<a
+href="http://library.gnome.org/devel/gtk/unstable/GtkWindow.html"
+>GtkWindow</a> *parent,
+                                                         <a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *message,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> *error);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -160,10 +201,18 @@ typedef             <a class="link" href="gnome-disk-utility-gdu-error-dialog.ht
 <hr>
 <div class="refsect2" title="gdu_error_dialog_new_for_volume ()">
 <a name="gdu-error-dialog-new-for-volume"></a><h3>gdu_error_dialog_new_for_volume ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         gdu_error_dialog_new_for_volume     (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWindow.html"><span class="returnvalue">GtkWindow</span></a> *parent,
-                                                         <a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *message,
-                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> *error);</pre>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"
+>GtkWidget</a> *         gdu_error_dialog_new_for_volume     (<a
+href="http://library.gnome.org/devel/gtk/unstable/GtkWindow.html"
+>GtkWindow</a> *parent,
+                                                         <a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *message,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> *error);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -201,6 +250,6 @@ typedef             <a class="link" href="gnome-disk-utility-gdu-error-dialog.ht
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.13</div>
+          Generated by GTK-Doc V1.11</div>
 </body>
 </html>

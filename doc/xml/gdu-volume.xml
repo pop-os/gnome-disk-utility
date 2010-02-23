@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="GduVolume">
+<refmeta>
+<refentrytitle role="top_of_page" id="GduVolume.top_of_page">GduVolume</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GNOME-DISK-UTILITY Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GduVolume</refname>
+<refpurpose>Volumes</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="GduVolume.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+enum                <link linkend="GduVolumeFlags">GduVolumeFlags</link>;
+                    <link linkend="GduVolumePrivate">GduVolumePrivate</link>;
+                    <link linkend="GduVolume-struct">GduVolume</link>;
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-volume-is-allocated">gdu_volume_is_allocated</link>             (<link linkend="GduVolume">GduVolume</link> *volume);
+<link linkend="gboolean">gboolean</link>            <link linkend="gdu-volume-is-recognized">gdu_volume_is_recognized</link>            (<link linkend="GduVolume">GduVolume</link> *volume);
+<link linkend="GduVolumeFlags">GduVolumeFlags</link>      <link linkend="gdu-volume-get-flags">gdu_volume_get_flags</link>                (<link linkend="GduVolume">GduVolume</link> *volume);
+<link linkend="GduDrive">GduDrive</link> *          <link linkend="gdu-volume-get-drive">gdu_volume_get_drive</link>                (<link linkend="GduVolume">GduVolume</link> *volume);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="GduVolume.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----GduVolume
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="GduVolume.implemented-interfaces" role="impl_interfaces">
+<title role="impl_interfaces.title">Implemented Interfaces</title>
+<para>
+GduVolume implements
+ <link linkend="GduPresentable">GduPresentable</link>.</para>
+</refsect1>
+
+
+
+
+
+<refsect1 id="GduVolume.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+The <link linkend="GduVolume"><type>GduVolume</type></link> class is used to represent regions of a drive;
+typically it represents partitions (for partitioned devices) or
+the whole file system (for e.g. optical discs and floppy disks).
+</para>
+<para>
+See the documentation for <link linkend="GduPresentable"><type>GduPresentable</type></link> for the big picture.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="GduVolume.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GduVolumeFlags" role="enum">
+<title>enum GduVolumeFlags</title>
+<indexterm zone="GduVolumeFlags"><primary sortas="GduVolumeFlags">GduVolumeFlags</primary></indexterm><programlisting>typedef enum {
+        GDU_VOLUME_FLAGS_NONE                   = 0x0000,
+        GDU_VOLUME_FLAGS_PARTITION              = (1&lt;&lt;0),
+        GDU_VOLUME_FLAGS_PARTITION_MBR_LOGICAL  = (1&lt;&lt;1),
+        GDU_VOLUME_FLAGS_PARTITION_MBR_EXTENDED = (1&lt;&lt;2)
+} GduVolumeFlags;
+</programlisting>
+<para>
+Various flags for describing a volume.</para>
+<para>
+</para><variablelist role="enum">
+<varlistentry id="GDU-VOLUME-FLAGS-NONE--CAPS" role="constant">
+<term><literal>GDU_VOLUME_FLAGS_NONE</literal></term>
+<listitem><simpara> No flags set
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-VOLUME-FLAGS-PARTITION--CAPS" role="constant">
+<term><literal>GDU_VOLUME_FLAGS_PARTITION</literal></term>
+<listitem><simpara> The volume is a partition.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-VOLUME-FLAGS-PARTITION-MBR-LOGICAL--CAPS" role="constant">
+<term><literal>GDU_VOLUME_FLAGS_PARTITION_MBR_LOGICAL</literal></term>
+<listitem><simpara> The volume is a Logical Partition in the MBR partitioning scheme.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-VOLUME-FLAGS-PARTITION-MBR-EXTENDED--CAPS" role="constant">
+<term><literal>GDU_VOLUME_FLAGS_PARTITION_MBR_EXTENDED</literal></term>
+<listitem><simpara> The volume is an Extended Partition in the MBR partitioning scheme.
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduVolumePrivate" role="struct">
+<title>GduVolumePrivate</title>
+<indexterm zone="GduVolumePrivate"><primary sortas="GduVolumePrivate">GduVolumePrivate</primary></indexterm><programlisting>typedef struct _GduVolumePrivate GduVolumePrivate;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduVolume-struct" role="struct">
+<title>GduVolume</title>
+<indexterm zone="GduVolume-struct"><primary sortas="GduVolume">GduVolume</primary></indexterm><programlisting>typedef struct _GduVolume GduVolume;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="gdu-volume-is-allocated" role="function">
+<title>gdu_volume_is_allocated ()</title>
+<indexterm zone="gdu-volume-is-allocated"><primary sortas="gdu_volume_is_allocated">gdu_volume_is_allocated</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_volume_is_allocated             (<link linkend="GduVolume">GduVolume</link> *volume);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>volume</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-volume-is-recognized" role="function">
+<title>gdu_volume_is_recognized ()</title>
+<indexterm zone="gdu-volume-is-recognized"><primary sortas="gdu_volume_is_recognized">gdu_volume_is_recognized</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gdu_volume_is_recognized            (<link linkend="GduVolume">GduVolume</link> *volume);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>volume</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-volume-get-flags" role="function">
+<title>gdu_volume_get_flags ()</title>
+<indexterm zone="gdu-volume-get-flags"><primary sortas="gdu_volume_get_flags">gdu_volume_get_flags</primary></indexterm><programlisting><link linkend="GduVolumeFlags">GduVolumeFlags</link>      gdu_volume_get_flags                (<link linkend="GduVolume">GduVolume</link> *volume);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>volume</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gdu-volume-get-drive" role="function">
+<title>gdu_volume_get_drive ()</title>
+<indexterm zone="gdu-volume-get-drive"><primary sortas="gdu_volume_get_drive">gdu_volume_get_drive</primary></indexterm><programlisting><link linkend="GduDrive">GduDrive</link> *          gdu_volume_get_drive                (<link linkend="GduVolume">GduVolume</link> *volume);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>volume</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

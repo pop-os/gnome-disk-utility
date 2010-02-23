@@ -9,10 +9,12 @@ gdu-edit-linux-md-dialog
 
 </para>
 
+
 <!-- ##### SECTION See_Also ##### -->
 <para>
 
 </para>
+
 
 <!-- ##### SECTION Stability_Level ##### -->
 
@@ -60,7 +62,7 @@ gdu-edit-linux-md-dialog
 </para>
 
 @dialog: 
-@pv_uuid: 
+@slave: 
 
 
 <!-- ##### FUNCTION gdu_edit_linux_md_dialog_new ##### -->

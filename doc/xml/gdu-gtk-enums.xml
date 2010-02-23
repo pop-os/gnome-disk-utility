@@ -1,0 +1,242 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="gnome-disk-utility-gdu-gtk-enums">
+<refmeta>
+<refentrytitle role="top_of_page" id="gnome-disk-utility-gdu-gtk-enums.top_of_page">gdu-gtk-enums</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GNOME-DISK-UTILITY Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>gdu-gtk-enums</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gnome-disk-utility-gdu-gtk-enums.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+enum                <link linkend="GduPoolTreeModelColumn">GduPoolTreeModelColumn</link>;
+enum                <link linkend="GduPoolTreeViewFlags">GduPoolTreeViewFlags</link>;
+enum                <link linkend="GduPoolTreeModelFlags">GduPoolTreeModelFlags</link>;
+enum                <link linkend="GduFormatDialogFlags">GduFormatDialogFlags</link>;
+enum                <link linkend="GduDiskSelectionWidgetFlags">GduDiskSelectionWidgetFlags</link>;
+enum                <link linkend="GduAddComponentLinuxMdFlags">GduAddComponentLinuxMdFlags</link>;
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gnome-disk-utility-gdu-gtk-enums.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gnome-disk-utility-gdu-gtk-enums.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GduPoolTreeModelColumn" role="enum">
+<title>enum GduPoolTreeModelColumn</title>
+<indexterm zone="GduPoolTreeModelColumn"><primary sortas="GduPoolTreeModelColumn">GduPoolTreeModelColumn</primary></indexterm><programlisting>typedef enum {
+        GDU_POOL_TREE_MODEL_COLUMN_ICON,
+        GDU_POOL_TREE_MODEL_COLUMN_NAME,
+        GDU_POOL_TREE_MODEL_COLUMN_VPD_NAME,
+        GDU_POOL_TREE_MODEL_COLUMN_DESCRIPTION,
+        GDU_POOL_TREE_MODEL_COLUMN_PRESENTABLE,
+        GDU_POOL_TREE_MODEL_COLUMN_VISIBLE,
+        GDU_POOL_TREE_MODEL_COLUMN_TOGGLED,
+        GDU_POOL_TREE_MODEL_COLUMN_CAN_BE_TOGGLED,
+} GduPoolTreeModelColumn;
+</programlisting>
+<para>
+Columns used in <link linkend="GduPoolTreeModel"><type>GduPoolTreeModel</type></link>.</para>
+<para>
+</para><variablelist role="enum">
+<varlistentry id="GDU-POOL-TREE-MODEL-COLUMN-ICON--CAPS" role="constant">
+<term><literal>GDU_POOL_TREE_MODEL_COLUMN_ICON</literal></term>
+<listitem><simpara> The <link linkend="GIcon"><type>GIcon</type></link> for the presentable.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-POOL-TREE-MODEL-COLUMN-NAME--CAPS" role="constant">
+<term><literal>GDU_POOL_TREE_MODEL_COLUMN_NAME</literal></term>
+<listitem><simpara> Human readable name of the presentable, e.g. "80 GB Solid-state Disk" or
+"Fedora (Rawhide)".
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-POOL-TREE-MODEL-COLUMN-VPD-NAME--CAPS" role="constant">
+<term><literal>GDU_POOL_TREE_MODEL_COLUMN_VPD_NAME</literal></term>
+<listitem><simpara> Name for the presentable derived from Vital Product Data,
+e.g. "ATA INTEL SSDSA2MH080G1GC".
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-POOL-TREE-MODEL-COLUMN-DESCRIPTION--CAPS" role="constant">
+<term><literal>GDU_POOL_TREE_MODEL_COLUMN_DESCRIPTION</literal></term>
+<listitem><simpara> Human readable description of the presentable, e.g. "MBR Partition Table"
+or "32GB Linux ext3".
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-POOL-TREE-MODEL-COLUMN-PRESENTABLE--CAPS" role="constant">
+<term><literal>GDU_POOL_TREE_MODEL_COLUMN_PRESENTABLE</literal></term>
+<listitem><simpara> The <link linkend="GduPresentable"><type>GduPresentable</type></link> object.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-POOL-TREE-MODEL-COLUMN-VISIBLE--CAPS" role="constant">
+<term><literal>GDU_POOL_TREE_MODEL_COLUMN_VISIBLE</literal></term>
+<listitem><simpara> Whether the item is visible.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-POOL-TREE-MODEL-COLUMN-TOGGLED--CAPS" role="constant">
+<term><literal>GDU_POOL_TREE_MODEL_COLUMN_TOGGLED</literal></term>
+<listitem><simpara> Whether the item is toggled.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-POOL-TREE-MODEL-COLUMN-CAN-BE-TOGGLED--CAPS" role="constant">
+<term><literal>GDU_POOL_TREE_MODEL_COLUMN_CAN_BE_TOGGLED</literal></term>
+<listitem><simpara> Whether the item can be toggled.
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduPoolTreeViewFlags" role="enum">
+<title>enum GduPoolTreeViewFlags</title>
+<indexterm zone="GduPoolTreeViewFlags"><primary sortas="GduPoolTreeViewFlags">GduPoolTreeViewFlags</primary></indexterm><programlisting>typedef enum {
+        GDU_POOL_TREE_VIEW_FLAGS_NONE        = 0,
+        GDU_POOL_TREE_VIEW_FLAGS_SHOW_TOGGLE = (1&lt;&lt;0),
+} GduPoolTreeViewFlags;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GduPoolTreeModelFlags" role="enum">
+<title>enum GduPoolTreeModelFlags</title>
+<indexterm zone="GduPoolTreeModelFlags"><primary sortas="GduPoolTreeModelFlags">GduPoolTreeModelFlags</primary></indexterm><programlisting>typedef enum {
+        GDU_POOL_TREE_MODEL_FLAGS_NONE                      = 0,
+        GDU_POOL_TREE_MODEL_FLAGS_NO_VOLUMES                = (1&lt;&lt;0),
+        GDU_POOL_TREE_MODEL_FLAGS_NO_UNALLOCATABLE_DRIVES   = (1&lt;&lt;2),
+} GduPoolTreeModelFlags;
+</programlisting>
+<para>
+Flags used when creating a <link linkend="GduPoolTreeModel"><type>GduPoolTreeModel</type></link>.</para>
+<para>
+</para><variablelist role="enum">
+<varlistentry id="GDU-POOL-TREE-MODEL-FLAGS-NONE--CAPS" role="constant">
+<term><literal>GDU_POOL_TREE_MODEL_FLAGS_NONE</literal></term>
+<listitem><simpara> No flags set.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-POOL-TREE-MODEL-FLAGS-NO-VOLUMES--CAPS" role="constant">
+<term><literal>GDU_POOL_TREE_MODEL_FLAGS_NO_VOLUMES</literal></term>
+<listitem><simpara> Don't include presentables representing volumes or holes.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-POOL-TREE-MODEL-FLAGS-NO-UNALLOCATABLE-DRIVES--CAPS" role="constant">
+<term><literal>GDU_POOL_TREE_MODEL_FLAGS_NO_UNALLOCATABLE_DRIVES</literal></term>
+<listitem><simpara> Don't include drives that cannot be allocated to e.g. a RAID array.
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduFormatDialogFlags" role="enum">
+<title>enum GduFormatDialogFlags</title>
+<indexterm zone="GduFormatDialogFlags"><primary sortas="GduFormatDialogFlags">GduFormatDialogFlags</primary></indexterm><programlisting>typedef enum {
+        GDU_FORMAT_DIALOG_FLAGS_NONE = 0,
+        GDU_FORMAT_DIALOG_FLAGS_SIMPLE = (1&lt;&lt;0),
+        GDU_FORMAT_DIALOG_FLAGS_DISK_UTILITY_BUTTON = (1&lt;&lt;1),
+        GDU_FORMAT_DIALOG_FLAGS_ALLOW_MSDOS_EXTENDED = (1&lt;&lt;2)
+} GduFormatDialogFlags;
+</programlisting>
+<para>
+Flags used when creating a <link linkend="GduFormatDialog"><type>GduFormatDialog</type></link>.</para>
+<para>
+</para><variablelist role="enum">
+<varlistentry id="GDU-FORMAT-DIALOG-FLAGS-NONE--CAPS" role="constant">
+<term><literal>GDU_FORMAT_DIALOG_FLAGS_NONE</literal></term>
+<listitem><simpara> No flags set.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-FORMAT-DIALOG-FLAGS-SIMPLE--CAPS" role="constant">
+<term><literal>GDU_FORMAT_DIALOG_FLAGS_SIMPLE</literal></term>
+<listitem><simpara> Show a simple form of the dialog.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-FORMAT-DIALOG-FLAGS-DISK-UTILITY-BUTTON--CAPS" role="constant">
+<term><literal>GDU_FORMAT_DIALOG_FLAGS_DISK_UTILITY_BUTTON</literal></term>
+<listitem><simpara> Show a "Disk Utility" button.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-FORMAT-DIALOG-FLAGS-ALLOW-MSDOS-EXTENDED--CAPS" role="constant">
+<term><literal>GDU_FORMAT_DIALOG_FLAGS_ALLOW_MSDOS_EXTENDED</literal></term>
+<listitem><simpara> Allow selecting a MS-DOS extended partition instead of a file system.
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduDiskSelectionWidgetFlags" role="enum">
+<title>enum GduDiskSelectionWidgetFlags</title>
+<indexterm zone="GduDiskSelectionWidgetFlags"><primary sortas="GduDiskSelectionWidgetFlags">GduDiskSelectionWidgetFlags</primary></indexterm><programlisting>typedef enum {
+        GDU_DISK_SELECTION_WIDGET_FLAGS_NONE = 0,
+        GDU_DISK_SELECTION_WIDGET_FLAGS_ALLOW_MULTIPLE = (1&lt;&lt;0),
+        GDU_DISK_SELECTION_WIDGET_FLAGS_ALLOW_DISKS_WITH_INSUFFICIENT_SPACE = (1&lt;&lt;1)
+} GduDiskSelectionWidgetFlags;
+</programlisting>
+<para>
+Flags used when creating a <link linkend="GduDiskSelectionWidget"><type>GduDiskSelectionWidget</type></link>.</para>
+<para>
+</para><variablelist role="enum">
+<varlistentry id="GDU-DISK-SELECTION-WIDGET-FLAGS-NONE--CAPS" role="constant">
+<term><literal>GDU_DISK_SELECTION_WIDGET_FLAGS_NONE</literal></term>
+<listitem><simpara> No flags set.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-DISK-SELECTION-WIDGET-FLAGS-ALLOW-MULTIPLE--CAPS" role="constant">
+<term><literal>GDU_DISK_SELECTION_WIDGET_FLAGS_ALLOW_MULTIPLE</literal></term>
+<listitem><simpara> Allow multiple disks to be selected.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-DISK-SELECTION-WIDGET-FLAGS-ALLOW-DISKS-WITH-INSUFFICIENT-SPACE--CAPS" role="constant">
+<term><literal>GDU_DISK_SELECTION_WIDGET_FLAGS_ALLOW_DISKS_WITH_INSUFFICIENT_SPACE</literal></term>
+<listitem><simpara> If set, disks with less
+space than <link linkend="GduDiskSelectionWidget--component-size"><type>"component-size"</type></link> will be eligible for selection.
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GduAddComponentLinuxMdFlags" role="enum">
+<title>enum GduAddComponentLinuxMdFlags</title>
+<indexterm zone="GduAddComponentLinuxMdFlags"><primary sortas="GduAddComponentLinuxMdFlags">GduAddComponentLinuxMdFlags</primary></indexterm><programlisting>typedef enum {
+        GDU_ADD_COMPONENT_LINUX_MD_FLAGS_NONE = 0,
+        GDU_ADD_COMPONENT_LINUX_MD_FLAGS_SPARE = (1&lt;&lt;0),
+        GDU_ADD_COMPONENT_LINUX_MD_FLAGS_EXPANSION = (1&lt;&lt;1)
+} GduAddComponentLinuxMdFlags;
+</programlisting>
+<para>
+Flags used when creating a <link linkend="GduAddComponentLinuxMdDialog"><type>GduAddComponentLinuxMdDialog</type></link>.</para>
+<para>
+</para><variablelist role="enum">
+<varlistentry id="GDU-ADD-COMPONENT-LINUX-MD-FLAGS-NONE--CAPS" role="constant">
+<term><literal>GDU_ADD_COMPONENT_LINUX_MD_FLAGS_NONE</literal></term>
+<listitem><simpara> No flags set.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-ADD-COMPONENT-LINUX-MD-FLAGS-SPARE--CAPS" role="constant">
+<term><literal>GDU_ADD_COMPONENT_LINUX_MD_FLAGS_SPARE</literal></term>
+<listitem><simpara> The dialog is for selecting a spare.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="GDU-ADD-COMPONENT-LINUX-MD-FLAGS-EXPANSION--CAPS" role="constant">
+<term><literal>GDU_ADD_COMPONENT_LINUX_MD_FLAGS_EXPANSION</literal></term>
+<listitem><simpara> The dialog is for selecting a device used for expansion.
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

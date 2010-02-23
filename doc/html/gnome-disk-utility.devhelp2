@@ -5,7 +5,7 @@
     <sub name="libgdu API Reference" link="ref-libgdu.html">
       <sub name="GduPool" link="GduPool.html"/>
       <sub name="GduDevice" link="GduDevice.html"/>
-      <sub name="GduPresentable" link="GduPresentable.html"/>
+      <sub name="GduPresentable" link="gnome-disk-utility-gdu-presentable.html"/>
       <sub name="GduDrive" link="GduDrive.html"/>
       <sub name="GduLinuxMdDrive" link="GduLinuxMdDrive.html"/>
       <sub name="GduVolume" link="GduVolume.html"/>
@@ -155,6 +155,7 @@
     <keyword type="function" name="gdu_device_partition_get_number ()" link="GduDevice.html#gdu-device-partition-get-number"/>
     <keyword type="function" name="gdu_device_partition_get_offset ()" link="GduDevice.html#gdu-device-partition-get-offset"/>
     <keyword type="function" name="gdu_device_partition_get_size ()" link="GduDevice.html#gdu-device-partition-get-size"/>
+    <keyword type="function" name="gdu_device_partition_get_alignment_offset ()" link="GduDevice.html#gdu-device-partition-get-alignment-offset"/>
     <keyword type="function" name="gdu_device_partition_table_get_scheme ()" link="GduDevice.html#gdu-device-partition-table-get-scheme"/>
     <keyword type="function" name="gdu_device_partition_table_get_count ()" link="GduDevice.html#gdu-device-partition-table-get-count"/>
     <keyword type="function" name="gdu_device_luks_get_holder ()" link="GduDevice.html#gdu-device-luks-get-holder"/>
@@ -258,24 +259,25 @@
     <keyword type="signal" name="The &quot;changed&quot; signal" link="GduDevice.html#GduDevice-changed"/>
     <keyword type="signal" name="The &quot;job-changed&quot; signal" link="GduDevice.html#GduDevice-job-changed"/>
     <keyword type="signal" name="The &quot;removed&quot; signal" link="GduDevice.html#GduDevice-removed"/>
-    <keyword type="function" name="gdu_presentable_get_id ()" link="GduPresentable.html#gdu-presentable-get-id"/>
-    <keyword type="function" name="gdu_presentable_get_device ()" link="GduPresentable.html#gdu-presentable-get-device"/>
-    <keyword type="function" name="gdu_presentable_get_enclosing_presentable ()" link="GduPresentable.html#gdu-presentable-get-enclosing-presentable"/>
-    <keyword type="function" name="gdu_presentable_get_name ()" link="GduPresentable.html#gdu-presentable-get-name"/>
-    <keyword type="function" name="gdu_presentable_get_description ()" link="GduPresentable.html#gdu-presentable-get-description"/>
-    <keyword type="function" name="gdu_presentable_get_vpd_name ()" link="GduPresentable.html#gdu-presentable-get-vpd-name"/>
-    <keyword type="function" name="gdu_presentable_get_icon ()" link="GduPresentable.html#gdu-presentable-get-icon"/>
-    <keyword type="function" name="gdu_presentable_get_offset ()" link="GduPresentable.html#gdu-presentable-get-offset"/>
-    <keyword type="function" name="gdu_presentable_get_size ()" link="GduPresentable.html#gdu-presentable-get-size"/>
-    <keyword type="function" name="gdu_presentable_get_pool ()" link="GduPresentable.html#gdu-presentable-get-pool"/>
-    <keyword type="function" name="gdu_presentable_is_allocated ()" link="GduPresentable.html#gdu-presentable-is-allocated"/>
-    <keyword type="function" name="gdu_presentable_is_recognized ()" link="GduPresentable.html#gdu-presentable-is-recognized"/>
-    <keyword type="function" name="gdu_presentable_get_toplevel ()" link="GduPresentable.html#gdu-presentable-get-toplevel"/>
-    <keyword type="function" name="gdu_presentable_hash ()" link="GduPresentable.html#gdu-presentable-hash"/>
-    <keyword type="function" name="gdu_presentable_equals ()" link="GduPresentable.html#gdu-presentable-equals"/>
-    <keyword type="function" name="gdu_presentable_compare ()" link="GduPresentable.html#gdu-presentable-compare"/>
-    <keyword type="function" name="gdu_presentable_get_enclosed ()" link="GduPresentable.html#gdu-presentable-get-enclosed"/>
-    <keyword type="function" name="gdu_presentable_encloses ()" link="GduPresentable.html#gdu-presentable-encloses"/>
+    <keyword type="struct" name="GduPresentableIface" link="gnome-disk-utility-gdu-presentable.html#GduPresentableIface"/>
+    <keyword type="function" name="gdu_presentable_get_id ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-id"/>
+    <keyword type="function" name="gdu_presentable_get_device ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-device"/>
+    <keyword type="function" name="gdu_presentable_get_enclosing_presentable ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-enclosing-presentable"/>
+    <keyword type="function" name="gdu_presentable_get_name ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-name"/>
+    <keyword type="function" name="gdu_presentable_get_description ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-description"/>
+    <keyword type="function" name="gdu_presentable_get_vpd_name ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-vpd-name"/>
+    <keyword type="function" name="gdu_presentable_get_icon ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-icon"/>
+    <keyword type="function" name="gdu_presentable_get_offset ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-offset"/>
+    <keyword type="function" name="gdu_presentable_get_size ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-size"/>
+    <keyword type="function" name="gdu_presentable_get_pool ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-pool"/>
+    <keyword type="function" name="gdu_presentable_is_allocated ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-is-allocated"/>
+    <keyword type="function" name="gdu_presentable_is_recognized ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-is-recognized"/>
+    <keyword type="function" name="gdu_presentable_get_toplevel ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-toplevel"/>
+    <keyword type="function" name="gdu_presentable_hash ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-hash"/>
+    <keyword type="function" name="gdu_presentable_equals ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-equals"/>
+    <keyword type="function" name="gdu_presentable_compare ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-compare"/>
+    <keyword type="function" name="gdu_presentable_get_enclosed ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-get-enclosed"/>
+    <keyword type="function" name="gdu_presentable_encloses ()" link="gnome-disk-utility-gdu-presentable.html#gdu-presentable-encloses"/>
     <keyword type="struct" name="GduDrivePrivate" link="GduDrive.html#GduDrivePrivate"/>
     <keyword type="enum" name="enum GduCreateVolumeFlags" link="GduDrive.html#GduCreateVolumeFlags"/>
     <keyword type="struct" name="GduDrive" link="GduDrive.html#GduDrive-struct"/>
@@ -289,6 +291,7 @@
     <keyword type="function" name="gdu_drive_create_volume ()" link="GduDrive.html#gdu-drive-create-volume"/>
     <keyword type="function" name="gdu_drive_create_volume_finish ()" link="GduDrive.html#gdu-drive-create-volume-finish"/>
     <keyword type="function" name="gdu_drive_count_mbr_partitions ()" link="GduDrive.html#gdu-drive-count-mbr-partitions"/>
+    <keyword type="function" name="gdu_drive_get_volumes ()" link="GduDrive.html#gdu-drive-get-volumes"/>
     <keyword type="struct" name="GduLinuxMdDrivePrivate" link="GduLinuxMdDrive.html#GduLinuxMdDrivePrivate"/>
     <keyword type="struct" name="GduLinuxMdDrive" link="GduLinuxMdDrive.html#GduLinuxMdDrive-struct"/>
     <keyword type="enum" name="enum GduLinuxMdDriveSlaveFlags" link="GduLinuxMdDrive.html#GduLinuxMdDriveSlaveFlags"/>
@@ -297,8 +300,13 @@
     <keyword type="function" name="gdu_linux_md_drive_get_slaves ()" link="GduLinuxMdDrive.html#gdu-linux-md-drive-get-slaves"/>
     <keyword type="function" name="gdu_linux_md_drive_get_slave_flags ()" link="GduLinuxMdDrive.html#gdu-linux-md-drive-get-slave-flags"/>
     <keyword type="function" name="gdu_linux_md_drive_get_slave_state_markup ()" link="GduLinuxMdDrive.html#gdu-linux-md-drive-get-slave-state-markup"/>
+    <keyword type="enum" name="enum GduVolumeFlags" link="GduVolume.html#GduVolumeFlags"/>
     <keyword type="struct" name="GduVolumePrivate" link="GduVolume.html#GduVolumePrivate"/>
     <keyword type="struct" name="GduVolume" link="GduVolume.html#GduVolume-struct"/>
+    <keyword type="function" name="gdu_volume_is_allocated ()" link="GduVolume.html#gdu-volume-is-allocated"/>
+    <keyword type="function" name="gdu_volume_is_recognized ()" link="GduVolume.html#gdu-volume-is-recognized"/>
+    <keyword type="function" name="gdu_volume_get_flags ()" link="GduVolume.html#gdu-volume-get-flags"/>
+    <keyword type="function" name="gdu_volume_get_drive ()" link="GduVolume.html#gdu-volume-get-drive"/>
     <keyword type="struct" name="GduVolumeHolePrivate" link="GduVolumeHole.html#GduVolumeHolePrivate"/>
     <keyword type="struct" name="GduVolumeHole" link="GduVolumeHole.html#GduVolumeHole-struct"/>
     <keyword type="function" name="GduDeviceFilesystemMountCompletedFunc ()" link="gnome-disk-utility-gdu-callbacks.html#GduDeviceFilesystemMountCompletedFunc"/>
@@ -341,7 +349,7 @@
     <keyword type="function" name="GduDriveActivateFunc ()" link="gnome-disk-utility-gdu-callbacks.html#GduDriveActivateFunc"/>
     <keyword type="function" name="GduDriveDeactivateFunc ()" link="gnome-disk-utility-gdu-callbacks.html#GduDriveDeactivateFunc"/>
     <keyword type="enum" name="enum GduError" link="gnome-disk-utility-gdu-error.html#GduError"/>
-    <keyword type="macro" name="GDU_ERROR" link="gnome-disk-utility-gdu-error.html#GDU-ERROR:CAPS"/>
+    <keyword type="macro" name="GDU_ERROR" link="gnome-disk-utility-gdu-error.html#GDU-ERROR--CAPS"/>
     <keyword type="function" name="gdu_error_quark ()" link="gnome-disk-utility-gdu-error.html#gdu-error-quark"/>
     <keyword type="struct" name="GduProcessPrivate" link="GduProcess.html#GduProcessPrivate"/>
     <keyword type="struct" name="GduProcess" link="GduProcess.html#GduProcess-struct"/>
@@ -478,17 +486,17 @@
     <keyword type="enum" name="enum GduDiskSelectionWidgetFlags" link="gnome-disk-utility-gdu-gtk-enums.html#GduDiskSelectionWidgetFlags"/>
     <keyword type="enum" name="enum GduAddComponentLinuxMdFlags" link="gnome-disk-utility-gdu-gtk-enums.html#GduAddComponentLinuxMdFlags"/>
     <keyword type="function" name="gdu_pool_tree_model_column_get_type ()" link="gnome-disk-utility-gdu-gtk-enumtypes.html#gdu-pool-tree-model-column-get-type"/>
-    <keyword type="macro" name="GDU_TYPE_POOL_TREE_MODEL_COLUMN" link="gnome-disk-utility-gdu-gtk-enumtypes.html#GDU-TYPE-POOL-TREE-MODEL-COLUMN:CAPS"/>
+    <keyword type="macro" name="GDU_TYPE_POOL_TREE_MODEL_COLUMN" link="gnome-disk-utility-gdu-gtk-enumtypes.html#GDU-TYPE-POOL-TREE-MODEL-COLUMN--CAPS"/>
     <keyword type="function" name="gdu_pool_tree_view_flags_get_type ()" link="gnome-disk-utility-gdu-gtk-enumtypes.html#gdu-pool-tree-view-flags-get-type"/>
-    <keyword type="macro" name="GDU_TYPE_POOL_TREE_VIEW_FLAGS" link="gnome-disk-utility-gdu-gtk-enumtypes.html#GDU-TYPE-POOL-TREE-VIEW-FLAGS:CAPS"/>
+    <keyword type="macro" name="GDU_TYPE_POOL_TREE_VIEW_FLAGS" link="gnome-disk-utility-gdu-gtk-enumtypes.html#GDU-TYPE-POOL-TREE-VIEW-FLAGS--CAPS"/>
     <keyword type="function" name="gdu_pool_tree_model_flags_get_type ()" link="gnome-disk-utility-gdu-gtk-enumtypes.html#gdu-pool-tree-model-flags-get-type"/>
-    <keyword type="macro" name="GDU_TYPE_POOL_TREE_MODEL_FLAGS" link="gnome-disk-utility-gdu-gtk-enumtypes.html#GDU-TYPE-POOL-TREE-MODEL-FLAGS:CAPS"/>
+    <keyword type="macro" name="GDU_TYPE_POOL_TREE_MODEL_FLAGS" link="gnome-disk-utility-gdu-gtk-enumtypes.html#GDU-TYPE-POOL-TREE-MODEL-FLAGS--CAPS"/>
     <keyword type="function" name="gdu_format_dialog_flags_get_type ()" link="gnome-disk-utility-gdu-gtk-enumtypes.html#gdu-format-dialog-flags-get-type"/>
-    <keyword type="macro" name="GDU_TYPE_FORMAT_DIALOG_FLAGS" link="gnome-disk-utility-gdu-gtk-enumtypes.html#GDU-TYPE-FORMAT-DIALOG-FLAGS:CAPS"/>
+    <keyword type="macro" name="GDU_TYPE_FORMAT_DIALOG_FLAGS" link="gnome-disk-utility-gdu-gtk-enumtypes.html#GDU-TYPE-FORMAT-DIALOG-FLAGS--CAPS"/>
     <keyword type="function" name="gdu_disk_selection_widget_flags_get_type ()" link="gnome-disk-utility-gdu-gtk-enumtypes.html#gdu-disk-selection-widget-flags-get-type"/>
-    <keyword type="macro" name="GDU_TYPE_DISK_SELECTION_WIDGET_FLAGS" link="gnome-disk-utility-gdu-gtk-enumtypes.html#GDU-TYPE-DISK-SELECTION-WIDGET-FLAGS:CAPS"/>
+    <keyword type="macro" name="GDU_TYPE_DISK_SELECTION_WIDGET_FLAGS" link="gnome-disk-utility-gdu-gtk-enumtypes.html#GDU-TYPE-DISK-SELECTION-WIDGET-FLAGS--CAPS"/>
     <keyword type="function" name="gdu_add_component_linux_md_flags_get_type ()" link="gnome-disk-utility-gdu-gtk-enumtypes.html#gdu-add-component-linux-md-flags-get-type"/>
-    <keyword type="macro" name="GDU_TYPE_ADD_COMPONENT_LINUX_MD_FLAGS" link="gnome-disk-utility-gdu-gtk-enumtypes.html#GDU-TYPE-ADD-COMPONENT-LINUX-MD-FLAGS:CAPS"/>
+    <keyword type="macro" name="GDU_TYPE_ADD_COMPONENT_LINUX_MD_FLAGS" link="gnome-disk-utility-gdu-gtk-enumtypes.html#GDU-TYPE-ADD-COMPONENT-LINUX-MD-FLAGS--CAPS"/>
     <keyword type="function" name="gdu_util_dialog_show_filesystem_busy ()" link="gnome-disk-utility-gdu-gtk.html#gdu-util-dialog-show-filesystem-busy"/>
     <keyword type="function" name="gdu_util_dialog_ask_for_new_secret ()" link="gnome-disk-utility-gdu-gtk.html#gdu-util-dialog-ask-for-new-secret"/>
     <keyword type="function" name="gdu_util_dialog_ask_for_secret ()" link="gnome-disk-utility-gdu-gtk.html#gdu-util-dialog-ask-for-secret"/>
@@ -545,46 +553,50 @@
     <keyword type="function" name="gdu_volume_grid_new ()" link="gnome-disk-utility-gdu-volume-grid.html#gdu-volume-grid-new"/>
     <keyword type="function" name="gdu_volume_grid_get_selected ()" link="gnome-disk-utility-gdu-volume-grid.html#gdu-volume-grid-get-selected"/>
     <keyword type="function" name="gdu_volume_grid_select ()" link="gnome-disk-utility-gdu-volume-grid.html#gdu-volume-grid-select"/>
-    <keyword type="constant" name="GDU_CREATE_VOLUME_FLAGS_NONE" link="GduDrive.html#GDU-CREATE-VOLUME-FLAGS-NONE:CAPS"/>
-    <keyword type="constant" name="GDU_CREATE_VOLUME_FLAGS_LINUX_MD" link="GduDrive.html#GDU-CREATE-VOLUME-FLAGS-LINUX-MD:CAPS"/>
-    <keyword type="constant" name="GDU_CREATE_VOLUME_FLAGS_LINUX_LVM2" link="GduDrive.html#GDU-CREATE-VOLUME-FLAGS-LINUX-LVM2:CAPS"/>
-    <keyword type="constant" name="GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_NONE" link="GduLinuxMdDrive.html#GDU-LINUX-MD-DRIVE-SLAVE-FLAGS-NONE:CAPS"/>
-    <keyword type="constant" name="GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_NOT_ATTACHED" link="GduLinuxMdDrive.html#GDU-LINUX-MD-DRIVE-SLAVE-FLAGS-NOT-ATTACHED:CAPS"/>
-    <keyword type="constant" name="GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_FAULTY" link="GduLinuxMdDrive.html#GDU-LINUX-MD-DRIVE-SLAVE-FLAGS-FAULTY:CAPS"/>
-    <keyword type="constant" name="GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_IN_SYNC" link="GduLinuxMdDrive.html#GDU-LINUX-MD-DRIVE-SLAVE-FLAGS-IN-SYNC:CAPS"/>
-    <keyword type="constant" name="GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_WRITEMOSTLY" link="GduLinuxMdDrive.html#GDU-LINUX-MD-DRIVE-SLAVE-FLAGS-WRITEMOSTLY:CAPS"/>
-    <keyword type="constant" name="GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_BLOCKED" link="GduLinuxMdDrive.html#GDU-LINUX-MD-DRIVE-SLAVE-FLAGS-BLOCKED:CAPS"/>
-    <keyword type="constant" name="GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_SPARE" link="GduLinuxMdDrive.html#GDU-LINUX-MD-DRIVE-SLAVE-FLAGS-SPARE:CAPS"/>
-    <keyword type="constant" name="GDU_ERROR_FAILED" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-FAILED:CAPS"/>
-    <keyword type="constant" name="GDU_ERROR_BUSY" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-BUSY:CAPS"/>
-    <keyword type="constant" name="GDU_ERROR_CANCELLED" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-CANCELLED:CAPS"/>
-    <keyword type="constant" name="GDU_ERROR_INHIBITED" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-INHIBITED:CAPS"/>
-    <keyword type="constant" name="GDU_ERROR_INVALID_OPTION" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-INVALID-OPTION:CAPS"/>
-    <keyword type="constant" name="GDU_ERROR_NOT_SUPPORTED" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-NOT-SUPPORTED:CAPS"/>
-    <keyword type="constant" name="GDU_ERROR_ATA_SMART_WOULD_WAKEUP" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-ATA-SMART-WOULD-WAKEUP:CAPS"/>
-    <keyword type="constant" name="GDU_ERROR_PERMISSION_DENIED" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-PERMISSION-DENIED:CAPS"/>
-    <keyword type="constant" name="GDU_ERROR_FILESYSTEM_DRIVER_MISSING" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-FILESYSTEM-DRIVER-MISSING:CAPS"/>
-    <keyword type="constant" name="GDU_ERROR_FILESYSTEM_TOOLS_MISSING" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-FILESYSTEM-TOOLS-MISSING:CAPS"/>
-    <keyword type="constant" name="GDU_POOL_TREE_MODEL_COLUMN_ICON" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-POOL-TREE-MODEL-COLUMN-ICON:CAPS"/>
-    <keyword type="constant" name="GDU_POOL_TREE_MODEL_COLUMN_NAME" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-POOL-TREE-MODEL-COLUMN-NAME:CAPS"/>
-    <keyword type="constant" name="GDU_POOL_TREE_MODEL_COLUMN_VPD_NAME" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-POOL-TREE-MODEL-COLUMN-VPD-NAME:CAPS"/>
-    <keyword type="constant" name="GDU_POOL_TREE_MODEL_COLUMN_DESCRIPTION" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-POOL-TREE-MODEL-COLUMN-DESCRIPTION:CAPS"/>
-    <keyword type="constant" name="GDU_POOL_TREE_MODEL_COLUMN_PRESENTABLE" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-POOL-TREE-MODEL-COLUMN-PRESENTABLE:CAPS"/>
-    <keyword type="constant" name="GDU_POOL_TREE_MODEL_COLUMN_VISIBLE" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-POOL-TREE-MODEL-COLUMN-VISIBLE:CAPS"/>
-    <keyword type="constant" name="GDU_POOL_TREE_MODEL_COLUMN_TOGGLED" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-POOL-TREE-MODEL-COLUMN-TOGGLED:CAPS"/>
-    <keyword type="constant" name="GDU_POOL_TREE_MODEL_COLUMN_CAN_BE_TOGGLED" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-POOL-TREE-MODEL-COLUMN-CAN-BE-TOGGLED:CAPS"/>
-    <keyword type="constant" name="GDU_POOL_TREE_MODEL_FLAGS_NONE" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-POOL-TREE-MODEL-FLAGS-NONE:CAPS"/>
-    <keyword type="constant" name="GDU_POOL_TREE_MODEL_FLAGS_NO_VOLUMES" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-POOL-TREE-MODEL-FLAGS-NO-VOLUMES:CAPS"/>
-    <keyword type="constant" name="GDU_POOL_TREE_MODEL_FLAGS_NO_UNALLOCATABLE_DRIVES" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-POOL-TREE-MODEL-FLAGS-NO-UNALLOCATABLE-DRIVES:CAPS"/>
-    <keyword type="constant" name="GDU_FORMAT_DIALOG_FLAGS_NONE" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-FORMAT-DIALOG-FLAGS-NONE:CAPS"/>
-    <keyword type="constant" name="GDU_FORMAT_DIALOG_FLAGS_SIMPLE" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-FORMAT-DIALOG-FLAGS-SIMPLE:CAPS"/>
-    <keyword type="constant" name="GDU_FORMAT_DIALOG_FLAGS_DISK_UTILITY_BUTTON" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-FORMAT-DIALOG-FLAGS-DISK-UTILITY-BUTTON:CAPS"/>
-    <keyword type="constant" name="GDU_FORMAT_DIALOG_FLAGS_ALLOW_MSDOS_EXTENDED" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-FORMAT-DIALOG-FLAGS-ALLOW-MSDOS-EXTENDED:CAPS"/>
-    <keyword type="constant" name="GDU_DISK_SELECTION_WIDGET_FLAGS_NONE" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-DISK-SELECTION-WIDGET-FLAGS-NONE:CAPS"/>
-    <keyword type="constant" name="GDU_DISK_SELECTION_WIDGET_FLAGS_ALLOW_MULTIPLE" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-DISK-SELECTION-WIDGET-FLAGS-ALLOW-MULTIPLE:CAPS"/>
-    <keyword type="constant" name="GDU_DISK_SELECTION_WIDGET_FLAGS_ALLOW_DISKS_WITH_INSUFFICIENT_SPACE" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-DISK-SELECTION-WIDGET-FLAGS-ALLOW-DISKS-WITH-INSUFFICIENT-SPACE:CAPS"/>
-    <keyword type="constant" name="GDU_ADD_COMPONENT_LINUX_MD_FLAGS_NONE" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-ADD-COMPONENT-LINUX-MD-FLAGS-NONE:CAPS"/>
-    <keyword type="constant" name="GDU_ADD_COMPONENT_LINUX_MD_FLAGS_SPARE" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-ADD-COMPONENT-LINUX-MD-FLAGS-SPARE:CAPS"/>
-    <keyword type="constant" name="GDU_ADD_COMPONENT_LINUX_MD_FLAGS_EXPANSION" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-ADD-COMPONENT-LINUX-MD-FLAGS-EXPANSION:CAPS"/>
+    <keyword type="constant" name="GDU_CREATE_VOLUME_FLAGS_NONE" link="GduDrive.html#GDU-CREATE-VOLUME-FLAGS-NONE--CAPS"/>
+    <keyword type="constant" name="GDU_CREATE_VOLUME_FLAGS_LINUX_MD" link="GduDrive.html#GDU-CREATE-VOLUME-FLAGS-LINUX-MD--CAPS"/>
+    <keyword type="constant" name="GDU_CREATE_VOLUME_FLAGS_LINUX_LVM2" link="GduDrive.html#GDU-CREATE-VOLUME-FLAGS-LINUX-LVM2--CAPS"/>
+    <keyword type="constant" name="GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_NONE" link="GduLinuxMdDrive.html#GDU-LINUX-MD-DRIVE-SLAVE-FLAGS-NONE--CAPS"/>
+    <keyword type="constant" name="GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_NOT_ATTACHED" link="GduLinuxMdDrive.html#GDU-LINUX-MD-DRIVE-SLAVE-FLAGS-NOT-ATTACHED--CAPS"/>
+    <keyword type="constant" name="GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_FAULTY" link="GduLinuxMdDrive.html#GDU-LINUX-MD-DRIVE-SLAVE-FLAGS-FAULTY--CAPS"/>
+    <keyword type="constant" name="GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_IN_SYNC" link="GduLinuxMdDrive.html#GDU-LINUX-MD-DRIVE-SLAVE-FLAGS-IN-SYNC--CAPS"/>
+    <keyword type="constant" name="GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_WRITEMOSTLY" link="GduLinuxMdDrive.html#GDU-LINUX-MD-DRIVE-SLAVE-FLAGS-WRITEMOSTLY--CAPS"/>
+    <keyword type="constant" name="GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_BLOCKED" link="GduLinuxMdDrive.html#GDU-LINUX-MD-DRIVE-SLAVE-FLAGS-BLOCKED--CAPS"/>
+    <keyword type="constant" name="GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_SPARE" link="GduLinuxMdDrive.html#GDU-LINUX-MD-DRIVE-SLAVE-FLAGS-SPARE--CAPS"/>
+    <keyword type="constant" name="GDU_VOLUME_FLAGS_NONE" link="GduVolume.html#GDU-VOLUME-FLAGS-NONE--CAPS"/>
+    <keyword type="constant" name="GDU_VOLUME_FLAGS_PARTITION" link="GduVolume.html#GDU-VOLUME-FLAGS-PARTITION--CAPS"/>
+    <keyword type="constant" name="GDU_VOLUME_FLAGS_PARTITION_MBR_LOGICAL" link="GduVolume.html#GDU-VOLUME-FLAGS-PARTITION-MBR-LOGICAL--CAPS"/>
+    <keyword type="constant" name="GDU_VOLUME_FLAGS_PARTITION_MBR_EXTENDED" link="GduVolume.html#GDU-VOLUME-FLAGS-PARTITION-MBR-EXTENDED--CAPS"/>
+    <keyword type="constant" name="GDU_ERROR_FAILED" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-FAILED--CAPS"/>
+    <keyword type="constant" name="GDU_ERROR_BUSY" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-BUSY--CAPS"/>
+    <keyword type="constant" name="GDU_ERROR_CANCELLED" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-CANCELLED--CAPS"/>
+    <keyword type="constant" name="GDU_ERROR_INHIBITED" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-INHIBITED--CAPS"/>
+    <keyword type="constant" name="GDU_ERROR_INVALID_OPTION" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-INVALID-OPTION--CAPS"/>
+    <keyword type="constant" name="GDU_ERROR_NOT_SUPPORTED" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-NOT-SUPPORTED--CAPS"/>
+    <keyword type="constant" name="GDU_ERROR_ATA_SMART_WOULD_WAKEUP" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-ATA-SMART-WOULD-WAKEUP--CAPS"/>
+    <keyword type="constant" name="GDU_ERROR_PERMISSION_DENIED" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-PERMISSION-DENIED--CAPS"/>
+    <keyword type="constant" name="GDU_ERROR_FILESYSTEM_DRIVER_MISSING" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-FILESYSTEM-DRIVER-MISSING--CAPS"/>
+    <keyword type="constant" name="GDU_ERROR_FILESYSTEM_TOOLS_MISSING" link="gnome-disk-utility-gdu-error.html#GDU-ERROR-FILESYSTEM-TOOLS-MISSING--CAPS"/>
+    <keyword type="constant" name="GDU_POOL_TREE_MODEL_COLUMN_ICON" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-POOL-TREE-MODEL-COLUMN-ICON--CAPS"/>
+    <keyword type="constant" name="GDU_POOL_TREE_MODEL_COLUMN_NAME" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-POOL-TREE-MODEL-COLUMN-NAME--CAPS"/>
+    <keyword type="constant" name="GDU_POOL_TREE_MODEL_COLUMN_VPD_NAME" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-POOL-TREE-MODEL-COLUMN-VPD-NAME--CAPS"/>
+    <keyword type="constant" name="GDU_POOL_TREE_MODEL_COLUMN_DESCRIPTION" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-POOL-TREE-MODEL-COLUMN-DESCRIPTION--CAPS"/>
+    <keyword type="constant" name="GDU_POOL_TREE_MODEL_COLUMN_PRESENTABLE" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-POOL-TREE-MODEL-COLUMN-PRESENTABLE--CAPS"/>
+    <keyword type="constant" name="GDU_POOL_TREE_MODEL_COLUMN_VISIBLE" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-POOL-TREE-MODEL-COLUMN-VISIBLE--CAPS"/>
+    <keyword type="constant" name="GDU_POOL_TREE_MODEL_COLUMN_TOGGLED" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-POOL-TREE-MODEL-COLUMN-TOGGLED--CAPS"/>
+    <keyword type="constant" name="GDU_POOL_TREE_MODEL_COLUMN_CAN_BE_TOGGLED" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-POOL-TREE-MODEL-COLUMN-CAN-BE-TOGGLED--CAPS"/>
+    <keyword type="constant" name="GDU_POOL_TREE_MODEL_FLAGS_NONE" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-POOL-TREE-MODEL-FLAGS-NONE--CAPS"/>
+    <keyword type="constant" name="GDU_POOL_TREE_MODEL_FLAGS_NO_VOLUMES" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-POOL-TREE-MODEL-FLAGS-NO-VOLUMES--CAPS"/>
+    <keyword type="constant" name="GDU_POOL_TREE_MODEL_FLAGS_NO_UNALLOCATABLE_DRIVES" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-POOL-TREE-MODEL-FLAGS-NO-UNALLOCATABLE-DRIVES--CAPS"/>
+    <keyword type="constant" name="GDU_FORMAT_DIALOG_FLAGS_NONE" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-FORMAT-DIALOG-FLAGS-NONE--CAPS"/>
+    <keyword type="constant" name="GDU_FORMAT_DIALOG_FLAGS_SIMPLE" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-FORMAT-DIALOG-FLAGS-SIMPLE--CAPS"/>
+    <keyword type="constant" name="GDU_FORMAT_DIALOG_FLAGS_DISK_UTILITY_BUTTON" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-FORMAT-DIALOG-FLAGS-DISK-UTILITY-BUTTON--CAPS"/>
+    <keyword type="constant" name="GDU_FORMAT_DIALOG_FLAGS_ALLOW_MSDOS_EXTENDED" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-FORMAT-DIALOG-FLAGS-ALLOW-MSDOS-EXTENDED--CAPS"/>
+    <keyword type="constant" name="GDU_DISK_SELECTION_WIDGET_FLAGS_NONE" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-DISK-SELECTION-WIDGET-FLAGS-NONE--CAPS"/>
+    <keyword type="constant" name="GDU_DISK_SELECTION_WIDGET_FLAGS_ALLOW_MULTIPLE" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-DISK-SELECTION-WIDGET-FLAGS-ALLOW-MULTIPLE--CAPS"/>
+    <keyword type="constant" name="GDU_DISK_SELECTION_WIDGET_FLAGS_ALLOW_DISKS_WITH_INSUFFICIENT_SPACE" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-DISK-SELECTION-WIDGET-FLAGS-ALLOW-DISKS-WITH-INSUFFICIENT-SPACE--CAPS"/>
+    <keyword type="constant" name="GDU_ADD_COMPONENT_LINUX_MD_FLAGS_NONE" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-ADD-COMPONENT-LINUX-MD-FLAGS-NONE--CAPS"/>
+    <keyword type="constant" name="GDU_ADD_COMPONENT_LINUX_MD_FLAGS_SPARE" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-ADD-COMPONENT-LINUX-MD-FLAGS-SPARE--CAPS"/>
+    <keyword type="constant" name="GDU_ADD_COMPONENT_LINUX_MD_FLAGS_EXPANSION" link="gnome-disk-utility-gdu-gtk-enums.html#GDU-ADD-COMPONENT-LINUX-MD-FLAGS-EXPANSION--CAPS"/>
   </functions>
 </book>
