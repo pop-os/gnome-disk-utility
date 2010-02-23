@@ -1,4 +1,4 @@
-gnome-disk-utility (2.29.0~git20100212.5df348f-1) UNRELEASED; urgency=low
+gnome-disk-utility (2.29.0~git20100222.e85476-1) UNRELEASED; urgency=low
 
   [ Michael Biebl ]
   * Git snapshot of the upcoming 2.29.0 release:
