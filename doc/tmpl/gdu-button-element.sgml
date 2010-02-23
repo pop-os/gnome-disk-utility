@@ -9,12 +9,10 @@ gdu-button-element
 
 </para>
 
-
 <!-- ##### SECTION See_Also ##### -->
 <para>
 
 </para>
-
 
 <!-- ##### SECTION Stability_Level ##### -->
 
@@ -36,7 +34,7 @@ gdu-button-element
 
 </para>
 
-@grid: 
+@widget: 
 
 
 <!-- ##### FUNCTION clicked ##### -->

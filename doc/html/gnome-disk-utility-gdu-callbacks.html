@@ -8,7 +8,7 @@
 <link rel="up" href="ref-libgdu.html" title="libgdu API Reference">
 <link rel="prev" href="GduVolumeHole.html" title="GduVolumeHole">
 <link rel="next" href="gnome-disk-utility-gdu-error.html" title="GduError">
-<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="reference" href="ref-libgdu.html" title="libgdu API Reference">
 <link rel="reference" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
@@ -24,8 +24,8 @@
 </tr>
 <tr><td colspan="5" class="shortcuts">
 <a href="#gnome-disk-utility-gdu-callbacks.synopsis" class="shortcut">Top</a>
-                 | 
-                <a href="#gnome-disk-utility-gdu-callbacks.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#gnome-disk-utility-gdu-callbacks.description" class="shortcut">Description</a>
 </td></tr>
 </table>
 <div class="refentry" title="Callbacks">
@@ -39,359 +39,184 @@
 </tr></table></div>
 <div class="refsynopsisdiv" title="Synopsis">
 <a name="gnome-disk-utility-gdu-callbacks.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceFilesystemMountCompletedFunc" title="GduDeviceFilesystemMountCompletedFunc ()">*GduDeviceFilesystemMountCompletedFunc</a>)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         char *mount_point,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceFilesystemUnmountCompletedFunc" title="GduDeviceFilesystemUnmountCompletedFunc ()">*GduDeviceFilesystemUnmountCompletedFunc</a>)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceFilesystemCheckCompletedFunc" title="GduDeviceFilesystemCheckCompletedFunc ()">*GduDeviceFilesystemCheckCompletedFunc</a>)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a> is_clean,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDevicePartitionDeleteCompletedFunc" title="GduDevicePartitionDeleteCompletedFunc ()">*GduDevicePartitionDeleteCompletedFunc</a>)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDevicePartitionModifyCompletedFunc" title="GduDevicePartitionModifyCompletedFunc ()">*GduDevicePartitionModifyCompletedFunc</a>)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDevicePartitionTableCreateCompletedFunc" title="GduDevicePartitionTableCreateCompletedFunc ()">*GduDevicePartitionTableCreateCompletedFunc</a>)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceLuksUnlockCompletedFunc" title="GduDeviceLuksUnlockCompletedFunc ()">*GduDeviceLuksUnlockCompletedFunc</a>) (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         char *object_path_of_cleartext_device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceLuksLockCompletedFunc" title="GduDeviceLuksLockCompletedFunc ()">*GduDeviceLuksLockCompletedFunc</a>)   (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceLuksChangePassphraseCompletedFunc" title="GduDeviceLuksChangePassphraseCompletedFunc ()">*GduDeviceLuksChangePassphraseCompletedFunc</a>)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceFilesystemSetLabelCompletedFunc" title="GduDeviceFilesystemSetLabelCompletedFunc ()">*GduDeviceFilesystemSetLabelCompletedFunc</a>)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc" title="GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc ()">*GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc</a>)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveAtaSmartRefreshDataCompletedFunc" title="GduDeviceDriveAtaSmartRefreshDataCompletedFunc ()">*GduDeviceDriveAtaSmartRefreshDataCompletedFunc</a>)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceLinuxMdStopCompletedFunc" title="GduDeviceLinuxMdStopCompletedFunc ()">*GduDeviceLinuxMdStopCompletedFunc</a>)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceLinuxMdCheckCompletedFunc" title="GduDeviceLinuxMdCheckCompletedFunc ()">*GduDeviceLinuxMdCheckCompletedFunc</a>)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a> num_errors,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceLinuxMdAddSpareCompletedFunc" title="GduDeviceLinuxMdAddSpareCompletedFunc ()">*GduDeviceLinuxMdAddSpareCompletedFunc</a>)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceLinuxMdExpandCompletedFunc" title="GduDeviceLinuxMdExpandCompletedFunc ()">*GduDeviceLinuxMdExpandCompletedFunc</a>)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceLinuxMdRemoveComponentCompletedFunc" title="GduDeviceLinuxMdRemoveComponentCompletedFunc ()">*GduDeviceLinuxMdRemoveComponentCompletedFunc</a>)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceFilesystemCreateCompletedFunc" title="GduDeviceFilesystemCreateCompletedFunc ()">*GduDeviceFilesystemCreateCompletedFunc</a>)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDevicePartitionCreateCompletedFunc" title="GduDevicePartitionCreateCompletedFunc ()">*GduDevicePartitionCreateCompletedFunc</a>)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         char *created_device_object_path,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceCancelJobCompletedFunc" title="GduDeviceCancelJobCompletedFunc ()">*GduDeviceCancelJobCompletedFunc</a>)  (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceFilesystemListOpenFilesCompletedFunc" title="GduDeviceFilesystemListOpenFilesCompletedFunc ()">*GduDeviceFilesystemListOpenFilesCompletedFunc</a>)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
->GList</a> *processes,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveEjectCompletedFunc" title="GduDeviceDriveEjectCompletedFunc ()">*GduDeviceDriveEjectCompletedFunc</a>) (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveDetachCompletedFunc" title="GduDeviceDriveDetachCompletedFunc ()">*GduDeviceDriveDetachCompletedFunc</a>)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDrivePollMediaCompletedFunc" title="GduDeviceDrivePollMediaCompletedFunc ()">*GduDeviceDrivePollMediaCompletedFunc</a>)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveBenchmarkCompletedFunc" title="GduDeviceDriveBenchmarkCompletedFunc ()">*GduDeviceDriveBenchmarkCompletedFunc</a>)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"
->GPtrArray</a> *read_transfer_rate_results,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"
->GPtrArray</a> *write_transfer_rate_results,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"
->GPtrArray</a> *access_time_results,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceLinuxLvm2LVStopCompletedFunc" title="GduDeviceLinuxLvm2LVStopCompletedFunc ()">*GduDeviceLinuxLvm2LVStopCompletedFunc</a>)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxMdStartCompletedFunc" title="GduPoolLinuxMdStartCompletedFunc ()">*GduPoolLinuxMdStartCompletedFunc</a>) (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         char *assembled_array_object_path,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxMdCreateCompletedFunc" title="GduPoolLinuxMdCreateCompletedFunc ()">*GduPoolLinuxMdCreateCompletedFunc</a>)
-                                                        (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         char *array_object_path,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2VGStartCompletedFunc" title="GduPoolLinuxLvm2VGStartCompletedFunc ()">*GduPoolLinuxLvm2VGStartCompletedFunc</a>)
-                                                        (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2VGStopCompletedFunc" title="GduPoolLinuxLvm2VGStopCompletedFunc ()">*GduPoolLinuxLvm2VGStopCompletedFunc</a>)
-                                                        (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2LVStartCompletedFunc" title="GduPoolLinuxLvm2LVStartCompletedFunc ()">*GduPoolLinuxLvm2LVStartCompletedFunc</a>)
-                                                        (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2VGSetNameCompletedFunc" title="GduPoolLinuxLvm2VGSetNameCompletedFunc ()">*GduPoolLinuxLvm2VGSetNameCompletedFunc</a>)
-                                                        (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2LVSetNameCompletedFunc" title="GduPoolLinuxLvm2LVSetNameCompletedFunc ()">*GduPoolLinuxLvm2LVSetNameCompletedFunc</a>)
-                                                        (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2LVRemoveCompletedFunc" title="GduPoolLinuxLvm2LVRemoveCompletedFunc ()">*GduPoolLinuxLvm2LVRemoveCompletedFunc</a>)
-                                                        (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2LVCreateCompletedFunc" title="GduPoolLinuxLvm2LVCreateCompletedFunc ()">*GduPoolLinuxLvm2LVCreateCompletedFunc</a>)
-                                                        (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         char *create_logical_volume_object_path,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2VGAddPVCompletedFunc" title="GduPoolLinuxLvm2VGAddPVCompletedFunc ()">*GduPoolLinuxLvm2VGAddPVCompletedFunc</a>)
-                                                        (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2VGRemovePVCompletedFunc" title="GduPoolLinuxLvm2VGRemovePVCompletedFunc ()">*GduPoolLinuxLvm2VGRemovePVCompletedFunc</a>)
-                                                        (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDriveActivateFunc" title="GduDriveActivateFunc ()">*GduDriveActivateFunc</a>)             (<a class="link" href="GduDrive.html" title="GduDrive">GduDrive</a> *drive,
-                                                         char *assembled_drive_object_path,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDriveDeactivateFunc" title="GduDriveDeactivateFunc ()">*GduDriveDeactivateFunc</a>)           (<a class="link" href="GduDrive.html" title="GduDrive">GduDrive</a> *drive,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
+<pre class="synopsis"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceFilesystemMountCompletedFunc" title="GduDeviceFilesystemMountCompletedFunc ()">*GduDeviceFilesystemMountCompletedFunc</a>)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *mount_point,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceFilesystemUnmountCompletedFunc" title="GduDeviceFilesystemUnmountCompletedFunc ()">*GduDeviceFilesystemUnmountCompletedFunc</a>)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceFilesystemCheckCompletedFunc" title="GduDeviceFilesystemCheckCompletedFunc ()">*GduDeviceFilesystemCheckCompletedFunc</a>)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="gboolean"><span class="returnvalue">gboolean</span></GTKDOCLINK> is_clean,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDevicePartitionDeleteCompletedFunc" title="GduDevicePartitionDeleteCompletedFunc ()">*GduDevicePartitionDeleteCompletedFunc</a>)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDevicePartitionModifyCompletedFunc" title="GduDevicePartitionModifyCompletedFunc ()">*GduDevicePartitionModifyCompletedFunc</a>)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDevicePartitionTableCreateCompletedFunc" title="GduDevicePartitionTableCreateCompletedFunc ()">*GduDevicePartitionTableCreateCompletedFunc</a>)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceLuksUnlockCompletedFunc" title="GduDeviceLuksUnlockCompletedFunc ()">*GduDeviceLuksUnlockCompletedFunc</a>) (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *object_path_of_cleartext_device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceLuksLockCompletedFunc" title="GduDeviceLuksLockCompletedFunc ()">*GduDeviceLuksLockCompletedFunc</a>)   (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceLuksChangePassphraseCompletedFunc" title="GduDeviceLuksChangePassphraseCompletedFunc ()">*GduDeviceLuksChangePassphraseCompletedFunc</a>)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceFilesystemSetLabelCompletedFunc" title="GduDeviceFilesystemSetLabelCompletedFunc ()">*GduDeviceFilesystemSetLabelCompletedFunc</a>)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc" title="GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc ()">*GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc</a>)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveAtaSmartRefreshDataCompletedFunc" title="GduDeviceDriveAtaSmartRefreshDataCompletedFunc ()">*GduDeviceDriveAtaSmartRefreshDataCompletedFunc</a>)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceLinuxMdStopCompletedFunc" title="GduDeviceLinuxMdStopCompletedFunc ()">*GduDeviceLinuxMdStopCompletedFunc</a>)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceLinuxMdCheckCompletedFunc" title="GduDeviceLinuxMdCheckCompletedFunc ()">*GduDeviceLinuxMdCheckCompletedFunc</a>)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="guint"><span class="returnvalue">guint</span></GTKDOCLINK> num_errors,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceLinuxMdAddSpareCompletedFunc" title="GduDeviceLinuxMdAddSpareCompletedFunc ()">*GduDeviceLinuxMdAddSpareCompletedFunc</a>)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceLinuxMdExpandCompletedFunc" title="GduDeviceLinuxMdExpandCompletedFunc ()">*GduDeviceLinuxMdExpandCompletedFunc</a>)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceLinuxMdRemoveComponentCompletedFunc" title="GduDeviceLinuxMdRemoveComponentCompletedFunc ()">*GduDeviceLinuxMdRemoveComponentCompletedFunc</a>)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceFilesystemCreateCompletedFunc" title="GduDeviceFilesystemCreateCompletedFunc ()">*GduDeviceFilesystemCreateCompletedFunc</a>)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDevicePartitionCreateCompletedFunc" title="GduDevicePartitionCreateCompletedFunc ()">*GduDevicePartitionCreateCompletedFunc</a>)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *created_device_object_path,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceCancelJobCompletedFunc" title="GduDeviceCancelJobCompletedFunc ()">*GduDeviceCancelJobCompletedFunc</a>)  (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceFilesystemListOpenFilesCompletedFunc" title="GduDeviceFilesystemListOpenFilesCompletedFunc ()">*GduDeviceFilesystemListOpenFilesCompletedFunc</a>)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GList"><span class="returnvalue">GList</span></GTKDOCLINK> *processes,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveEjectCompletedFunc" title="GduDeviceDriveEjectCompletedFunc ()">*GduDeviceDriveEjectCompletedFunc</a>) (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveDetachCompletedFunc" title="GduDeviceDriveDetachCompletedFunc ()">*GduDeviceDriveDetachCompletedFunc</a>)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDrivePollMediaCompletedFunc" title="GduDeviceDrivePollMediaCompletedFunc ()">*GduDeviceDrivePollMediaCompletedFunc</a>)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceDriveBenchmarkCompletedFunc" title="GduDeviceDriveBenchmarkCompletedFunc ()">*GduDeviceDriveBenchmarkCompletedFunc</a>)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GPtrArray"><span class="returnvalue">GPtrArray</span></GTKDOCLINK> *read_transfer_rate_results,
+                                                         <GTKDOCLINK HREF="GPtrArray"><span class="returnvalue">GPtrArray</span></GTKDOCLINK> *write_transfer_rate_results,
+                                                         <GTKDOCLINK HREF="GPtrArray"><span class="returnvalue">GPtrArray</span></GTKDOCLINK> *access_time_results,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDeviceLinuxLvm2LVStopCompletedFunc" title="GduDeviceLinuxLvm2LVStopCompletedFunc ()">*GduDeviceLinuxLvm2LVStopCompletedFunc</a>)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxMdStartCompletedFunc" title="GduPoolLinuxMdStartCompletedFunc ()">*GduPoolLinuxMdStartCompletedFunc</a>) (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *assembled_array_object_path,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxMdCreateCompletedFunc" title="GduPoolLinuxMdCreateCompletedFunc ()">*GduPoolLinuxMdCreateCompletedFunc</a>)
+                                                        (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *array_object_path,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2VGStartCompletedFunc" title="GduPoolLinuxLvm2VGStartCompletedFunc ()">*GduPoolLinuxLvm2VGStartCompletedFunc</a>)
+                                                        (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2VGStopCompletedFunc" title="GduPoolLinuxLvm2VGStopCompletedFunc ()">*GduPoolLinuxLvm2VGStopCompletedFunc</a>)
+                                                        (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2LVStartCompletedFunc" title="GduPoolLinuxLvm2LVStartCompletedFunc ()">*GduPoolLinuxLvm2LVStartCompletedFunc</a>)
+                                                        (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2VGSetNameCompletedFunc" title="GduPoolLinuxLvm2VGSetNameCompletedFunc ()">*GduPoolLinuxLvm2VGSetNameCompletedFunc</a>)
+                                                        (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2LVSetNameCompletedFunc" title="GduPoolLinuxLvm2LVSetNameCompletedFunc ()">*GduPoolLinuxLvm2LVSetNameCompletedFunc</a>)
+                                                        (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2LVRemoveCompletedFunc" title="GduPoolLinuxLvm2LVRemoveCompletedFunc ()">*GduPoolLinuxLvm2LVRemoveCompletedFunc</a>)
+                                                        (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2LVCreateCompletedFunc" title="GduPoolLinuxLvm2LVCreateCompletedFunc ()">*GduPoolLinuxLvm2LVCreateCompletedFunc</a>)
+                                                        (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *create_logical_volume_object_path,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2VGAddPVCompletedFunc" title="GduPoolLinuxLvm2VGAddPVCompletedFunc ()">*GduPoolLinuxLvm2VGAddPVCompletedFunc</a>)
+                                                        (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2VGRemovePVCompletedFunc" title="GduPoolLinuxLvm2VGRemovePVCompletedFunc ()">*GduPoolLinuxLvm2VGRemovePVCompletedFunc</a>)
+                                                        (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDriveActivateFunc" title="GduDriveActivateFunc ()">*GduDriveActivateFunc</a>)             (<a class="link" href="GduDrive.html" title="GduDrive"><span class="returnvalue">GduDrive</span></a> *drive,
+                                                         <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *assembled_drive_object_path,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduDriveDeactivateFunc" title="GduDriveDeactivateFunc ()">*GduDriveDeactivateFunc</a>)           (<a class="link" href="GduDrive.html" title="GduDrive"><span class="returnvalue">GduDrive</span></a> *drive,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
 </pre>
 </div>
 <div class="refsect1" title="Description">
 <a name="gnome-disk-utility-gdu-callbacks.description"></a><h2>Description</h2>
 <p>
 Various callback function signatures.</p>
-<p>
-</p>
 </div>
 <div class="refsect1" title="Details">
 <a name="gnome-disk-utility-gdu-callbacks.details"></a><h2>Details</h2>
 <div class="refsect2" title="GduDeviceFilesystemMountCompletedFunc ()">
 <a name="GduDeviceFilesystemMountCompletedFunc"></a><h3>GduDeviceFilesystemMountCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduDeviceFilesystemMountCompletedFunc)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         char *mount_point,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduDeviceFilesystemMountCompletedFunc)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *mount_point,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -423,14 +248,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduDeviceFilesystemUnmountCompletedFunc ()">
 <a name="GduDeviceFilesystemUnmountCompletedFunc"></a><h3>GduDeviceFilesystemUnmountCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduDeviceFilesystemUnmountCompletedFunc)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduDeviceFilesystemUnmountCompletedFunc)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -457,17 +278,11 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduDeviceFilesystemCheckCompletedFunc ()">
 <a name="GduDeviceFilesystemCheckCompletedFunc"></a><h3>GduDeviceFilesystemCheckCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduDeviceFilesystemCheckCompletedFunc)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a> is_clean,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduDeviceFilesystemCheckCompletedFunc)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="gboolean"><span class="returnvalue">gboolean</span></GTKDOCLINK> is_clean,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -499,14 +314,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduDevicePartitionDeleteCompletedFunc ()">
 <a name="GduDevicePartitionDeleteCompletedFunc"></a><h3>GduDevicePartitionDeleteCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduDevicePartitionDeleteCompletedFunc)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduDevicePartitionDeleteCompletedFunc)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -533,14 +344,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduDevicePartitionModifyCompletedFunc ()">
 <a name="GduDevicePartitionModifyCompletedFunc"></a><h3>GduDevicePartitionModifyCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduDevicePartitionModifyCompletedFunc)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduDevicePartitionModifyCompletedFunc)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -567,14 +374,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduDevicePartitionTableCreateCompletedFunc ()">
 <a name="GduDevicePartitionTableCreateCompletedFunc"></a><h3>GduDevicePartitionTableCreateCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduDevicePartitionTableCreateCompletedFunc)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduDevicePartitionTableCreateCompletedFunc)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -601,14 +404,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduDeviceLuksUnlockCompletedFunc ()">
 <a name="GduDeviceLuksUnlockCompletedFunc"></a><h3>GduDeviceLuksUnlockCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduDeviceLuksUnlockCompletedFunc) (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         char *object_path_of_cleartext_device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduDeviceLuksUnlockCompletedFunc) (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *object_path_of_cleartext_device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -640,13 +439,9 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduDeviceLuksLockCompletedFunc ()">
 <a name="GduDeviceLuksLockCompletedFunc"></a><h3>GduDeviceLuksLockCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduDeviceLuksLockCompletedFunc)   (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduDeviceLuksLockCompletedFunc)   (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -673,14 +468,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduDeviceLuksChangePassphraseCompletedFunc ()">
 <a name="GduDeviceLuksChangePassphraseCompletedFunc"></a><h3>GduDeviceLuksChangePassphraseCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduDeviceLuksChangePassphraseCompletedFunc)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduDeviceLuksChangePassphraseCompletedFunc)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -707,14 +498,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduDeviceFilesystemSetLabelCompletedFunc ()">
 <a name="GduDeviceFilesystemSetLabelCompletedFunc"></a><h3>GduDeviceFilesystemSetLabelCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduDeviceFilesystemSetLabelCompletedFunc)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduDeviceFilesystemSetLabelCompletedFunc)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -741,14 +528,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc ()">
 <a name="GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc"></a><h3>GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduDeviceDriveAtaSmartInitiateSelftestCompletedFunc)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -775,14 +558,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduDeviceDriveAtaSmartRefreshDataCompletedFunc ()">
 <a name="GduDeviceDriveAtaSmartRefreshDataCompletedFunc"></a><h3>GduDeviceDriveAtaSmartRefreshDataCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduDeviceDriveAtaSmartRefreshDataCompletedFunc)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduDeviceDriveAtaSmartRefreshDataCompletedFunc)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -809,14 +588,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduDeviceLinuxMdStopCompletedFunc ()">
 <a name="GduDeviceLinuxMdStopCompletedFunc"></a><h3>GduDeviceLinuxMdStopCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduDeviceLinuxMdStopCompletedFunc)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduDeviceLinuxMdStopCompletedFunc)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -843,17 +618,11 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduDeviceLinuxMdCheckCompletedFunc ()">
 <a name="GduDeviceLinuxMdCheckCompletedFunc"></a><h3>GduDeviceLinuxMdCheckCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduDeviceLinuxMdCheckCompletedFunc)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a> num_errors,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduDeviceLinuxMdCheckCompletedFunc)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="guint"><span class="returnvalue">guint</span></GTKDOCLINK> num_errors,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -885,14 +654,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduDeviceLinuxMdAddSpareCompletedFunc ()">
 <a name="GduDeviceLinuxMdAddSpareCompletedFunc"></a><h3>GduDeviceLinuxMdAddSpareCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduDeviceLinuxMdAddSpareCompletedFunc)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduDeviceLinuxMdAddSpareCompletedFunc)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -919,14 +684,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduDeviceLinuxMdExpandCompletedFunc ()">
 <a name="GduDeviceLinuxMdExpandCompletedFunc"></a><h3>GduDeviceLinuxMdExpandCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduDeviceLinuxMdExpandCompletedFunc)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduDeviceLinuxMdExpandCompletedFunc)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -953,14 +714,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduDeviceLinuxMdRemoveComponentCompletedFunc ()">
 <a name="GduDeviceLinuxMdRemoveComponentCompletedFunc"></a><h3>GduDeviceLinuxMdRemoveComponentCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduDeviceLinuxMdRemoveComponentCompletedFunc)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduDeviceLinuxMdRemoveComponentCompletedFunc)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -987,14 +744,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduDeviceFilesystemCreateCompletedFunc ()">
 <a name="GduDeviceFilesystemCreateCompletedFunc"></a><h3>GduDeviceFilesystemCreateCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduDeviceFilesystemCreateCompletedFunc)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduDeviceFilesystemCreateCompletedFunc)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1021,15 +774,11 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduDevicePartitionCreateCompletedFunc ()">
 <a name="GduDevicePartitionCreateCompletedFunc"></a><h3>GduDevicePartitionCreateCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduDevicePartitionCreateCompletedFunc)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         char *created_device_object_path,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduDevicePartitionCreateCompletedFunc)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *created_device_object_path,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1061,13 +810,9 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduDeviceCancelJobCompletedFunc ()">
 <a name="GduDeviceCancelJobCompletedFunc"></a><h3>GduDeviceCancelJobCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduDeviceCancelJobCompletedFunc)  (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduDeviceCancelJobCompletedFunc)  (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1094,17 +839,11 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduDeviceFilesystemListOpenFilesCompletedFunc ()">
 <a name="GduDeviceFilesystemListOpenFilesCompletedFunc"></a><h3>GduDeviceFilesystemListOpenFilesCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduDeviceFilesystemListOpenFilesCompletedFunc)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
->GList</a> *processes,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduDeviceFilesystemListOpenFilesCompletedFunc)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GList"><span class="returnvalue">GList</span></GTKDOCLINK> *processes,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1136,13 +875,9 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduDeviceDriveEjectCompletedFunc ()">
 <a name="GduDeviceDriveEjectCompletedFunc"></a><h3>GduDeviceDriveEjectCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduDeviceDriveEjectCompletedFunc) (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduDeviceDriveEjectCompletedFunc) (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1169,14 +904,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduDeviceDriveDetachCompletedFunc ()">
 <a name="GduDeviceDriveDetachCompletedFunc"></a><h3>GduDeviceDriveDetachCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduDeviceDriveDetachCompletedFunc)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduDeviceDriveDetachCompletedFunc)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1203,14 +934,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduDeviceDrivePollMediaCompletedFunc ()">
 <a name="GduDeviceDrivePollMediaCompletedFunc"></a><h3>GduDeviceDrivePollMediaCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduDeviceDrivePollMediaCompletedFunc)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduDeviceDrivePollMediaCompletedFunc)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1237,23 +964,13 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduDeviceDriveBenchmarkCompletedFunc ()">
 <a name="GduDeviceDriveBenchmarkCompletedFunc"></a><h3>GduDeviceDriveBenchmarkCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduDeviceDriveBenchmarkCompletedFunc)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"
->GPtrArray</a> *read_transfer_rate_results,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"
->GPtrArray</a> *write_transfer_rate_results,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"
->GPtrArray</a> *access_time_results,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduDeviceDriveBenchmarkCompletedFunc)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GPtrArray"><span class="returnvalue">GPtrArray</span></GTKDOCLINK> *read_transfer_rate_results,
+                                                         <GTKDOCLINK HREF="GPtrArray"><span class="returnvalue">GPtrArray</span></GTKDOCLINK> *write_transfer_rate_results,
+                                                         <GTKDOCLINK HREF="GPtrArray"><span class="returnvalue">GPtrArray</span></GTKDOCLINK> *access_time_results,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1295,14 +1012,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduDeviceLinuxLvm2LVStopCompletedFunc ()">
 <a name="GduDeviceLinuxLvm2LVStopCompletedFunc"></a><h3>GduDeviceLinuxLvm2LVStopCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduDeviceLinuxLvm2LVStopCompletedFunc)
-                                                        (<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduDeviceLinuxLvm2LVStopCompletedFunc)
+                                                        (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1329,14 +1042,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduPoolLinuxMdStartCompletedFunc ()">
 <a name="GduPoolLinuxMdStartCompletedFunc"></a><h3>GduPoolLinuxMdStartCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduPoolLinuxMdStartCompletedFunc) (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         char *assembled_array_object_path,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduPoolLinuxMdStartCompletedFunc) (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *assembled_array_object_path,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1368,15 +1077,11 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduPoolLinuxMdCreateCompletedFunc ()">
 <a name="GduPoolLinuxMdCreateCompletedFunc"></a><h3>GduPoolLinuxMdCreateCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduPoolLinuxMdCreateCompletedFunc)
-                                                        (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         char *array_object_path,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduPoolLinuxMdCreateCompletedFunc)
+                                                        (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *array_object_path,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1408,14 +1113,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduPoolLinuxLvm2VGStartCompletedFunc ()">
 <a name="GduPoolLinuxLvm2VGStartCompletedFunc"></a><h3>GduPoolLinuxLvm2VGStartCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduPoolLinuxLvm2VGStartCompletedFunc)
-                                                        (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduPoolLinuxLvm2VGStartCompletedFunc)
+                                                        (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1442,14 +1143,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduPoolLinuxLvm2VGStopCompletedFunc ()">
 <a name="GduPoolLinuxLvm2VGStopCompletedFunc"></a><h3>GduPoolLinuxLvm2VGStopCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduPoolLinuxLvm2VGStopCompletedFunc)
-                                                        (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduPoolLinuxLvm2VGStopCompletedFunc)
+                                                        (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1476,14 +1173,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduPoolLinuxLvm2LVStartCompletedFunc ()">
 <a name="GduPoolLinuxLvm2LVStartCompletedFunc"></a><h3>GduPoolLinuxLvm2LVStartCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduPoolLinuxLvm2LVStartCompletedFunc)
-                                                        (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduPoolLinuxLvm2LVStartCompletedFunc)
+                                                        (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1510,14 +1203,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduPoolLinuxLvm2VGSetNameCompletedFunc ()">
 <a name="GduPoolLinuxLvm2VGSetNameCompletedFunc"></a><h3>GduPoolLinuxLvm2VGSetNameCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduPoolLinuxLvm2VGSetNameCompletedFunc)
-                                                        (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduPoolLinuxLvm2VGSetNameCompletedFunc)
+                                                        (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1544,14 +1233,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduPoolLinuxLvm2LVSetNameCompletedFunc ()">
 <a name="GduPoolLinuxLvm2LVSetNameCompletedFunc"></a><h3>GduPoolLinuxLvm2LVSetNameCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduPoolLinuxLvm2LVSetNameCompletedFunc)
-                                                        (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduPoolLinuxLvm2LVSetNameCompletedFunc)
+                                                        (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1578,14 +1263,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduPoolLinuxLvm2LVRemoveCompletedFunc ()">
 <a name="GduPoolLinuxLvm2LVRemoveCompletedFunc"></a><h3>GduPoolLinuxLvm2LVRemoveCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduPoolLinuxLvm2LVRemoveCompletedFunc)
-                                                        (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduPoolLinuxLvm2LVRemoveCompletedFunc)
+                                                        (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1612,15 +1293,11 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduPoolLinuxLvm2LVCreateCompletedFunc ()">
 <a name="GduPoolLinuxLvm2LVCreateCompletedFunc"></a><h3>GduPoolLinuxLvm2LVCreateCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduPoolLinuxLvm2LVCreateCompletedFunc)
-                                                        (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         char *create_logical_volume_object_path,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduPoolLinuxLvm2LVCreateCompletedFunc)
+                                                        (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *create_logical_volume_object_path,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1652,14 +1329,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduPoolLinuxLvm2VGAddPVCompletedFunc ()">
 <a name="GduPoolLinuxLvm2VGAddPVCompletedFunc"></a><h3>GduPoolLinuxLvm2VGAddPVCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduPoolLinuxLvm2VGAddPVCompletedFunc)
-                                                        (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduPoolLinuxLvm2VGAddPVCompletedFunc)
+                                                        (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1686,14 +1359,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduPoolLinuxLvm2VGRemovePVCompletedFunc ()">
 <a name="GduPoolLinuxLvm2VGRemovePVCompletedFunc"></a><h3>GduPoolLinuxLvm2VGRemovePVCompletedFunc ()</h3>
-<pre class="programlisting">void                (*GduPoolLinuxLvm2VGRemovePVCompletedFunc)
-                                                        (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduPoolLinuxLvm2VGRemovePVCompletedFunc)
+                                                        (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1720,14 +1389,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduDriveActivateFunc ()">
 <a name="GduDriveActivateFunc"></a><h3>GduDriveActivateFunc ()</h3>
-<pre class="programlisting">void                (*GduDriveActivateFunc)             (<a class="link" href="GduDrive.html" title="GduDrive">GduDrive</a> *drive,
-                                                         char *assembled_drive_object_path,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduDriveActivateFunc)             (<a class="link" href="GduDrive.html" title="GduDrive"><span class="returnvalue">GduDrive</span></a> *drive,
+                                                         <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *assembled_drive_object_path,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1759,13 +1424,9 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 <hr>
 <div class="refsect2" title="GduDriveDeactivateFunc ()">
 <a name="GduDriveDeactivateFunc"></a><h3>GduDriveDeactivateFunc ()</h3>
-<pre class="programlisting">void                (*GduDriveDeactivateFunc)           (<a class="link" href="GduDrive.html" title="GduDrive">GduDrive</a> *drive,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> *error,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduDriveDeactivateFunc)           (<a class="link" href="GduDrive.html" title="GduDrive"><span class="returnvalue">GduDrive</span></a> *drive,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> *error,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -1793,6 +1454,6 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointe
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.11</div>
+          Generated by GTK-Doc V1.13</div>
 </body>
 </html>

@@ -1,0 +1,77 @@
+<!-- ##### USER_FUNCTION GduDeviceLinuxMdAddComponentCompletedFunc ##### -->
+<para>
+
+</para>
+
+@device: 
+@error: 
+@user_data: 
+
+<!-- ##### FUNCTION gdu_add_component_linux_md_dialog_get_drive ##### -->
+<para>
+
+</para>
+
+@dialog: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_device_op_linux_md_add_component ##### -->
+<para>
+
+</para>
+
+@device: 
+@component_objpath: 
+@callback: 
+@user_data: 
+
+<!-- ##### FUNCTION gdu_disk_selection_widget_get_ignored_drives ##### -->
+<para>
+
+</para>
+
+@widget: 
+@Returns: 
+
+<!-- ##### FUNCTION gdu_drive_has_unallocated_space ##### -->
+<para>
+
+</para>
+
+@drive: 
+@out_whole_disk_is_unitialized: 
+@out_largest_segment: 
+@out_total_free: 
+@out_presentable: 
+@Returns: 
+
+<!-- ##### FUNCTION org_freedesktop_UDisks_Device_linux_md_add_component ##### -->
+<para>
+
+</para>
+
+@proxy: 
+@IN_component: 
+@IN_options: 
+@Returns: 
+
+<!-- ##### FUNCTION org_freedesktop_UDisks_Device_linux_md_add_component_async ##### -->
+<para>
+
+</para>
+
+@proxy: 
+@IN_component: 
+@IN_options: 
+@callback: 
+@Returns: 
+
+<!-- ##### USER_FUNCTION org_freedesktop_UDisks_Device_linux_md_add_component_reply ##### -->
+<para>
+
+</para>
+
+@proxy: 
+@error: 
+@userdata: 
+

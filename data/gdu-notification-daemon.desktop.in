@@ -2,7 +2,7 @@
 _Name=Disk Notifications
 _Comment=Provides notifications related to disks
 Icon=gdu-notification-daemon
-Exec=/usr/local/libexec/gdu-notification-daemon
+Exec=/usr/libexec/gdu-notification-daemon
 Terminal=false
 Type=Application
 Categories=
@@ -10,5 +10,5 @@ OnlyShowIn=GNOME;
 X-GNOME-Bugzilla-Bugzilla=GNOME
 X-GNOME-Bugzilla-Product=gnome-disk-utility
 X-GNOME-Bugzilla-Component=notifications
-X-GNOME-Bugzilla-Version=2.29.0
+X-GNOME-Bugzilla-Version=2.29.90
 #X-GNOME-AutoRestart=true

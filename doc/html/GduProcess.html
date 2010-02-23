@@ -8,7 +8,7 @@
 <link rel="up" href="ref-libgdu.html" title="libgdu API Reference">
 <link rel="prev" href="gnome-disk-utility-gdu-error.html" title="GduError">
 <link rel="next" href="gnome-disk-utility-gdu-util.html" title="gdu-util">
-<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="reference" href="ref-libgdu.html" title="libgdu API Reference">
 <link rel="reference" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
@@ -24,10 +24,10 @@
 </tr>
 <tr><td colspan="5" class="shortcuts">
 <a href="#GduProcess.synopsis" class="shortcut">Top</a>
-                 | 
-                <a href="#GduProcess.description" class="shortcut">Description</a>
-                 | 
-                <a href="#GduProcess.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#GduProcess.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#GduProcess.object-hierarchy" class="shortcut">Object Hierarchy</a>
 </td></tr>
 </table>
 <div class="refentry" title="GduProcess">
@@ -41,23 +41,18 @@
 </tr></table></div>
 <div class="refsynopsisdiv" title="Synopsis">
 <a name="GduProcess.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">
-                    <a class="link" href="GduProcess.html#GduProcessPrivate" title="GduProcessPrivate">GduProcessPrivate</a>;
+<pre class="synopsis">                    <a class="link" href="GduProcess.html#GduProcessPrivate" title="GduProcessPrivate">GduProcessPrivate</a>;
                     <a class="link" href="GduProcess.html#GduProcess-struct" title="GduProcess">GduProcess</a>;
-pid_t               <a class="link" href="GduProcess.html#gdu-process-get-id" title="gdu_process_get_id ()">gdu_process_get_id</a>                  (<a class="link" href="GduProcess.html" title="GduProcess">GduProcess</a> *process);
-uid_t               <a class="link" href="GduProcess.html#gdu-process-get-owner" title="gdu_process_get_owner ()">gdu_process_get_owner</a>               (<a class="link" href="GduProcess.html" title="GduProcess">GduProcess</a> *process);
-const char *        <a class="link" href="GduProcess.html#gdu-process-get-command-line" title="gdu_process_get_command_line ()">gdu_process_get_command_line</a>        (<a class="link" href="GduProcess.html" title="GduProcess">GduProcess</a> *process);
-<a
-href="http://library.gnome.org/devel/gio/unstable/GAppInfo.html"
->GAppInfo</a> *          <a class="link" href="GduProcess.html#gdu-process-get-app-info" title="gdu_process_get_app_info ()">gdu_process_get_app_info</a>            (<a class="link" href="GduProcess.html" title="GduProcess">GduProcess</a> *process);
+<GTKDOCLINK HREF="pid-t"><span class="returnvalue">pid_t</span></GTKDOCLINK>               <a class="link" href="GduProcess.html#gdu-process-get-id" title="gdu_process_get_id ()">gdu_process_get_id</a>                  (<a class="link" href="GduProcess.html" title="GduProcess"><span class="returnvalue">GduProcess</span></a> *process);
+<GTKDOCLINK HREF="uid-t"><span class="returnvalue">uid_t</span></GTKDOCLINK>               <a class="link" href="GduProcess.html#gdu-process-get-owner" title="gdu_process_get_owner ()">gdu_process_get_owner</a>               (<a class="link" href="GduProcess.html" title="GduProcess"><span class="returnvalue">GduProcess</span></a> *process);
+const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *        <a class="link" href="GduProcess.html#gdu-process-get-command-line" title="gdu_process_get_command_line ()">gdu_process_get_command_line</a>        (<a class="link" href="GduProcess.html" title="GduProcess"><span class="returnvalue">GduProcess</span></a> *process);
+<GTKDOCLINK HREF="GAppInfo"><span class="returnvalue">GAppInfo</span></GTKDOCLINK> *          <a class="link" href="GduProcess.html#gdu-process-get-app-info" title="gdu_process_get_app_info ()">gdu_process_get_app_info</a>            (<a class="link" href="GduProcess.html" title="GduProcess"><span class="returnvalue">GduProcess</span></a> *process);
 </pre>
 </div>
 <div class="refsect1" title="Object Hierarchy">
 <a name="GduProcess.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  <a
-href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
->GObject</a>
+  <GTKDOCLINK HREF="GObject">GObject</GTKDOCLINK>
    +----GduProcess
 </pre>
 </div>
@@ -84,7 +79,7 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 <hr>
 <div class="refsect2" title="gdu_process_get_id ()">
 <a name="gdu-process-get-id"></a><h3>gdu_process_get_id ()</h3>
-<pre class="programlisting">pid_t               gdu_process_get_id                  (<a class="link" href="GduProcess.html" title="GduProcess">GduProcess</a> *process);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="pid-t"><span class="returnvalue">pid_t</span></GTKDOCLINK>               gdu_process_get_id                  (<a class="link" href="GduProcess.html" title="GduProcess"><span class="returnvalue">GduProcess</span></a> *process);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -106,7 +101,7 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 <hr>
 <div class="refsect2" title="gdu_process_get_owner ()">
 <a name="gdu-process-get-owner"></a><h3>gdu_process_get_owner ()</h3>
-<pre class="programlisting">uid_t               gdu_process_get_owner               (<a class="link" href="GduProcess.html" title="GduProcess">GduProcess</a> *process);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="uid-t"><span class="returnvalue">uid_t</span></GTKDOCLINK>               gdu_process_get_owner               (<a class="link" href="GduProcess.html" title="GduProcess"><span class="returnvalue">GduProcess</span></a> *process);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -128,7 +123,7 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 <hr>
 <div class="refsect2" title="gdu_process_get_command_line ()">
 <a name="gdu-process-get-command-line"></a><h3>gdu_process_get_command_line ()</h3>
-<pre class="programlisting">const char *        gdu_process_get_command_line        (<a class="link" href="GduProcess.html" title="GduProcess">GduProcess</a> *process);</pre>
+<pre class="programlisting">const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *        gdu_process_get_command_line        (<a class="link" href="GduProcess.html" title="GduProcess"><span class="returnvalue">GduProcess</span></a> *process);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -150,9 +145,7 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 <hr>
 <div class="refsect2" title="gdu_process_get_app_info ()">
 <a name="gdu-process-get-app-info"></a><h3>gdu_process_get_app_info ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/gio/unstable/GAppInfo.html"
->GAppInfo</a> *          gdu_process_get_app_info            (<a class="link" href="GduProcess.html" title="GduProcess">GduProcess</a> *process);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="GAppInfo"><span class="returnvalue">GAppInfo</span></GTKDOCLINK> *          gdu_process_get_app_info            (<a class="link" href="GduProcess.html" title="GduProcess"><span class="returnvalue">GduProcess</span></a> *process);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -175,6 +168,6 @@ href="http://library.gnome.org/devel/gio/unstable/GAppInfo.html"
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.11</div>
+          Generated by GTK-Doc V1.13</div>
 </body>
 </html>

@@ -8,7 +8,7 @@
 <link rel="up" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
 <link rel="prev" href="gnome-disk-utility-gdu-error-dialog.html" title="gdu-error-dialog">
 <link rel="next" href="gnome-disk-utility-gdu-gtk-enums.html" title="gdu-gtk-enums">
-<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="reference" href="ref-libgdu.html" title="libgdu API Reference">
 <link rel="reference" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
@@ -24,8 +24,8 @@
 </tr>
 <tr><td colspan="5" class="shortcuts">
 <a href="#gnome-disk-utility-gdu-confirmation-dialog.synopsis" class="shortcut">Top</a>
-                 | 
-                <a href="#gnome-disk-utility-gdu-confirmation-dialog.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#gnome-disk-utility-gdu-confirmation-dialog.description" class="shortcut">Description</a>
 </td></tr>
 </table>
 <div class="refentry" title="gdu-confirmation-dialog">
@@ -39,47 +39,22 @@
 </tr></table></div>
 <div class="refsynopsisdiv" title="Synopsis">
 <a name="gnome-disk-utility-gdu-confirmation-dialog.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">
-typedef             <a class="link" href="gnome-disk-utility-gdu-confirmation-dialog.html#GduConfirmationDialogClass" title="GduConfirmationDialogClass">GduConfirmationDialogClass</a>;
+<pre class="synopsis">typedef             <a class="link" href="gnome-disk-utility-gdu-confirmation-dialog.html#GduConfirmationDialogClass" title="GduConfirmationDialogClass">GduConfirmationDialogClass</a>;
 typedef             <a class="link" href="gnome-disk-utility-gdu-confirmation-dialog.html#GduConfirmationDialogPrivate" title="GduConfirmationDialogPrivate">GduConfirmationDialogPrivate</a>;
-<a
-href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"
->GtkWidget</a> *         <a class="link" href="gnome-disk-utility-gdu-confirmation-dialog.html#gdu-confirmation-dialog-new" title="gdu_confirmation_dialog_new ()">gdu_confirmation_dialog_new</a>         (<a
-href="http://library.gnome.org/devel/gtk/unstable/GtkWindow.html"
->GtkWindow</a> *parent,
-                                                         GduPresentable *presentable,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *message,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *button_text);
-<a
-href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"
->GtkWidget</a> *         <a class="link" href="gnome-disk-utility-gdu-confirmation-dialog.html#gdu-confirmation-dialog-new-for-drive" title="gdu_confirmation_dialog_new_for_drive ()">gdu_confirmation_dialog_new_for_drive</a>
-                                                        (<a
-href="http://library.gnome.org/devel/gtk/unstable/GtkWindow.html"
->GtkWindow</a> *parent,
-                                                         <a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *message,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *button_text);
-<a
-href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"
->GtkWidget</a> *         <a class="link" href="gnome-disk-utility-gdu-confirmation-dialog.html#gdu-confirmation-dialog-new-for-volume" title="gdu_confirmation_dialog_new_for_volume ()">gdu_confirmation_dialog_new_for_volume</a>
-                                                        (<a
-href="http://library.gnome.org/devel/gtk/unstable/GtkWindow.html"
->GtkWindow</a> *parent,
-                                                         <a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *message,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *button_text);
+<GTKDOCLINK HREF="GtkWidget"><span class="returnvalue">GtkWidget</span></GTKDOCLINK> *         <a class="link" href="gnome-disk-utility-gdu-confirmation-dialog.html#gdu-confirmation-dialog-new" title="gdu_confirmation_dialog_new ()">gdu_confirmation_dialog_new</a>         (<GTKDOCLINK HREF="GtkWindow"><span class="returnvalue">GtkWindow</span></GTKDOCLINK> *parent,
+                                                         <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *presentable,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *message,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *button_text);
+<GTKDOCLINK HREF="GtkWidget"><span class="returnvalue">GtkWidget</span></GTKDOCLINK> *         <a class="link" href="gnome-disk-utility-gdu-confirmation-dialog.html#gdu-confirmation-dialog-new-for-drive" title="gdu_confirmation_dialog_new_for_drive ()">gdu_confirmation_dialog_new_for_drive</a>
+                                                        (<GTKDOCLINK HREF="GtkWindow"><span class="returnvalue">GtkWindow</span></GTKDOCLINK> *parent,
+                                                         <a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *message,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *button_text);
+<GTKDOCLINK HREF="GtkWidget"><span class="returnvalue">GtkWidget</span></GTKDOCLINK> *         <a class="link" href="gnome-disk-utility-gdu-confirmation-dialog.html#gdu-confirmation-dialog-new-for-volume" title="gdu_confirmation_dialog_new_for_volume ()">gdu_confirmation_dialog_new_for_volume</a>
+                                                        (<GTKDOCLINK HREF="GtkWindow"><span class="returnvalue">GtkWindow</span></GTKDOCLINK> *parent,
+                                                         <a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *message,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *button_text);
 </pre>
 </div>
 <div class="refsect1" title="Description">
@@ -107,18 +82,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 <hr>
 <div class="refsect2" title="gdu_confirmation_dialog_new ()">
 <a name="gdu-confirmation-dialog-new"></a><h3>gdu_confirmation_dialog_new ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"
->GtkWidget</a> *         gdu_confirmation_dialog_new         (<a
-href="http://library.gnome.org/devel/gtk/unstable/GtkWindow.html"
->GtkWindow</a> *parent,
-                                                         GduPresentable *presentable,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *message,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *button_text);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="GtkWidget"><span class="returnvalue">GtkWidget</span></GTKDOCLINK> *         gdu_confirmation_dialog_new         (<GTKDOCLINK HREF="GtkWindow"><span class="returnvalue">GtkWindow</span></GTKDOCLINK> *parent,
+                                                         <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *presentable,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *message,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *button_text);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -155,19 +122,11 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 <hr>
 <div class="refsect2" title="gdu_confirmation_dialog_new_for_drive ()">
 <a name="gdu-confirmation-dialog-new-for-drive"></a><h3>gdu_confirmation_dialog_new_for_drive ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"
->GtkWidget</a> *         gdu_confirmation_dialog_new_for_drive
-                                                        (<a
-href="http://library.gnome.org/devel/gtk/unstable/GtkWindow.html"
->GtkWindow</a> *parent,
-                                                         <a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *message,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *button_text);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="GtkWidget"><span class="returnvalue">GtkWidget</span></GTKDOCLINK> *         gdu_confirmation_dialog_new_for_drive
+                                                        (<GTKDOCLINK HREF="GtkWindow"><span class="returnvalue">GtkWindow</span></GTKDOCLINK> *parent,
+                                                         <a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *message,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *button_text);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -204,19 +163,11 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 <hr>
 <div class="refsect2" title="gdu_confirmation_dialog_new_for_volume ()">
 <a name="gdu-confirmation-dialog-new-for-volume"></a><h3>gdu_confirmation_dialog_new_for_volume ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"
->GtkWidget</a> *         gdu_confirmation_dialog_new_for_volume
-                                                        (<a
-href="http://library.gnome.org/devel/gtk/unstable/GtkWindow.html"
->GtkWindow</a> *parent,
-                                                         <a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *message,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *button_text);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="GtkWidget"><span class="returnvalue">GtkWidget</span></GTKDOCLINK> *         gdu_confirmation_dialog_new_for_volume
+                                                        (<GTKDOCLINK HREF="GtkWindow"><span class="returnvalue">GtkWindow</span></GTKDOCLINK> *parent,
+                                                         <a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *message,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *button_text);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -254,6 +205,6 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.11</div>
+          Generated by GTK-Doc V1.13</div>
 </body>
 </html>
