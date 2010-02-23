@@ -3,17 +3,17 @@ Author: Martin Pitt <martin.pitt@ubuntu.com>
 Origin: Ubuntu
 Index: gnome-disk-utility/data/gdu-notification-daemon.desktop.in
 ===================================================================
---- gnome-disk-utility.orig/data/gdu-notification-daemon.desktop.in	2010-02-12 17:06:47.000000000 +0100
-+++ gnome-disk-utility/data/gdu-notification-daemon.desktop.in	2010-02-12 17:07:25.000000000 +0100
+--- gnome-disk-utility.orig/data/gdu-notification-daemon.desktop.in	2010-02-23 23:44:37.000000000 +0100
++++ gnome-disk-utility/data/gdu-notification-daemon.desktop.in	2010-02-23 23:46:21.000000000 +0100
 @@ -12,3 +12,4 @@
  X-GNOME-Bugzilla-Component=notifications
- X-GNOME-Bugzilla-Version=2.29.0
+ X-GNOME-Bugzilla-Version=2.29.90
  #X-GNOME-AutoRestart=true
 +X-GNOME-Autostart-Delay=10
 Index: gnome-disk-utility/data/gdu-notification-daemon.desktop.in.in.in
 ===================================================================
---- gnome-disk-utility.orig/data/gdu-notification-daemon.desktop.in.in.in	2010-02-12 17:06:47.000000000 +0100
-+++ gnome-disk-utility/data/gdu-notification-daemon.desktop.in.in.in	2010-02-12 17:07:04.000000000 +0100
+--- gnome-disk-utility.orig/data/gdu-notification-daemon.desktop.in.in.in	2009-10-24 18:08:22.000000000 +0200
++++ gnome-disk-utility/data/gdu-notification-daemon.desktop.in.in.in	2010-02-23 23:46:21.000000000 +0100
 @@ -12,3 +12,4 @@
  X-GNOME-Bugzilla-Component=notifications
  X-GNOME-Bugzilla-Version=@VERSION@
