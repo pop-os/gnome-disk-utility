@@ -1,11 +1,11 @@
-gnome-disk-utility (2.29.90-1) UNRELEASED; urgency=low
+gnome-disk-utility (2.29.90-1) experimental; urgency=low
 
   * New upstream release.
   * 01_delay_autostart.patch: Refresh for new release.
   * debian/libgdu0.symbols: Add new symbol from this release, and bump symbol
     versions from previous git snapshot versions to 2.29.90.
 
- -- Martin Pitt <mpitt@debian.org>  Tue, 23 Feb 2010 23:45:23 +0100
+ -- Martin Pitt <mpitt@debian.org>  Wed, 24 Feb 2010 00:00:55 +0100
 
 gnome-disk-utility (2.29.0~git20100222.e85476-1) experimental; urgency=low
 
