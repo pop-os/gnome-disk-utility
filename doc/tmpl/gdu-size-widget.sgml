@@ -9,12 +9,10 @@ gdu-size-widget
 
 </para>
 
-
 <!-- ##### SECTION See_Also ##### -->
 <para>
 
 </para>
-
 
 <!-- ##### SECTION Stability_Level ##### -->
 
@@ -36,7 +34,7 @@ gdu-size-widget
 
 </para>
 
-@grid: 
+@widget: 
 
 
 <!-- ##### FUNCTION gdu_size_widget_new ##### -->

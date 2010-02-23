@@ -9,12 +9,10 @@ gdu-types
 
 </para>
 
-
 <!-- ##### SECTION See_Also ##### -->
 <para>
 
 </para>
-
 
 <!-- ##### SECTION Stability_Level ##### -->
 
@@ -40,143 +38,143 @@ gdu-types
 
 </para>
 
-@gdupool: the object which received the signal.
-@arg1: 
+@: 
+@: 
 
 <!-- ##### SIGNAL GduPool::adapter-changed ##### -->
 <para>
 
 </para>
 
-@gdupool: the object which received the signal.
-@arg1: 
+@: 
+@: 
 
 <!-- ##### SIGNAL GduPool::adapter-removed ##### -->
 <para>
 
 </para>
 
-@gdupool: the object which received the signal.
-@arg1: 
+@: 
+@: 
 
 <!-- ##### SIGNAL GduPool::device-added ##### -->
 <para>
 
 </para>
 
-@gdupool: the object which received the signal.
-@arg1: 
+@: 
+@: 
 
 <!-- ##### SIGNAL GduPool::device-changed ##### -->
 <para>
 
 </para>
 
-@gdupool: the object which received the signal.
-@arg1: 
+@: 
+@: 
 
 <!-- ##### SIGNAL GduPool::device-job-changed ##### -->
 <para>
 
 </para>
 
-@gdupool: the object which received the signal.
-@arg1: 
+@: 
+@: 
 
 <!-- ##### SIGNAL GduPool::device-removed ##### -->
 <para>
 
 </para>
 
-@gdupool: the object which received the signal.
-@arg1: 
+@: 
+@: 
 
 <!-- ##### SIGNAL GduPool::disconnected ##### -->
 <para>
 
 </para>
 
-@gdupool: the object which received the signal.
+@: 
 
 <!-- ##### SIGNAL GduPool::expander-added ##### -->
 <para>
 
 </para>
 
-@gdupool: the object which received the signal.
-@arg1: 
+@: 
+@: 
 
 <!-- ##### SIGNAL GduPool::expander-changed ##### -->
 <para>
 
 </para>
 
-@gdupool: the object which received the signal.
-@arg1: 
+@: 
+@: 
 
 <!-- ##### SIGNAL GduPool::expander-removed ##### -->
 <para>
 
 </para>
 
-@gdupool: the object which received the signal.
-@arg1: 
+@: 
+@: 
 
 <!-- ##### SIGNAL GduPool::port-added ##### -->
 <para>
 
 </para>
 
-@gdupool: the object which received the signal.
-@arg1: 
+@: 
+@: 
 
 <!-- ##### SIGNAL GduPool::port-changed ##### -->
 <para>
 
 </para>
 
-@gdupool: the object which received the signal.
-@arg1: 
+@: 
+@: 
 
 <!-- ##### SIGNAL GduPool::port-removed ##### -->
 <para>
 
 </para>
 
-@gdupool: the object which received the signal.
-@arg1: 
+@: 
+@: 
 
 <!-- ##### SIGNAL GduPool::presentable-added ##### -->
 <para>
 
 </para>
 
-@gdupool: the object which received the signal.
-@arg1: 
+@: 
+@: 
 
 <!-- ##### SIGNAL GduPool::presentable-changed ##### -->
 <para>
 
 </para>
 
-@gdupool: the object which received the signal.
-@arg1: 
+@: 
+@: 
 
 <!-- ##### SIGNAL GduPool::presentable-job-changed ##### -->
 <para>
 
 </para>
 
-@gdupool: the object which received the signal.
-@arg1: 
+@: 
+@: 
 
 <!-- ##### SIGNAL GduPool::presentable-removed ##### -->
 <para>
 
 </para>
 
-@gdupool: the object which received the signal.
-@arg1: 
+@: 
+@: 
 
 <!-- ##### STRUCT GduDevice ##### -->
 <para>
@@ -189,21 +187,21 @@ gdu-types
 
 </para>
 
-@gdudevice: the object which received the signal.
+@: 
 
 <!-- ##### SIGNAL GduDevice::job-changed ##### -->
 <para>
 
 </para>
 
-@gdudevice: the object which received the signal.
+@: 
 
 <!-- ##### SIGNAL GduDevice::removed ##### -->
 <para>
 
 </para>
 
-@gdudevice: the object which received the signal.
+@: 
 
 <!-- ##### STRUCT GduAdapter ##### -->
 <para>

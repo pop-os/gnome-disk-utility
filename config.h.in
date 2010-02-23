@@ -39,6 +39,9 @@
 /* Define if nautilus is available */
 #undef HAVE_NAUTILUS
 
+/* Defined if remote access is enabled */
+#undef HAVE_REMOTE_ACCESS
+
 /* Define to 1 if you have the <stdint.h> header file. */
 #undef HAVE_STDINT_H
 

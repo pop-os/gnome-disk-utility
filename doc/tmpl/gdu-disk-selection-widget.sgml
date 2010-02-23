@@ -9,12 +9,10 @@ gdu-disk-selection-widget
 
 </para>
 
-
 <!-- ##### SECTION See_Also ##### -->
 <para>
 
 </para>
-
 
 <!-- ##### SECTION Stability_Level ##### -->
 
@@ -36,7 +34,7 @@ gdu-disk-selection-widget
 
 </para>
 
-@grid: 
+@widget: 
 
 
 <!-- ##### FUNCTION is_drive_ignored ##### -->

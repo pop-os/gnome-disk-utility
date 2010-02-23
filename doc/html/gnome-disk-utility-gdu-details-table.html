@@ -8,7 +8,7 @@
 <link rel="up" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
 <link rel="prev" href="gnome-disk-utility-gdu-details-element.html" title="gdu-details-element">
 <link rel="next" href="gnome-disk-utility-gdu-button-element.html" title="gdu-button-element">
-<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="reference" href="ref-libgdu.html" title="libgdu API Reference">
 <link rel="reference" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
@@ -24,8 +24,8 @@
 </tr>
 <tr><td colspan="5" class="shortcuts">
 <a href="#gnome-disk-utility-gdu-details-table.synopsis" class="shortcut">Top</a>
-                 | 
-                <a href="#gnome-disk-utility-gdu-details-table.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#gnome-disk-utility-gdu-details-table.description" class="shortcut">Description</a>
 </td></tr>
 </table>
 <div class="refentry" title="gdu-details-table">
@@ -39,31 +39,16 @@
 </tr></table></div>
 <div class="refsynopsisdiv" title="Synopsis">
 <a name="gnome-disk-utility-gdu-details-table.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">
-typedef             <a class="link" href="gnome-disk-utility-gdu-details-table.html#GduDetailsTableClass" title="GduDetailsTableClass">GduDetailsTableClass</a>;
+<pre class="synopsis">typedef             <a class="link" href="gnome-disk-utility-gdu-details-table.html#GduDetailsTableClass" title="GduDetailsTableClass">GduDetailsTableClass</a>;
 typedef             <a class="link" href="gnome-disk-utility-gdu-details-table.html#GduDetailsTablePrivate" title="GduDetailsTablePrivate">GduDetailsTablePrivate</a>;
-<a
-href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"
->GtkWidget</a>*          <a class="link" href="gnome-disk-utility-gdu-details-table.html#gdu-details-table-new" title="gdu_details_table_new ()">gdu_details_table_new</a>               (<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a> num_columns,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"
->GPtrArray</a> *elements);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a>               <a class="link" href="gnome-disk-utility-gdu-details-table.html#gdu-details-table-get-num-columns" title="gdu_details_table_get_num_columns ()">gdu_details_table_get_num_columns</a>   (GduDetailsTable *table);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"
->GPtrArray</a> *         <a class="link" href="gnome-disk-utility-gdu-details-table.html#gdu-details-table-get-elements" title="gdu_details_table_get_elements ()">gdu_details_table_get_elements</a>      (GduDetailsTable *table);
-void                <a class="link" href="gnome-disk-utility-gdu-details-table.html#gdu-details-table-set-num-columns" title="gdu_details_table_set_num_columns ()">gdu_details_table_set_num_columns</a>   (GduDetailsTable *table,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a> num_columns);
-void                <a class="link" href="gnome-disk-utility-gdu-details-table.html#gdu-details-table-set-elements" title="gdu_details_table_set_elements ()">gdu_details_table_set_elements</a>      (GduDetailsTable *table,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"
->GPtrArray</a> *elements);
+<GTKDOCLINK HREF="GtkWidget"><span class="returnvalue">GtkWidget</span></GTKDOCLINK>*          <a class="link" href="gnome-disk-utility-gdu-details-table.html#gdu-details-table-new" title="gdu_details_table_new ()">gdu_details_table_new</a>               (<GTKDOCLINK HREF="guint"><span class="returnvalue">guint</span></GTKDOCLINK> num_columns,
+                                                         <GTKDOCLINK HREF="GPtrArray"><span class="returnvalue">GPtrArray</span></GTKDOCLINK> *elements);
+<GTKDOCLINK HREF="guint"><span class="returnvalue">guint</span></GTKDOCLINK>               <a class="link" href="gnome-disk-utility-gdu-details-table.html#gdu-details-table-get-num-columns" title="gdu_details_table_get_num_columns ()">gdu_details_table_get_num_columns</a>   (<GTKDOCLINK HREF="GduDetailsTable"><span class="returnvalue">GduDetailsTable</span></GTKDOCLINK> *table);
+<GTKDOCLINK HREF="GPtrArray"><span class="returnvalue">GPtrArray</span></GTKDOCLINK> *         <a class="link" href="gnome-disk-utility-gdu-details-table.html#gdu-details-table-get-elements" title="gdu_details_table_get_elements ()">gdu_details_table_get_elements</a>      (<GTKDOCLINK HREF="GduDetailsTable"><span class="returnvalue">GduDetailsTable</span></GTKDOCLINK> *table);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                <a class="link" href="gnome-disk-utility-gdu-details-table.html#gdu-details-table-set-num-columns" title="gdu_details_table_set_num_columns ()">gdu_details_table_set_num_columns</a>   (<GTKDOCLINK HREF="GduDetailsTable"><span class="returnvalue">GduDetailsTable</span></GTKDOCLINK> *table,
+                                                         <GTKDOCLINK HREF="guint"><span class="returnvalue">guint</span></GTKDOCLINK> num_columns);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                <a class="link" href="gnome-disk-utility-gdu-details-table.html#gdu-details-table-set-elements" title="gdu_details_table_set_elements ()">gdu_details_table_set_elements</a>      (<GTKDOCLINK HREF="GduDetailsTable"><span class="returnvalue">GduDetailsTable</span></GTKDOCLINK> *table,
+                                                         <GTKDOCLINK HREF="GPtrArray"><span class="returnvalue">GPtrArray</span></GTKDOCLINK> *elements);
 </pre>
 </div>
 <div class="refsect1" title="Description">
@@ -91,14 +76,8 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtr
 <hr>
 <div class="refsect2" title="gdu_details_table_new ()">
 <a name="gdu-details-table-new"></a><h3>gdu_details_table_new ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"
->GtkWidget</a>*          gdu_details_table_new               (<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a> num_columns,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"
->GPtrArray</a> *elements);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="GtkWidget"><span class="returnvalue">GtkWidget</span></GTKDOCLINK>*          gdu_details_table_new               (<GTKDOCLINK HREF="guint"><span class="returnvalue">guint</span></GTKDOCLINK> num_columns,
+                                                         <GTKDOCLINK HREF="GPtrArray"><span class="returnvalue">GPtrArray</span></GTKDOCLINK> *elements);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -125,9 +104,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtr
 <hr>
 <div class="refsect2" title="gdu_details_table_get_num_columns ()">
 <a name="gdu-details-table-get-num-columns"></a><h3>gdu_details_table_get_num_columns ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a>               gdu_details_table_get_num_columns   (GduDetailsTable *table);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="guint"><span class="returnvalue">guint</span></GTKDOCLINK>               gdu_details_table_get_num_columns   (<GTKDOCLINK HREF="GduDetailsTable"><span class="returnvalue">GduDetailsTable</span></GTKDOCLINK> *table);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -149,9 +126,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 <hr>
 <div class="refsect2" title="gdu_details_table_get_elements ()">
 <a name="gdu-details-table-get-elements"></a><h3>gdu_details_table_get_elements ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"
->GPtrArray</a> *         gdu_details_table_get_elements      (GduDetailsTable *table);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="GPtrArray"><span class="returnvalue">GPtrArray</span></GTKDOCLINK> *         gdu_details_table_get_elements      (<GTKDOCLINK HREF="GduDetailsTable"><span class="returnvalue">GduDetailsTable</span></GTKDOCLINK> *table);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -173,10 +148,8 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtr
 <hr>
 <div class="refsect2" title="gdu_details_table_set_num_columns ()">
 <a name="gdu-details-table-set-num-columns"></a><h3>gdu_details_table_set_num_columns ()</h3>
-<pre class="programlisting">void                gdu_details_table_set_num_columns   (GduDetailsTable *table,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a> num_columns);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                gdu_details_table_set_num_columns   (<GTKDOCLINK HREF="GduDetailsTable"><span class="returnvalue">GduDetailsTable</span></GTKDOCLINK> *table,
+                                                         <GTKDOCLINK HREF="guint"><span class="returnvalue">guint</span></GTKDOCLINK> num_columns);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -198,10 +171,8 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
 <hr>
 <div class="refsect2" title="gdu_details_table_set_elements ()">
 <a name="gdu-details-table-set-elements"></a><h3>gdu_details_table_set_elements ()</h3>
-<pre class="programlisting">void                gdu_details_table_set_elements      (GduDetailsTable *table,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"
->GPtrArray</a> *elements);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                gdu_details_table_set_elements      (<GTKDOCLINK HREF="GduDetailsTable"><span class="returnvalue">GduDetailsTable</span></GTKDOCLINK> *table,
+                                                         <GTKDOCLINK HREF="GPtrArray"><span class="returnvalue">GPtrArray</span></GTKDOCLINK> *elements);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -224,6 +195,6 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtr
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.11</div>
+          Generated by GTK-Doc V1.13</div>
 </body>
 </html>

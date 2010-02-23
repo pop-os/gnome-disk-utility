@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-gdu-presentable
+GduPresentable
 
 <!-- ##### SECTION Short_Description ##### -->
 
@@ -9,37 +9,13 @@ gdu-presentable
 
 </para>
 
-
 <!-- ##### SECTION See_Also ##### -->
 <para>
 
 </para>
 
-
 <!-- ##### SECTION Stability_Level ##### -->
 
-
-<!-- ##### STRUCT GduPresentableIface ##### -->
-<para>
-
-</para>
-
-@g_iface: 
-@changed: 
-@removed: 
-@job_changed: 
-@get_id: 
-@get_device: 
-@get_enclosing_presentable: 
-@get_name: 
-@get_description: 
-@get_vpd_name: 
-@get_icon: 
-@get_offset: 
-@get_size: 
-@get_pool: 
-@is_allocated: 
-@is_recognized: 
 
 <!-- ##### FUNCTION gdu_presentable_get_id ##### -->
 <para>

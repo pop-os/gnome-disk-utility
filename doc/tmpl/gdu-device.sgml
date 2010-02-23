@@ -9,12 +9,10 @@ GduDevice
 
 </para>
 
-
 <!-- ##### SECTION See_Also ##### -->
 <para>
 
 </para>
-
 
 <!-- ##### SECTION Stability_Level ##### -->
 
@@ -1229,6 +1227,15 @@ GduDevice
 
 @device: 
 @out_size: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_should_ignore ##### -->
+<para>
+
+</para>
+
+@device: 
 @Returns: 
 
 

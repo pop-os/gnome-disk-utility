@@ -712,6 +712,12 @@ AC_DEFUN([GTK_DOC_CHECK],
 [
   AC_BEFORE([AC_PROG_LIBTOOL],[$0])dnl setup libtool first
   AC_BEFORE([AM_PROG_LIBTOOL],[$0])dnl setup libtool first
+
+  dnl check for tools we added during development
+  AC_PATH_PROG([GTKDOC_CHECK],[gtkdoc-check])
+  AC_PATH_PROGS([GTKDOC_REBASE],[gtkdoc-rebase],[true])
+  AC_PATH_PROG([GTKDOC_MKPDF],[gtkdoc-mkpdf])
+
   dnl for overriding the documentation installation directory
   AC_ARG_WITH([html-dir],
     AS_HELP_STRING([--with-html-dir=PATH], [path to installed docs]),,
@@ -730,16 +736,32 @@ AC_DEFUN([GTK_DOC_CHECK],
       [PKG_CHECK_EXISTS([gtk-doc],,
                         AC_MSG_ERROR([gtk-doc not installed and --enable-gtk-doc requested]))],
       [PKG_CHECK_EXISTS([gtk-doc >= $1],,
-                        AC_MSG_ERROR([You need to have gtk-doc >= $1 installed to build gtk-doc]))])
+                        AC_MSG_ERROR([You need to have gtk-doc >= $1 installed to build $PACKAGE_NAME]))])
   fi
 
   AC_MSG_CHECKING([whether to build gtk-doc documentation])
   AC_MSG_RESULT($enable_gtk_doc)
 
-  AC_PATH_PROGS(GTKDOC_CHECK,gtkdoc-check,)
+  dnl enable/disable output formats
+  AC_ARG_ENABLE([gtk-doc-html],
+    AS_HELP_STRING([--enable-gtk-doc-html],
+                   [build documentation in html format [[default=yes]]]),,
+    [enable_gtk_doc_html=yes])
+    AC_ARG_ENABLE([gtk-doc-pdf],
+      AS_HELP_STRING([--enable-gtk-doc-pdf],
+                     [build documentation in pdf format [[default=no]]]),,
+      [enable_gtk_doc_pdf=no])
+
+  if test -z "$GTKDOC_MKPDF"; then
+    enable_gtk_doc_pdf=no
+  fi
+
 
   AM_CONDITIONAL([ENABLE_GTK_DOC], [test x$enable_gtk_doc = xyes])
+  AM_CONDITIONAL([GTK_DOC_BUILD_HTML], [test x$enable_gtk_doc_html = xyes])
+  AM_CONDITIONAL([GTK_DOC_BUILD_PDF], [test x$enable_gtk_doc_pdf = xyes])
   AM_CONDITIONAL([GTK_DOC_USE_LIBTOOL], [test -n "$LIBTOOL"])
+  AM_CONDITIONAL([GTK_DOC_USE_REBASE], [test -n "$GTKDOC_REBASE"])
 ])
 
 
@@ -3377,7 +3399,7 @@ linux*oldld* | linux*aout* | linux*coff*)
   ;;
 
 # This must be Linux ELF.
-linux* | k*bsd*-gnu | kopensolaris*-gnu)
+linux* | k*bsd*-gnu)
   version_type=linux
   need_lib_prefix=no
   need_version=no
@@ -3402,10 +3424,13 @@ linux* | k*bsd*-gnu | kopensolaris*-gnu)
   # before this can be enabled.
   hardcode_into_libs=yes
 
+  # Add ABI-specific directories to the system library path.
+  sys_lib_dlsearch_path_spec="/lib64 /usr/lib64 /lib /usr/lib"
+
   # Append ld.so.conf contents to the search path
   if test -f /etc/ld.so.conf; then
     lt_ld_extra=`awk '/^include / { system(sprintf("cd /etc; cat %s 2>/dev/null", \[$]2)); skip = 1; } { if (!skip) print \[$]0; skip = 0; }' < /etc/ld.so.conf | $SED -e 's/#.*//;/^[	 ]*hwcap[	 ]/d;s/[:,	]/ /g;s/=[^=]*$//;s/=[^= ]* / /g;/^$/d' | tr '\n' ' '`
-    sys_lib_dlsearch_path_spec="/lib /usr/lib $lt_ld_extra"
+    sys_lib_dlsearch_path_spec="$sys_lib_dlsearch_path_spec $lt_ld_extra"
   fi
 
   # We used to test for /lib/ld.so.1 and disable shared libraries on
@@ -3415,18 +3440,6 @@ linux* | k*bsd*-gnu | kopensolaris*-gnu)
   # people can always --disable-shared, the test was removed, and we
   # assume the GNU/Linux dynamic linker is in use.
   dynamic_linker='GNU/Linux ld.so'
-  ;;
-
-netbsdelf*-gnu)
-  version_type=linux
-  need_lib_prefix=no
-  need_version=no
-  library_names_spec='${libname}${release}${shared_ext}$versuffix ${libname}${release}${shared_ext}$major ${libname}${shared_ext}'
-  soname_spec='${libname}${release}${shared_ext}$major'
-  shlibpath_var=LD_LIBRARY_PATH
-  shlibpath_overrides_runpath=no
-  hardcode_into_libs=yes
-  dynamic_linker='NetBSD ld.elf_so'
   ;;
 
 netbsd*)
@@ -4016,11 +4029,11 @@ irix5* | irix6* | nonstopux*)
   ;;
 
 # This must be Linux ELF.
-linux* | k*bsd*-gnu | kopensolaris*-gnu)
+linux* | k*bsd*-gnu)
   lt_cv_deplibs_check_method=pass_all
   ;;
 
-netbsd* | netbsdelf*-gnu)
+netbsd*)
   if echo __ELF__ | $CC -E - | $GREP __ELF__ > /dev/null; then
     lt_cv_deplibs_check_method='match_pattern /lib[[^/]]+(\.so\.[[0-9]]+\.[[0-9]]+|_pic\.a)$'
   else
@@ -4637,7 +4650,7 @@ m4_if([$1], [CXX], [
 	    ;;
 	esac
 	;;
-      linux* | k*bsd*-gnu | kopensolaris*-gnu)
+      linux* | k*bsd*-gnu)
 	case $cc_basename in
 	  KCC*)
 	    # KAI C++ Compiler
@@ -4701,7 +4714,7 @@ m4_if([$1], [CXX], [
 	    ;;
 	esac
 	;;
-      netbsd* | netbsdelf*-gnu)
+      netbsd*)
 	;;
       *qnx* | *nto*)
         # QNX uses GNU C++, but need to define -shared option too, otherwise
@@ -4921,7 +4934,7 @@ m4_if([$1], [CXX], [
       _LT_TAGVAR(lt_prog_compiler_static, $1)='-non_shared'
       ;;
 
-    linux* | k*bsd*-gnu | kopensolaris*-gnu)
+    linux* | k*bsd*-gnu)
       case $cc_basename in
       # old Intel for x86_64 which still supported -KPIC.
       ecc*)
@@ -5126,9 +5139,6 @@ m4_if([$1], [CXX], [
   cygwin* | mingw* | cegcc*)
     _LT_TAGVAR(export_symbols_cmds, $1)='$NM $libobjs $convenience | $global_symbol_pipe | $SED -e '\''/^[[BCDGRS]][[ ]]/s/.*[[ ]]\([[^ ]]*\)/\1 DATA/;/^.*[[ ]]__nm__/s/^.*[[ ]]__nm__\([[^ ]]*\)[[ ]][[^ ]]*/\1 DATA/;/^I[[ ]]/d;/^[[AITW]][[ ]]/s/.* //'\'' | sort | uniq > $export_symbols'
   ;;
-  linux* | k*bsd*-gnu)
-    _LT_TAGVAR(link_all_deplibs, $1)=no
-  ;;
   *)
     _LT_TAGVAR(export_symbols_cmds, $1)='$NM $libobjs $convenience | $global_symbol_pipe | $SED '\''s/.* //'\'' | sort | uniq > $export_symbols'
   ;;
@@ -5193,9 +5203,6 @@ dnl Note also adjust exclude_expsyms for C++ above.
   openbsd*)
     with_gnu_ld=no
     ;;
-  linux* | k*bsd*-gnu)
-    _LT_TAGVAR(link_all_deplibs, $1)=no
-    ;;
   esac
 
   _LT_TAGVAR(ld_shlibs, $1)=yes
@@ -5217,7 +5224,6 @@ dnl Note also adjust exclude_expsyms for C++ above.
     fi
     supports_anon_versioning=no
     case `$LD -v 2>&1` in
-      *GNU\ gold*) supports_anon_versioning=yes ;;
       *\ [[01]].* | *\ 2.[[0-9]].* | *\ 2.10.*) ;; # catch versions < 2.11
       *\ 2.11.93.0.2\ *) supports_anon_versioning=yes ;; # RH7.3 ...
       *\ 2.11.92.0.12\ *) supports_anon_versioning=yes ;; # Mandrake 8.2 ...
@@ -5309,7 +5315,7 @@ _LT_EOF
       _LT_TAGVAR(archive_expsym_cmds, $1)='sed "s,^,_," $export_symbols >$output_objdir/$soname.expsym~$CC -shared $pic_flag $libobjs $deplibs $compiler_flags ${wl}-h,$soname ${wl}--retain-symbols-file,$output_objdir/$soname.expsym ${wl}--image-base,`expr ${RANDOM-$$} % 4096 / 2 \* 262144 + 1342177280` -o $lib'
       ;;
 
-    gnu* | linux* | tpf* | k*bsd*-gnu | kopensolaris*-gnu)
+    gnu* | linux* | tpf* | k*bsd*-gnu)
       tmp_diet=no
       if test "$host_os" = linux-dietlibc; then
 	case $cc_basename in
@@ -5379,7 +5385,7 @@ _LT_EOF
       fi
       ;;
 
-    netbsd* | netbsdelf*-gnu)
+    netbsd*)
       if echo __ELF__ | $CC -E - | $GREP __ELF__ >/dev/null; then
 	_LT_TAGVAR(archive_cmds, $1)='$LD -Bshareable $libobjs $deplibs $linker_flags -o $lib'
 	wlarc=
@@ -5554,7 +5560,6 @@ _LT_EOF
 	if test "$aix_use_runtimelinking" = yes; then
 	  shared_flag="$shared_flag "'${wl}-G'
 	fi
-	_LT_TAGVAR(link_all_deplibs, $1)=no
       else
 	# not using gcc
 	if test "$host_cpu" = ia64; then
@@ -5793,7 +5798,7 @@ _LT_EOF
       _LT_TAGVAR(link_all_deplibs, $1)=yes
       ;;
 
-    netbsd* | netbsdelf*-gnu)
+    netbsd*)
       if echo __ELF__ | $CC -E - | $GREP __ELF__ >/dev/null; then
 	_LT_TAGVAR(archive_cmds, $1)='$LD -Bshareable -o $lib $libobjs $deplibs $linker_flags'  # a.out
       else
@@ -6789,7 +6794,7 @@ if test "$_lt_caught_CXX_error" != yes; then
         _LT_TAGVAR(inherit_rpath, $1)=yes
         ;;
 
-      linux* | k*bsd*-gnu | kopensolaris*-gnu)
+      linux* | k*bsd*-gnu)
         case $cc_basename in
           KCC*)
 	    # Kuck and Associates, Inc. (KAI) C++ Compiler
@@ -9002,16 +9007,14 @@ fi])
 # _PKG_CONFIG([VARIABLE], [COMMAND], [MODULES])
 # ---------------------------------------------
 m4_define([_PKG_CONFIG],
-[if test -n "$PKG_CONFIG"; then
-    if test -n "$$1"; then
-        pkg_cv_[]$1="$$1"
-    else
-        PKG_CHECK_EXISTS([$3],
-                         [pkg_cv_[]$1=`$PKG_CONFIG --[]$2 "$3" 2>/dev/null`],
-			 [pkg_failed=yes])
-    fi
-else
-	pkg_failed=untried
+[if test -n "$$1"; then
+    pkg_cv_[]$1="$$1"
+ elif test -n "$PKG_CONFIG"; then
+    PKG_CHECK_EXISTS([$3],
+                     [pkg_cv_[]$1=`$PKG_CONFIG --[]$2 "$3" 2>/dev/null`],
+		     [pkg_failed=yes])
+ else
+    pkg_failed=untried
 fi[]dnl
 ])# _PKG_CONFIG
 
@@ -9055,9 +9058,9 @@ See the pkg-config man page for more details.])
 if test $pkg_failed = yes; then
         _PKG_SHORT_ERRORS_SUPPORTED
         if test $_pkg_short_errors_supported = yes; then
-	        $1[]_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "$2"`
+	        $1[]_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "$2" 2>&1`
         else 
-	        $1[]_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "$2"`
+	        $1[]_PKG_ERRORS=`$PKG_CONFIG --print-errors "$2" 2>&1`
         fi
 	# Put the nasty error message in config.log where it belongs
 	echo "$$1[]_PKG_ERRORS" >&AS_MESSAGE_LOG_FD
