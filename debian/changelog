@@ -3,6 +3,8 @@ gnome-disk-utility (2.29.90-2) UNRELEASED; urgency=low
   * debian/libgdu-gtk0.symbols
     - Bump symbol versions to 2.29.90 for all symbols that were added after
       version 2.28.1.
+  * debian/control
+    - Bump Build-Depends on libglib2.0-dev to (>= 2.22).
 
  -- Michael Biebl <biebl@debian.org>  Wed, 24 Feb 2010 00:44:56 +0100
 
