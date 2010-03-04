@@ -1,3 +1,4 @@
 usr/lib/libgdu.so
 usr/lib/pkgconfig/gdu.pc
 usr/include/gnome-disk-utility/gdu/
+/usr/share/gtk-doc/
