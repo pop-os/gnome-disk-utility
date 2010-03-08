@@ -29,7 +29,7 @@ Homepage: http://git.gnome.org/cgit/gnome-disk-utility/
 
 Package: gnome-disk-utility
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, devicekit-disks (>= 007)
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: manage and configure disk drives and media
  palimpsest (from the gnome-disk-utility project) is a tool to manage disk
  drives and media:
@@ -43,7 +43,7 @@ Description: manage and configure disk drives and media
 Package: libgdu0
 Architecture: any
 Section: libs
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, devicekit-disks (>= 009-2)
 Description: GObject based Disk Utility Library
  The gnome-disk-utility library provides an user-space interface to the
  DeviceKit-disks objects and properties (such as drives, volumes, SMART data),
