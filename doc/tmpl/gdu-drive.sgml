@@ -23,6 +23,15 @@ GduDrive
 </para>
 
 
+<!-- ##### ENUM GduCreateVolumeFlags ##### -->
+<para>
+
+</para>
+
+@GDU_CREATE_VOLUME_FLAGS_NONE: 
+@GDU_CREATE_VOLUME_FLAGS_LINUX_MD: 
+@GDU_CREATE_VOLUME_FLAGS_LINUX_LVM2: 
+
 <!-- ##### STRUCT GduDrive ##### -->
 <para>
 
@@ -86,15 +95,60 @@ GduDrive
 @user_data: 
 
 
-<!-- ##### FUNCTION gdu_drive_has_unallocated_space ##### -->
+<!-- ##### FUNCTION gdu_drive_can_create_volume ##### -->
 <para>
 
 </para>
 
 @drive: 
-@out_whole_disk_is_unitialized: 
-@out_largest_segment: 
+@out_is_uninitialized: 
+@out_largest_contiguous_free_segment: 
+@out_total_free: 
 @out_presentable: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_drive_create_volume ##### -->
+<para>
+
+</para>
+
+@drive: 
+@size: 
+@name: 
+@flags: 
+@callback: 
+@user_data: 
+
+
+<!-- ##### FUNCTION gdu_drive_create_volume_finish ##### -->
+<para>
+
+</para>
+
+@drive: 
+@res: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_drive_count_mbr_partitions ##### -->
+<para>
+
+</para>
+
+@drive: 
+@out_num_primary_partitions: 
+@out_has_extended_partition: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_drive_get_volumes ##### -->
+<para>
+
+</para>
+
+@drive: 
 @Returns: 
 
 

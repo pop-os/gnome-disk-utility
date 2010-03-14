@@ -9,19 +9,13 @@ msgstr ""
 "Project-Id-Version: gnome-disk-utility.master.or\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-disk-utility&component=general\n"
 "POT-Creation-Date: 2009-08-25 11:07+0000\n"
-"PO-Revision-Date: 2009-09-21 14:55+0530\n"
+"PO-Revision-Date: 2009-09-14 19:01+0530\n"
 "Last-Translator: Manoj Kumar Giri <mgiri@redhat.com>\n"
 "Language-Team: Oriya <oriya-it@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=2; plural=(n!=1);\n\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"\n"
 "\n"
 "\n"
 "\n"
@@ -1030,36 +1024,28 @@ msgid ""
 "A popular format compatible with almost any device or system, typically used "
 "for file exchange."
 msgstr ""
-"ପାଖାପାଖି ଯେକୌଣସି ଉପକରଣ ଅଥବା ତନ୍ତ୍ର ସହିତ ସୁସଙ୍ଗତ ଗୋଟିଏ ପ୍ରସିଦ୍ଧ ଶୈଳୀ, ସାଧାରଣତଃ ଫାଇଲ "
-"ଅଦଳ ବଦଳରେ ବ୍ୟବହୃତ ହୋଇଥାଏ।"
 
 #: ../src/gdu/gdu-util.c:501
 msgid ""
 "This file system is compatible with Linux systems only and provides classic "
 "UNIX file permissions support. This file system does not use a journal."
 msgstr ""
-"ଏହି ଫାଇଲତନ୍ତ୍ରଟି କେବଳ Linux ତନ୍ତ୍ର ସହିତ ସୁସଂଗତ ଏବଂ UNIX ଫାଇଲ ଅନୁମତିକୁ ସମର୍ଥନ କରିଥାଏ। "
-"ଏହି ଫାଇଲ ତନ୍ତ୍ର ପତ୍ରିକା ବ୍ୟବହାର କରେନାହିଁ।"
 
 #: ../src/gdu/gdu-util.c:507
 msgid ""
 "This file system is compatible with Linux systems only and provides classic "
 "UNIX file permissions support."
 msgstr ""
-"ଏହି ଫାଇଲତନ୍ତ୍ରଟି କେବଳ Linux ତନ୍ତ୍ର ସହିତ ସୁସଂଗତ ଏବଂ UNIX ଫାଇଲ "
-"ଅନୁମତିକୁ ସମର୍ଥନ କରିଥାଏ। "
 
 #: ../src/gdu/gdu-util.c:511
 msgid "Swap area used by the operating system for virtual memory."
-msgstr "ଆଭାସୀ ସ୍ମୃତି ସ୍ଥାନ ପାଇଁ ପ୍ରଚାଳନ ତନ୍ତ୍ରରେ ବ୍ୟବହୃତ Swap କ୍ଷେତ୍ର।"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:514
 msgid ""
 "The native Windows file system. Not widely compatible with other operating "
 "systems than Windows."
 msgstr ""
-"ମୂଳ Windows ଫାଇଲତନ୍ତ୍ର। Windows ବ୍ୟତୀତ ଅନ୍ୟାନ୍ୟ ପ୍ରଚାଳନ ତନ୍ତ୍ରଗୁଡ଼ିକ "
-"ସହିତ ସୁସଙ୍ଗତ ନୁହଁ।"
 
 #: ../src/gdu/gdu-util.c:518
 msgid "No file system will be created."
@@ -1075,32 +1061,24 @@ msgid ""
 "but has a number of limitations with respect to disk size and number of "
 "partitions."
 msgstr ""
-"ମୂଖ୍ୟ ବୁଟ ବିବରଣୀ ଯୋଜନା ଯେକୌଣସି ଉପକରଣ ଅଥବା ତନ୍ତ୍ର ସହିତ ସୁସଙ୍ଗତ କିନ୍ତୁ "
-"ଡିସ୍କ ଆକାର ଏବଂ ବିଭାଜନ ସଂଖ୍ୟା ସହିତ କିଛି ସୀମା ରହିଛି।"
 
 #: ../src/gdu/gdu-util.c:539
 msgid ""
 "A legacy scheme that is incompatible with most systems except Apple systems "
 "and most Linux systems. Not recommended for removable media."
 msgstr ""
-"ଗୋଟିଏ ପୁରୁଣା ଯୋଜନା ଯାହାକି Apple ତନ୍ତ୍ର ଏବଂ ଅଧିକାଂଶ Linux ତନ୍ତ୍ର ବ୍ୟତୀତ ଅଧିକାଂଶ ତନ୍ତ୍ର "
-"ସହିତ ସୁସଙ୍ଗତ। କଢ଼ାଯୋଗ୍ୟ ମେଡିଆ ପାଇଁ ପରାମର୍ଶିତ।"
 
 #: ../src/gdu/gdu-util.c:544
 msgid ""
 "The GUID scheme is compatible with most modern systems but may be "
 "incompatible with some devices and legacy systems."
 msgstr ""
-"GUID ଯୋଜନାଟି ଅଧିକାଂଶ ଆଧୁନିକ ତନ୍ତ୍ରଗୁଡ଼ିକ ସହିତ ସୁସଙ୍ଗତ କିନ୍ତୁ କିଛି ଉପକରଣ ଏବଂ "
-"ପୁରୁଣା ତନ୍ତ୍ର ସହିତ ଅସଙ୍ଗତ ହୋଇପାରେ।"
 
 #: ../src/gdu/gdu-util.c:548
 msgid ""
 "Marks the entire disk as unused. Use this option only if you want to avoid "
 "partitioning the disk for e.g. whole disk use or floppy / Zip disks."
 msgstr ""
-"ସମଗ୍ର ଡିସ୍କକୁ ବ୍ୟବହାର ହୋଇନଥିବା ପରି ଚିହ୍ନଟ କରନ୍ତୁ। କେବଳ ଏହି ବିକଳ୍ପକୁ ବ୍ୟବହାର କରନ୍ତୁ ଯଦି ଆପଣ "
-"ଡିସ୍କ ବିଭାଜନକୁ ଏଡ଼ାଇବାକୁ ଚାହୁଁଛନ୍ତି ଉଦାହରଣ ସ୍ୱରୂପ ସମଗ୍ର ଡିସ୍କ ବ୍ୟବହାର ଅଥବା floppy / Zip ଡିସ୍କଗୁଡ଼ିକ।"
 
 #: ../src/gdu/gdu-util.c:731 ../src/gdu-gtk/gdu-gtk.c:947
 #, c-format
@@ -1818,7 +1796,7 @@ msgstr "ଠିକ କରାହୋଇପାରୁ ନଥିବା ତ୍ରୁଟ
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:253
 msgid "Number of errors that could not be recovered using hardware ECC"
-msgstr "ହାର୍ଡୱେର ECC ବ୍ୟବହାର କରି ଠିକ କରାଯାଇପାରୁନଥିବା ତ୍ରୁଟି ସଂଖ୍ୟା"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -1852,7 +1830,7 @@ msgstr "G-sense ତ୍ରୁଟି ହାର"
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:277
 msgid "Frequency of mistakes as a result of impact loads"
-msgstr "ଧାରଣ ଉପରେ ପ୍ରଭାବ ପକାଉଥିବା ତ୍ରୁଟିର ବାରମ୍ବାରତା"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -1860,11 +1838,11 @@ msgstr "ଧାରଣ ଉପରେ ପ୍ରଭାବ ପକାଉଥିବା �
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:284
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:503
 msgid "Power-off Retract Count"
-msgstr "ବିଦ୍ୟୁତ ଶକ୍ତି-ଅଫ ଖଣ୍ଡନ ଗଣନା"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:285
 msgid "Number of power-off or emergency retract cycles"
-msgstr "ବିଦ୍ୟୁତ ଶକ୍ତି-ଅଫ ସଂଖ୍ୟା ଅଥବା ଜରୁରୀ ଖଣ୍ଡନ ଚକ୍ର"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -1876,7 +1854,7 @@ msgstr "ଧାରଣ/ଅବତରଣ ଚକ୍ର ଗଣନା"
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:293
 msgid "Number of cycles into landing zone position"
-msgstr "ଅବତରଣ କ୍ଷେତ୍ର ଅବସ୍ଥାନରେ ଚକ୍ର ସଂଖ୍ୟା"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -1977,7 +1955,7 @@ msgstr "ସଫ୍ଟ ପଠନ ତ୍ରୁଟି ହାର"
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:366
 msgid "Number of off-track errors"
-msgstr "ଅଫ-ଟ୍ରାକ ତ୍ରୁଟି ସଂଖ୍ୟା"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -1988,7 +1966,7 @@ msgstr "ତଥ୍ୟ ଠିକଣା ଚିହ୍ନଟ ତ୍ରୁଟିଗୁ
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:374
 msgid "Number of Data Address Mark (DAM) errors (or) vendor-specific"
-msgstr "ତଥ୍ୟ ଠିକଣା ଚିହ୍ନ (DAM) ତ୍ରୁଟି (or) ବିକ୍ରେତା-ନିର୍ଦ୍ଦିଷ୍ଟ"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -2054,7 +2032,7 @@ msgstr "ସ୍ପିନ ବଜ"
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:422
 msgid "Number of buzz routines to spin up the drive"
-msgstr "ଡ୍ରାଇଭକୁ ବୁଲାଇବା ପାଇଁ ବଜ ନିତ୍ୟକର୍ମ ସଂଖ୍ୟା"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -2065,7 +2043,7 @@ msgstr "ଅଫଲାଇନ ଆବଶ୍ୟକୀୟ କାର୍ୟ୍ୟକ୍�
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:430
 msgid "Drive's seek performance during offline operations"
-msgstr "ଅଫଲାଇନ ପ୍ରୟୋଗ ସମୟରେ ଡ୍ରାଇଭର କାର୍ଯ୍ୟକ୍ଷମତା"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -2078,11 +2056,11 @@ msgstr "ଡିସ୍କ ସିଫ୍ଟ"
 msgid ""
 "Shift of disk is possible as a result of strong shock loading in the store, "
 "as a result of falling (or) temperature"
-msgstr "ଡିସ୍କର ସ୍ଥାନାନ୍ତରଣ ସମ୍ଭବ ଫଳସ୍ୱରୂପ ଶକ୍ତିଶାଳୀ ଧକ୍କା ଧାରଣ କରିଥାଏ, ତାପମାନ ଖସିବା ଫଳରେ"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:447
 msgid "Number of errors as a result of impact loads as detected by a shock sensor"
-msgstr "ଧକ୍କା ସମ୍ବେଦକ ଦ୍ୱାରା ଚିହ୍ନଟ ପ୍ରଭାବଗୁଡ଼ିକର ତ୍ରୁଟି ସଂଖ୍ୟା "
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -2117,7 +2095,7 @@ msgstr "ଧାରଣ ଘର୍ଷଣ"
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:472
 msgid "Load on drive cause by friction in mechanical parts of the store"
-msgstr "ଭଣ୍ଡାରର ଯାନ୍ତ୍ରିକ ଅଂଶବିଶେଷ ଦ୍ୱାରା ଘର୍ଷଣ ଦ୍ୱାରା ଡ୍ରାଇଭ କରୁଥିବା ସମୟରେ ଧାରଣ କରିବା ଉପରେ ପ୍ରଭାବ"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:480
 msgid "Total number of load cycles"
@@ -2139,15 +2117,15 @@ msgstr "ଗୋଟିଏ ଡ୍ରାଇଭରେ ଧାରଣ କରିବା �
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:495
 msgid "Torque Amplification Count"
-msgstr "ଟର୍କ ପ୍ରବର୍ଦ୍ଧନ ଗଣକ"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:496
 msgid "Quantity efforts of the rotating moment of a drive"
-msgstr "ଗୋଟିଏ ଡ୍ରାଇଭରଆବର୍ତ୍ତନ ଗତିର ମାପର ପରିମାଣ"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:504
 msgid "Number of power-off retract events"
-msgstr "ବିଦ୍ୟୁତ ଶକ୍ତି-ଅଫ ଖଣ୍ଡନ ଘଟଣା ସଂଖ୍ୟା"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -2200,8 +2178,6 @@ msgid ""
 "Number of available reserved blocks as a percentage of the total number of "
 "reserved blocks"
 msgstr ""
-"ଉପଲବ୍ଧ ସଂରକ୍ଷିତ ବ୍ଲକଗୁଡ଼ିକର ସଂଖ୍ୟା, ସମୁଦାୟ ସଂଖ୍ୟାକ ସଂରକ୍ଷିତ "
-"ବ୍ଲକର ପ୍ରତିଶତ ଆକାରରେ"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -2223,7 +2199,7 @@ msgstr "ପଠନ ତ୍ରୁଟି ପୁନଃପ୍ରୟାସ ହାର"
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:570
 msgid "Number of errors while reading from a disk"
-msgstr "ଡିସ୍କରୁ ପଢିବା ସମୟରେ ତ୍ରୁଟି ସଂଖ୍ୟା"
+msgstr ""
 
 #. Translators: This is shown in the attribute treeview when no description is found.
 #. * %d is the attribute number.
@@ -2453,7 +2429,7 @@ msgstr "କ୍ରମିକ ସଂଖ୍ଯା:"
 #. Translators: Tooltip for the "Powered On:" item in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1814
 msgid "The amount of elapsed time the disk has been in a powered-up state"
-msgstr "ଡିସ୍କଟି ଶକ୍ତି-ଉପର ସ୍ଥିତିରେ ଥିବା ସମୟରେ ବିତିଥିବା ସମୟର ପରିମାଣ"
+msgstr ""
 
 #. Translators: Item name in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1820
@@ -2501,7 +2477,7 @@ msgstr "ସ୍ୱୟଂ ନିର୍ଦ୍ଧାରଣ:"
 #. Translators: Tooltip for the "Overall Assessment" in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1906
 msgid "An overall assessment of the health of the disk"
-msgstr "ଡିସ୍କ ଶ୍ୱାସ୍ଥ୍ୟର ହାରାହାରୀ ଆକଳନ"
+msgstr ""
 
 #. Translators: Item name in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1912
@@ -2512,12 +2488,12 @@ msgstr "ହାରାହାରୀ ନିର୍ଦ୍ଧାରଣ:"
 #. Translators: Tooltip for the "Do not warn if disk is failing" check button
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1936
 msgid "Leave unchecked to get notified if the disk starts failing"
-msgstr "ଯଦି ଡିସ୍କ ଖସିବା ଆରମ୍ଭ କରେ ତେବେ ଯାଞ୍ଚ କରାହୋଇନଥିବା ପରି ଛାଡ଼ି ଦିଅନ୍ତୁ"
+msgstr ""
 
 #. Translators: Check button in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1939
 msgid "Don't _warn me if the disk is failing"
-msgstr "ଡିସ୍କ ଖସୁଥିଲେ ମୋତେ ଚେତାବନୀ ଦିଅନ୍ତୁ ନାହିଁ (_w)"
+msgstr ""
 
 #. Translators: Heading used in the main dialog for SMART attributes
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1954
@@ -3379,7 +3355,7 @@ msgstr "ଉପାଦାନକୁ ଯୋଗ କରିବାରେ ତ୍ରୁଟ
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:153
 #, c-format
 msgid "Select a volume to use as component in the array \"%s\""
-msgstr "ଆରେ \"%s\"ରେ ଉପାଦାନ ପରି ବ୍ୟବହାର କରିବା ପାଇଁ ଗୋଟିଏ ଆକାର ବାଛନ୍ତୁ"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:158
 msgid ""
@@ -3612,7 +3588,7 @@ msgstr "ୟାଞ୍ଚ"
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:1103
 msgid "Starts checking the RAID array for redundancy"
-msgstr "ଅତିରିକ୍ତତା ପାଇଁ RAID ଆରେକୁ ଯାଞ୍ଚ ଆରମ୍ଭ କରନ୍ତୁ"
+msgstr ""
 
 #. Translators: this is a verb, as in 'repair this RAID array'
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:1106
@@ -3629,7 +3605,7 @@ msgstr "ରାଜ୍ଯ"
 
 #: ../src/palimpsest/gdu-section-no-media.c:126
 msgid "To format or edit media, insert it into the drive and wait a few seconds."
-msgstr "ମେଡିଆ ସଜ୍ଜିକରଣ ଅଥବା ସମ୍ପାଦନ କରିବାକୁ, ଏହାକୁ ଡ୍ରାଇଭରେ ଭର୍ତ୍ତି କରନ୍ତୁ ଏବଂ କିଛି ସେକଣ୍ଡ ଅପେକ୍ଷା କରନ୍ତୁ।"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-no-media.c:137
 msgid "_Detect Media"
@@ -3641,7 +3617,7 @@ msgstr "ବିଭାଜନଗୁଡ଼ିକୁ ଅପସାରଣ କରିବ�
 
 #: ../src/palimpsest/gdu-section-partition.c:112
 msgid "Are you sure you want to remove the partition, deleting existing data ?"
-msgstr "ସେହି ବିଭାଜନକୁ କାଢ଼ିବା ପାଇଁ ଆପଣ ନିଶ୍ଚିତ କି, ସ୍ଥିତବାନ ତଥ୍ୟକୁ ଅପସାରଣ କରିବେ କି ?"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-partition.c:117
 #, c-format
@@ -3712,9 +3688,6 @@ msgid ""
 "\n"
 "Make sure important data is backed up. This action cannot be undone."
 msgstr ""
-"ବିଭାଜନ %d ର \"%s\" ରେ ଥିବା ସମସ୍ତ ତଥ୍ୟକୁ ପୁନର୍ଧାରଣ କରିନହେଲା ପରି ଲିଭାଯିବ।\n"
-"\n"
-"ନିଶ୍ଚିତ କରନ୍ତୁ ଯେ ଦରକାରୀ ତଥ୍ୟକୁ ନକଲ ସଂରକ୍ଷଣ କରାହୋଇଛି। ଏହି କାର୍ଯ୍ୟର ପଦକ୍ଷେପ ବାତିଲ କରିହେବ ନାହିଁ।"
 
 #: ../src/palimpsest/gdu-section-partition.c:200
 msgid "_Delete Partition"
@@ -3733,8 +3706,6 @@ msgid ""
 "The attributes of the partition can be edited. The partition can also be "
 "deleted to make room for other data."
 msgstr ""
-"ବିଭାଜନର ଗୁଣଧର୍ମକୁ ସମ୍ପାଦନ କରିହେବ ନାହିଁ। ଅନ୍ୟ ତଥ୍ୟ ପାଇଁ ସ୍ଥାନ ବାହାର କରିବା ପାଇଁ "
-"ବିଭାଜନକୁ ଅପସାରଣ ମଧ୍ଯ କରିପାରିବେ।"
 
 #: ../src/palimpsest/gdu-section-partition.c:558
 msgid "Part_ition Label:"
@@ -3777,16 +3748,12 @@ msgid ""
 "This is the last primary partition that can be created. If you need more "
 "partitions, you can create an Extended Partition."
 msgstr ""
-"ଏହା ହେଉଛି ନିର୍ମାଣ ଯୋଗ୍ୟ ଶେଷ ପ୍ରାଥମିକ ବିଭାଜନ। ଯଦି ଆପଣ ଅଧିକ ବିଭାଜନ ଆବଶ୍ୟକ କରନ୍ତି, "
-"ତେବେ ଗୋଟିଏ ଅନୁଲମ୍ବିତ ବିଭାଜନ ନିର୍ମାଣ କରିପାରିବେ।"
 
 #: ../src/palimpsest/gdu-section-unallocated.c:416
 msgid ""
 "No more partitions can be created. You may want to delete an existing "
 "partition and then create an Extended Partition."
 msgstr ""
-"କୌଣସି ଅଧିକ ବିଭାଜନ ନିର୍ମାଣ କରିପାରିବେ ନାହିଁ। ଆପଣ ଗୋଟିଏ ସ୍ଥିତବାନ ବିଭାଜନକୁ "
-"ଅପସାରଣ କରିପାରିବେ ଏବଂ ତାପରେ ଗୋଟିଏ ଅନୁଲମ୍ବିତ ବିଭାଜନ ନିର୍ମାଣ କରିପାରିବେ।"
 
 #: ../src/palimpsest/gdu-section-unallocated.c:601
 msgid "Create Partition"
@@ -3797,8 +3764,6 @@ msgid ""
 "To create a new partition, select the size and whether to create a file "
 "system. The partition type, label and flags can be changed after creation."
 msgstr ""
-"ଗୋଟିଏ ନୂତନ ବିଭାଜନ ନିର୍ମାଣ କରିବା ପାଇଁ, ଆକାର ଏବଂ କେଉଁଠି ଫାଇଲ ତନ୍ତ୍ର ନିର୍ମାଣ କରିବେ ତାହା ଚୟନ "
-"କରନ୍ତୁ। ବିଭାଜନ ପ୍ରକାର, ନାମପଟି ଏବଂ ସୂଚକଗୁଡ଼ିକୁ ନିର୍ମାଣ ପରେ ପରିବର୍ତ୍ତନ କରିପାରିବେ।"
 
 #: ../src/palimpsest/gdu-section-unallocated.c:629
 msgid "_Size:"
@@ -3844,8 +3809,6 @@ msgstr "ବିଭାଜନ ନିର୍ମାଣ କରନ୍ତୁ"
 #: ../src/palimpsest/gdu-section-unrecognized.c:231
 msgid "Are you sure you want to create a new file system, deleting existing data ?"
 msgstr ""
-"ଆପଣ ସ୍ଥିତବାନ ତଥ୍ୟକୁ ଅପସାରଣ କରି ଗୋଟିଏ ନୂତନ ଫାଇଲତନ୍ତ୍ର ନିର୍ମାଣ "
-"କରିବେ ବୋଲି ନିଶ୍ଚିତ କି?"
 
 #: ../src/palimpsest/gdu-section-unrecognized.c:235
 #: ../src/palimpsest/gdu-shell.c:1519
@@ -3854,9 +3817,6 @@ msgid ""
 "All data on partition %d on the media in \"%s\" will be irrecovably erased. "
 "Make sure important data is backed up. This action cannot be undone."
 msgstr ""
-"ମେଡିଆ ଉପରେ ବିଭାଜନ %d ରେ \"%s\" ଭିତରେ ଥିବା ସମସ୍ତ ତଥ୍ୟକୁ ପୁନର୍ଦ୍ଧାରଣ ହୋଇନପାରୁଥିବା ପରି "
-"ଅପସାରଣ କରାହୋଇଛି। ନିଶ୍ଚିତ କରନ୍ତୁ ଯେ ଦରକାରୀ ତଥ୍ୟକୁ ନକଲ ସଂରକ୍ଷଣ କରାହୋଇଛି। ଏହି କାର୍ଯ୍ୟକୁ "
-"ପଦକ୍ଷେପ ବାତିଲ କରିହେବ ନାହିଁ।"
 
 #: ../src/palimpsest/gdu-section-unrecognized.c:242
 #: ../src/palimpsest/gdu-shell.c:1526
@@ -3865,9 +3825,6 @@ msgid ""
 "All data on partition %d of \"%s\" will be irrecovably erased. Make sure "
 "important data is backed up. This action cannot be undone."
 msgstr ""
-"ବିଭାଜନ %d ରେ \"%s\" ଭିତରେ ଥିବା ସମସ୍ତ ତଥ୍ୟକୁ ପୁନର୍ଦ୍ଧାରଣ ହୋଇନପାରୁଥିବା ପରି "
-"ଅପସାରଣ କରାହୋଇଛି। ନିଶ୍ଚିତ କରନ୍ତୁ ଯେ ଦରକାରୀ ତଥ୍ୟକୁ ନକଲ ସଂରକ୍ଷଣ କରାହୋଇଛି। "
-"ଏହି କାର୍ଯ୍ୟକୁ ପଦକ୍ଷେପ ବାତିଲ କରିହେବ ନାହିଁ।"
 
 #: ../src/palimpsest/gdu-section-unrecognized.c:397
 msgid "Create File System"
@@ -3878,8 +3835,6 @@ msgid ""
 "To create a new file system on the device, select the type and label and "
 "then press \"Create\". All existing data will be lost."
 msgstr ""
-"ଏହି ଉପକରଣରେ ଗୋଟିଏ ନୂତନ ଫାଇଲତନ୍ତ୍ର ନିର୍ମାଣ କରିବା ପାଇଁ, ପ୍ରକାର ଏବଂ ନାମପଟିକୁ ବାଛନ୍ତୁ ଏବଂ "
-"ତାପରେ \"Create\" କୁ ଦବାନ୍ତୁ। ସମସ୍ତ ସ୍ଥିତବାନ ତଥ୍ୟ ନଷ୍ଟ ହୋଇଯିବ।"
 
 #: ../src/palimpsest/gdu-shell.c:203
 msgid "Unknown Size"
@@ -4003,7 +3958,7 @@ msgstr "ଡ୍ରାଇଭ \"%s\" କୁ ଆରମ୍ଭ କରିବାରେ �
 #: ../src/palimpsest/gdu-shell.c:1374
 #, c-format
 msgid "Are you sure you want to start the drive \"%s\" in degraded mode ?"
-msgstr "ଆପଣ ନିଶ୍ଚିତ କି ଆପଣ ଡ୍ରାଇଭ \"%s\" କୁ ଅନୁନ୍ନତ ଅବସ୍ଥାରେ ଆରମ୍ଭ କରିବାକୁ ଚାହୁଁଛନ୍ତି ?"
+msgstr ""
 
 #: ../src/palimpsest/gdu-shell.c:1378
 msgid ""

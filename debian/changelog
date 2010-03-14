@@ -1,3 +1,61 @@
+gnome-disk-utility (2.29.90-2) experimental; urgency=low
+
+  [ Michael Biebl ]
+  * debian/libgdu-gtk0.symbols
+    - Bump symbol versions to 2.29.90 for all symbols that were added after
+      version 2.28.1.
+  * debian/control
+    - Bump Build-Depends on libglib2.0-dev to (>= 2.22).
+
+  [ Martin Pitt ]
+  * Move gtk-doc files (which describe the API, not the palimpsest program)
+    from gnome-disk-utility to libgdu-dev. Add an appropriate
+    Conflicts/Replaces. (LP: #517698)
+
+ -- Martin Pitt <mpitt@debian.org>  Thu, 04 Mar 2010 16:23:53 +0100
+
+gnome-disk-utility (2.29.90-1) experimental; urgency=low
+
+  * New upstream release.
+  * 01_delay_autostart.patch: Refresh for new release.
+  * debian/libgdu0.symbols: Add new symbol from this release, and bump symbol
+    versions from previous git snapshot versions to 2.29.90.
+
+ -- Martin Pitt <mpitt@debian.org>  Wed, 24 Feb 2010 00:00:55 +0100
+
+gnome-disk-utility (2.29.0~git20100222.e85476-1) experimental; urgency=low
+
+  [ Michael Biebl ]
+  * Git snapshot of the upcoming 2.29.0 release:
+    - Port to udisks.
+    - Grid based UI for palimpsest.
+    - Initial support for LVM2.
+  * Remove patches
+    - debian/patches/01-reiserfs-support.patch (merged upstream)
+    - debian/patches/02-link-against-libx11-for-xkb.patch (merged upstream)
+    - debian/patches/99-autoreconf.patch (no longer required)
+  * debian/control
+    - Update package descriptions for the DeviceKit-disks → udisks renaming.
+    - Add Build-Depends on libavahi-ui-dev (>= 0.6.25), and replace
+      devicekit-disks (>= 007) Build-Depends with udisks (>= 1.0.0~).
+    - Replace Depends on devicekit-disks (>= 007) with
+      udisks (>= 1.0.0~), udisks (<< 1.1.0).
+    - Bump Standards-Version to 3.8.4. No further changes.
+  * debian/*.symbols
+    - Update symbols files for libgdu0 and libgdu-gtk0.
+
+  [ Martin Pitt ]
+  * Add 01_delay_autostart.patch: Delay autostart of the gdu daemon for 10
+    seconds. It is not needed immediately (thus no need to slow down initial
+    session startup) and is not visible permanently (thus it won't cause
+    visual disruptions later on). This depends on the patch in GNOME #608402,
+    and will be a no-op if that's not available.
+  * debian/control: Move udisks dependency from g-d-u to libgdu0, since it's
+    really the library which talks to it. Otherwise you could not install
+    g-d-u and get crashes in GNOME. (LP: #523634)
+
+ -- Martin Pitt <mpitt@debian.org>  Tue, 23 Feb 2010 12:04:01 +0100
+
 gnome-disk-utility (2.28.1-3) unstable; urgency=medium
 
   * debian/control

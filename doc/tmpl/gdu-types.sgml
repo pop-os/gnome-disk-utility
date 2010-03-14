@@ -17,11 +17,45 @@ gdu-types
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### ENUM GduHubUsage ##### -->
+<para>
+
+</para>
+
+@GDU_HUB_USAGE_ADAPTER: 
+@GDU_HUB_USAGE_EXPANDER: 
+@GDU_HUB_USAGE_MULTI_DISK_DEVICES: 
+@GDU_HUB_USAGE_MULTI_PATH_DEVICES: 
+
 <!-- ##### STRUCT GduPool ##### -->
 <para>
 
 </para>
 
+
+<!-- ##### SIGNAL GduPool::adapter-added ##### -->
+<para>
+
+</para>
+
+@: 
+@: 
+
+<!-- ##### SIGNAL GduPool::adapter-changed ##### -->
+<para>
+
+</para>
+
+@: 
+@: 
+
+<!-- ##### SIGNAL GduPool::adapter-removed ##### -->
+<para>
+
+</para>
+
+@: 
+@: 
 
 <!-- ##### SIGNAL GduPool::device-added ##### -->
 <para>
@@ -48,6 +82,61 @@ gdu-types
 @: 
 
 <!-- ##### SIGNAL GduPool::device-removed ##### -->
+<para>
+
+</para>
+
+@: 
+@: 
+
+<!-- ##### SIGNAL GduPool::disconnected ##### -->
+<para>
+
+</para>
+
+@: 
+
+<!-- ##### SIGNAL GduPool::expander-added ##### -->
+<para>
+
+</para>
+
+@: 
+@: 
+
+<!-- ##### SIGNAL GduPool::expander-changed ##### -->
+<para>
+
+</para>
+
+@: 
+@: 
+
+<!-- ##### SIGNAL GduPool::expander-removed ##### -->
+<para>
+
+</para>
+
+@: 
+@: 
+
+<!-- ##### SIGNAL GduPool::port-added ##### -->
+<para>
+
+</para>
+
+@: 
+@: 
+
+<!-- ##### SIGNAL GduPool::port-changed ##### -->
+<para>
+
+</para>
+
+@: 
+@: 
+
+<!-- ##### SIGNAL GduPool::port-removed ##### -->
 <para>
 
 </para>
@@ -114,6 +203,24 @@ gdu-types
 
 @: 
 
+<!-- ##### STRUCT GduAdapter ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT GduExpander ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT GduPort ##### -->
+<para>
+
+</para>
+
+
 <!-- ##### STRUCT GduPresentable ##### -->
 <para>
 
@@ -153,6 +260,13 @@ gdu-types
 </para>
 
 
+<!-- ##### STRUCT GduLinuxLvm2VolumeGroup ##### -->
+<para>
+
+</para>
+
+@parent: 
+
 <!-- ##### STRUCT GduVolume ##### -->
 <para>
 
@@ -164,6 +278,36 @@ gdu-types
 
 </para>
 
+
+<!-- ##### STRUCT GduLinuxLvm2Volume ##### -->
+<para>
+
+</para>
+
+@parent: 
+
+<!-- ##### STRUCT GduLinuxLvm2VolumeHole ##### -->
+<para>
+
+</para>
+
+@parent: 
+
+<!-- ##### STRUCT GduHub ##### -->
+<para>
+
+</para>
+
+@parent: 
+@priv: 
+
+<!-- ##### STRUCT GduMachine ##### -->
+<para>
+
+</para>
+
+@parent: 
+@priv: 
 
 <!-- ##### STRUCT GduKnownFilesystem ##### -->
 <para>

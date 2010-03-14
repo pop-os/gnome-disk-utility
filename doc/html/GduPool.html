@@ -5,30 +5,31 @@
 <title>GduPool</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
 <link rel="home" href="index.html" title="Disk Utility Library Reference Manual">
-<link rel="up" href="ref-core.html" title="API Reference">
-<link rel="prev" href="gnome-disk-utility-gdu-error.html" title="GduError">
+<link rel="up" href="ref-libgdu.html" title="libgdu API Reference">
+<link rel="prev" href="ref-libgdu.html" title="libgdu API Reference">
 <link rel="next" href="GduDevice.html" title="GduDevice">
-<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
-<link rel="reference" href="ref-core.html" title="API Reference">
+<link rel="reference" href="ref-libgdu.html" title="libgdu API Reference">
+<link rel="reference" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
 <tr valign="middle">
-<td><a accesskey="p" href="gnome-disk-utility-gdu-error.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
-<td><a accesskey="u" href="ref-core.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="ref-libgdu.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-libgdu.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">Disk Utility Library Reference Manual</th>
 <td><a accesskey="n" href="GduDevice.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
 <tr><td colspan="5" class="shortcuts">
 <a href="#GduPool.synopsis" class="shortcut">Top</a>
-                 | 
-                <a href="#GduPool.description" class="shortcut">Description</a>
-                 | 
-                <a href="#GduPool.object-hierarchy" class="shortcut">Object Hierarchy</a>
-                 | 
-                <a href="#GduPool.signals" class="shortcut">Signals</a>
+                   | 
+                  <a href="#GduPool.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#GduPool.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#GduPool.signals" class="shortcut">Signals</a>
 </td></tr>
 </table>
 <div class="refentry" title="GduPool">
@@ -42,88 +43,140 @@
 </tr></table></div>
 <div class="refsynopsisdiv" title="Synopsis">
 <a name="GduPool.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">
-                    <a class="link" href="GduPool.html#GduPoolPrivate" title="GduPoolPrivate">GduPoolPrivate</a>;
+<pre class="synopsis">                    <a class="link" href="GduPool.html#GduPoolPrivate" title="GduPoolPrivate">GduPoolPrivate</a>;
                     <a class="link" href="GduPool.html#GduPool-struct" title="GduPool">GduPool</a>;
-<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *           <a class="link" href="GduPool.html#gdu-pool-new" title="gdu_pool_new ()">gdu_pool_new</a>                        (void);
-char *              <a class="link" href="GduPool.html#gdu-pool-get-daemon-version" title="gdu_pool_get_daemon_version ()">gdu_pool_get_daemon_version</a>         (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GduPool.html#gdu-pool-is-daemon-inhibited" title="gdu_pool_is_daemon_inhibited ()">gdu_pool_is_daemon_inhibited</a>        (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GduPool.html#gdu-pool-supports-luks-devices" title="gdu_pool_supports_luks_devices ()">gdu_pool_supports_luks_devices</a>      (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
->GList</a> *             <a class="link" href="GduPool.html#gdu-pool-get-known-filesystems" title="gdu_pool_get_known_filesystems ()">gdu_pool_get_known_filesystems</a>      (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool);
-<a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem">GduKnownFilesystem</a> * <a class="link" href="GduPool.html#gdu-pool-get-known-filesystem-by-id" title="gdu_pool_get_known_filesystem_by_id ()">gdu_pool_get_known_filesystem_by_id</a>
-                                                        (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         const char *id);
-<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *         <a class="link" href="GduPool.html#gdu-pool-get-by-object-path" title="gdu_pool_get_by_object_path ()">gdu_pool_get_by_object_path</a>         (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         const char *object_path);
-<a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *         <a class="link" href="GduPool.html#gdu-pool-get-by-device-file" title="gdu_pool_get_by_device_file ()">gdu_pool_get_by_device_file</a>         (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         const char *device_file);
-GduPresentable *    <a class="link" href="GduPool.html#gdu-pool-get-volume-by-device" title="gdu_pool_get_volume_by_device ()">gdu_pool_get_volume_by_device</a>       (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         <a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
-GduPresentable *    <a class="link" href="GduPool.html#gdu-pool-get-drive-by-device" title="gdu_pool_get_drive_by_device ()">gdu_pool_get_drive_by_device</a>        (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         <a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
-GduPresentable *    <a class="link" href="GduPool.html#gdu-pool-get-presentable-by-id" title="gdu_pool_get_presentable_by_id ()">gdu_pool_get_presentable_by_id</a>      (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *id);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
->GList</a> *             <a class="link" href="GduPool.html#gdu-pool-get-devices" title="gdu_pool_get_devices ()">gdu_pool_get_devices</a>                (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
->GList</a> *             <a class="link" href="GduPool.html#gdu-pool-get-presentables" title="gdu_pool_get_presentables ()">gdu_pool_get_presentables</a>           (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
->GList</a> *             <a class="link" href="GduPool.html#gdu-pool-get-enclosed-presentables" title="gdu_pool_get_enclosed_presentables ()">gdu_pool_get_enclosed_presentables</a>  (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         GduPresentable *presentable);
-void                <a class="link" href="GduPool.html#gdu-pool-op-linux-md-start" title="gdu_pool_op_linux_md_start ()">gdu_pool_op_linux_md_start</a>          (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"
->GPtrArray</a> *component_objpaths,
-                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxMdStartCompletedFunc" title="GduPoolLinuxMdStartCompletedFunc ()">GduPoolLinuxMdStartCompletedFunc</a> callback,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-void                <a class="link" href="GduPool.html#gdu-pool-op-linux-md-create" title="gdu_pool_op_linux_md_create ()">gdu_pool_op_linux_md_create</a>         (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"
->GPtrArray</a> *component_objpaths,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *level,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
->guint64</a> stripe_size,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *name,
-                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxMdCreateCompletedFunc" title="GduPoolLinuxMdCreateCompletedFunc ()">GduPoolLinuxMdCreateCompletedFunc</a> callback,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
+<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *           <a class="link" href="GduPool.html#gdu-pool-new" title="gdu_pool_new ()">gdu_pool_new</a>                        (void);
+<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *           <a class="link" href="GduPool.html#gdu-pool-new-for-address" title="gdu_pool_new_for_address ()">gdu_pool_new_for_address</a>            (const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *ssh_user_name,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *ssh_address,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> **error);
+const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *       <a class="link" href="GduPool.html#gdu-pool-get-ssh-user-name" title="gdu_pool_get_ssh_user_name ()">gdu_pool_get_ssh_user_name</a>          (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool);
+const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *       <a class="link" href="GduPool.html#gdu-pool-get-ssh-address" title="gdu_pool_get_ssh_address ()">gdu_pool_get_ssh_address</a>            (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool);
+<GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *              <a class="link" href="GduPool.html#gdu-pool-get-daemon-version" title="gdu_pool_get_daemon_version ()">gdu_pool_get_daemon_version</a>         (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool);
+<GTKDOCLINK HREF="gboolean"><span class="returnvalue">gboolean</span></GTKDOCLINK>            <a class="link" href="GduPool.html#gdu-pool-is-daemon-inhibited" title="gdu_pool_is_daemon_inhibited ()">gdu_pool_is_daemon_inhibited</a>        (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool);
+<GTKDOCLINK HREF="gboolean"><span class="returnvalue">gboolean</span></GTKDOCLINK>            <a class="link" href="GduPool.html#gdu-pool-supports-luks-devices" title="gdu_pool_supports_luks_devices ()">gdu_pool_supports_luks_devices</a>      (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool);
+<GTKDOCLINK HREF="GList"><span class="returnvalue">GList</span></GTKDOCLINK> *             <a class="link" href="GduPool.html#gdu-pool-get-known-filesystems" title="gdu_pool_get_known_filesystems ()">gdu_pool_get_known_filesystems</a>      (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool);
+<a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem"><span class="returnvalue">GduKnownFilesystem</span></a> * <a class="link" href="GduPool.html#gdu-pool-get-known-filesystem-by-id" title="gdu_pool_get_known_filesystem_by_id ()">gdu_pool_get_known_filesystem_by_id</a>
+                                                        (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *id);
+<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *         <a class="link" href="GduPool.html#gdu-pool-get-by-object-path" title="gdu_pool_get_by_object_path ()">gdu_pool_get_by_object_path</a>         (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *object_path);
+<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *         <a class="link" href="GduPool.html#gdu-pool-get-by-device-file" title="gdu_pool_get_by_device_file ()">gdu_pool_get_by_device_file</a>         (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *device_file);
+<a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *    <a class="link" href="GduPool.html#gdu-pool-get-volume-by-device" title="gdu_pool_get_volume_by_device ()">gdu_pool_get_volume_by_device</a>       (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device);
+<a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *    <a class="link" href="GduPool.html#gdu-pool-get-drive-by-device" title="gdu_pool_get_drive_by_device ()">gdu_pool_get_drive_by_device</a>        (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device);
+<a class="link" href="GduLinuxMdDrive.html" title="GduLinuxMdDrive"><span class="returnvalue">GduLinuxMdDrive</span></a> *   <a class="link" href="GduPool.html#gdu-pool-get-linux-md-drive-by-uuid" title="gdu_pool_get_linux_md_drive_by_uuid ()">gdu_pool_get_linux_md_drive_by_uuid</a> (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *uuid);
+<a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *    <a class="link" href="GduPool.html#gdu-pool-get-presentable-by-id" title="gdu_pool_get_presentable_by_id ()">gdu_pool_get_presentable_by_id</a>      (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *id);
+<GTKDOCLINK HREF="gboolean"><span class="returnvalue">gboolean</span></GTKDOCLINK>            <a class="link" href="GduPool.html#gdu-pool-has-presentable" title="gdu_pool_has_presentable ()">gdu_pool_has_presentable</a>            (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *presentable);
+<GTKDOCLINK HREF="GList"><span class="returnvalue">GList</span></GTKDOCLINK> *             <a class="link" href="GduPool.html#gdu-pool-get-devices" title="gdu_pool_get_devices ()">gdu_pool_get_devices</a>                (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool);
+<GTKDOCLINK HREF="GList"><span class="returnvalue">GList</span></GTKDOCLINK> *             <a class="link" href="GduPool.html#gdu-pool-get-presentables" title="gdu_pool_get_presentables ()">gdu_pool_get_presentables</a>           (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool);
+<GTKDOCLINK HREF="GList"><span class="returnvalue">GList</span></GTKDOCLINK> *             <a class="link" href="GduPool.html#gdu-pool-get-enclosed-presentables" title="gdu_pool_get_enclosed_presentables ()">gdu_pool_get_enclosed_presentables</a>  (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *presentable);
+<GTKDOCLINK HREF="GduAdapter"><span class="returnvalue">GduAdapter</span></GTKDOCLINK> *        <a class="link" href="GduPool.html#gdu-pool-get-adapter-by-object-path" title="gdu_pool_get_adapter_by_object_path ()">gdu_pool_get_adapter_by_object_path</a> (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *object_path);
+<GTKDOCLINK HREF="GList"><span class="returnvalue">GList</span></GTKDOCLINK> *             <a class="link" href="GduPool.html#gdu-pool-get-adapters" title="gdu_pool_get_adapters ()">gdu_pool_get_adapters</a>               (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool);
+<GTKDOCLINK HREF="GduExpander"><span class="returnvalue">GduExpander</span></GTKDOCLINK> *       <a class="link" href="GduPool.html#gdu-pool-get-expander-by-object-path" title="gdu_pool_get_expander_by_object_path ()">gdu_pool_get_expander_by_object_path</a>
+                                                        (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *object_path);
+<GTKDOCLINK HREF="GList"><span class="returnvalue">GList</span></GTKDOCLINK> *             <a class="link" href="GduPool.html#gdu-pool-get-expanders" title="gdu_pool_get_expanders ()">gdu_pool_get_expanders</a>              (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool);
+<GTKDOCLINK HREF="GduPort"><span class="returnvalue">GduPort</span></GTKDOCLINK> *           <a class="link" href="GduPool.html#gdu-pool-get-port-by-object-path" title="gdu_pool_get_port_by_object_path ()">gdu_pool_get_port_by_object_path</a>    (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *object_path);
+<GTKDOCLINK HREF="GList"><span class="returnvalue">GList</span></GTKDOCLINK> *             <a class="link" href="GduPool.html#gdu-pool-get-ports" title="gdu_pool_get_ports ()">gdu_pool_get_ports</a>                  (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool);
+<a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *    <a class="link" href="GduPool.html#gdu-pool-get-hub-by-object-path" title="gdu_pool_get_hub_by_object_path ()">gdu_pool_get_hub_by_object_path</a>     (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *object_path);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                <a class="link" href="GduPool.html#gdu-pool-op-linux-md-start" title="gdu_pool_op_linux_md_start ()">gdu_pool_op_linux_md_start</a>          (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <GTKDOCLINK HREF="GPtrArray"><span class="returnvalue">GPtrArray</span></GTKDOCLINK> *component_objpaths,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxMdStartCompletedFunc" title="GduPoolLinuxMdStartCompletedFunc ()"><span class="returnvalue">GduPoolLinuxMdStartCompletedFunc</span></a> callback,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                <a class="link" href="GduPool.html#gdu-pool-op-linux-md-create" title="gdu_pool_op_linux_md_create ()">gdu_pool_op_linux_md_create</a>         (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <GTKDOCLINK HREF="GPtrArray"><span class="returnvalue">GPtrArray</span></GTKDOCLINK> *component_objpaths,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *level,
+                                                         <GTKDOCLINK HREF="guint64"><span class="returnvalue">guint64</span></GTKDOCLINK> stripe_size,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *name,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxMdCreateCompletedFunc" title="GduPoolLinuxMdCreateCompletedFunc ()"><span class="returnvalue">GduPoolLinuxMdCreateCompletedFunc</span></a> callback,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                <a class="link" href="GduPool.html#gdu-pool-op-linux-lvm2-vg-start" title="gdu_pool_op_linux_lvm2_vg_start ()">gdu_pool_op_linux_lvm2_vg_start</a>     (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *uuid,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2VGStartCompletedFunc" title="GduPoolLinuxLvm2VGStartCompletedFunc ()"><span class="returnvalue">GduPoolLinuxLvm2VGStartCompletedFunc</span></a> callback,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                <a class="link" href="GduPool.html#gdu-pool-op-linux-lvm2-vg-stop" title="gdu_pool_op_linux_lvm2_vg_stop ()">gdu_pool_op_linux_lvm2_vg_stop</a>      (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *uuid,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2VGStopCompletedFunc" title="GduPoolLinuxLvm2VGStopCompletedFunc ()"><span class="returnvalue">GduPoolLinuxLvm2VGStopCompletedFunc</span></a> callback,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                <a class="link" href="GduPool.html#gdu-pool-op-linux-lvm2-lv-start" title="gdu_pool_op_linux_lvm2_lv_start ()">gdu_pool_op_linux_lvm2_lv_start</a>     (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *group_uuid,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *uuid,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2VGStartCompletedFunc" title="GduPoolLinuxLvm2VGStartCompletedFunc ()"><span class="returnvalue">GduPoolLinuxLvm2VGStartCompletedFunc</span></a> callback,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                <a class="link" href="GduPool.html#gdu-pool-op-linux-lvm2-vg-set-name" title="gdu_pool_op_linux_lvm2_vg_set_name ()">gdu_pool_op_linux_lvm2_vg_set_name</a>  (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *uuid,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *new_name,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2VGSetNameCompletedFunc" title="GduPoolLinuxLvm2VGSetNameCompletedFunc ()"><span class="returnvalue">GduPoolLinuxLvm2VGSetNameCompletedFunc</span></a> callback,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                <a class="link" href="GduPool.html#gdu-pool-op-linux-lvm2-lv-set-name" title="gdu_pool_op_linux_lvm2_lv_set_name ()">gdu_pool_op_linux_lvm2_lv_set_name</a>  (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *group_uuid,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *uuid,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *new_name,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2LVSetNameCompletedFunc" title="GduPoolLinuxLvm2LVSetNameCompletedFunc ()"><span class="returnvalue">GduPoolLinuxLvm2LVSetNameCompletedFunc</span></a> callback,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                <a class="link" href="GduPool.html#gdu-pool-op-linux-lvm2-lv-remove" title="gdu_pool_op_linux_lvm2_lv_remove ()">gdu_pool_op_linux_lvm2_lv_remove</a>    (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *group_uuid,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *uuid,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2LVRemoveCompletedFunc" title="GduPoolLinuxLvm2LVRemoveCompletedFunc ()"><span class="returnvalue">GduPoolLinuxLvm2LVRemoveCompletedFunc</span></a> callback,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                <a class="link" href="GduPool.html#gdu-pool-op-linux-lvm2-lv-create" title="gdu_pool_op_linux_lvm2_lv_create ()">gdu_pool_op_linux_lvm2_lv_create</a>    (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *group_uuid,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *name,
+                                                         <GTKDOCLINK HREF="guint64"><span class="returnvalue">guint64</span></GTKDOCLINK> size,
+                                                         <GTKDOCLINK HREF="guint"><span class="returnvalue">guint</span></GTKDOCLINK> num_stripes,
+                                                         <GTKDOCLINK HREF="guint64"><span class="returnvalue">guint64</span></GTKDOCLINK> stripe_size,
+                                                         <GTKDOCLINK HREF="guint"><span class="returnvalue">guint</span></GTKDOCLINK> num_mirrors,
+                                                         const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *fstype,
+                                                         const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *fslabel,
+                                                         const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *encrypt_passphrase,
+                                                         <GTKDOCLINK HREF="gboolean"><span class="returnvalue">gboolean</span></GTKDOCLINK> fs_take_ownership,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2LVCreateCompletedFunc" title="GduPoolLinuxLvm2LVCreateCompletedFunc ()"><span class="returnvalue">GduPoolLinuxLvm2LVCreateCompletedFunc</span></a> callback,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                <a class="link" href="GduPool.html#gdu-pool-op-linux-lvm2-vg-add-pv" title="gdu_pool_op_linux_lvm2_vg_add_pv ()">gdu_pool_op_linux_lvm2_vg_add_pv</a>    (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *uuid,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *physical_volume_object_path,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2VGAddPVCompletedFunc" title="GduPoolLinuxLvm2VGAddPVCompletedFunc ()"><span class="returnvalue">GduPoolLinuxLvm2VGAddPVCompletedFunc</span></a> callback,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
+<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                <a class="link" href="GduPool.html#gdu-pool-op-linux-lvm2-vg-remove-pv" title="gdu_pool_op_linux_lvm2_vg_remove_pv ()">gdu_pool_op_linux_lvm2_vg_remove_pv</a> (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *vg_uuid,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *pv_uuid,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2VGRemovePVCompletedFunc" title="GduPoolLinuxLvm2VGRemovePVCompletedFunc ()"><span class="returnvalue">GduPoolLinuxLvm2VGRemovePVCompletedFunc</span></a> callback,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
 </pre>
 </div>
 <div class="refsect1" title="Object Hierarchy">
 <a name="GduPool.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  <a
-href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
->GObject</a>
+  <GTKDOCLINK HREF="GObject">GObject</GTKDOCLINK>
    +----GduPool
 </pre>
 </div>
 <div class="refsect1" title="Signals">
 <a name="GduPool.signals"></a><h2>Signals</h2>
 <pre class="synopsis">
+  "<a class="link" href="GduPool.html#GduPool-adapter-added" title='The "adapter-added" signal'>adapter-added</a>"                                  : Run Last
+  "<a class="link" href="GduPool.html#GduPool-adapter-changed" title='The "adapter-changed" signal'>adapter-changed</a>"                                : Run Last
+  "<a class="link" href="GduPool.html#GduPool-adapter-removed" title='The "adapter-removed" signal'>adapter-removed</a>"                                : Run Last
   "<a class="link" href="GduPool.html#GduPool-device-added" title='The "device-added" signal'>device-added</a>"                                   : Run Last
   "<a class="link" href="GduPool.html#GduPool-device-changed" title='The "device-changed" signal'>device-changed</a>"                                 : Run Last
   "<a class="link" href="GduPool.html#GduPool-device-job-changed" title='The "device-job-changed" signal'>device-job-changed</a>"                             : Run Last
   "<a class="link" href="GduPool.html#GduPool-device-removed" title='The "device-removed" signal'>device-removed</a>"                                 : Run Last
+  "<a class="link" href="GduPool.html#GduPool-disconnected" title='The "disconnected" signal'>disconnected</a>"                                   : Run Last
+  "<a class="link" href="GduPool.html#GduPool-expander-added" title='The "expander-added" signal'>expander-added</a>"                                 : Run Last
+  "<a class="link" href="GduPool.html#GduPool-expander-changed" title='The "expander-changed" signal'>expander-changed</a>"                               : Run Last
+  "<a class="link" href="GduPool.html#GduPool-expander-removed" title='The "expander-removed" signal'>expander-removed</a>"                               : Run Last
+  "<a class="link" href="GduPool.html#GduPool-port-added" title='The "port-added" signal'>port-added</a>"                                     : Run Last
+  "<a class="link" href="GduPool.html#GduPool-port-changed" title='The "port-changed" signal'>port-changed</a>"                                   : Run Last
+  "<a class="link" href="GduPool.html#GduPool-port-removed" title='The "port-removed" signal'>port-removed</a>"                                   : Run Last
   "<a class="link" href="GduPool.html#GduPool-presentable-added" title='The "presentable-added" signal'>presentable-added</a>"                              : Run Last
   "<a class="link" href="GduPool.html#GduPool-presentable-changed" title='The "presentable-changed" signal'>presentable-changed</a>"                            : Run Last
   "<a class="link" href="GduPool.html#GduPool-presentable-job-changed" title='The "presentable-job-changed" signal'>presentable-job-changed</a>"                        : Run Last
@@ -133,9 +186,7 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 <div class="refsect1" title="Description">
 <a name="GduPool.description"></a><h2>Description</h2>
 <p>
-The <a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a> object represents a connection to the DeviceKit-disks daemon.</p>
-<p>
-</p>
+The <a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a> object represents a connection to the udisks daemon.</p>
 </div>
 <div class="refsect1" title="Details">
 <a name="GduPool.details"></a><h2>Details</h2>
@@ -155,30 +206,102 @@ The <a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPo
 <hr>
 <div class="refsect2" title="gdu_pool_new ()">
 <a name="gdu-pool-new"></a><h3>gdu_pool_new ()</h3>
-<pre class="programlisting"><a class="link" href="GduPool.html" title="GduPool">GduPool</a> *           gdu_pool_new                        (void);</pre>
+<pre class="programlisting"><a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *           gdu_pool_new                        (void);</pre>
 <p>
 Create a new <a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a> object.</p>
-<p>
-</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A <a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a> object. Caller must free this object using <a
-href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"
-><code class="function">g_object_unref()</code></a>.
+<td> A <a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a> object. Caller must free this object using <GTKDOCLINK HREF="g-object-unref"><code class="function">g_object_unref()</code></GTKDOCLINK>.
 </td>
 </tr></tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" title="gdu_pool_get_daemon_version ()">
-<a name="gdu-pool-get-daemon-version"></a><h3>gdu_pool_get_daemon_version ()</h3>
-<pre class="programlisting">char *              gdu_pool_get_daemon_version         (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool);</pre>
-<p>
-Get the version of the DeviceKit-daemon on the system.</p>
+<div class="refsect2" title="gdu_pool_new_for_address ()">
+<a name="gdu-pool-new-for-address"></a><h3>gdu_pool_new_for_address ()</h3>
+<pre class="programlisting"><a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *           gdu_pool_new_for_address            (const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *ssh_user_name,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *ssh_address,
+                                                         <GTKDOCLINK HREF="GError"><span class="returnvalue">GError</span></GTKDOCLINK> **error);</pre>
 <p>
 </p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ssh_user_name</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ssh_address</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_pool_get_ssh_user_name ()">
+<a name="gdu-pool-get-ssh-user-name"></a><h3>gdu_pool_get_ssh_user_name ()</h3>
+<pre class="programlisting">const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *       gdu_pool_get_ssh_user_name          (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_pool_get_ssh_address ()">
+<a name="gdu-pool-get-ssh-address"></a><h3>gdu_pool_get_ssh_address ()</h3>
+<pre class="programlisting">const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *       gdu_pool_get_ssh_address            (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_pool_get_daemon_version ()">
+<a name="gdu-pool-get-daemon-version"></a><h3>gdu_pool_get_daemon_version ()</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *              gdu_pool_get_daemon_version         (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool);</pre>
+<p>
+Get the version of the udisks on the system.</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -189,10 +312,8 @@ Get the version of the DeviceKit-daemon on the system.</p>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> The version of DeviceKit-disks daemon. Caller must free
-this string using <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Memory-Allocation.html#g-free"
-><code class="function">g_free()</code></a>.
+<td> The version of udisks daemon. Caller must free
+this string using <GTKDOCLINK HREF="g-free"><code class="function">g_free()</code></GTKDOCLINK>.
 </td>
 </tr>
 </tbody>
@@ -201,13 +322,9 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Memory-Allocation.html#g
 <hr>
 <div class="refsect2" title="gdu_pool_is_daemon_inhibited ()">
 <a name="gdu-pool-is-daemon-inhibited"></a><h3>gdu_pool_is_daemon_inhibited ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            gdu_pool_is_daemon_inhibited        (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="gboolean"><span class="returnvalue">gboolean</span></GTKDOCLINK>            gdu_pool_is_daemon_inhibited        (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool);</pre>
 <p>
 Checks if the daemon is currently inhibited.</p>
-<p>
-</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -218,9 +335,7 @@ Checks if the daemon is currently inhibited.</p>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE--CAPS"
-><code class="literal">TRUE</code></a> if the daemon is inhibited.
+<td> <GTKDOCLINK HREF="TRUE:CAPS"><code class="literal">TRUE</code></GTKDOCLINK> if the daemon is inhibited.
 </td>
 </tr>
 </tbody>
@@ -229,14 +344,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRU
 <hr>
 <div class="refsect2" title="gdu_pool_supports_luks_devices ()">
 <a name="gdu-pool-supports-luks-devices"></a><h3>gdu_pool_supports_luks_devices ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            gdu_pool_supports_luks_devices      (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="gboolean"><span class="returnvalue">gboolean</span></GTKDOCLINK>            gdu_pool_supports_luks_devices      (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool);</pre>
 <p>
-Determine if the DeviceKit-disks daemon supports LUKS encrypted
+Determine if the udisks daemon supports LUKS encrypted
 devices.</p>
-<p>
-</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -247,9 +358,7 @@ devices.</p>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE--CAPS"
-><span class="type">TRUE</span></a> only if the daemon supports LUKS encrypted devices.
+<td> <GTKDOCLINK HREF="TRUE:CAPS"><span class="type">TRUE</span></GTKDOCLINK> only if the daemon supports LUKS encrypted devices.
 </td>
 </tr>
 </tbody>
@@ -258,13 +367,9 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRU
 <hr>
 <div class="refsect2" title="gdu_pool_get_known_filesystems ()">
 <a name="gdu-pool-get-known-filesystems"></a><h3>gdu_pool_get_known_filesystems ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
->GList</a> *             gdu_pool_get_known_filesystems      (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="GList"><span class="returnvalue">GList</span></GTKDOCLINK> *             gdu_pool_get_known_filesystems      (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool);</pre>
 <p>
-Get a list of file systems known to the DeviceKit-disks daemon.</p>
-<p>
-</p>
+Get a list of file systems known to the udisks daemon.</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -275,12 +380,8 @@ Get a list of file systems known to the DeviceKit-disks daemon.</p>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
-><span class="type">GList</span></a> of <a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem"><span class="type">GduKnownFilesystem</span></a> objects. Caller must free
-this (unref all objects, then use <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#g-list-free"
-><code class="function">g_list_free()</code></a>).
+<td> A <GTKDOCLINK HREF="GList"><span class="type">GList</span></GTKDOCLINK> of <a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem"><span class="type">GduKnownFilesystem</span></a> objects. Caller must free
+this (unref all objects, then use <GTKDOCLINK HREF="g-list-free"><code class="function">g_list_free()</code></GTKDOCLINK>).
 </td>
 </tr>
 </tbody>
@@ -289,13 +390,11 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html
 <hr>
 <div class="refsect2" title="gdu_pool_get_known_filesystem_by_id ()">
 <a name="gdu-pool-get-known-filesystem-by-id"></a><h3>gdu_pool_get_known_filesystem_by_id ()</h3>
-<pre class="programlisting"><a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem">GduKnownFilesystem</a> * gdu_pool_get_known_filesystem_by_id
-                                                        (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         const char *id);</pre>
+<pre class="programlisting"><a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem"><span class="returnvalue">GduKnownFilesystem</span></a> * gdu_pool_get_known_filesystem_by_id
+                                                        (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *id);</pre>
 <p>
 Looks up a known file system by id.</p>
-<p>
-</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -311,13 +410,9 @@ Looks up a known file system by id.</p>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A <a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem"><span class="type">GduKnownFilesystem</span></a> object or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><span class="type">NULL</span></a> if file system
+<td> A <a class="link" href="GduKnownFilesystem.html" title="GduKnownFilesystem"><span class="type">GduKnownFilesystem</span></a> object or <GTKDOCLINK HREF="NULL:CAPS"><span class="type">NULL</span></GTKDOCLINK> if file system
 corresponding to <em class="parameter"><code>id</code></em> exists. Caller must free this object using
-<a
-href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"
-><code class="function">g_object_unref()</code></a>.
+<GTKDOCLINK HREF="g-object-unref"><code class="function">g_object_unref()</code></GTKDOCLINK>.
 </td>
 </tr>
 </tbody>
@@ -326,18 +421,16 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 <hr>
 <div class="refsect2" title="gdu_pool_get_by_object_path ()">
 <a name="gdu-pool-get-by-object-path"></a><h3>gdu_pool_get_by_object_path ()</h3>
-<pre class="programlisting"><a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *         gdu_pool_get_by_object_path         (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         const char *object_path);</pre>
+<pre class="programlisting"><a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *         gdu_pool_get_by_object_path         (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *object_path);</pre>
 <p>
-Looks up <a class="link" href="GduDevice.html" title="GduDevice"><span class="type">GduDevice</span></a> object for <em class="parameter"><code>object_path</code></em>.</p>
-<p>
-</p>
+Looks up <GTKDOCLINK HREF="GduPort"><span class="type">GduPort</span></GTKDOCLINK> object for <em class="parameter"><code>object_path</code></em>.</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
-<td> the device pool
+<td> the pool
 </td>
 </tr>
 <tr>
@@ -347,12 +440,8 @@ Looks up <a class="link" href="GduDevice.html" title="GduDevice"><span class="ty
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A <a class="link" href="GduDevice.html" title="GduDevice"><span class="type">GduDevice</span></a> object for <em class="parameter"><code>object_path</code></em>, otherwise
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><span class="type">NULL</span></a>. Caller must unref this object using <a
-href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"
-><code class="function">g_object_unref()</code></a>.
+<td> A <GTKDOCLINK HREF="GduPort"><span class="type">GduPort</span></GTKDOCLINK> object for <em class="parameter"><code>object_path</code></em>, otherwise
+<GTKDOCLINK HREF="NULL:CAPS"><span class="type">NULL</span></GTKDOCLINK>. Caller must unref this object using <GTKDOCLINK HREF="g-object-unref"><code class="function">g_object_unref()</code></GTKDOCLINK>.
 </td>
 </tr>
 </tbody>
@@ -361,12 +450,10 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 <hr>
 <div class="refsect2" title="gdu_pool_get_by_device_file ()">
 <a name="gdu-pool-get-by-device-file"></a><h3>gdu_pool_get_by_device_file ()</h3>
-<pre class="programlisting"><a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *         gdu_pool_get_by_device_file         (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         const char *device_file);</pre>
+<pre class="programlisting"><a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *         gdu_pool_get_by_device_file         (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *device_file);</pre>
 <p>
 Looks up <a class="link" href="GduDevice.html" title="GduDevice"><span class="type">GduDevice</span></a> object for <em class="parameter"><code>device_file</code></em>.</p>
-<p>
-</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -383,11 +470,7 @@ Looks up <a class="link" href="GduDevice.html" title="GduDevice"><span class="ty
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td> A <a class="link" href="GduDevice.html" title="GduDevice"><span class="type">GduDevice</span></a> object for <em class="parameter"><code>object_path</code></em>, otherwise
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><span class="type">NULL</span></a>. Caller must unref this object using <a
-href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"
-><code class="function">g_object_unref()</code></a>.
+<GTKDOCLINK HREF="NULL:CAPS"><span class="type">NULL</span></GTKDOCLINK>. Caller must unref this object using <GTKDOCLINK HREF="g-object-unref"><code class="function">g_object_unref()</code></GTKDOCLINK>.
 </td>
 </tr>
 </tbody>
@@ -396,12 +479,10 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 <hr>
 <div class="refsect2" title="gdu_pool_get_volume_by_device ()">
 <a name="gdu-pool-get-volume-by-device"></a><h3>gdu_pool_get_volume_by_device ()</h3>
-<pre class="programlisting">GduPresentable *    gdu_pool_get_volume_by_device       (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         <a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<pre class="programlisting"><a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *    gdu_pool_get_volume_by_device       (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device);</pre>
 <p>
 Given <em class="parameter"><code>device</code></em>, find the <a class="link" href="GduVolume.html" title="GduVolume"><span class="type">GduVolume</span></a> object for it.</p>
-<p>
-</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -417,12 +498,8 @@ Given <em class="parameter"><code>device</code></em>, find the <a class="link" h
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A <a class="link" href="GduVolume.html" title="GduVolume"><span class="type">GduVolume</span></a> object or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><span class="type">NULL</span></a> if no <em class="parameter"><code>device</code></em> isn't a
-volume. Caller must free this object with <a
-href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"
-><code class="function">g_object_unref()</code></a>.
+<td> A <a class="link" href="GduVolume.html" title="GduVolume"><span class="type">GduVolume</span></a> object or <GTKDOCLINK HREF="NULL:CAPS"><span class="type">NULL</span></GTKDOCLINK> if no <em class="parameter"><code>device</code></em> isn't a
+volume. Caller must free this object with <GTKDOCLINK HREF="g-object-unref"><code class="function">g_object_unref()</code></GTKDOCLINK>.
 </td>
 </tr>
 </tbody>
@@ -431,12 +508,10 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 <hr>
 <div class="refsect2" title="gdu_pool_get_drive_by_device ()">
 <a name="gdu-pool-get-drive-by-device"></a><h3>gdu_pool_get_drive_by_device ()</h3>
-<pre class="programlisting">GduPresentable *    gdu_pool_get_drive_by_device        (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         <a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<pre class="programlisting"><a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *    gdu_pool_get_drive_by_device        (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device);</pre>
 <p>
 Given <em class="parameter"><code>device</code></em>, find the <a class="link" href="GduDrive.html" title="GduDrive"><span class="type">GduDrive</span></a> object for it.</p>
-<p>
-</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -452,12 +527,36 @@ Given <em class="parameter"><code>device</code></em>, find the <a class="link" h
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A <a class="link" href="GduDrive.html" title="GduDrive"><span class="type">GduDrive</span></a> object or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><span class="type">NULL</span></a> if no <em class="parameter"><code>device</code></em> isn't a
-drive. Caller must free this object with <a
-href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"
-><code class="function">g_object_unref()</code></a>.
+<td> A <a class="link" href="GduDrive.html" title="GduDrive"><span class="type">GduDrive</span></a> object or <GTKDOCLINK HREF="NULL:CAPS"><span class="type">NULL</span></GTKDOCLINK> if no <em class="parameter"><code>device</code></em> isn't a
+drive. Caller must free this object with <GTKDOCLINK HREF="g-object-unref"><code class="function">g_object_unref()</code></GTKDOCLINK>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_pool_get_linux_md_drive_by_uuid ()">
+<a name="gdu-pool-get-linux-md-drive-by-uuid"></a><h3>gdu_pool_get_linux_md_drive_by_uuid ()</h3>
+<pre class="programlisting"><a class="link" href="GduLinuxMdDrive.html" title="GduLinuxMdDrive"><span class="returnvalue">GduLinuxMdDrive</span></a> *   gdu_pool_get_linux_md_drive_by_uuid (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *uuid);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uuid</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
 </td>
 </tr>
 </tbody>
@@ -466,10 +565,8 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 <hr>
 <div class="refsect2" title="gdu_pool_get_presentable_by_id ()">
 <a name="gdu-pool-get-presentable-by-id"></a><h3>gdu_pool_get_presentable_by_id ()</h3>
-<pre class="programlisting">GduPresentable *    gdu_pool_get_presentable_by_id      (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *id);</pre>
+<pre class="programlisting"><a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *    gdu_pool_get_presentable_by_id      (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *id);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -494,77 +591,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 </table></div>
 </div>
 <hr>
-<div class="refsect2" title="gdu_pool_get_devices ()">
-<a name="gdu-pool-get-devices"></a><h3>gdu_pool_get_devices ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
->GList</a> *             gdu_pool_get_devices                (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool);</pre>
-<p>
-Get a list of all devices. The returned list is topologically sorted, e.g.
-for any device A with a dependency on a device B, A is guaranteed to appear
-after B.</p>
-<p>
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
-<td> A <a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a>.
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
-><span class="type">GList</span></a> of <a class="link" href="GduDevice.html" title="GduDevice"><span class="type">GduDevice</span></a> objects. Caller must free this
-(unref all objects, then use <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#g-list-free"
-><code class="function">g_list_free()</code></a>).
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2" title="gdu_pool_get_presentables ()">
-<a name="gdu-pool-get-presentables"></a><h3>gdu_pool_get_presentables ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
->GList</a> *             gdu_pool_get_presentables           (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool);</pre>
-<p>
-Get a list of all presentables.</p>
-<p>
-</p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
-<td> A <a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
-><span class="type">GList</span></a> of objects implementing the <span class="type">GduPresentable</span>
-interface. Caller must free this (unref all objects, then use
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#g-list-free"
-><code class="function">g_list_free()</code></a>).
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2" title="gdu_pool_get_enclosed_presentables ()">
-<a name="gdu-pool-get-enclosed-presentables"></a><h3>gdu_pool_get_enclosed_presentables ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
->GList</a> *             gdu_pool_get_enclosed_presentables  (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         GduPresentable *presentable);</pre>
+<div class="refsect2" title="gdu_pool_has_presentable ()">
+<a name="gdu-pool-has-presentable"></a><h3>gdu_pool_has_presentable ()</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="gboolean"><span class="returnvalue">gboolean</span></GTKDOCLINK>            gdu_pool_has_presentable            (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *presentable);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -589,20 +619,275 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html
 </table></div>
 </div>
 <hr>
-<div class="refsect2" title="gdu_pool_op_linux_md_start ()">
-<a name="gdu-pool-op-linux-md-start"></a><h3>gdu_pool_op_linux_md_start ()</h3>
-<pre class="programlisting">void                gdu_pool_op_linux_md_start          (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"
->GPtrArray</a> *component_objpaths,
-                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxMdStartCompletedFunc" title="GduPoolLinuxMdStartCompletedFunc ()">GduPoolLinuxMdStartCompletedFunc</a> callback,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<div class="refsect2" title="gdu_pool_get_devices ()">
+<a name="gdu-pool-get-devices"></a><h3>gdu_pool_get_devices ()</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="GList"><span class="returnvalue">GList</span></GTKDOCLINK> *             gdu_pool_get_devices                (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool);</pre>
 <p>
-Starts a Linux md Software Array.</p>
+Get a list of all devices. The returned list is topologically sorted, e.g.
+for any device A with a dependency on a device B, A is guaranteed to appear
+after B.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td> A <a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A <GTKDOCLINK HREF="GList"><span class="type">GList</span></GTKDOCLINK> of <a class="link" href="GduDevice.html" title="GduDevice"><span class="type">GduDevice</span></a> objects. Caller must free this
+(unref all objects, then use <GTKDOCLINK HREF="g-list-free"><code class="function">g_list_free()</code></GTKDOCLINK>).
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_pool_get_presentables ()">
+<a name="gdu-pool-get-presentables"></a><h3>gdu_pool_get_presentables ()</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="GList"><span class="returnvalue">GList</span></GTKDOCLINK> *             gdu_pool_get_presentables           (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool);</pre>
+<p>
+Get a list of all presentables.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td> A <a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A <GTKDOCLINK HREF="GList"><span class="type">GList</span></GTKDOCLINK> of objects implementing the <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="type">GduPresentable</span></a>
+interface. Caller must free this (unref all objects, then use
+<GTKDOCLINK HREF="g-list-free"><code class="function">g_list_free()</code></GTKDOCLINK>).
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_pool_get_enclosed_presentables ()">
+<a name="gdu-pool-get-enclosed-presentables"></a><h3>gdu_pool_get_enclosed_presentables ()</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="GList"><span class="returnvalue">GList</span></GTKDOCLINK> *             gdu_pool_get_enclosed_presentables  (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *presentable);</pre>
 <p>
 </p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>presentable</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_pool_get_adapter_by_object_path ()">
+<a name="gdu-pool-get-adapter-by-object-path"></a><h3>gdu_pool_get_adapter_by_object_path ()</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="GduAdapter"><span class="returnvalue">GduAdapter</span></GTKDOCLINK> *        gdu_pool_get_adapter_by_object_path (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *object_path);</pre>
+<p>
+Looks up <GTKDOCLINK HREF="GduAdapter"><span class="type">GduAdapter</span></GTKDOCLINK> object for <em class="parameter"><code>object_path</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td> the pool
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object_path</code></em> :</span></p></td>
+<td> the D-Bus object path
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A <GTKDOCLINK HREF="GduAdapter"><span class="type">GduAdapter</span></GTKDOCLINK> object for <em class="parameter"><code>object_path</code></em>, otherwise
+<GTKDOCLINK HREF="NULL:CAPS"><span class="type">NULL</span></GTKDOCLINK>. Caller must unref this object using <GTKDOCLINK HREF="g-object-unref"><code class="function">g_object_unref()</code></GTKDOCLINK>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_pool_get_adapters ()">
+<a name="gdu-pool-get-adapters"></a><h3>gdu_pool_get_adapters ()</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="GList"><span class="returnvalue">GList</span></GTKDOCLINK> *             gdu_pool_get_adapters               (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool);</pre>
+<p>
+Get a list of all adapters.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td> A <a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A <GTKDOCLINK HREF="GList"><span class="type">GList</span></GTKDOCLINK> of <GTKDOCLINK HREF="GduAdapter"><span class="type">GduAdapter</span></GTKDOCLINK> objects. Caller must free this
+(unref all objects, then use <GTKDOCLINK HREF="g-list-free"><code class="function">g_list_free()</code></GTKDOCLINK>).
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_pool_get_expander_by_object_path ()">
+<a name="gdu-pool-get-expander-by-object-path"></a><h3>gdu_pool_get_expander_by_object_path ()</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="GduExpander"><span class="returnvalue">GduExpander</span></GTKDOCLINK> *       gdu_pool_get_expander_by_object_path
+                                                        (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *object_path);</pre>
+<p>
+Looks up <GTKDOCLINK HREF="GduExpander"><span class="type">GduExpander</span></GTKDOCLINK> object for <em class="parameter"><code>object_path</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td> the pool
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object_path</code></em> :</span></p></td>
+<td> the D-Bus object path
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A <GTKDOCLINK HREF="GduExpander"><span class="type">GduExpander</span></GTKDOCLINK> object for <em class="parameter"><code>object_path</code></em>, otherwise
+<GTKDOCLINK HREF="NULL:CAPS"><span class="type">NULL</span></GTKDOCLINK>. Caller must unref this object using <GTKDOCLINK HREF="g-object-unref"><code class="function">g_object_unref()</code></GTKDOCLINK>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_pool_get_expanders ()">
+<a name="gdu-pool-get-expanders"></a><h3>gdu_pool_get_expanders ()</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="GList"><span class="returnvalue">GList</span></GTKDOCLINK> *             gdu_pool_get_expanders              (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool);</pre>
+<p>
+Get a list of all expanders.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td> A <a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A <GTKDOCLINK HREF="GList"><span class="type">GList</span></GTKDOCLINK> of <GTKDOCLINK HREF="GduExpander"><span class="type">GduExpander</span></GTKDOCLINK> objects. Caller must free this
+(unref all objects, then use <GTKDOCLINK HREF="g-list-free"><code class="function">g_list_free()</code></GTKDOCLINK>).
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_pool_get_port_by_object_path ()">
+<a name="gdu-pool-get-port-by-object-path"></a><h3>gdu_pool_get_port_by_object_path ()</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="GduPort"><span class="returnvalue">GduPort</span></GTKDOCLINK> *           gdu_pool_get_port_by_object_path    (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *object_path);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object_path</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_pool_get_ports ()">
+<a name="gdu-pool-get-ports"></a><h3>gdu_pool_get_ports ()</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="GList"><span class="returnvalue">GList</span></GTKDOCLINK> *             gdu_pool_get_ports                  (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool);</pre>
+<p>
+Get a list of all ports.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td> A <a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A <GTKDOCLINK HREF="GList"><span class="type">GList</span></GTKDOCLINK> of <GTKDOCLINK HREF="GduPort"><span class="type">GduPort</span></GTKDOCLINK> objects. Caller must free this
+(unref all objects, then use <GTKDOCLINK HREF="g-list-free"><code class="function">g_list_free()</code></GTKDOCLINK>).
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_pool_get_hub_by_object_path ()">
+<a name="gdu-pool-get-hub-by-object-path"></a><h3>gdu_pool_get_hub_by_object_path ()</h3>
+<pre class="programlisting"><a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *    gdu_pool_get_hub_by_object_path     (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *object_path);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object_path</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_pool_op_linux_md_start ()">
+<a name="gdu-pool-op-linux-md-start"></a><h3>gdu_pool_op_linux_md_start ()</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                gdu_pool_op_linux_md_start          (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <GTKDOCLINK HREF="GPtrArray"><span class="returnvalue">GPtrArray</span></GTKDOCLINK> *component_objpaths,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxMdStartCompletedFunc" title="GduPoolLinuxMdStartCompletedFunc ()"><span class="returnvalue">GduPoolLinuxMdStartCompletedFunc</span></a> callback,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
+<p>
+Starts a Linux md Software Array.</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -613,9 +898,7 @@ Starts a Linux md Software Array.</p>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>component_objpaths</code></em> :</span></p></td>
-<td> A <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"
-><span class="type">GPtrArray</span></a> of object paths.
+<td> A <GTKDOCLINK HREF="GPtrArray"><span class="type">GPtrArray</span></GTKDOCLINK> of object paths.
 </td>
 </tr>
 <tr>
@@ -634,27 +917,15 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtr
 <hr>
 <div class="refsect2" title="gdu_pool_op_linux_md_create ()">
 <a name="gdu-pool-op-linux-md-create"></a><h3>gdu_pool_op_linux_md_create ()</h3>
-<pre class="programlisting">void                gdu_pool_op_linux_md_create         (<a class="link" href="GduPool.html" title="GduPool">GduPool</a> *pool,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"
->GPtrArray</a> *component_objpaths,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *level,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"
->guint64</a> stripe_size,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *name,
-                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxMdCreateCompletedFunc" title="GduPoolLinuxMdCreateCompletedFunc ()">GduPoolLinuxMdCreateCompletedFunc</a> callback,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                gdu_pool_op_linux_md_create         (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         <GTKDOCLINK HREF="GPtrArray"><span class="returnvalue">GPtrArray</span></GTKDOCLINK> *component_objpaths,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *level,
+                                                         <GTKDOCLINK HREF="guint64"><span class="returnvalue">guint64</span></GTKDOCLINK> stripe_size,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *name,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxMdCreateCompletedFunc" title="GduPoolLinuxMdCreateCompletedFunc ()"><span class="returnvalue">GduPoolLinuxMdCreateCompletedFunc</span></a> callback,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
 <p>
 Creates a Linux md Software Array.</p>
-<p>
-</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -665,9 +936,7 @@ Creates a Linux md Software Array.</p>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>component_objpaths</code></em> :</span></p></td>
-<td> A <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"
-><span class="type">GPtrArray</span></a> of object paths.
+<td> A <GTKDOCLINK HREF="GPtrArray"><span class="type">GPtrArray</span></GTKDOCLINK> of object paths.
 </td>
 </tr>
 <tr>
@@ -698,20 +967,512 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtr
 </tbody>
 </table></div>
 </div>
+<hr>
+<div class="refsect2" title="gdu_pool_op_linux_lvm2_vg_start ()">
+<a name="gdu-pool-op-linux-lvm2-vg-start"></a><h3>gdu_pool_op_linux_lvm2_vg_start ()</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                gdu_pool_op_linux_lvm2_vg_start     (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *uuid,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2VGStartCompletedFunc" title="GduPoolLinuxLvm2VGStartCompletedFunc ()"><span class="returnvalue">GduPoolLinuxLvm2VGStartCompletedFunc</span></a> callback,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uuid</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_pool_op_linux_lvm2_vg_stop ()">
+<a name="gdu-pool-op-linux-lvm2-vg-stop"></a><h3>gdu_pool_op_linux_lvm2_vg_stop ()</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                gdu_pool_op_linux_lvm2_vg_stop      (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *uuid,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2VGStopCompletedFunc" title="GduPoolLinuxLvm2VGStopCompletedFunc ()"><span class="returnvalue">GduPoolLinuxLvm2VGStopCompletedFunc</span></a> callback,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uuid</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_pool_op_linux_lvm2_lv_start ()">
+<a name="gdu-pool-op-linux-lvm2-lv-start"></a><h3>gdu_pool_op_linux_lvm2_lv_start ()</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                gdu_pool_op_linux_lvm2_lv_start     (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *group_uuid,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *uuid,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2VGStartCompletedFunc" title="GduPoolLinuxLvm2VGStartCompletedFunc ()"><span class="returnvalue">GduPoolLinuxLvm2VGStartCompletedFunc</span></a> callback,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>group_uuid</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uuid</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_pool_op_linux_lvm2_vg_set_name ()">
+<a name="gdu-pool-op-linux-lvm2-vg-set-name"></a><h3>gdu_pool_op_linux_lvm2_vg_set_name ()</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                gdu_pool_op_linux_lvm2_vg_set_name  (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *uuid,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *new_name,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2VGSetNameCompletedFunc" title="GduPoolLinuxLvm2VGSetNameCompletedFunc ()"><span class="returnvalue">GduPoolLinuxLvm2VGSetNameCompletedFunc</span></a> callback,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uuid</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>new_name</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_pool_op_linux_lvm2_lv_set_name ()">
+<a name="gdu-pool-op-linux-lvm2-lv-set-name"></a><h3>gdu_pool_op_linux_lvm2_lv_set_name ()</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                gdu_pool_op_linux_lvm2_lv_set_name  (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *group_uuid,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *uuid,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *new_name,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2LVSetNameCompletedFunc" title="GduPoolLinuxLvm2LVSetNameCompletedFunc ()"><span class="returnvalue">GduPoolLinuxLvm2LVSetNameCompletedFunc</span></a> callback,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>group_uuid</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uuid</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>new_name</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_pool_op_linux_lvm2_lv_remove ()">
+<a name="gdu-pool-op-linux-lvm2-lv-remove"></a><h3>gdu_pool_op_linux_lvm2_lv_remove ()</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                gdu_pool_op_linux_lvm2_lv_remove    (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *group_uuid,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *uuid,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2LVRemoveCompletedFunc" title="GduPoolLinuxLvm2LVRemoveCompletedFunc ()"><span class="returnvalue">GduPoolLinuxLvm2LVRemoveCompletedFunc</span></a> callback,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>group_uuid</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uuid</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_pool_op_linux_lvm2_lv_create ()">
+<a name="gdu-pool-op-linux-lvm2-lv-create"></a><h3>gdu_pool_op_linux_lvm2_lv_create ()</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                gdu_pool_op_linux_lvm2_lv_create    (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *group_uuid,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *name,
+                                                         <GTKDOCLINK HREF="guint64"><span class="returnvalue">guint64</span></GTKDOCLINK> size,
+                                                         <GTKDOCLINK HREF="guint"><span class="returnvalue">guint</span></GTKDOCLINK> num_stripes,
+                                                         <GTKDOCLINK HREF="guint64"><span class="returnvalue">guint64</span></GTKDOCLINK> stripe_size,
+                                                         <GTKDOCLINK HREF="guint"><span class="returnvalue">guint</span></GTKDOCLINK> num_mirrors,
+                                                         const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *fstype,
+                                                         const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *fslabel,
+                                                         const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *encrypt_passphrase,
+                                                         <GTKDOCLINK HREF="gboolean"><span class="returnvalue">gboolean</span></GTKDOCLINK> fs_take_ownership,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2LVCreateCompletedFunc" title="GduPoolLinuxLvm2LVCreateCompletedFunc ()"><span class="returnvalue">GduPoolLinuxLvm2LVCreateCompletedFunc</span></a> callback,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>group_uuid</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>name</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>size</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>num_stripes</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>stripe_size</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>num_mirrors</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>fstype</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>fslabel</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>encrypt_passphrase</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>fs_take_ownership</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_pool_op_linux_lvm2_vg_add_pv ()">
+<a name="gdu-pool-op-linux-lvm2-vg-add-pv"></a><h3>gdu_pool_op_linux_lvm2_vg_add_pv ()</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                gdu_pool_op_linux_lvm2_vg_add_pv    (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *uuid,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *physical_volume_object_path,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2VGAddPVCompletedFunc" title="GduPoolLinuxLvm2VGAddPVCompletedFunc ()"><span class="returnvalue">GduPoolLinuxLvm2VGAddPVCompletedFunc</span></a> callback,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uuid</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>physical_volume_object_path</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_pool_op_linux_lvm2_vg_remove_pv ()">
+<a name="gdu-pool-op-linux-lvm2-vg-remove-pv"></a><h3>gdu_pool_op_linux_lvm2_vg_remove_pv ()</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                gdu_pool_op_linux_lvm2_vg_remove_pv (<a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *vg_uuid,
+                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *pv_uuid,
+                                                         <a class="link" href="gnome-disk-utility-gdu-callbacks.html#GduPoolLinuxLvm2VGRemovePVCompletedFunc" title="GduPoolLinuxLvm2VGRemovePVCompletedFunc ()"><span class="returnvalue">GduPoolLinuxLvm2VGRemovePVCompletedFunc</span></a> callback,
+                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>vg_uuid</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pv_uuid</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
 </div>
 <div class="refsect1" title="Signal Details">
 <a name="GduPool.signal-details"></a><h2>Signal Details</h2>
+<div class="refsect2" title='The "adapter-added" signal'>
+<a name="GduPool-adapter-added"></a><h3>The <code class="literal">"adapter-added"</code> signal</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                user_function                      (<a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a>    *pool,
+                                                        <GTKDOCLINK HREF="GduAdapter"><span class="type">GduAdapter</span></GTKDOCLINK> *adapter,
+                                                        <GTKDOCLINK HREF="gpointer"><span class="type">gpointer</span></GTKDOCLINK>    user_data)      : Run Last</pre>
+<p>
+Emitted when <em class="parameter"><code>adapter</code></em> is added to <em class="parameter"><code>pool</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td> The <a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a> emitting the signal.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>adapter</code></em> :</span></p></td>
+<td> The <GTKDOCLINK HREF="GduAdapter"><span class="type">GduAdapter</span></GTKDOCLINK> that was added.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title='The "adapter-changed" signal'>
+<a name="GduPool-adapter-changed"></a><h3>The <code class="literal">"adapter-changed"</code> signal</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                user_function                      (<a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a>    *pool,
+                                                        <GTKDOCLINK HREF="GduAdapter"><span class="type">GduAdapter</span></GTKDOCLINK> *adapter,
+                                                        <GTKDOCLINK HREF="gpointer"><span class="type">gpointer</span></GTKDOCLINK>    user_data)      : Run Last</pre>
+<p>
+Emitted when <em class="parameter"><code>adapter</code></em> is changed.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td> The <a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a> emitting the signal.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>adapter</code></em> :</span></p></td>
+<td> A <GTKDOCLINK HREF="GduAdapter"><span class="type">GduAdapter</span></GTKDOCLINK>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title='The "adapter-removed" signal'>
+<a name="GduPool-adapter-removed"></a><h3>The <code class="literal">"adapter-removed"</code> signal</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                user_function                      (<a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a>    *pool,
+                                                        <GTKDOCLINK HREF="GduAdapter"><span class="type">GduAdapter</span></GTKDOCLINK> *adapter,
+                                                        <GTKDOCLINK HREF="gpointer"><span class="type">gpointer</span></GTKDOCLINK>    user_data)      : Run Last</pre>
+<p>
+Emitted when <em class="parameter"><code>adapter</code></em> is removed from <em class="parameter"><code>pool</code></em>. Recipients
+should release references to <em class="parameter"><code>adapter</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td> The <a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a> emitting the signal.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>adapter</code></em> :</span></p></td>
+<td> The <GTKDOCLINK HREF="GduAdapter"><span class="type">GduAdapter</span></GTKDOCLINK> that was removed.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
 <div class="refsect2" title='The "device-added" signal'>
 <a name="GduPool-device-added"></a><h3>The <code class="literal">"device-added"</code> signal</h3>
-<pre class="programlisting">void                user_function                      (<a class="link" href="GduPool.html" title="GduPool">GduPool</a>   *pool,
-                                                        <a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                        <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a>   user_data)      : Run Last</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                user_function                      (<a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a>   *pool,
+                                                        <a class="link" href="GduDevice.html" title="GduDevice"><span class="type">GduDevice</span></a> *device,
+                                                        <GTKDOCLINK HREF="gpointer"><span class="type">gpointer</span></GTKDOCLINK>   user_data)      : Run Last</pre>
 <p>
 Emitted when <em class="parameter"><code>device</code></em> is added to <em class="parameter"><code>pool</code></em>.</p>
-<p>
-</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -735,15 +1496,11 @@ Emitted when <em class="parameter"><code>device</code></em> is added to <em clas
 <hr>
 <div class="refsect2" title='The "device-changed" signal'>
 <a name="GduPool-device-changed"></a><h3>The <code class="literal">"device-changed"</code> signal</h3>
-<pre class="programlisting">void                user_function                      (<a class="link" href="GduPool.html" title="GduPool">GduPool</a>   *pool,
-                                                        <a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                        <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a>   user_data)      : Run Last</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                user_function                      (<a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a>   *pool,
+                                                        <a class="link" href="GduDevice.html" title="GduDevice"><span class="type">GduDevice</span></a> *device,
+                                                        <GTKDOCLINK HREF="gpointer"><span class="type">gpointer</span></GTKDOCLINK>   user_data)      : Run Last</pre>
 <p>
 Emitted when <em class="parameter"><code>device</code></em> is changed.</p>
-<p>
-</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -767,15 +1524,11 @@ Emitted when <em class="parameter"><code>device</code></em> is changed.</p>
 <hr>
 <div class="refsect2" title='The "device-job-changed" signal'>
 <a name="GduPool-device-job-changed"></a><h3>The <code class="literal">"device-job-changed"</code> signal</h3>
-<pre class="programlisting">void                user_function                      (<a class="link" href="GduPool.html" title="GduPool">GduPool</a>   *pool,
-                                                        <a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                        <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a>   user_data)      : Run Last</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                user_function                      (<a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a>   *pool,
+                                                        <a class="link" href="GduDevice.html" title="GduDevice"><span class="type">GduDevice</span></a> *device,
+                                                        <GTKDOCLINK HREF="gpointer"><span class="type">gpointer</span></GTKDOCLINK>   user_data)      : Run Last</pre>
 <p>
 Emitted when job status on <em class="parameter"><code>device</code></em> changes.</p>
-<p>
-</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -799,16 +1552,12 @@ Emitted when job status on <em class="parameter"><code>device</code></em> change
 <hr>
 <div class="refsect2" title='The "device-removed" signal'>
 <a name="GduPool-device-removed"></a><h3>The <code class="literal">"device-removed"</code> signal</h3>
-<pre class="programlisting">void                user_function                      (<a class="link" href="GduPool.html" title="GduPool">GduPool</a>   *pool,
-                                                        <a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device,
-                                                        <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a>   user_data)      : Run Last</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                user_function                      (<a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a>   *pool,
+                                                        <a class="link" href="GduDevice.html" title="GduDevice"><span class="type">GduDevice</span></a> *device,
+                                                        <GTKDOCLINK HREF="gpointer"><span class="type">gpointer</span></GTKDOCLINK>   user_data)      : Run Last</pre>
 <p>
 Emitted when <em class="parameter"><code>device</code></em> is removed from <em class="parameter"><code>pool</code></em>. Recipients
 should release references to <em class="parameter"><code>device</code></em>.</p>
-<p>
-</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -830,17 +1579,208 @@ should release references to <em class="parameter"><code>device</code></em>.</p>
 </table></div>
 </div>
 <hr>
+<div class="refsect2" title='The "disconnected" signal'>
+<a name="GduPool-disconnected"></a><h3>The <code class="literal">"disconnected"</code> signal</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                user_function                      (<a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a> *pool,
+                                                        <GTKDOCLINK HREF="gpointer"><span class="type">gpointer</span></GTKDOCLINK> user_data)      : Run Last</pre>
+<p>
+Emitted when the underlying connection has been disconnected.
+</p>
+<p>
+If you hold a reference to <em class="parameter"><code>pool</code></em>, now is a good time to give it up.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td> The <a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a> emitting the signal.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title='The "expander-added" signal'>
+<a name="GduPool-expander-added"></a><h3>The <code class="literal">"expander-added"</code> signal</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                user_function                      (<a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a>     *pool,
+                                                        <GTKDOCLINK HREF="GduExpander"><span class="type">GduExpander</span></GTKDOCLINK> *expander,
+                                                        <GTKDOCLINK HREF="gpointer"><span class="type">gpointer</span></GTKDOCLINK>     user_data)      : Run Last</pre>
+<p>
+Emitted when <em class="parameter"><code>expander</code></em> is added to <em class="parameter"><code>pool</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td> The <a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a> emitting the signal.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>expander</code></em> :</span></p></td>
+<td> The <GTKDOCLINK HREF="GduExpander"><span class="type">GduExpander</span></GTKDOCLINK> that was added.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title='The "expander-changed" signal'>
+<a name="GduPool-expander-changed"></a><h3>The <code class="literal">"expander-changed"</code> signal</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                user_function                      (<a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a>     *pool,
+                                                        <GTKDOCLINK HREF="GduExpander"><span class="type">GduExpander</span></GTKDOCLINK> *expander,
+                                                        <GTKDOCLINK HREF="gpointer"><span class="type">gpointer</span></GTKDOCLINK>     user_data)      : Run Last</pre>
+<p>
+Emitted when <em class="parameter"><code>expander</code></em> is changed.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td> The <a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a> emitting the signal.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>expander</code></em> :</span></p></td>
+<td> A <GTKDOCLINK HREF="GduExpander"><span class="type">GduExpander</span></GTKDOCLINK>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title='The "expander-removed" signal'>
+<a name="GduPool-expander-removed"></a><h3>The <code class="literal">"expander-removed"</code> signal</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                user_function                      (<a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a>     *pool,
+                                                        <GTKDOCLINK HREF="GduExpander"><span class="type">GduExpander</span></GTKDOCLINK> *expander,
+                                                        <GTKDOCLINK HREF="gpointer"><span class="type">gpointer</span></GTKDOCLINK>     user_data)      : Run Last</pre>
+<p>
+Emitted when <em class="parameter"><code>expander</code></em> is removed from <em class="parameter"><code>pool</code></em>. Recipients
+should release references to <em class="parameter"><code>expander</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td> The <a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a> emitting the signal.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>expander</code></em> :</span></p></td>
+<td> The <GTKDOCLINK HREF="GduExpander"><span class="type">GduExpander</span></GTKDOCLINK> that was removed.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title='The "port-added" signal'>
+<a name="GduPool-port-added"></a><h3>The <code class="literal">"port-added"</code> signal</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                user_function                      (<a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a> *pool,
+                                                        <GTKDOCLINK HREF="GduPort"><span class="type">GduPort</span></GTKDOCLINK> *port,
+                                                        <GTKDOCLINK HREF="gpointer"><span class="type">gpointer</span></GTKDOCLINK> user_data)      : Run Last</pre>
+<p>
+Emitted when <em class="parameter"><code>port</code></em> is added to <em class="parameter"><code>pool</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td> The <a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a> emitting the signal.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>port</code></em> :</span></p></td>
+<td> The <GTKDOCLINK HREF="GduPort"><span class="type">GduPort</span></GTKDOCLINK> that was added.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title='The "port-changed" signal'>
+<a name="GduPool-port-changed"></a><h3>The <code class="literal">"port-changed"</code> signal</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                user_function                      (<a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a> *pool,
+                                                        <GTKDOCLINK HREF="GduPort"><span class="type">GduPort</span></GTKDOCLINK> *port,
+                                                        <GTKDOCLINK HREF="gpointer"><span class="type">gpointer</span></GTKDOCLINK> user_data)      : Run Last</pre>
+<p>
+Emitted when <em class="parameter"><code>port</code></em> is changed.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td> The <a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a> emitting the signal.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>port</code></em> :</span></p></td>
+<td> A <GTKDOCLINK HREF="GduPort"><span class="type">GduPort</span></GTKDOCLINK>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title='The "port-removed" signal'>
+<a name="GduPool-port-removed"></a><h3>The <code class="literal">"port-removed"</code> signal</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                user_function                      (<a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a> *pool,
+                                                        <GTKDOCLINK HREF="GduPort"><span class="type">GduPort</span></GTKDOCLINK> *port,
+                                                        <GTKDOCLINK HREF="gpointer"><span class="type">gpointer</span></GTKDOCLINK> user_data)      : Run Last</pre>
+<p>
+Emitted when <em class="parameter"><code>port</code></em> is removed from <em class="parameter"><code>pool</code></em>. Recipients
+should release references to <em class="parameter"><code>port</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td> The <a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a> emitting the signal.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>port</code></em> :</span></p></td>
+<td> The <GTKDOCLINK HREF="GduPort"><span class="type">GduPort</span></GTKDOCLINK> that was removed.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
 <div class="refsect2" title='The "presentable-added" signal'>
 <a name="GduPool-presentable-added"></a><h3>The <code class="literal">"presentable-added"</code> signal</h3>
-<pre class="programlisting">void                user_function                      (<a class="link" href="GduPool.html" title="GduPool">GduPool</a>        *pool,
-                                                        GduPresentable *presentable,
-                                                        <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a>        user_data)        : Run Last</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                user_function                      (<a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a>        *pool,
+                                                        <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="type">GduPresentable</span></a> *presentable,
+                                                        <GTKDOCLINK HREF="gpointer"><span class="type">gpointer</span></GTKDOCLINK>        user_data)        : Run Last</pre>
 <p>
 Emitted when <em class="parameter"><code>presentable</code></em> is added to <em class="parameter"><code>pool</code></em>.</p>
-<p>
-</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -851,7 +1791,7 @@ Emitted when <em class="parameter"><code>presentable</code></em> is added to <em
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>presentable</code></em> :</span></p></td>
-<td> The <span class="type">GduPresentable</span> that was added.
+<td> The <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="type">GduPresentable</span></a> that was added.
 </td>
 </tr>
 <tr>
@@ -864,15 +1804,11 @@ Emitted when <em class="parameter"><code>presentable</code></em> is added to <em
 <hr>
 <div class="refsect2" title='The "presentable-changed" signal'>
 <a name="GduPool-presentable-changed"></a><h3>The <code class="literal">"presentable-changed"</code> signal</h3>
-<pre class="programlisting">void                user_function                      (<a class="link" href="GduPool.html" title="GduPool">GduPool</a>        *pool,
-                                                        GduPresentable *presentable,
-                                                        <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a>        user_data)        : Run Last</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                user_function                      (<a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a>        *pool,
+                                                        <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="type">GduPresentable</span></a> *presentable,
+                                                        <GTKDOCLINK HREF="gpointer"><span class="type">gpointer</span></GTKDOCLINK>        user_data)        : Run Last</pre>
 <p>
 Emitted when <em class="parameter"><code>presentable</code></em> changes.</p>
-<p>
-</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -883,7 +1819,7 @@ Emitted when <em class="parameter"><code>presentable</code></em> changes.</p>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>presentable</code></em> :</span></p></td>
-<td> A <span class="type">GduPresentable</span>.
+<td> A <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="type">GduPresentable</span></a>.
 </td>
 </tr>
 <tr>
@@ -896,15 +1832,11 @@ Emitted when <em class="parameter"><code>presentable</code></em> changes.</p>
 <hr>
 <div class="refsect2" title='The "presentable-job-changed" signal'>
 <a name="GduPool-presentable-job-changed"></a><h3>The <code class="literal">"presentable-job-changed"</code> signal</h3>
-<pre class="programlisting">void                user_function                      (<a class="link" href="GduPool.html" title="GduPool">GduPool</a>        *pool,
-                                                        GduPresentable *presentable,
-                                                        <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a>        user_data)        : Run Last</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                user_function                      (<a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a>        *pool,
+                                                        <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="type">GduPresentable</span></a> *presentable,
+                                                        <GTKDOCLINK HREF="gpointer"><span class="type">gpointer</span></GTKDOCLINK>        user_data)        : Run Last</pre>
 <p>
 Emitted when job status on <em class="parameter"><code>presentable</code></em> changes.</p>
-<p>
-</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -915,7 +1847,7 @@ Emitted when job status on <em class="parameter"><code>presentable</code></em> c
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>presentable</code></em> :</span></p></td>
-<td> A <span class="type">GduPresentable</span>.
+<td> A <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="type">GduPresentable</span></a>.
 </td>
 </tr>
 <tr>
@@ -928,16 +1860,12 @@ Emitted when job status on <em class="parameter"><code>presentable</code></em> c
 <hr>
 <div class="refsect2" title='The "presentable-removed" signal'>
 <a name="GduPool-presentable-removed"></a><h3>The <code class="literal">"presentable-removed"</code> signal</h3>
-<pre class="programlisting">void                user_function                      (<a class="link" href="GduPool.html" title="GduPool">GduPool</a>        *pool,
-                                                        GduPresentable *presentable,
-                                                        <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a>        user_data)        : Run Last</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                user_function                      (<a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a>        *pool,
+                                                        <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="type">GduPresentable</span></a> *presentable,
+                                                        <GTKDOCLINK HREF="gpointer"><span class="type">gpointer</span></GTKDOCLINK>        user_data)        : Run Last</pre>
 <p>
 Emitted when <em class="parameter"><code>presentable</code></em> is removed from <em class="parameter"><code>pool</code></em>. Recipients
 should release references to <em class="parameter"><code>presentable</code></em>.</p>
-<p>
-</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -948,7 +1876,7 @@ should release references to <em class="parameter"><code>presentable</code></em>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>presentable</code></em> :</span></p></td>
-<td> The <span class="type">GduPresentable</span> that was removed.
+<td> The <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="type">GduPresentable</span></a> that was removed.
 </td>
 </tr>
 <tr>
@@ -962,6 +1890,6 @@ should release references to <em class="parameter"><code>presentable</code></em>
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.11</div>
+          Generated by GTK-Doc V1.13</div>
 </body>
 </html>

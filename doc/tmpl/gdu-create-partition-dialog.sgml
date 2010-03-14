@@ -1,0 +1,73 @@
+<!-- ##### SECTION Title ##### -->
+gdu-create-partition-dialog
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### TYPEDEF GduCreatePartitionDialogClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF GduCreatePartitionDialogPrivate ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdu_create_partition_dialog_new ##### -->
+<para>
+
+</para>
+
+@parent: 
+@presentable: 
+@max_size: 
+@flags: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_create_partition_dialog_new_for_drive ##### -->
+<para>
+
+</para>
+
+@parent: 
+@device: 
+@max_size: 
+@flags: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_create_partition_dialog_get_size ##### -->
+<para>
+
+</para>
+
+@dialog: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_create_partition_dialog_get_max_size ##### -->
+<para>
+
+</para>
+
+@dialog: 
+@Returns: 
+
+

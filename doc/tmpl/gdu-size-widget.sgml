@@ -1,0 +1,104 @@
+<!-- ##### SECTION Title ##### -->
+gdu-size-widget
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### TYPEDEF GduSizeWidgetClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF GduSizeWidgetPrivate ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION changed ##### -->
+<para>
+
+</para>
+
+@widget: 
+
+
+<!-- ##### FUNCTION gdu_size_widget_new ##### -->
+<para>
+
+</para>
+
+@size: 
+@min_size: 
+@max_size: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_size_widget_set_size ##### -->
+<para>
+
+</para>
+
+@widget: 
+@size: 
+
+
+<!-- ##### FUNCTION gdu_size_widget_set_min_size ##### -->
+<para>
+
+</para>
+
+@widget: 
+@min_size: 
+
+
+<!-- ##### FUNCTION gdu_size_widget_set_max_size ##### -->
+<para>
+
+</para>
+
+@widget: 
+@max_size: 
+
+
+<!-- ##### FUNCTION gdu_size_widget_get_size ##### -->
+<para>
+
+</para>
+
+@widget: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_size_widget_get_min_size ##### -->
+<para>
+
+</para>
+
+@widget: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_size_widget_get_max_size ##### -->
+<para>
+
+</para>
+
+@widget: 
+@Returns: 
+
+

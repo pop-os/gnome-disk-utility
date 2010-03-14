@@ -23,6 +23,7 @@ gdu-util
 </para>
 
 @size: 
+@use_pow2: 
 @long_string: 
 @Returns: 
 
@@ -191,6 +192,16 @@ gdu-util
 </para>
 
 @device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_util_get_emblemed_icon ##### -->
+<para>
+
+</para>
+
+@name: 
+@emblem_name: 
 @Returns: 
 
 

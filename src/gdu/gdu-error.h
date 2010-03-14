@@ -40,6 +40,8 @@ G_BEGIN_DECLS
  * @GDU_ERROR_NOT_SUPPORTED: Operation not supported.
  * @GDU_ERROR_ATA_SMART_WOULD_WAKEUP: Getting S.M.A.R.T. data for the device would require to spin it up.
  * @GDU_ERROR_PERMISSION_DENIED: Permission denied.
+ * @GDU_ERROR_FILESYSTEM_DRIVER_MISSING: The filesystem driver for a filesystem is not installed.
+ * @GDU_ERROR_FILESYSTEM_TOOLS_MISSING: User-space tools to carry out the request action on a filesystem is not installed.
  *
  * Error codes in the #GDU_ERROR domain.
  */
@@ -53,12 +55,14 @@ typedef enum
         GDU_ERROR_NOT_SUPPORTED,
         GDU_ERROR_ATA_SMART_WOULD_WAKEUP,
         GDU_ERROR_PERMISSION_DENIED,
+        GDU_ERROR_FILESYSTEM_DRIVER_MISSING,
+        GDU_ERROR_FILESYSTEM_TOOLS_MISSING
 } GduError;
 
 /**
  * GDU_ERROR:
  *
- * Error domain used for errors reported from DeviceKit-disks daemon
+ * Error domain used for errors reported from udisks daemon
  * via D-Bus. Note that not all remote errors are mapped to this
  * domain. Errors in this domain will come from the #GduError
  * enumeration. See #GError for more information on error domains.

@@ -1,0 +1,77 @@
+<!-- ##### SECTION Title ##### -->
+gdu-details-table
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### TYPEDEF GduDetailsTableClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF GduDetailsTablePrivate ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdu_details_table_new ##### -->
+<para>
+
+</para>
+
+@num_columns: 
+@elements: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_details_table_get_num_columns ##### -->
+<para>
+
+</para>
+
+@table: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_details_table_get_elements ##### -->
+<para>
+
+</para>
+
+@table: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_details_table_set_num_columns ##### -->
+<para>
+
+</para>
+
+@table: 
+@num_columns: 
+
+
+<!-- ##### FUNCTION gdu_details_table_set_elements ##### -->
+<para>
+
+</para>
+
+@table: 
+@elements: 
+
+

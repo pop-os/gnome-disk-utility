@@ -1,0 +1,67 @@
+<!-- ##### SECTION Title ##### -->
+gdu-pool-tree-view
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### TYPEDEF GduPoolTreeViewClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF GduPoolTreeViewPrivate ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdu_pool_tree_view_new ##### -->
+<para>
+
+</para>
+
+@model: 
+@flags: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_pool_tree_view_get_selected_presentable ##### -->
+<para>
+
+</para>
+
+@view: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_pool_tree_view_select_presentable ##### -->
+<para>
+
+</para>
+
+@view: 
+@presentable: 
+
+
+<!-- ##### FUNCTION gdu_pool_tree_view_select_first_presentable ##### -->
+<para>
+
+</para>
+
+@view: 
+
+

@@ -1,0 +1,250 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>gdu-create-linux-md-dialog</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="Disk Utility Library Reference Manual">
+<link rel="up" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
+<link rel="prev" href="gnome-disk-utility-gdu-ata-smart-dialog.html" title="gdu-ata-smart-dialog">
+<link rel="next" href="gnome-disk-utility-gdu-edit-partition-dialog.html" title="gdu-edit-partition-dialog">
+<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-libgdu.html" title="libgdu API Reference">
+<link rel="reference" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="gnome-disk-utility-gdu-ata-smart-dialog.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-libgdu-gtk.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Disk Utility Library Reference Manual</th>
+<td><a accesskey="n" href="gnome-disk-utility-gdu-edit-partition-dialog.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#gnome-disk-utility-gdu-create-linux-md-dialog.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#gnome-disk-utility-gdu-create-linux-md-dialog.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry" title="gdu-create-linux-md-dialog">
+<a name="gnome-disk-utility-gdu-create-linux-md-dialog"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="gnome-disk-utility-gdu-create-linux-md-dialog.top_of_page"></a>gdu-create-linux-md-dialog</span></h2>
+<p>gdu-create-linux-md-dialog</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="gnome-disk-utility-gdu-create-linux-md-dialog.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">typedef             <a class="link" href="gnome-disk-utility-gdu-create-linux-md-dialog.html#GduCreateLinuxMdDialogClass" title="GduCreateLinuxMdDialogClass">GduCreateLinuxMdDialogClass</a>;
+typedef             <a class="link" href="gnome-disk-utility-gdu-create-linux-md-dialog.html#GduCreateLinuxMdDialogPrivate" title="GduCreateLinuxMdDialogPrivate">GduCreateLinuxMdDialogPrivate</a>;
+<GTKDOCLINK HREF="GtkWidget"><span class="returnvalue">GtkWidget</span></GTKDOCLINK>*          <a class="link" href="gnome-disk-utility-gdu-create-linux-md-dialog.html#gdu-create-linux-md-dialog-new" title="gdu_create_linux_md_dialog_new ()">gdu_create_linux_md_dialog_new</a>      (<GTKDOCLINK HREF="GtkWindow"><span class="returnvalue">GtkWindow</span></GTKDOCLINK> *parent,
+                                                         <a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool);
+<GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *             <a class="link" href="gnome-disk-utility-gdu-create-linux-md-dialog.html#gdu-create-linux-md-dialog-get-level" title="gdu_create_linux_md_dialog_get_level ()">gdu_create_linux_md_dialog_get_level</a>
+                                                        (<GTKDOCLINK HREF="GduCreateLinuxMdDialog"><span class="returnvalue">GduCreateLinuxMdDialog</span></GTKDOCLINK> *dialog);
+<GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *             <a class="link" href="gnome-disk-utility-gdu-create-linux-md-dialog.html#gdu-create-linux-md-dialog-get-name" title="gdu_create_linux_md_dialog_get_name ()">gdu_create_linux_md_dialog_get_name</a> (<GTKDOCLINK HREF="GduCreateLinuxMdDialog"><span class="returnvalue">GduCreateLinuxMdDialog</span></GTKDOCLINK> *dialog);
+<GTKDOCLINK HREF="guint64"><span class="returnvalue">guint64</span></GTKDOCLINK>             <a class="link" href="gnome-disk-utility-gdu-create-linux-md-dialog.html#gdu-create-linux-md-dialog-get-size" title="gdu_create_linux_md_dialog_get_size ()">gdu_create_linux_md_dialog_get_size</a> (<GTKDOCLINK HREF="GduCreateLinuxMdDialog"><span class="returnvalue">GduCreateLinuxMdDialog</span></GTKDOCLINK> *dialog);
+<GTKDOCLINK HREF="guint64"><span class="returnvalue">guint64</span></GTKDOCLINK>             <a class="link" href="gnome-disk-utility-gdu-create-linux-md-dialog.html#gdu-create-linux-md-dialog-get-component-size" title="gdu_create_linux_md_dialog_get_component_size ()">gdu_create_linux_md_dialog_get_component_size</a>
+                                                        (<GTKDOCLINK HREF="GduCreateLinuxMdDialog"><span class="returnvalue">GduCreateLinuxMdDialog</span></GTKDOCLINK> *dialog);
+<GTKDOCLINK HREF="guint64"><span class="returnvalue">guint64</span></GTKDOCLINK>             <a class="link" href="gnome-disk-utility-gdu-create-linux-md-dialog.html#gdu-create-linux-md-dialog-get-stripe-size" title="gdu_create_linux_md_dialog_get_stripe_size ()">gdu_create_linux_md_dialog_get_stripe_size</a>
+                                                        (<GTKDOCLINK HREF="GduCreateLinuxMdDialog"><span class="returnvalue">GduCreateLinuxMdDialog</span></GTKDOCLINK> *dialog);
+<GTKDOCLINK HREF="GPtrArray"><span class="returnvalue">GPtrArray</span></GTKDOCLINK> *         <a class="link" href="gnome-disk-utility-gdu-create-linux-md-dialog.html#gdu-create-linux-md-dialog-get-drives" title="gdu_create_linux_md_dialog_get_drives ()">gdu_create_linux_md_dialog_get_drives</a>
+                                                        (<GTKDOCLINK HREF="GduCreateLinuxMdDialog"><span class="returnvalue">GduCreateLinuxMdDialog</span></GTKDOCLINK> *dialog);
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="gnome-disk-utility-gdu-create-linux-md-dialog.description"></a><h2>Description</h2>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="gnome-disk-utility-gdu-create-linux-md-dialog.details"></a><h2>Details</h2>
+<div class="refsect2" title="GduCreateLinuxMdDialogClass">
+<a name="GduCreateLinuxMdDialogClass"></a><h3>GduCreateLinuxMdDialogClass</h3>
+<pre class="programlisting">typedef struct GduCreateLinuxMdDialogClass   GduCreateLinuxMdDialogClass;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GduCreateLinuxMdDialogPrivate">
+<a name="GduCreateLinuxMdDialogPrivate"></a><h3>GduCreateLinuxMdDialogPrivate</h3>
+<pre class="programlisting">typedef struct GduCreateLinuxMdDialogPrivate GduCreateLinuxMdDialogPrivate;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="gdu_create_linux_md_dialog_new ()">
+<a name="gdu-create-linux-md-dialog-new"></a><h3>gdu_create_linux_md_dialog_new ()</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="GtkWidget"><span class="returnvalue">GtkWidget</span></GTKDOCLINK>*          gdu_create_linux_md_dialog_new      (<GTKDOCLINK HREF="GtkWindow"><span class="returnvalue">GtkWindow</span></GTKDOCLINK> *parent,
+                                                         <a class="link" href="GduPool.html" title="GduPool"><span class="returnvalue">GduPool</span></a> *pool);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>parent</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pool</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_create_linux_md_dialog_get_level ()">
+<a name="gdu-create-linux-md-dialog-get-level"></a><h3>gdu_create_linux_md_dialog_get_level ()</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *             gdu_create_linux_md_dialog_get_level
+                                                        (<GTKDOCLINK HREF="GduCreateLinuxMdDialog"><span class="returnvalue">GduCreateLinuxMdDialog</span></GTKDOCLINK> *dialog);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dialog</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_create_linux_md_dialog_get_name ()">
+<a name="gdu-create-linux-md-dialog-get-name"></a><h3>gdu_create_linux_md_dialog_get_name ()</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *             gdu_create_linux_md_dialog_get_name (<GTKDOCLINK HREF="GduCreateLinuxMdDialog"><span class="returnvalue">GduCreateLinuxMdDialog</span></GTKDOCLINK> *dialog);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dialog</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_create_linux_md_dialog_get_size ()">
+<a name="gdu-create-linux-md-dialog-get-size"></a><h3>gdu_create_linux_md_dialog_get_size ()</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="guint64"><span class="returnvalue">guint64</span></GTKDOCLINK>             gdu_create_linux_md_dialog_get_size (<GTKDOCLINK HREF="GduCreateLinuxMdDialog"><span class="returnvalue">GduCreateLinuxMdDialog</span></GTKDOCLINK> *dialog);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dialog</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_create_linux_md_dialog_get_component_size ()">
+<a name="gdu-create-linux-md-dialog-get-component-size"></a><h3>gdu_create_linux_md_dialog_get_component_size ()</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="guint64"><span class="returnvalue">guint64</span></GTKDOCLINK>             gdu_create_linux_md_dialog_get_component_size
+                                                        (<GTKDOCLINK HREF="GduCreateLinuxMdDialog"><span class="returnvalue">GduCreateLinuxMdDialog</span></GTKDOCLINK> *dialog);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dialog</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_create_linux_md_dialog_get_stripe_size ()">
+<a name="gdu-create-linux-md-dialog-get-stripe-size"></a><h3>gdu_create_linux_md_dialog_get_stripe_size ()</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="guint64"><span class="returnvalue">guint64</span></GTKDOCLINK>             gdu_create_linux_md_dialog_get_stripe_size
+                                                        (<GTKDOCLINK HREF="GduCreateLinuxMdDialog"><span class="returnvalue">GduCreateLinuxMdDialog</span></GTKDOCLINK> *dialog);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dialog</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_create_linux_md_dialog_get_drives ()">
+<a name="gdu-create-linux-md-dialog-get-drives"></a><h3>gdu_create_linux_md_dialog_get_drives ()</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="GPtrArray"><span class="returnvalue">GPtrArray</span></GTKDOCLINK> *         gdu_create_linux_md_dialog_get_drives
+                                                        (<GTKDOCLINK HREF="GduCreateLinuxMdDialog"><span class="returnvalue">GduCreateLinuxMdDialog</span></GTKDOCLINK> *dialog);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dialog</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.13</div>
+</body>
+</html>

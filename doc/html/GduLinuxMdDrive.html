@@ -5,30 +5,31 @@
 <title>GduLinuxMdDrive</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
 <link rel="home" href="index.html" title="Disk Utility Library Reference Manual">
-<link rel="up" href="ref-core.html" title="API Reference">
+<link rel="up" href="ref-libgdu.html" title="libgdu API Reference">
 <link rel="prev" href="GduDrive.html" title="GduDrive">
 <link rel="next" href="GduVolume.html" title="GduVolume">
-<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
-<link rel="reference" href="ref-core.html" title="API Reference">
+<link rel="reference" href="ref-libgdu.html" title="libgdu API Reference">
+<link rel="reference" href="ref-libgdu-gtk.html" title="libgdu-gtk API Reference">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
 <tr valign="middle">
 <td><a accesskey="p" href="GduDrive.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
-<td><a accesskey="u" href="ref-core.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="u" href="ref-libgdu.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">Disk Utility Library Reference Manual</th>
 <td><a accesskey="n" href="GduVolume.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
 <tr><td colspan="5" class="shortcuts">
 <a href="#GduLinuxMdDrive.synopsis" class="shortcut">Top</a>
-                 | 
-                <a href="#GduLinuxMdDrive.description" class="shortcut">Description</a>
-                 | 
-                <a href="#GduLinuxMdDrive.object-hierarchy" class="shortcut">Object Hierarchy</a>
-                 | 
-                <a href="#GduLinuxMdDrive.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
+                   | 
+                  <a href="#GduLinuxMdDrive.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#GduLinuxMdDrive.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#GduLinuxMdDrive.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
 </td></tr>
 </table>
 <div class="refentry" title="GduLinuxMdDrive">
@@ -42,31 +43,25 @@
 </tr></table></div>
 <div class="refsynopsisdiv" title="Synopsis">
 <a name="GduLinuxMdDrive.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">
-                    <a class="link" href="GduLinuxMdDrive.html#GduLinuxMdDrivePrivate" title="GduLinuxMdDrivePrivate">GduLinuxMdDrivePrivate</a>;
+<pre class="synopsis">                    <a class="link" href="GduLinuxMdDrive.html#GduLinuxMdDrivePrivate" title="GduLinuxMdDrivePrivate">GduLinuxMdDrivePrivate</a>;
                     <a class="link" href="GduLinuxMdDrive.html#GduLinuxMdDrive-struct" title="GduLinuxMdDrive">GduLinuxMdDrive</a>;
 enum                <a class="link" href="GduLinuxMdDrive.html#GduLinuxMdDriveSlaveFlags" title="enum GduLinuxMdDriveSlaveFlags">GduLinuxMdDriveSlaveFlags</a>;
-const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *       <a class="link" href="GduLinuxMdDrive.html#gdu-linux-md-drive-get-uuid" title="gdu_linux_md_drive_get_uuid ()">gdu_linux_md_drive_get_uuid</a>         (<a class="link" href="GduLinuxMdDrive.html" title="GduLinuxMdDrive">GduLinuxMdDrive</a> *drive);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="GduLinuxMdDrive.html#gdu-linux-md-drive-has-slave" title="gdu_linux_md_drive_has_slave ()">gdu_linux_md_drive_has_slave</a>        (<a class="link" href="GduLinuxMdDrive.html" title="GduLinuxMdDrive">GduLinuxMdDrive</a> *drive,
-                                                         <a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
->GList</a> *             <a class="link" href="GduLinuxMdDrive.html#gdu-linux-md-drive-get-slaves" title="gdu_linux_md_drive_get_slaves ()">gdu_linux_md_drive_get_slaves</a>       (<a class="link" href="GduLinuxMdDrive.html" title="GduLinuxMdDrive">GduLinuxMdDrive</a> *drive);
-<a class="link" href="GduLinuxMdDrive.html#GduLinuxMdDriveSlaveFlags" title="enum GduLinuxMdDriveSlaveFlags">GduLinuxMdDriveSlaveFlags</a>  <a class="link" href="GduLinuxMdDrive.html#gdu-linux-md-drive-get-slave-flags" title="gdu_linux_md_drive_get_slave_flags ()">gdu_linux_md_drive_get_slave_flags</a>
-                                                        (<a class="link" href="GduLinuxMdDrive.html" title="GduLinuxMdDrive">GduLinuxMdDrive</a> *drive,
-                                                         <a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *slave);
+const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *       <a class="link" href="GduLinuxMdDrive.html#gdu-linux-md-drive-get-uuid" title="gdu_linux_md_drive_get_uuid ()">gdu_linux_md_drive_get_uuid</a>         (<a class="link" href="GduLinuxMdDrive.html" title="GduLinuxMdDrive"><span class="returnvalue">GduLinuxMdDrive</span></a> *drive);
+<GTKDOCLINK HREF="gboolean"><span class="returnvalue">gboolean</span></GTKDOCLINK>            <a class="link" href="GduLinuxMdDrive.html#gdu-linux-md-drive-has-slave" title="gdu_linux_md_drive_has_slave ()">gdu_linux_md_drive_has_slave</a>        (<a class="link" href="GduLinuxMdDrive.html" title="GduLinuxMdDrive"><span class="returnvalue">GduLinuxMdDrive</span></a> *drive,
+                                                         <a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device);
+<GTKDOCLINK HREF="GList"><span class="returnvalue">GList</span></GTKDOCLINK> *             <a class="link" href="GduLinuxMdDrive.html#gdu-linux-md-drive-get-slaves" title="gdu_linux_md_drive_get_slaves ()">gdu_linux_md_drive_get_slaves</a>       (<a class="link" href="GduLinuxMdDrive.html" title="GduLinuxMdDrive"><span class="returnvalue">GduLinuxMdDrive</span></a> *drive);
+<a class="link" href="GduLinuxMdDrive.html#GduLinuxMdDriveSlaveFlags" title="enum GduLinuxMdDriveSlaveFlags"><span class="returnvalue">GduLinuxMdDriveSlaveFlags</span></a>  <a class="link" href="GduLinuxMdDrive.html#gdu-linux-md-drive-get-slave-flags" title="gdu_linux_md_drive_get_slave_flags ()">gdu_linux_md_drive_get_slave_flags</a>
+                                                        (<a class="link" href="GduLinuxMdDrive.html" title="GduLinuxMdDrive"><span class="returnvalue">GduLinuxMdDrive</span></a> *drive,
+                                                         <a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *slave);
+<GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *             <a class="link" href="GduLinuxMdDrive.html#gdu-linux-md-drive-get-slave-state-markup" title="gdu_linux_md_drive_get_slave_state_markup ()">gdu_linux_md_drive_get_slave_state_markup</a>
+                                                        (<a class="link" href="GduLinuxMdDrive.html" title="GduLinuxMdDrive"><span class="returnvalue">GduLinuxMdDrive</span></a> *drive,
+                                                         <a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *slave);
 </pre>
 </div>
 <div class="refsect1" title="Object Hierarchy">
 <a name="GduLinuxMdDrive.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  <a
-href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
->GObject</a>
+  <GTKDOCLINK HREF="GObject">GObject</GTKDOCLINK>
    +----<a class="link" href="GduDrive.html" title="GduDrive">GduDrive</a>
          +----GduLinuxMdDrive
 </pre>
@@ -75,7 +70,7 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 <a name="GduLinuxMdDrive.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
 <p>
 GduLinuxMdDrive implements
- GduPresentable.</p>
+ <a class="link" href="GduPresentable.html" title="GduPresentable">GduPresentable</a>.</p>
 </div>
 <div class="refsect1" title="Description">
 <a name="GduLinuxMdDrive.description"></a><h2>Description</h2>
@@ -85,14 +80,12 @@ The <a class="link" href="GduLinuxMdDrive.html" title="GduLinuxMdDrive"><span cl
 <p>
 An <a class="link" href="GduLinuxMdDrive.html" title="GduLinuxMdDrive"><span class="type">GduLinuxMdDrive</span></a> drive is added to <a class="link" href="GduPool.html" title="GduPool"><span class="type">GduPool</span></a> as soon as a
 component device that is part of the abstraction is available.  The
-drive can be started (<code class="function">gdu_drive_start()</code>) and stopped
-(<code class="function">gdu_drive_stop()</code>) and the state of the underlying components can
+drive can be started (<GTKDOCLINK HREF="gdu-drive-start"><code class="function">gdu_drive_start()</code></GTKDOCLINK>) and stopped
+(<GTKDOCLINK HREF="gdu-drive-stop"><code class="function">gdu_drive_stop()</code></GTKDOCLINK>) and the state of the underlying components can
 be queried through <a class="link" href="GduLinuxMdDrive.html#gdu-linux-md-drive-get-slave-flags" title="gdu_linux_md_drive_get_slave_flags ()"><code class="function">gdu_linux_md_drive_get_slave_flags()</code></a>).
 </p>
 <p>
-See the documentation for <span class="type">GduPresentable</span> for the big picture.</p>
-<p>
-</p>
+See the documentation for <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="type">GduPresentable</span></a> for the big picture.</p>
 </div>
 <div class="refsect1" title="Details">
 <a name="GduLinuxMdDrive.details"></a><h2>Details</h2>
@@ -127,18 +120,16 @@ State for slaves of an Linux MD software raid drive. Everything but <em class="p
 and <em class="parameter"><code>GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_NOT_ATTACHED</code></em> corresponds to the comma-separated strings in
 <code class="literal">/sys/block/mdXXX/md/dev-YYY/state</code> in sysfs. See Documentation/md.txt in the Linux
 kernel for more information.</p>
-<p>
-</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><a name="GDU-LINUX-MD-DRIVE-SLAVE-FLAGS-NONE--CAPS"></a><span class="term"><code class="literal">GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_NONE</code></span></p></td>
+<td><p><a name="GDU-LINUX-MD-DRIVE-SLAVE-FLAGS-NONE:CAPS"></a><span class="term"><code class="literal">GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_NONE</code></span></p></td>
 <td> No flags are set.
 </td>
 </tr>
 <tr>
-<td><p><a name="GDU-LINUX-MD-DRIVE-SLAVE-FLAGS-NOT-ATTACHED--CAPS"></a><span class="term"><code class="literal">GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_NOT_ATTACHED</code></span></p></td>
+<td><p><a name="GDU-LINUX-MD-DRIVE-SLAVE-FLAGS-NOT-ATTACHED:CAPS"></a><span class="term"><code class="literal">GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_NOT_ATTACHED</code></span></p></td>
 <td> If set, the slave is
 not part of the array but appears as a child only because the UUID
 on the device matches that of the array. Is also set if the array
@@ -146,26 +137,26 @@ does not exist.
 </td>
 </tr>
 <tr>
-<td><p><a name="GDU-LINUX-MD-DRIVE-SLAVE-FLAGS-FAULTY--CAPS"></a><span class="term"><code class="literal">GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_FAULTY</code></span></p></td>
+<td><p><a name="GDU-LINUX-MD-DRIVE-SLAVE-FLAGS-FAULTY:CAPS"></a><span class="term"><code class="literal">GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_FAULTY</code></span></p></td>
 <td> Device has been kick from
 active use due to a detected fault.
 </td>
 </tr>
 <tr>
-<td><p><a name="GDU-LINUX-MD-DRIVE-SLAVE-FLAGS-IN-SYNC--CAPS"></a><span class="term"><code class="literal">GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_IN_SYNC</code></span></p></td>
+<td><p><a name="GDU-LINUX-MD-DRIVE-SLAVE-FLAGS-IN-SYNC:CAPS"></a><span class="term"><code class="literal">GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_IN_SYNC</code></span></p></td>
 <td> Device is a fully in-sync
 member of the array.
 </td>
 </tr>
 <tr>
-<td><p><a name="GDU-LINUX-MD-DRIVE-SLAVE-FLAGS-WRITEMOSTLY--CAPS"></a><span class="term"><code class="literal">GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_WRITEMOSTLY</code></span></p></td>
+<td><p><a name="GDU-LINUX-MD-DRIVE-SLAVE-FLAGS-WRITEMOSTLY:CAPS"></a><span class="term"><code class="literal">GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_WRITEMOSTLY</code></span></p></td>
 <td> Device will only be
 subject to read requests if there are no other options. This
 applies only to RAID1 arrays.
 </td>
 </tr>
 <tr>
-<td><p><a name="GDU-LINUX-MD-DRIVE-SLAVE-FLAGS-BLOCKED--CAPS"></a><span class="term"><code class="literal">GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_BLOCKED</code></span></p></td>
+<td><p><a name="GDU-LINUX-MD-DRIVE-SLAVE-FLAGS-BLOCKED:CAPS"></a><span class="term"><code class="literal">GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_BLOCKED</code></span></p></td>
 <td> Device has failed,
 metadata is "external", and the failure hasn't been acknowledged
 yet. Writes that would write to this device if it were not faulty
@@ -173,7 +164,7 @@ are blocked.
 </td>
 </tr>
 <tr>
-<td><p><a name="GDU-LINUX-MD-DRIVE-SLAVE-FLAGS-SPARE--CAPS"></a><span class="term"><code class="literal">GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_SPARE</code></span></p></td>
+<td><p><a name="GDU-LINUX-MD-DRIVE-SLAVE-FLAGS-SPARE:CAPS"></a><span class="term"><code class="literal">GDU_LINUX_MD_DRIVE_SLAVE_FLAGS_SPARE</code></span></p></td>
 <td> Device is working, but not a
 full member. This includes spares that in the process of being
 recovered to.
@@ -185,9 +176,7 @@ recovered to.
 <hr>
 <div class="refsect2" title="gdu_linux_md_drive_get_uuid ()">
 <a name="gdu-linux-md-drive-get-uuid"></a><h3>gdu_linux_md_drive_get_uuid ()</h3>
-<pre class="programlisting">const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *       gdu_linux_md_drive_get_uuid         (<a class="link" href="GduLinuxMdDrive.html" title="GduLinuxMdDrive">GduLinuxMdDrive</a> *drive);</pre>
+<pre class="programlisting">const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *       gdu_linux_md_drive_get_uuid         (<a class="link" href="GduLinuxMdDrive.html" title="GduLinuxMdDrive"><span class="returnvalue">GduLinuxMdDrive</span></a> *drive);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -209,14 +198,10 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 <hr>
 <div class="refsect2" title="gdu_linux_md_drive_has_slave ()">
 <a name="gdu-linux-md-drive-has-slave"></a><h3>gdu_linux_md_drive_has_slave ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            gdu_linux_md_drive_has_slave        (<a class="link" href="GduLinuxMdDrive.html" title="GduLinuxMdDrive">GduLinuxMdDrive</a> *drive,
-                                                         <a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *device);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="gboolean"><span class="returnvalue">gboolean</span></GTKDOCLINK>            gdu_linux_md_drive_has_slave        (<a class="link" href="GduLinuxMdDrive.html" title="GduLinuxMdDrive"><span class="returnvalue">GduLinuxMdDrive</span></a> *drive,
+                                                         <a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device);</pre>
 <p>
 Checks if <em class="parameter"><code>device</code></em> is a component of <em class="parameter"><code>drive</code></em>.</p>
-<p>
-</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -232,9 +217,7 @@ Checks if <em class="parameter"><code>device</code></em> is a component of <em c
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE--CAPS"
-><span class="type">TRUE</span></a> only if <em class="parameter"><code>slave</code></em> is a component of <em class="parameter"><code>drive</code></em>.
+<td> <GTKDOCLINK HREF="TRUE:CAPS"><span class="type">TRUE</span></GTKDOCLINK> only if <em class="parameter"><code>slave</code></em> is a component of <em class="parameter"><code>drive</code></em>.
 </td>
 </tr>
 </tbody>
@@ -243,13 +226,9 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRU
 <hr>
 <div class="refsect2" title="gdu_linux_md_drive_get_slaves ()">
 <a name="gdu-linux-md-drive-get-slaves"></a><h3>gdu_linux_md_drive_get_slaves ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
->GList</a> *             gdu_linux_md_drive_get_slaves       (<a class="link" href="GduLinuxMdDrive.html" title="GduLinuxMdDrive">GduLinuxMdDrive</a> *drive);</pre>
+<pre class="programlisting"><GTKDOCLINK HREF="GList"><span class="returnvalue">GList</span></GTKDOCLINK> *             gdu_linux_md_drive_get_slaves       (<a class="link" href="GduLinuxMdDrive.html" title="GduLinuxMdDrive"><span class="returnvalue">GduLinuxMdDrive</span></a> *drive);</pre>
 <p>
 Gets all slaves of <em class="parameter"><code>drive</code></em>.</p>
-<p>
-</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -260,11 +239,7 @@ Gets all slaves of <em class="parameter"><code>drive</code></em>.</p>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
-><span class="type">GList</span></a> of <a class="link" href="GduDevice.html" title="GduDevice"><span class="type">GduDevice</span></a> objects. Caller must free this list (and call <a
-href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"
-><code class="function">g_object_unref()</code></a> on all elements).
+<td> A <GTKDOCLINK HREF="GList"><span class="type">GList</span></GTKDOCLINK> of <a class="link" href="GduDevice.html" title="GduDevice"><span class="type">GduDevice</span></a> objects. Caller must free this list (and call <GTKDOCLINK HREF="g-object-unref"><code class="function">g_object_unref()</code></GTKDOCLINK> on all elements).
 </td>
 </tr>
 </tbody>
@@ -273,13 +248,11 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 <hr>
 <div class="refsect2" title="gdu_linux_md_drive_get_slave_flags ()">
 <a name="gdu-linux-md-drive-get-slave-flags"></a><h3>gdu_linux_md_drive_get_slave_flags ()</h3>
-<pre class="programlisting"><a class="link" href="GduLinuxMdDrive.html#GduLinuxMdDriveSlaveFlags" title="enum GduLinuxMdDriveSlaveFlags">GduLinuxMdDriveSlaveFlags</a>  gdu_linux_md_drive_get_slave_flags
-                                                        (<a class="link" href="GduLinuxMdDrive.html" title="GduLinuxMdDrive">GduLinuxMdDrive</a> *drive,
-                                                         <a class="link" href="GduDevice.html" title="GduDevice">GduDevice</a> *slave);</pre>
+<pre class="programlisting"><a class="link" href="GduLinuxMdDrive.html#GduLinuxMdDriveSlaveFlags" title="enum GduLinuxMdDriveSlaveFlags"><span class="returnvalue">GduLinuxMdDriveSlaveFlags</span></a>  gdu_linux_md_drive_get_slave_flags
+                                                        (<a class="link" href="GduLinuxMdDrive.html" title="GduLinuxMdDrive"><span class="returnvalue">GduLinuxMdDrive</span></a> *drive,
+                                                         <a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *slave);</pre>
 <p>
 Gets the state of <em class="parameter"><code>slave</code></em> of <em class="parameter"><code>drive</code></em>.</p>
-<p>
-</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -295,7 +268,36 @@ Gets the state of <em class="parameter"><code>slave</code></em> of <em class="pa
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A value from <span class="type">GduLinuxMdDriveSlaveState</span> for <em class="parameter"><code>slave</code></em>.
+<td> A value from <GTKDOCLINK HREF="GduLinuxMdDriveSlaveState"><span class="type">GduLinuxMdDriveSlaveState</span></GTKDOCLINK> for <em class="parameter"><code>slave</code></em>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gdu_linux_md_drive_get_slave_state_markup ()">
+<a name="gdu-linux-md-drive-get-slave-state-markup"></a><h3>gdu_linux_md_drive_get_slave_state_markup ()</h3>
+<pre class="programlisting"><GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *             gdu_linux_md_drive_get_slave_state_markup
+                                                        (<a class="link" href="GduLinuxMdDrive.html" title="GduLinuxMdDrive"><span class="returnvalue">GduLinuxMdDrive</span></a> *drive,
+                                                         <a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *slave);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>drive</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>slave</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
 </td>
 </tr>
 </tbody>
@@ -305,6 +307,6 @@ Gets the state of <em class="parameter"><code>slave</code></em> of <em class="pa
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.11</div>
+          Generated by GTK-Doc V1.13</div>
 </body>
 </html>

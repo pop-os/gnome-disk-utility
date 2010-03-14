@@ -19,11 +19,12 @@
  * 02111-1307, USA.
  */
 
-#include <config.h>
+#include "config.h"
+#include <glib/gi18n.h>
+
 #include <glib-object.h>
 #include <string.h>
 #include <stdlib.h>
-#include <glib/gi18n.h>
 #include <unique/unique.h>
 
 #include "gdu-shell.h"
@@ -37,16 +38,18 @@ show_volume (GduShell   *shell,
         GduPresentable *presentable;
 
         presentable = NULL;
-        pool = gdu_shell_get_pool (shell);
-        device = gdu_pool_get_by_device_file (pool, device_file);
-        if (device) {
-                presentable = gdu_pool_get_volume_by_device (pool, device);
-                g_object_unref (device);
-        }
-        if (presentable) {
-                gdu_shell_select_presentable (shell, presentable);
-                g_object_unref (presentable);
-                return TRUE;
+        pool = gdu_shell_get_pool_for_selected_presentable (shell);
+        if (pool != NULL) {
+                device = gdu_pool_get_by_device_file (pool, device_file);
+                if (device != NULL) {
+                        presentable = gdu_pool_get_volume_by_device (pool, device);
+                        g_object_unref (device);
+                }
+                if (presentable != NULL) {
+                        gdu_shell_select_presentable (shell, presentable);
+                        g_object_unref (presentable);
+                        return TRUE;
+                }
         }
 
         return FALSE;
@@ -61,16 +64,18 @@ show_drive (GduShell   *shell,
         GduPresentable *presentable;
 
         presentable = NULL;
-        pool = gdu_shell_get_pool (shell);
-        device = gdu_pool_get_by_device_file (pool, device_file);
-        if (device) {
-                presentable = gdu_pool_get_drive_by_device (pool, device);
-                g_object_unref (device);
-        }
-        if (presentable) {
-                gdu_shell_select_presentable (shell, presentable);
-                g_object_unref (presentable);
-                return TRUE;
+        pool = gdu_shell_get_pool_for_selected_presentable (shell);
+        if (pool != NULL) {
+                device = gdu_pool_get_by_device_file (pool, device_file);
+                if (device != NULL) {
+                        presentable = gdu_pool_get_drive_by_device (pool, device);
+                        g_object_unref (device);
+                }
+                if (presentable != NULL) {
+                        gdu_shell_select_presentable (shell, presentable);
+                        g_object_unref (presentable);
+                        return TRUE;
+                }
         }
 
         return FALSE;
@@ -116,10 +121,12 @@ message_received (UniqueApp         *app,
 
 const char *volume_to_show = NULL;
 const char *drive_to_show = NULL;
+const char *dbus_address = NULL;
 
 static GOptionEntry entries[] = {
         { "show-volume", 0, 0, G_OPTION_ARG_FILENAME, &volume_to_show, N_("Volume to show"), N_("DEVICE") },
         { "show-drive", 0, 0, G_OPTION_ARG_FILENAME, &drive_to_show, N_("Drive to show"), N_("DEVICE") },
+        { "address", 'a', 0, G_OPTION_ARG_STRING, &dbus_address, "D-Bus address to connect to", NULL },
         { NULL }
 };
 
@@ -176,7 +183,7 @@ main (int argc, char **argv)
                         return 1;
         }
 
-        shell = gdu_shell_new ();
+        shell = gdu_shell_new (dbus_address);
 
         g_signal_connect (unique_app, "message-received",
                           G_CALLBACK (message_received), shell);

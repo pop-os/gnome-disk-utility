@@ -1,0 +1,41 @@
+<!-- ##### SECTION Title ##### -->
+gdu-drive-benchmark-dialog
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### TYPEDEF GduDriveBenchmarkDialogClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF GduDriveBenchmarkDialogPrivate ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdu_drive_benchmark_dialog_new ##### -->
+<para>
+
+</para>
+
+@parent: 
+@drive: 
+@Returns: 
+
+

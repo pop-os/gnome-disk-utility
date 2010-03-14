@@ -1,4 +1,4 @@
-AC_INIT([GNOME Disk Utility],[2.28.1],[mailto:david@fubar.dk],[gnome-disk-utility])
+AC_INIT([GNOME Disk Utility],[2.29.90],[https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-disk-utility],[gnome-disk-utility])
 
 AM_INIT_AUTOMAKE([1.9 foreign dist-bzip2 no-dist-gzip])
 
@@ -27,7 +27,9 @@ m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 
 #### gcc warning flags
 
-AC_ARG_ENABLE(ansi,             [  --enable-ansi           enable -ansi -pedantic gcc flags],enable_ansi=$enableval,enable_ansi=no)
+AC_ARG_ENABLE(ansi, AS_HELP_STRING([--enable-ansi],
+  [enable -ansi -pedantic gcc flags]),
+  enable_ansi=$enableval,enable_ansi=no)
 
 if test "x$GCC" = "xyes"; then
   changequote(,)dnl
@@ -110,7 +112,7 @@ GNOME_DEBUG_CHECK
 GNOME_COMPILE_WARNINGS([maximum])
 GNOME_MAINTAINER_MODE_DEFINES
 
-AC_ARG_ENABLE(gtk-doc, AC_HELP_STRING([--enable-gtk-doc],
+AC_ARG_ENABLE(gtk-doc, AS_HELP_STRING([--enable-gtk-doc],
   [use gtk-doc to build documentation [default=yes]]),,
   enable_gtk_doc=yes)
 GTK_DOC_CHECK([1.3])
@@ -119,35 +121,67 @@ GTK_DOC_CHECK([1.3])
 # Check for required packages
 # ***************************
 
-GLIB2_REQUIRED=2.16
+GLIB2_REQUIRED=2.22
 GOBJECT2_REQUIRED=2.16
-GIO2_REQUIRED=2.16
+GIO2_REQUIRED=2.22
 DBUS_GLIB_REQUIRED=0.74
 GNOME_KEYRING_REQUIRED=2.22
 GTK2_REQUIRED=2.17.2
 UNIQUE_REQUIRED=1.0
 LIBNOTIFY_REQUIRED=0.3.0
 NAUTILUS_REQUIRED=2.24.0
-DEVKIT_DISKS_REQUIRED=007
+AVAHI_UI_REQUIRED=0.6.25
+
+UDISKS_REQUIRED=1.0.0
+UDISKS_NEXT_ABI_INCOMPATIBLE_VERSION=1.1.0
 
 SCROLLKEEPER_REQUIRED=0.3.14
 INTLTOOL_REQUIRED=0.35.0
 
-PKG_CHECK_MODULES(GLIB2, glib-2.0 >= $GLIB2_REQUIRED)
-PKG_CHECK_MODULES(GOBJECT2, gobject-2.0 >= $GOBJECT2_REQUIRED)
-PKG_CHECK_MODULES(GIO2, gio-2.0 >= $GIO2_REQUIRED)
-PKG_CHECK_MODULES(GIO_UNIX2, gio-unix-2.0 >= $GIO2_REQUIRED)
-PKG_CHECK_MODULES(GTHREAD2, gthread-2.0 >= $GLIB2_REQUIRED)
-PKG_CHECK_MODULES(DBUS_GLIB, dbus-glib-1 >= $DBUS_GLIB_REQUIRED)
-PKG_CHECK_MODULES(GNOME_KEYRING, gnome-keyring-1 >= $GNOME_KEYRING_REQUIRED)
-PKG_CHECK_MODULES(GTK2, gtk+-2.0 >= $GTK2_REQUIRED)
-PKG_CHECK_MODULES(UNIQUE, unique-1.0 >= $UNIQUE_REQUIRED)
-PKG_CHECK_MODULES(LIBNOTIFY, libnotify  >= $LIBNOTIFY_REQUIRED)
-PKG_CHECK_MODULES(DEVKIT_DISKS, DeviceKit-disks  >= $DEVKIT_DISKS_REQUIRED)
-
+PKG_CHECK_MODULES(GLIB2, [glib-2.0 >= $GLIB2_REQUIRED])
+PKG_CHECK_MODULES(GOBJECT2, [gobject-2.0 >= $GOBJECT2_REQUIRED])
+PKG_CHECK_MODULES(GIO2, [gio-2.0 >= $GIO2_REQUIRED])
+PKG_CHECK_MODULES(GIO_UNIX2, [gio-unix-2.0 >= $GIO2_REQUIRED])
+PKG_CHECK_MODULES(GTHREAD2, [gthread-2.0 >= $GLIB2_REQUIRED])
+PKG_CHECK_MODULES(DBUS_GLIB, [dbus-glib-1 >= $DBUS_GLIB_REQUIRED])
+PKG_CHECK_MODULES(GTK2, [gtk+-2.0 >= $GTK2_REQUIRED])
+PKG_CHECK_MODULES(UNIQUE, [unique-1.0 >= $UNIQUE_REQUIRED])
+PKG_CHECK_MODULES(LIBNOTIFY, [libnotify  >= $LIBNOTIFY_REQUIRED])
+PKG_CHECK_MODULES(UDISKS, [udisks  >= $UDISKS_REQUIRED udisks < $UDISKS_NEXT_ABI_INCOMPATIBLE_VERSION])
+PKG_CHECK_MODULES(X11, [x11])
 PKG_CHECK_MODULES(LIBATASMART, [libatasmart >= 0.14])
-AC_SUBST(LIBATASMART_CFLAGS)
-AC_SUBST(LIBATASMART_LIBS)
+PKG_CHECK_MODULES(AVAHI_UI, [avahi-ui >= $AVAHI_UI_REQUIRED])
+
+# *************
+# Remote Access
+# *************
+have_remote_access=no
+AC_ARG_ENABLE(remote_access, AS_HELP_STRING([--disable-remote-access], [disable access to remote udisks daemons]))
+if test "x$enable_remote_access" != "xno"; then
+   AC_DEFINE(HAVE_REMOTE_ACCESS, 1, [Defined if remote access is enabled])
+   have_remote_access=yes
+fi
+AM_CONDITIONAL(HAVE_REMOTE_ACCESS, [test "have_remote_access" = "yes"])
+
+# *************
+# GNOME Keyring
+# *************
+
+have_gnome_keyring=no
+AC_ARG_ENABLE(gnome-keyring, AS_HELP_STRING([--disable-gnome-keyring], [disable use of GNOME Keyring]))
+
+if test "x$enable_gnome_keyring" != "xno"; then
+	PKG_CHECK_MODULES(GNOME_KEYRING, gnome-keyring-1 >= $GNOME_KEYRING_REQUIRED,
+			  [AC_DEFINE(HAVE_GNOME_KEYRING, 1, [Define if gnome-keyring is available])
+			  have_gnome_keyring=yes], have_gnome_keyring=no)
+	if test "x$have_gnome_keyring" = xno -a "x$enable_gnome_keyring" = xyes; then
+		AC_MSG_ERROR([gnome-keyring support requested but libraries not found])
+	fi
+fi
+
+AC_SUBST(GNOME_KEYRING_LIBS)
+AC_SUBST(GNOME_KEYRING_CFLAGS)
+AM_CONDITIONAL(ENABLE_GNOME_KEYRING, [test "$have_gnome_keyring" = "yes"])
 
 # *************
 # Documentation
@@ -159,7 +193,7 @@ if test x$SCROLLKEEPER_CONFIG = xno; then
 fi
 
 # ********************
-# Internationalisation
+# Internationalization
 # ********************
 
 IT_PROG_INTLTOOL([$INTLTOOL_REQUIRED])
@@ -174,7 +208,7 @@ AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE],["$GETTEXT_PACKAGE"],[gettext domain])
 # ******************
 
 have_nautilus=no
-AC_ARG_ENABLE(nautilus, AC_HELP_STRING([--disable-nautilus], [disable nautilus extension]))
+AC_ARG_ENABLE(nautilus, AS_HELP_STRING([--disable-nautilus], [disable nautilus extension]))
 
 if test "x$enable_nautilus" != "xno"; then
 	PKG_CHECK_MODULES(NAUTILUS, libnautilus-extension >= $NAUTILUS_REQUIRED,
@@ -208,8 +242,6 @@ src/gdu-gtk/Makefile
 src/gdu-gtk/gdu-gtk.pc
 src/palimpsest/Makefile
 src/notification/Makefile
-src/playground/Makefile
-src/playground/grid/Makefile
 src/format-tool/Makefile
 src/nautilus-extension/Makefile
 po/Makefile.in
@@ -218,6 +250,7 @@ data/gdu-notification-daemon.desktop.in.in
 data/icons/Makefile
 data/icons/16x16/Makefile
 data/icons/22x22/Makefile
+data/icons/24x24/Makefile
 data/icons/48x48/Makefile
 data/icons/scalable/Makefile
 help/Makefile
@@ -247,4 +280,7 @@ echo "
         Maintainer mode:            ${USE_MAINTAINER_MODE}
         Building api docs:          ${enable_gtk_doc}
         Nautilus extension:         ${have_nautilus}
+
+        GNOME Keyring support:      ${have_gnome_keyring}
+        Remote Access:              ${have_remote_access}
 "

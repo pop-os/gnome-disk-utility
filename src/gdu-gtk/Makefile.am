@@ -37,6 +37,27 @@ libgdu_gtkinclude_HEADERS =              				\
 	gdu-create-linux-md-dialog.h					\
 	gdu-ata-smart-dialog.h						\
 	gdu-spinner.h							\
+	gdu-volume-grid.h						\
+	gdu-details-table.h						\
+	gdu-details-element.h						\
+	gdu-error-dialog.h						\
+	gdu-confirmation-dialog.h					\
+	gdu-button-element.h						\
+	gdu-button-table.h						\
+	gdu-dialog.h							\
+	gdu-edit-partition-dialog.h					\
+	gdu-format-dialog.h						\
+	gdu-partition-dialog.h						\
+	gdu-create-partition-dialog.h					\
+	gdu-create-linux-lvm2-volume-dialog.h				\
+	gdu-edit-name-dialog.h						\
+	gdu-disk-selection-widget.h					\
+	gdu-add-component-linux-md-dialog.h				\
+	gdu-add-pv-linux-lvm2-dialog.h				\
+	gdu-edit-linux-md-dialog.h					\
+	gdu-edit-linux-lvm2-dialog.h					\
+	gdu-drive-benchmark-dialog.h					\
+	gdu-connect-to-server-dialog.h					\
 	$(NULL)
 
 libgdu_gtk_la_SOURCES =                 	               				\
@@ -51,6 +72,27 @@ libgdu_gtk_la_SOURCES =                 	               				\
 	gdu-create-linux-md-dialog.h		gdu-create-linux-md-dialog.c		\
 	gdu-ata-smart-dialog.h			gdu-ata-smart-dialog.c			\
 	gdu-spinner.h				gdu-spinner.c				\
+	gdu-volume-grid.h			gdu-volume-grid.c			\
+	gdu-details-table.h			gdu-details-table.c			\
+	gdu-details-element.h			gdu-details-element.c			\
+	gdu-error-dialog.h			gdu-error-dialog.c			\
+	gdu-confirmation-dialog.h		gdu-confirmation-dialog.c		\
+	gdu-button-element.h			gdu-button-element.c			\
+	gdu-button-table.h			gdu-button-table.c			\
+	gdu-dialog.h				gdu-dialog.c				\
+	gdu-edit-partition-dialog.h		gdu-edit-partition-dialog.c		\
+	gdu-format-dialog.h			gdu-format-dialog.c			\
+	gdu-partition-dialog.h			gdu-partition-dialog.c			\
+	gdu-create-partition-dialog.h		gdu-create-partition-dialog.c		\
+	gdu-create-linux-lvm2-volume-dialog.h	gdu-create-linux-lvm2-volume-dialog.c	\
+	gdu-edit-name-dialog.h			gdu-edit-name-dialog.c			\
+	gdu-disk-selection-widget.h		gdu-disk-selection-widget.c		\
+	gdu-add-component-linux-md-dialog.h	gdu-add-component-linux-md-dialog.c	\
+	gdu-add-pv-linux-lvm2-dialog.h		gdu-add-pv-linux-lvm2-dialog.c		\
+	gdu-edit-linux-md-dialog.h		gdu-edit-linux-md-dialog.c		\
+	gdu-edit-linux-lvm2-dialog.h		gdu-edit-linux-lvm2-dialog.c		\
+	gdu-drive-benchmark-dialog.h		gdu-drive-benchmark-dialog.c		\
+	gdu-connect-to-server-dialog.h		gdu-connect-to-server-dialog.c		\
 	$(NULL)
 
 libgdu_gtk_la_CPPFLAGS = 				\
@@ -75,6 +117,7 @@ libgdu_gtk_la_CFLAGS = 					\
 	$(WARN_CFLAGS)					\
 	$(AM_CFLAGS)					\
 	$(LIBATASMART_CFLAGS)				\
+	$(AVAHI_UI_CFLAGS)				\
 	$(NULL)
 
 libgdu_gtk_la_LIBADD = 					\
@@ -86,6 +129,7 @@ libgdu_gtk_la_LIBADD = 					\
 	$(GTK2_LIBS)					\
 	$(INTLLIBS)					\
 	$(LIBATASMART_LIBS)				\
+	$(AVAHI_UI_LIBS)				\
 	$(NULL)
 
 libgdu_gtk_la_LDFLAGS = -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE) \

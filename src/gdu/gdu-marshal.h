@@ -22,6 +22,14 @@ extern void gdu_marshal_VOID__STRING_BOOLEAN_STRING_UINT_BOOLEAN_DOUBLE (GClosur
                                                                          gpointer      invocation_hint,
                                                                          gpointer      marshal_data);
 
+/* STRING:OBJECT (gdu-marshal.list:3) */
+extern void gdu_marshal_STRING__OBJECT (GClosure     *closure,
+                                        GValue       *return_value,
+                                        guint         n_param_values,
+                                        const GValue *param_values,
+                                        gpointer      invocation_hint,
+                                        gpointer      marshal_data);
+
 G_END_DECLS
 
 #endif /* __gdu_marshal_MARSHAL_H__ */

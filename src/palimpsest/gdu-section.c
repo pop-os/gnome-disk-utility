@@ -19,9 +19,10 @@
  * 02111-1307, USA.
  */
 
-#include <config.h>
-#include <string.h>
+#include "config.h"
 #include <glib/gi18n.h>
+
+#include <string.h>
 #include <dbus/dbus-glib.h>
 #include <stdlib.h>
 #include <math.h>
@@ -135,7 +136,8 @@ gdu_section_class_init (GduSectionClass *klass)
                                                               NULL,
                                                               GDU_TYPE_SHELL,
                                                               G_PARAM_WRITABLE |
-                                                              G_PARAM_READABLE));
+                                                              G_PARAM_READABLE |
+                                                              G_PARAM_CONSTRUCT));
 
         /**
          * GduSection:presentable:
@@ -149,7 +151,8 @@ gdu_section_class_init (GduSectionClass *klass)
                                                               NULL,
                                                               GDU_TYPE_PRESENTABLE,
                                                               G_PARAM_WRITABLE |
-                                                              G_PARAM_READABLE));
+                                                              G_PARAM_READABLE |
+                                                              G_PARAM_CONSTRUCT));
 }
 
 static void

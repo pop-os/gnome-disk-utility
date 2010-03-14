@@ -113,6 +113,15 @@ GduDevice
 @Returns: 
 
 
+<!-- ##### FUNCTION gdu_device_get_device_file_presentation ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
 <!-- ##### FUNCTION gdu_device_get_size ##### -->
 <para>
 
@@ -267,6 +276,42 @@ GduDevice
 
 
 <!-- ##### FUNCTION gdu_device_is_linux_md ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_is_linux_lvm2_lv ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_is_linux_lvm2_pv ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_is_linux_dmmp ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_is_linux_dmmp_component ##### -->
 <para>
 
 </para>
@@ -518,6 +563,15 @@ GduDevice
 @Returns: 
 
 
+<!-- ##### FUNCTION gdu_device_partition_get_alignment_offset ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
 <!-- ##### FUNCTION gdu_device_partition_table_get_scheme ##### -->
 <para>
 
@@ -591,6 +645,15 @@ GduDevice
 
 
 <!-- ##### FUNCTION gdu_device_drive_get_serial ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_drive_get_wwn ##### -->
 <para>
 
 </para>
@@ -680,6 +743,51 @@ GduDevice
 @Returns: 
 
 
+<!-- ##### FUNCTION gdu_device_drive_get_rotation_rate ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_drive_get_write_cache ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_drive_get_adapter ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_drive_get_ports ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_drive_get_similar_devices ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
 <!-- ##### FUNCTION gdu_device_optical_disc_get_is_blank ##### -->
 <para>
 
@@ -735,6 +843,15 @@ GduDevice
 
 
 <!-- ##### FUNCTION gdu_device_linux_md_component_get_level ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_linux_md_component_get_position ##### -->
 <para>
 
 </para>
@@ -914,6 +1031,168 @@ GduDevice
 @Returns: 
 
 
+<!-- ##### FUNCTION gdu_device_linux_lvm2_lv_get_name ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_linux_lvm2_lv_get_uuid ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_linux_lvm2_lv_get_group_name ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_linux_lvm2_lv_get_group_uuid ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_linux_lvm2_pv_get_uuid ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_linux_lvm2_pv_get_num_metadata_areas ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_linux_lvm2_pv_get_group_name ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_linux_lvm2_pv_get_group_uuid ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_linux_lvm2_pv_get_group_size ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_linux_lvm2_pv_get_group_unallocated_size ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_linux_lvm2_pv_get_group_extent_size ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_linux_lvm2_pv_get_group_sequence_number ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_linux_lvm2_pv_get_group_physical_volumes ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_linux_lvm2_pv_get_group_logical_volumes ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_linux_dmmp_component_get_holder ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_linux_dmmp_get_name ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_linux_dmmp_get_slaves ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_linux_dmmp_get_parameters ##### -->
+<para>
+
+</para>
+
+@device: 
+@Returns: 
+
+
 <!-- ##### FUNCTION gdu_device_drive_ata_smart_get_is_available ##### -->
 <para>
 
@@ -948,6 +1227,15 @@ GduDevice
 
 @device: 
 @out_size: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_device_should_ignore ##### -->
+<para>
+
+</para>
+
+@device: 
 @Returns: 
 
 
@@ -1102,13 +1390,24 @@ GduDevice
 @user_data: 
 
 
-<!-- ##### FUNCTION gdu_device_op_linux_md_add_component ##### -->
+<!-- ##### FUNCTION gdu_device_op_linux_md_add_spare ##### -->
 <para>
 
 </para>
 
 @device: 
 @component_objpath: 
+@callback: 
+@user_data: 
+
+
+<!-- ##### FUNCTION gdu_device_op_linux_md_expand ##### -->
+<para>
+
+</para>
+
+@device: 
+@component_objpaths: 
 @callback: 
 @user_data: 
 
@@ -1208,6 +1507,28 @@ GduDevice
 
 
 <!-- ##### FUNCTION gdu_device_op_drive_poll_media ##### -->
+<para>
+
+</para>
+
+@device: 
+@callback: 
+@user_data: 
+
+
+<!-- ##### FUNCTION gdu_device_op_drive_benchmark ##### -->
+<para>
+
+</para>
+
+@device: 
+@do_write_benchmark: 
+@options: 
+@callback: 
+@user_data: 
+
+
+<!-- ##### FUNCTION gdu_device_op_linux_lvm2_lv_stop ##### -->
 <para>
 
 </para>

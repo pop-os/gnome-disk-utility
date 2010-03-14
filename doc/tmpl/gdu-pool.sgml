@@ -29,6 +29,30 @@ GduPool
 </para>
 
 
+<!-- ##### SIGNAL GduPool::adapter-added ##### -->
+<para>
+
+</para>
+
+@gdupool: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL GduPool::adapter-changed ##### -->
+<para>
+
+</para>
+
+@gdupool: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL GduPool::adapter-removed ##### -->
+<para>
+
+</para>
+
+@gdupool: the object which received the signal.
+@arg1: 
+
 <!-- ##### SIGNAL GduPool::device-added ##### -->
 <para>
 
@@ -54,6 +78,61 @@ GduPool
 @arg1: 
 
 <!-- ##### SIGNAL GduPool::device-removed ##### -->
+<para>
+
+</para>
+
+@gdupool: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL GduPool::disconnected ##### -->
+<para>
+
+</para>
+
+@gdupool: the object which received the signal.
+
+<!-- ##### SIGNAL GduPool::expander-added ##### -->
+<para>
+
+</para>
+
+@gdupool: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL GduPool::expander-changed ##### -->
+<para>
+
+</para>
+
+@gdupool: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL GduPool::expander-removed ##### -->
+<para>
+
+</para>
+
+@gdupool: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL GduPool::port-added ##### -->
+<para>
+
+</para>
+
+@gdupool: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL GduPool::port-changed ##### -->
+<para>
+
+</para>
+
+@gdupool: the object which received the signal.
+@arg1: 
+
+<!-- ##### SIGNAL GduPool::port-removed ##### -->
 <para>
 
 </para>
@@ -98,6 +177,35 @@ GduPool
 
 </para>
 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_pool_new_for_address ##### -->
+<para>
+
+</para>
+
+@ssh_user_name: 
+@ssh_address: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_pool_get_ssh_user_name ##### -->
+<para>
+
+</para>
+
+@pool: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_pool_get_ssh_address ##### -->
+<para>
+
+</para>
+
+@pool: 
 @Returns: 
 
 
@@ -187,6 +295,16 @@ GduPool
 @Returns: 
 
 
+<!-- ##### FUNCTION gdu_pool_get_linux_md_drive_by_uuid ##### -->
+<para>
+
+</para>
+
+@pool: 
+@uuid: 
+@Returns: 
+
+
 <!-- ##### FUNCTION gdu_pool_get_presentable_by_id ##### -->
 <para>
 
@@ -194,6 +312,16 @@ GduPool
 
 @pool: 
 @id: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_pool_has_presentable ##### -->
+<para>
+
+</para>
+
+@pool: 
+@presentable: 
 @Returns: 
 
 
@@ -225,6 +353,73 @@ GduPool
 @Returns: 
 
 
+<!-- ##### FUNCTION gdu_pool_get_adapter_by_object_path ##### -->
+<para>
+
+</para>
+
+@pool: 
+@object_path: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_pool_get_adapters ##### -->
+<para>
+
+</para>
+
+@pool: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_pool_get_expander_by_object_path ##### -->
+<para>
+
+</para>
+
+@pool: 
+@object_path: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_pool_get_expanders ##### -->
+<para>
+
+</para>
+
+@pool: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_pool_get_port_by_object_path ##### -->
+<para>
+
+</para>
+
+@pool: 
+@object_path: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_pool_get_ports ##### -->
+<para>
+
+</para>
+
+@pool: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_pool_get_hub_by_object_path ##### -->
+<para>
+
+</para>
+
+@pool: 
+@object_path: 
+@Returns: 
+
+
 <!-- ##### FUNCTION gdu_pool_op_linux_md_start ##### -->
 <para>
 
@@ -246,6 +441,121 @@ GduPool
 @level: 
 @stripe_size: 
 @name: 
+@callback: 
+@user_data: 
+
+
+<!-- ##### FUNCTION gdu_pool_op_linux_lvm2_vg_start ##### -->
+<para>
+
+</para>
+
+@pool: 
+@uuid: 
+@callback: 
+@user_data: 
+
+
+<!-- ##### FUNCTION gdu_pool_op_linux_lvm2_vg_stop ##### -->
+<para>
+
+</para>
+
+@pool: 
+@uuid: 
+@callback: 
+@user_data: 
+
+
+<!-- ##### FUNCTION gdu_pool_op_linux_lvm2_lv_start ##### -->
+<para>
+
+</para>
+
+@pool: 
+@group_uuid: 
+@uuid: 
+@callback: 
+@user_data: 
+
+
+<!-- ##### FUNCTION gdu_pool_op_linux_lvm2_vg_set_name ##### -->
+<para>
+
+</para>
+
+@pool: 
+@uuid: 
+@new_name: 
+@callback: 
+@user_data: 
+
+
+<!-- ##### FUNCTION gdu_pool_op_linux_lvm2_lv_set_name ##### -->
+<para>
+
+</para>
+
+@pool: 
+@group_uuid: 
+@uuid: 
+@new_name: 
+@callback: 
+@user_data: 
+
+
+<!-- ##### FUNCTION gdu_pool_op_linux_lvm2_lv_remove ##### -->
+<para>
+
+</para>
+
+@pool: 
+@group_uuid: 
+@uuid: 
+@callback: 
+@user_data: 
+
+
+<!-- ##### FUNCTION gdu_pool_op_linux_lvm2_lv_create ##### -->
+<para>
+
+</para>
+
+@pool: 
+@group_uuid: 
+@name: 
+@size: 
+@num_stripes: 
+@stripe_size: 
+@num_mirrors: 
+@fstype: 
+@fslabel: 
+@encrypt_passphrase: 
+@fs_take_ownership: 
+@callback: 
+@user_data: 
+
+
+<!-- ##### FUNCTION gdu_pool_op_linux_lvm2_vg_add_pv ##### -->
+<para>
+
+</para>
+
+@pool: 
+@uuid: 
+@physical_volume_object_path: 
+@callback: 
+@user_data: 
+
+
+<!-- ##### FUNCTION gdu_pool_op_linux_lvm2_vg_remove_pv ##### -->
+<para>
+
+</para>
+
+@pool: 
+@vg_uuid: 
+@pv_uuid: 
 @callback: 
 @user_data: 
 

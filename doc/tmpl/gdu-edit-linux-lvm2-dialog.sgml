@@ -1,0 +1,58 @@
+<!-- ##### SECTION Title ##### -->
+gdu-edit-linux-lvm2-dialog
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### TYPEDEF GduEditLinuxLvm2DialogClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF GduEditLinuxLvm2DialogPrivate ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION new_button_clicked ##### -->
+<para>
+
+</para>
+
+@dialog: 
+
+
+<!-- ##### FUNCTION remove_button_clicked ##### -->
+<para>
+
+</para>
+
+@dialog: 
+@slave: 
+
+
+<!-- ##### FUNCTION gdu_edit_linux_lvm2_dialog_new ##### -->
+<para>
+
+</para>
+
+@parent: 
+@vg: 
+@Returns: 
+
+

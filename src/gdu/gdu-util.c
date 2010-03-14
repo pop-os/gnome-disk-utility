@@ -19,12 +19,16 @@
  * 02111-1307, USA.
  */
 
-#include <config.h>
+#include "config.h"
+#include <glib/gi18n-lib.h>
+
 #include <glib-object.h>
 #include <string.h>
-#include <glib/gi18n-lib.h>
-#include <gnome-keyring.h>
 #include <dbus/dbus-glib.h>
+
+#ifdef HAVE_GNOME_KEYRING
+#include <gnome-keyring.h>
+#endif
 
 #include "gdu-util.h"
 #include "gdu-pool.h"
@@ -33,10 +37,12 @@
 #define KILOBYTE_FACTOR 1000.0
 #define MEGABYTE_FACTOR (1000.0 * 1000.0)
 #define GIGABYTE_FACTOR (1000.0 * 1000.0 * 1000.0)
+#define TERABYTE_FACTOR (1000.0 * 1000.0 * 1000.0 * 1000.0)
 
 #define KIBIBYTE_FACTOR 1024.0
 #define MEBIBYTE_FACTOR (1024.0 * 1024.0)
 #define GIBIBYTE_FACTOR (1024.0 * 1024.0 * 1024.0)
+#define TEBIBYTE_FACTOR (1024.0 * 1024.0 * 1024.0 * 10242.0)
 
 static char *
 get_pow2_size (guint64 size)
@@ -52,9 +58,12 @@ get_pow2_size (guint64 size)
         } else if (size < GIBIBYTE_FACTOR) {
                 displayed_size = (double) size / MEBIBYTE_FACTOR;
                 unit = "MiB";
-        } else {
+        } else if (size < TEBIBYTE_FACTOR) {
                 displayed_size = (double) size / GIBIBYTE_FACTOR;
                 unit = "GiB";
+        } else {
+                displayed_size = (double) size / TEBIBYTE_FACTOR;
+                unit = "TiB";
         }
 
         if (displayed_size < 10.0)
@@ -81,9 +90,12 @@ get_pow10_size (guint64 size)
         } else if (size < GIGABYTE_FACTOR) {
                 displayed_size = (double) size / MEGABYTE_FACTOR;
                 unit = "MB";
-        } else {
+        } else if (size < TERABYTE_FACTOR) {
                 displayed_size = (double) size / GIGABYTE_FACTOR;
                 unit = "GB";
+        } else {
+                displayed_size = (double) size / TERABYTE_FACTOR;
+                unit = "TB";
         }
 
         if (displayed_size < 10.0)
@@ -97,31 +109,45 @@ get_pow10_size (guint64 size)
 }
 
 
-char *
-gdu_util_get_size_for_display (guint64 size, gboolean long_string)
+gchar *
+gdu_util_get_size_for_display (guint64 size,
+                               gboolean use_pow2,
+                               gboolean long_string)
 {
-        char *str;
+        gchar *str;
 
         if (long_string) {
-                char *pow2_str;
-                char *pow10_str;
-                char *size_str;
+                gchar *size_str;
 
-                pow2_str = get_pow2_size (size);
-                pow10_str = get_pow10_size (size);
                 size_str = g_strdup_printf ("%'" G_GINT64_FORMAT, size);
 
-                /* Translators: The first %s is the size in power-of-10 units, e.g. 100 KB
-                 * the second %s is the size in power-of-2 units, e.g. 20 MiB
-                 * the third %s is the size as a number
-                 */
-                str = g_strdup_printf (_("%s / %s / %s bytes"), pow10_str, pow2_str, size_str);
+                if (use_pow2) {
+                        gchar *pow2_str;
+                        pow2_str = get_pow2_size (size);
+
+                        /* Translators: The first %s is the size in power-of-2 units, e.g. '64 KiB'
+                         * the second %s is the size as a number e.g. '65,536 bytes'
+                         */
+                        str = g_strdup_printf (_("%s (%s bytes)"), pow2_str, size_str);
+                        g_free (pow2_str);
+                } else {
+                        gchar *pow10_str;
+                        pow10_str = get_pow10_size (size);
+
+                        /* Translators: The first %s is the size in power-of-10 units, e.g. '100 KB'
+                         * the second %s is the size as a number e.g. '100,000 bytes'
+                         */
+                        str = g_strdup_printf (_("%s (%s bytes)"), pow10_str, size_str);
+                        g_free (pow10_str);
+                }
 
                 g_free (size_str);
-                g_free (pow10_str);
-                g_free (pow2_str);
         } else {
-                str = get_pow10_size (size);
+                if (use_pow2) {
+                        str = get_pow2_size (size);
+                } else {
+                        str = get_pow10_size (size);
+                }
         }
 
         return str;
@@ -208,10 +234,10 @@ gdu_util_get_fstype_for_display (const char *fstype, const char *fsversion, gboo
                 if (long_string) {
                         if (strlen (fsversion) > 0)
                                 /* Translators: Ext2 is a filesystem type */
-                                s = g_strdup_printf (_("Linux Ext2 (version %s)"), fsversion);
+                                s = g_strdup_printf (_("Ext2 (version %s)"), fsversion);
                         else
                                 /* Translators: Ext2 is a filesystem type */
-                                s = g_strdup_printf (_("Linux Ext2"));
+                                s = g_strdup_printf (_("Ext2"));
                 } else {
                         /* Translators: Ext2 is a filesystem type */
                         s = g_strdup (_("ext2"));
@@ -220,10 +246,10 @@ gdu_util_get_fstype_for_display (const char *fstype, const char *fsversion, gboo
                 if (long_string) {
                         if (strlen (fsversion) > 0)
                                 /* Translators: Ext3 is a filesystem type */
-                                s = g_strdup_printf (_("Linux Ext3 (version %s)"), fsversion);
+                                s = g_strdup_printf (_("Ext3 (version %s)"), fsversion);
                         else
                                 /* Translators: Ext3 is a filesystem type */
-                                s = g_strdup_printf (_("Linux Ext3"));
+                                s = g_strdup_printf (_("Ext3"));
                 } else {
                         /* Translators: Ext3 is a filesystem type */
                         s = g_strdup (_("ext3"));
@@ -232,10 +258,10 @@ gdu_util_get_fstype_for_display (const char *fstype, const char *fsversion, gboo
                 if (long_string) {
                         if (strlen (fsversion) > 0)
                                 /* Translators: 'Journal' refers to a filesystem technology here, see 'journaling filesystems' */
-                                s = g_strdup_printf (_("Journal for Linux ext3 (version %s)"), fsversion);
+                                s = g_strdup_printf (_("Journal for Ext3 (version %s)"), fsversion);
                         else
                                 /* Translators: 'Journal' refers to a filesystem technology here, see 'journaling filesystems' */
-                                s = g_strdup_printf (_("Journal for Linux ext3"));
+                                s = g_strdup_printf (_("Journal for Ext3"));
                 } else {
                         /* Translators: jbd is a filesystem type */
                         s = g_strdup (_("jbd"));
@@ -244,10 +270,10 @@ gdu_util_get_fstype_for_display (const char *fstype, const char *fsversion, gboo
                 if (long_string) {
                         if (strlen (fsversion) > 0)
                                 /* Translators: ext4 is a filesystem type */
-                                s = g_strdup_printf (_("Linux Ext4 (version %s)"), fsversion);
+                                s = g_strdup_printf (_("Ext4 (version %s)"), fsversion);
                         else
                                 /* Translators: ext4 is a filesystem type */
-                                s = g_strdup_printf (_("Linux Ext4"));
+                                s = g_strdup_printf (_("Ext4"));
                 } else {
                         /* Translators: Ext4 is a filesystem type */
                         s = g_strdup (_("ext4"));
@@ -256,13 +282,25 @@ gdu_util_get_fstype_for_display (const char *fstype, const char *fsversion, gboo
                 if (long_string) {
                         if (strlen (fsversion) > 0)
                                 /* Translators: xfs is a filesystem type */
-                                s = g_strdup_printf (_("Linux XFS (version %s)"), fsversion);
+                                s = g_strdup_printf (_("XFS (version %s)"), fsversion);
                         else
                                 /* Translators: xfs is a filesystem type */
-                                s = g_strdup_printf (_("Linux XFS"));
+                                s = g_strdup_printf (_("XFS"));
                 } else {
                         /* Translators: xfs is a filesystem type */
                         s = g_strdup (_("xfs"));
+                }
+        } else if (strcmp (fstype, "reiserfs") == 0) {
+                if (long_string) {
+                        if (strlen (fsversion) > 0)
+                                /* Translators: reiserfs is a filesystem type */
+                                s = g_strdup_printf (_("ReiserFS (version %s)"), fsversion);
+                        else
+                                /* Translators: reiserfs is a filesystem type */
+                                s = g_strdup_printf (_("ReiserFS"));
+                } else {
+                        /* Translators: reiserfs is a filesystem type */
+                        s = g_strdup (_("reiserfs"));
                 }
         } else if (strcmp (fstype, "iso9660") == 0) {
                 if (long_string) {
@@ -307,6 +345,14 @@ gdu_util_get_fstype_for_display (const char *fstype, const char *fsversion, gboo
                 } else {
                         /* Translators: short name for 'RAID Component' */
                         s = g_strdup (_("raid"));
+                }
+        } else if (strcmp (fstype, "minix") == 0) {
+                if (long_string) {
+                        /* Translators: long filesystem type for minix */
+                        s = g_strdup (_("Minix"));
+                } else {
+                        /* Translators: filesystem type for minix */
+                        s = g_strdup (_("minix"));
                 }
         } else {
                 s = g_strdup (fstype);
@@ -373,7 +419,7 @@ gdu_get_job_description (const char *job_id)
                 s = g_strdup (_("Forcibly Locking LUKS device"));
         } else {
                 s = g_strdup_printf ("%s", job_id);
-                g_warning ("No friendly string for job with id '%s'", job_id);
+                g_debug ("No friendly string for job with id '%s'", job_id);
         }
         return s;
 }
@@ -385,24 +431,62 @@ static struct {
 } part_type[] = {
         /* see http://en.wikipedia.org/wiki/GUID_Partition_Table */
 
-        {"gpt", "024DEE41-33E7-11D3-9D69-0008C781F39F", N_("MBR Partition Scheme")},
-        {"gpt", "C12A7328-F81F-11D2-BA4B-00A0C93EC93B", N_("EFI System Partition")},
-        /* Microsoft */
-        {"gpt", "E3C9E316-0B5C-4DB8-817D-F92DF00215AE", N_("Microsoft Reserved Partition")},
-        /* {"gpt", "EBD0A0A2-B9E5-4433-87C0-68B6B72699C7", N_("Basic Data Partition")}, */
-        {"gpt", "5808C8AA-7E8F-42E0-85D2-E1E90434CFB3", N_("LDM meta data Partition")},
-        {"gpt", "AF9B60A0-1431-4F62-BC68-3311714A69AD", N_("LDM data Partition")},
         /* Linux */
-        {"gpt", "EBD0A0A2-B9E5-4433-87C0-68B6B72699C7", N_("Basic Data Partition")}, /* Same GUID as MS! */
+        {"gpt", "EBD0A0A2-B9E5-4433-87C0-68B6B72699C7", N_("Linux Basic Data Partition")}, /* Same as MS BDP */
         {"gpt", "A19D880F-05FC-4D3B-A006-743F0F84911E", N_("Linux RAID Partition")},
         {"gpt", "0657FD6D-A4AB-43C4-84E5-0933C84B4F4F", N_("Linux Swap Partition")},
         {"gpt", "E6D6D379-F507-44C2-A23C-238F2A3DF928", N_("Linux LVM Partition")},
         {"gpt", "8DA63339-0007-60C0-C436-083AC8230908", N_("Linux Reserved Partition")},
+        /* Not associated with any OS */
+        {"gpt", "024DEE41-33E7-11D3-9D69-0008C781F39F", N_("MBR Partition Scheme")},
+        {"gpt", "C12A7328-F81F-11D2-BA4B-00A0C93EC93B", N_("EFI System Partition")},
+        {"gpt", "21686148-6449-6E6F-744E-656564454649", N_("BIOS Boot Partition")},
+        /* Microsoft */
+        {"gpt", "E3C9E316-0B5C-4DB8-817D-F92DF00215AE", N_("Microsoft Reserved Partition")},
+        {"gpt", "EBD0A0A2-B9E5-4433-87C0-68B6B72699C7", N_("Microsoft Basic Data Partition")}, /* Same as Linux BDP */
+        {"gpt", "5808C8AA-7E8F-42E0-85D2-E1E90434CFB3", N_("Microsoft LDM Metadata Partition")},
+        {"gpt", "AF9B60A0-1431-4F62-BC68-3311714A69AD", N_("Microsoft LDM Data Partition")},
+        {"gpt", "DE94BBA4-06D1-4D40-A16A-BFD50179D6AC", N_("Microsoft Windows Recovery Environment")},
+        /* HP-UX */
+        {"gpt", "75894C1E-3AEB-11D3-B7C1-7B03A0000000", N_("HP-UX Data Partition")},
+        {"gpt", "E2A1E728-32E3-11D6-A682-7B03A0000000", N_("HP-UX Service Partition")},
+        /* FreeBSD */
+        {"gpt", "83BD6B9D-7F41-11DC-BE0B-001560B84F0F", N_("FreeBSD Boot Partition")},
+        {"gpt", "516E7CB4-6ECF-11D6-8FF8-00022D09712B", N_("FreeBSD Data Partition")},
+        {"gpt", "516E7CB5-6ECF-11D6-8FF8-00022D09712B", N_("FreeBSD Swap Partition")},
+        {"gpt", "516E7CB6-6ECF-11D6-8FF8-00022D09712B", N_("FreeBSD UFS Partition")},
+        {"gpt", "516E7CB8-6ECF-11D6-8FF8-00022D09712B", N_("FreeBSD Vinum Partition")},
+        {"gpt", "516E7CBA-6ECF-11D6-8FF8-00022D09712B", N_("FreeBSD ZFS Partition")},
+        /* Solaris */
+        {"gpt", "6A82CB45-1DD2-11B2-99A6-080020736631", N_("Solaris Boot Partition")},
+        {"gpt", "6A85CF4D-1DD2-11B2-99A6-080020736631", N_("Solaris Root Partition")},
+        {"gpt", "6A87C46F-1DD2-11B2-99A6-080020736631", N_("Solaris Swap Partition")},
+        {"gpt", "6A8B642B-1DD2-11B2-99A6-080020736631", N_("Solaris Backup Partition")},
+        {"gpt", "6A898CC3-1DD2-11B2-99A6-080020736631", N_("Solaris /usr Partition")}, /* Same as Apple ZFS */
+        {"gpt", "6A8EF2E9-1DD2-11B2-99A6-080020736631", N_("Solaris /var Partition")},
+        {"gpt", "6A90BA39-1DD2-11B2-99A6-080020736631", N_("Solaris /home Partition")},
+        {"gpt", "6A9283A5-1DD2-11B2-99A6-080020736631", N_("Solaris Alternate Sector Partition")},
+        {"gpt", "6A945A3B-1DD2-11B2-99A6-080020736631", N_("Solaris Reserved Partition")},
+        {"gpt", "6A9630D1-1DD2-11B2-99A6-080020736631", N_("Solaris Reserved Partition (2)")},
+        {"gpt", "6A980767-1DD2-11B2-99A6-080020736631", N_("Solaris Reserved Partition (3)")},
+        {"gpt", "6A96237F-1DD2-11B2-99A6-080020736631", N_("Solaris Reserved Partition (4)")},
+        {"gpt", "6A8D2AC7-1DD2-11B2-99A6-080020736631", N_("Solaris Reserved Partition (5)")},
         /* Mac OS X */
         {"gpt", "48465300-0000-11AA-AA11-00306543ECAC", N_("Apple HFS/HFS+ Partition")},
         {"gpt", "55465300-0000-11AA-AA11-00306543ECAC", N_("Apple UFS Partition")},
+        {"gpt", "6A898CC3-1DD2-11B2-99A6-080020736631", N_("Apple ZFS Partition")}, /* Same as Solaris /usr */
         {"gpt", "52414944-0000-11AA-AA11-00306543ECAC", N_("Apple RAID Partition")},
-
+        {"gpt", "52414944-5F4F-11AA-AA11-00306543ECAC", N_("Apple RAID Partition (Offline)")},
+        {"gpt", "426F6F74-0000-11AA-AA11-00306543ECAC", N_("Apple Boot Partition")},
+        {"gpt", "4C616265-6C00-11AA-AA11-00306543ECAC", N_("Apple Label Partition")},
+        {"gpt", "5265636F-7665-11AA-AA11-00306543ECAC", N_("Apple TV Recovery Partition")},
+        /* NetBSD */
+        {"gpt", "49F48D32-B10E-11DC-B99B-0019D1879648", N_("NetBSD Swap Partition")},
+        {"gpt", "49F48D5A-B10E-11DC-B99B-0019D1879648", N_("NetBSD FFS Partition")},
+        {"gpt", "49F48D82-B10E-11DC-B99B-0019D1879648", N_("NetBSD LFS Partition")},
+        {"gpt", "49F48DAA-B10E-11DC-B99B-0019D1879648", N_("NetBSD RAID Partition")},
+        {"gpt", "2DB519C4-B10F-11DC-B99B-0019D1879648", N_("NetBSD Concatenated  Partition")},
+        {"gpt", "2DB519EC-B10F-11DC-B99B-0019D1879648", N_("NetBSD Encrypted Partition")},
 
         /* see http://developer.apple.com/documentation/mac/Devices/Devices-126.html
          *     http://lists.apple.com/archives/Darwin-drivers/2003/May/msg00021.html */
@@ -441,6 +525,7 @@ static struct {
         {"mbr", "0x1c",  N_("Hidden W95 FAT32 (LBA) (0x1c)")},
         {"mbr", "0x1e",  N_("Hidden W95 FAT16 (LBA) (0x1e)")},
         {"mbr", "0x3c",  N_("PartitionMagic (0x3c)")},
+        {"mbr", "0x81",  N_("Minix (0x81)")}, /* cf. http://en.wikipedia.org/wiki/MINIX_file_system */
         {"mbr", "0x82",  N_("Linux swap (0x82)")},
         {"mbr", "0x83",  N_("Linux (0x83)")},
         {"mbr", "0x84",  N_("Hibernation (0x84)")},
@@ -514,6 +599,10 @@ gdu_util_fstype_get_description (char *fstype)
                 return g_strdup (_("The native Windows file system. Not widely compatible with other "
                                    "operating systems than Windows."));
 
+        else if (strcmp (fstype, "minix") == 0)
+                return g_strdup (_("Simple filesystem with low overhead and UNIX permissions support. "
+                                   "Not widely compatible with other operating systems than Linux and Minix."));
+
         else if (strcmp (fstype, "empty") == 0)
                 return g_strdup (_("No file system will be created."));
 
@@ -564,21 +653,28 @@ gdu_util_get_default_part_type_for_scheme_and_fstype (const char *scheme, const 
 
         /* TODO: this function needs work: handle swap partitions, msdos extended, raid, LVM, EFI GPT etc. */
 
-        if (strcmp (scheme, "mbr") == 0) {
-                if (strcmp (fstype, "vfat") == 0) {
+        if (g_strcmp0 (scheme, "mbr") == 0) {
+                if (g_strcmp0 (fstype, "vfat") == 0) {
                         /* TODO: maybe consider size */
                         type = "0x0c";
-                } else if (strcmp (fstype, "swap") == 0) {
+                } else if (g_strcmp0 (fstype, "swap") == 0) {
                         type = "0x82";
-                } else if (strcmp (fstype, "ntfs") == 0) {
+                } else if (g_strcmp0 (fstype, "ntfs") == 0) {
                         type = "0x07";
+                } else if (g_strcmp0 (fstype, "minix") == 0) {
+                        type = "0x81";
                 } else {
                         type = "0x83";
                 }
-        } else if (strcmp (scheme, "gpt") == 0) {
-                /* default to Basic Data Partition for now */
-                type = "EBD0A0A2-B9E5-4433-87C0-68B6B72699C7";
-        } else if (strcmp (scheme, "apm") == 0) {
+        } else if (g_strcmp0 (scheme, "gpt") == 0) {
+                if (g_strcmp0 (fstype, "swap") == 0) {
+                        /* Linux Swap Partition */
+                        type = "0657FD6D-A4AB-43C4-84E5-0933C84B4F4F";
+                } else {
+                        /* Linux/Microsoft Basic Data Partition */
+                        type = "EBD0A0A2-B9E5-4433-87C0-68B6B72699C7";
+                }
+        } else if (g_strcmp0 (scheme, "apm") == 0) {
                 type = "Windows_FAT_32";
         }
 
@@ -587,6 +683,7 @@ gdu_util_get_default_part_type_for_scheme_and_fstype (const char *scheme, const 
 
 /* ---------------------------------------------------------------------------------------------------- */
 
+#ifdef HAVE_GNOME_KEYRING
 static GnomeKeyringPasswordSchema encrypted_device_password_schema = {
         GNOME_KEYRING_ITEM_GENERIC_SECRET,
         {
@@ -748,6 +845,37 @@ out:
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
+#else /* ifdef HAVE_GNOME_KEYRING */
+
+gboolean
+gdu_util_save_secret (GduDevice      *device,
+                      const char     *secret,
+                      gboolean        save_in_keyring_session)
+{
+        return FALSE;
+}
+
+gboolean
+gdu_util_delete_secret (GduDevice *device)
+{
+        return FALSE;
+}
+
+gboolean
+gdu_util_have_secret (GduDevice *device)
+{
+        return FALSE;
+}
+
+gchar *
+gdu_util_get_secret (GduDevice *device)
+{
+        return NULL;
+}
+
+#endif
+
+/* ---------------------------------------------------------------------------------------------------- */
 
 char *
 gdu_util_get_speed_for_display (guint64 speed)
@@ -757,13 +885,13 @@ gdu_util_get_speed_for_display (guint64 speed)
 
         if (speed < 1000 * 1000) {
                 displayed_speed = (double) speed / 1000.0;
-                str = g_strdup_printf (_("%.1f kbit/s"), displayed_speed);
+                str = g_strdup_printf (_("%.1f KB/s"), displayed_speed);
         } else if (speed < 1000 * 1000 * 1000) {
                 displayed_speed = (double) speed / 1000.0 / 1000.0;
-                str = g_strdup_printf (_("%.1f Mbit/s"), displayed_speed);
+                str = g_strdup_printf (_("%.1f MB/s"), displayed_speed);
         } else {
                 displayed_speed = (double) speed / 1000.0 / 1000.0 / 1000.0;
-                str = g_strdup_printf (_("%.1f Gbit/s"), displayed_speed);
+                str = g_strdup_printf (_("%.1f GB/s"), displayed_speed);
         }
 
         return str;
@@ -999,6 +1127,34 @@ gdu_util_ata_smart_status_to_desc (const gchar  *status,
         ret = g_strdup (desc);
 
         return ret;
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+GIcon *
+gdu_util_get_emblemed_icon (const gchar *name,
+                            const gchar *emblem_name)
+{
+        GIcon *icon;
+        GIcon *icon_for_emblem;
+        GEmblem *emblem;
+        GIcon *emblemed_icon;
+
+        icon = g_themed_icon_new_with_default_fallbacks (name);
+        if (emblem_name == NULL) {
+                emblemed_icon = icon;
+                goto out;
+        }
+
+        icon_for_emblem = g_themed_icon_new (emblem_name);
+        emblem = g_emblem_new_with_origin (icon_for_emblem, G_EMBLEM_ORIGIN_DEVICE);
+        emblemed_icon = g_emblemed_icon_new (icon, emblem);
+        g_object_unref (icon);
+        g_object_unref (icon_for_emblem);
+        g_object_unref (emblem);
+
+ out:
+        return emblemed_icon;
 }
 
 /* ---------------------------------------------------------------------------------------------------- */

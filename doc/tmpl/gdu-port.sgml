@@ -1,0 +1,94 @@
+<!-- ##### SECTION Title ##### -->
+GduPort
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GduPortPrivate ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT GduPort ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdu_port_get_object_path ##### -->
+<para>
+
+</para>
+
+@port: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_port_get_pool ##### -->
+<para>
+
+</para>
+
+@port: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_port_get_native_path ##### -->
+<para>
+
+</para>
+
+@port: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_port_get_adapter ##### -->
+<para>
+
+</para>
+
+@port: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_port_get_parent ##### -->
+<para>
+
+</para>
+
+@port: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_port_get_number ##### -->
+<para>
+
+</para>
+
+@port: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_port_get_connector_type ##### -->
+<para>
+
+</para>
+
+@port: 
+@Returns: 
+
+

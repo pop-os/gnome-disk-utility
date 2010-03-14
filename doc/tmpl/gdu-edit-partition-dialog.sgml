@@ -1,0 +1,68 @@
+<!-- ##### SECTION Title ##### -->
+gdu-edit-partition-dialog
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### TYPEDEF GduEditPartitionDialogClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF GduEditPartitionDialogPrivate ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdu_edit_partition_dialog_new ##### -->
+<para>
+
+</para>
+
+@parent: 
+@volume: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_edit_partition_dialog_get_partition_type ##### -->
+<para>
+
+</para>
+
+@dialog: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_edit_partition_dialog_get_partition_label ##### -->
+<para>
+
+</para>
+
+@dialog: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_edit_partition_dialog_get_partition_flags ##### -->
+<para>
+
+</para>
+
+@dialog: 
+@Returns: 
+
+

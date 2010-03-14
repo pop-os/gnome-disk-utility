@@ -20,8 +20,9 @@
  * Author: David Zeuthen <davidz@redhat.com>
  */
 
-#include <config.h>
+#include "config.h"
 #include <glib/gi18n-lib.h>
+
 #include <string.h>
 
 #include "gdu-pool-tree-view.h"
@@ -191,12 +192,13 @@ format_markup (GtkCellLayout   *cell_layout,
 
         /* Only include VPD name for drives */
         if (GDU_IS_DRIVE (p)) {
-                markup = g_strdup_printf ("<b>%s</b>\n"
-                                          "<span fgcolor=\"%s\"><small>%s\n%s</small></span>",
+                markup = g_strdup_printf ("<small>"
+                                          "<b>%s</b>\n"
+                                          "<span fgcolor=\"%s\">%s</span>"
+                                          "</small>",
                                           name,
                                           desc_color,
-                                          vpd_name,
-                                          desc);
+                                          vpd_name);
         } else {
                 markup = g_strdup_printf ("<small>"
                                           "<b>%s</b>\n"
@@ -209,6 +211,8 @@ format_markup (GtkCellLayout   *cell_layout,
 
         g_object_set (renderer,
                       "markup", markup,
+                      "ellipsize-set", TRUE,
+                      "ellipsize", PANGO_ELLIPSIZE_MIDDLE,
                       NULL);
 
         g_free (name);
@@ -236,39 +240,10 @@ pixbuf_data_func (GtkCellLayout   *cell_layout,
                             GDU_POOL_TREE_MODEL_COLUMN_ICON, &icon,
                             -1);
 
-#if 0
-        gint width, height;
-        GdkPixbuf *pixbuf;
-
-        gtk_tree_view_column_cell_get_size  (GTK_TREE_VIEW_COLUMN (cell_layout),
-                                             NULL,
-                                             NULL,
-                                             NULL,
-                                             &width,
-                                             &height);
-        //g_debug ("w=%d h=%d", width, height);
-
-        pixbuf = gdu_util_get_pixbuf_for_presentable_at_pixel_size (p,
-                                                                    height * 5 / 6);
-        g_object_set (renderer,
-                      "pixbuf", pixbuf,
-                      "width", 48,
-                      "height", 0,
-                      NULL);
-        g_object_unref (pixbuf);
-#else
-
-        GtkIconSize size;
-        size = GTK_ICON_SIZE_SMALL_TOOLBAR;
-        if (GDU_IS_VOLUME (p) || GDU_IS_VOLUME_HOLE (p)) {
-                size = GTK_ICON_SIZE_MENU;
-        }
-
         g_object_set (renderer,
                       "gicon", icon,
-                      "stock-size", size,
+                      "stock-size", GTK_ICON_SIZE_LARGE_TOOLBAR,
                       NULL);
-#endif
 
         g_object_unref (p);
         g_object_unref (icon);
@@ -315,10 +290,6 @@ gdu_pool_tree_view_constructed (GObject *object)
 
         renderer = gtk_cell_renderer_text_new ();
         gtk_tree_view_column_pack_start (column, renderer, TRUE);
-        //gtk_tree_view_column_set_attributes (column,
-        //                                     renderer,
-        //                                     "markup", GDU_POOL_TREE_MODEL_COLUMN_NAME,
-        //                                     NULL);
         gtk_cell_layout_set_cell_data_func (GTK_CELL_LAYOUT (column),
                                             renderer,
                                             format_markup,
@@ -335,7 +306,7 @@ gdu_pool_tree_view_constructed (GObject *object)
         gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (view), FALSE);
 
         gtk_tree_view_set_show_expanders (GTK_TREE_VIEW (view), FALSE);
-        gtk_tree_view_set_enable_tree_lines (GTK_TREE_VIEW (view), TRUE);
+        /*gtk_tree_view_set_enable_tree_lines (GTK_TREE_VIEW (view), TRUE);*/
         gtk_tree_view_set_level_indentation (GTK_TREE_VIEW (view), 16);
         gtk_tree_view_expand_all (GTK_TREE_VIEW (view));
 

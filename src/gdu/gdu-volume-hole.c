@@ -19,9 +19,10 @@
  * 02111-1307, USA.
  */
 
-#include <config.h>
-#include <string.h>
+#include "config.h"
 #include <glib/gi18n-lib.h>
+
+#include <string.h>
 #include <dbus/dbus-glib.h>
 #include <stdlib.h>
 
@@ -65,7 +66,8 @@ gdu_volume_hole_finalize (GduVolumeHole *volume_hole)
 {
         //g_debug ("finalized volume_hole '%s' %p", volume_hole->priv->id, volume_hole);
 
-        g_object_unref (volume_hole->priv->pool);
+        if (volume_hole->priv->pool != NULL)
+                g_object_unref (volume_hole->priv->pool);
 
         if (volume_hole->priv->enclosing_presentable != NULL)
                 g_object_unref (volume_hole->priv->enclosing_presentable);
@@ -143,7 +145,7 @@ gdu_volume_hole_get_name (GduPresentable *presentable)
         char *result;
         char *strsize;
 
-        strsize = gdu_util_get_size_for_display (volume_hole->priv->size, FALSE);
+        strsize = gdu_util_get_size_for_display (volume_hole->priv->size, FALSE, FALSE);
         /* Translators: label for an unallocated space on a disk
          * %s is the size, formatted like '45 GB'
          */
@@ -186,7 +188,7 @@ gdu_volume_hole_get_icon (GduPresentable *presentable)
         name = NULL;
         is_removable = FALSE;
 
-        p = gdu_presentable_get_toplevel (presentable);
+        p = gdu_presentable_get_enclosing_presentable (presentable);
         if (p == NULL)
                 goto out;
 
@@ -207,7 +209,7 @@ gdu_volume_hole_get_icon (GduPresentable *presentable)
 
         /* Linux MD devices can be partitioned */
         if (GDU_IS_LINUX_MD_DRIVE (p)) {
-                name = "gdu-raid-array";
+                name = "gdu-multidisk-drive";
         }
 
         /* first try the media */

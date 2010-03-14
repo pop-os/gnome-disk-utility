@@ -1,0 +1,60 @@
+<!-- ##### SECTION Title ##### -->
+gdu-partition-dialog
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### TYPEDEF GduPartitionDialogClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF GduPartitionDialogPrivate ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gdu_partition_dialog_new ##### -->
+<para>
+
+</para>
+
+@parent: 
+@presentable: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_partition_dialog_new_for_drive ##### -->
+<para>
+
+</para>
+
+@parent: 
+@device: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdu_partition_dialog_get_scheme ##### -->
+<para>
+
+</para>
+
+@dialog: 
+@Returns: 
+
+
