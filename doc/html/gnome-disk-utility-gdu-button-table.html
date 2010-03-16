@@ -41,14 +41,14 @@
 <a name="gnome-disk-utility-gdu-button-table.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">typedef             <a class="link" href="gnome-disk-utility-gdu-button-table.html#GduButtonTableClass" title="GduButtonTableClass">GduButtonTableClass</a>;
 typedef             <a class="link" href="gnome-disk-utility-gdu-button-table.html#GduButtonTablePrivate" title="GduButtonTablePrivate">GduButtonTablePrivate</a>;
-<GTKDOCLINK HREF="GtkWidget"><span class="returnvalue">GtkWidget</span></GTKDOCLINK>*          <a class="link" href="gnome-disk-utility-gdu-button-table.html#gdu-button-table-new" title="gdu_button_table_new ()">gdu_button_table_new</a>                (<GTKDOCLINK HREF="guint"><span class="returnvalue">guint</span></GTKDOCLINK> num_columns,
-                                                         <GTKDOCLINK HREF="GPtrArray"><span class="returnvalue">GPtrArray</span></GTKDOCLINK> *elements);
-<GTKDOCLINK HREF="guint"><span class="returnvalue">guint</span></GTKDOCLINK>               <a class="link" href="gnome-disk-utility-gdu-button-table.html#gdu-button-table-get-num-columns" title="gdu_button_table_get_num_columns ()">gdu_button_table_get_num_columns</a>    (<GTKDOCLINK HREF="GduButtonTable"><span class="returnvalue">GduButtonTable</span></GTKDOCLINK> *table);
-<GTKDOCLINK HREF="GPtrArray"><span class="returnvalue">GPtrArray</span></GTKDOCLINK> *         <a class="link" href="gnome-disk-utility-gdu-button-table.html#gdu-button-table-get-elements" title="gdu_button_table_get_elements ()">gdu_button_table_get_elements</a>       (<GTKDOCLINK HREF="GduButtonTable"><span class="returnvalue">GduButtonTable</span></GTKDOCLINK> *table);
-<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                <a class="link" href="gnome-disk-utility-gdu-button-table.html#gdu-button-table-set-num-columns" title="gdu_button_table_set_num_columns ()">gdu_button_table_set_num_columns</a>    (<GTKDOCLINK HREF="GduButtonTable"><span class="returnvalue">GduButtonTable</span></GTKDOCLINK> *table,
-                                                         <GTKDOCLINK HREF="guint"><span class="returnvalue">guint</span></GTKDOCLINK> num_columns);
-<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                <a class="link" href="gnome-disk-utility-gdu-button-table.html#gdu-button-table-set-elements" title="gdu_button_table_set_elements ()">gdu_button_table_set_elements</a>       (<GTKDOCLINK HREF="GduButtonTable"><span class="returnvalue">GduButtonTable</span></GTKDOCLINK> *table,
-                                                         <GTKDOCLINK HREF="GPtrArray"><span class="returnvalue">GPtrArray</span></GTKDOCLINK> *elements);
+<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a>*          <a class="link" href="gnome-disk-utility-gdu-button-table.html#gdu-button-table-new" title="gdu_button_table_new ()">gdu_button_table_new</a>                (<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a> num_columns,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"><span class="returnvalue">GPtrArray</span></a> *elements);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a>               <a class="link" href="gnome-disk-utility-gdu-button-table.html#gdu-button-table-get-num-columns" title="gdu_button_table_get_num_columns ()">gdu_button_table_get_num_columns</a>    (<span class="returnvalue">GduButtonTable</span> *table);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"><span class="returnvalue">GPtrArray</span></a> *         <a class="link" href="gnome-disk-utility-gdu-button-table.html#gdu-button-table-get-elements" title="gdu_button_table_get_elements ()">gdu_button_table_get_elements</a>       (<span class="returnvalue">GduButtonTable</span> *table);
+<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-button-table.html#gdu-button-table-set-num-columns" title="gdu_button_table_set_num_columns ()">gdu_button_table_set_num_columns</a>    (<span class="returnvalue">GduButtonTable</span> *table,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a> num_columns);
+<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-button-table.html#gdu-button-table-set-elements" title="gdu_button_table_set_elements ()">gdu_button_table_set_elements</a>       (<span class="returnvalue">GduButtonTable</span> *table,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"><span class="returnvalue">GPtrArray</span></a> *elements);
 </pre>
 </div>
 <div class="refsect1" title="Description">
@@ -76,8 +76,8 @@ typedef             <a class="link" href="gnome-disk-utility-gdu-button-table.ht
 <hr>
 <div class="refsect2" title="gdu_button_table_new ()">
 <a name="gdu-button-table-new"></a><h3>gdu_button_table_new ()</h3>
-<pre class="programlisting"><GTKDOCLINK HREF="GtkWidget"><span class="returnvalue">GtkWidget</span></GTKDOCLINK>*          gdu_button_table_new                (<GTKDOCLINK HREF="guint"><span class="returnvalue">guint</span></GTKDOCLINK> num_columns,
-                                                         <GTKDOCLINK HREF="GPtrArray"><span class="returnvalue">GPtrArray</span></GTKDOCLINK> *elements);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a>*          gdu_button_table_new                (<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a> num_columns,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"><span class="returnvalue">GPtrArray</span></a> *elements);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -104,7 +104,7 @@ typedef             <a class="link" href="gnome-disk-utility-gdu-button-table.ht
 <hr>
 <div class="refsect2" title="gdu_button_table_get_num_columns ()">
 <a name="gdu-button-table-get-num-columns"></a><h3>gdu_button_table_get_num_columns ()</h3>
-<pre class="programlisting"><GTKDOCLINK HREF="guint"><span class="returnvalue">guint</span></GTKDOCLINK>               gdu_button_table_get_num_columns    (<GTKDOCLINK HREF="GduButtonTable"><span class="returnvalue">GduButtonTable</span></GTKDOCLINK> *table);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a>               gdu_button_table_get_num_columns    (<span class="returnvalue">GduButtonTable</span> *table);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -126,7 +126,7 @@ typedef             <a class="link" href="gnome-disk-utility-gdu-button-table.ht
 <hr>
 <div class="refsect2" title="gdu_button_table_get_elements ()">
 <a name="gdu-button-table-get-elements"></a><h3>gdu_button_table_get_elements ()</h3>
-<pre class="programlisting"><GTKDOCLINK HREF="GPtrArray"><span class="returnvalue">GPtrArray</span></GTKDOCLINK> *         gdu_button_table_get_elements       (<GTKDOCLINK HREF="GduButtonTable"><span class="returnvalue">GduButtonTable</span></GTKDOCLINK> *table);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"><span class="returnvalue">GPtrArray</span></a> *         gdu_button_table_get_elements       (<span class="returnvalue">GduButtonTable</span> *table);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -148,8 +148,8 @@ typedef             <a class="link" href="gnome-disk-utility-gdu-button-table.ht
 <hr>
 <div class="refsect2" title="gdu_button_table_set_num_columns ()">
 <a name="gdu-button-table-set-num-columns"></a><h3>gdu_button_table_set_num_columns ()</h3>
-<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                gdu_button_table_set_num_columns    (<GTKDOCLINK HREF="GduButtonTable"><span class="returnvalue">GduButtonTable</span></GTKDOCLINK> *table,
-                                                         <GTKDOCLINK HREF="guint"><span class="returnvalue">guint</span></GTKDOCLINK> num_columns);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdu_button_table_set_num_columns    (<span class="returnvalue">GduButtonTable</span> *table,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a> num_columns);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -171,8 +171,8 @@ typedef             <a class="link" href="gnome-disk-utility-gdu-button-table.ht
 <hr>
 <div class="refsect2" title="gdu_button_table_set_elements ()">
 <a name="gdu-button-table-set-elements"></a><h3>gdu_button_table_set_elements ()</h3>
-<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                gdu_button_table_set_elements       (<GTKDOCLINK HREF="GduButtonTable"><span class="returnvalue">GduButtonTable</span></GTKDOCLINK> *table,
-                                                         <GTKDOCLINK HREF="GPtrArray"><span class="returnvalue">GPtrArray</span></GTKDOCLINK> *elements);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdu_button_table_set_elements       (<span class="returnvalue">GduButtonTable</span> *table,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Pointer-Arrays.html#GPtrArray"><span class="returnvalue">GPtrArray</span></a> *elements);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
