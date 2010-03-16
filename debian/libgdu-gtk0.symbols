@@ -165,6 +165,7 @@ libgdu-gtk.so.0 libgdu-gtk0 #MINVER#
  gdu_util_fstype_combo_box_rebuild@Base 0.2
  gdu_util_fstype_combo_box_select@Base 0.2
  gdu_util_fstype_combo_box_set_desc_label@Base 0.2
+ gdu_util_get_mix_color@Base 2.30.0
  gdu_util_get_pixbuf_for_presentable@Base 0.2
  gdu_util_get_pixbuf_for_presentable_at_pixel_size@Base 0.2
  gdu_util_part_table_type_combo_box_create@Base 0.2
