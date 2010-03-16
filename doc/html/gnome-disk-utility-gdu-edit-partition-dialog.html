@@ -41,14 +41,14 @@
 <a name="gnome-disk-utility-gdu-edit-partition-dialog.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">typedef             <a class="link" href="gnome-disk-utility-gdu-edit-partition-dialog.html#GduEditPartitionDialogClass" title="GduEditPartitionDialogClass">GduEditPartitionDialogClass</a>;
 typedef             <a class="link" href="gnome-disk-utility-gdu-edit-partition-dialog.html#GduEditPartitionDialogPrivate" title="GduEditPartitionDialogPrivate">GduEditPartitionDialogPrivate</a>;
-<GTKDOCLINK HREF="GtkWidget"><span class="returnvalue">GtkWidget</span></GTKDOCLINK> *         <a class="link" href="gnome-disk-utility-gdu-edit-partition-dialog.html#gdu-edit-partition-dialog-new" title="gdu_edit_partition_dialog_new ()">gdu_edit_partition_dialog_new</a>       (<GTKDOCLINK HREF="GtkWindow"><span class="returnvalue">GtkWindow</span></GTKDOCLINK> *parent,
+<a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         <a class="link" href="gnome-disk-utility-gdu-edit-partition-dialog.html#gdu-edit-partition-dialog-new" title="gdu_edit_partition_dialog_new ()">gdu_edit_partition_dialog_new</a>       (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWindow.html"><span class="returnvalue">GtkWindow</span></a> *parent,
                                                          <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *volume);
-<GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *             <a class="link" href="gnome-disk-utility-gdu-edit-partition-dialog.html#gdu-edit-partition-dialog-get-partition-type" title="gdu_edit_partition_dialog_get_partition_type ()">gdu_edit_partition_dialog_get_partition_type</a>
-                                                        (<GTKDOCLINK HREF="GduEditPartitionDialog"><span class="returnvalue">GduEditPartitionDialog</span></GTKDOCLINK> *dialog);
-<GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *             <a class="link" href="gnome-disk-utility-gdu-edit-partition-dialog.html#gdu-edit-partition-dialog-get-partition-label" title="gdu_edit_partition_dialog_get_partition_label ()">gdu_edit_partition_dialog_get_partition_label</a>
-                                                        (<GTKDOCLINK HREF="GduEditPartitionDialog"><span class="returnvalue">GduEditPartitionDialog</span></GTKDOCLINK> *dialog);
-<GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> **            <a class="link" href="gnome-disk-utility-gdu-edit-partition-dialog.html#gdu-edit-partition-dialog-get-partition-flags" title="gdu_edit_partition_dialog_get_partition_flags ()">gdu_edit_partition_dialog_get_partition_flags</a>
-                                                        (<GTKDOCLINK HREF="GduEditPartitionDialog"><span class="returnvalue">GduEditPartitionDialog</span></GTKDOCLINK> *dialog);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="gnome-disk-utility-gdu-edit-partition-dialog.html#gdu-edit-partition-dialog-get-partition-type" title="gdu_edit_partition_dialog_get_partition_type ()">gdu_edit_partition_dialog_get_partition_type</a>
+                                                        (<span class="returnvalue">GduEditPartitionDialog</span> *dialog);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="gnome-disk-utility-gdu-edit-partition-dialog.html#gdu-edit-partition-dialog-get-partition-label" title="gdu_edit_partition_dialog_get_partition_label ()">gdu_edit_partition_dialog_get_partition_label</a>
+                                                        (<span class="returnvalue">GduEditPartitionDialog</span> *dialog);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> **            <a class="link" href="gnome-disk-utility-gdu-edit-partition-dialog.html#gdu-edit-partition-dialog-get-partition-flags" title="gdu_edit_partition_dialog_get_partition_flags ()">gdu_edit_partition_dialog_get_partition_flags</a>
+                                                        (<span class="returnvalue">GduEditPartitionDialog</span> *dialog);
 </pre>
 </div>
 <div class="refsect1" title="Description">
@@ -76,7 +76,7 @@ typedef             <a class="link" href="gnome-disk-utility-gdu-edit-partition-
 <hr>
 <div class="refsect2" title="gdu_edit_partition_dialog_new ()">
 <a name="gdu-edit-partition-dialog-new"></a><h3>gdu_edit_partition_dialog_new ()</h3>
-<pre class="programlisting"><GTKDOCLINK HREF="GtkWidget"><span class="returnvalue">GtkWidget</span></GTKDOCLINK> *         gdu_edit_partition_dialog_new       (<GTKDOCLINK HREF="GtkWindow"><span class="returnvalue">GtkWindow</span></GTKDOCLINK> *parent,
+<pre class="programlisting"><a href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         gdu_edit_partition_dialog_new       (<a href="http://library.gnome.org/devel/gtk/unstable/GtkWindow.html"><span class="returnvalue">GtkWindow</span></a> *parent,
                                                          <a class="link" href="GduPresentable.html" title="GduPresentable"><span class="returnvalue">GduPresentable</span></a> *volume);</pre>
 <p>
 </p>
@@ -104,8 +104,8 @@ typedef             <a class="link" href="gnome-disk-utility-gdu-edit-partition-
 <hr>
 <div class="refsect2" title="gdu_edit_partition_dialog_get_partition_type ()">
 <a name="gdu-edit-partition-dialog-get-partition-type"></a><h3>gdu_edit_partition_dialog_get_partition_type ()</h3>
-<pre class="programlisting"><GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *             gdu_edit_partition_dialog_get_partition_type
-                                                        (<GTKDOCLINK HREF="GduEditPartitionDialog"><span class="returnvalue">GduEditPartitionDialog</span></GTKDOCLINK> *dialog);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             gdu_edit_partition_dialog_get_partition_type
+                                                        (<span class="returnvalue">GduEditPartitionDialog</span> *dialog);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -127,8 +127,8 @@ typedef             <a class="link" href="gnome-disk-utility-gdu-edit-partition-
 <hr>
 <div class="refsect2" title="gdu_edit_partition_dialog_get_partition_label ()">
 <a name="gdu-edit-partition-dialog-get-partition-label"></a><h3>gdu_edit_partition_dialog_get_partition_label ()</h3>
-<pre class="programlisting"><GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *             gdu_edit_partition_dialog_get_partition_label
-                                                        (<GTKDOCLINK HREF="GduEditPartitionDialog"><span class="returnvalue">GduEditPartitionDialog</span></GTKDOCLINK> *dialog);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             gdu_edit_partition_dialog_get_partition_label
+                                                        (<span class="returnvalue">GduEditPartitionDialog</span> *dialog);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -150,8 +150,8 @@ typedef             <a class="link" href="gnome-disk-utility-gdu-edit-partition-
 <hr>
 <div class="refsect2" title="gdu_edit_partition_dialog_get_partition_flags ()">
 <a name="gdu-edit-partition-dialog-get-partition-flags"></a><h3>gdu_edit_partition_dialog_get_partition_flags ()</h3>
-<pre class="programlisting"><GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> **            gdu_edit_partition_dialog_get_partition_flags
-                                                        (<GTKDOCLINK HREF="GduEditPartitionDialog"><span class="returnvalue">GduEditPartitionDialog</span></GTKDOCLINK> *dialog);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> **            gdu_edit_partition_dialog_get_partition_flags
+                                                        (<span class="returnvalue">GduEditPartitionDialog</span> *dialog);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">

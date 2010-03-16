@@ -39,48 +39,48 @@
 </tr></table></div>
 <div class="refsynopsisdiv" title="Synopsis">
 <a name="gnome-disk-utility-gdu-util.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis"><GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *             <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-get-size-for-display" title="gdu_util_get_size_for_display ()">gdu_util_get_size_for_display</a>       (<GTKDOCLINK HREF="guint64"><span class="returnvalue">guint64</span></GTKDOCLINK> size,
-                                                         <GTKDOCLINK HREF="gboolean"><span class="returnvalue">gboolean</span></GTKDOCLINK> use_pow2,
-                                                         <GTKDOCLINK HREF="gboolean"><span class="returnvalue">gboolean</span></GTKDOCLINK> long_string);
-<GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-get-fstype-for-display" title="gdu_util_get_fstype_for_display ()">gdu_util_get_fstype_for_display</a>     (const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *fstype,
-                                                         const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *fsversion,
-                                                         <GTKDOCLINK HREF="gboolean"><span class="returnvalue">gboolean</span></GTKDOCLINK> long_string);
-<GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-fstype-get-description" title="gdu_util_fstype_get_description ()">gdu_util_fstype_get_description</a>     (<GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *fstype);
-<GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-part-table-type-get-description" title="gdu_util_part_table_type_get_description ()">gdu_util_part_table_type_get_description</a>
-                                                        (<GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *part_type);
-<GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-get-speed-for-display" title="gdu_util_get_speed_for_display ()">gdu_util_get_speed_for_display</a>      (<GTKDOCLINK HREF="guint64"><span class="returnvalue">guint64</span></GTKDOCLINK> size);
-<GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-get-connection-for-display" title="gdu_util_get_connection_for_display ()">gdu_util_get_connection_for_display</a> (const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *connection_interface,
-                                                         <GTKDOCLINK HREF="guint64"><span class="returnvalue">guint64</span></GTKDOCLINK> connection_speed);
-<GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-get-desc-for-part-type" title="gdu_util_get_desc_for_part_type ()">gdu_util_get_desc_for_part_type</a>     (const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *part_scheme,
-                                                         const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *part_type);
-<GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-get-job-description" title="gdu_get_job_description ()">gdu_get_job_description</a>             (const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *job_id);
-<GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-linux-md-get-raid-level-for-display" title="gdu_linux_md_get_raid_level_for_display ()">gdu_linux_md_get_raid_level_for_display</a>
-                                                        (const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *linux_md_raid_level,
-                                                         <GTKDOCLINK HREF="gboolean"><span class="returnvalue">gboolean</span></GTKDOCLINK> long_string);
-<GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-linux-md-get-raid-level-description" title="gdu_linux_md_get_raid_level_description ()">gdu_linux_md_get_raid_level_description</a>
-                                                        (const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *linux_md_raid_level);
-<GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *             <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-ata-smart-status-to-desc" title="gdu_util_ata_smart_status_to_desc ()">gdu_util_ata_smart_status_to_desc</a>   (const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *status,
-                                                         <GTKDOCLINK HREF="gboolean"><span class="returnvalue">gboolean</span></GTKDOCLINK> *out_highlight,
-                                                         <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> **out_action_text,
-                                                         <GTKDOCLINK HREF="GIcon"><span class="returnvalue">GIcon</span></GTKDOCLINK> **out_icon);
-<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (<a class="link" href="gnome-disk-utility-gdu-util.html#GduUtilPartTypeForeachFunc" title="GduUtilPartTypeForeachFunc ()">*GduUtilPartTypeForeachFunc</a>)       (const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *scheme,
-                                                         const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *type,
-                                                         const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *name,
-                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
-<GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-part-type-foreach" title="gdu_util_part_type_foreach ()">gdu_util_part_type_foreach</a>          (<a class="link" href="gnome-disk-utility-gdu-util.html#GduUtilPartTypeForeachFunc" title="GduUtilPartTypeForeachFunc ()"><span class="returnvalue">GduUtilPartTypeForeachFunc</span></a> callback,
-                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);
-<GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-get-default-part-type-for-scheme-and-fstype" title="gdu_util_get_default_part_type_for_scheme_and_fstype ()">gdu_util_get_default_part_type_for_scheme_and_fstype</a>
-                                                        (const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *scheme,
-                                                         const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *fstype,
-                                                         <GTKDOCLINK HREF="guint64"><span class="returnvalue">guint64</span></GTKDOCLINK> size);
-<GTKDOCLINK HREF="gboolean"><span class="returnvalue">gboolean</span></GTKDOCLINK>            <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-save-secret" title="gdu_util_save_secret ()">gdu_util_save_secret</a>                (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
-                                                         const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *secret,
-                                                         <GTKDOCLINK HREF="gboolean"><span class="returnvalue">gboolean</span></GTKDOCLINK> save_in_keyring_session);
-<GTKDOCLINK HREF="gboolean"><span class="returnvalue">gboolean</span></GTKDOCLINK>            <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-delete-secret" title="gdu_util_delete_secret ()">gdu_util_delete_secret</a>              (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device);
-<GTKDOCLINK HREF="gboolean"><span class="returnvalue">gboolean</span></GTKDOCLINK>            <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-have-secret" title="gdu_util_have_secret ()">gdu_util_have_secret</a>                (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device);
-<GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *             <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-get-secret" title="gdu_util_get_secret ()">gdu_util_get_secret</a>                 (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device);
-<GTKDOCLINK HREF="GIcon"><span class="returnvalue">GIcon</span></GTKDOCLINK> *             <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-get-emblemed-icon" title="gdu_util_get_emblemed_icon ()">gdu_util_get_emblemed_icon</a>          (const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *name,
-                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *emblem_name);
+<pre class="synopsis"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-get-size-for-display" title="gdu_util_get_size_for_display ()">gdu_util_get_size_for_display</a>       (<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a> size,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> use_pow2,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> long_string);
+<span class="returnvalue">char</span> *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-get-fstype-for-display" title="gdu_util_get_fstype_for_display ()">gdu_util_get_fstype_for_display</a>     (const <span class="returnvalue">char</span> *fstype,
+                                                         const <span class="returnvalue">char</span> *fsversion,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> long_string);
+<span class="returnvalue">char</span> *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-fstype-get-description" title="gdu_util_fstype_get_description ()">gdu_util_fstype_get_description</a>     (<span class="returnvalue">char</span> *fstype);
+<span class="returnvalue">char</span> *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-part-table-type-get-description" title="gdu_util_part_table_type_get_description ()">gdu_util_part_table_type_get_description</a>
+                                                        (<span class="returnvalue">char</span> *part_type);
+<span class="returnvalue">char</span> *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-get-speed-for-display" title="gdu_util_get_speed_for_display ()">gdu_util_get_speed_for_display</a>      (<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a> size);
+<span class="returnvalue">char</span> *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-get-connection-for-display" title="gdu_util_get_connection_for_display ()">gdu_util_get_connection_for_display</a> (const <span class="returnvalue">char</span> *connection_interface,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a> connection_speed);
+<span class="returnvalue">char</span> *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-get-desc-for-part-type" title="gdu_util_get_desc_for_part_type ()">gdu_util_get_desc_for_part_type</a>     (const <span class="returnvalue">char</span> *part_scheme,
+                                                         const <span class="returnvalue">char</span> *part_type);
+<span class="returnvalue">char</span> *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-get-job-description" title="gdu_get_job_description ()">gdu_get_job_description</a>             (const <span class="returnvalue">char</span> *job_id);
+<span class="returnvalue">char</span> *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-linux-md-get-raid-level-for-display" title="gdu_linux_md_get_raid_level_for_display ()">gdu_linux_md_get_raid_level_for_display</a>
+                                                        (const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *linux_md_raid_level,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> long_string);
+<span class="returnvalue">char</span> *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-linux-md-get-raid-level-description" title="gdu_linux_md_get_raid_level_description ()">gdu_linux_md_get_raid_level_description</a>
+                                                        (const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *linux_md_raid_level);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-ata-smart-status-to-desc" title="gdu_util_ata_smart_status_to_desc ()">gdu_util_ata_smart_status_to_desc</a>   (const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *status,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> *out_highlight,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> **out_action_text,
+                                                         <a href="http://library.gnome.org/devel/gio/unstable/GIcon.html"><span class="returnvalue">GIcon</span></a> **out_icon);
+<span class="returnvalue">void</span>                (<a class="link" href="gnome-disk-utility-gdu-util.html#GduUtilPartTypeForeachFunc" title="GduUtilPartTypeForeachFunc ()">*GduUtilPartTypeForeachFunc</a>)       (const <span class="returnvalue">char</span> *scheme,
+                                                         const <span class="returnvalue">char</span> *type,
+                                                         const <span class="returnvalue">char</span> *name,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="returnvalue">gpointer</span></a> user_data);
+<span class="returnvalue">void</span>                <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-part-type-foreach" title="gdu_util_part_type_foreach ()">gdu_util_part_type_foreach</a>          (<a class="link" href="gnome-disk-utility-gdu-util.html#GduUtilPartTypeForeachFunc" title="GduUtilPartTypeForeachFunc ()"><span class="returnvalue">GduUtilPartTypeForeachFunc</span></a> callback,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="returnvalue">gpointer</span></a> user_data);
+<span class="returnvalue">char</span> *              <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-get-default-part-type-for-scheme-and-fstype" title="gdu_util_get_default_part_type_for_scheme_and_fstype ()">gdu_util_get_default_part_type_for_scheme_and_fstype</a>
+                                                        (const <span class="returnvalue">char</span> *scheme,
+                                                         const <span class="returnvalue">char</span> *fstype,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a> size);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-save-secret" title="gdu_util_save_secret ()">gdu_util_save_secret</a>                (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         const <span class="returnvalue">char</span> *secret,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> save_in_keyring_session);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-delete-secret" title="gdu_util_delete_secret ()">gdu_util_delete_secret</a>              (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-have-secret" title="gdu_util_have_secret ()">gdu_util_have_secret</a>                (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-get-secret" title="gdu_util_get_secret ()">gdu_util_get_secret</a>                 (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device);
+<a href="http://library.gnome.org/devel/gio/unstable/GIcon.html"><span class="returnvalue">GIcon</span></a> *             <a class="link" href="gnome-disk-utility-gdu-util.html#gdu-util-get-emblemed-icon" title="gdu_util_get_emblemed_icon ()">gdu_util_get_emblemed_icon</a>          (const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *name,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *emblem_name);
 </pre>
 </div>
 <div class="refsect1" title="Description">
@@ -92,9 +92,9 @@
 <a name="gnome-disk-utility-gdu-util.details"></a><h2>Details</h2>
 <div class="refsect2" title="gdu_util_get_size_for_display ()">
 <a name="gdu-util-get-size-for-display"></a><h3>gdu_util_get_size_for_display ()</h3>
-<pre class="programlisting"><GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *             gdu_util_get_size_for_display       (<GTKDOCLINK HREF="guint64"><span class="returnvalue">guint64</span></GTKDOCLINK> size,
-                                                         <GTKDOCLINK HREF="gboolean"><span class="returnvalue">gboolean</span></GTKDOCLINK> use_pow2,
-                                                         <GTKDOCLINK HREF="gboolean"><span class="returnvalue">gboolean</span></GTKDOCLINK> long_string);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             gdu_util_get_size_for_display       (<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a> size,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> use_pow2,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> long_string);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -126,9 +126,9 @@
 <hr>
 <div class="refsect2" title="gdu_util_get_fstype_for_display ()">
 <a name="gdu-util-get-fstype-for-display"></a><h3>gdu_util_get_fstype_for_display ()</h3>
-<pre class="programlisting"><GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *              gdu_util_get_fstype_for_display     (const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *fstype,
-                                                         const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *fsversion,
-                                                         <GTKDOCLINK HREF="gboolean"><span class="returnvalue">gboolean</span></GTKDOCLINK> long_string);</pre>
+<pre class="programlisting"><span class="returnvalue">char</span> *              gdu_util_get_fstype_for_display     (const <span class="returnvalue">char</span> *fstype,
+                                                         const <span class="returnvalue">char</span> *fsversion,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> long_string);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -160,7 +160,7 @@
 <hr>
 <div class="refsect2" title="gdu_util_fstype_get_description ()">
 <a name="gdu-util-fstype-get-description"></a><h3>gdu_util_fstype_get_description ()</h3>
-<pre class="programlisting"><GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *              gdu_util_fstype_get_description     (<GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *fstype);</pre>
+<pre class="programlisting"><span class="returnvalue">char</span> *              gdu_util_fstype_get_description     (<span class="returnvalue">char</span> *fstype);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -182,8 +182,8 @@
 <hr>
 <div class="refsect2" title="gdu_util_part_table_type_get_description ()">
 <a name="gdu-util-part-table-type-get-description"></a><h3>gdu_util_part_table_type_get_description ()</h3>
-<pre class="programlisting"><GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *              gdu_util_part_table_type_get_description
-                                                        (<GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *part_type);</pre>
+<pre class="programlisting"><span class="returnvalue">char</span> *              gdu_util_part_table_type_get_description
+                                                        (<span class="returnvalue">char</span> *part_type);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -205,7 +205,7 @@
 <hr>
 <div class="refsect2" title="gdu_util_get_speed_for_display ()">
 <a name="gdu-util-get-speed-for-display"></a><h3>gdu_util_get_speed_for_display ()</h3>
-<pre class="programlisting"><GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *              gdu_util_get_speed_for_display      (<GTKDOCLINK HREF="guint64"><span class="returnvalue">guint64</span></GTKDOCLINK> size);</pre>
+<pre class="programlisting"><span class="returnvalue">char</span> *              gdu_util_get_speed_for_display      (<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a> size);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -227,8 +227,8 @@
 <hr>
 <div class="refsect2" title="gdu_util_get_connection_for_display ()">
 <a name="gdu-util-get-connection-for-display"></a><h3>gdu_util_get_connection_for_display ()</h3>
-<pre class="programlisting"><GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *              gdu_util_get_connection_for_display (const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *connection_interface,
-                                                         <GTKDOCLINK HREF="guint64"><span class="returnvalue">guint64</span></GTKDOCLINK> connection_speed);</pre>
+<pre class="programlisting"><span class="returnvalue">char</span> *              gdu_util_get_connection_for_display (const <span class="returnvalue">char</span> *connection_interface,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a> connection_speed);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -255,8 +255,8 @@
 <hr>
 <div class="refsect2" title="gdu_util_get_desc_for_part_type ()">
 <a name="gdu-util-get-desc-for-part-type"></a><h3>gdu_util_get_desc_for_part_type ()</h3>
-<pre class="programlisting"><GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *              gdu_util_get_desc_for_part_type     (const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *part_scheme,
-                                                         const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *part_type);</pre>
+<pre class="programlisting"><span class="returnvalue">char</span> *              gdu_util_get_desc_for_part_type     (const <span class="returnvalue">char</span> *part_scheme,
+                                                         const <span class="returnvalue">char</span> *part_type);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -283,7 +283,7 @@
 <hr>
 <div class="refsect2" title="gdu_get_job_description ()">
 <a name="gdu-get-job-description"></a><h3>gdu_get_job_description ()</h3>
-<pre class="programlisting"><GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *              gdu_get_job_description             (const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *job_id);</pre>
+<pre class="programlisting"><span class="returnvalue">char</span> *              gdu_get_job_description             (const <span class="returnvalue">char</span> *job_id);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -305,9 +305,9 @@
 <hr>
 <div class="refsect2" title="gdu_linux_md_get_raid_level_for_display ()">
 <a name="gdu-linux-md-get-raid-level-for-display"></a><h3>gdu_linux_md_get_raid_level_for_display ()</h3>
-<pre class="programlisting"><GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *              gdu_linux_md_get_raid_level_for_display
-                                                        (const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *linux_md_raid_level,
-                                                         <GTKDOCLINK HREF="gboolean"><span class="returnvalue">gboolean</span></GTKDOCLINK> long_string);</pre>
+<pre class="programlisting"><span class="returnvalue">char</span> *              gdu_linux_md_get_raid_level_for_display
+                                                        (const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *linux_md_raid_level,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> long_string);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -334,8 +334,8 @@
 <hr>
 <div class="refsect2" title="gdu_linux_md_get_raid_level_description ()">
 <a name="gdu-linux-md-get-raid-level-description"></a><h3>gdu_linux_md_get_raid_level_description ()</h3>
-<pre class="programlisting"><GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *              gdu_linux_md_get_raid_level_description
-                                                        (const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *linux_md_raid_level);</pre>
+<pre class="programlisting"><span class="returnvalue">char</span> *              gdu_linux_md_get_raid_level_description
+                                                        (const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *linux_md_raid_level);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -357,10 +357,10 @@
 <hr>
 <div class="refsect2" title="gdu_util_ata_smart_status_to_desc ()">
 <a name="gdu-util-ata-smart-status-to-desc"></a><h3>gdu_util_ata_smart_status_to_desc ()</h3>
-<pre class="programlisting"><GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *             gdu_util_ata_smart_status_to_desc   (const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *status,
-                                                         <GTKDOCLINK HREF="gboolean"><span class="returnvalue">gboolean</span></GTKDOCLINK> *out_highlight,
-                                                         <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> **out_action_text,
-                                                         <GTKDOCLINK HREF="GIcon"><span class="returnvalue">GIcon</span></GTKDOCLINK> **out_icon);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             gdu_util_ata_smart_status_to_desc   (const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *status,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> *out_highlight,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> **out_action_text,
+                                                         <a href="http://library.gnome.org/devel/gio/unstable/GIcon.html"><span class="returnvalue">GIcon</span></a> **out_icon);</pre>
 <p>
 Gets a human readable representation of <em class="parameter"><code>status</code></em>.</p>
 <div class="variablelist"><table border="0">
@@ -373,22 +373,22 @@ Gets a human readable representation of <em class="parameter"><code>status</code
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>out_highlight</code></em> :</span></p></td>
-<td> Return value (or <GTKDOCLINK HREF="NULL:CAPS"><code class="literal">NULL</code></GTKDOCLINK>) for suggesting whether the status should be highlighted.
+<td> Return value (or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"><code class="literal">NULL</code></a>) for suggesting whether the status should be highlighted.
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>out_action_text</code></em> :</span></p></td>
-<td> Return value (or <GTKDOCLINK HREF="NULL:CAPS"><code class="literal">NULL</code></GTKDOCLINK>) for suggested action. Free with <GTKDOCLINK HREF="g-free"><code class="function">g_free()</code></GTKDOCLINK>.
+<td> Return value (or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"><code class="literal">NULL</code></a>) for suggested action. Free with <a href="http://library.gnome.org/devel/glib/unstable/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a>.
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>out_icon</code></em> :</span></p></td>
-<td> Return value (or <GTKDOCLINK HREF="NULL:CAPS"><code class="literal">NULL</code></GTKDOCLINK>) for icon to show. Free with <GTKDOCLINK HREF="g-object-unref"><code class="function">g_object_unref()</code></GTKDOCLINK>.
+<td> Return value (or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"><code class="literal">NULL</code></a>) for icon to show. Free with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>.
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> The human readable status. Free with <GTKDOCLINK HREF="g-free"><code class="function">g_free()</code></GTKDOCLINK>.
+<td> The human readable status. Free with <a href="http://library.gnome.org/devel/glib/unstable/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a>.
 </td>
 </tr>
 </tbody>
@@ -397,10 +397,10 @@ Gets a human readable representation of <em class="parameter"><code>status</code
 <hr>
 <div class="refsect2" title="GduUtilPartTypeForeachFunc ()">
 <a name="GduUtilPartTypeForeachFunc"></a><h3>GduUtilPartTypeForeachFunc ()</h3>
-<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                (*GduUtilPartTypeForeachFunc)       (const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *scheme,
-                                                         const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *type,
-                                                         const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *name,
-                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                (*GduUtilPartTypeForeachFunc)       (const <span class="returnvalue">char</span> *scheme,
+                                                         const <span class="returnvalue">char</span> *type,
+                                                         const <span class="returnvalue">char</span> *name,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="returnvalue">gpointer</span></a> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -432,8 +432,8 @@ Gets a human readable representation of <em class="parameter"><code>status</code
 <hr>
 <div class="refsect2" title="gdu_util_part_type_foreach ()">
 <a name="gdu-util-part-type-foreach"></a><h3>gdu_util_part_type_foreach ()</h3>
-<pre class="programlisting"><GTKDOCLINK HREF="void"><span class="returnvalue">void</span></GTKDOCLINK>                gdu_util_part_type_foreach          (<a class="link" href="gnome-disk-utility-gdu-util.html#GduUtilPartTypeForeachFunc" title="GduUtilPartTypeForeachFunc ()"><span class="returnvalue">GduUtilPartTypeForeachFunc</span></a> callback,
-                                                         <GTKDOCLINK HREF="gpointer"><span class="returnvalue">gpointer</span></GTKDOCLINK> user_data);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                gdu_util_part_type_foreach          (<a class="link" href="gnome-disk-utility-gdu-util.html#GduUtilPartTypeForeachFunc" title="GduUtilPartTypeForeachFunc ()"><span class="returnvalue">GduUtilPartTypeForeachFunc</span></a> callback,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="returnvalue">gpointer</span></a> user_data);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -455,10 +455,10 @@ Gets a human readable representation of <em class="parameter"><code>status</code
 <hr>
 <div class="refsect2" title="gdu_util_get_default_part_type_for_scheme_and_fstype ()">
 <a name="gdu-util-get-default-part-type-for-scheme-and-fstype"></a><h3>gdu_util_get_default_part_type_for_scheme_and_fstype ()</h3>
-<pre class="programlisting"><GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *              gdu_util_get_default_part_type_for_scheme_and_fstype
-                                                        (const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *scheme,
-                                                         const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *fstype,
-                                                         <GTKDOCLINK HREF="guint64"><span class="returnvalue">guint64</span></GTKDOCLINK> size);</pre>
+<pre class="programlisting"><span class="returnvalue">char</span> *              gdu_util_get_default_part_type_for_scheme_and_fstype
+                                                        (const <span class="returnvalue">char</span> *scheme,
+                                                         const <span class="returnvalue">char</span> *fstype,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a> size);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -490,9 +490,9 @@ Gets a human readable representation of <em class="parameter"><code>status</code
 <hr>
 <div class="refsect2" title="gdu_util_save_secret ()">
 <a name="gdu-util-save-secret"></a><h3>gdu_util_save_secret ()</h3>
-<pre class="programlisting"><GTKDOCLINK HREF="gboolean"><span class="returnvalue">gboolean</span></GTKDOCLINK>            gdu_util_save_secret                (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
-                                                         const <GTKDOCLINK HREF="char"><span class="returnvalue">char</span></GTKDOCLINK> *secret,
-                                                         <GTKDOCLINK HREF="gboolean"><span class="returnvalue">gboolean</span></GTKDOCLINK> save_in_keyring_session);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gdu_util_save_secret                (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device,
+                                                         const <span class="returnvalue">char</span> *secret,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> save_in_keyring_session);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -524,7 +524,7 @@ Gets a human readable representation of <em class="parameter"><code>status</code
 <hr>
 <div class="refsect2" title="gdu_util_delete_secret ()">
 <a name="gdu-util-delete-secret"></a><h3>gdu_util_delete_secret ()</h3>
-<pre class="programlisting"><GTKDOCLINK HREF="gboolean"><span class="returnvalue">gboolean</span></GTKDOCLINK>            gdu_util_delete_secret              (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gdu_util_delete_secret              (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -546,7 +546,7 @@ Gets a human readable representation of <em class="parameter"><code>status</code
 <hr>
 <div class="refsect2" title="gdu_util_have_secret ()">
 <a name="gdu-util-have-secret"></a><h3>gdu_util_have_secret ()</h3>
-<pre class="programlisting"><GTKDOCLINK HREF="gboolean"><span class="returnvalue">gboolean</span></GTKDOCLINK>            gdu_util_have_secret                (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            gdu_util_have_secret                (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -568,7 +568,7 @@ Gets a human readable representation of <em class="parameter"><code>status</code
 <hr>
 <div class="refsect2" title="gdu_util_get_secret ()">
 <a name="gdu-util-get-secret"></a><h3>gdu_util_get_secret ()</h3>
-<pre class="programlisting"><GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *             gdu_util_get_secret                 (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             gdu_util_get_secret                 (<a class="link" href="GduDevice.html" title="GduDevice"><span class="returnvalue">GduDevice</span></a> *device);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">
@@ -590,8 +590,8 @@ Gets a human readable representation of <em class="parameter"><code>status</code
 <hr>
 <div class="refsect2" title="gdu_util_get_emblemed_icon ()">
 <a name="gdu-util-get-emblemed-icon"></a><h3>gdu_util_get_emblemed_icon ()</h3>
-<pre class="programlisting"><GTKDOCLINK HREF="GIcon"><span class="returnvalue">GIcon</span></GTKDOCLINK> *             gdu_util_get_emblemed_icon          (const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *name,
-                                                         const <GTKDOCLINK HREF="gchar"><span class="returnvalue">gchar</span></GTKDOCLINK> *emblem_name);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/gio/unstable/GIcon.html"><span class="returnvalue">GIcon</span></a> *             gdu_util_get_emblemed_icon          (const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *name,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *emblem_name);</pre>
 <p>
 </p>
 <div class="variablelist"><table border="0">

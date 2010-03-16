@@ -221,3 +221,14 @@ gdu-gtk
 @Returns: 
 
 
+<!-- ##### FUNCTION gdu_util_get_mix_color ##### -->
+<para>
+
+</para>
+
+@widget: 
+@state: 
+@color_buf: 
+@color_buf_size: 
+
+
