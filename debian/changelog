@@ -1,11 +1,11 @@
-gnome-disk-utility (2.30.1-1) UNRELEASED; urgency=low
+gnome-disk-utility (2.30.1-1) unstable; urgency=low
 
-  * New upstream release: 
-    - Fix crash in gdu_adapter_get_object_path
-    - Fix broken rendering for some part of application
+  * New upstream release:
+    - Fix crash in gdu_adapter_get_object_path.
+    - Fix broken rendering for some part of application.
     - Translation updates.
 
- -- Michael Biebl <biebl@debian.org>  Fri, 26 Mar 2010 01:40:39 +0100
+ -- Michael Biebl <biebl@debian.org>  Sun, 04 Apr 2010 23:58:54 +0200
 
 gnome-disk-utility (2.30.0-1) unstable; urgency=low
 
