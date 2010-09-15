@@ -6,10 +6,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-disk-utility gnome-2-30\n"
+"Project-Id-Version: gnome-disk-utility master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-16 16:59+0200\n"
-"PO-Revision-Date: 2010-03-16 16:59+0200\n"
+"POT-Creation-Date: 2010-03-16 16:48+0200\n"
+"PO-Revision-Date: 2010-03-16 16:49+0200\n"
 "Last-Translator: Ivaylo Valkov <ivaylo@e-valkov.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"

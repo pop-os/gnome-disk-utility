@@ -184,7 +184,6 @@ gdu_edit_name_dialog_constructed (GObject *object)
         GtkWidget *table;
         gint row;
 
-        gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
         gtk_container_set_border_width (GTK_CONTAINER (dialog), 12);
 
         gtk_dialog_add_button (GTK_DIALOG (dialog),
@@ -194,6 +193,11 @@ gdu_edit_name_dialog_constructed (GObject *object)
         gtk_dialog_add_button (GTK_DIALOG (dialog),
                                GTK_STOCK_APPLY,
                                GTK_RESPONSE_APPLY);
+
+        gtk_dialog_set_default_response (GTK_DIALOG (dialog),
+                                         GTK_RESPONSE_APPLY);
+        gtk_entry_set_activates_default (GTK_ENTRY (dialog->priv->name_entry),
+                                         TRUE);
 
         content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
 
