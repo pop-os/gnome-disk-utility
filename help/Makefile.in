@@ -378,7 +378,7 @@ DOC_MODULE = palimpsest
 DOC_ENTITIES = legal.xml
 DOC_INCLUDES = 
 DOC_FIGURES = figures/main-app.png
-DOC_LINGUAS = de el es pl pt_BR sv zh_CN
+DOC_LINGUAS = cs de el es pl pt_BR sv zh_CN
 all: all-am
 
 .SUFFIXES:
