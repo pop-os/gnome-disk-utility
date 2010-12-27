@@ -1,5 +1,6 @@
 gnome-disk-utility (2.32.0-1) UNRELEASED; urgency=low
 
+  [ Martin Pitt ]
   * New upstream release.
     - Lots of translation updates.
     - Use accessor functions instead direct access, for GTK 3 compliance.
@@ -9,7 +10,10 @@ gnome-disk-utility (2.32.0-1) UNRELEASED; urgency=low
       upstream for now, since it is not a perfect solution; but it does
       improve matters on small screens.
 
- -- Martin Pitt <mpitt@debian.org>  Wed, 15 Sep 2010 19:03:39 +0200
+  [ Michael Biebl ]
+  * Use dpkg-vendor instead of lsb_release.
+
+ -- Michael Biebl <biebl@debian.org>  Mon, 27 Dec 2010 23:34:46 +0100
 
 gnome-disk-utility (2.30.1-2) unstable; urgency=low
 

@@ -11,6 +11,6 @@ DEB_DH_MAKESHLIBS_ARGS_ALL := -X/usr/lib/nautilus/
 binary-install/gnome-disk-utility::
 	# when building for Ubuntu, move menu entry from Apps → System Tools
 	# (which Ubuntu tries to avoid) to System → Administration.
-	if [ "`lsb_release -is 2>/dev/null`" = "Ubuntu" ]; then \
+	if dpkg-vendor --is ubuntu; then \
 	    sed -i '/^Categories=/ s/$$/Settings;HardwareSettings;/' debian/gnome-disk-utility/usr/share/applications/*.desktop; \
 	fi
