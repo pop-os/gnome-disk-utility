@@ -87,7 +87,7 @@ am_libgdu_gtk_la_OBJECTS = libgdu_gtk_la-gdu-gtk.lo \
 	libgdu_gtk_la-gdu-size-widget.lo \
 	libgdu_gtk_la-gdu-create-linux-md-dialog.lo \
 	libgdu_gtk_la-gdu-ata-smart-dialog.lo \
-	libgdu_gtk_la-gdu-spinner.lo libgdu_gtk_la-gdu-volume-grid.lo \
+	libgdu_gtk_la-gdu-volume-grid.lo \
 	libgdu_gtk_la-gdu-details-table.lo \
 	libgdu_gtk_la-gdu-details-element.lo \
 	libgdu_gtk_la-gdu-error-dialog.lo \
@@ -178,6 +178,7 @@ DEFS = @DEFS@
 DEPDIR = @DEPDIR@
 DISABLE_DEPRECATED = @DISABLE_DEPRECATED@
 DISTCHECK_CONFIGURE_FLAGS = @DISTCHECK_CONFIGURE_FLAGS@
+DLLTOOL = @DLLTOOL@
 DOC_USER_FORMATS = @DOC_USER_FORMATS@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
@@ -203,8 +204,8 @@ GOBJECT2_LIBS = @GOBJECT2_LIBS@
 GREP = @GREP@
 GTHREAD2_CFLAGS = @GTHREAD2_CFLAGS@
 GTHREAD2_LIBS = @GTHREAD2_LIBS@
-GTK2_CFLAGS = @GTK2_CFLAGS@
-GTK2_LIBS = @GTK2_LIBS@
+GTK3_CFLAGS = @GTK3_CFLAGS@
+GTK3_LIBS = @GTK3_LIBS@
 GTKDOC_CHECK = @GTKDOC_CHECK@
 GTKDOC_MKPDF = @GTKDOC_MKPDF@
 GTKDOC_REBASE = @GTKDOC_REBASE@
@@ -238,6 +239,7 @@ LT_CURRENT = @LT_CURRENT@
 LT_REVISION = @LT_REVISION@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MKDIR_P = @MKDIR_P@
 MKINSTALLDIRS = @MKINSTALLDIRS@
 MSGFMT = @MSGFMT@
@@ -262,6 +264,8 @@ PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PKG_CONFIG = @PKG_CONFIG@
+PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
 POFILES = @POFILES@
 POSUB = @POSUB@
 PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
@@ -286,6 +290,7 @@ abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
+ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
 am__include = @am__include@
@@ -318,7 +323,6 @@ libdir = @libdir@
 libexecdir = @libexecdir@
 localedir = @localedir@
 localstatedir = @localstatedir@
-lt_ECHO = @lt_ECHO@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
@@ -358,7 +362,6 @@ libgdu_gtkinclude_HEADERS = \
 	gdu-size-widget.h						\
 	gdu-create-linux-md-dialog.h					\
 	gdu-ata-smart-dialog.h						\
-	gdu-spinner.h							\
 	gdu-volume-grid.h						\
 	gdu-details-table.h						\
 	gdu-details-element.h						\
@@ -393,7 +396,6 @@ libgdu_gtk_la_SOURCES = \
 	gdu-size-widget.h			gdu-size-widget.c			\
 	gdu-create-linux-md-dialog.h		gdu-create-linux-md-dialog.c		\
 	gdu-ata-smart-dialog.h			gdu-ata-smart-dialog.c			\
-	gdu-spinner.h				gdu-spinner.c				\
 	gdu-volume-grid.h			gdu-volume-grid.c			\
 	gdu-details-table.h			gdu-details-table.c			\
 	gdu-details-element.h			gdu-details-element.c			\
@@ -435,7 +437,7 @@ libgdu_gtk_la_CFLAGS = \
 	$(GIO_UNIX2_CFLAGS)				\
 	$(DBUS_GLIB_CFLAGS)				\
 	$(GNOME_KEYRING_CFLAGS)				\
-	$(GTK2_CFLAGS)					\
+	$(GTK3_CFLAGS)					\
 	$(WARN_CFLAGS)					\
 	$(AM_CFLAGS)					\
 	$(LIBATASMART_CFLAGS)				\
@@ -448,7 +450,7 @@ libgdu_gtk_la_LIBADD = \
 	$(GIO_UNIX2_LIBS)				\
 	$(DBUS_GLIB_LIBS)				\
 	$(GNOME_KEYRING_LIBS)				\
-	$(GTK2_LIBS)					\
+	$(GTK3_LIBS)					\
 	$(INTLLIBS)					\
 	$(LIBATASMART_LIBS)				\
 	$(AVAHI_UI_LIBS)				\
@@ -569,7 +571,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgdu_gtk_la-gdu-pool-tree-model.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgdu_gtk_la-gdu-pool-tree-view.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgdu_gtk_la-gdu-size-widget.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgdu_gtk_la-gdu-spinner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgdu_gtk_la-gdu-time-label.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgdu_gtk_la-gdu-volume-grid.Plo@am__quote@
 
@@ -660,14 +661,6 @@ libgdu_gtk_la-gdu-ata-smart-dialog.lo: gdu-ata-smart-dialog.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='gdu-ata-smart-dialog.c' object='libgdu_gtk_la-gdu-ata-smart-dialog.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgdu_gtk_la_CPPFLAGS) $(CPPFLAGS) $(libgdu_gtk_la_CFLAGS) $(CFLAGS) -c -o libgdu_gtk_la-gdu-ata-smart-dialog.lo `test -f 'gdu-ata-smart-dialog.c' || echo '$(srcdir)/'`gdu-ata-smart-dialog.c
-
-libgdu_gtk_la-gdu-spinner.lo: gdu-spinner.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgdu_gtk_la_CPPFLAGS) $(CPPFLAGS) $(libgdu_gtk_la_CFLAGS) $(CFLAGS) -MT libgdu_gtk_la-gdu-spinner.lo -MD -MP -MF $(DEPDIR)/libgdu_gtk_la-gdu-spinner.Tpo -c -o libgdu_gtk_la-gdu-spinner.lo `test -f 'gdu-spinner.c' || echo '$(srcdir)/'`gdu-spinner.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgdu_gtk_la-gdu-spinner.Tpo $(DEPDIR)/libgdu_gtk_la-gdu-spinner.Plo
-@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='gdu-spinner.c' object='libgdu_gtk_la-gdu-spinner.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgdu_gtk_la_CPPFLAGS) $(CPPFLAGS) $(libgdu_gtk_la_CFLAGS) $(CFLAGS) -c -o libgdu_gtk_la-gdu-spinner.lo `test -f 'gdu-spinner.c' || echo '$(srcdir)/'`gdu-spinner.c
 
 libgdu_gtk_la-gdu-volume-grid.lo: gdu-volume-grid.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgdu_gtk_la_CPPFLAGS) $(CPPFLAGS) $(libgdu_gtk_la_CFLAGS) $(CFLAGS) -MT libgdu_gtk_la-gdu-volume-grid.lo -MD -MP -MF $(DEPDIR)/libgdu_gtk_la-gdu-volume-grid.Tpo -c -o libgdu_gtk_la-gdu-volume-grid.lo `test -f 'gdu-volume-grid.c' || echo '$(srcdir)/'`gdu-volume-grid.c

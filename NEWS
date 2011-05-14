@@ -1,4 +1,71 @@
 -------------------------
+gnome-disk-utility 3.0.0
+-------------------------
+
+The gnome-disk-utility project provides libraries and applications for
+dealing with storage devices. It relies on the udisks project.
+
+David Zeuthen (3):
+      Post-release version bump
+      Use the right directory for the nautilus extension
+      Update NEWS for release
+
+Translation updates.
+
+David Zeuthen,
+April 4, 2011
+
+-------------------------
+gnome-disk-utility 2.91.7
+-------------------------
+
+The gnome-disk-utility project provides libraries and applications for
+dealing with storage devices. It relies on the udisks project.
+
+ David Zeuthen (3):
+       Post-release version bump
+       Bug 645174 - New icons
+       Update NEWS for release
+
+ Matthias Clasen (2):
+       Use more accurate categories in the desktop file
+       Make the S.M.A.R.T and benchmark dialogs work better with the shell
+
+Translation updates.
+
+David Zeuthen,
+March 21, 2011
+
+-------------------------
+gnome-disk-utility 2.91.6
+-------------------------
+
+The gnome-disk-utility project provides libraries and applications for
+dealing with storage devices. It relies on the udisks project.
+
+Matthias Clasen (2):
+      Bump version
+      Build against GTK+ 3
+
+David Zeuthen (5):
+      Finish GTK3 port
+      Use non-NULL display for launch context
+      Make Benchmark dialog work in GTK3
+      Bump version to 2.91.6
+      Update NEWS for release
+
+Many many translation updates.
+
+David Zeuthen,
+February 02, 2011
+
+-------------------------
+gnome-disk-utility 2.32.1
+-------------------------
+
+- Require libnotify 0.6.1 (William Jon McCann)
+
+-------------------------
 gnome-disk-utility 2.32.0
 -------------------------
 

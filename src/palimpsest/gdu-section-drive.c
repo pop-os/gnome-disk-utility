@@ -397,13 +397,13 @@ gdu_section_drive_update (GduSection *_section)
         if (show_multipath_component_warning_info_bar) {
                 gtk_widget_show_all (section->priv->multipath_component_warning_info_bar);
         } else {
-                gtk_widget_hide_all (section->priv->multipath_component_warning_info_bar);
+                gtk_widget_hide (section->priv->multipath_component_warning_info_bar);
         }
 
         if (show_multipath_component_info_bar) {
                 gtk_widget_show_all (section->priv->multipath_component_info_bar);
         } else {
-                gtk_widget_hide_all (section->priv->multipath_component_info_bar);
+                gtk_widget_hide (section->priv->multipath_component_info_bar);
         }
 
         gtk_widget_set_sensitive (section->priv->drive_label, !make_insensitive);
@@ -422,16 +422,19 @@ on_cddvd_button_clicked (GduButtonElement *button_element,
         GduSectionDrive *section = GDU_SECTION_DRIVE (user_data);
         GAppLaunchContext *launch_context;
         GAppInfo *app_info;
+        GtkWidget *top_level;
         GtkWidget *dialog;
         GError *error;
 
         app_info = NULL;
         launch_context = NULL;
 
+        top_level = GTK_WIDGET (gdu_shell_get_toplevel (gdu_section_get_shell (GDU_SECTION (section))));
+
         app_info = G_APP_INFO (g_desktop_app_info_new ("brasero.desktop"));
         if (app_info == NULL) {
                 /* TODO: Use PackageKit to install Brasero */
-                dialog = gtk_message_dialog_new_with_markup (GTK_WINDOW (gdu_shell_get_toplevel (gdu_section_get_shell (GDU_SECTION (section)))),
+                dialog = gtk_message_dialog_new_with_markup (GTK_WINDOW (top_level),
                                                              GTK_DIALOG_MODAL,
                                                              GTK_MESSAGE_ERROR,
                                                              GTK_BUTTONS_OK,
@@ -444,7 +447,7 @@ on_cddvd_button_clicked (GduButtonElement *button_element,
                 goto out;
         }
 
-        launch_context = G_APP_LAUNCH_CONTEXT (gdk_app_launch_context_new ());
+        launch_context = G_APP_LAUNCH_CONTEXT (gdk_display_get_app_launch_context (gtk_widget_get_display (top_level)));
 
         error = NULL;
         if (!g_app_info_launch (app_info,
@@ -478,12 +481,12 @@ on_smart_button_clicked (GduButtonElement *button_element,
                          gpointer          user_data)
 {
         GduSectionDrive *section = GDU_SECTION_DRIVE (user_data);
-        GtkWindow *toplevel;
         GtkWidget *dialog;
 
-        toplevel = GTK_WINDOW (gdu_shell_get_toplevel (gdu_section_get_shell (GDU_SECTION (section))));
-        dialog = gdu_ata_smart_dialog_new (toplevel,
+        dialog = gdu_ata_smart_dialog_new (NULL,
                                            GDU_DRIVE (gdu_section_get_presentable (GDU_SECTION (section))));
+        gtk_dialog_add_button (GTK_DIALOG (dialog), GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE);
+
         gtk_widget_show_all (dialog);
         gtk_dialog_run (GTK_DIALOG (dialog));
         gtk_widget_destroy (dialog);
@@ -494,12 +497,11 @@ gdu_section_drive_on_benchmark_button_clicked (GduButtonElement *button_element,
                                                gpointer          user_data)
 {
         GduSection *section = GDU_SECTION (user_data);
-        GtkWindow *toplevel;
         GtkWidget *dialog;
 
-        toplevel = GTK_WINDOW (gdu_shell_get_toplevel (gdu_section_get_shell (GDU_SECTION (section))));
-        dialog = gdu_drive_benchmark_dialog_new (toplevel,
+        dialog = gdu_drive_benchmark_dialog_new (NULL,
                                                  GDU_DRIVE (gdu_section_get_presentable (GDU_SECTION (section))));
+        gtk_dialog_add_button (GTK_DIALOG (dialog), GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE);
         gtk_widget_show_all (dialog);
         gtk_dialog_run (GTK_DIALOG (dialog));
         gtk_widget_destroy (dialog);

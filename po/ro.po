@@ -1,31 +1,32 @@
 # Romanian translation of gnome-disk-utility.
 # Copyright (C) 2009 gnome-disk-utility's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-disk-utility package.
-# Lucian Adrian Grijincu <lucian.grijincu@gmail.com>, 2009, 2010.
+# Lucian Adrian Grijincu <lucian.grijincu@gmail.com>, 2009, 2010, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-disk-utility master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "disk-utility&component=general\n"
-"POT-Creation-Date: 2010-05-27 10:20+0000\n"
-"PO-Revision-Date: 2010-03-30 02:41+0300\n"
+"POT-Creation-Date: 2011-02-24 23:20+0000\n"
+"PO-Revision-Date: 2011-03-13 02:56+0200\n"
 "Last-Translator: Lucian Adrian Grijincu <lucian.grijincu@gmail.com>\n"
-"Language-Team: Romanian GNOME Team <gnomero-list@lists.sourceforge.net>\n"
+"Language-Team: Romanian Gnome Team <gnomero-list@lists.sourceforge.net>\n"
+"Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ro\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);;\n"
-"X-Generator: Virtaal 0.5.2\n"
+"X-Generator: Virtaal 0.6.1\n"
 
 #. Translators: Window title when no item is selected.
 #.
 #. Translators: Window title when the item representing the local machine is selected.
 #.
-#: ../data/palimpsest.desktop.in.h:1 ../src/palimpsest/gdu-shell.c:269
-#: ../src/palimpsest/gdu-shell.c:321 ../src/palimpsest/gdu-shell.c:803
-#: ../src/palimpsest/gdu-shell.c:1114
+#: ../data/palimpsest.desktop.in.h:1
+#: ../src/notification/notification-main.c:537
+#: ../src/palimpsest/gdu-shell.c:269 ../src/palimpsest/gdu-shell.c:321
+#: ../src/palimpsest/gdu-shell.c:803 ../src/palimpsest/gdu-shell.c:1114
 msgid "Disk Utility"
 msgstr "Utilitar de disc"
 
@@ -41,7 +42,7 @@ msgstr "Notificări disc"
 msgid "Provides notifications related to disks"
 msgstr "Furnizează notificări în legătură cu discurile"
 
-#: ../src/format-tool/gdu-format-progress-dialog.c:184
+#: ../src/format-tool/gdu-format-progress-dialog.c:183
 msgid ""
 "To prevent data corruption, wait until this has finished before removing "
 "media or disconnecting the device."
@@ -49,50 +50,50 @@ msgstr ""
 "Pentru a preveni coruperea datelor, așteptați până când acest proces se "
 "încheie înainte de a deconecta dispozitivul sau a scoate mediul de stocare."
 
-#: ../src/format-tool/gdu-format-progress-dialog.c:216
-#: ../src/notification/gdu-slow-unmount-dialog.c:286
+#: ../src/format-tool/gdu-format-progress-dialog.c:215
+#: ../src/notification/gdu-slow-unmount-dialog.c:284
 msgid "Device"
 msgstr "Dispozitiv"
 
-#: ../src/format-tool/gdu-format-progress-dialog.c:217
-#: ../src/notification/gdu-slow-unmount-dialog.c:287
+#: ../src/format-tool/gdu-format-progress-dialog.c:216
+#: ../src/notification/gdu-slow-unmount-dialog.c:285
 msgid "The device to show the dialog for"
 msgstr "Dispozitivul pentru care se afișează dialogul"
 
-#: ../src/format-tool/gdu-format-progress-dialog.c:229
+#: ../src/format-tool/gdu-format-progress-dialog.c:228
 msgid "text"
 msgstr "text"
 
-#: ../src/format-tool/gdu-format-progress-dialog.c:230
+#: ../src/format-tool/gdu-format-progress-dialog.c:229
 msgid "Text to show"
 msgstr "Textul de afișat"
 
-#: ../src/format-tool/gdu-format-tool.c:110
+#: ../src/format-tool/gdu-format-tool.c:113
 msgid "Error launching Disk Utility"
 msgstr "Eroare la lansarea Utilitarului de disc"
 
-#: ../src/format-tool/gdu-format-tool.c:130
+#: ../src/format-tool/gdu-format-tool.c:133
 msgid "Device to format"
 msgstr "Dispozitivul de formatat"
 
-#: ../src/format-tool/gdu-format-tool.c:130 ../src/palimpsest/gdu-main.c:127
+#: ../src/format-tool/gdu-format-tool.c:133 ../src/palimpsest/gdu-main.c:127
 #: ../src/palimpsest/gdu-main.c:128
 msgid "DEVICE"
 msgstr "DISPOZITIV"
 
-#: ../src/format-tool/gdu-format-tool.c:160
+#: ../src/format-tool/gdu-format-tool.c:163
 #, c-format
 msgid "Operation was canceled"
 msgstr "Operația a fost anulată"
 
-#: ../src/format-tool/gdu-format-tool.c:251
+#: ../src/format-tool/gdu-format-tool.c:254
 msgid "Gnome Disk Utility formatting tool"
 msgstr "Unealta de formatare „Utilitarul de disc GNOME”"
 
 #. Translators: First argument is the partition number, second argument is the drive name,
 #. * third argument is the size (e.g. 10 GB)
 #.
-#: ../src/format-tool/gdu-format-tool.c:300
+#: ../src/format-tool/gdu-format-tool.c:303
 #, c-format
 msgid "Format partition %d of %s (%s)"
 msgstr "Formatează partiția %d din %s (%s)"
@@ -100,69 +101,69 @@ msgstr "Formatează partiția %d din %s (%s)"
 #. Translators: First argument is the partition number, second argument is the drive name,
 #. * third argument is the size (e.g. 10 GB)
 #.
-#: ../src/format-tool/gdu-format-tool.c:307
+#: ../src/format-tool/gdu-format-tool.c:310
 #, c-format
 msgid "Formatting partition %d of %s (%s)"
 msgstr "Se formatează partiția %d din %s (%s)"
 
 #. Translators: First argument is the drive name, second argument is the size (e.g. 10 GB)
-#: ../src/format-tool/gdu-format-tool.c:313
+#: ../src/format-tool/gdu-format-tool.c:316
 #, c-format
 msgid "Format %s (%s)"
 msgstr "Formatează %s (%s)"
 
 #. Translators: First argument is the drive name, second argument is the size (e.g. 10 GB)
-#: ../src/format-tool/gdu-format-tool.c:317
+#: ../src/format-tool/gdu-format-tool.c:320
 #, c-format
 msgid "Formatting %s (%s)"
 msgstr "Se formatează %s (%s)"
 
 #. Translators: First argument is the size (e.g. 10 GB), second is the device (e.g. /dev/md0)
-#: ../src/format-tool/gdu-format-tool.c:323
+#: ../src/format-tool/gdu-format-tool.c:326
 #, c-format
 msgid "Format %s Volume (%s)"
 msgstr "Formatează volumul de %s (%s)"
 
 #. Translators: First argument is the size (e.g. 10 GB), second is the device (e.g. /dev/md0)
-#: ../src/format-tool/gdu-format-tool.c:327
+#: ../src/format-tool/gdu-format-tool.c:330
 #, c-format
 msgid "Formatting %s Volume (%s)"
 msgstr "Se formatează volumul de %s (%s)"
 
-#: ../src/format-tool/gdu-format-tool.c:383
+#: ../src/format-tool/gdu-format-tool.c:386
 msgid "Preparing..."
 msgstr "Se pregătește..."
 
-#: ../src/format-tool/gdu-format-tool.c:426
+#: ../src/format-tool/gdu-format-tool.c:429
 msgid "Unmounting..."
 msgstr "Se demontează..."
 
-#: ../src/format-tool/gdu-format-tool.c:444
+#: ../src/format-tool/gdu-format-tool.c:447
 #, c-format
 msgid "Unable to format '%s'"
 msgstr "Nu se poate formata „%s”"
 
-#: ../src/format-tool/gdu-format-tool.c:459
+#: ../src/format-tool/gdu-format-tool.c:462
 msgid "Formatting..."
 msgstr "Se formatează..."
 
-#: ../src/format-tool/gdu-format-tool.c:476
+#: ../src/format-tool/gdu-format-tool.c:479
 msgid "Cancelling..."
 msgstr "Se anulează..."
 
-#: ../src/format-tool/gdu-format-tool.c:486
+#: ../src/format-tool/gdu-format-tool.c:489
 msgid "Error formatting volume"
 msgstr "Eroare la formatarea volumului"
 
-#: ../src/format-tool/gdu-format-tool.c:497
+#: ../src/format-tool/gdu-format-tool.c:500
 msgid "Mounting volume..."
 msgstr "Se montează volumul..."
 
-#: ../src/format-tool/gdu-format-tool.c:521
+#: ../src/format-tool/gdu-format-tool.c:524
 msgid "Error mounting device"
 msgstr "Eroare la montarea volumului"
 
-#: ../src/format-tool/gdu-format-tool.c:538
+#: ../src/format-tool/gdu-format-tool.c:541
 msgid "Error storing passphrase in keyring"
 msgstr "Eroare la stocarea frazei secrete în inelul de chei"
 
@@ -170,24 +171,24 @@ msgstr "Eroare la stocarea frazei secrete în inelul de chei"
 msgid "The RAID Array to add a component to."
 msgstr "Matricea RAID căreia să i se adauge o componentă."
 
-#: ../src/gdu-gtk/gdu-add-component-linux-md-dialog.c:229
+#: ../src/gdu-gtk/gdu-add-component-linux-md-dialog.c:228
 #, c-format
 msgid "Add spare to %s"
 msgstr "Adaugă o rezervă la %s"
 
-#: ../src/gdu-gtk/gdu-add-component-linux-md-dialog.c:230
+#: ../src/gdu-gtk/gdu-add-component-linux-md-dialog.c:229
 #, c-format
 msgid "Select a device to create a %s spare on for the RAID Array \"%s\" (%s)"
 msgstr ""
 "Alegeți un dispozitiv pe care să fie creată o rezervă %s a matricii RAID „%"
 "s” (%s)"
 
-#: ../src/gdu-gtk/gdu-add-component-linux-md-dialog.c:238
+#: ../src/gdu-gtk/gdu-add-component-linux-md-dialog.c:237
 #, c-format
 msgid "Expand %s"
 msgstr "Expandează %s"
 
-#: ../src/gdu-gtk/gdu-add-component-linux-md-dialog.c:239
+#: ../src/gdu-gtk/gdu-add-component-linux-md-dialog.c:238
 #, c-format
 msgid ""
 "Select one or more devices to use %s on for expanding the RAID Array \"%s"
@@ -196,7 +197,7 @@ msgstr ""
 "Alegeți unul sau mai multe dispozitive pe care să se utilizeze %s pentru a "
 "expanda matricea RAID „%s” (%s)"
 
-#: ../src/gdu-gtk/gdu-add-component-linux-md-dialog.c:245
+#: ../src/gdu-gtk/gdu-add-component-linux-md-dialog.c:244
 msgid "_Expand"
 msgstr "_Expandează"
 
@@ -204,12 +205,12 @@ msgstr "_Expandează"
 msgid "The VG to add a PV to."
 msgstr "Grupul de volume la care se adaugă volumul fizic."
 
-#: ../src/gdu-gtk/gdu-add-pv-linux-lvm2-dialog.c:250
+#: ../src/gdu-gtk/gdu-add-pv-linux-lvm2-dialog.c:249
 #, c-format
 msgid "Add Physical Volume to %s (%s)"
 msgstr "Adaugă un volum fizic în %s (%s)"
 
-#: ../src/gdu-gtk/gdu-add-pv-linux-lvm2-dialog.c:266
+#: ../src/gdu-gtk/gdu-add-pv-linux-lvm2-dialog.c:265
 #: ../src/gdu-gtk/gdu-create-linux-lvm2-volume-dialog.c:203
 #: ../src/gdu-gtk/gdu-create-partition-dialog.c:220
 msgid "_Size:"
@@ -218,11 +219,11 @@ msgstr "Dimen_siune:"
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:132
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:131
 msgid "Read Error Rate"
 msgstr "Rata erorilor de citire"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:133
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:132
 msgid ""
 "Frequency of errors while reading raw data from the disk. A non-zero value "
 "indicates a problem with either the disk surface or read/write heads"
@@ -233,44 +234,44 @@ msgstr ""
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:142
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:141
 msgid "Throughput Performance"
 msgstr "Rată de transfer"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:143
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:142
 msgid "Average efficiency of the disk"
 msgstr "Eficiența medie a discului"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:150
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:149
 msgid "Spinup Time"
 msgstr "Timpul de accelerare"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:151
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:150
 msgid "Time needed to spin up the disk"
 msgstr "Timpul necesar accelerării discului"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:158
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:157
 msgid "Start/Stop Count"
 msgstr "Contorul de porniri/opriri"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:159
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:158
 msgid "Number of spindle start/stop cycles"
 msgstr "Numărul de cicli de pornire/oprire a axului discului"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:166
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:165
 msgid "Reallocated Sector Count"
 msgstr "Numărul de sectoare realocate"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:167
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:166
 msgid ""
 "Count of remapped sectors. When the hard drive finds a read/write/"
 "verification error, it marks the sector as \"reallocated\" and transfers "
@@ -283,112 +284,112 @@ msgstr ""
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:176
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:175
 msgid "Read Channel Margin"
 msgstr "Marginea canalului la citire"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:177
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:176
 msgid "Margin of a channel while reading data."
 msgstr "Marginea canalului la citirea datelor."
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:184
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:183
 msgid "Seek Error Rate"
 msgstr "Rata erorilor la derulare"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:185
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:184
 msgid "Frequency of errors while positioning"
 msgstr "Frecvența erorilor la poziționare"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:192
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:191
 msgid "Seek Timer Performance"
 msgstr "Performanța cronometrului de derulare"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:193
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:192
 msgid "Average efficiency of operations while positioning"
 msgstr "Eficiența medie a operațiilor în timpul poziționării"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:200
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:524
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:199
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:523
 msgid "Power-On Hours"
 msgstr "Ore de funcționare"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:201
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:525
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:200
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:524
 msgid "Number of hours elapsed in the power-on state"
 msgstr "Numărul de ore scurse în funcționare"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:208
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:207
 msgid "Spinup Retry Count"
 msgstr "Contorul reîncercărilor de accelerare"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:209
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:208
 msgid "Number of retry attempts to spin up"
 msgstr "Numărul tentativelor de accelerare"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:216
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:215
 msgid "Calibration Retry Count"
 msgstr "Contorul reîncercărilor de calibrare"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:217
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:216
 msgid "Number of attempts to calibrate the device"
 msgstr "Numărul tentativelor de calibrare a dispozitivului"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:224
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:223
 msgid "Power Cycle Count"
 msgstr "Contorul repornirilor"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:225
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:224
 msgid "Number of power-on events"
 msgstr "Numărul de reporniri"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:232
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:231
 msgid "Soft read error rate"
 msgstr "Rata erorilor de citire ale soft-ului"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:233
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:232
 msgid "Frequency of 'program' errors while reading from the disk"
 msgstr "Frecvența erorilor de program la citirea de pe disc"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:240
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:239
 msgid "Reported Uncorrectable Errors"
 msgstr "Erori necorectabile raportate"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:241
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:240
 msgid "Number of errors that could not be recovered using hardware ECC"
 msgstr "Numărul de erori ce nu au putut fi corectate de software ECC"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:248
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:247
 msgid "High Fly Writes"
 msgstr "Scrieri din zbor înalt"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:249
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:248
 msgid ""
 "Number of times a recording head is flying outside its normal operating range"
 msgstr ""
@@ -398,81 +399,81 @@ msgstr ""
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:256
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:255
 msgid "Airflow Temperature"
 msgstr "Temperatura fluxului de aer"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:257
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:256
 msgid "Airflow temperature of the drive"
 msgstr "Temperatura fluxului de aer din unitate"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:264
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:434
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:263
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:433
 msgid "G-sense Error Rate"
 msgstr "Rata erorilor G-sense (de impact)"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:265
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:264
 msgid "Frequency of mistakes as a result of impact loads"
 msgstr "Frecvența erorilor cauzate de un impact"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:272
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:491
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:271
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:490
 msgid "Power-off Retract Count"
 msgstr "Contorul de retrageri la oprire"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:273
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:272
 msgid "Number of power-off or emergency retract cycles"
 msgstr "Numărul ciclilor de retragere de urgență la oprire"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:280
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:467
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:279
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:466
 msgid "Load/Unload Cycle Count"
 msgstr "Contorul ciclilor de încărcare/descărcare"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:281
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:280
 msgid "Number of cycles into landing zone position"
 msgstr "Numărul ciclilor de intrare/ieșire din zona de aterizare"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:288
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:507
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:287
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:506
 msgid "Temperature"
 msgstr "Temperatura"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:289
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:288
 msgid "Current internal temperature of the drive"
 msgstr "Temperatura internă curentă în grade Celsius"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:296
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:295
 msgid "Hardware ECC Recovered"
 msgstr "Contorul erorilor corectate hardware"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:297
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:296
 msgid "Number of ECC on-the-fly errors"
 msgstr "Numărul de erori corectate hardware prin coduri corectoare de erori"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:304
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:303
 msgid "Reallocation Count"
 msgstr "Contorul realocărilor"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:305
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:304
 msgid ""
 "Number of remapping operations. The raw value of this attribute shows the "
 "total number of (successful and unsuccessful) attempts to transfer data from "
@@ -485,11 +486,11 @@ msgstr ""
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:315
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:314
 msgid "Current Pending Sector Count"
 msgstr "Contorul sectoarelor în așteptare"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:316
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:315
 msgid ""
 "Number of sectors waiting to be remapped. If the sector waiting to be "
 "remapped is subsequently written or read successfully, this value is "
@@ -504,11 +505,11 @@ msgstr ""
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:327
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:326
 msgid "Uncorrectable Sector Count"
 msgstr "Contorul sectoarelor necorectabile"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:328
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:327
 msgid ""
 "The total number of uncorrectable errors when reading/writing a sector. A "
 "rise in the value of this attribute indicates defects of the disk surface "
@@ -521,22 +522,22 @@ msgstr ""
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:337
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:336
 msgid "UDMA CRC Error Rate"
 msgstr "Rata erorilor UDMA CRC"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:338
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:337
 msgid "Number of CRC errors during UDMA mode"
 msgstr "Numărul de erori CRC apărute în modul UDMA"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:345
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:344
 msgid "Write Error Rate"
 msgstr "Rata erorilor de scriere"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:346
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:345
 msgid ""
 "Number of errors while writing to disk (or) multi-zone error rate (or) "
 "flying-height"
@@ -547,22 +548,22 @@ msgstr ""
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:353
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:352
 msgid "Soft Read Error Rate"
 msgstr "Rata erorilor soft la citire"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:354
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:353
 msgid "Number of off-track errors"
 msgstr "Numărul de erori în afara pistei"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:361
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:360
 msgid "Data Address Mark Errors"
 msgstr "Erori de marcaj al adresei datelor (DAM)"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:362
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:361
 msgid "Number of Data Address Mark (DAM) errors (or) vendor-specific"
 msgstr ""
 "Numărul de erori ale marcajului adrese a datelor (DAM) (sau) un câmp "
@@ -571,88 +572,88 @@ msgstr ""
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:369
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:368
 msgid "Run Out Cancel"
 msgstr "Anularea ieșirilor"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:370
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:369
 msgid "Number of ECC errors"
 msgstr "Numărul erorilor ECC"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:377
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:376
 msgid "Soft ECC correction"
 msgstr "Corectări ECC software"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:378
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:377
 msgid "Number of errors corrected by software ECC"
 msgstr "Numărul de erori corectate de software ECC"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:385
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:384
 msgid "Thermal Asperity Rate"
 msgstr "Rata asperităților termice"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:386
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:385
 msgid "Number of Thermal Asperity Rate errors"
 msgstr "Numărul de erori ale asperităților termice"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:393
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:392
 msgid "Flying Height"
 msgstr "Înălțimea de zbor"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:394
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:393
 msgid "Height of heads above the disk surface"
 msgstr "Înâlțimea capetelor deasupra suprafeței discurilor"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:401
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:400
 msgid "Spin High Current"
 msgstr "Curentul de vârf la accelerare"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:402
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:401
 msgid "Amount of high current used to spin up the drive"
 msgstr "Curentul de vârf utilizat la accelerarea discului"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:409
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:408
 msgid "Spin Buzz"
 msgstr "Buzz accelerare"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:410
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:409
 msgid "Number of buzz routines to spin up the drive"
 msgstr "Numărul rutinelor de buzz utilizat la accelerarea discului"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:417
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:416
 msgid "Offline Seek Performance"
 msgstr "Performanța derulărilor deconectate"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:418
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:417
 msgid "Drive's seek performance during offline operations"
 msgstr "Performanța derulării discului în timpul operațiilor deconectate"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:425
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:424
 msgid "Disk Shift"
 msgstr "Deplasarea discului"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:426
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:425
 msgid ""
 "Shift of disk is possible as a result of strong shock loading in the store, "
 "as a result of falling (or) temperature"
@@ -660,7 +661,7 @@ msgstr ""
 "Deplasarea discului poate fi generată de un șoc puternic cauzat de "
 "temperatură sau cădere."
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:435
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:434
 msgid ""
 "Number of errors as a result of impact loads as detected by a shock sensor"
 msgstr "Numărul de erori cauzate de impacturi detectate de senzorul de șocuri."
@@ -668,22 +669,22 @@ msgstr "Numărul de erori cauzate de impacturi detectate de senzorul de șocuri.
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:442
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:441
 msgid "Loaded Hours"
 msgstr "Ore încărcat"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:443
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:442
 msgid "Number of hours in general operational state"
 msgstr "Numărul de ore în stare generală de operare."
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:450
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:449
 msgid "Load/Unload Retry Count"
 msgstr "Contorul de reîncercări de încărcare/descărcare"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:451
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:450
 msgid ""
 "Loading on drive caused by numerous recurrences of operations, like reading, "
 "recording, positioning of heads, etc"
@@ -694,67 +695,67 @@ msgstr ""
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:459
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:458
 msgid "Load Friction"
 msgstr "Încărcarea cauzată de frecare"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:460
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:459
 msgid "Load on drive caused by friction in mechanical parts of the store"
 msgstr "Încărcarea unității cauzată de frecarea componentelor mecanice"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:468
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:467
 msgid "Total number of load cycles"
 msgstr "Numărul total de cicli de încărcare"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:475
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:474
 msgid "Load-in Time"
 msgstr "Timpul de încărcare"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:476
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:475
 msgid "General time for loading in a drive"
 msgstr "Timpul general de încărcare a unui dispozitiv"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:483
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:482
 msgid "Torque Amplification Count"
 msgstr "Contorul amplificărilor de cuplu"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:484
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:483
 msgid "Quantity efforts of the rotating moment of a drive"
 msgstr "Cantitatea efortului cuplului de rotație al unității"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:492
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:491
 msgid "Number of power-off retract events"
 msgstr "Numărul de evenimente de retragere la oprire"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:499
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:498
 msgid "GMR Head Amplitude"
 msgstr "Amplitudinea GMR a capetelor"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:500
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:499
 msgid "Amplitude of heads trembling (GMR-head) in running mode"
 msgstr "Amplitudinea de vibrație a capetelor (GMR-head) în funcționare"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:508
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:507
 msgid "Temperature of the drive"
 msgstr "Temperatura unității"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:515
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:514
 msgid "Endurance Remaining"
 msgstr "Anduranță rămasă"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:516
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:515
 msgid ""
 "Number of physical erase cycles completed on the drive as a percentage of "
 "the maximum physical erase cycles the drive supports"
@@ -765,22 +766,22 @@ msgstr ""
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:532
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:531
 msgid "Uncorrectable ECC Count"
 msgstr "Contorul EEC necorectabile"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:533
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:532
 msgid "Number of uncorrectable ECC errors"
 msgstr "Numărul erorilor ECC necorectabile"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:540
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:539
 msgid "Good Block Rate"
 msgstr "Raport bun de blocuri"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:541
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:540
 msgid ""
 "Number of available reserved blocks as a percentage of the total number of "
 "reserved blocks"
@@ -791,50 +792,50 @@ msgstr ""
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:549
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:548
 msgid "Head Flying Hours"
 msgstr "Ore în zbor ale capului"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:550
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:549
 msgid "Time while head is positioning"
 msgstr "Timp în care capul se poziționează"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:557
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:556
 msgid "Read Error Retry Rate"
 msgstr "Rata de erori de reîncercare a citirii"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:558
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:557
 msgid "Number of errors while reading from a disk"
 msgstr "Numărul de erori la citirea de pe un disc"
 
 #. Translators: This is shown in the attribute treeview when no description is found.
 #. * %d is the attribute number.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:700
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:699
 #, c-format
 msgid "No description for attribute %d"
 msgstr "Nicio descriere pentru atributul %d"
 
 #. Translators: This is shown in the tree view for the normalized value of an attribute (0-254)
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:790
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:789
 msgid "Normalized:"
 msgstr "Normalizat:"
 
 #. Translators: This is shown in the tree view for the worst value of an attribute (0-254)
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:792
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:791
 msgid "Worst:"
 msgstr "Cea mai slabă:"
 
 #. Translators: This is shown in the tree view for the threshold of an attribute (0-254)
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:794
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:793
 msgid "Threshold:"
 msgstr "Prag:"
 
 #. Translators: This is shown in the tree view for the interpreted/pretty value of an attribute
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:796
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:795
 msgid "Value:"
 msgstr "Valoare:"
 
@@ -843,46 +844,46 @@ msgstr "Valoare:"
 #. Translators: Shown in the treeview for an attribute we don't know the status about
 #. Translators: Used in the treeview for the pretty/interpreted value of an attribute
 #. * where the value cannot be interpreted
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:846
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:854
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:862
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:958
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1636
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:845
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:853
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:861
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:957
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1639
 msgid "N/A"
 msgstr "Nu există"
 
 #. Translators: Shown in the treeview for a failing attribute
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:940
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:939
 msgid "Failing"
 msgstr "Eșuat"
 
 #. Translators: Shown in the treeview for an attribute that failed in the past
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:943
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:942
 msgid "Failed in the past"
 msgstr "A eșuat în trecut"
 
 #. Translators: Shown in the treeview for an attribute that we want to warn about
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:947
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:955
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:946
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:954
 msgid "Warning"
 msgstr "Avertisment"
 
 #. Translators: Shown in the treeview for an attribute that is good
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:950
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:949
 msgid "Good"
 msgstr "Bun"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1021
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1020
 msgid "Error reading SMART data"
 msgstr "Eroare la citirea datelor SMART"
 
 #. Translators: Shown in the "Run self-test" dialog
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1135
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1140
 msgid "Choose SMART Self-test"
 msgstr "Alegeți testul propriu SMART"
 
 #. Translators: Shown in the "Run self-test" dialog
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1146
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1151
 msgid ""
 "The tests may take a very long time to complete depending on the speed and "
 "size of the disk. You can continue using your system while the test is "
@@ -893,22 +894,22 @@ msgstr ""
 "execută."
 
 #. Translators: Radio button for short test
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1155
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1160
 msgid "_Short (usually less than ten minutes)"
 msgstr "_Scurt (de obicei mai puțin de zece minute)"
 
 #. Translators: Radio button for extended test
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1158
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1163
 msgid "_Extended (usually tens of minutes)"
 msgstr "_Extins (de obicei zeci de minute)"
 
 #. Translators: Radio button for conveyance test
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1161
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1166
 msgid "C_onveyance (usually less than ten minutes)"
 msgstr "Transp_ort (de obicei mai puțin de zece minute)"
 
 #. Translators: Button in "Run self-test dialog"
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1169
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1174
 msgid "_Run Self Test"
 msgstr "Execută testul p_ropriu"
 
@@ -916,18 +917,18 @@ msgstr "Execută testul p_ropriu"
 #. * First %s is the name for the drive (e.g. "1.0 TB Hard Disk")
 #. * Second %s is the VPD name for the array (e.g. "ATA WDC WD1001FALS-00J7B1").
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1264
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1269
 #, c-format
 msgid "%s (%s) – SMART Data"
 msgstr "%s (%s) – Date SMART"
 
 #. Translators: Item name in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1286
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1289
 msgid "Updated:"
 msgstr "Actualizat:"
 
 #. Translators: Tooltip for the 'Updated' item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1289
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1292
 msgid ""
 "Time since SMART data was last read – SMART data is updated every 30 minutes "
 "unless the disk is sleeping"
@@ -936,140 +937,140 @@ msgstr ""
 "de veghe, datele SMART sunt actualizate la fiecare 30 de minute"
 
 #. Translators: Item name in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1295
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1298
 msgid "Self-tests:"
 msgstr "Teste proprii:"
 
 #. Translators: Tooltip for the 'Self-tests' item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1298
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1301
 msgid "The result of the last self-test that ran on the disk"
 msgstr "Rezultatul ultimului test propriu executat pe disc"
 
 #. Translators: Item name in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1303
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1306
 msgid "Powered On:"
 msgstr "Pornit:"
 
 #. Translators: Tooltip for the 'Powered On' item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1306
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1309
 msgid "The amount of elapsed time the disk has been in a powered-up state"
 msgstr "Timpul trecut de când discul este în stare pornită"
 
 #. Translators: Item name in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1311
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1314
 msgid "Power Cycles:"
 msgstr "Contorul repornirilor:"
 
 #. Translators: Tooltip for the 'Power Cycles' item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1314
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1317
 msgid "The number of full disk power on/off cycles"
 msgstr "Numărul total de cicli de pornire/oprire ai discului"
 
 #. Translators: Item name in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1319
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1322
 msgid "Temperature:"
 msgstr "Temperatură:"
 
 #. Translators: Tooltip for the 'Temperature' item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1322
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1325
 msgid "The temperature of the disk"
 msgstr "Temperatura discului"
 
 #. Translators: Item name in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1327
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1330
 msgid "Bad Sectors:"
 msgstr "Sectoare defecte:"
 
 #. Translators: Tooltip for the 'Bad Sectors' item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1330
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1333
 msgid "The sum of pending and reallocated bad sectors"
 msgstr "Suma sectoarelor defecte realocate sau aflate în așteptare"
 
 #. Translators: Item name in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1335
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1338
 msgid "Self Assessment:"
 msgstr "Evaluare proprie:"
 
 #. Translators: Tooltip for the 'Self Assesment' item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1338
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1341
 msgid "The assessment from the disk itself whether it is about to fail"
 msgstr "Evaluarea proprie a discului în legătură cu defectarea proprie"
 
 #. Translators: Item name in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1343
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1346
 msgid "Overall Assessment:"
 msgstr "Evaluare totală:"
 
 #. Translators: Tooltip for the 'Overall Assessment' item in the
 #. * status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1347
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1350
 msgid "An overall assessment of the health of the disk"
 msgstr "Evaluarea totală a stării de sănătate a discului"
 
 #. Translators: Button name
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1361
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1364
 msgid "_Refresh"
 msgstr "_Reîmprospătează"
 
 #. Translators: Button details
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1363
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1366
 msgid "Reads SMART Data, waking up the disk"
 msgstr "Citește datele SMART de pe disc, trezind discul"
 
 #. TODO: better icon
 #. Translators: Button name
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1373
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1376
 msgid "Run _Self-test"
 msgstr "Execută te_stul propriu"
 
 #. Translators: Button details
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1375
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1378
 msgid "Test the disk surface for errors"
 msgstr "Testează suprafața discului pentru erori"
 
 #. Translators: Button name
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1385
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1388
 msgid "_Cancel Self-test"
 msgstr "Anulea_ză testul propriu"
 
 #. Translators: Button details
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1387
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1390
 msgid "Cancels the self-test"
 msgstr "Anulează testul propriu aflat în execuție"
 
 #. Translators: Heading used in the main dialog for SMART attributes
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1405
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1408
 msgid "_Attributes"
 msgstr "_Atribute"
 
 #. Translators: This string is used as the column title in the treeview for the Attribute ID (0-255)
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1439
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1442
 msgid "ID"
 msgstr "ID"
 
 #. Translators: This string is used as the column title in the treeview for the attribute name and description
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1451
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1454
 msgid "Attribute"
 msgstr "Atribute"
 
 #. Translators: This string is used as the column title in the treeview for the assessment of the attribute
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1468
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1471
 msgid "Assessment"
 msgstr "Evaluare"
 
 #. Translators: This string is used as the column title in the treeview for the value of the attribute
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1487
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1490
 msgid "Value"
 msgstr "Valoare"
 
 #. ----------------------------------------------------------------------------------------------------
 #. Translators: Check button in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1515
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1518
 msgid "Don't _warn if the disk is failing"
 msgstr "Nu trimite a_vertismente dacă discul eșuează"
 
 #. Translators: Tooltip for the "Don't warn me if disk is failing" check button
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1517
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1520
 msgid "Leave unchecked to get notified if the disk starts failing"
 msgstr ""
 "Lăsați-l nebifat pentru a primi notificări atunci când discurile încep să "
@@ -1077,47 +1078,47 @@ msgstr ""
 
 #. Translators: Used in the treeview for the pretty/interpreted value of an attribute
 #. * for a time-based unit that exceed one year
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1582
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1585
 #, c-format
 msgid "%.1f years"
 msgstr "%.1f ani"
 
 #. Translators: Used in the treeview for the pretty/interpreted value of an attribute
 #. * for a time-based unit that exceed one day
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1586
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1589
 #, c-format
 msgid "%.1f days"
 msgstr "%.1f zile"
 
 #. Translators: Used in the treeview for the pretty/interpreted value of an attribute
 #. * for a time-based unit that exceed one hour
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1590
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1593
 #, c-format
 msgid "%.1f hours"
 msgstr "%.1f ore"
 
 #. Translators: Used in the treeview for the pretty/interpreted value of an attribute
 #. * for a time-based unit that exceed one minute
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1594
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1597
 #, c-format
 msgid "%.1f minutes"
 msgstr "%.1f minute"
 
 #. Translators: Used in the treeview for the pretty/interpreted value of an attribute
 #. * for a time-based unit that exceed one second
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1598
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1601
 #, c-format
 msgid "%.1f seconds"
 msgstr "%.1f secunde"
 
 #. Translators: Used in the treeview for the pretty/interpreted value of an attribute
 #. * for a time-based unit that is counted in milliseconds
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1604
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1607
 #, c-format
 msgid "%s msec"
 msgstr "%s msec"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1613
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1616
 #, c-format
 msgid "%d sector"
 msgid_plural "%d sectors"
@@ -1128,32 +1129,32 @@ msgstr[2] "%d de sectoare"
 #. Translators: Used in the treeview for the pretty/interpreted value of an attribute
 #. * for a temperature-based unit - first %f is the temperature in degrees Celcius, second %f
 #. * is the temperature in degrees Fahrenheit
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1625
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1628
 #, c-format
 msgid "%.0f° C / %.0f° F"
 msgstr "%.0f° C / %.0f° F"
 
 #. Translators: Used in the tooltip for a row in the attribute treeview - please keep
 #. * "(Pre-Fail)" in English
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1693
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1696
 msgid "Failure is a sign of imminent disk failure (Pre-Fail)"
 msgstr "Eșecul este semn de eșec iniment al discului (Pre-Fail)"
 
 #. Translators: Used in the tooltip for a row in the attribute treeview - please keep
 #. * "(Old-Age)" in English
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1697
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1700
 msgid "Failure is a sign of old age (Old-Age)"
 msgstr "Eșecul este un semn de învechire (Old-Age)"
 
 #. Translators: Used in the tooltip for a row in the attribute treeview - please keep
 #. * "(Online)" in English
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1703
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1706
 msgid "Every time data is collected (Online)"
 msgstr "De fiecare dată când sunt colectate date (Online)"
 
 #. Translators: Used in the tooltip for a row in the attribute treeview - please keep
 #. * "(Not Online)" in English
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1707
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1710
 msgid "Only during off-line activities (Not Online)"
 msgstr "Doar în timpul activităților deconectate (Not Online)"
 
@@ -1162,7 +1163,7 @@ msgstr "Doar în timpul activităților deconectate (Not Online)"
 #. * Second %s is the update type (Online or Not Online).
 #. * The six %x is the raw data of the attribute.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1715
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1718
 #, c-format
 msgid ""
 "Type: %s\n"
@@ -1175,26 +1176,26 @@ msgstr ""
 
 #. Translators: Shown in the "Overall Assessment" item in the status table
 #. * when no drive is currently selected
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1925
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1928
 msgid "No drive selected"
 msgstr "Nicio unitate selectată"
 
 #. Translators: Shown in the "Overall Assessment" item in the status table
 #. * when SMART is not available
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1932
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1935
 msgid "SMART not supported"
 msgstr "SMART nu este suportat"
 
 #. Translators: Shown in the "Overall Assessment" item in the status table
 #. * when SMART is supported but data was never collected
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1940
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1943
 msgid "SMART data never collected"
 msgstr "Datele SMART nu au fost colectate niciodată"
 
 #. Translators: Shown in the "Overall Assessment" item in the status table
 #. * when the SMART data is malformed
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1947
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1953
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1950
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1956
 msgid "SMART data is malformed"
 msgstr "Datele SMART sunt deteriorate"
 
@@ -1212,36 +1213,36 @@ msgstr "Datele SMART sunt deteriorate"
 #. Translators: Shown in the "Self-tests" item in the status table
 #. Translators: shown when we don't know contents of the volume
 #. Translators: Description when the overall SMART status is unknown
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1983
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2001
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2021
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2029
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2038
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2100
-#: ../src/gdu-gtk/gdu-volume-grid.c:1315 ../src/gdu/gdu-util.c:1110
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1986
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2004
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2024
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2032
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2041
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2103
+#: ../src/gdu-gtk/gdu-volume-grid.c:1301 ../src/gdu/gdu-util.c:1110
 msgid "Unknown"
 msgstr "Necunoscut"
 
 #. Translators: Shown in the "Self-assessment" item in the status table
 #. * when the self-assessment of the drive is PASSED
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1988
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1991
 msgid "Passed"
 msgstr "Promovat cu succes"
 
 #. Translators: Shown in the "Self-assessment" item in
 #. * the status table when the self-assessment of the
 #. * drive is FAILING
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1994
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1997
 msgid "FAILING"
 msgstr "EȘUEAZĂ"
 
 #. Translators: Shown in the "Bad Sectors" item in the status table
 #. * when we the disk has no bad sectors
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2006
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2009
 msgid "None"
 msgstr "Niciunul"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2011
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2014
 #, c-format
 msgid "%d bad sector"
 msgid_plural "%d bad sectors"
@@ -1250,61 +1251,61 @@ msgstr[1] "%d sectoare defecte"
 msgstr[2] "%d de sectoare defecte"
 
 #. Translators: Shown in the "Self-tests" item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2057
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2060
 msgid "Completed OK"
 msgstr "Completat OK"
 
 #. Translators: Shown in the "Self-tests" item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2061
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2064
 msgid "Cancelled"
 msgstr "Anulat"
 
 #. Translators: Shown in the "Self-tests" item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2065
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2068
 msgid "Cancelled (with hard or soft reset)"
 msgstr "Anulat (printr-o resetare hard sau soft)"
 
 #. Translators: Shown in the "Self-tests" item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2069
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2072
 msgid "Not completed (a fatal error might have occurred)"
 msgstr "Incomplet (s-ar putea să se fi produs o eroare fatală)"
 
 #. Translators: Shown in the "Self-tests" item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2073
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2076
 msgid "FAILED (Electrical)"
 msgstr "EȘUAT (Electric)"
 
 #. Translators: Shown in the "Self-tests" item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2078
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2081
 msgid "FAILED (Servo)"
 msgstr "EȘUAT (Servo)"
 
 #. Translators: Shown in the "Self-tests" item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2083
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2086
 msgid "FAILED (Read)"
 msgstr "EȘUAT (Citire)"
 
 #. Translators: Shown in the "Self-tests" item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2088
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2091
 msgid "FAILED (Suspected of having handled damage)"
 msgstr "EȘUAT (Suspectat de a fi întâlnit probleme)"
 
 #. Translators: Shown in the "Self-tests" item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2093
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2096
 msgid "In progress"
 msgstr "În desfășurare"
 
-#: ../src/gdu-gtk/gdu-confirmation-dialog.c:172
+#: ../src/gdu-gtk/gdu-confirmation-dialog.c:171
 #, c-format
 msgid "This operation concerns the volume \"%s\" (%s)"
 msgstr "Această operație se referă la volumul „%s” (%s)"
 
-#: ../src/gdu-gtk/gdu-confirmation-dialog.c:176
+#: ../src/gdu-gtk/gdu-confirmation-dialog.c:175
 #, c-format
 msgid "This operation concerns the drive \"%s\" (%s)"
 msgstr "Această operație se referă la unitatea „%s” (%s)"
 
-#: ../src/gdu-gtk/gdu-confirmation-dialog.c:180
+#: ../src/gdu-gtk/gdu-confirmation-dialog.c:179
 #, c-format
 msgid "This operation concerns \"%s\" (%s)"
 msgstr "Această operație se referă la „%s” (%s)"
@@ -1329,22 +1330,22 @@ msgstr "Adresa aleasă"
 msgid "Choose Server"
 msgstr "Alegere server"
 
-#: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:214
+#: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:213
 msgid "Connect to Server"
 msgstr "Conectare la server"
 
-#: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:221
+#: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:220
 msgid "_Browse..."
 msgstr "_Răsfoiește..."
 
 #. Translators: this is the tooltip for the "Browse..." button
-#: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:233
+#: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:232
 msgid "Browse servers discovered via the DNS-SD protocol"
 msgstr "Răsfoiește serverele descoperite prin protocolul DNS-SD"
 
 #. Translators: This is the label explaining the dialog
 #.
-#: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:251
+#: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:250
 msgid ""
 "To manage storage devices on another machine, enter the address and press "
 "“Connect”. The connection will be made using the <i>Secure Shell</i> "
@@ -1356,22 +1357,22 @@ msgstr ""
 
 #. Translators: This is the tooltip for the "Server Address" entry
 #.
-#: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:265
+#: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:264
 msgid "The hostname or address to connect to"
 msgstr "Numele gazdei sau adresa la care să se realizeze conexiunea"
 
-#: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:269
+#: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:268
 msgid "Server _Address:"
 msgstr "_Adresă server:"
 
 #. Translators: This is the tooltip for the "User Name" entry
 #. * First %s is the UNIX user name e.g. 'davidz'.
 #.
-#: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:288
+#: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:287
 msgid "The user name to connect as"
 msgstr "Numele de utilizator cu care să se conecteze"
 
-#: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:292
+#: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:291
 msgid "_User Name:"
 msgstr "Nume _utilizator:"
 
@@ -1392,7 +1393,7 @@ msgid "The requested Logical Volume size"
 msgstr "Dimensiunea cerută a volumului logic"
 
 #: ../src/gdu-gtk/gdu-create-linux-lvm2-volume-dialog.c:161
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:519
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:522
 #: ../src/gdu-gtk/gdu-create-partition-dialog.c:163
 #: ../src/gdu-gtk/gdu-create-partition-dialog.c:178
 msgid "C_reate"
@@ -1464,19 +1465,19 @@ msgstr "Unități"
 msgid "Array of drives to use for the array"
 msgstr "Matrice de unități de folosit în matrice"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:514
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:517
 msgid "Create RAID Array"
 msgstr "Creează o matrice RAID"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:533
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:535
 msgid "General"
 msgstr "General"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:554
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:556
 msgid "RAID _Level:"
 msgstr "Nive_l RAID:"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:593
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:595
 msgid "Array _Name:"
 msgstr "_Numele matricii:"
 
@@ -1484,65 +1485,65 @@ msgstr "_Numele matricii:"
 #. * Keep length of UTF-8 representation of the translation of "New RAID Array" to less than
 #. * 32 bytes since that's the on-disk-format limit.
 #.
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:601
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:603
 msgid "New RAID Array"
 msgstr "Matrice RAID nouă"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:617
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:619
 msgid "Stripe S_ize:"
 msgstr "D_imensiune întrețesut:"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:627
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:629
 msgid "4 KiB"
 msgstr "4 KiO"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:629
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:631
 msgid "8 KiB"
 msgstr "8 KiO"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:631
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:633
 msgid "16 KiB"
 msgstr "16 KiO"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:633
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:635
 msgid "32 KiB"
 msgstr "32 KiO"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:635
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:637
 msgid "64 KiB"
 msgstr "64 KiO"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:637
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:639
 msgid "128 KiB"
 msgstr "128 KiO"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:639
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:641
 msgid "256 KiB"
 msgstr "256 KiO"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:641
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:643
 msgid "512 KiB"
 msgstr "512 KiO"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:643
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:645
 msgid "1 MiB"
 msgstr "1 MiO"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:661
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:663
 msgid "Array _Size:"
 msgstr "Dimen_siunea matricii:"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:688
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:690
 msgid "_Disks"
 msgstr "_Discuri"
 
 #. --------------------------------------------------------------------------------
 #. TODO: Actually make this work
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:704
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:706
 msgid "Use entire disks instead of _partitions"
 msgstr "Utilizează discuri întregi în loc de _partiții"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:705
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:707
 msgid ""
 "If checked, the entirety of each selected disk will be used for the RAID "
 "array. Otherwise partitions will be created."
@@ -1553,12 +1554,12 @@ msgstr ""
 #. Translators: This is for the tip text shown in the dialog.
 #. * First %s is the short localized name for the RAID level, e.g. "RAID-1".
 #.
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:874
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:876
 #, c-format
 msgid "Insufficient number of disks to create a %s array."
 msgstr "Număr insuficient de discuri pentru a crea o matrice %s."
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:890
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:892
 #, c-format
 msgid "To create a %s array, select a disk."
 msgid_plural "To create a %s array, select %d disks."
@@ -1566,7 +1567,7 @@ msgstr[0] "Pentru a crea o matrice %s, selectați un disc."
 msgstr[1] "Pentru a crea o matrice %s, selectați %d discuri."
 msgstr[2] "Pentru a crea o matrice %s, selectați %d de discuri."
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:897
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:899
 #, c-format
 msgid "To create a %s array, select one more disk."
 msgid_plural "To create a %s array, select %d more disks."
@@ -1579,7 +1580,7 @@ msgstr[2] "Pentru a crea o matrice %s, mai selectați %d de discuri."
 #. * Second %s is the short localized name for the RAID level, e.g. "RAID-1".
 #. * Third parameter is the number of disks to use (always greater than 1).
 #.
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:921
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:923
 #, c-format
 msgid "To create a %s %s array on %d disks, press \"Create\""
 msgstr ""
@@ -1798,13 +1799,13 @@ msgstr "Detalii"
 msgid "Error benchmarking drive"
 msgstr "Eroare la testarea performanței unității"
 
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:593
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:594
 msgid "Are you sure you want to start a read/write benchmark?"
 msgstr "Sigur doriți să porniți un test de performanță de citire/scriere?"
 
 #. TODO: better icon
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:594
-#: ../src/palimpsest/gdu-section-drive.c:1004
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:595
+#: ../src/palimpsest/gdu-section-drive.c:1007
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:1053
 msgid "_Benchmark"
 msgstr "_Test de performanță"
@@ -1814,94 +1815,94 @@ msgstr "_Test de performanță"
 #. * Second %s is the VPD name for the drive or array (e.g. "158 GB RAID-0 Array"
 #. * or "ATA WDC WD1001FALS-00J7B1").
 #.
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:685
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:686
 #, c-format
 msgid "%s (%s) – Benchmark"
 msgstr "%s (%s) – Test de performanță"
 
 #. benchmark results
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:733
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:732
 msgid "Minimum Read Rate:"
 msgstr "Rată de citire minimă:"
 
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:737
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:736
 msgid "Minimum Write Rate:"
 msgstr "Rată de scriere minimă:"
 
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:741
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:740
 msgid "Maximum Read Rate:"
 msgstr "Rată de citire maximă:"
 
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:745
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:744
 msgid "Maximum Write Rate:"
 msgstr "Rată de scriere maximă:"
 
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:749
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:748
 msgid "Average Read Rate:"
 msgstr "Rată de citire medie:"
 
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:753
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:752
 msgid "Average Write Rate:"
 msgstr "Rată de scriere medie:"
 
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:757
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:756
 msgid "Last Benchmark:"
 msgstr "Ultimul test de performanță:"
 
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:765
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:764
 msgid "Average Access Time:"
 msgstr "Timp de acces mediu:"
 
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:778
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:777
 msgid "Start _Read-Only Benchmark"
 msgstr "Po_rnește un test de performanță doar de citire"
 
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:779
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:778
 msgid "Measure read rate and access time"
 msgstr "Măsoară rata citirilor și timpul de acces"
 
 #. TODO: better icon
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:787
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:786
 msgid "Start Read/_Write Benchmark"
 msgstr "P_ornește un test de performanță de citire/scriere"
 
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:788
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:787
 msgid "Measure read rate, write rate and access time"
 msgstr "Măsoară rata citirilor, scrierilor și timpul de acces"
 
 #. Translators: This is used in the benchmark graph - %d is megabytes per second
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:951
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:950
 #, c-format
 msgid "%d MB/s"
 msgstr "%d MB/s"
 
 #. Translators: This is used in the benchmark graph - %g is number of milliseconds
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:956
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:955
 #, c-format
 msgid "%3g ms"
 msgstr "%3g ms"
 
 #. Translators: This is used for the "Last Benchmark" element when we don't have benchmark data
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:1234
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:1223
 msgid "Never"
 msgstr "Niciodată"
 
 #. Translators: Text used in the hyperlink in the status
 #. * table to cancel a self-test
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:1308
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:1297
 msgid "Cancel"
 msgstr "Renunță"
 
 #. Translators: Tooptip for the "Cancel" hyperlink
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:1311
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:1300
 msgid "Cancels the currently running benchmark"
 msgstr "Renunță la testul de performanță aflat în execuție"
 
 #. Translators: title of the dialog - first %s is the name of the volume
 #. * e.g. "Partition 1 of ATA INTEL SSDSA2MH080G1GC"
 #.
-#: ../src/gdu-gtk/gdu-edit-name-dialog.c:213
-#: ../src/gdu-gtk/gdu-edit-partition-dialog.c:300
+#: ../src/gdu-gtk/gdu-edit-name-dialog.c:217
+#: ../src/gdu-gtk/gdu-edit-partition-dialog.c:299
 #, c-format
 msgid "Edit %s"
 msgstr "Editare %s"
@@ -1915,205 +1916,205 @@ msgstr "Volum fizic lipsă"
 msgid "UUID: %s"
 msgstr "UUID: %s"
 
-#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:331
+#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:332
 #, c-format
 msgid "Edit PVs on %s (%s)"
 msgstr "Editează DF pe %s (%s)"
 
-#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:342
+#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:343
 msgid "Physical _Volumes"
 msgstr "_Volume fizice"
 
-#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:372
+#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:373
 msgid "Physical Volume"
 msgstr "Volum fizic"
 
-#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:388
+#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:389
 msgid "Capacity"
 msgstr "Capacitate"
 
-#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:397
+#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:398
 msgid "Unallocated"
 msgstr "Nealocat"
 
-#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:411
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:449
-#: ../src/palimpsest/gdu-section-drive.c:935
+#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:412
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:450
+#: ../src/palimpsest/gdu-section-drive.c:938
 msgid "SMART Status:"
 msgstr "Stare SMART:"
 
-#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:415
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:461
-#: ../src/palimpsest/gdu-section-drive.c:911
+#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:416
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:462
+#: ../src/palimpsest/gdu-section-drive.c:914
 #: ../src/palimpsest/gdu-section-volumes.c:1919
 msgid "Device:"
 msgstr "Dispozitiv:"
 
-#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:428
+#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:429
 msgid "_New Physical Volume"
 msgstr "Volum fizic _nou"
 
-#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:429
+#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:430
 msgid "Add a new PV to the VG"
 msgstr "Adaugă un nou volum fizic la grupul de volume."
 
-#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:438
+#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:439
 msgid "_Remove Physical Volume"
 msgstr "Ște_rge volumul fizic"
 
-#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:439
+#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:440
 msgid "Remove the PV from the VG"
 msgstr "Șterge volumul fizic din grupul de volume."
 
 #. Translators: Used when SMART is not supported on the RAID pv
 #. Translators: Used when SMART is not supported on the RAID component
 #. Translators: This string is used when SMART is not supported
-#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:941
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:845
+#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:942
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:846
 #: ../src/palimpsest/gdu-section-drive.c:329
 msgid "Not Supported"
 msgstr "Nu este suportat"
 
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:369
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:370
 #, c-format
 msgid "Edit components on %s (%s)"
 msgstr "Editare componentă pe %s (%s)"
 
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:380
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:381
 msgid "C_omponents"
 msgstr "C_omponente:"
 
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:410
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:411
 msgid "Position"
 msgstr "Partiție"
 
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:419
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:420
 msgid "Component"
 msgstr "Componentă"
 
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:435
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:436
 msgid "State"
 msgstr "Stare"
 
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:453
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:454
 msgid "Position:"
 msgstr "Partiție:"
 
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:457
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:458
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:683
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:974
 #: ../src/palimpsest/gdu-section-volumes.c:1908
 msgid "State:"
 msgstr "Stare:"
 
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:474
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:475
 msgid "Add _Spare"
 msgstr "Adaugă o rezer_vă"
 
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:475
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:476
 msgid "Add a spare to the array"
 msgstr "Adaugă o rezervă în matrice"
 
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:484
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:485
 msgid "_Expand Array"
 msgstr "_Expandează matricea"
 
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:485
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:486
 msgid "Increase the capacity of the array"
 msgstr "Mărește capacitatea matricii"
 
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:494
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:495
 msgid "_Attach Component"
 msgstr "_Atașează o componentă"
 
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:495
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:496
 msgid "Attach the component to the array"
 msgstr "Atașează componenta în matrice"
 
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:504
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:505
 msgid "_Remove Component"
 msgstr "E_liminare componentă"
 
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:505
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:506
 msgid "Remove the component from the array"
 msgstr "Elimină o componentă din matrice"
 
-#: ../src/gdu-gtk/gdu-edit-partition-dialog.c:321
+#: ../src/gdu-gtk/gdu-edit-partition-dialog.c:320
 msgid "Part_ition Label:"
 msgstr "Et_icheta partiției:"
 
 #. Translators: 'Type' means partition type here
-#: ../src/gdu-gtk/gdu-edit-partition-dialog.c:338
+#: ../src/gdu-gtk/gdu-edit-partition-dialog.c:337
 msgid "Ty_pe:"
 msgstr "Ti_p:"
 
 #. ---
 #. flag used by mbr, apm
-#: ../src/gdu-gtk/gdu-edit-partition-dialog.c:352
+#: ../src/gdu-gtk/gdu-edit-partition-dialog.c:351
 msgid "_Bootable"
 msgstr "_Bootabil"
 
 #. flag used by gpt
-#: ../src/gdu-gtk/gdu-edit-partition-dialog.c:360
+#: ../src/gdu-gtk/gdu-edit-partition-dialog.c:359
 msgid "Required / Firm_ware"
 msgstr "Necesar / _microcod"
 
-#: ../src/gdu-gtk/gdu-error-dialog.c:217
+#: ../src/gdu-gtk/gdu-error-dialog.c:216
 msgid "The operation failed"
 msgstr "Operația a eșuat"
 
-#: ../src/gdu-gtk/gdu-error-dialog.c:220
+#: ../src/gdu-gtk/gdu-error-dialog.c:219
 msgid "The device is busy"
 msgstr "Dispozitivul este ocupat"
 
-#: ../src/gdu-gtk/gdu-error-dialog.c:223
+#: ../src/gdu-gtk/gdu-error-dialog.c:222
 msgid "The operation was canceled"
 msgstr "Operația a fost anulată"
 
-#: ../src/gdu-gtk/gdu-error-dialog.c:226
+#: ../src/gdu-gtk/gdu-error-dialog.c:225
 msgid "The daemon is being inhibited"
 msgstr "Daemonul este inhibat"
 
-#: ../src/gdu-gtk/gdu-error-dialog.c:229
+#: ../src/gdu-gtk/gdu-error-dialog.c:228
 msgid "An invalid option was passed"
 msgstr "S-a trimis o opțiune nevalidă"
 
-#: ../src/gdu-gtk/gdu-error-dialog.c:232
+#: ../src/gdu-gtk/gdu-error-dialog.c:231
 msgid "The operation is not supported"
 msgstr "Operația nu este suportată"
 
-#: ../src/gdu-gtk/gdu-error-dialog.c:235
+#: ../src/gdu-gtk/gdu-error-dialog.c:234
 msgid "Getting ATA SMART data would wake up the device"
 msgstr "Obținerea datelor ATA SMART va trezi dispozitivul"
 
-#: ../src/gdu-gtk/gdu-error-dialog.c:238
+#: ../src/gdu-gtk/gdu-error-dialog.c:237
 msgid "Permission denied"
 msgstr "Permisiune refuzată"
 
-#: ../src/gdu-gtk/gdu-error-dialog.c:241
+#: ../src/gdu-gtk/gdu-error-dialog.c:240
 msgid "Filesystem driver not installed"
 msgstr "Driverul sistemului de fișiere nu este instalat"
 
-#: ../src/gdu-gtk/gdu-error-dialog.c:244
+#: ../src/gdu-gtk/gdu-error-dialog.c:243
 msgid "Filesystem tools not installed"
 msgstr "Utilitarele sistemului de fișiere nu sunt instalate"
 
-#: ../src/gdu-gtk/gdu-error-dialog.c:249 ../src/palimpsest/gdu-shell.c:958
+#: ../src/gdu-gtk/gdu-error-dialog.c:248 ../src/palimpsest/gdu-shell.c:958
 msgid "Unknown error"
 msgstr "Eroare necunoscută"
 
-#: ../src/gdu-gtk/gdu-error-dialog.c:257
+#: ../src/gdu-gtk/gdu-error-dialog.c:256
 #, c-format
 msgid "An error occurred while performing an operation on \"%s\" (%s): %s"
 msgstr ""
 "O eroare a survenit în timpul ce se efectua o operație pe „%s” (%s): %s"
 
-#: ../src/gdu-gtk/gdu-error-dialog.c:265
+#: ../src/gdu-gtk/gdu-error-dialog.c:264
 #, c-format
 msgid "An error occurred: %s"
 msgstr "S-a produs o eroare: %s"
 
-#: ../src/gdu-gtk/gdu-error-dialog.c:274
+#: ../src/gdu-gtk/gdu-error-dialog.c:273
 msgid "_Details"
 msgstr "_Detalii"
 
@@ -2171,51 +2172,51 @@ msgstr "Eticheta mnemonicii butonului afirmativ"
 
 #. Translators: Format is used as a verb here
 #: ../src/gdu-gtk/gdu-format-dialog.c:238
-#: ../src/gdu-gtk/gdu-partition-dialog.c:216
-#: ../src/palimpsest/gdu-section-drive.c:649
+#: ../src/gdu-gtk/gdu-partition-dialog.c:219
+#: ../src/palimpsest/gdu-section-drive.c:652
 #: ../src/palimpsest/gdu-section-volumes.c:371
 msgid "_Format"
 msgstr "_Formatează"
 
 #. Translators: Format is a verb here. The %s is the name of the volume
-#: ../src/gdu-gtk/gdu-format-dialog.c:499
-#: ../src/gdu-gtk/gdu-partition-dialog.c:208
+#: ../src/gdu-gtk/gdu-format-dialog.c:502
+#: ../src/gdu-gtk/gdu-partition-dialog.c:211
 #, c-format
 msgid "Format %s"
 msgstr "Formatează %s"
 
-#: ../src/gdu-gtk/gdu-format-dialog.c:510
+#: ../src/gdu-gtk/gdu-format-dialog.c:513
 msgid "Disk _Utility"
 msgstr "_Utilitar de disc"
 
 #. Translators: this is the tooltip for the "Disk Utility" button
-#: ../src/gdu-gtk/gdu-format-dialog.c:517
+#: ../src/gdu-gtk/gdu-format-dialog.c:520
 msgid "Use Disk Utility to format volume"
 msgstr "Folosește Utilitarul de disc pentru a formata volumul"
 
 #. Translators: 'type' means 'filesystem type' here.
-#: ../src/gdu-gtk/gdu-format-dialog.c:551
+#: ../src/gdu-gtk/gdu-format-dialog.c:553
 msgid "_Type:"
 msgstr "_Tip:"
 
-#: ../src/gdu-gtk/gdu-format-dialog.c:558
+#: ../src/gdu-gtk/gdu-format-dialog.c:560
 msgid "Compatible with all systems (FAT)"
 msgstr "Compatibil cu toate sistemele (FAT)"
 
-#: ../src/gdu-gtk/gdu-format-dialog.c:560
+#: ../src/gdu-gtk/gdu-format-dialog.c:562
 msgid "Compatible with Linux (ext2)"
 msgstr "Compatibil cu Linux (ext2)"
 
-#: ../src/gdu-gtk/gdu-format-dialog.c:562
+#: ../src/gdu-gtk/gdu-format-dialog.c:564
 msgid "Compatible with Linux (ext4)"
 msgstr "Compatibil cu Linux (ext4)"
 
-#: ../src/gdu-gtk/gdu-format-dialog.c:564
+#: ../src/gdu-gtk/gdu-format-dialog.c:566
 msgid "Encrypted, compatible with Linux (FAT)"
 msgstr "Criptat, compatibil cu Linux (FAT)"
 
 #. Translators: 'name' means 'filesystem label' here.
-#: ../src/gdu-gtk/gdu-format-dialog.c:607
+#: ../src/gdu-gtk/gdu-format-dialog.c:609
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:204
 #: ../src/palimpsest/gdu-section-volumes.c:1722
 msgid "_Name:"
@@ -2224,15 +2225,15 @@ msgstr "_Nume:"
 #. Translators: Default name to use for the formatted volume. Keep length of
 #. * translation of "New Volume" to less than 16 characters.
 #.
-#: ../src/gdu-gtk/gdu-format-dialog.c:614
+#: ../src/gdu-gtk/gdu-format-dialog.c:616
 msgid "New Volume"
 msgstr "Volum nou"
 
-#: ../src/gdu-gtk/gdu-format-dialog.c:632
+#: ../src/gdu-gtk/gdu-format-dialog.c:634
 msgid "T_ake ownership of filesystem"
 msgstr "Întră în posesi_a sistemului de fișiere"
 
-#: ../src/gdu-gtk/gdu-format-dialog.c:635
+#: ../src/gdu-gtk/gdu-format-dialog.c:637
 msgid ""
 "The selected file system has a concept of file ownership. If checked, the "
 "created file system will be owned by you. If not checked, only the super "
@@ -2242,11 +2243,11 @@ msgstr ""
 "fi posesorul sistemului de fișiere creat. Dacă nu este bifat, doar "
 "superutilizatorul poate accesa sistemul de fișiere."
 
-#: ../src/gdu-gtk/gdu-format-dialog.c:641
+#: ../src/gdu-gtk/gdu-format-dialog.c:643
 msgid "_Encrypt underlying device"
 msgstr "Criptea_ză dispozitivul de la bază"
 
-#: ../src/gdu-gtk/gdu-format-dialog.c:643
+#: ../src/gdu-gtk/gdu-format-dialog.c:645
 msgid ""
 "Encryption protects your data, requiring a passphrase to be entered before "
 "the file system can be used. May decrease performance and may not be "
@@ -2257,7 +2258,7 @@ msgstr ""
 "există posibilitatea ca mediul de stocare să nu poată fi accesat de pe alte "
 "sisteme de operare."
 
-#: ../src/gdu-gtk/gdu-format-dialog.c:676
+#: ../src/gdu-gtk/gdu-format-dialog.c:678
 msgid "Warning: All data on the volume will be irrevocably lost."
 msgstr "Avertisment: Toate datele de pe volum vor fi pierdute definitiv."
 
@@ -2317,17 +2318,17 @@ msgid "pid: %d  program: %s"
 msgstr "pid: %d  program: %s"
 
 #. Translators: %d is the partition number, %s the name of the disk
-#: ../src/gdu-gtk/gdu-gtk.c:335 ../src/gdu-gtk/gdu-gtk.c:924
-#: ../src/gdu-gtk/gdu-gtk.c:1067
+#: ../src/gdu-gtk/gdu-gtk.c:337 ../src/gdu-gtk/gdu-gtk.c:933
+#: ../src/gdu-gtk/gdu-gtk.c:1076
 #, c-format
 msgid "Partition %d on %s"
 msgstr "Partiția %d pe %s"
 
-#: ../src/gdu-gtk/gdu-gtk.c:371
+#: ../src/gdu-gtk/gdu-gtk.c:375
 msgid "Cannot unmount volume"
 msgstr "Nu pot demonta volumul"
 
-#: ../src/gdu-gtk/gdu-gtk.c:381
+#: ../src/gdu-gtk/gdu-gtk.c:385
 msgid ""
 "One or more applications are using the volume. Quit the applications, and "
 "then try unmounting again."
@@ -2335,53 +2336,53 @@ msgstr ""
 "Una sau mai multe aplicații folosesc volumul. Închideți aplicațiile și "
 "reîncercați să demontați volumul."
 
-#: ../src/gdu-gtk/gdu-gtk.c:422
+#: ../src/gdu-gtk/gdu-gtk.c:426
 msgid "_Unmount"
 msgstr "Demon_tare"
 
-#: ../src/gdu-gtk/gdu-gtk.c:499
+#: ../src/gdu-gtk/gdu-gtk.c:503
 msgid "Passphrases do not match"
 msgstr "Frazele secrete nu se potrivesc"
 
-#: ../src/gdu-gtk/gdu-gtk.c:506
+#: ../src/gdu-gtk/gdu-gtk.c:510
 msgid "Passphrases do not differ"
 msgstr "Frazele secrete nu diferă"
 
-#: ../src/gdu-gtk/gdu-gtk.c:512
+#: ../src/gdu-gtk/gdu-gtk.c:516
 msgid "Passphrase can't be empty"
 msgstr "Fraza secretă nu poate fi vidă"
 
-#: ../src/gdu-gtk/gdu-gtk.c:584
+#: ../src/gdu-gtk/gdu-gtk.c:590
 msgid "Cr_eate"
 msgstr "Cr_eează"
 
-#: ../src/gdu-gtk/gdu-gtk.c:586 ../src/palimpsest/gdu-section-volumes.c:2499
+#: ../src/gdu-gtk/gdu-gtk.c:592 ../src/palimpsest/gdu-section-volumes.c:2499
 msgid "Change _Passphrase"
 msgstr "Schimbă _fraza secretă"
 
-#: ../src/gdu-gtk/gdu-gtk.c:588
+#: ../src/gdu-gtk/gdu-gtk.c:594
 msgid "_Unlock"
 msgstr "_Deblochează"
 
-#: ../src/gdu-gtk/gdu-gtk.c:617
+#: ../src/gdu-gtk/gdu-gtk.c:626
 msgid "To create an encrypted device, choose a passphrase to protect it"
 msgstr ""
 "Pentru a crea un dispozitiv criptat, alegeți o frază secretă pentru a o "
 "proteja"
 
-#: ../src/gdu-gtk/gdu-gtk.c:620
+#: ../src/gdu-gtk/gdu-gtk.c:629
 msgid "To change the passphrase, enter both the current and new passphrase"
 msgstr ""
 "Pentru a schimba fraza secretă, introduceți fraza secretă curentă și cea nouă"
 
-#: ../src/gdu-gtk/gdu-gtk.c:623
+#: ../src/gdu-gtk/gdu-gtk.c:632
 msgid ""
 "Data on this device is stored in an encrypted form protected by a passphrase"
 msgstr ""
 "Datele de pe acest dispozitiv sunt stocate într-o formă criptată protejate "
 "de o frază secretă"
 
-#: ../src/gdu-gtk/gdu-gtk.c:636
+#: ../src/gdu-gtk/gdu-gtk.c:645
 msgid ""
 "Data on this device will be stored in an encrypted form protected by a "
 "passphrase."
@@ -2389,90 +2390,90 @@ msgstr ""
 "Datele de pe acest dispozitiv vor fi stocate într-o formă criptată protejate "
 "de o frază secretă."
 
-#: ../src/gdu-gtk/gdu-gtk.c:639
+#: ../src/gdu-gtk/gdu-gtk.c:648
 msgid ""
 "Data on this device is stored in an encrypted form protected by a passphrase."
 msgstr ""
 "Datele de pe acest dispozitiv sunt stocate într-o formă criptată protejate "
 "de o frază secretă."
 
-#: ../src/gdu-gtk/gdu-gtk.c:642
+#: ../src/gdu-gtk/gdu-gtk.c:651
 msgid ""
 "To make the data available for use, enter the passphrase for the device."
 msgstr ""
 "Pentru a putea utiliza datele, introduceți fraza secretă a dispozitivului."
 
-#: ../src/gdu-gtk/gdu-gtk.c:651
+#: ../src/gdu-gtk/gdu-gtk.c:660
 msgid "Incorrect Passphrase. Try again."
 msgstr "Fraza secretă este greșită. Mai încercați."
 
-#: ../src/gdu-gtk/gdu-gtk.c:675
+#: ../src/gdu-gtk/gdu-gtk.c:684
 msgid "C_urrent Passphrase:"
 msgstr "Fraza secretă c_urentă:"
 
-#: ../src/gdu-gtk/gdu-gtk.c:689
+#: ../src/gdu-gtk/gdu-gtk.c:698
 msgid "_New Passphrase:"
 msgstr "_Noua frază secretă:"
 
-#: ../src/gdu-gtk/gdu-gtk.c:702
+#: ../src/gdu-gtk/gdu-gtk.c:711
 msgid "_Verify Passphrase:"
 msgstr "_Verificați fraza secretă:"
 
-#: ../src/gdu-gtk/gdu-gtk.c:744
+#: ../src/gdu-gtk/gdu-gtk.c:753
 msgid "_Passphrase:"
 msgstr "Fra_za secretă:"
 
-#: ../src/gdu-gtk/gdu-gtk.c:759
+#: ../src/gdu-gtk/gdu-gtk.c:768
 msgid "_Forget passphrase immediately"
 msgstr "Uită _fraza secretă imediat:"
 
-#: ../src/gdu-gtk/gdu-gtk.c:762
+#: ../src/gdu-gtk/gdu-gtk.c:771
 msgid "Remember passphrase until you _log out"
 msgstr "Memorează fraza secretă până _la ieșirea din sesiune"
 
-#: ../src/gdu-gtk/gdu-gtk.c:765
+#: ../src/gdu-gtk/gdu-gtk.c:774
 msgid "_Remember forever"
 msgstr "Memo_rează pentru totdeauna"
 
-#: ../src/gdu-gtk/gdu-gtk.c:828
+#: ../src/gdu-gtk/gdu-gtk.c:837
 msgid "Enter Passphrase"
 msgstr "Introduceți fraza secretă"
 
-#: ../src/gdu-gtk/gdu-gtk.c:957 ../src/gdu/gdu-util.c:828
+#: ../src/gdu-gtk/gdu-gtk.c:966 ../src/gdu/gdu-util.c:828
 #, c-format
 msgid "LUKS Passphrase for UUID %s"
 msgstr "Fraza secretă LUKS pentru UUID %s"
 
-#: ../src/gdu-gtk/gdu-gtk.c:1255
+#: ../src/gdu-gtk/gdu-gtk.c:1268
 msgid "Empty (don't create a file system)"
 msgstr "Gol (nu crea un sistem de fișiere)"
 
-#: ../src/gdu-gtk/gdu-gtk.c:1276
+#: ../src/gdu-gtk/gdu-gtk.c:1289
 msgid "Empty"
 msgstr "Gol"
 
-#: ../src/gdu-gtk/gdu-gtk.c:1284
+#: ../src/gdu-gtk/gdu-gtk.c:1297
 msgid "Extended Partition"
 msgstr "Partiție extinsă"
 
-#: ../src/gdu-gtk/gdu-gtk.c:1543 ../src/palimpsest/gdu-section-drive.c:291
+#: ../src/gdu-gtk/gdu-gtk.c:1556 ../src/palimpsest/gdu-section-drive.c:291
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:254
 msgid "Master Boot Record"
 msgstr "Înregistrarea principală de boot (MBR)"
 
 #. Translators: This string is used for conveying the partition table format
-#: ../src/gdu-gtk/gdu-gtk.c:1548 ../src/gdu/gdu-drive.c:833
+#: ../src/gdu-gtk/gdu-gtk.c:1561 ../src/gdu/gdu-drive.c:833
 #: ../src/gdu/gdu-linux-md-drive.c:572
 #: ../src/palimpsest/gdu-section-drive.c:293
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:256
 msgid "GUID Partition Table"
 msgstr "Tabelă de partiții GUID"
 
-#: ../src/gdu-gtk/gdu-gtk.c:1553
+#: ../src/gdu-gtk/gdu-gtk.c:1566
 msgid "Don't partition"
 msgstr "Nu partiționa"
 
-#: ../src/gdu-gtk/gdu-gtk.c:1558 ../src/gdu/gdu-util.c:495
+#: ../src/gdu-gtk/gdu-gtk.c:1571 ../src/gdu/gdu-util.c:495
 #: ../src/palimpsest/gdu-section-drive.c:289
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:252
 msgid "Apple Partition Map"
@@ -2487,41 +2488,41 @@ msgid "The selected partitioning scheme"
 msgstr "Schema de partiționare selectată"
 
 #. Translators: 'scheme' means 'partitioning scheme' here.
-#: ../src/gdu-gtk/gdu-partition-dialog.c:248
+#: ../src/gdu-gtk/gdu-partition-dialog.c:250
 msgid "_Scheme:"
 msgstr "_Schema:"
 
 #: ../src/gdu-gtk/gdu-size-widget.c:89
 msgid "KB"
-msgstr "KB"
+msgstr "KO"
 
 #: ../src/gdu-gtk/gdu-size-widget.c:95
 msgid "MB"
-msgstr "MB"
+msgstr "MO"
 
 #: ../src/gdu-gtk/gdu-size-widget.c:98
 msgid "GB"
-msgstr "GB"
+msgstr "GO"
 
 #: ../src/gdu-gtk/gdu-size-widget.c:101
 msgid "TB"
-msgstr "TB"
+msgstr "TO"
 
 #: ../src/gdu-gtk/gdu-size-widget.c:104
 msgid "KiB"
-msgstr "KiB"
+msgstr "KiO"
 
 #: ../src/gdu-gtk/gdu-size-widget.c:107
 msgid "MiB"
-msgstr "MiB"
+msgstr "MiO"
 
 #: ../src/gdu-gtk/gdu-size-widget.c:110
 msgid "GiB"
-msgstr "GiB"
+msgstr "GiO"
 
 #: ../src/gdu-gtk/gdu-size-widget.c:113
 msgid "TiB"
-msgstr "TiB"
+msgstr "TiO"
 
 #: ../src/gdu-gtk/gdu-size-widget.c:489
 msgid "The currently selected size"
@@ -2564,17 +2565,17 @@ msgstr[0] "În urmă cu %d oră"
 msgstr[1] "În urmă cu %d ore"
 msgstr[2] "În urmă cu %d de ore"
 
-#: ../src/gdu-gtk/gdu-volume-grid.c:498
+#: ../src/gdu-gtk/gdu-volume-grid.c:489
 #: ../src/palimpsest/gdu-section-drive.c:150
 msgid "Drive"
 msgstr "Unitate"
 
-#: ../src/gdu-gtk/gdu-volume-grid.c:499
+#: ../src/gdu-gtk/gdu-volume-grid.c:490
 msgid "Drive to show volumes for"
 msgstr "Unitatea căreia să i se afișeze volumele"
 
 #. Translators: This is shown in the grid for a RAID array that is not running
-#: ../src/gdu-gtk/gdu-volume-grid.c:1189
+#: ../src/gdu-gtk/gdu-volume-grid.c:1175
 msgid "RAID Array is not running"
 msgstr "Matricea RAID nu este în funcțiune"
 
@@ -2582,31 +2583,31 @@ msgstr "Matricea RAID nu este în funcțiune"
 #. Translators: This string is used as a description text when no media has
 #. * been detected for a drive
 #.
-#: ../src/gdu-gtk/gdu-volume-grid.c:1192 ../src/gdu/gdu-drive.c:819
+#: ../src/gdu-gtk/gdu-volume-grid.c:1178 ../src/gdu/gdu-drive.c:819
 #: ../src/palimpsest/gdu-section-drive.c:343
 #, c-format
 msgid "No Media Detected"
 msgstr "Nu s-a detectat nici un mediu de stocare"
 
 #. Translators: shown in the grid for an extended MS-DOS partition
-#: ../src/gdu-gtk/gdu-volume-grid.c:1277
+#: ../src/gdu-gtk/gdu-volume-grid.c:1263
 msgid "Extended"
 msgstr "Extinsă"
 
 #. Translators: shown in the grid for an encrypted LUKS volume
-#: ../src/gdu-gtk/gdu-volume-grid.c:1285
+#: ../src/gdu-gtk/gdu-volume-grid.c:1271
 msgid "Encrypted"
 msgstr "Criptată"
 
 #. Translators: shown in the grid for an RAID Component
-#: ../src/gdu-gtk/gdu-volume-grid.c:1299 ../src/gdu/gdu-util.c:344
+#: ../src/gdu-gtk/gdu-volume-grid.c:1285 ../src/gdu/gdu-util.c:344
 #: ../src/palimpsest/gdu-section-volumes.c:2195
 #, c-format
 msgid "RAID Component"
 msgstr "Componentă RAID"
 
 #. Translators: shown for free/unallocated space
-#: ../src/gdu-gtk/gdu-volume-grid.c:1307
+#: ../src/gdu-gtk/gdu-volume-grid.c:1293
 msgid "Free"
 msgstr "Spațiu liber"
 
@@ -3912,17 +3913,17 @@ msgstr ""
 #: ../src/gdu/gdu-util.c:888
 #, c-format
 msgid "%.1f KB/s"
-msgstr "%.1f KB/s"
+msgstr "%.1f KO/s"
 
 #: ../src/gdu/gdu-util.c:891
 #, c-format
 msgid "%.1f MB/s"
-msgstr "%.1f MB/s"
+msgstr "%.1f MO/s"
 
 #: ../src/gdu/gdu-util.c:894
 #, c-format
 msgid "%.1f GB/s"
-msgstr "%.1f GB/s"
+msgstr "%.1f GO/s"
 
 #. Translators: interface name for serial ATA disks
 #: ../src/gdu/gdu-util.c:910
@@ -4340,7 +4341,7 @@ msgstr "Disc optic"
 #: ../src/gdu/gdu-volume.c:336
 #, c-format
 msgid "%s Filesystem"
-msgstr "%s sistem de fișiere"
+msgstr "Sistem de fișiere de %s"
 
 #. Translators: Label for a partition table
 #. * %s is the size, formatted like '45 GB'
@@ -4348,7 +4349,7 @@ msgstr "%s sistem de fișiere"
 #: ../src/gdu/gdu-volume.c:342
 #, c-format
 msgid "%s Partition Table"
-msgstr "%s tabelă de partiții"
+msgstr "Tabelă de partiții de %s"
 
 #. Translators: Label for a LVM volume
 #. * %s is the size, formatted like '45 GB'
@@ -4356,7 +4357,7 @@ msgstr "%s tabelă de partiții"
 #: ../src/gdu/gdu-volume.c:348
 #, c-format
 msgid "%s LVM2 Physical Volume"
-msgstr "%s volum fizic LVM2"
+msgstr "Volum fizic LVM2 de %s"
 
 #. Translators: Used if no specific RAID level could be determined
 #: ../src/gdu/gdu-volume.c:361
@@ -4387,7 +4388,7 @@ msgstr "Parte din matricea „%s”"
 #: ../src/gdu/gdu-volume.c:390
 #, c-format
 msgid "%s Swap Space"
-msgstr "%s spațiu swap"
+msgstr "Spațiu swap de %s"
 
 #. Translators: label for a data partition
 #. * %s is the size, formatted like '45 GB'
@@ -4395,7 +4396,7 @@ msgstr "%s spațiu swap"
 #: ../src/gdu/gdu-volume.c:395
 #, c-format
 msgid "%s Data"
-msgstr "%s Data"
+msgstr "Date de %s"
 
 #. Translators: label for a volume of unrecognized use
 #. * %s is the size, formatted like '45 GB'
@@ -4403,7 +4404,7 @@ msgstr "%s Data"
 #: ../src/gdu/gdu-volume.c:401 ../src/gdu/gdu-volume.c:417
 #, c-format
 msgid "%s Unrecognized"
-msgstr "%s Nerecunoscut"
+msgstr "Volum nerecunoscut de %s"
 
 #. Translators: description for a volume of unrecognized use
 #: ../src/gdu/gdu-volume.c:403
@@ -4416,7 +4417,7 @@ msgstr "Necunoscut sau nefolosit"
 #: ../src/gdu/gdu-volume.c:410 ../src/gdu/gdu-volume.c:412
 #, c-format
 msgid "%s Partition"
-msgstr "%s Partiție"
+msgstr "Partiție de %s"
 
 #. Translators: The VPD name for a volume. The %d is the partition number
 #. * and the %s is the VPD name for the drive.
@@ -4454,12 +4455,12 @@ msgid "It's now safe to remove \"%s\"."
 msgstr "Se poate detașa „%s” în siguranță."
 
 #. Translators: %s is the name of the device
-#: ../src/notification/gdu-slow-unmount-dialog.c:233
+#: ../src/notification/gdu-slow-unmount-dialog.c:231
 #, c-format
 msgid "Writing data to \"%s\"..."
 msgstr "Se scriu date pe „%s”..."
 
-#: ../src/notification/gdu-slow-unmount-dialog.c:248
+#: ../src/notification/gdu-slow-unmount-dialog.c:246
 msgid ""
 "To prevent data loss, wait until this has finished before removing media or "
 "disconnecting the device."
@@ -4467,23 +4468,28 @@ msgstr ""
 "Pentru a preveni pierderea datelor, așteptați până la terminarea operației "
 "înainte de a deconecta dispozitivul sau mediul de stocare."
 
-#: ../src/notification/notification-main.c:170
-msgid "One or more disks are failing"
-msgstr "Unul sau mai multe discuri au eșuat"
-
 #. Translators: This is used as the title of the notification
-#: ../src/notification/notification-main.c:535
-msgid "A hard disk may be failing"
-msgstr "S-ar putea ca un hard disc să eșueze"
+#: ../src/notification/notification-main.c:478
+#: ../src/notification/notification-main.c:496
+msgid "Hard Disk Problems Detected"
+msgstr "S-a detectat o problemă de hard disc"
 
-#. Translators: This is used as the text of the notification
-#: ../src/notification/notification-main.c:537
-msgid ""
-"One or more hard disks report health problems. Click the icon to get more "
-"information."
-msgstr ""
-"Unul sau mai multe discuri au reportat probleme de funcționare. Apăsați pe "
-"pictogramă pentru mai multe informații."
+#: ../src/notification/notification-main.c:481
+#: ../src/notification/notification-main.c:499
+msgid "A hard disk is reporting health problems."
+msgstr "Un hard disc a raportat probleme de funcționare."
+
+#: ../src/notification/notification-main.c:482
+msgid "Multiple system hard disks are reporting health problems."
+msgstr "Mai multe hard discuri de sistem au raportat probleme de funcționare."
+
+#: ../src/notification/notification-main.c:489
+msgid "Examine"
+msgstr "Examinează"
+
+#: ../src/notification/notification-main.c:500
+msgid "Multiple hard disks are reporting health problems."
+msgstr "Mai multe hard discuri au raportat probleme de funcționare."
 
 #: ../src/palimpsest/gdu-main.c:127
 msgid "Volume to show"
@@ -4548,32 +4554,32 @@ msgstr "Disc solid-state"
 msgid "Unknown Scheme: %s"
 msgstr "Schemă necunoscută: %s"
 
-#: ../src/palimpsest/gdu-section-drive.c:439
-#: ../src/palimpsest/gdu-section-drive.c:459
+#: ../src/palimpsest/gdu-section-drive.c:442
+#: ../src/palimpsest/gdu-section-drive.c:462
 msgid "Error launching Brasero"
 msgstr "Eroare la lansarea Brasero"
 
-#: ../src/palimpsest/gdu-section-drive.c:440
+#: ../src/palimpsest/gdu-section-drive.c:443
 msgid "The application is not installed"
 msgstr "Aplicația nu este instalată."
 
-#: ../src/palimpsest/gdu-section-drive.c:521
+#: ../src/palimpsest/gdu-section-drive.c:524
 msgid "Error ejecting medium"
 msgstr "Eroare la scoaterea mediului de stocare"
 
-#: ../src/palimpsest/gdu-section-drive.c:565
+#: ../src/palimpsest/gdu-section-drive.c:568
 msgid "Error detaching drive"
 msgstr "Eroare la detașarea unității"
 
-#: ../src/palimpsest/gdu-section-drive.c:610
+#: ../src/palimpsest/gdu-section-drive.c:613
 msgid "Error formatting drive"
 msgstr "Eroare la formatarea unității"
 
-#: ../src/palimpsest/gdu-section-drive.c:648
+#: ../src/palimpsest/gdu-section-drive.c:651
 msgid "Are you sure you want to format the drive?"
 msgstr "Sigur doriți să ștergeți această unitate?"
 
-#: ../src/palimpsest/gdu-section-drive.c:835
+#: ../src/palimpsest/gdu-section-drive.c:838
 msgid ""
 "<b>WARNING:</b> Several paths to this drive has been detected but no "
 "corresponding multipath device was found. Your OS may be misconfigured."
@@ -4582,11 +4588,11 @@ msgstr ""
 "nu s-a găsit niciun dispozitiv multi-cale. Sistemul de operare poate fi "
 "configurat greșit."
 
-#: ../src/palimpsest/gdu-section-drive.c:850
+#: ../src/palimpsest/gdu-section-drive.c:853
 msgid "Go to Multipath Device"
 msgstr "Salt la dispozitivul multi-cale"
 
-#: ../src/palimpsest/gdu-section-drive.c:861
+#: ../src/palimpsest/gdu-section-drive.c:864
 msgid ""
 "<b>NOTE:</b> This object represents one of several paths to the drive. To "
 "perform operations on the drive, use the corresponding multipath object."
@@ -4595,93 +4601,93 @@ msgstr ""
 "Pentru a efectua operații pe unitate, utilizați obiectul multi-cale "
 "corespunzător."
 
-#: ../src/palimpsest/gdu-section-drive.c:890
+#: ../src/palimpsest/gdu-section-drive.c:893
 #: ../src/palimpsest/gdu-section-hub.c:225
 msgid "Model:"
 msgstr "Model:"
 
-#: ../src/palimpsest/gdu-section-drive.c:894
+#: ../src/palimpsest/gdu-section-drive.c:897
 msgid "Serial Number:"
 msgstr "Număr de serie:"
 
-#: ../src/palimpsest/gdu-section-drive.c:898
+#: ../src/palimpsest/gdu-section-drive.c:901
 msgid "Firmware Version:"
 msgstr "Versiune microcod:"
 
 #. Translators: if you translate "World Wide Name", please include the abbreviation "WWN"
-#: ../src/palimpsest/gdu-section-drive.c:903
+#: ../src/palimpsest/gdu-section-drive.c:906
 msgid "World Wide Name:"
 msgstr "World Wide Name:"
 
-#: ../src/palimpsest/gdu-section-drive.c:907
+#: ../src/palimpsest/gdu-section-drive.c:910
 msgid "Location:"
 msgstr "Locație:"
 
-#: ../src/palimpsest/gdu-section-drive.c:915
+#: ../src/palimpsest/gdu-section-drive.c:918
 msgid "Write Cache:"
 msgstr "Cache de scriere:"
 
-#: ../src/palimpsest/gdu-section-drive.c:919
+#: ../src/palimpsest/gdu-section-drive.c:922
 msgid "Rotation Rate:"
-msgstr "Rata rotației:"
+msgstr "Viteza de rotație:"
 
-#: ../src/palimpsest/gdu-section-drive.c:923
+#: ../src/palimpsest/gdu-section-drive.c:926
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:679
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:978
 #: ../src/palimpsest/gdu-section-volumes.c:1952
 msgid "Capacity:"
 msgstr "Capacitate:"
 
-#: ../src/palimpsest/gdu-section-drive.c:927
+#: ../src/palimpsest/gdu-section-drive.c:930
 msgid "Connection:"
 msgstr "Conexiune:"
 
-#: ../src/palimpsest/gdu-section-drive.c:931
+#: ../src/palimpsest/gdu-section-drive.c:934
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:970
 msgid "Partitioning:"
-msgstr "Se partiționează:"
+msgstr "Tip partiționare:"
 
-#: ../src/palimpsest/gdu-section-drive.c:954
+#: ../src/palimpsest/gdu-section-drive.c:957
 msgid "Open CD/_DVD Application"
 msgstr "Deschide aplicația CD/_DVD"
 
-#: ../src/palimpsest/gdu-section-drive.c:955
+#: ../src/palimpsest/gdu-section-drive.c:958
 msgid "Create and copy CDs and DVDs"
 msgstr "Creează și copiază CD-uri și DVD-uri"
 
-#: ../src/palimpsest/gdu-section-drive.c:964
+#: ../src/palimpsest/gdu-section-drive.c:967
 msgid "Format _Drive"
 msgstr "Formatează uni_tatea"
 
-#: ../src/palimpsest/gdu-section-drive.c:965
+#: ../src/palimpsest/gdu-section-drive.c:968
 msgid "Erase or partition the drive"
-msgstr "S-a produs o eroare la partiționarea unității"
+msgstr "Șterge sau partiționează unitatea"
 
-#: ../src/palimpsest/gdu-section-drive.c:974
+#: ../src/palimpsest/gdu-section-drive.c:977
 msgid "SM_ART Data"
 msgstr "Date SM_ART"
 
-#: ../src/palimpsest/gdu-section-drive.c:975
+#: ../src/palimpsest/gdu-section-drive.c:978
 msgid "View SMART data and run self-tests"
 msgstr "Vizualizează datele SMART și execută teste proprii"
 
-#: ../src/palimpsest/gdu-section-drive.c:984
+#: ../src/palimpsest/gdu-section-drive.c:987
 msgid "_Eject"
 msgstr "Scoat_e"
 
-#: ../src/palimpsest/gdu-section-drive.c:985
+#: ../src/palimpsest/gdu-section-drive.c:988
 msgid "Eject medium from the drive"
 msgstr "Scoate mediul de stocare din unitate"
 
-#: ../src/palimpsest/gdu-section-drive.c:994
+#: ../src/palimpsest/gdu-section-drive.c:997
 msgid "Safe Rem_oval"
 msgstr "Sc_oate în siguranță"
 
-#: ../src/palimpsest/gdu-section-drive.c:995
+#: ../src/palimpsest/gdu-section-drive.c:998
 msgid "Power down the drive so it can be removed"
 msgstr "Oprește alimentarea unității pentru a putea fi scoasă"
 
-#: ../src/palimpsest/gdu-section-drive.c:1005
+#: ../src/palimpsest/gdu-section-drive.c:1008
 msgid "Measure drive performance"
 msgstr "Măsoară performanța unității"
 
@@ -5536,6 +5542,19 @@ msgstr "_Detalii:"
 #: ../src/palimpsest/gdu-shell.c:1163
 msgid "_Storage Devices"
 msgstr "Dispozitive de _stocare"
+
+#~ msgid "One or more disks are failing"
+#~ msgstr "Unul sau mai multe discuri au eșuat"
+
+#~ msgid "A hard disk may be failing"
+#~ msgstr "S-ar putea ca un hard disc să eșueze"
+
+#~ msgid ""
+#~ "One or more hard disks report health problems. Click the icon to get more "
+#~ "information."
+#~ msgstr ""
+#~ "Unul sau mai multe discuri au reportat probleme de funcționare. Apăsați "
+#~ "pe pictogramă pentru mai multe informații."
 
 #~ msgid "The volume to format"
 #~ msgstr "Volumul de formatat"
