@@ -6,8 +6,9 @@ gnome-disk-utility (3.0.0-1) UNRELEASED; urgency=low
   * debian/gbp.conf: Change tarball compression to bz2
   * debian/libgdu-dev.install: Don't try to install gtk-doc documentation,
     it's not available anymore
+  * Update symbols files
 
- -- Sjoerd Simons <sjoerd@debian.org>  Sat, 14 May 2011 21:32:17 +0100
+ -- Sjoerd Simons <sjoerd@debian.org>  Sat, 14 May 2011 21:33:22 +0100
 
 gnome-disk-utility (2.29.90-2) experimental; urgency=low
 
