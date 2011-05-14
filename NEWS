@@ -1,4 +1,138 @@
 -------------------------
+gnome-disk-utility 3.0.0
+-------------------------
+
+The gnome-disk-utility project provides libraries and applications for
+dealing with storage devices. It relies on the udisks project.
+
+David Zeuthen (3):
+      Post-release version bump
+      Use the right directory for the nautilus extension
+      Update NEWS for release
+
+Translation updates.
+
+David Zeuthen,
+April 4, 2011
+
+-------------------------
+gnome-disk-utility 2.91.7
+-------------------------
+
+The gnome-disk-utility project provides libraries and applications for
+dealing with storage devices. It relies on the udisks project.
+
+ David Zeuthen (3):
+       Post-release version bump
+       Bug 645174 - New icons
+       Update NEWS for release
+
+ Matthias Clasen (2):
+       Use more accurate categories in the desktop file
+       Make the S.M.A.R.T and benchmark dialogs work better with the shell
+
+Translation updates.
+
+David Zeuthen,
+March 21, 2011
+
+-------------------------
+gnome-disk-utility 2.91.6
+-------------------------
+
+The gnome-disk-utility project provides libraries and applications for
+dealing with storage devices. It relies on the udisks project.
+
+Matthias Clasen (2):
+      Bump version
+      Build against GTK+ 3
+
+David Zeuthen (5):
+      Finish GTK3 port
+      Use non-NULL display for launch context
+      Make Benchmark dialog work in GTK3
+      Bump version to 2.91.6
+      Update NEWS for release
+
+Many many translation updates.
+
+David Zeuthen,
+February 02, 2011
+
+-------------------------
+gnome-disk-utility 2.32.1
+-------------------------
+
+- Require libnotify 0.6.1 (William Jon McCann)
+
+-------------------------
+gnome-disk-utility 2.32.0
+-------------------------
+
+The gnome-disk-utility project provides libraries and applications for
+dealing with storage devices. It relies on the udisks project.
+
+David Yu-Chia Chang (1):
+      Bug 594088 — Palimpsest GUI impossible to use on small screen
+
+David Zeuthen (5):
+      Bug 613004 – Crash in gdu_adapter_get_object_path at gdu-adapter.c:288
+      Bump version to 2.32.0
+      Revert "Bug 594088 — Palimpsest GUI impossible to use on small screen"
+      Nuke gtk-doc usage for now
+      Update NEWS for release
+
+Jonh Wendell (2):
+      Compile against latest gtk+
+      Fix an error in previous commit
+
+Matthias Clasen (2):
+      RH Bug 560336 – Rendering broken for some part of application
+      Make the Apply button in edit-name dialogs default.
+
+Salomon Sickert (1):
+      Use accessor functions instead direct access
+
+Many many translation updates.
+
+David Zeuthen,
+September 15, 2010
+
+-------------------------
+gnome-disk-utility 2.30.0
+-------------------------
+
+The gnome-disk-utility project provides libraries and applications for
+dealing with storage devices. It relies on the udisks project.
+
+Bruce Cowan (1):
+      Bug 608423 – String Review
+
+David Zeuthen (16):
+      Post-release version bump to 2.29.91
+      Fix typo when figuring out if remote access is enabled
+      Handle loop devices
+      Rudimentary support for loop files
+      Don't include non-working Help menu item
+      Bug 606663 – Change default chunk size to match mdadm (512KiB)
+      Use gtk_widget_has_focus() instead of deprecated GTK_WIDGET_HAS_FOCUS()
+      Unify mix color handling
+      Fix theming for the volume grid widget respect
+      Mark string for translation
+      Don't build API docs by default
+      Yank TODO file
+      Update version to 2.30.0
+      Update NEWS for release
+      Revert "Don't build API docs by default"
+      Update NEWS for release
+
+Matthias Clasen (1):
+      Add StartupNotify=true to the desktop file
+
+David Zeuthen,
+March 15, 2010
+
+-------------------------
 gnome-disk-utility 2.29.90
 -------------------------
 
@@ -7,6 +141,11 @@ dealing with storage devices. It relies on the udisks project.
 
 NOTE NOTE NOTE: This is an unstable release of gnome-disk-utility, all
                 API is subject to change.
+
+NOTE NOTE NOTE: This release requires a git snapshot of udisks from
+                Feb 23, 2010. Find a tarball here
+
+                http://people.freedesktop.org/~david/udisks-1.0.0-0.git20100223_1311.tar.gz
 
 Andre Klapper (1):
       Add missing files; sort by alphabet

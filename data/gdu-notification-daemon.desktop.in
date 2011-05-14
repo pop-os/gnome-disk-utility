@@ -10,5 +10,5 @@ OnlyShowIn=GNOME;
 X-GNOME-Bugzilla-Bugzilla=GNOME
 X-GNOME-Bugzilla-Product=gnome-disk-utility
 X-GNOME-Bugzilla-Component=notifications
-X-GNOME-Bugzilla-Version=2.29.90
+X-GNOME-Bugzilla-Version=3.0.0
 #X-GNOME-AutoRestart=true

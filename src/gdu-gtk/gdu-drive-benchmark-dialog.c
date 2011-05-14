@@ -32,7 +32,6 @@
 
 #include "gdu-time-label.h"
 #include "gdu-drive-benchmark-dialog.h"
-#include "gdu-spinner.h"
 #include "gdu-details-table.h"
 #include "gdu-details-element.h"
 
@@ -481,9 +480,9 @@ G_DEFINE_TYPE (GduDriveBenchmarkDialog, gdu_drive_benchmark_dialog, GDU_TYPE_DIA
 static gdouble is_benchmarking (GduDriveBenchmarkDialog *dialog,
                                 gdouble                 *out_progress);
 
-static gboolean on_drawing_area_expose_event (GtkWidget      *widget,
-                                              GdkEventExpose *event,
-                                              gpointer        user_data);
+static gboolean on_drawing_area_draw (GtkWidget      *widget,
+                                      cairo_t        *cr,
+                                      gpointer        user_data);
 
 static void update_dialog (GduDriveBenchmarkDialog *dialog);
 static void on_device_changed (GduDevice *device, gpointer user_data);
@@ -517,6 +516,7 @@ benchmark_cb (GduDevice    *device,
 {
         GduDriveBenchmarkDialog *dialog = GDU_DRIVE_BENCHMARK_DIALOG (user_data);
         GError *local_error;
+        GtkAllocation allocation;
 
         if (error != NULL) {
                 if (!(error->domain == GDU_ERROR && error->code == GDU_ERROR_CANCELLED)) {
@@ -556,11 +556,12 @@ benchmark_cb (GduDevice    *device,
  out:
         if (!dialog->priv->deleted) {
                 update_dialog (dialog);
+                gtk_widget_get_allocation (dialog->priv->drawing_area, &allocation);
                 gtk_widget_queue_draw_area (dialog->priv->drawing_area,
                                             0,
                                             0,
-                                            dialog->priv->drawing_area->allocation.width,
-                                            dialog->priv->drawing_area->allocation.height);
+                                            allocation.width,
+                                            allocation.height);
         }
         g_object_unref (dialog);
 }
@@ -688,8 +689,6 @@ gdu_drive_benchmark_dialog_constructed (GObject *object)
         g_free (vpd_name);
         g_free (name);
 
-        gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
-
         content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
 
         align = gtk_alignment_new (0.5, 0.5, 1.0, 1.0);
@@ -706,8 +705,8 @@ gdu_drive_benchmark_dialog_constructed (GObject *object)
         gtk_box_pack_start (GTK_BOX (vbox), drawing_area, TRUE, TRUE, 0);
 
         g_signal_connect (drawing_area,
-                          "expose-event",
-                          G_CALLBACK (on_drawing_area_expose_event),
+                          "draw",
+                          G_CALLBACK (on_drawing_area_draw),
                           dialog);
 
         /* set minimum size for the graph */
@@ -864,12 +863,12 @@ measure_height (cairo_t     *cr,
 }
 
 static gboolean
-on_drawing_area_expose_event (GtkWidget      *widget,
-                              GdkEventExpose *event,
-                              gpointer        user_data)
+on_drawing_area_draw (GtkWidget      *widget,
+                      cairo_t        *cr,
+                      gpointer        user_data)
 {
         GduDriveBenchmarkDialog *dialog = GDU_DRIVE_BENCHMARK_DIALOG (user_data);
-        cairo_t *cr;
+        GtkAllocation allocation;
         gdouble width, height;
         gdouble gx, gy, gw, gh;
         guint n;
@@ -963,20 +962,14 @@ on_drawing_area_expose_event (GtkWidget      *widget,
 
         size = gdu_device_get_size (gdu_dialog_get_device (GDU_DIALOG (dialog)));
 
-        width = widget->allocation.width;
-        height = widget->allocation.height;
-
-        cr = gdk_cairo_create (widget->window);
+        gtk_widget_get_allocation (widget, &allocation);
+        width = allocation.width;
+        height = allocation.height;
 
         cairo_select_font_face (cr, "sans",
                                 CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_NORMAL);
         cairo_set_font_size (cr, 8.0);
         cairo_set_line_width (cr, 1.0);
-
-        cairo_rectangle (cr,
-                         event->area.x, event->area.y,
-                         event->area.width, event->area.height);
-        cairo_clip (cr);
 
 #if 0
         cairo_set_source_rgb (cr, 0.25, 0.25, 0.25);
@@ -1174,10 +1167,6 @@ on_drawing_area_expose_event (GtkWidget      *widget,
         } else {
                 /* TODO: draw some text saying we don't have any data */
         }
-
-
-
-        cairo_destroy (cr);
 
         g_strfreev (y_left_markers);
         g_strfreev (y_right_markers);

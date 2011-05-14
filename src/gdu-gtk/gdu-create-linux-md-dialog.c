@@ -486,6 +486,7 @@ gdu_create_linux_md_dialog_constructed (GObject *object)
 {
         GduCreateLinuxMdDialog *dialog = GDU_CREATE_LINUX_MD_DIALOG (object);
         GtkWidget *content_area;
+        GtkWidget *action_area;
         GtkWidget *button;
         GtkWidget *label;
         GtkWidget *hbox;
@@ -505,11 +506,13 @@ gdu_create_linux_md_dialog_constructed (GObject *object)
 
         ret = FALSE;
 
-        gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
+        content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
+        action_area = gtk_dialog_get_action_area (GTK_DIALOG (dialog));
+
         gtk_container_set_border_width (GTK_CONTAINER (dialog), 6);
-        gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 0);
-        gtk_container_set_border_width (GTK_CONTAINER (GTK_DIALOG (dialog)->action_area), 5);
-        gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->action_area), 6);
+        gtk_box_set_spacing (GTK_BOX (content_area), 0);
+        gtk_container_set_border_width (GTK_CONTAINER (action_area), 5);
+        gtk_box_set_spacing (GTK_BOX (action_area), 6);
 
         gtk_window_set_title (GTK_WINDOW (dialog), _("Create RAID Array"));
         gtk_window_set_icon_name (GTK_WINDOW (dialog), "gdu-raid-array");
@@ -520,7 +523,6 @@ gdu_create_linux_md_dialog_constructed (GObject *object)
                                         GTK_RESPONSE_OK);
         gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
 
-        content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
         gtk_container_set_border_width (GTK_CONTAINER (content_area), 10);
 
         vbox = content_area;
@@ -554,20 +556,20 @@ gdu_create_linux_md_dialog_constructed (GObject *object)
         gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), _("RAID _Level:"));
         gtk_table_attach (GTK_TABLE (table), label, 0, 1, row, row + 1,
                           GTK_FILL, GTK_EXPAND | GTK_FILL, 2, 2);
-        combo_box = gtk_combo_box_new_text ();
+        combo_box = gtk_combo_box_text_new ();
         dialog->priv->level_combo_box = combo_box;
         /* keep in sync with on_level_combo_box_changed() */
         s = gdu_linux_md_get_raid_level_for_display ("raid0", TRUE);
-        gtk_combo_box_append_text (GTK_COMBO_BOX (combo_box), s);
+        gtk_combo_box_text_append (GTK_COMBO_BOX_TEXT (combo_box), NULL, s);
         g_free (s);
         s = gdu_linux_md_get_raid_level_for_display ("raid1", TRUE);
-        gtk_combo_box_append_text (GTK_COMBO_BOX (combo_box), s);
+        gtk_combo_box_text_append (GTK_COMBO_BOX_TEXT (combo_box), NULL, s);
         g_free (s);
         s = gdu_linux_md_get_raid_level_for_display ("raid5", TRUE);
-        gtk_combo_box_append_text (GTK_COMBO_BOX (combo_box), s);
+        gtk_combo_box_text_append (GTK_COMBO_BOX_TEXT (combo_box), NULL, s);
         g_free (s);
         s = gdu_linux_md_get_raid_level_for_display ("raid6", TRUE);
-        gtk_combo_box_append_text (GTK_COMBO_BOX (combo_box), s);
+        gtk_combo_box_text_append (GTK_COMBO_BOX_TEXT (combo_box), NULL, s);
         g_free (s);
         g_signal_connect (combo_box,
                           "changed",
@@ -618,30 +620,31 @@ gdu_create_linux_md_dialog_constructed (GObject *object)
         gtk_table_attach (GTK_TABLE (table), label, 0, 1, row, row + 1,
                           GTK_FILL, GTK_EXPAND | GTK_FILL, 2, 2);
         /* keep in sync with on_stripe_size_combo_box_changed() */
-        combo_box = gtk_combo_box_new_text ();
+        combo_box = gtk_combo_box_text_new ();
         /* Translators: The following strings (4 KiB, 8 Kib, ..., 1 MiB) are for choosing the RAID stripe size.
          * Since the rest of gnome-disk-utility use the sane 1k=1000 conventions and RAID needs the 1k=1024
          * convenention (this is because disk block sizes are powers of two) we resort to the nerdy units.
          */
-        gtk_combo_box_append_text (GTK_COMBO_BOX (combo_box),
+        gtk_combo_box_text_append (GTK_COMBO_BOX_TEXT (combo_box), NULL,
                                    _("4 KiB"));
-        gtk_combo_box_append_text (GTK_COMBO_BOX (combo_box),
+        gtk_combo_box_text_append (GTK_COMBO_BOX_TEXT (combo_box), NULL,
                                    _("8 KiB"));
-        gtk_combo_box_append_text (GTK_COMBO_BOX (combo_box),
+        gtk_combo_box_text_append (GTK_COMBO_BOX_TEXT (combo_box), NULL,
                                    _("16 KiB"));
-        gtk_combo_box_append_text (GTK_COMBO_BOX (combo_box),
+        gtk_combo_box_text_append (GTK_COMBO_BOX_TEXT (combo_box), NULL,
                                    _("32 KiB"));
-        gtk_combo_box_append_text (GTK_COMBO_BOX (combo_box),
+        gtk_combo_box_text_append (GTK_COMBO_BOX_TEXT (combo_box), NULL,
                                    _("64 KiB"));
-        gtk_combo_box_append_text (GTK_COMBO_BOX (combo_box),
+        gtk_combo_box_text_append (GTK_COMBO_BOX_TEXT (combo_box), NULL,
                                    _("128 KiB"));
-        gtk_combo_box_append_text (GTK_COMBO_BOX (combo_box),
+        gtk_combo_box_text_append (GTK_COMBO_BOX_TEXT (combo_box), NULL,
                                    _("256 KiB"));
-        gtk_combo_box_append_text (GTK_COMBO_BOX (combo_box),
+        gtk_combo_box_text_append (GTK_COMBO_BOX_TEXT (combo_box), NULL,
                                    _("512 KiB"));
-        gtk_combo_box_append_text (GTK_COMBO_BOX (combo_box),
+        gtk_combo_box_text_append (GTK_COMBO_BOX_TEXT (combo_box), NULL,
                                    _("1 MiB"));
-        dialog->priv->stripe_size = 64 * 1024;
+        /* keep in sync with gtk_combo_box_set_active() on stripe_size_combo_box below */
+        dialog->priv->stripe_size = 512 * 1024;
         g_signal_connect (combo_box,
                           "changed",
                           G_CALLBACK (on_stripe_size_combo_box_changed),
@@ -733,7 +736,8 @@ gdu_create_linux_md_dialog_constructed (GObject *object)
 
         /* Calls on_level_combo_box_changed() which calls update() */
         gtk_combo_box_set_active (GTK_COMBO_BOX (dialog->priv->level_combo_box), 0);
-        gtk_combo_box_set_active (GTK_COMBO_BOX (dialog->priv->stripe_size_combo_box), 4);
+        /* keep in sync with "..stripe_size = 512 * 1024;" above */
+        gtk_combo_box_set_active (GTK_COMBO_BOX (dialog->priv->stripe_size_combo_box), 7);
 
         /* select a sane size for the dialog and allow resizing */
         gtk_widget_set_size_request (GTK_WIDGET (dialog), 500, 550);

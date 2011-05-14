@@ -162,7 +162,6 @@ gdu_error_dialog_constructed (GObject *object)
 
         gtk_window_set_title (GTK_WINDOW (dialog), "");
         gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
-        gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
         gtk_container_set_border_width (GTK_CONTAINER (dialog), 12);
 
         button = gtk_dialog_add_button (GTK_DIALOG (dialog),
@@ -254,7 +253,7 @@ gdu_error_dialog_constructed (GObject *object)
 
                 name = gdu_presentable_get_name (presentable);
                 vpd_name = gdu_presentable_get_vpd_name (presentable);
-                s = g_strdup_printf (_("An error occured while performing an operation on \"%s\" (%s): %s"),
+                s = g_strdup_printf (_("An error occurred while performing an operation on \"%s\" (%s): %s"),
                                      name,
                                      vpd_name,
                                      error_msg);
@@ -262,7 +261,7 @@ gdu_error_dialog_constructed (GObject *object)
                 g_free (name);
                 g_free (vpd_name);
         } else {
-                s = g_strdup_printf (_("An error occured: %s"), error_msg);
+                s = g_strdup_printf (_("An error occurred: %s"), error_msg);
         }
 
         label = gtk_label_new (s);

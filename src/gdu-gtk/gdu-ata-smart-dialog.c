@@ -31,7 +31,6 @@
 
 #include "gdu-time-label.h"
 #include "gdu-ata-smart-dialog.h"
-#include "gdu-spinner.h"
 #include "gdu-pool-tree-model.h"
 #include "gdu-details-table.h"
 #include "gdu-details-element.h"
@@ -666,43 +665,6 @@ selection_changed (GtkTreeSelection *tree_selection,
         g_free (attr_name);
 }
 
-static gchar *
-get_grey_color (GtkTreeView *tree_view,
-                GtkTreeIter *iter)
-{
-        GtkTreeSelection *tree_selection;
-        GtkStyle *style;
-        GdkColor desc_gdk_color = {0};
-        GtkStateType state;
-        gchar *desc_color;
-
-        /* This color business shouldn't be this hard... */
-        tree_selection = gtk_tree_view_get_selection (tree_view);
-        style = gtk_widget_get_style (GTK_WIDGET (tree_view));
-        if (gtk_tree_selection_iter_is_selected (tree_selection, iter)) {
-                if (GTK_WIDGET_HAS_FOCUS (GTK_WIDGET (tree_view)))
-                        state = GTK_STATE_SELECTED;
-                else
-                        state = GTK_STATE_ACTIVE;
-        } else {
-                state = GTK_STATE_NORMAL;
-        }
-#define BLEND_FACTOR 0.7
-        desc_gdk_color.red   = style->text[state].red   * BLEND_FACTOR +
-                               style->base[state].red   * (1.0 - BLEND_FACTOR);
-        desc_gdk_color.green = style->text[state].green * BLEND_FACTOR +
-                               style->base[state].green * (1.0 - BLEND_FACTOR);
-        desc_gdk_color.blue  = style->text[state].blue  * BLEND_FACTOR +
-                               style->base[state].blue  * (1.0 - BLEND_FACTOR);
-#undef BLEND_FACTOR
-        desc_color = g_strdup_printf ("#%02x%02x%02x",
-                                      (desc_gdk_color.red >> 8),
-                                      (desc_gdk_color.green >> 8),
-                                      (desc_gdk_color.blue >> 8));
-
-        return desc_color;
-}
-
 static void
 format_markup_name (GtkCellLayout   *cell_layout,
                     GtkCellRenderer *renderer,
@@ -716,7 +678,6 @@ format_markup_name (GtkCellLayout   *cell_layout,
         gchar *name;
         gchar *desc;
         gchar *markup;
-        gchar *desc_color;
 
         gtk_tree_model_get (tree_model,
                             iter,
@@ -738,17 +699,31 @@ format_markup_name (GtkCellLayout   *cell_layout,
                 desc = g_strdup_printf (_("No description for attribute %d"), id);
         }
 
-        desc_color = get_grey_color (GTK_TREE_VIEW (dialog->priv->tree_view), iter);
         if (a->warn) {
                 markup = g_strdup_printf ("<b><span fgcolor='red'>%s</span></b>\n"
                                           "<span fgcolor='darkred'><small>%s</small></span>",
                                           name,
                                           desc);
         } else {
+                gchar color[16];
+                GtkTreeSelection *tree_selection;
+                GtkStateType state;
+
+                tree_selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (dialog->priv->tree_view));
+                if (gtk_tree_selection_iter_is_selected (tree_selection, iter)) {
+                        if (gtk_widget_has_focus (GTK_WIDGET (dialog->priv->tree_view)))
+                                state = GTK_STATE_SELECTED;
+                        else
+                                state = GTK_STATE_ACTIVE;
+                } else {
+                        state = GTK_STATE_NORMAL;
+                }
+                gdu_util_get_mix_color (GTK_WIDGET (dialog->priv->tree_view), state, color, sizeof (color));
+
                 markup = g_strdup_printf ("<b>%s</b>\n"
                                           "<span fgcolor=\"%s\"><small>%s</small></span>",
                                           name,
-                                          desc_color,
+                                          color,
                                           desc);
         }
 
@@ -760,7 +735,6 @@ format_markup_name (GtkCellLayout   *cell_layout,
         g_free (name);
         g_free (desc);
         g_free (markup);
-        g_free (desc_color);
 }
 
 static void
@@ -1115,6 +1089,8 @@ on_self_test_button_clicked (GduButtonElement *button_element,
 {
         GduAtaSmartDialog *dialog = GDU_ATA_SMART_DIALOG (user_data);
         GtkWidget *test_dialog;
+        GtkWidget *content_area;
+        GtkWidget *action_area;
         GtkWidget *hbox;
         GtkWidget *image;
         GtkWidget *main_vbox;
@@ -1133,19 +1109,23 @@ on_self_test_button_clicked (GduButtonElement *button_element,
 
         test_dialog = gtk_dialog_new_with_buttons (NULL,
                                                    GTK_WINDOW (dialog),
-                                                   GTK_DIALOG_MODAL|GTK_DIALOG_DESTROY_WITH_PARENT|GTK_DIALOG_NO_SEPARATOR,
+                                                   GTK_DIALOG_MODAL|GTK_DIALOG_DESTROY_WITH_PARENT,
                                                    NULL);
         gtk_window_set_title (GTK_WINDOW (test_dialog), "");
 
+
+	content_area = gtk_dialog_get_content_area (GTK_DIALOG (test_dialog));
+	action_area = gtk_dialog_get_action_area (GTK_DIALOG (test_dialog));
+
 	gtk_container_set_border_width (GTK_CONTAINER (test_dialog), 6);
-	gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (test_dialog)->vbox), 2);
-	gtk_container_set_border_width (GTK_CONTAINER (GTK_DIALOG (test_dialog)->action_area), 5);
-	gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (test_dialog)->action_area), 6);
+	gtk_box_set_spacing (GTK_BOX (content_area), 2);
+	gtk_container_set_border_width (GTK_CONTAINER (action_area), 5);
+	gtk_box_set_spacing (GTK_BOX (action_area), 6);
 	gtk_window_set_resizable (GTK_WINDOW (test_dialog), FALSE);
 
 	hbox = gtk_hbox_new (FALSE, 12);
 	gtk_container_set_border_width (GTK_CONTAINER (hbox), 5);
-	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (test_dialog)->vbox), hbox, TRUE, TRUE, 0);
+	gtk_box_pack_start (GTK_BOX (content_area), hbox, TRUE, TRUE, 0);
 
 	image = gtk_image_new_from_stock (GTK_STOCK_DIALOG_QUESTION, GTK_ICON_SIZE_DIALOG);
 	gtk_misc_set_alignment (GTK_MISC (image), 0.5, 0.0);
@@ -1291,8 +1271,6 @@ gdu_ata_smart_dialog_constructed (GObject *object)
         g_free (s);
         g_free (vpd_name);
         g_free (name);
-
-        gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
 
         content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
 

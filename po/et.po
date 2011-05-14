@@ -1,27 +1,30 @@
 # GNOME kettautiliidi eesti keele tõlge.
 # Estonian translation of gnome-disk-utility.
 #
-# Copyright (C) 2009 The GNOME Project.
+# Copyright (C) 2009, 2010 The GNOME Project.
 #
 # This file is distributed under the same license as the gnome-disk-utility
 # package.
 #
 # Mattias Põldaru <mahfiaz gmail com>, 2009-2010.
-# Ivar Smolin <okul linux ee>, 2009.
+# Ivar Smolin <okul linux ee>, 2009, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-disk-utility MASTER\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "disk-utility&component=general\n"
-"POT-Creation-Date: 2010-01-31 20:34+0000\n"
-"PO-Revision-Date: 2010-02-11 20:19+0300\n"
+"POT-Creation-Date: 2011-01-27 21:24+0000\n"
+"PO-Revision-Date: 2011-02-24 16:02+0300\n"
 "Last-Translator: Mattias Põldaru <mahfiaz gmail com>\n"
 "Language-Team: Estonian <et@li.org>\n"
+"Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Language: Estonian\n"
+"X-Poedit-Country: ESTONIA\n"
 
 #. Translators: Window title when no item is selected.
 #.
@@ -37,7 +40,7 @@ msgid "Disk Notifications"
 msgstr "Ketta teated"
 
 msgid "Provides notifications related to disks"
-msgstr "Tagab teated ketastega seatud sündmuste kohta"
+msgstr "Teated ketastega seotud sündmuste kohta"
 
 msgid ""
 "To prevent data corruption, wait until this has finished before removing "
@@ -79,14 +82,14 @@ msgstr "Gnome kettautiliit, vormindamise tööriist"
 #.
 #, c-format
 msgid "Format partition %d of %s (%s)"
-msgstr "Partitsiooni %d vormindamine seadmel %s (%s)"
+msgstr "Partitsiooni %d vormindamine kettal %s (%s)"
 
 #. Translators: First argument is the partition number, second argument is the drive name,
 #. * third argument is the size (e.g. 10 GB)
 #.
 #, c-format
 msgid "Formatting partition %d of %s (%s)"
-msgstr "Partitsiooni %d vormindamine seadmel %s (%s)"
+msgstr "Partitsiooni %d vormindamine kettal %s (%s)"
 
 #. Translators: First argument is the drive name, second argument is the size (e.g. 10 GB)
 #, c-format
@@ -136,18 +139,36 @@ msgstr "Viga seadme haakimisel"
 msgid "Error storing passphrase in keyring"
 msgstr "Viga parooli salvestamisel võtmerõngasse"
 
-#, c-format
-msgid "Add Component to %s"
-msgstr "Komponendi lisamine %s-le"
+msgid "The RAID Array to add a component to."
+msgstr "RAID-massiiv, millele lisada komponent."
 
-#. TODO: hate
-#. Translators: The first %s is the size (e.g. "42 GB") and the two following %s are the
-#. * name and vpd_name of the array (e.g. "Saturn" and "6 TB RAID-6")
-#.
+#, c-format
+msgid "Add spare to %s"
+msgstr "Varukomponendi lisamine %s-le"
+
+#, c-format
+msgid "Select a device to create a %s spare on for the RAID Array \"%s\" (%s)"
+msgstr ""
+"Vali seade, millest luua RAID-massiivi \"%s$2\" (%s$3) %s$1 varukomponent"
+
+#, c-format
+msgid "Expand %s"
+msgstr "%s laiendamine"
+
+# kahjuks ei ole päris kindel
 #, c-format
 msgid ""
-"Select a disk to create a %s component on for the RAID Array \"%s\" (%s)"
-msgstr "Vali ketas RAID-massiivi \"%s$2\" (%s$3) komponendi %s$1 loomiseks"
+"Select one or more devices to use %s on for expanding the RAID Array \"%s"
+"\" (%s)"
+msgstr ""
+"Vali vähemalt üks seade RAID-massiivi \"%s$2\" (%s$3) komponendi %s$1 "
+"laiendamiseks"
+
+msgid "_Expand"
+msgstr "_Laienda"
+
+msgid "The VG to add a PV to."
+msgstr "Virtuaalgrupp, millele lisada füüsiline köide."
 
 #, c-format
 msgid "Add Physical Volume to %s (%s)"
@@ -167,7 +188,7 @@ msgid ""
 "indicates a problem with either the disk surface or read/write heads"
 msgstr ""
 "Lugemisvigade sagedus toorandmete lugemisel kettalt. Nullist erinev väärtus "
-"viitab ketta pinna või lugemis/kirjutamispeade kahjustustele."
+"viitab ketta pinna või lugemis/kirjutamispeade kahjustustele"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -209,7 +230,7 @@ msgid ""
 msgstr ""
 "Ümbersuunatud sektorite arv. Kui kõvaketas leiab lugemisel/kirjutamisel/"
 "kontrollil vea, märgitakse see sektor \"ümbersuunatuks\" ning selle andmed "
-"kirjutatakse ümber selleks reserveeritud alale (spare area)."
+"kirjutatakse ümber selleks reserveeritud alale (spare area)"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -218,7 +239,7 @@ msgid "Read Channel Margin"
 msgstr "Lugemiskanali piir"
 
 msgid "Margin of a channel while reading data."
-msgstr "Kanali piir andmete lugemisel"
+msgstr "Kanali piir andmete lugemisel."
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -368,8 +389,8 @@ msgid ""
 "total number of (successful and unsuccessful) attempts to transfer data from "
 "reallocated sectors to a spare area"
 msgstr ""
-"Ümberpaigutamis operatsioonide arv. Lihtväärtus, mis näitab ümbersuunatud "
-"andmete varualale tõstmise katsete (edukad või mitte) koguarvu."
+"Ümberpaigutamisoperatsioonide arv. Lihtväärtus, mis näitab ümbersuunatud "
+"andmete varualale tõstmise katsete (edukad või mitte) koguarvu"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -386,7 +407,7 @@ msgstr ""
 "Ümberpaigutamise ootel olevate sektorite arv. Kui ümberpaigutamise ootel "
 "olevat sektorit on pärast seda edukalt kirjutatud või loetud, vähendatakse "
 "seda väärtust ja sektorit ei paigutata ümber. Lugemisvigade korral sektorit "
-"ümber ei paigutata, seda tehakse ainult nurjunud kirjutamiskatsel."
+"ümber ei paigutata, seda tehakse ainult nurjunud kirjutamiskatsel"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -400,7 +421,7 @@ msgid ""
 "and/or problems in the mechanical subsystem"
 msgstr ""
 "Sektori lugemise/kirjutamise parandamatute vigade koguarv. Selle väärtuse "
-"kasv viitab ketta pinna vigadele ja/või kettamehaanika vigadele."
+"kasv viitab ketta pinna vigadele ja/või kettamehaanika vigadele"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -436,10 +457,10 @@ msgstr "Rajalt kaldumise vigade arv"
 #. * or the next string for a longer explanation.
 #.
 msgid "Data Address Mark Errors"
-msgstr "Andmeaadressite märkimise vead"
+msgstr "Andmeaadresside märkimise vead"
 
 msgid "Number of Data Address Mark (DAM) errors (or) vendor-specific"
-msgstr "Andmeaadressite märkimise (DAM) vead (või) tootjaspetsiifiline"
+msgstr "Andmeaadresside märkimise (DAM) vead (või) tootjaspetsiifiline"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -463,7 +484,7 @@ msgstr "Vigade arv, mille on parandanud tarkvaraline ECC"
 #. * or the next string for a longer explanation.
 #.
 msgid "Thermal Asperity Rate"
-msgstr "Termokriipimise määr."
+msgstr "Termokriipimise määr"
 
 msgid "Number of Thermal Asperity Rate errors"
 msgstr "Temperatuurist põhjustatud kriipimiste arv"
@@ -519,7 +540,7 @@ msgstr ""
 
 msgid ""
 "Number of errors as a result of impact loads as detected by a shock sensor"
-msgstr "Löökkoormusest, mille tuvastas põrutussensor, põhjustatud vigade arv"
+msgstr "Põrutussensori tuvastatud löökidest põhjustatud vigade arv"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -583,7 +604,7 @@ msgid "GMR Head Amplitude"
 msgstr "GMR'i pea amplituud"
 
 msgid "Amplitude of heads trembling (GMR-head) in running mode"
-msgstr "Peade värina apmlituud (GMR-head) töörežiimis"
+msgstr "Peade värina amplituud (GMR-head) töörežiimis"
 
 msgid "Temperature of the drive"
 msgstr "Ketta temperatuur"
@@ -649,7 +670,7 @@ msgstr "Atribuudil %d pole kirjeldust"
 
 #. Translators: This is shown in the tree view for the normalized value of an attribute (0-254)
 msgid "Normalized:"
-msgstr "Normaalne:"
+msgstr "Normaaliseeritud:"
 
 #. Translators: This is shown in the tree view for the worst value of an attribute (0-254)
 msgid "Worst:"
@@ -669,7 +690,7 @@ msgstr "Väärtus:"
 #. Translators: Used in the treeview for the pretty/interpreted value of an attribute
 #. * where the value cannot be interpreted
 msgid "N/A"
-msgstr "pole"
+msgstr "puudub"
 
 #. Translators: Shown in the treeview for a failing attribute
 msgid "Failing"
@@ -700,7 +721,7 @@ msgid ""
 "size of the disk. You can continue using your system while the test is "
 "running."
 msgstr ""
-"Testide tegemiseks võib kuluda palju aega, võltuvalt ketta kiirusest ja "
+"Testide tegemiseks võib kuluda palju aega, sõltuvalt ketta kiirusest ja "
 "suurusest. Sa võid jätkata süsteemi kasutamist ka testimise ajal."
 
 #. Translators: Radio button for short test
@@ -709,11 +730,11 @@ msgstr "_Lühike (tavaliselt alla kümne minuti)"
 
 #. Translators: Radio button for extended test
 msgid "_Extended (usually tens of minutes)"
-msgstr "_Pikendatud (tavaliselt kümme minutit)"
+msgstr "_Pikendatud (tavaliselt kümneid minuteid)"
 
 #. Translators: Radio button for conveyance test
 msgid "C_onveyance (usually less than ten minutes)"
-msgstr "_Edastus (tavaliselt alla kümne minuti)"
+msgstr "E_dastus (tavaliselt alla kümne minuti)"
 
 #. Translators: Button in "Run self-test dialog"
 msgid "_Run Self Test"
@@ -737,7 +758,7 @@ msgid ""
 "unless the disk is sleeping"
 msgstr ""
 "Aeg viimasest SMART-andmete lugemisest - SMART-andmeid uuendatakse iga 30 "
-"minuti järel, kui ketas pole unerežiimis."
+"minuti järel, kui ketas pole unerežiimis"
 
 #. Translators: Item name in the status table
 msgid "Self-tests:"
@@ -819,7 +840,7 @@ msgstr "_Katkesta enesetest"
 
 #. Translators: Button details
 msgid "Cancels the self-test"
-msgstr "Katkestab enesetesti"
+msgstr "Enesetesti katkestamine"
 
 #. Translators: Heading used in the main dialog for SMART attributes
 msgid "_Attributes"
@@ -884,7 +905,7 @@ msgstr "%.1f sekundit"
 #. * for a time-based unit that is counted in milliseconds
 #, c-format
 msgid "%s msec"
-msgstr "%s msek"
+msgstr "%s ms"
 
 #, c-format
 msgid "%d sector"
@@ -902,7 +923,7 @@ msgstr "%.0f° C / %.0f° F"
 #. Translators: Used in the tooltip for a row in the attribute treeview - please keep
 #. * "(Pre-Fail)" in English
 msgid "Failure is a sign of imminent disk failure (Pre-Fail)"
-msgstr "Tõrked viitavad kohesele ketta riknemisele (Pre-Fail)"
+msgstr "Tõrked viitavad ketta kohesele riknemisele (Pre-Fail)"
 
 #. Translators: Used in the tooltip for a row in the attribute treeview - please keep
 #. * "(Old-Age)" in English
@@ -912,12 +933,12 @@ msgstr "Tõrked viitavad ketta vanadusele (Old-Age)"
 #. Translators: Used in the tooltip for a row in the attribute treeview - please keep
 #. * "(Online)" in English
 msgid "Every time data is collected (Online)"
-msgstr "Iga kord, kui andmeid kontrollitakse (Online)"
+msgstr "Igal andmete kogumisel (Online)"
 
 #. Translators: Used in the tooltip for a row in the attribute treeview - please keep
 #. * "(Not Online)" in English
 msgid "Only during off-line activities (Not Online)"
-msgstr "Ainult ühendamata oleku tegevuste jooksul (Not Online)"
+msgstr "Ainult ühendamata olekus kontrollil (Not Online)"
 
 #. Translators: Used in the tooltip for a row in the attribute treeview.
 #. * First %s is the type of the attribute (Pre-Fail or Old-Age).
@@ -930,7 +951,7 @@ msgid ""
 "Updates: %s\n"
 "Raw: 0x%02x%02x%02x%02x%02x%02x"
 msgstr ""
-"Tüüp: %s\n"
+"Liik: %s\n"
 "Uuendused: %s\n"
 "Raw: 0x%02x%02x%02x%02x%02x%02x"
 
@@ -985,7 +1006,7 @@ msgstr "ÜTLEB ÜLES"
 #. Translators: Shown in the "Bad Sectors" item in the status table
 #. * when we the disk has no bad sectors
 msgid "None"
-msgstr "Puudub"
+msgstr "Pole"
 
 #, c-format
 msgid "%d bad sector"
@@ -1023,7 +1044,7 @@ msgstr "NURJUNUD (lugemisviga)"
 
 #. Translators: Shown in the "Self-tests" item in the status table
 msgid "FAILED (Suspected of having handled damage)"
-msgstr "NURJUNUD (see võib olla kahjustatud)"
+msgstr "NURJUNUD (võib olla kahjustatud)"
 
 #. Translators: Shown in the "Self-tests" item in the status table
 msgid "In progress"
@@ -1042,7 +1063,7 @@ msgid "This operation concerns \"%s\" (%s)"
 msgstr "See operatsioon puudutab \"%s\"-d (%s)"
 
 msgid "User Name"
-msgstr "Kasutaja nimi"
+msgstr "Kasutajanimi"
 
 msgid "The chosen user name"
 msgstr "Valitud kasutajanimi"
@@ -1074,8 +1095,7 @@ msgid ""
 "protocol."
 msgstr ""
 "Teise arvutiga ühendatud kettaseadmete haldamiseks sisesta aadress ja vajuta "
-"nupule \"Ühenda\". Ühendus luuakse kasutades protokolli <i>Turvaline kest "
-"(secure shell)</i>."
+"nupule \"Ühendu\". Ühendus luuakse kasutades <i>Secure Shell</i> protokolli."
 
 #. Translators: This is the tooltip for the "Server Address" entry
 #.
@@ -1121,10 +1141,10 @@ msgid "The pool of devices"
 msgstr "Seadmete kogum"
 
 msgid "RAID Level"
-msgstr "RAID-i tase"
+msgstr "RAIDi tase"
 
 msgid "The selected RAID level"
-msgstr "Valitud RAID-i tase"
+msgstr "Valitud RAIDi tase"
 
 msgid "Name"
 msgstr "Nimi"
@@ -1163,7 +1183,7 @@ msgid "General"
 msgstr "Üldine"
 
 msgid "RAID _Level:"
-msgstr "RAID-i _tase:"
+msgstr "RAIDi _tase:"
 
 msgid "Array _Name:"
 msgstr "Massiivi _nimi:"
@@ -1212,6 +1232,7 @@ msgid "_Disks"
 msgstr "_Kettad"
 
 #. --------------------------------------------------------------------------------
+#. TODO: Actually make this work
 msgid "Use entire disks instead of _partitions"
 msgstr "_Partitsioonide asemel kasutatakse kogu ketast"
 
@@ -1227,12 +1248,12 @@ msgstr ""
 #.
 #, c-format
 msgid "Insufficient number of disks to create a %s array."
-msgstr "%s massiivi loomiseks ei jagu kettaid."
+msgstr "%s massiivi loomiseks pole piisavalt kettaid."
 
 #, c-format
 msgid "To create a %s array, select a disk."
 msgid_plural "To create a %s array, select %d disks."
-msgstr[0] "%s massiivi loomiseks vali ketas."
+msgstr[0] "Vali ketas %s massiivi loomiseks."
 msgstr[1] "%s massiivi loomiseks vali %d ketast."
 
 #, c-format
@@ -1279,12 +1300,6 @@ msgstr "Valitud kettad"
 msgid "Array of selected drives"
 msgstr "Valitud ketaste massiiv"
 
-msgid "Ignored Drives"
-msgstr "Eiratavad kettad"
-
-msgid "Array of drives to ignore"
-msgstr "Ignoreeritavate ketaste massiiv"
-
 msgid "Number of available disks"
 msgstr "Saadaolevate ketaste arv"
 
@@ -1302,6 +1317,23 @@ msgstr "Kõigilt ketastelt suurim vaba segment"
 
 msgid "The size to use in the details header"
 msgstr "Suurus, mida kasutada üksikasjade päises"
+
+msgid "Cannot select multipath component"
+msgstr "Mitmerajakomponenti pole võimalik valida"
+
+msgid "No free space."
+msgstr "Vaba ruumi pole."
+
+#. Translators: Shown when device is unselectable because not enough space is available.
+#. * First %s (e.g. '10 GB') is how much space is needed.
+#. * Second %s (e.g. '5 GB') is how much space is available.
+#.
+#, c-format
+msgid ""
+"Insufficient space: %s is needed but largest contiguous free block is %s."
+msgstr ""
+"Pole piisavalt vaba ruumi: %s on tarvis, kuid suurim järjestikune vaba plokk "
+"on %s."
 
 #. Translators: This is shown in the details column
 msgid "The disk will be partitioned and a partition will be created"
@@ -1324,8 +1356,8 @@ msgstr ""
 #.
 #, c-format
 msgid ""
-"The disk will be partitioned and a %s partition will be created. Afterwards %"
-"s will be available."
+"The disk will be partitioned and a %s partition will be created. Afterwards "
+"%s will be available."
 msgstr ""
 "Ketas partitsioneeritakse ja luuakse uus %s partitsioon. Pärast seda jääb %s "
 "saadavale."
@@ -1333,6 +1365,10 @@ msgstr ""
 #. Translators: This is shown in the details column
 msgid "A partition will be created"
 msgstr "Luuakse üks partitsioon"
+
+#. Translators: This is shown in the details column
+msgid "A volume will be created"
+msgstr "Luuakse üks köide"
 
 #. Translators: This is shown in the Details column.
 #. * First %s is the component size e.g. '42 GB'.
@@ -1343,6 +1379,13 @@ msgstr "Luuakse %s partitsioon. Pärast seda vaba ruumi ei jää."
 
 #. Translators: This is shown in the Details column.
 #. * First %s is the component size e.g. '42 GB'.
+#.
+#, c-format
+msgid "A %s volume will be created. Afterwards no space will be available."
+msgstr "Luuakse %s köide. Pärast seda vaba ruumi ei jää."
+
+#. Translators: This is shown in the Details column.
+#. * First %s is the component size e.g. '42 GB'.
 #. * Second %s is the remaining free space after the operation.
 #.
 #, c-format
@@ -1350,11 +1393,19 @@ msgid "A %s partition will be created. Afterwards %s will be available."
 msgstr "Luuakse %s partitsioon. Pärast seda on %s saadaval."
 
 #. Translators: This is shown in the Details column.
+#. * First %s is the component size e.g. '42 GB'.
+#. * Second %s is the remaining free space after the operation.
+#.
+#, c-format
+msgid "A %s volume will be created. Afterwards %s will be available."
+msgstr "Luuakse %s köide. Pärast seda on %s saadaval."
+
+#. Translators: This is shown in the Details column.
 #. * %s is the component size e.g. '42 GB'.
 #.
 #, c-format
 msgid "Whole disk is uninitialized. %s available for use"
-msgstr "Kogu ketas on lähtestamata. Kasutamiseks on saadaval %s."
+msgstr "Kogu ketas on lähtestamata. Kasutamiseks on saadaval %s"
 
 #. Translators: This is shown in the Details column.
 #. * %s is the component size e.g. '42 GB'.
@@ -1368,7 +1419,7 @@ msgstr "Kasutamiseks on saadaval %s"
 #.
 #, c-format
 msgid "The disk has no partitions. %s available for use"
-msgstr "Sel kettal pole partitsioone. Kasutamiseks on saadaval %s."
+msgstr "Sel kettal pole partitsioone. Kasutamiseks on saadaval %s"
 
 #, c-format
 msgid "The disk has %d partition"
@@ -1457,7 +1508,7 @@ msgstr "%d MB/s"
 #. Translators: This is used in the benchmark graph - %g is number of milliseconds
 #, c-format
 msgid "%3g ms"
-msgstr "%3g msek"
+msgstr "%3g ms"
 
 #. Translators: This is used for the "Last Benchmark" element when we don't have benchmark data
 msgid "Never"
@@ -1477,7 +1528,7 @@ msgstr "Praegu käimasoleva jõudlustesti katkestamine"
 #.
 #, c-format
 msgid "Edit %s"
-msgstr "%s muutmine"
+msgstr "Muutmine: %s"
 
 msgid "Missing Physical Volume"
 msgstr "Puuduv füüsiline köide"
@@ -1503,7 +1554,7 @@ msgid "Unallocated"
 msgstr "Allutamata"
 
 msgid "SMART Status:"
-msgstr "SMART'i olek:"
+msgstr "SMART olek:"
 
 msgid "Device:"
 msgstr "Seade:"
@@ -1548,11 +1599,17 @@ msgstr "Asukoht:"
 msgid "State:"
 msgstr "Olek"
 
-msgid "_New Component"
-msgstr "_Uus komponent"
+msgid "Add _Spare"
+msgstr "Lisa _varu"
 
-msgid "Add a new component to the array"
-msgstr "Uue komponendi lisamine massiivi"
+msgid "Add a spare to the array"
+msgstr "Uue varukomponendi lisamine massiivi"
+
+msgid "_Expand Array"
+msgstr "_Laienda massiivi"
+
+msgid "Increase the capacity of the array"
+msgstr "Massiivi mahutavuse suurendamine"
 
 msgid "_Attach Component"
 msgstr "_Ühenda komponent"
@@ -1571,7 +1628,7 @@ msgstr "_Partitsiooni pealdis:"
 
 #. Translators: 'Type' means partition type here
 msgid "Ty_pe:"
-msgstr "_Tüüp:"
+msgstr "_Liik:"
 
 #. ---
 #. flag used by mbr, apm
@@ -1601,7 +1658,7 @@ msgid "The operation is not supported"
 msgstr "Operatsioon pole toetatud"
 
 msgid "Getting ATA SMART data would wake up the device"
-msgstr "ATA SMART'i andmete hankimine ärataks seadme"
+msgstr "ATA SMART-andmete hankimine ärataks seadme"
 
 msgid "Permission denied"
 msgstr "Õigused puuduvad"
@@ -1616,11 +1673,11 @@ msgid "Unknown error"
 msgstr "Tundmatu viga"
 
 #, c-format
-msgid "An error occured while performing an operation on \"%s\" (%s): %s"
+msgid "An error occurred while performing an operation on \"%s\" (%s): %s"
 msgstr "\"%s\"-l (%s) operatsiooni teostamisel esines viga: %s"
 
 #, c-format
-msgid "An error occured: %s"
+msgid "An error occurred: %s"
 msgstr "Esines viga: %s"
 
 msgid "_Details"
@@ -1630,10 +1687,10 @@ msgid "Flags specifying the behavior of the dialog"
 msgstr "Lipud, mis määravad dialoogide käitumise"
 
 msgid "Filesystem type"
-msgstr "Failisüsteemi tüüp"
+msgstr "Failisüsteemi liik"
 
 msgid "The selected filesystem type"
-msgstr "Valitud failisüsteemi tüüp"
+msgstr "Valitud failisüsteemi liik"
 
 msgid "Filesystem label"
 msgstr "Failisüsteemi pealdis"
@@ -1672,7 +1729,7 @@ msgstr "_Vorminda"
 #. Translators: Format is a verb here. The %s is the name of the volume
 #, c-format
 msgid "Format %s"
-msgstr "Vorminda %s"
+msgstr "Vormindamine: %s"
 
 msgid "Disk _Utility"
 msgstr "Ketta_utiliit"
@@ -1683,7 +1740,7 @@ msgstr "Köite vormindamiseks kasuta kettautiliiti"
 
 #. Translators: 'type' means 'filesystem type' here.
 msgid "_Type:"
-msgstr "_Tüüp:"
+msgstr "_Liik:"
 
 msgid "Compatible with all systems (FAT)"
 msgstr "Ühilduv kõigi süsteemidega (FAT)"
@@ -1708,7 +1765,7 @@ msgid "New Volume"
 msgstr "Uus köide"
 
 msgid "T_ake ownership of filesystem"
-msgstr "_Hakka selle failisüsteemi omanikuks"
+msgstr "_Hakkan selle failisüsteemi omanikuks"
 
 msgid ""
 "The selected file system has a concept of file ownership. If checked, the "
@@ -1720,7 +1777,7 @@ msgstr ""
 "failisüsteemile ligi."
 
 msgid "_Encrypt underlying device"
-msgstr "Alusseadme _krüpteerimine"
+msgstr "Alusseade _krüpteeritakse"
 
 msgid ""
 "Encryption protects your data, requiring a passphrase to be entered before "
@@ -1781,7 +1838,7 @@ msgstr "pid: %d  programm: %s"
 #. Translators: %d is the partition number, %s the name of the disk
 #, c-format
 msgid "Partition %d on %s"
-msgstr "Partitsioon %d seadmel %s"
+msgstr "Partitsioon %d kettal %s"
 
 msgid "Cannot unmount volume"
 msgstr "Köite lahtihaakimine pole võimalik"
@@ -1881,14 +1938,14 @@ msgid "Extended Partition"
 msgstr "Laiendatud partitsioon"
 
 msgid "Master Boot Record"
-msgstr "Peabuutsektor"
+msgstr "Peabuutkirje (MBR)"
 
 #. Translators: This string is used for conveying the partition table format
 msgid "GUID Partition Table"
-msgstr "GUID partitsioonitabel"
+msgstr "GUID-partitsioonitabel"
 
 msgid "Don't partition"
-msgstr "Ära partitsioneeri"
+msgstr "Ilma partitsioonideta"
 
 msgid "Apple Partition Map"
 msgstr "Apple partitsioonikaart"
@@ -2059,6 +2116,15 @@ msgstr "Blu-Ray"
 #.
 msgid "HDDVD"
 msgstr "HDDVD"
+
+#. Translators: This is the name of a "Drive" backed by a file.
+#. * The %s is the size of the file (e.g. "42 GB" or "5 KB").
+#. *
+#. * See e.g. http://people.freedesktop.org/~david/gnome-loopback-2.png
+#.
+#, c-format
+msgid "%s File"
+msgstr "%s fail"
 
 #. Translators: %s is the media type e.g. 'CD/DVD' or 'CompactFlash'
 #, c-format
@@ -2238,6 +2304,10 @@ msgid "Blocked"
 msgstr "Blokeeritud"
 
 msgctxt "Linux MD slave state"
+msgid "Partially Synchronized"
+msgstr "Osaliselt sünkroniseeritud"
+
+msgctxt "Linux MD slave state"
 msgid "Spare"
 msgstr "Varu"
 
@@ -2264,7 +2334,7 @@ msgstr "RAID, LVM ja teised loogilised kettad"
 msgid "Peripheral Devices"
 msgstr "Välised seadmed"
 
-msgid "USB, Firewire and other peripherals"
+msgid "USB, FireWire and other peripherals"
 msgstr "USB, Firewire ja teised välised kettad"
 
 #, c-format
@@ -2285,7 +2355,7 @@ msgstr "Tõrge portide nummerdamisel: %s"
 
 #, c-format
 msgid "Error listening to address `localhost:%d': %s: %s\n"
-msgstr "Tõrge aadressi `localhost kuulamisel:%d': %s: %s\n"
+msgstr "Tõrge aadressi `localhost:%d' kuulamisel: %s: %s\n"
 
 #, c-format
 msgid ""
@@ -2315,7 +2385,7 @@ msgid "Error reading stderr output: No content"
 msgstr "Tõrge stderr väljundi lugemisel: puudub sisu"
 
 msgid "Error logging in"
-msgstr "Viga sisselogimisel"
+msgstr "Tõrge sisselogimisel"
 
 #, c-format
 msgid "Error sending `%s': %s"
@@ -2742,10 +2812,10 @@ msgstr "Apple ZFS partitsioon"
 
 #. Same as Solaris /usr
 msgid "Apple RAID Partition"
-msgstr "Apple'i RAID-partitsioon"
+msgstr "Apple RAID-partitsioon"
 
 msgid "Apple RAID Partition (Offline)"
-msgstr "Apple'i RAID-partitsioon (pole liinil)"
+msgstr "Apple RAID-partitsioon (pole liinil)"
 
 msgid "Apple Boot Partition"
 msgstr "Apple alglaadimispartitsioon"
@@ -2769,7 +2839,7 @@ msgstr "NetBSD LFS partitsioon"
 msgid "NetBSD RAID Partition"
 msgstr "NetBSD RAID-partitsioon"
 
-msgid "NetBSD Concatenated  Partition"
+msgid "NetBSD Concatenated Partition"
 msgstr "NetBSD ühendatud partitsioon"
 
 msgid "NetBSD Encrypted Partition"
@@ -2901,7 +2971,7 @@ msgid "Mac OS X (0xaf)"
 msgstr "Mac OS X (0xaf)"
 
 msgid "Solaris boot (0xbe)"
-msgstr "Solaris alglaadimine (0xbe)"
+msgstr "Solarise alglaadimine (0xbe)"
 
 msgid "Solaris (0xbf)"
 msgstr "Solaris (0xbf)"
@@ -2919,7 +2989,7 @@ msgid "EFI (FAT-12/16/32 (0xef)"
 msgstr "EFI (FAT-12/16/32 (0xef)"
 
 msgid "Linux RAID autodetect (0xfd)"
-msgstr "Linuxi RAID-i isetuvastus (0xfd)"
+msgstr "Linuxi RAIDi isetuvastus (0xfd)"
 
 #. Translators: Shown for unknown partition types.
 #. * %s is the partition type name
@@ -2962,7 +3032,7 @@ msgstr ""
 
 msgid ""
 "Simple filesystem with low overhead and UNIX permissions support. Not widely "
-"compatible with other operating systems than Linux and Minix."
+"compatible with operating systems other than Linux and Minix."
 msgstr ""
 "Lihtne failisüsteem väikese ülekulu ja UNIX-i failiõiguste toega. Ei ole "
 "laialdaselt ühilduv teiste operatsioonisüsteemidega peale Linuxi ja Minixi."
@@ -2978,8 +3048,8 @@ msgid ""
 "but has a number of limitations with respect to disk size and number of "
 "partitions."
 msgstr ""
-"Master Boot Record (MBR) skeem ühildub peaaegu kõigi seadmete ja "
-"süsteemidega, kuid piiratud ketta suurus ja partitsioonide arv."
+"Peabuutkirje (MBR) skeem ühildub peaaegu kõigi seadmete ja süsteemidega, "
+"kuid piiratud on ketta suurus ja partitsioonide arv."
 
 msgid ""
 "A legacy scheme that is incompatible with most systems except Apple systems "
@@ -2993,7 +3063,7 @@ msgid ""
 "The GUID scheme is compatible with most modern systems but may be "
 "incompatible with some devices and legacy systems."
 msgstr ""
-"GUID skeem on ühilduv enamiku moodsate süsteemidega, kuid võib mitte "
+"GUID-skeem on ühilduv enamiku moodsate süsteemidega, kuid võib mitte "
 "ühilduda mõnede seadmete ja mõnede pärandsüsteemidega."
 
 msgid ""
@@ -3099,7 +3169,7 @@ msgstr "RAID-5"
 
 msgctxt "RAID level"
 msgid "Dual Distributed Parity (RAID-6)"
-msgstr "Topeltjaotatud paarid (RAID-6)"
+msgstr "Jaotatud topeltpaarid (RAID-6)"
 
 msgctxt "RAID level"
 msgid "RAID-6"
@@ -3126,46 +3196,45 @@ msgid ""
 "tolerance. If a single disk in the array fails, the entire RAID-0 array "
 "fails."
 msgstr ""
-"Ribad ilma paarideta. Võimaldab paremat jõudlust, kuid ei mingit vigade "
-"taluvust. Kui üks ketas või massiiv rikneb, rikneb koos sellega kogu RAID-0 "
-"massiiv."
+"Ribad ilma paarideta. Võimaldab paremat jõudlust, kuid puudub veataluvus. "
+"Kui üks ketas massiivis rikneb, rikneb koos sellega kogu RAID-0 massiiv."
 
 msgid ""
 "Mirrored set without parity. Provides fault tolerance and improved "
 "performance for reading. RAID-1 arrays can sustain all but one disk failing."
 msgstr ""
-"Peegeldus ilma paarideta. Võimaldab vigade taluvust ja paremat jõudlust "
-"lugemisel. RAID-1 massiiv püsib kuni viimane ketas toimib."
+"Peegeldus ilma paarideta. Võimaldab paremat veataluvust ja lugemisjõudlust. "
+"RAID-1 massiiv püsib, kuni viimane ketas toimib."
 
 msgid ""
 "Striped set with parity on a single disk. Provides improved performance and "
 "fault tolerance. RAID-4 arrays can sustain a single disk failure."
 msgstr ""
-"Paaridega ribad ühel kettal. Võimaldab paremat jõudlust ja vigade taluvust. "
-"RAID-4 massiiv talub vaid ühe ketta riknemist."
+"Paarisribad ühel kettal. Võimaldab paremat jõudlust ja veataluvust. RAID-4 "
+"massiiv talub ühe ketta riknemist."
 
 msgid ""
 "Striped set with distributed parity. Provides improved performance and fault "
 "tolerance. RAID-5 arrays can sustain a single disk failure."
 msgstr ""
-"Jaotatud paaridega ribad. Võimaldab paremat jõudlust ja vigade taluvust. "
-"RAID-5 massiivid taluvad ühe ketta riknemist."
+"Jaotatud paarisribad. Võimaldab paremat jõudlust ja veataluvust. RAID-5 "
+"massiiv talub ühe ketta riknemist."
 
 msgid ""
 "Striped set with dual distributed parity. Provides improved performance and "
 "fault tolerance. RAID-6 arrays can sustain two disk failures."
 msgstr ""
-"Jaotatud topeltpaaridega ribad. Võimaldab paremat jõudlust ja vigade "
-"taluvust. RAID-6 massiivid taluvad kahe ketta riknemist."
+"Jaotatud topeltpaaridega ribad. Võimaldab paremat jõudlust ja veataluvust. "
+"RAID-6 massiiv talub kahe ketta riknemist."
 
 msgid ""
 "Striped set with distributed parity. Provides improved performance and fault "
 "tolerance. RAID-10 arrays can sustain multiple drive losses so long as no "
 "mirror loses all its drives."
 msgstr ""
-"Jaotatud paaridega ribad. Võimaldab paremat jõudlust ja vigade taluvust. "
-"RAID-10 massiivid taluvad mitme ketta riknemist, kuni vähemalt ühel "
-"peegeldusel on kõik kettad alles."
+"Jaotatud paarisribad. Võimaldab paremat jõudlust ja veataluvust. RAID-10 "
+"massiiv talub mitme ketta riknemist, kuni vähemalt ühel peegeldusel on kõik "
+"kettad alles."
 
 #, c-format
 msgid "Unknown RAID level %s."
@@ -3417,7 +3486,7 @@ msgstr "%s partitsioon"
 #.
 #, c-format
 msgid "Partition %d of %s"
-msgstr "Partitsioon %d %s-st"
+msgstr "Partitsioon %d kettal %s"
 
 #. Translators: The VPD name for a volume. The %d is the partition number.
 #.
@@ -3430,7 +3499,7 @@ msgstr "Partitsioon %d"
 #.
 #, c-format
 msgid "Whole-disk volume on %s"
-msgstr "Kogu-ketta köide seadmel %s"
+msgstr "Kogu-ketta köide kettal %s"
 
 #. Translators: The VPD name for a whole-disk volume.
 #.
@@ -3451,23 +3520,24 @@ msgid ""
 "To prevent data loss, wait until this has finished before removing media or "
 "disconnecting the device."
 msgstr ""
-"Et vältida andmekadu, oota enne andmekandja eemaldamist või lahtiühendamist "
-"kuni see tegevus lõpetatakse."
-
-msgid "One or more disks are failing"
-msgstr "Üks või rohkem kõvaketast hakkab üles ütlema"
+"Andmete kaotsimineku vältimiseks ära enne selle tegevuse lõppemist "
+"andmekandjat eemalda ega lahti ühenda."
 
 #. Translators: This is used as the title of the notification
-msgid "A hard disk may be failing"
-msgstr "Kõvaketas hakkab üles ütlema"
+msgid "Hard Disk Problems Detected"
+msgstr "Avastati kõvaketta probleemid"
 
-#. Translators: This is used as the text of the notification
-msgid ""
-"One or more hard disks report health problems. Click the icon to get more "
-"information."
-msgstr ""
-"Ühel või enamal kõvakettal on terviseprobleemid. Täpsema teabe saamiseks "
-"klõpsa ikoonil."
+msgid "A hard disk is reporting health problems."
+msgstr "Kõvaketas annab teada terviseprobleemidest."
+
+msgid "Multiple system hard disks are reporting health problems."
+msgstr "Mitu süsteemi kõvaketast annab teada terviseprobleemidest."
+
+msgid "Examine"
+msgstr "Uuri"
+
+msgid "Multiple hard disks are reporting health problems."
+msgstr "Mitu kõvaketast annab teada terviseprobleemidest."
 
 msgid "Volume to show"
 msgstr "Köide, mida näidata"
@@ -3487,6 +3557,7 @@ msgstr "Mitmerajaketas"
 msgid "PHY %d of %s"
 msgstr "PHY %d %s-st"
 
+# Port 1 PATA-hosti adapteril
 #. Translators: This is used in the "Location" element for a disk
 #. * connected to a Adapter or Expander - The %d is the
 #. * PHY number (starts at 1) and the %s is the Adapter/Expander
@@ -3494,7 +3565,7 @@ msgstr "PHY %d %s-st"
 #.
 #, c-format
 msgid "Port %d of %s"
-msgstr "Port %d %s-st"
+msgstr "Port %d %sil"
 
 msgctxt "Write Cache"
 msgid "Enabled"
@@ -3527,7 +3598,7 @@ msgstr "Tõrge Brasero käivitamisel"
 msgid "The application is not installed"
 msgstr "Rakendus pole paigaldatud"
 
-msgid "Error ejecting media"
+msgid "Error ejecting medium"
 msgstr "Tõrge andmekandja väljastamisel"
 
 msgid "Error detaching drive"
@@ -3568,7 +3639,7 @@ msgstr "Püsivara versioon:"
 
 #. Translators: if you translate "World Wide Name", please include the abbreviation "WWN"
 msgid "World Wide Name:"
-msgstr ""
+msgstr "Ülemaailmne nimi WWN:"
 
 msgid "Location:"
 msgstr "Asukoht:"
@@ -3580,7 +3651,7 @@ msgid "Rotation Rate:"
 msgstr "Pöörlemiskiirus:"
 
 msgid "Capacity:"
-msgstr "Mahtuvus:"
+msgstr "Mahutavus:"
 
 msgid "Connection:"
 msgstr "Ühendus:"
@@ -3604,12 +3675,12 @@ msgid "SM_ART Data"
 msgstr "SM_ART-andmed"
 
 msgid "View SMART data and run self-tests"
-msgstr "SMART andmete kuvamine ja enesetestide käivitamine"
+msgstr "SMART-andmete kuvamine ja enesetestide käivitamine"
 
 msgid "_Eject"
 msgstr "_Väljasta"
 
-msgid "Eject media from the drive"
+msgid "Eject medium from the drive"
 msgstr "Andmekandja väljastamine seadmest"
 
 msgid "Safe Rem_oval"
@@ -3647,7 +3718,7 @@ msgid "Driver:"
 msgstr "Draiver:"
 
 msgid "Fabric:"
-msgstr "Toodang:"
+msgstr "Toode:"
 
 msgid "Number of Ports:"
 msgstr "Portide arv:"
@@ -3665,13 +3736,10 @@ msgid "Choose a new Volume Group name."
 msgstr "Vali köitegrupile uus nimi."
 
 msgid "Error adding Physical Volume to Volume Group"
-msgstr "Trõge füüsilise köite lisamisel köitegruppi"
+msgstr "Tõrge füüsilise köite lisamisel köitegruppi"
 
-msgid "Error creating partition for RAID pv"
-msgstr "Tõrge RAID-massiivi füüsilise köite jaoks partitsiooni loomisel"
-
-msgid "Error creating partition table for LVM2 PV"
-msgstr "Tõrge LVM2 füüsilise köite jaoks partitsioonitabeli loomisel"
+msgid "Error creating PV for VG"
+msgstr "Tõrge köitegrupi jaoks füüsilise köite loomisel"
 
 msgid "Error deleting partition for Physical Volume in Volume Group"
 msgstr "Tõrge partitsiooni kustutamisel, mis on köitegrupi füüsiline köide"
@@ -3701,7 +3769,6 @@ msgstr "Tundmatu (%d)"
 msgid "Name:"
 msgstr "Nimi:"
 
-#, fuzzy
 msgid "Extent Size:"
 msgstr "Ekstendi suurus:"
 
@@ -3729,7 +3796,7 @@ msgstr "Muuda _nime"
 msgid "Change the Volume Group name"
 msgstr "Köitegrupi nime muutmine"
 
-msgid "Edit Ph_ysical Volumes"
+msgid "Edit _Physical Volumes"
 msgstr "Muuda _füüsilisi köiteid"
 
 msgid "Create and remove PVs"
@@ -3745,7 +3812,7 @@ msgstr "Ei tööta"
 
 msgctxt "RAID status"
 msgid "Not running, can only start degraded"
-msgstr "Ei tööta, käivitada saab ainult väärtust kaotanult"
+msgstr "Ei tööta, käivitada saab ainult kahandatud režiimis"
 
 msgctxt "RAID status"
 msgid "Not running, not enough components to start"
@@ -3753,7 +3820,7 @@ msgstr "Ei tööta, käivitamiseks pole piisavalt komponente"
 
 msgctxt "RAID status"
 msgid "DEGRADED"
-msgstr "VÄÄRTUST KAOTANUD"
+msgstr "KAHANDATUD REŽIIM"
 
 msgctxt "RAID status"
 msgid "Running"
@@ -3794,7 +3861,7 @@ msgid "Not enough components available to start the RAID Array"
 msgstr "RAID-massiivi käivitamiseks pole piisavalt komponente saadaval"
 
 msgid "Are you sure you want the RAID Array degraded?"
-msgstr "Kas oled kindel, et tahad RAID-massiivi käivitada väärtust kaotanult?"
+msgstr "Kas oled kindel, et tahad RAID-massiivi käivitada kahandatud režiimis?"
 
 msgid "_Start"
 msgstr "_Käivita"
@@ -3811,11 +3878,11 @@ msgstr "Kas oled kindel, et tahad komponendi eemaldada?"
 msgid "Error adding component to RAID Array"
 msgstr "Tõrge komponendi lisamisel RAID-massiivi"
 
-msgid "Error creating partition for RAID component"
-msgstr "Tõrge partitsiooni loomisel RAID-massiivi komponendiks"
+msgid "Error creating component for RAID array"
+msgstr "Viga RAID-massiivi jaoks komponendi loomisel"
 
-msgid "Error creating partition table for RAID component"
-msgstr "Tõrge partitsioonitabeli loomisel RAID-massiivi komponendi jaoks"
+msgid "Error expanding RAID Array"
+msgstr "Tõrge RAID-massiivi laiendamisel"
 
 msgid "Error checking RAID Array"
 msgstr "Tõrge RAID-massiivi kontrollil"
@@ -3902,7 +3969,7 @@ msgid "Error unlocking LUKS volume"
 msgstr "Tõrge LUKS-köite luku avamisel"
 
 msgid "Error creating partition"
-msgstr "Viga partitsiooni loomisel."
+msgstr "Viga partitsiooni loomisel"
 
 msgid "Error changing label"
 msgstr "Tõrge pealdise muutmisel"
@@ -3955,10 +4022,10 @@ msgid "Volume Name:"
 msgstr "Köite nimi:"
 
 msgid "Usage:"
-msgstr "Kasutamine:"
+msgstr "Kasutus:"
 
 msgid "Partition Type:"
-msgstr "Partitsiooni tüüp:"
+msgstr "Partitsiooni liik:"
 
 msgid "Partition Label:"
 msgstr "Partitsiooni pealdis:"
@@ -4070,7 +4137,7 @@ msgid "Erase or format the volume"
 msgstr "Köite kustutamine või vormindamine"
 
 msgid "_Check Filesystem"
-msgstr "_Kontrolli failisüsteemi"
+msgstr "Kontro_lli failisüsteemi"
 
 msgid "Check and repair the filesystem"
 msgstr "Failisüsteemi kontroll ja parandus"
@@ -4085,10 +4152,10 @@ msgid "Ed_it Partition"
 msgstr "_Muuda partitsiooni"
 
 msgid "Change partition type, label and flags"
-msgstr "Partitsiooni liigi, pealdise ja lippude muutmine"
+msgstr "Partitsiooni tüübi, pealdise ja lippude muutmine"
 
 msgid "D_elete Partition"
-msgstr "_Kustuta partitsioon"
+msgstr "Kus_tuta partitsioon"
 
 msgid "Delete the partition"
 msgstr "Partitsiooni kustutamine"
@@ -4112,7 +4179,7 @@ msgid "Make encrypted data available"
 msgstr "Krüpteeritud andmete kättesaadavaks tegemine"
 
 msgid "Forge_t Passphrase"
-msgstr "_Unusta prool"
+msgstr "_Unusta parool"
 
 msgid "Delete passphrase from keyring"
 msgstr "Parooli kustutamine võtmerõngast"
@@ -4193,12 +4260,6 @@ msgstr "%s (%s) [%s] — Kettautiliit"
 msgid "%s (%s) — Disk Utility"
 msgstr "%s (%s) — Kettautiliit"
 
-msgid "Error creating component for RAID array"
-msgstr "Viga RAID-massiivi jaoks komponendi loomisel"
-
-msgid "Error creating partition table for component for RAID array"
-msgstr "Viga partitsioonitabeli loomisel RAID-massiivi komponendiks"
-
 msgid "Error creating RAID array"
 msgstr "Viga RAID-massiivi loomisel"
 
@@ -4208,8 +4269,8 @@ msgstr "Tõrge serveriga “%s” ühendumisel"
 
 msgid "translator-credits"
 msgstr ""
-"Mattias Põldaru <mahfiaz@gmail.com>, 2009.\n"
-"Ivar Smolin <okul linux ee>, 2009."
+"Mattias Põldaru <mahfiaz gmail com>, 2009, 2010.\n"
+"Ivar Smolin <okul linux ee>, 2009, 2010."
 
 msgid "_File"
 msgstr "_Fail"
@@ -4233,7 +4294,7 @@ msgid "_Edit"
 msgstr "_Redaktor"
 
 msgid "_Help"
-msgstr "_Abi"
+msgstr "A_bi"
 
 msgid "_Quit"
 msgstr "_Lõpeta"
@@ -4269,7 +4330,7 @@ msgid "The operation is not supported."
 msgstr "Operatsioon pole toetatud."
 
 msgid "Getting ATA SMART data would wake up the device."
-msgstr "ATA SMART'i andmete hankimine ärataks seadme."
+msgstr "ATA SMART-andmete hankimine ärataks seadme."
 
 msgid "Permission denied."
 msgstr "Õigused puuduvad."

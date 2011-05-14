@@ -464,6 +464,7 @@ gdu_format_dialog_constructed (GObject *object)
 {
         GduFormatDialog *dialog = GDU_FORMAT_DIALOG (object);
         GtkWidget *content_area;
+        GtkWidget *action_area;
         GtkWidget *button;
         GtkWidget *icon;
         GtkWidget *label;
@@ -486,11 +487,13 @@ gdu_format_dialog_constructed (GObject *object)
         pixbuf = gdu_util_get_pixbuf_for_presentable (gdu_dialog_get_presentable (GDU_DIALOG (dialog)),
                                                       GTK_ICON_SIZE_DIALOG);
 
-        gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
+        content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
+        action_area = gtk_dialog_get_action_area (GTK_DIALOG (dialog));
+
         gtk_container_set_border_width (GTK_CONTAINER (dialog), 6);
-        gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 0);
-        gtk_container_set_border_width (GTK_CONTAINER (GTK_DIALOG (dialog)->action_area), 5);
-        gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->action_area), 6);
+        gtk_box_set_spacing (GTK_BOX (content_area), 0);
+        gtk_container_set_border_width (GTK_CONTAINER (action_area), 5);
+        gtk_box_set_spacing (GTK_BOX (action_area), 6);
 
         gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
 
@@ -518,7 +521,6 @@ gdu_format_dialog_constructed (GObject *object)
         }
         gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
 
-        content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
         gtk_container_set_border_width (GTK_CONTAINER (content_area), 10);
 
         /*  icon and text labels  */
@@ -553,14 +555,14 @@ gdu_format_dialog_constructed (GObject *object)
                           GTK_FILL, GTK_EXPAND | GTK_FILL, 2, 2);
         if (dialog->priv->flags & GDU_FORMAT_DIALOG_FLAGS_SIMPLE) {
                 /* keep in sync with on_combo_box_changed() */
-                combo_box = gtk_combo_box_new_text ();
-                gtk_combo_box_append_text (GTK_COMBO_BOX (combo_box),
+                combo_box = gtk_combo_box_text_new ();
+                gtk_combo_box_text_append (GTK_COMBO_BOX_TEXT (combo_box), NULL,
                                            _("Compatible with all systems (FAT)"));
-                gtk_combo_box_append_text (GTK_COMBO_BOX (combo_box),
+                gtk_combo_box_text_append (GTK_COMBO_BOX_TEXT (combo_box), NULL,
                                            _("Compatible with Linux (ext2)"));
-                gtk_combo_box_append_text (GTK_COMBO_BOX (combo_box),
+                gtk_combo_box_text_append (GTK_COMBO_BOX_TEXT (combo_box), NULL,
                                            _("Compatible with Linux (ext4)"));
-                gtk_combo_box_append_text (GTK_COMBO_BOX (combo_box),
+                gtk_combo_box_text_append (GTK_COMBO_BOX_TEXT (combo_box), NULL,
                                            _("Encrypted, compatible with Linux (FAT)"));
                 gtk_combo_box_set_active (GTK_COMBO_BOX (combo_box), 0);
                 dialog->priv->fs_type = g_strdup ("vfat");

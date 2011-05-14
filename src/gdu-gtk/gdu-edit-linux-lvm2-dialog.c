@@ -188,9 +188,7 @@ format_markup (GtkCellLayout   *cell_layout,
         GduPresentable *drive_for_pv;
         gchar *pv_uuid;
         gchar *markup;
-        GtkStyle *style;
-        GdkColor desc_gdk_color = {0};
-        gchar *desc_color;
+        gchar color[16];
         GtkStateType state;
 
         tree_selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (dialog->priv->pvs_tree_view));
@@ -202,28 +200,15 @@ format_markup (GtkCellLayout   *cell_layout,
                             LINUX_LVM2_PV_UUID_COLUMN, &pv_uuid,
                             -1);
 
-        /* This color business shouldn't be this hard... */
-        style = gtk_widget_get_style (GTK_WIDGET (dialog->priv->pvs_tree_view));
         if (gtk_tree_selection_iter_is_selected (tree_selection, iter)) {
-                if (GTK_WIDGET_HAS_FOCUS (GTK_WIDGET (dialog->priv->pvs_tree_view)))
+                if (gtk_widget_has_focus (GTK_WIDGET (dialog->priv->pvs_tree_view)))
                         state = GTK_STATE_SELECTED;
                 else
                         state = GTK_STATE_ACTIVE;
         } else {
                 state = GTK_STATE_NORMAL;
         }
-#define BLEND_FACTOR 0.7
-        desc_gdk_color.red   = style->text[state].red   * BLEND_FACTOR +
-                               style->base[state].red   * (1.0 - BLEND_FACTOR);
-        desc_gdk_color.green = style->text[state].green * BLEND_FACTOR +
-                               style->base[state].green * (1.0 - BLEND_FACTOR);
-        desc_gdk_color.blue  = style->text[state].blue  * BLEND_FACTOR +
-                               style->base[state].blue  * (1.0 - BLEND_FACTOR);
-#undef BLEND_FACTOR
-        desc_color = g_strdup_printf ("#%02x%02x%02x",
-                                      (desc_gdk_color.red >> 8),
-                                      (desc_gdk_color.green >> 8),
-                                      (desc_gdk_color.blue >> 8));
+        gdu_util_get_mix_color (GTK_WIDGET (dialog->priv->pvs_tree_view), state, color, sizeof (color));
 
         if (volume_for_pv != NULL) {
                 name = gdu_presentable_get_vpd_name (volume_for_pv);
@@ -240,7 +225,7 @@ format_markup (GtkCellLayout   *cell_layout,
         markup = g_strdup_printf ("<b>%s</b>\n"
                                   "<span fgcolor=\"%s\"><small>%s</small></span>",
                                   name,
-                                  desc_color,
+                                  color,
                                   drive_name);
 
         g_object_set (renderer,
@@ -250,7 +235,6 @@ format_markup (GtkCellLayout   *cell_layout,
         g_free (name);
         g_free (drive_name);
         g_free (markup);
-        g_free (desc_color);
         if (volume_for_pv != NULL)
                 g_object_unref (volume_for_pv);
         if (drive_for_pv != NULL)
@@ -299,6 +283,7 @@ gdu_edit_linux_lvm2_dialog_constructed (GObject *object)
         GduEditLinuxLvm2Dialog *dialog = GDU_EDIT_LINUX_LVM2_DIALOG (object);
         GduLinuxLvm2VolumeGroup *vg;
         GtkWidget *content_area;
+        GtkWidget *action_area;
         GtkWidget *vbox;
         GtkWidget *vbox2;
         GtkWidget *hbox;
@@ -336,11 +321,11 @@ gdu_edit_linux_lvm2_dialog_constructed (GObject *object)
         vbox = gtk_vbox_new (FALSE, 6);
         gtk_box_pack_start (GTK_BOX (hbox), vbox, TRUE, TRUE, 0);
 
-        gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
+        action_area = gtk_dialog_get_action_area (GTK_DIALOG (dialog));
         gtk_container_set_border_width (GTK_CONTAINER (dialog), 6);
-        gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 0);
-        gtk_container_set_border_width (GTK_CONTAINER (GTK_DIALOG (dialog)->action_area), 5);
-        gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->action_area), 6);
+        gtk_box_set_spacing (GTK_BOX (content_area), 0);
+        gtk_container_set_border_width (GTK_CONTAINER (action_area), 5);
+        gtk_box_set_spacing (GTK_BOX (action_area), 6);
 
         name = gdu_presentable_get_name (GDU_PRESENTABLE (vg));
         vpd_name = gdu_presentable_get_vpd_name (GDU_PRESENTABLE (vg));

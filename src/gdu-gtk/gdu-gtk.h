@@ -35,7 +35,6 @@
 #include <gdu-gtk/gdu-size-widget.h>
 #include <gdu-gtk/gdu-create-linux-md-dialog.h>
 #include <gdu-gtk/gdu-ata-smart-dialog.h>
-#include <gdu-gtk/gdu-spinner.h>
 #include <gdu-gtk/gdu-volume-grid.h>
 #include <gdu-gtk/gdu-details-table.h>
 #include <gdu-gtk/gdu-details-element.h>
@@ -123,6 +122,11 @@ char      *gdu_util_part_table_type_combo_box_get_selected   (GtkWidget  *combo_
 GdkPixbuf *gdu_util_get_pixbuf_for_presentable (GduPresentable *presentable, GtkIconSize size);
 
 GdkPixbuf *gdu_util_get_pixbuf_for_presentable_at_pixel_size (GduPresentable *presentable, gint pixel_size);
+
+void       gdu_util_get_mix_color (GtkWidget    *widget,
+                                   GtkStateType  state,
+                                   gchar        *color_buf,
+                                   gsize         color_buf_size);
 
 
 G_END_DECLS

@@ -25,7 +25,6 @@
 #include <math.h>
 #include <gdk/gdkkeysyms.h>
 #include <gdk/gdkx.h>
-#include <X11/XKBlib.h>
 
 #include <gdu-gtk/gdu-gtk.h>
 
@@ -128,8 +127,8 @@ static GridElement *find_element_for_position (GduVolumeGrid *grid,
                                                guint x,
                                                guint y);
 
-static gboolean gdu_volume_grid_expose_event (GtkWidget           *widget,
-                                              GdkEventExpose      *event);
+static gboolean gdu_volume_grid_draw (GtkWidget *widget,
+                                      cairo_t   *cr);
 
 static void on_presentable_added        (GduPool        *pool,
                                          GduPresentable *p,
@@ -224,10 +223,6 @@ gdu_volume_grid_constructed (GObject *object)
 {
         GduVolumeGrid *grid = GDU_VOLUME_GRID (object);
 
-        gtk_widget_set_size_request (GTK_WIDGET (grid),
-                                     -1,
-                                     100);
-
         g_signal_connect (grid->priv->pool,
                           "presentable-added",
                           G_CALLBACK (on_presentable_added),
@@ -259,26 +254,6 @@ gdu_volume_grid_constructed (GObject *object)
 }
 
 static gboolean
-is_ctrl_pressed (void)
-{
-        gboolean ret;
-        XkbStateRec state;
-        Bool status;
-
-        ret = FALSE;
-
-        gdk_error_trap_push ();
-        status = XkbGetState (GDK_DISPLAY (), XkbUseCoreKbd, &state);
-        gdk_error_trap_pop ();
-
-        if (status == Success) {
-                ret = ((state.mods & ControlMask) != 0);
-        }
-
-        return ret;
-}
-
-static gboolean
 gdu_volume_grid_key_press_event (GtkWidget      *widget,
                                  GdkEventKey    *event)
 {
@@ -292,10 +267,10 @@ gdu_volume_grid_key_press_event (GtkWidget      *widget,
                 goto out;
 
         switch (event->keyval) {
-        case GDK_Left:
-        case GDK_Right:
-        case GDK_Up:
-        case GDK_Down:
+        case GDK_KEY_Left:
+        case GDK_KEY_Right:
+        case GDK_KEY_Up:
+        case GDK_KEY_Down:
                 target = NULL;
 
                 if (grid->priv->focused == NULL) {
@@ -305,25 +280,25 @@ gdu_volume_grid_key_press_event (GtkWidget      *widget,
 
                         element = grid->priv->focused;
                         if (element != NULL) {
-                                if (event->keyval == GDK_Left) {
+                                if (event->keyval == GDK_KEY_Left) {
                                         if (element->prev != NULL) {
                                                 target = element->prev;
                                         } else {
                                                 if (element->parent && element->parent->prev != NULL)
                                                         target = element->parent->prev;
                                         }
-                                } else if (event->keyval == GDK_Right) {
+                                } else if (event->keyval == GDK_KEY_Right) {
                                         if (element->next != NULL) {
                                                 target = element->next;
                                         } else {
                                                 if (element->parent && element->parent->next != NULL)
                                                         target = element->parent->next;
                                         }
-                                } else if (event->keyval == GDK_Up) {
+                                } else if (event->keyval == GDK_KEY_Up) {
                                         if (element->parent != NULL) {
                                                 target = element->parent;
                                         }
-                                } else if (event->keyval == GDK_Down) {
+                                } else if (event->keyval == GDK_KEY_Down) {
                                         if (element->embedded_elements != NULL) {
                                                 target = (GridElement *) element->embedded_elements->data;
                                         }
@@ -332,7 +307,7 @@ gdu_volume_grid_key_press_event (GtkWidget      *widget,
                 }
 
                 if (target != NULL) {
-                        if (is_ctrl_pressed ()) {
+                        if ((event->state & GDK_CONTROL_MASK) != 0) {
                                 grid->priv->focused = target;
                         } else {
                                 grid->priv->selected = target;
@@ -346,8 +321,8 @@ gdu_volume_grid_key_press_event (GtkWidget      *widget,
                 handled = TRUE;
                 break;
 
-        case GDK_Return:
-        case GDK_space:
+        case GDK_KEY_Return:
+        case GDK_KEY_space:
                 if (grid->priv->focused != grid->priv->selected &&
                     grid->priv->focused != NULL) {
                         grid->priv->selected = grid->priv->focused;
@@ -407,15 +382,19 @@ static void
 gdu_volume_grid_realize (GtkWidget *widget)
 {
         GduVolumeGrid *grid = GDU_VOLUME_GRID (widget);
+        GdkWindow *window;
         GdkWindowAttr attributes;
         gint attributes_mask;
+        GtkAllocation allocation;
+        GtkStyleContext *context;
 
-        GTK_WIDGET_SET_FLAGS (widget, GTK_REALIZED);
+        gtk_widget_set_realized (widget, TRUE);
+        gtk_widget_get_allocation (widget, &allocation);
 
-        attributes.x = widget->allocation.x;
-        attributes.y = widget->allocation.y;
-        attributes.width = widget->allocation.width;
-        attributes.height = widget->allocation.height;
+        attributes.x = allocation.x;
+        attributes.y = allocation.y;
+        attributes.width = allocation.width;
+        attributes.height = allocation.height;
         attributes.wclass = GDK_INPUT_OUTPUT;
         attributes.window_type = GDK_WINDOW_CHILD;
         attributes.event_mask = gtk_widget_get_events (widget) |
@@ -426,21 +405,21 @@ gdu_volume_grid_realize (GtkWidget *widget)
                 GDK_ENTER_NOTIFY_MASK |
                 GDK_LEAVE_NOTIFY_MASK;
         attributes.visual = gtk_widget_get_visual (widget);
-        attributes.colormap = gtk_widget_get_colormap (widget);
 
-        attributes_mask = GDK_WA_X | GDK_WA_Y | GDK_WA_VISUAL | GDK_WA_COLORMAP;
+        attributes_mask = GDK_WA_X | GDK_WA_Y | GDK_WA_VISUAL;
 
-        widget->window = gtk_widget_get_parent_window (widget);
-        g_object_ref (widget->window);
+        window = gtk_widget_get_parent_window (widget);
+        gtk_widget_set_window (widget, window);
+        g_object_ref (window);
 
-        widget->window = gdk_window_new (gtk_widget_get_parent_window (widget),
-                                         &attributes,
-                                         attributes_mask);
-        gdk_window_set_user_data (widget->window, grid);
+        window = gdk_window_new (gtk_widget_get_parent_window (widget),
+                                 &attributes,
+                                 attributes_mask);
+        gtk_widget_set_window (widget, window);
+        gdk_window_set_user_data (window, grid);
 
-        widget->style = gtk_style_attach (widget->style, widget->window);
-
-        gtk_style_set_background (widget->style, widget->window, GTK_STATE_NORMAL);
+        context = gtk_widget_get_style_context (widget);
+        gtk_style_context_set_background (context, window);
 }
 
 static guint
@@ -461,16 +440,27 @@ get_num_elements_for_slice (GList *elements)
                 return 1;
 }
 
+static void
+gdu_volume_grid_get_preferred_width (GtkWidget *widget,
+                                     gint      *minimal_width,
+                                     gint      *natural_width)
+{
+  GduVolumeGrid *grid = GDU_VOLUME_GRID (widget);
+  guint num_elements;
+  gint width;
+
+  num_elements = get_num_elements_for_slice (grid->priv->elements);
+  width = num_elements * ELEMENT_MINIMUM_WIDTH;
+
+  *minimal_width = *natural_width = width;
+}
 
 static void
-gdu_volume_grid_size_request (GtkWidget      *widget,
-                              GtkRequisition *requisition)
+gdu_volume_grid_get_preferred_height (GtkWidget *widget,
+                                      gint      *minimal_height,
+                                      gint      *natural_height)
 {
-        GduVolumeGrid *grid = GDU_VOLUME_GRID (widget);
-        guint num_elements;
-
-        num_elements = get_num_elements_for_slice (grid->priv->elements);
-        requisition->width = num_elements * ELEMENT_MINIMUM_WIDTH;
+  *minimal_height = *natural_height = 100;
 }
 
 static void
@@ -486,11 +476,12 @@ gdu_volume_grid_class_init (GduVolumeGridClass *klass)
         object_class->constructed  = gdu_volume_grid_constructed;
         object_class->finalize     = gdu_volume_grid_finalize;
 
-        widget_class->realize            = gdu_volume_grid_realize;
-        widget_class->key_press_event    = gdu_volume_grid_key_press_event;
-        widget_class->button_press_event = gdu_volume_grid_button_press_event;
-        widget_class->size_request       = gdu_volume_grid_size_request;
-        widget_class->expose_event       = gdu_volume_grid_expose_event;
+        widget_class->realize              = gdu_volume_grid_realize;
+        widget_class->key_press_event      = gdu_volume_grid_key_press_event;
+        widget_class->button_press_event   = gdu_volume_grid_button_press_event;
+        widget_class->get_preferred_width  = gdu_volume_grid_get_preferred_width;
+        widget_class->get_preferred_height = gdu_volume_grid_get_preferred_height;
+        widget_class->draw                 = gdu_volume_grid_draw;
 
         g_object_class_install_property (object_class,
                                          PROP_DRIVE,
@@ -518,7 +509,7 @@ gdu_volume_grid_init (GduVolumeGrid *grid)
 {
         grid->priv = G_TYPE_INSTANCE_GET_PRIVATE (grid, GDU_TYPE_VOLUME_GRID, GduVolumeGridPrivate);
 
-        GTK_WIDGET_SET_FLAGS (grid, GTK_CAN_FOCUS);
+        gtk_widget_set_can_focus (GTK_WIDGET (grid), TRUE);
 }
 
 GtkWidget *
@@ -1032,9 +1023,13 @@ render_element (GduVolumeGrid *grid,
         gdouble text_selected_not_focused_red;
         gdouble text_selected_not_focused_green;
         gdouble text_selected_not_focused_blue;
+        PangoLayout *layout;
+        PangoFontDescription *desc;
+        gint width, height;
 
         need_animation_timeout = FALSE;
 
+        /* TODO: use GtkStyleContext and/or CSS etc. instead of hard-coding colors */
         fill_red     = 1;
         fill_green   = 1;
         fill_blue    = 1;
@@ -1173,7 +1168,6 @@ render_element (GduVolumeGrid *grid,
         }
 
         if (element->presentable == NULL) { /* no media available */
-                cairo_text_extents_t te;
                 const gchar *text;
 
                 if (GDU_IS_LINUX_MD_DRIVE (grid->priv->drive)) {
@@ -1199,23 +1193,24 @@ render_element (GduVolumeGrid *grid,
                 } else {
                         cairo_set_source_rgb (cr, text_red, text_green, text_blue);
                 }
-                cairo_select_font_face (cr, "sans",
-                                        CAIRO_FONT_SLANT_NORMAL,
-                                        CAIRO_FONT_WEIGHT_NORMAL);
-                cairo_set_font_size (cr, 8.0);
-
-                cairo_text_extents (cr, text, &te);
+                layout = pango_cairo_create_layout (cr);
+                pango_layout_set_text (layout, text, -1);
+                desc = pango_font_description_from_string ("Sans 7.0");
+                pango_layout_set_font_description (layout, desc);
+                pango_font_description_free (desc);
+                pango_layout_set_alignment (layout, PANGO_ALIGN_CENTER);
+                pango_layout_set_width (layout, pango_units_from_double (element->width));
+                pango_layout_set_ellipsize (layout, PANGO_ELLIPSIZE_END);
+                pango_layout_get_size (layout, &width, &height);
                 cairo_move_to (cr,
-                               ceil (element->x + element->width / 2 - te.width/2  - te.x_bearing),
-                               ceil (element->y + element->height / 2 - 2 - te.height/2 - te.y_bearing));
-                cairo_show_text (cr, text);
+                               ceil(element->x),
+                               ceil (element->y + element->height / 2 - pango_units_to_double (height) / 2));
+                pango_cairo_show_layout (cr, layout);
+                g_object_unref (layout);
 
         } else { /* render descriptive text + icons for the presentable */
                 GString *str;
-                cairo_text_extents_t te;
                 GduDevice *d;
-                gdouble text_height;
-                gdouble y;
                 gboolean render_padlock_closed;
                 gboolean render_padlock_open;
                 gboolean render_job_in_progress;
@@ -1224,7 +1219,6 @@ render_element (GduVolumeGrid *grid,
                 guint n;
                 guint64 size;
                 gchar *size_str;
-                gchar **lines;
 
                 render_padlock_closed = FALSE;
                 render_padlock_open = FALSE;
@@ -1253,7 +1247,8 @@ render_element (GduVolumeGrid *grid,
                                                                   FALSE,
                                                                   FALSE);
 
-                        g_string_append_printf (str, "%s\n", gdu_device_id_get_label (d));
+                        if (strlen (gdu_device_id_get_label (d)) > 0)
+                                g_string_append_printf (str, "%s\n", gdu_device_id_get_label (d));
                         g_string_append_printf (str, "%s %s", size_str, fstype_str);
 
                         g_free (fstype_str);
@@ -1335,33 +1330,21 @@ render_element (GduVolumeGrid *grid,
                 } else {
                         cairo_set_source_rgb (cr, text_red, text_green, text_blue);
                 }
-                cairo_select_font_face (cr, "sans",
-                                        CAIRO_FONT_SLANT_NORMAL,
-                                        CAIRO_FONT_WEIGHT_NORMAL);
-                cairo_set_font_size (cr, 8.0);
 
-                lines = g_strsplit (str->str, "\n", 0);
-                g_string_free (str, TRUE);
-                text_height = 0.0;
-                for (n = 0; lines[n] != NULL; n++) {
-                        const gchar *line = lines[n];
-                        cairo_text_extents (cr, line, &te);
-                        text_height += te.height + 4;
-                }
-
-                y = element->y + element->height/2.0 - text_height/2.0;
-                for (n = 0; lines[n] != NULL; n++) {
-                        const gchar *line = lines[n];
-                        cairo_text_extents (cr, line, &te);
-                        cairo_move_to (cr,
-                                       ceil (element->x + element->width / 2 - te.width/2  - te.x_bearing),
-                                       ceil (y - te.y_bearing));
-                        cairo_show_text (cr, line);
-
-                        y += te.height + 4;
-                }
-
-                g_strfreev (lines);
+                layout = pango_cairo_create_layout (cr);
+                pango_layout_set_text (layout, str->str, -1);
+                desc = pango_font_description_from_string ("Sans 7");
+                pango_layout_set_font_description (layout, desc);
+                pango_font_description_free (desc);
+                pango_layout_set_alignment (layout, PANGO_ALIGN_CENTER);
+                pango_layout_set_width (layout, pango_units_from_double (element->width));
+                pango_layout_set_ellipsize (layout, PANGO_ELLIPSIZE_END);
+                pango_layout_get_size (layout, &width, &height);
+                cairo_move_to (cr,
+                               ceil (element->x),
+                               ceil (element->y + element->height / 2 - pango_units_to_double (height) / 2));
+                pango_cairo_show_layout (cr, layout);
+                g_object_unref (layout);
 
                 /* OK, done with the text - now render spinner and icons */
                 icon_offset = 0;
@@ -1447,7 +1430,7 @@ render_slice (GduVolumeGrid *grid,
 
                 is_selected = FALSE;
                 is_focused = FALSE;
-                is_grid_focused = GTK_WIDGET_HAS_FOCUS (grid);
+                is_grid_focused = gtk_widget_has_focus (GTK_WIDGET (grid));
 
                 if (element == grid->priv->selected)
                         is_selected = TRUE;
@@ -1473,31 +1456,24 @@ render_slice (GduVolumeGrid *grid,
 }
 
 static gboolean
-gdu_volume_grid_expose_event (GtkWidget           *widget,
-                              GdkEventExpose      *event)
+gdu_volume_grid_draw (GtkWidget *widget,
+                      cairo_t   *cr)
 {
         GduVolumeGrid *grid = GDU_VOLUME_GRID (widget);
-        cairo_t *cr;
+        GtkAllocation allocation;
         gdouble width;
         gdouble height;
         gboolean need_animation_timeout;
 
-        width = widget->allocation.width;
-        height = widget->allocation.height;
+        gtk_widget_get_allocation (widget, &allocation);
+        width = allocation.width;
+        height = allocation.height;
 
         recompute_size (grid,
                         width - 1,
                         height -1);
 
-        cr = gdk_cairo_create (widget->window);
-        cairo_rectangle (cr,
-                         event->area.x, event->area.y,
-                         event->area.width, event->area.height);
-        cairo_clip (cr);
-
         need_animation_timeout = render_slice (grid, cr, grid->priv->elements);
-
-        cairo_destroy (cr);
 
         if (need_animation_timeout) {
                 if (grid->priv->animation_timeout_id == 0) {

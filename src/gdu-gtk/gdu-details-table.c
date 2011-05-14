@@ -266,8 +266,12 @@ on_details_element_changed (GduDetailsElement *element,
         guint64 time;
         gdouble progress;
         GtkWidget *widget;
+        gchar color[16];
 
-        s = g_strdup_printf ("<span fgcolor='#404040'>%s</span>",
+        gdu_util_get_mix_color (data->heading_label, GTK_STATE_NORMAL, color, sizeof (color));
+
+        s = g_strdup_printf ("<span fgcolor='%s'>%s</span>",
+                             color,
                              gdu_details_element_get_heading (element));
         gtk_label_set_markup (GTK_LABEL (data->heading_label), s);
         g_free (s);
@@ -331,11 +335,11 @@ on_details_element_changed (GduDetailsElement *element,
         }
 
         if (gdu_details_element_get_is_spinning (element)) {
-                gdu_spinner_start (GDU_SPINNER (data->spinner));
+                gtk_spinner_start (GTK_SPINNER (data->spinner));
                 gtk_widget_set_no_show_all (data->spinner, FALSE);
                 gtk_widget_show (data->spinner);
         } else {
-                gdu_spinner_stop (GDU_SPINNER (data->spinner));
+                gtk_spinner_stop (GTK_SPINNER (data->spinner));
                 gtk_widget_set_no_show_all (data->spinner, TRUE);
                 gtk_widget_hide (data->spinner);
         }
@@ -450,7 +454,7 @@ do_relayout (GduDetailsTable *table)
                                                         GTK_ICON_SIZE_MENU);
                 gtk_box_pack_start (GTK_BOX (hbox), data->image, FALSE, FALSE, 0);
 
-                data->spinner = gdu_spinner_new ();
+                data->spinner = gtk_spinner_new ();
                 gtk_box_pack_start (GTK_BOX (hbox), data->spinner, FALSE, FALSE, 0);
 
                 data->label = gtk_label_new (NULL);
