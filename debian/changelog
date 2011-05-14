@@ -1,4 +1,4 @@
-gnome-disk-utility (3.0.0-1) UNRELEASED; urgency=low
+gnome-disk-utility (3.0.0-1) experimental; urgency=low
 
   * New upstream release
   * debian/patches/01_delay_autostart.patch: Updated
@@ -8,7 +8,7 @@ gnome-disk-utility (3.0.0-1) UNRELEASED; urgency=low
     it's not available anymore
   * Update symbols files
 
- -- Sjoerd Simons <sjoerd@debian.org>  Sat, 14 May 2011 21:33:22 +0100
+ -- Sjoerd Simons <sjoerd@debian.org>  Sat, 14 May 2011 21:33:56 +0100
 
 gnome-disk-utility (2.29.90-2) experimental; urgency=low
 
