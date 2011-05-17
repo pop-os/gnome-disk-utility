@@ -12,8 +12,11 @@ gnome-disk-utility (2.32.0-1) UNRELEASED; urgency=low
 
   [ Michael Biebl ]
   * Use dpkg-vendor instead of lsb_release.
+  * Stop installing gtk-doc API documentation. It has  been removed upstream.
+    - Update debian/libgdu-dev.install.
+    - Drop Conflicts/Replaces from libgdu-dev as it no longer necessary.
 
- -- Michael Biebl <biebl@debian.org>  Mon, 27 Dec 2010 23:34:46 +0100
+ -- Michael Biebl <biebl@debian.org>  Thu, 19 May 2011 22:09:31 +0200
 
 gnome-disk-utility (2.30.1-2) unstable; urgency=low
 

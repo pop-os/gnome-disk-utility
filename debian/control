@@ -66,8 +66,6 @@ Package: libgdu-dev
 Architecture: any
 Section: libdevel
 Depends: libgdu0 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}, libglib2.0-dev (>= 2.16)
-Conflicts: gnome-disk-utility (<< 2.29.90-2)
-Replaces: gnome-disk-utility (<< 2.29.90-2)
 Description: GObject based Disk Utility Library - development files
  The gnome-disk-utility library provides an user-space interface to the
  udisks objects and properties (such as drives, volumes, SMART data),
