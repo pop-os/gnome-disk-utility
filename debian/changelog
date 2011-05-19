@@ -1,4 +1,4 @@
-gnome-disk-utility (3.0.0-2) UNRELEASED; urgency=low
+gnome-disk-utility (3.0.0-2) experimental; urgency=low
 
   [ Martin Pitt ]
   * debian/watch: Update for new upstream URL.
@@ -12,7 +12,7 @@ gnome-disk-utility (3.0.0-2) UNRELEASED; urgency=low
     libgdu-gtk building against GTK3 (which changes its ABI) but not bumping
     the soname. (Closes: #626821)
 
- -- Michael Biebl <biebl@debian.org>  Fri, 20 May 2011 00:04:36 +0200
+ -- Michael Biebl <biebl@debian.org>  Fri, 20 May 2011 00:06:40 +0200
 
 gnome-disk-utility (3.0.0-1) experimental; urgency=low
 
