@@ -15,6 +15,7 @@ gnome-disk-utility (2.32.0-1) UNRELEASED; urgency=low
   * Stop installing gtk-doc API documentation. It has  been removed upstream.
     - Update debian/libgdu-dev.install.
     - Drop Conflicts/Replaces from libgdu-dev as it no longer necessary.
+  * Bump debhelper compatibility level to 8. Update Build-Depends accordingly.
 
  -- Michael Biebl <biebl@debian.org>  Thu, 19 May 2011 22:09:31 +0200
 

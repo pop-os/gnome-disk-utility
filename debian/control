@@ -3,7 +3,7 @@ Section: admin
 Priority: optional
 Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.org>
 Uploaders: Michael Biebl <biebl@debian.org>, Martin Pitt <mpitt@debian.org>
-Build-Depends: debhelper (>= 7),
+Build-Depends: debhelper (>= 8),
  cdbs,
  autotools-dev,
  pkg-config,
