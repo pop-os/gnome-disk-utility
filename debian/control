@@ -5,12 +5,9 @@ Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.
 Uploaders: Michael Biebl <biebl@debian.org>,
            Martin Pitt <mpitt@debian.org>,
            Sjoerd Simons <sjoerd@debian.org>
-Build-Depends: debhelper (>= 7),
- cdbs,
+Build-Depends: debhelper (>= 8),
  autotools-dev,
- quilt,
  pkg-config,
- lsb-release,
  xsltproc,
  gtk-doc-tools,
  gnome-doc-utils,
@@ -46,7 +43,7 @@ Description: manage and configure disk drives and media
 Package: libgdu0
 Architecture: any
 Section: libs
-Depends: ${shlibs:Depends}, ${misc:Depends}, udisks (>= 1.0.0~), udisks (<< 1.1.0)
+Depends: ${shlibs:Depends}, ${misc:Depends}, udisks (>= 1.0.0), udisks (<< 1.1.0)
 Description: GObject based Disk Utility Library
  The gnome-disk-utility library provides an user-space interface to the
  udisks objects and properties (such as drives, volumes, SMART data),
@@ -70,8 +67,6 @@ Package: libgdu-dev
 Architecture: any
 Section: libdevel
 Depends: libgdu0 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}, libglib2.0-dev (>= 2.16)
-Conflicts: gnome-disk-utility (<< 2.29.90-2)
-Replaces: gnome-disk-utility (<< 2.29.90-2)
 Description: GObject based Disk Utility Library - development files
  The gnome-disk-utility library provides an user-space interface to the
  udisks objects and properties (such as drives, volumes, SMART data),
