@@ -1,16 +1,21 @@
 #!/usr/bin/make -f
 
-include /usr/share/cdbs/1/rules/debhelper.mk
-include /usr/share/cdbs/1/class/gnome.mk
-include /usr/share/cdbs/1/rules/utils.mk
+%:
+	dh $@
 
-DEB_CONFIGURE_EXTRA_FLAGS := --disable-scrollkeeper
+override_dh_auto_configure:
+	dh_auto_configure -- \
+		--disable-scrollkeeper
 
-DEB_DH_MAKESHLIBS_ARGS_ALL := -X/usr/lib/nautilus/
-
-binary-install/gnome-disk-utility::
+override_dh_install:
+	dh_install
 	# when building for Ubuntu, move menu entry from Apps → System Tools
 	# (which Ubuntu tries to avoid) to System → Administration.
 	if dpkg-vendor --is ubuntu; then \
 	    sed -i '/^Categories=/ s/$$/Settings;HardwareSettings;/' debian/gnome-disk-utility/usr/share/applications/*.desktop; \
 	fi
+
+override_dh_makeshlibs:
+	dh_makeshlibs -X/usr/lib/nautilus/
+
+override_dh_auto_test:
