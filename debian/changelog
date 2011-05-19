@@ -1,8 +1,12 @@
 gnome-disk-utility (3.0.0-2) UNRELEASED; urgency=low
 
+  [ Martin Pitt ]
   * debian/watch: Update for new upstream URL.
 
- -- Martin Pitt <mpitt@debian.org>  Mon, 16 May 2011 15:38:23 +0200
+  [ Michael Biebl ]
+  * Merge changes from unstable branch.
+
+ -- Michael Biebl <biebl@debian.org>  Thu, 19 May 2011 23:21:28 +0200
 
 gnome-disk-utility (3.0.0-1) experimental; urgency=low
 
