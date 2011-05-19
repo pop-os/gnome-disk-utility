@@ -1,4 +1,4 @@
-gnome-disk-utility (2.32.0-1) UNRELEASED; urgency=low
+gnome-disk-utility (2.32.0-1) unstable; urgency=low
 
   [ Martin Pitt ]
   * New upstream release.
@@ -23,7 +23,7 @@ gnome-disk-utility (2.32.0-1) UNRELEASED; urgency=low
     - Override dh_auto_test to disable test suite.
     - Add debian/gnome-disk-utility.docs.
 
- -- Michael Biebl <biebl@debian.org>  Thu, 19 May 2011 22:09:31 +0200
+ -- Michael Biebl <biebl@debian.org>  Thu, 19 May 2011 22:51:56 +0200
 
 gnome-disk-utility (2.30.1-2) unstable; urgency=low
 
