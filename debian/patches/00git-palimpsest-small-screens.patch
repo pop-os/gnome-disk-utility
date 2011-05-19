@@ -14,11 +14,11 @@ Signed-off-by: Martin Pitt <martin.pitt@ubuntu.com>
  src/palimpsest/gdu-shell.c |    7 ++++++-
  1 files changed, 6 insertions(+), 1 deletions(-)
 
-diff --git a/src/palimpsest/gdu-shell.c b/src/palimpsest/gdu-shell.c
-index d530373..62bcacd 100644
---- a/src/palimpsest/gdu-shell.c
-+++ b/src/palimpsest/gdu-shell.c
-@@ -1096,6 +1096,7 @@ create_window (GduShell *shell)
+Index: gnome-disk-utility/src/palimpsest/gdu-shell.c
+===================================================================
+--- gnome-disk-utility.orig/src/palimpsest/gdu-shell.c	2011-05-19 23:30:02.256420106 +0200
++++ gnome-disk-utility/src/palimpsest/gdu-shell.c	2011-05-19 23:30:12.636289615 +0200
+@@ -1097,6 +1097,7 @@
          GtkAccelGroup *accel_group;
          GtkWidget *hpane;
          GtkWidget *tree_view_scrolled_window;
@@ -26,7 +26,7 @@ index d530373..62bcacd 100644
          GtkTreeSelection *select;
          GtkWidget *label;
          GtkTreeViewColumn *column;
-@@ -1153,7 +1154,11 @@ create_window (GduShell *shell)
+@@ -1154,7 +1155,11 @@
  
          shell->priv->sections_vbox = gtk_vbox_new (FALSE, 12);
          gtk_container_set_border_width (GTK_CONTAINER (shell->priv->sections_vbox), 6);
@@ -39,6 +39,3 @@ index d530373..62bcacd 100644
  
          /* setup and add horizontal pane */
          hpane = gtk_hpaned_new ();
--- 
-1.7.1
-
