@@ -56,6 +56,7 @@ Package: libgdu-gtk0
 Architecture: any
 Section: libs
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Breaks: gnome-disk-utility (<< 3.0.0)
 Description: GTK+ standard dialog library for libgdu
  The gdu-gtk library provides GTK+ standard dialogs for handling media
  operations, like entering secrets for encrypted drives or confirmation dialogs
