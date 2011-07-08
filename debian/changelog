@@ -1,8 +1,8 @@
-gnome-disk-utility (3.0.2-1) UNRELEASED; urgency=low
+gnome-disk-utility (3.0.2-1) experimental; urgency=low
 
   * New upstream release.
 
- -- Michael Biebl <biebl@debian.org>  Fri, 08 Jul 2011 18:54:42 +0200
+ -- Michael Biebl <biebl@debian.org>  Fri, 08 Jul 2011 18:55:46 +0200
 
 gnome-disk-utility (3.0.0-2) experimental; urgency=low
 
