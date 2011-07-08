@@ -1,11 +1,14 @@
-AC_INIT([GNOME Disk Utility],[3.0.0],[https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-disk-utility],[gnome-disk-utility])
-
-AM_INIT_AUTOMAKE([1.9 foreign dist-bzip2 no-dist-gzip])
+AC_INIT([GNOME Disk Utility],[3.0.2],[https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-disk-utility],[gnome-disk-utility])
 
 AC_CONFIG_SRCDIR([src])
 AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_MACRO_DIR([m4])
+AC_CONFIG_AUX_DIR([build-aux])
 
-AM_MAINTAINER_MODE
+AM_INIT_AUTOMAKE([1.11 foreign dist-xz no-dist-gzip tar-ustar])
+AM_MAINTAINER_MODE([enable])
+
+AM_SILENT_RULES([yes])
 
 # libtool versioning - this applies to all libraries in this package
 #
@@ -18,12 +21,13 @@ AC_SUBST(LT_CURRENT)
 AC_SUBST(LT_REVISION)
 AC_SUBST(LT_AGE)
 
+# Check for programs
 AC_PROG_CC
-AC_ISC_POSIX
 AC_HEADER_STDC
-AC_PROG_LIBTOOL
 
-m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
+# Initialize libtool
+LT_PREREQ([2.2])
+LT_INIT
 
 #### gcc warning flags
 
@@ -106,11 +110,9 @@ fi
 # GNOME
 # *****
 
-GNOME_COMMON_INIT
 GNOME_DOC_INIT
 GNOME_DEBUG_CHECK
 GNOME_COMPILE_WARNINGS([maximum])
-GNOME_MAINTAINER_MODE_DEFINES
 
 AC_ARG_ENABLE(gtk-doc, AS_HELP_STRING([--enable-gtk-doc],
   [use gtk-doc to build documentation [default=no]]),,
