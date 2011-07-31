@@ -1,4 +1,4 @@
-AC_INIT([GNOME Disk Utility],[2.32.0],[https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-disk-utility],[gnome-disk-utility])
+AC_INIT([GNOME Disk Utility],[2.32.1],[https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-disk-utility],[gnome-disk-utility])
 
 AM_INIT_AUTOMAKE([1.9 foreign dist-bzip2 no-dist-gzip])
 
@@ -128,7 +128,7 @@ DBUS_GLIB_REQUIRED=0.74
 GNOME_KEYRING_REQUIRED=2.22
 GTK2_REQUIRED=2.20.0
 UNIQUE_REQUIRED=1.0
-LIBNOTIFY_REQUIRED=0.3.0
+LIBNOTIFY_REQUIRED=0.6.1
 NAUTILUS_REQUIRED=2.24.0
 AVAHI_UI_REQUIRED=0.6.25
 

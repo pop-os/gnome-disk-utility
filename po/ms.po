@@ -1,21 +1,23 @@
-# Hebrew translation of gnome-disk-utility.f
-# Copyright (C) 2009 gnome-disk-utility's COPYRIGHT HOLDER
+# Malay translation for gnome-disk-utility.
+# Copyright (C) 2010 gnome-disk-utility's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-disk-utility package.
-# markkr <mark125@gmail.com>, 2009.
+# Ahmed Noor Kader Mustajir Md Eusoff <sir.ade@gmail.com>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-disk-utility master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-28 09:04+0200\n"
-"PO-Revision-Date: 2010-10-28 09:05+0200\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
-"Language-Team: Hebrew <he@li.org>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"disk-utility&component=general\n"
+"POT-Creation-Date: 2010-11-05 15:46+0000\n"
+"PO-Revision-Date: 2010-11-06 00:22+0730\n"
+"Last-Translator: Umarzuki Bin Mochlis Moktar <umar@umarzuki.org>\n"
+"Language-Team: Malay Translation Team <gnome-ms@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-Language: Hebrew\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-Language: Malay\n"
+"X-Poedit-Country: MALAYSIA\n"
 
 #. Translators: Window title when no item is selected.
 #.
@@ -26,66 +28,65 @@ msgstr ""
 #: ../src/palimpsest/gdu-shell.c:269 ../src/palimpsest/gdu-shell.c:321
 #: ../src/palimpsest/gdu-shell.c:803 ../src/palimpsest/gdu-shell.c:1114
 msgid "Disk Utility"
-msgstr "תכנית שירות הכונן"
+msgstr "Utiliti Cakera"
 
 #: ../data/palimpsest.desktop.in.h:2
 msgid "Manage Drives and Media"
-msgstr "ניהול כוננים ומדיה"
+msgstr "Mengurus Cakera dan Media"
 
 #: ../data/gdu-notification-daemon.desktop.in.in.in.h:1
 msgid "Disk Notifications"
-msgstr "התרעות כוננים"
+msgstr "Notifikasi Cakera"
 
 #: ../data/gdu-notification-daemon.desktop.in.in.in.h:2
 msgid "Provides notifications related to disks"
-msgstr "הצגת התרעות הקשורות בכוננים"
+msgstr ""
 
 #: ../src/format-tool/gdu-format-progress-dialog.c:183
 msgid ""
 "To prevent data corruption, wait until this has finished before removing "
 "media or disconnecting the device."
 msgstr ""
-"כדי למנוע פגיעה בנתונים, יש להמתין עד לסיום לפני הסרת המדיה או ניתוק ההתקן."
 
 #: ../src/format-tool/gdu-format-progress-dialog.c:215
 #: ../src/notification/gdu-slow-unmount-dialog.c:284
 msgid "Device"
-msgstr "התקן"
+msgstr "Peranti"
 
 #: ../src/format-tool/gdu-format-progress-dialog.c:216
 #: ../src/notification/gdu-slow-unmount-dialog.c:285
 msgid "The device to show the dialog for"
-msgstr "ההתקן שעבורו להציג תיבת דו־שיח"
+msgstr ""
 
 #: ../src/format-tool/gdu-format-progress-dialog.c:228
 msgid "text"
-msgstr "טקסט"
+msgstr "teks"
 
 #: ../src/format-tool/gdu-format-progress-dialog.c:229
 msgid "Text to show"
-msgstr "התקן לפרמוט"
+msgstr "Teks untuk ditunjuk"
 
 #: ../src/format-tool/gdu-format-tool.c:113
 msgid "Error launching Disk Utility"
-msgstr "ארעה שגיאה בהפעלת היישום"
+msgstr "Ralat melancarkan Utiliti Cakera"
 
 #: ../src/format-tool/gdu-format-tool.c:133
 msgid "Device to format"
-msgstr "התקן לפרמוט"
+msgstr "Peranti untuk diformat"
 
 #: ../src/format-tool/gdu-format-tool.c:133 ../src/palimpsest/gdu-main.c:127
 #: ../src/palimpsest/gdu-main.c:128
 msgid "DEVICE"
-msgstr "התקן"
+msgstr "PERANTI"
 
 #: ../src/format-tool/gdu-format-tool.c:163
 #, c-format
 msgid "Operation was canceled"
-msgstr "הפעולה בוטלה"
+msgstr "Operasi telah dibatalkan"
 
 #: ../src/format-tool/gdu-format-tool.c:254
 msgid "Gnome Disk Utility formatting tool"
-msgstr "כלי הפרמוט של תכנית שירות הכונן של GNOME"
+msgstr "Alat format Utiliti Cakera Gnome"
 
 #. Translators: First argument is the partition number, second argument is the drive name,
 #. * third argument is the size (e.g. 10 GB)
@@ -93,7 +94,7 @@ msgstr "כלי הפרמוט של תכנית שירות הכונן של GNOME"
 #: ../src/format-tool/gdu-format-tool.c:303
 #, c-format
 msgid "Format partition %d of %s (%s)"
-msgstr "פרמוט מחיצה %d של %s ‏(%s)"
+msgstr "Format sekatan %d dari %s (%s)"
 
 #. Translators: First argument is the partition number, second argument is the drive name,
 #. * third argument is the size (e.g. 10 GB)
@@ -101,168 +102,166 @@ msgstr "פרמוט מחיצה %d של %s ‏(%s)"
 #: ../src/format-tool/gdu-format-tool.c:310
 #, c-format
 msgid "Formatting partition %d of %s (%s)"
-msgstr "מחיצה %d של %s נמצאת בפרמוט ‏(%s)"
+msgstr "Memformat sekatan %d dari %s (%s)"
 
 #. Translators: First argument is the drive name, second argument is the size (e.g. 10 GB)
 #: ../src/format-tool/gdu-format-tool.c:316
 #, c-format
 msgid "Format %s (%s)"
-msgstr "פרמוט %s ‏(%s)"
+msgstr "Format %s (%s)"
 
 #. Translators: First argument is the drive name, second argument is the size (e.g. 10 GB)
 #: ../src/format-tool/gdu-format-tool.c:320
 #, c-format
 msgid "Formatting %s (%s)"
-msgstr "%sבפרמוט ‏ (%s)"
+msgstr "Menformat %s (%s)"
 
 #. Translators: First argument is the size (e.g. 10 GB), second is the device (e.g. /dev/md0)
 #: ../src/format-tool/gdu-format-tool.c:326
 #, c-format
 msgid "Format %s Volume (%s)"
-msgstr "פרמוט הכרך %s‏ (%s)"
+msgstr "Format %s Volum (%s)"
 
 #. Translators: First argument is the size (e.g. 10 GB), second is the device (e.g. /dev/md0)
 #: ../src/format-tool/gdu-format-tool.c:330
 #, c-format
 msgid "Formatting %s Volume (%s)"
-msgstr "הכרך %s בפרמוט (%s)"
+msgstr "Memformat %s Volum (%s)"
 
 #: ../src/format-tool/gdu-format-tool.c:386
 msgid "Preparing..."
-msgstr "בהכנה..."
+msgstr "Menyediakan..."
 
 #: ../src/format-tool/gdu-format-tool.c:429
 msgid "Unmounting..."
-msgstr "מנתק..."
+msgstr ""
 
 #: ../src/format-tool/gdu-format-tool.c:447
 #, c-format
 msgid "Unable to format '%s'"
-msgstr "לא ניתן לפרמט את '%s'"
+msgstr "Tidak dapat format '%s'"
 
 #: ../src/format-tool/gdu-format-tool.c:462
 msgid "Formatting..."
-msgstr "בפרמוט..."
+msgstr "Memformat..."
 
 #: ../src/format-tool/gdu-format-tool.c:479
 msgid "Cancelling..."
-msgstr "מבטל..."
+msgstr "Membatalkan..."
 
 #: ../src/format-tool/gdu-format-tool.c:489
 msgid "Error formatting volume"
-msgstr "שגיאה בתהליך פרמוט הכרך"
+msgstr "Ralat memformat volum"
 
 #: ../src/format-tool/gdu-format-tool.c:500
 msgid "Mounting volume..."
-msgstr "הכרך בעיגון..."
+msgstr ""
 
 #: ../src/format-tool/gdu-format-tool.c:524
 msgid "Error mounting device"
-msgstr "שגיאה בחיבור התקן"
+msgstr ""
 
 #: ../src/format-tool/gdu-format-tool.c:541
 msgid "Error storing passphrase in keyring"
-msgstr "שגיאה באחסון מילת הצופן בקבוצת הססמאות"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-add-component-linux-md-dialog.c:156
 msgid "The RAID Array to add a component to."
-msgstr "מערך ה־RAID אליו יש להוסיף רכיב."
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-add-component-linux-md-dialog.c:228
 #, c-format
 msgid "Add spare to %s"
-msgstr "תוספת ל־%s"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-add-component-linux-md-dialog.c:229
 #, c-format
 msgid "Select a device to create a %s spare on for the RAID Array \"%s\" (%s)"
-msgstr "יש לבחור את ההתקן כדי ליצור תוספת מסוג %s למערך ה־RAID‏ \"%s\"‏ (%s)"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-add-component-linux-md-dialog.c:237
 #, c-format
 msgid "Expand %s"
-msgstr "הרחבת %s"
+msgstr "Perluaskan %s"
 
 #: ../src/gdu-gtk/gdu-add-component-linux-md-dialog.c:238
 #, c-format
 msgid ""
 "Select one or more devices to use %s on for expanding the RAID Array \"%s"
 "\" (%s)"
-msgstr "יש לבחור בהתקן אחד או יותר שישתמש ב־%s להרחבת מערך ה־RAID‏ \"%s\"‏ (%s)"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-add-component-linux-md-dialog.c:244
 msgid "_Expand"
-msgstr "הר_חבה"
+msgstr "_Perluaskan"
 
 #: ../src/gdu-gtk/gdu-add-pv-linux-lvm2-dialog.c:184
 msgid "The VG to add a PV to."
-msgstr "קבוצת הכרכים להוספת הכרך הפיזי."
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-add-pv-linux-lvm2-dialog.c:249
 #, c-format
 msgid "Add Physical Volume to %s (%s)"
-msgstr "הוספת כרך פיזי ל־%s‏ (%s)"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-add-pv-linux-lvm2-dialog.c:265
 #: ../src/gdu-gtk/gdu-create-linux-lvm2-volume-dialog.c:203
 #: ../src/gdu-gtk/gdu-create-partition-dialog.c:220
 msgid "_Size:"
-msgstr "_גודל:"
+msgstr "_Saiz:"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:132
 msgid "Read Error Rate"
-msgstr "קצב שגיאות קריאה"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:133
 msgid ""
 "Frequency of errors while reading raw data from the disk. A non-zero value "
 "indicates a problem with either the disk surface or read/write heads"
 msgstr ""
-"תדירות התקלות בעת קריאת נתונים גולמיים מהכונן. ערך שאינו אפס מציין כי הבעיה "
-"היא או במשטח האחסון של הכונן בראשי הקריאה/כתיבה"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:142
 msgid "Throughput Performance"
-msgstr "ממוצע ביצועי הכונן"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:143
 msgid "Average efficiency of the disk"
-msgstr "יעילות ממוצעת של הדיסק"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:150
 msgid "Spinup Time"
-msgstr "זמן הסיבובים"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:151
 msgid "Time needed to spin up the disk"
-msgstr "הזמן הנדרש לסיבוב הכונן"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:158
 msgid "Start/Stop Count"
-msgstr "ספירת התחלה/עצירה"
+msgstr "Mula/Berhenti Kira"
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:159
 msgid "Number of spindle start/stop cycles"
-msgstr "מספר מחזורי התחלת/עצירת הציר "
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:166
 msgid "Reallocated Sector Count"
-msgstr "מספר הסקטורים שהוקצו מחדש"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:167
 msgid ""
@@ -270,42 +269,39 @@ msgid ""
 "verification error, it marks the sector as \"reallocated\" and transfers "
 "data to a special reserved area (spare area)"
 msgstr ""
-"ספירת הסקטורים שמופו מחדש. כאשר הכונן הקשיח נתקל בשגיאת קריאה/כתיבה/אימות "
-"הוא מסמן את הסקטור ל\"הקצאה מחדש\" ומעביר את הנתונים לאזור שמור מיוחד (אזור "
-"התוספת)"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:176
 msgid "Read Channel Margin"
-msgstr "שול ערוץ הקריאה"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:177
 msgid "Margin of a channel while reading data."
-msgstr "שולי הערוץ בעת קריאת נתונים."
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:184
 msgid "Seek Error Rate"
-msgstr "קצב שגיאות האיתור"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:185
 msgid "Frequency of errors while positioning"
-msgstr "תדירות השגיאות בעת הצבת המיקום"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:192
 msgid "Seek Timer Performance"
-msgstr "ממוצע יעילות שינוי מיקום בכונן"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:193
 msgid "Average efficiency of operations while positioning"
-msgstr "היעילות הממוצעת של הפעולות בעת הצבה במקום"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -313,90 +309,90 @@ msgstr "היעילות הממוצעת של הפעולות בעת הצבה במק
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:200
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:524
 msgid "Power-On Hours"
-msgstr "שעות פעולה רציפה"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:201
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:525
 msgid "Number of hours elapsed in the power-on state"
-msgstr "מספר השעות שעברו במצב פעיל"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:208
 msgid "Spinup Retry Count"
-msgstr "מספור ניסיונות התחלת הסיבוב"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:209
 msgid "Number of retry attempts to spin up"
-msgstr "מספר הניסיונות החוזרים להתחלת הסיבוב"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:216
 msgid "Calibration Retry Count"
-msgstr "ספירת נסיונות הכיול החוזרים"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:217
 msgid "Number of attempts to calibrate the device"
-msgstr "מספר הניסיונות לכיול ההתקן"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:224
 msgid "Power Cycle Count"
-msgstr "ספרית מחזורי הדלקה"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:225
 msgid "Number of power-on events"
-msgstr "מספר אירועי הדלקה"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:232
 msgid "Soft read error rate"
-msgstr "קצב שגיאות בקריאה רכה"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:233
 msgid "Frequency of 'program' errors while reading from the disk"
-msgstr "מספר תקלות התכנה בעת קריאה מהכונן"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:240
 msgid "Reported Uncorrectable Errors"
-msgstr "דווחו שגיאות שלא ניתנות לתיקון"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:241
 msgid "Number of errors that could not be recovered using hardware ECC"
-msgstr "מספר השגיאות שלא ניתן לשקם באמצעות ECC חמרתי"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:248
 msgid "High Fly Writes"
-msgstr "מספר כתיבות בריחוף"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:249
 msgid ""
 "Number of times a recording head is flying outside its normal operating range"
-msgstr "מספר הפעמים שראש הקריאה מרחף אל מחוץ טווח הפעולה שלו"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:256
 msgid "Airflow Temperature"
-msgstr "טמפרטורת זרם אוויר"
+msgstr "Suhu Ruang Pengudaraan"
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:257
 msgid "Airflow temperature of the drive"
-msgstr "טמפרטורת זרם אוויר של הכונן"
+msgstr "Suhu Ruang Pengudaraan Cakera"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -404,11 +400,11 @@ msgstr "טמפרטורת זרם אוויר של הכונן"
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:264
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:434
 msgid "G-sense Error Rate"
-msgstr "קצב שגיאת חיישן ה־G"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:265
 msgid "Frequency of mistakes as a result of impact loads"
-msgstr "תדירות הטעויות כתוצאה מעומסים נקודתיים"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -416,11 +412,11 @@ msgstr "תדירות הטעויות כתוצאה מעומסים נקודתיים
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:272
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:491
 msgid "Power-off Retract Count"
-msgstr "ספירת נסיגות הכיבוי"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:273
 msgid "Number of power-off or emergency retract cycles"
-msgstr "מספר מחזורי הכיבוי לצורכי חירום"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -428,11 +424,11 @@ msgstr "מספר מחזורי הכיבוי לצורכי חירום"
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:280
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:467
 msgid "Load/Unload Cycle Count"
-msgstr "ספירת מחזורי טעינה/פריקה"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:281
 msgid "Number of cycles into landing zone position"
-msgstr "מספר המחזורים לתוך מיקום אזור הנחיתה"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -440,29 +436,29 @@ msgstr "מספר המחזורים לתוך מיקום אזור הנחיתה"
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:288
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:507
 msgid "Temperature"
-msgstr "טמפרטורה"
+msgstr "Suhu"
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:289
 msgid "Current internal temperature of the drive"
-msgstr "הטמפרטורה הפינמית הנוכחית של הכונן"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:296
 msgid "Hardware ECC Recovered"
-msgstr "ה־ECC החמרתי שוחזר"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:297
 msgid "Number of ECC on-the-fly errors"
-msgstr "מספר שגיאות ה־ECC בזמן הפעולה"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:304
 msgid "Reallocation Count"
-msgstr "ספירת ההקצאה מחדש"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:305
 msgid ""
@@ -470,15 +466,13 @@ msgid ""
 "total number of (successful and unsuccessful) attempts to transfer data from "
 "reallocated sectors to a spare area"
 msgstr ""
-"מספר פעולות ההקצאה מחדשה. הערך הגולמי של מאפיין זה מציג את המספר הכללי של "
-"הניסיונות (מוצלחים או כושלים) להעברת נתונים מסקטורים שהוקצו מחדש לאזור הנוסף"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:315
 msgid "Current Pending Sector Count"
-msgstr "ספירת הסקטורים הממתינים כרגע"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:316
 msgid ""
@@ -487,17 +481,13 @@ msgid ""
 "decreased and the sector is not remapped. Read errors on the sector will not "
 "remap the sector, it will only be remapped on a failed write attempt"
 msgstr ""
-"מספר הסקטורים הממתינים למיפוי מחדש. אם מתבצעות כתיבה וקריאה מוצלחות ובאופן "
-"עקבי בזמן שהסקטור ממתין למיפוי מחדש, ערך זה מופחת והסקטור לא ממופה מחדש. "
-"שגיאות קריאה בסקטור לא יגררו למיפוי הסקטור מחדש, הסקטור ימופה מחדש רק עם "
-"ניסיון כתיבה כושל"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:327
 msgid "Uncorrectable Sector Count"
-msgstr "מספר הסקטורים שאינן ניתנים לתיקון"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:328
 msgid ""
@@ -505,294 +495,286 @@ msgid ""
 "rise in the value of this attribute indicates defects of the disk surface "
 "and/or problems in the mechanical subsystem"
 msgstr ""
-"סך כל השגיאות שלא ניתן לתקן בעת פעולות כתיבה/קריאה על סקטור. עלייה בערך "
-"מאפיין זה מציינת פגמים במשטח הכונן ו/או בעיה של תת־המערכת המכנית"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:337
 msgid "UDMA CRC Error Rate"
-msgstr "קצב שגיאות CRC במצב UDMA"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:338
 msgid "Number of CRC errors during UDMA mode"
-msgstr "מספר שגיאות ה־CRC במשך מצב UDMA"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:345
 msgid "Write Error Rate"
-msgstr "קצב שגיאת כתיבה"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:346
 msgid ""
 "Number of errors while writing to disk (or) multi-zone error rate (or) "
 "flying-height"
-msgstr "מספר השגיאות בעת כתיבה לכונן (או) בקצב שגיאה רב אזורי (או) גובה הריחוף"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:353
 msgid "Soft Read Error Rate"
-msgstr "קצב שגיאות בקריאה רכה"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:354
 msgid "Number of off-track errors"
-msgstr "מספר השגיאות מחוץ לרצועה"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:361
 msgid "Data Address Mark Errors"
-msgstr "שגיאות סימון כתובות נתונים"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:362
 msgid "Number of Data Address Mark (DAM) errors (or) vendor-specific"
-msgstr "מספר שגיאות סימון כתובות נתונים (DAM) (או) לפי יצרן"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:369
 msgid "Run Out Cancel"
-msgstr "ביטול הריקון"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:370
 msgid "Number of ECC errors"
-msgstr "מספר שגיאות ה־ECC"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:377
 msgid "Soft ECC correction"
-msgstr "תיקון ECC רך"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:378
 msgid "Number of errors corrected by software ECC"
-msgstr "מספר השגיאות שתוקנו על ידי ECC תכנתי"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:385
 msgid "Thermal Asperity Rate"
-msgstr "כמות השגיאות הנובעות מחום"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:386
 msgid "Number of Thermal Asperity Rate errors"
-msgstr "מספר יחס השגיאות עקב חום"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:393
 msgid "Flying Height"
-msgstr "גובה הריחוף"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:394
 msgid "Height of heads above the disk surface"
-msgstr "גובה הריחוף של הראשים מעל משטח הכונן"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:401
 msgid "Spin High Current"
-msgstr "סיבוב במתח גבוה"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:402
 msgid "Amount of high current used to spin up the drive"
-msgstr "כמות המתח הגבוה המשמש לסיבוב הכונן"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:409
 msgid "Spin Buzz"
-msgstr "באז סיבוב"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:410
 msgid "Number of buzz routines to spin up the drive"
-msgstr "מספר רוטינות הבאס לסיבוב הכונן"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:417
 msgid "Offline Seek Performance"
-msgstr "ביצועי איתור בלתי מקוון"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:418
 msgid "Drive's seek performance during offline operations"
-msgstr "ביצועי יכולות החיפוש של הכונן במהלך פעולות בלתי מקוונות"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:425
 msgid "Disk Shift"
-msgstr "הזחה בכונן"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:426
 msgid ""
 "Shift of disk is possible as a result of strong shock loading in the store, "
 "as a result of falling (or) temperature"
 msgstr ""
-"הזחה בכונן מתבצעת עקב מכה חזקה בטעינה מהאחסון, כתוצאה מכשל (או) טמפרטורה."
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:435
 msgid ""
 "Number of errors as a result of impact loads as detected by a shock sensor"
 msgstr ""
-"מספר השגיאות שנובעות כתוצאה מעומסים נקודתיים כפי שהתגלה על ידי חיישן ההלם"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:442
 msgid "Loaded Hours"
-msgstr "שעות פעילות"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:443
 msgid "Number of hours in general operational state"
-msgstr "מספר השעות במצטבר שהכונן היה במצב פעיל"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:450
 msgid "Load/Unload Retry Count"
-msgstr "מספור ניסיונות טעינה/פריקה"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:451
 msgid ""
 "Loading on drive caused by numerous recurrences of operations, like reading, "
 "recording, positioning of heads, etc"
 msgstr ""
-"הטעינה בכונן גרמה למספר מופעים חוזרים של פעולות כמו כתיבה, הקלטה, הצבת מיקום "
-"הראשים וכו'"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:459
 msgid "Load Friction"
-msgstr "עומס מחיכוך"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:460
 msgid "Load on drive caused by friction in mechanical parts of the store"
-msgstr "עומס על הכונן הנוצר על ידי חיכוך בין החלקים המכניים של חלקי האחסון"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:468
 msgid "Total number of load cycles"
-msgstr "מספר סך כל מחזורי הטעינה"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:475
 msgid "Load-in Time"
-msgstr "זמן הטעינה"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:476
 msgid "General time for loading in a drive"
-msgstr "סך כל הזמן של טעינה בכונן"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:483
 msgid "Torque Amplification Count"
-msgstr "ספירת הגברת המומנט הסיבובי"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:484
 msgid "Quantity efforts of the rotating moment of a drive"
-msgstr "כמות המאמצים של המומנט הסיבובים של הכונן"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:492
 msgid "Number of power-off retract events"
-msgstr "מספר של ביטול פעולות כיבוי"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:499
 msgid "GMR Head Amplitude"
-msgstr "אמפליטודת GMR של הראש"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:500
 msgid "Amplitude of heads trembling (GMR-head) in running mode"
-msgstr "אמפליטודת רטט הראשים (GMR-head) במצב פעילות"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:508
 msgid "Temperature of the drive"
-msgstr "הטמפרטורה של הכונן"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:515
 msgid "Endurance Remaining"
-msgstr "כושר עמידה נותר"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:516
 msgid ""
 "Number of physical erase cycles completed on the drive as a percentage of "
 "the maximum physical erase cycles the drive supports"
 msgstr ""
-"מספר מחזורי המחיקה הפיזיים שהושלמו על הכונן כאחוז מכמות מחזורי המחיקה "
-"הפיזיים שהכונן תומך בהם"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:532
 msgid "Uncorrectable ECC Count"
-msgstr "ספירת ה־ECC שאינם ניתנים לתיקון"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:533
 msgid "Number of uncorrectable ECC errors"
-msgstr "מספר שגיאות ה־ECC שאינן ניתנות לטיפול"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:540
 msgid "Good Block Rate"
-msgstr "יחס המקטעים הטובים"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:541
 msgid ""
 "Number of available reserved blocks as a percentage of the total number of "
 "reserved blocks"
-msgstr "מספר המקטעים השמורים הזמינים ביחס לסך כל הבלוקים השמורים"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:549
 msgid "Head Flying Hours"
-msgstr "שעות רחיפת הראש"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:550
 msgid "Time while head is positioning"
-msgstr "הזמן שבו הראש עובר בין מיקומים"
+msgstr ""
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:557
 msgid "Read Error Retry Rate"
-msgstr "יחס שגיאת הניסיונות לקריאה חוזרת"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:558
 msgid "Number of errors while reading from a disk"
-msgstr "מספר השגיאות בעת הקריאה מהכונן"
+msgstr ""
 
 #. Translators: This is shown in the attribute treeview when no description is found.
 #. * %d is the attribute number.
@@ -800,27 +782,27 @@ msgstr "מספר השגיאות בעת הקריאה מהכונן"
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:700
 #, c-format
 msgid "No description for attribute %d"
-msgstr "אין תיאור עבור המאפיין %d"
+msgstr ""
 
 #. Translators: This is shown in the tree view for the normalized value of an attribute (0-254)
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:790
 msgid "Normalized:"
-msgstr "בטווח הרגיל:"
+msgstr ""
 
 #. Translators: This is shown in the tree view for the worst value of an attribute (0-254)
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:792
 msgid "Worst:"
-msgstr "גרוע ביותר:"
+msgstr ""
 
 #. Translators: This is shown in the tree view for the threshold of an attribute (0-254)
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:794
 msgid "Threshold:"
-msgstr "סף:"
+msgstr ""
 
 #. Translators: This is shown in the tree view for the interpreted/pretty value of an attribute
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:796
 msgid "Value:"
-msgstr "ערך:"
+msgstr "Nilai:"
 
 #. Translators: This is used in the attribute treview when normalized/worst/treshold
 #. * value isn't available
@@ -833,37 +815,37 @@ msgstr "ערך:"
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:958
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1640
 msgid "N/A"
-msgstr "ל/ז"
+msgstr "N/A"
 
 #. Translators: Shown in the treeview for a failing attribute
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:940
 msgid "Failing"
-msgstr "קורס"
+msgstr "Gagal"
 
 #. Translators: Shown in the treeview for an attribute that failed in the past
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:943
 msgid "Failed in the past"
-msgstr "כשל בעבר"
+msgstr "Gagal pada masa lepas"
 
 #. Translators: Shown in the treeview for an attribute that we want to warn about
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:947
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:955
 msgid "Warning"
-msgstr "אזהרה"
+msgstr "Amaran"
 
 #. Translators: Shown in the treeview for an attribute that is good
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:950
 msgid "Good"
-msgstr "תקין"
+msgstr "Baik"
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1021
 msgid "Error reading SMART data"
-msgstr "שגיאה בקריאת נתוני SMART"
+msgstr "Ralat membaca data SMART"
 
 #. Translators: Shown in the "Run self-test" dialog
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1141
 msgid "Choose SMART Self-test"
-msgstr "בחרית בדיקת SMART עצמית"
+msgstr "Pilih Ujian Sendiri SMART"
 
 #. Translators: Shown in the "Run self-test" dialog
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1152
@@ -872,28 +854,26 @@ msgid ""
 "size of the disk. You can continue using your system while the test is "
 "running."
 msgstr ""
-"השלמת הבדיקות האלו יכולה לקחת זמן רב בהתאם למהירות ולגודל הכונן. ניתן להמשיך "
-"את השימוש במערכת בזמן הבדיקה."
 
 #. Translators: Radio button for short test
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1161
 msgid "_Short (usually less than ten minutes)"
-msgstr "_קצרה (בדרך כלל פחות מעשר דקות)"
+msgstr ""
 
 #. Translators: Radio button for extended test
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1164
 msgid "_Extended (usually tens of minutes)"
-msgstr "_מורחבת (בדרך כלל עשרות דקות)"
+msgstr ""
 
 #. Translators: Radio button for conveyance test
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1167
 msgid "C_onveyance (usually less than ten minutes)"
-msgstr "בה_עברה (בדרך כלל פחות מעשר דקות)"
+msgstr ""
 
 #. Translators: Button in "Run self-test dialog"
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1175
 msgid "_Run Self Test"
-msgstr "הרץ בדיקה _עצמית"
+msgstr ""
 
 #. Translators: The title of the SMART dialog.
 #. * First %s is the name for the drive (e.g. "1.0 TB Hard Disk")
@@ -902,12 +882,12 @@ msgstr "הרץ בדיקה _עצמית"
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1270
 #, c-format
 msgid "%s (%s) – SMART Data"
-msgstr "%s (%s) – נתוני SMART"
+msgstr "%s (%s) – Data SMART"
 
 #. Translators: Item name in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1290
 msgid "Updated:"
-msgstr "עודכן:"
+msgstr "Dikemaskini:"
 
 #. Translators: Tooltip for the 'Updated' item in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1293
@@ -915,181 +895,179 @@ msgid ""
 "Time since SMART data was last read – SMART data is updated every 30 minutes "
 "unless the disk is sleeping"
 msgstr ""
-"הזמן מאז שנתוני ה־SMART נקראו לאחרונה — נתוני SMART מעודכנים כל חצי שעה למעט "
-"הזמן בו הכונן במצב שינה"
 
 #. Translators: Item name in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1299
 msgid "Self-tests:"
-msgstr "בדיקות עצמיות"
+msgstr ""
 
 #. Translators: Tooltip for the 'Self-tests' item in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1302
 msgid "The result of the last self-test that ran on the disk"
-msgstr "תוצאות הבדיקה העצמית האחרונה שפעלה על הכונן"
+msgstr ""
 
 #. Translators: Item name in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1307
 msgid "Powered On:"
-msgstr "דלוק:"
+msgstr ""
 
 #. Translators: Tooltip for the 'Powered On' item in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1310
 msgid "The amount of elapsed time the disk has been in a powered-up state"
-msgstr "משך הזמן שעבר בו היה הכונן במצב פעיל"
+msgstr ""
 
 #. Translators: Item name in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1315
 msgid "Power Cycles:"
-msgstr "מחזורי חשמל:"
+msgstr ""
 
 #. Translators: Tooltip for the 'Power Cycles' item in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1318
 msgid "The number of full disk power on/off cycles"
-msgstr "מספר מחזורי כיבוי/הדלקה מלאים של הכונן"
+msgstr ""
 
 #. Translators: Item name in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1323
 msgid "Temperature:"
-msgstr "טמפרטורה:"
+msgstr "Suhu:"
 
 #. Translators: Tooltip for the 'Temperature' item in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1326
 msgid "The temperature of the disk"
-msgstr "הטמפרטורה של הכונן"
+msgstr "Suhu cakera"
 
 #. Translators: Item name in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1331
 msgid "Bad Sectors:"
-msgstr "סקטורים פגומים:"
+msgstr "Sektor Rosak:"
 
 #. Translators: Tooltip for the 'Bad Sectors' item in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1334
 msgid "The sum of pending and reallocated bad sectors"
-msgstr "סך כל הסקטורים הפגומים הממתינים ואלו שהוקצו מחדש"
+msgstr ""
 
 #. Translators: Item name in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1339
 msgid "Self Assessment:"
-msgstr "הערכה עצמית:"
+msgstr "Penilaian Sendiri:"
 
 #. Translators: Tooltip for the 'Self Assesment' item in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1342
 msgid "The assessment from the disk itself whether it is about to fail"
-msgstr "הערכה מהכונן עצמו והאם הוא עומד להיפגם לחלוטין"
+msgstr ""
 
 #. Translators: Item name in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1347
 msgid "Overall Assessment:"
-msgstr "הערכה כללית:"
+msgstr "Penilaian Keseluruhan"
 
 #. Translators: Tooltip for the 'Overall Assessment' item in the
 #. * status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1351
 msgid "An overall assessment of the health of the disk"
-msgstr "הערכה כוללת של תקינות הכונן"
+msgstr ""
 
 #. Translators: Button name
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1365
 msgid "_Refresh"
-msgstr "_רענן"
+msgstr "_Segarkan"
 
 #. Translators: Button details
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1367
 msgid "Reads SMART Data, waking up the disk"
-msgstr "נקראים נתוני SMART, הכונן מתעורר"
+msgstr ""
 
 #. TODO: better icon
 #. Translators: Button name
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1377
 msgid "Run _Self-test"
-msgstr "הרץ בדיקה _עצמית"
+msgstr "Jalankanl _Ujian Sendiri"
 
 #. Translators: Button details
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1379
 msgid "Test the disk surface for errors"
-msgstr "בדיקת משטח הכונן אחר שגיאות"
+msgstr ""
 
 #. Translators: Button name
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1389
 msgid "_Cancel Self-test"
-msgstr "_ביטול בדיקה עצמית"
+msgstr "_Batal Ujian Sendiri"
 
 #. Translators: Button details
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1391
 msgid "Cancels the self-test"
-msgstr "מבטל את הבדיקה העצמית"
+msgstr "Batal Ujian Sendiri"
 
 #. Translators: Heading used in the main dialog for SMART attributes
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1409
 msgid "_Attributes"
-msgstr "_מאפיינים"
+msgstr ""
 
 #. Translators: This string is used as the column title in the treeview for the Attribute ID (0-255)
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1443
 msgid "ID"
-msgstr "מס'"
+msgstr "ID"
 
 #. Translators: This string is used as the column title in the treeview for the attribute name and description
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1455
 msgid "Attribute"
-msgstr "מאפיין"
+msgstr ""
 
 #. Translators: This string is used as the column title in the treeview for the assessment of the attribute
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1472
 msgid "Assessment"
-msgstr "הערכה"
+msgstr "Penilaian"
 
 #. Translators: This string is used as the column title in the treeview for the value of the attribute
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1491
 msgid "Value"
-msgstr "ערך"
+msgstr "Nilai"
 
 #. ----------------------------------------------------------------------------------------------------
 #. Translators: Check button in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1519
 msgid "Don't _warn if the disk is failing"
-msgstr "לא לה_זהיר בעת שהדיסק נפגם"
+msgstr ""
 
 #. Translators: Tooltip for the "Don't warn me if disk is failing" check button
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1521
 msgid "Leave unchecked to get notified if the disk starts failing"
-msgstr "יש להשאיר לא מסומן כדי לקבל התרעות כשהכונן מתחיל להיפגם"
+msgstr ""
 
 #. Translators: Used in the treeview for the pretty/interpreted value of an attribute
 #. * for a time-based unit that exceed one year
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1586
 #, c-format
 msgid "%.1f years"
-msgstr "%.1f שנים"
+msgstr "%.1f tahun"
 
 #. Translators: Used in the treeview for the pretty/interpreted value of an attribute
 #. * for a time-based unit that exceed one day
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1590
 #, c-format
 msgid "%.1f days"
-msgstr "%.1f ימים"
+msgstr "%.1f hari"
 
 #. Translators: Used in the treeview for the pretty/interpreted value of an attribute
 #. * for a time-based unit that exceed one hour
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1594
 #, c-format
 msgid "%.1f hours"
-msgstr "%.1f שעות"
+msgstr "%.1f jam"
 
 #. Translators: Used in the treeview for the pretty/interpreted value of an attribute
 #. * for a time-based unit that exceed one minute
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1598
 #, c-format
 msgid "%.1f minutes"
-msgstr "%.1f דקות"
+msgstr "%.1f minit"
 
 #. Translators: Used in the treeview for the pretty/interpreted value of an attribute
 #. * for a time-based unit that exceed one second
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1602
 #, c-format
 msgid "%.1f seconds"
-msgstr "%.1f שניות"
+msgstr "%.1f saat"
 
 #. Translators: Used in the treeview for the pretty/interpreted value of an attribute
 #. * for a time-based unit that is counted in milliseconds
@@ -1102,8 +1080,7 @@ msgstr "%s msec"
 #, c-format
 msgid "%d sector"
 msgid_plural "%d sectors"
-msgstr[0] "סקטור אחד"
-msgstr[1] "%d סקטורים"
+msgstr[0] "%d sektor"
 
 #. Translators: Used in the treeview for the pretty/interpreted value of an attribute
 #. * for a temperature-based unit - first %f is the temperature in degrees Celcius, second %f
@@ -1117,25 +1094,25 @@ msgstr "%.0f° C / %.0f° F"
 #. * "(Pre-Fail)" in English
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1697
 msgid "Failure is a sign of imminent disk failure (Pre-Fail)"
-msgstr "הכשל הוא סימן לכשל הקרב בכונן (Pre-Fail)"
+msgstr ""
 
 #. Translators: Used in the tooltip for a row in the attribute treeview - please keep
 #. * "(Old-Age)" in English
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1701
 msgid "Failure is a sign of old age (Old-Age)"
-msgstr "הכשל הוא סימן לחומרה ישנה (Old-Age)"
+msgstr ""
 
 #. Translators: Used in the tooltip for a row in the attribute treeview - please keep
 #. * "(Online)" in English
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1707
 msgid "Every time data is collected (Online)"
-msgstr "כל פעם שנאסף מידע (Online)"
+msgstr ""
 
 #. Translators: Used in the tooltip for a row in the attribute treeview - please keep
 #. * "(Not Online)" in English
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1711
 msgid "Only during off-line activities (Not Online)"
-msgstr "רק במהלך פעולות בלתי מקוונות"
+msgstr ""
 
 #. Translators: Used in the tooltip for a row in the attribute treeview.
 #. * First %s is the type of the attribute (Pre-Fail or Old-Age).
@@ -1149,34 +1126,31 @@ msgid ""
 "Updates: %s\n"
 "Raw: 0x%02x%02x%02x%02x%02x%02x"
 msgstr ""
-"סוג: %s\n"
-"עדכונים: %s\n"
-"גולמי: 0x%02x%02x%02x%02x%02x%02x"
 
 #. Translators: Shown in the "Overall Assessment" item in the status table
 #. * when no drive is currently selected
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1929
 msgid "No drive selected"
-msgstr "לא נבחר כונן"
+msgstr "Tiada peranti dipilih"
 
 #. Translators: Shown in the "Overall Assessment" item in the status table
 #. * when SMART is not available
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1936
 msgid "SMART not supported"
-msgstr "‏SMART לא נתמך"
+msgstr "SMART tidak disokong"
 
 #. Translators: Shown in the "Overall Assessment" item in the status table
 #. * when SMART is supported but data was never collected
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1944
 msgid "SMART data never collected"
-msgstr "נתוני SMART אף פעם לא נאספים"
+msgstr "Data SMART tidak pernah dikumpul"
 
 #. Translators: Shown in the "Overall Assessment" item in the status table
 #. * when the SMART data is malformed
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1951
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1957
 msgid "SMART data is malformed"
-msgstr "נתוני SMART פגומים"
+msgstr ""
 
 #. Translators: Shown in the "Self-assessment" item in the status table
 #. * when the self-assessment of the drive is unknown
@@ -1200,126 +1174,125 @@ msgstr "נתוני SMART פגומים"
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2104
 #: ../src/gdu-gtk/gdu-volume-grid.c:1321 ../src/gdu/gdu-util.c:1110
 msgid "Unknown"
-msgstr "לא ידוע"
+msgstr "Tidak diketahui"
 
 #. Translators: Shown in the "Self-assessment" item in the status table
 #. * when the self-assessment of the drive is PASSED
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1992
 msgid "Passed"
-msgstr "עבר"
+msgstr "Lulus"
 
 #. Translators: Shown in the "Self-assessment" item in
 #. * the status table when the self-assessment of the
 #. * drive is FAILING
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1998
 msgid "FAILING"
-msgstr "קורס"
+msgstr "GAGAL"
 
 #. Translators: Shown in the "Bad Sectors" item in the status table
 #. * when we the disk has no bad sectors
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2010
 msgid "None"
-msgstr "ללא"
+msgstr "Tiada"
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2015
 #, c-format
 msgid "%d bad sector"
 msgid_plural "%d bad sectors"
-msgstr[0] "סקטור פגום"
-msgstr[1] "%d סקטורים פגומים"
+msgstr[0] "%d sektor rosak"
 
 #. Translators: Shown in the "Self-tests" item in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2061
 msgid "Completed OK"
-msgstr "הושלם בהצלחה"
+msgstr "Selesai OK"
 
 #. Translators: Shown in the "Self-tests" item in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2065
 msgid "Cancelled"
-msgstr "בוטל"
+msgstr "Dibatalkan"
 
 #. Translators: Shown in the "Self-tests" item in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2069
 msgid "Cancelled (with hard or soft reset)"
-msgstr "בוטל (עם איפוס רך או קשה)"
+msgstr ""
 
 #. Translators: Shown in the "Self-tests" item in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2073
 msgid "Not completed (a fatal error might have occurred)"
-msgstr "לא הושלם (יתכן שארעה תקלה מהותית)"
+msgstr ""
 
 #. Translators: Shown in the "Self-tests" item in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2077
 msgid "FAILED (Electrical)"
-msgstr "כשל (חשמלי)"
+msgstr "GAGAL (Elektrikal)"
 
 #. Translators: Shown in the "Self-tests" item in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2082
 msgid "FAILED (Servo)"
-msgstr "כשל (סרוו)"
+msgstr "GAGAL (Servo)"
 
 #. Translators: Shown in the "Self-tests" item in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2087
 msgid "FAILED (Read)"
-msgstr "כשל (קריאה)"
+msgstr "GAGAL (Baca)"
 
 #. Translators: Shown in the "Self-tests" item in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2092
 msgid "FAILED (Suspected of having handled damage)"
-msgstr "כשל (חשד להימצאות נזק בטיפול)"
+msgstr ""
 
 #. Translators: Shown in the "Self-tests" item in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2097
 msgid "In progress"
-msgstr "בתהליך"
+msgstr "Dalam proses"
 
 #: ../src/gdu-gtk/gdu-confirmation-dialog.c:171
 #, c-format
 msgid "This operation concerns the volume \"%s\" (%s)"
-msgstr "פעולה זו נוגעת לכונן \"%s\"‏ (%s)"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-confirmation-dialog.c:175
 #, c-format
 msgid "This operation concerns the drive \"%s\" (%s)"
-msgstr "פעולה זו נוגעת לכונן \"%s\"‏ (%s)"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-confirmation-dialog.c:179
 #, c-format
 msgid "This operation concerns \"%s\" (%s)"
-msgstr "פעולה זו נוגעת ל־\"%s\"‏ (%s)"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:94
 msgid "User Name"
-msgstr "שם משתמש"
+msgstr "Nama Pengguna"
 
 #: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:95
 msgid "The chosen user name"
-msgstr "שם המשתמש שניבחר"
+msgstr "Nama pengguna dipilih"
 
 #: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:105
 msgid "Address"
-msgstr "כתובת"
+msgstr "Alamat"
 
 #: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:106
 msgid "The chosen address"
-msgstr "הכתובת שניבחרה"
+msgstr "Alamat dipilih"
 
 #: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:154
 msgid "Choose Server"
-msgstr "בחר שרת"
+msgstr "Pilih Pelayan"
 
 #: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:213
 msgid "Connect to Server"
-msgstr "התחבר לשרת"
+msgstr "Sambung ke Pelayan"
 
 #: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:220
 msgid "_Browse..."
-msgstr "_עיין..."
+msgstr ""
 
 #. Translators: this is the tooltip for the "Browse..." button
 #: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:232
 msgid "Browse servers discovered via the DNS-SD protocol"
-msgstr "עיון בשרתים שאותרו על ידי הפרוטוקול DNS-SD"
+msgstr ""
 
 #. Translators: This is the label explaining the dialog
 #.
@@ -1329,134 +1302,132 @@ msgid ""
 "“Connect”. The connection will be made using the <i>Secure Shell</i> "
 "protocol."
 msgstr ""
-"כדי לנהל התקני אחסון במחשב אחר יש להזין את הכתובת וללחוץ על \"התחברות\". "
-"ההתחברות תתבצע באמצעות הפרוטוקול <i>Secure Shell</i> ‏(ssh)."
 
 #. Translators: This is the tooltip for the "Server Address" entry
 #.
 #: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:264
 msgid "The hostname or address to connect to"
-msgstr "שם המארח או הכתובת להתחברות"
+msgstr "Nama hos atau alamat untuk disambung"
 
 #: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:268
 msgid "Server _Address:"
-msgstr "_כתובת שרת:"
+msgstr "Alamat _Pelayan:"
 
 #. Translators: This is the tooltip for the "User Name" entry
 #. * First %s is the UNIX user name e.g. 'davidz'.
 #.
 #: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:287
 msgid "The user name to connect as"
-msgstr "שם המשתמש שיש להתחבר בשמו"
+msgstr "Nama pengguna untuk menyambung"
 
 #: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:291
 msgid "_User Name:"
-msgstr "_שם משתמש:"
+msgstr "_Nama Pengguna:"
 
 #: ../src/gdu-gtk/gdu-create-linux-lvm2-volume-dialog.c:117
 msgid "Maximum Logical Volume Size"
-msgstr "הגודל המרבי של כרך לוגי"
+msgstr "Saiz Maksimum Volum Logikal"
 
 #: ../src/gdu-gtk/gdu-create-linux-lvm2-volume-dialog.c:118
 msgid "The maximum possible logical volume size"
-msgstr "הגודל האפשרי המרבי של כרך לוגי"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-create-linux-lvm2-volume-dialog.c:132
 msgid "Logical Volume Size"
-msgstr "גודל כרך לוגי"
+msgstr "Saiz Volum Logikal"
 
 #: ../src/gdu-gtk/gdu-create-linux-lvm2-volume-dialog.c:133
 msgid "The requested Logical Volume size"
-msgstr "גודל הכרך הלוגי המבוקש"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-create-linux-lvm2-volume-dialog.c:161
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:522
 #: ../src/gdu-gtk/gdu-create-partition-dialog.c:163
 #: ../src/gdu-gtk/gdu-create-partition-dialog.c:178
 msgid "C_reate"
-msgstr "י_צרה"
+msgstr "C_ipta"
 
 #. Translators: The %s is the name of the volume group
 #: ../src/gdu-gtk/gdu-create-linux-lvm2-volume-dialog.c:222
 #, c-format
 msgid "Create Logical Volume on %s"
-msgstr "יצירת כרך לוגי על גבי %s"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:179
 #: ../src/gdu-gtk/gdu-disk-selection-widget.c:229
 msgid "Pool"
-msgstr "מקבץ"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:180
 #: ../src/gdu-gtk/gdu-disk-selection-widget.c:230
 msgid "The pool of devices"
-msgstr "מקבץ של התקנים"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:192
 msgid "RAID Level"
-msgstr "רמת RAID"
+msgstr "Tahap RAID"
 
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:193
 msgid "The selected RAID level"
-msgstr "רמת RAID הנבחרת"
+msgstr "Tahap RAID dipilih"
 
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:203
 msgid "Name"
-msgstr "שם"
+msgstr "Nama"
 
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:204
 msgid "The requested name for the array"
-msgstr "השם המבוקש עבור המערך"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:214
 #: ../src/gdu-gtk/gdu-size-widget.c:488
 msgid "Size"
-msgstr "גודל"
+msgstr "Saiz"
 
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:215
 msgid "The requested size of the array"
-msgstr "הגודל המבוקש עבור המערך"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:227
 #: ../src/gdu-gtk/gdu-disk-selection-widget.c:306
 msgid "Component Size"
-msgstr "גודל רכיב"
+msgstr "Saiz Komponen"
 
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:228
 msgid "The size of each component"
-msgstr "גודל כל רכיב"
+msgstr "Saiz untuk setiap komponen"
 
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:240
 msgid "Stripe Size"
-msgstr "גודל השכפול"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:241
 msgid "The requested stripe size of the array"
-msgstr "גודל השכפול המבוקש של המערך"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:253
 msgid "Drives"
-msgstr "כוננים"
+msgstr "Peranti"
 
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:254
 msgid "Array of drives to use for the array"
-msgstr "מערך של כוננים שישמשו את המערך"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:517
 msgid "Create RAID Array"
-msgstr "יצירת מערך RAID"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:535
 msgid "General"
-msgstr "כללי"
+msgstr "Am"
 
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:556
 msgid "RAID _Level:"
-msgstr "_רמת ה־RAID:"
+msgstr "Tahap _RAID:"
 
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:595
 msgid "Array _Name:"
-msgstr "_שם מערך:"
+msgstr ""
 
 #. Translators: This is the default name to use for the new array.
 #. * Keep length of UTF-8 representation of the translation of "New RAID Array" to less than
@@ -1464,11 +1435,11 @@ msgstr "_שם מערך:"
 #.
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:603
 msgid "New RAID Array"
-msgstr "מערך RAID חדש"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:619
 msgid "Stripe S_ize:"
-msgstr "גודל הש_כפול:"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:629
 msgid "4 KiB"
@@ -1508,23 +1479,23 @@ msgstr "1 MiB"
 
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:663
 msgid "Array _Size:"
-msgstr "_גודל מערך:"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:690
 msgid "_Disks"
-msgstr "_דיסקים"
+msgstr "_Disk"
 
 #. --------------------------------------------------------------------------------
 #. TODO: Actually make this work
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:706
 msgid "Use entire disks instead of _partitions"
-msgstr "יש להשתמש בכוננים במלואם במקום במחי_צות"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:707
 msgid ""
 "If checked, the entirety of each selected disk will be used for the RAID "
 "array. Otherwise partitions will be created."
-msgstr "במידה שמסומן, הכונן הנבחר כולו ישמש למערך ה־RAID. אחרת ייווצרו מחיצות."
+msgstr ""
 
 #. Translators: This is for the tip text shown in the dialog.
 #. * First %s is the short localized name for the RAID level, e.g. "RAID-1".
@@ -1532,21 +1503,21 @@ msgstr "במידה שמסומן, הכונן הנבחר כולו ישמש למע�
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:876
 #, c-format
 msgid "Insufficient number of disks to create a %s array."
-msgstr "מספר כוננים שגוי ליצירת מערך %s."
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:892
 #, c-format
 msgid "To create a %s array, select a disk."
 msgid_plural "To create a %s array, select %d disks."
-msgstr[0] "כדי ליצור מערך %s יש לבחור כונן."
-msgstr[1] "כדי ליצור מערך %s יש לבחור %d כוננים."
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:899
 #, c-format
 msgid "To create a %s array, select one more disk."
 msgid_plural "To create a %s array, select %d more disks."
-msgstr[0] "כדי ליצור מערך %s, יש לבחור בכונן אחד לפחות."
-msgstr[1] "כדי ליצור מערך %s, יש לבחור ב־%d כוננים לפחות."
+msgstr[0] ""
+msgstr[1] ""
 
 #. Translators: This is for the tip text shown in the dialog.
 #. * First %s is the size e.g. '42 GB'.
@@ -1556,80 +1527,80 @@ msgstr[1] "כדי ליצור מערך %s, יש לבחור ב־%d כוננים ל
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:923
 #, c-format
 msgid "To create a %s %s array on %d disks, press \"Create\""
-msgstr "כדי ליצור מערך בגודל %s מסוג %s מ־%d כוננים, יש ללחוץ על \"יצירה\""
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-create-partition-dialog.c:119
 msgid "Maximum Partition Size"
-msgstr "גודל מחיצה מירבי"
+msgstr "Saiz Sekatan Maksimum"
 
 #: ../src/gdu-gtk/gdu-create-partition-dialog.c:120
 msgid "The maximum possible partition size"
-msgstr "גודל המחיצה המרבי האפשרי"
+msgstr "Saiz sekatan semaksimum mungkin"
 
 #: ../src/gdu-gtk/gdu-create-partition-dialog.c:134
 msgid "Partition Size"
-msgstr "גודל מחיצה"
+msgstr "Saiz Sekatan"
 
 #: ../src/gdu-gtk/gdu-create-partition-dialog.c:135
 msgid "The requested partition size"
-msgstr "גודל המחיצה המבוקש"
+msgstr "Saiz sekatan yang diminta"
 
 #. Translators: The %s is the name of the drive
 #: ../src/gdu-gtk/gdu-create-partition-dialog.c:238
 #, c-format
 msgid "Create partition on %s"
-msgstr "יצירת מחיצה על גבי %s"
+msgstr "Cipta sekatan pada %s"
 
 #: ../src/gdu-gtk/gdu-disk-selection-widget.c:242
 #: ../src/gdu-gtk/gdu-format-dialog.c:166
 msgid "Flags"
-msgstr "דגלונים"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-disk-selection-widget.c:243
 msgid "Flags for the widget"
-msgstr "דגלונים עבור החלון"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-disk-selection-widget.c:256
 msgid "Selected Drives"
-msgstr "כוננים נבחרים"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-disk-selection-widget.c:257
 msgid "Array of selected drives"
-msgstr "מערך של הכוננים הנבחרים"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-disk-selection-widget.c:267
 #: ../src/gdu-gtk/gdu-disk-selection-widget.c:268
 msgid "Number of available disks"
-msgstr "מספר הכוננים הזמינים"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-disk-selection-widget.c:280
 msgid "Largest Segment For Selected"
-msgstr "המקטע הגדול בנבחרים"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-disk-selection-widget.c:281
 msgid "The largest free segment for the selected drives"
-msgstr "האזור הפנוי הגדול ביותר עבור הכוננים הנבחרים"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-disk-selection-widget.c:293
 msgid "Largest Segment For All"
-msgstr "המקטע הגדול בכולם"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-disk-selection-widget.c:294
 msgid "The largest free segment for all the drives"
-msgstr "המקטע הגדול ביורת הפנוי בכול הכוננים"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-disk-selection-widget.c:307
 msgid "The size to use in the details header"
-msgstr "הגודל לשימוש בכותרת הפרטים"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-disk-selection-widget.c:417
 msgid "Cannot select multipath component"
-msgstr "לא ניתן לבחור רכיב מרובה נתיבים"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-disk-selection-widget.c:435
 #: ../src/gdu-gtk/gdu-disk-selection-widget.c:455
 msgid "No free space."
-msgstr "אין מקום פנוי."
+msgstr "Tiada ruang bebas."
 
 #. Translators: Shown when device is unselectable because not enough space is available.
 #. * First %s (e.g. '10 GB') is how much space is needed.
@@ -1639,12 +1610,12 @@ msgstr "אין מקום פנוי."
 #, c-format
 msgid ""
 "Insufficient space: %s is needed but largest contiguous free block is %s."
-msgstr "אין די מקום: נדרש %s אך המקטע הרציף הגדול ביותר הוא %s."
+msgstr ""
 
 #. Translators: This is shown in the details column
 #: ../src/gdu-gtk/gdu-disk-selection-widget.c:920
 msgid "The disk will be partitioned and a partition will be created"
-msgstr "הכונן יפוצל למחיצות ותיווצר מחיצה"
+msgstr ""
 
 #. Translators: This is shown in the Details column.
 #. * First %s is the component size e.g. '42 GB'.
@@ -1654,7 +1625,7 @@ msgstr "הכונן יפוצל למחיצות ותיווצר מחיצה"
 msgid ""
 "The disk will be partitioned and a %s partition will be created. Afterwards "
 "no space will be available."
-msgstr "הכונן יחולק ותיווצר מחיצת %s. לאחר מכן לא יישאר עוד מקום זמין."
+msgstr ""
 
 #. Translators: This is shown in the Details column.
 #. * First %s is the component size e.g. '42 GB'.
@@ -1665,17 +1636,17 @@ msgstr "הכונן יחולק ותיווצר מחיצת %s. לאחר מכן לא
 msgid ""
 "The disk will be partitioned and a %s partition will be created. Afterwards %"
 "s will be available."
-msgstr "הכונן יחולק ותיווצר מחיצת %s. לאחר מכן יישארו %s של מקום פנוי."
+msgstr ""
 
 #. Translators: This is shown in the details column
 #: ../src/gdu-gtk/gdu-disk-selection-widget.c:946
 msgid "A partition will be created"
-msgstr "תיווצר מחיצה"
+msgstr "Sekatan akan dicipta"
 
 #. Translators: This is shown in the details column
 #: ../src/gdu-gtk/gdu-disk-selection-widget.c:949
 msgid "A volume will be created"
-msgstr "ייווצר כרך"
+msgstr ""
 
 #. Translators: This is shown in the Details column.
 #. * First %s is the component size e.g. '42 GB'.
@@ -1683,7 +1654,7 @@ msgstr "ייווצר כרך"
 #: ../src/gdu-gtk/gdu-disk-selection-widget.c:957
 #, c-format
 msgid "A %s partition will be created. Afterwards no space will be available."
-msgstr "תיווצר מחיצה מסוג %s. לאחר מכן לא יישאר עוד מקום פנוי."
+msgstr ""
 
 #. Translators: This is shown in the Details column.
 #. * First %s is the component size e.g. '42 GB'.
@@ -1691,7 +1662,7 @@ msgstr "תיווצר מחיצה מסוג %s. לאחר מכן לא יישאר ע�
 #: ../src/gdu-gtk/gdu-disk-selection-widget.c:964
 #, c-format
 msgid "A %s volume will be created. Afterwards no space will be available."
-msgstr "ייווצר כרך מסוג %s. לאחר מכן לא יישאר עוד מקום פנוי."
+msgstr ""
 
 #. Translators: This is shown in the Details column.
 #. * First %s is the component size e.g. '42 GB'.
@@ -1700,7 +1671,7 @@ msgstr "ייווצר כרך מסוג %s. לאחר מכן לא יישאר עוד 
 #: ../src/gdu-gtk/gdu-disk-selection-widget.c:974
 #, c-format
 msgid "A %s partition will be created. Afterwards %s will be available."
-msgstr "תיווצר מחיצה מסוג %s. לאחר מכן יישארו עוד %s של מקום פנוי."
+msgstr ""
 
 #. Translators: This is shown in the Details column.
 #. * First %s is the component size e.g. '42 GB'.
@@ -1709,7 +1680,7 @@ msgstr "תיווצר מחיצה מסוג %s. לאחר מכן יישארו עוד
 #: ../src/gdu-gtk/gdu-disk-selection-widget.c:983
 #, c-format
 msgid "A %s volume will be created. Afterwards %s will be available."
-msgstr "ייווצר כרך מסוג %s. לאחר מכן יישארו עוד %s של מקום פנוי."
+msgstr ""
 
 #. Translators: This is shown in the Details column.
 #. * %s is the component size e.g. '42 GB'.
@@ -1717,7 +1688,7 @@ msgstr "ייווצר כרך מסוג %s. לאחר מכן יישארו עוד %s 
 #: ../src/gdu-gtk/gdu-disk-selection-widget.c:1003
 #, c-format
 msgid "Whole disk is uninitialized. %s available for use"
-msgstr "כל הכונן אינו מאותחל. %s זמינים לשימוש"
+msgstr ""
 
 #. Translators: This is shown in the Details column.
 #. * %s is the component size e.g. '42 GB'.
@@ -1725,7 +1696,7 @@ msgstr "כל הכונן אינו מאותחל. %s זמינים לשימוש"
 #: ../src/gdu-gtk/gdu-disk-selection-widget.c:1010
 #, c-format
 msgid "%s available for use"
-msgstr "‏%s זמין לשימוש"
+msgstr "%s sedia untuk digunakan"
 
 #. Translators: This is shown in the Details column.
 #. * %s is the component size e.g. '42 GB'.
@@ -1733,14 +1704,13 @@ msgstr "‏%s זמין לשימוש"
 #: ../src/gdu-gtk/gdu-disk-selection-widget.c:1016
 #, c-format
 msgid "The disk has no partitions. %s available for use"
-msgstr "לכונן אין מחיצות. %s זמין לשימוש"
+msgstr "Tiada sekatan pada cakera. %s sedia untuk digunakan"
 
 #: ../src/gdu-gtk/gdu-disk-selection-widget.c:1021
 #, c-format
 msgid "The disk has %d partition"
 msgid_plural "The disk has %d partitions"
-msgstr[0] "בכונן יש מחיצה אחת"
-msgstr[1] "בכונן יש %d מחיצות"
+msgstr[0] "Disk ada %d sekatan"
 
 #. Translators: This is shown in the Details column.
 #. * First %s is the dngettext() result of "The disk has %d partitions.".
@@ -1749,32 +1719,32 @@ msgstr[1] "בכונן יש %d מחיצות"
 #: ../src/gdu-gtk/gdu-disk-selection-widget.c:1029
 #, c-format
 msgid "%s. Largest contiguous free block is %s"
-msgstr "%s.המקטע הרציף הגדול ביותר הוא %s."
+msgstr ""
 
 #. Tranlators: this string is used for the column header
 #: ../src/gdu-gtk/gdu-disk-selection-widget.c:1096
 msgid "Storage Devices"
-msgstr "התקני איחסון"
+msgstr "Peranti Penyimpanan"
 
 #. Tranlators: this string is used for the column header
 #: ../src/gdu-gtk/gdu-disk-selection-widget.c:1136
 msgid "Details"
-msgstr "פרטים"
+msgstr "Perincian"
 
 #: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:527
 msgid "Error benchmarking drive"
-msgstr "שגיאה במדידת ביצועי הכונן"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:595
 msgid "Are you sure you want to start a read/write benchmark?"
-msgstr "האם ברצונך להתחיל במדידת ביצועי קריאה/כתיבה?"
+msgstr ""
 
 #. TODO: better icon
 #: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:596
 #: ../src/palimpsest/gdu-section-drive.c:1004
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:1053
 msgid "_Benchmark"
-msgstr "_מדידת ביצועים"
+msgstr ""
 
 #. Translators: The title of the benchmark dialog.
 #. * First %s is the name for the drive (e.g. "Fedora" or "1.0 TB Hard Disk")
@@ -1784,85 +1754,85 @@ msgstr "_מדידת ביצועים"
 #: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:687
 #, c-format
 msgid "%s (%s) – Benchmark"
-msgstr "%s (%s) – מדידת ביצועים"
+msgstr ""
 
 #. benchmark results
 #: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:733
 msgid "Minimum Read Rate:"
-msgstr "יחס הקריאה המזערי:"
+msgstr "Tahap Baca Minimum:"
 
 #: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:737
 msgid "Minimum Write Rate:"
-msgstr "יחס הכתיבה המזערי:"
+msgstr "Tahap Tulis Minimum:"
 
 #: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:741
 msgid "Maximum Read Rate:"
-msgstr "יחס הקריאה המרבי:"
+msgstr "Tahap Baca Maksimum:"
 
 #: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:745
 msgid "Maximum Write Rate:"
-msgstr "יחס הכתיבה המרבי:"
+msgstr "Tahap Tulis Maksimum:"
 
 #: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:749
 msgid "Average Read Rate:"
-msgstr "מהירות הקריאה הממוצעת:"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:753
 msgid "Average Write Rate:"
-msgstr "מהירות הכתיבה הממוצעת:"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:757
 msgid "Last Benchmark:"
-msgstr "מדידת הביצועים האחרונה:"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:765
 msgid "Average Access Time:"
-msgstr "זמן הגישה הממוצע:"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:778
 msgid "Start _Read-Only Benchmark"
-msgstr "התחלת מדידת ביצועים ל_קריאה בלבד"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:779
 msgid "Measure read rate and access time"
-msgstr "מדידת זמן הקריאה וזמן הגישה"
+msgstr ""
 
 #. TODO: better icon
 #: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:787
 msgid "Start Read/_Write Benchmark"
-msgstr "התחלת _מדידת ביצועי קריאה/כתיבה"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:788
 msgid "Measure read rate, write rate and access time"
-msgstr "מדידת קצב הקריאה, קצב הכתיבה וזמן הגישה"
+msgstr ""
 
 #. Translators: This is used in the benchmark graph - %d is megabytes per second
 #: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:952
 #, c-format
 msgid "%d MB/s"
-msgstr "%d מ\"ב/ש"
+msgstr "%d MB/s"
 
 #. Translators: This is used in the benchmark graph - %g is number of milliseconds
 #: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:957
 #, c-format
 msgid "%3g ms"
-msgstr "%3g מילישניות"
+msgstr "%3g ms"
 
 #. Translators: This is used for the "Last Benchmark" element when we don't have benchmark data
 #: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:1236
 msgid "Never"
-msgstr "לעולם לא"
+msgstr "Tidak pernah"
 
 #. Translators: Text used in the hyperlink in the status
 #. * table to cancel a self-test
 #: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:1310
 msgid "Cancel"
-msgstr "ביטול"
+msgstr "Batal"
 
 #. Translators: Tooptip for the "Cancel" hyperlink
 #: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:1313
 msgid "Cancels the currently running benchmark"
-msgstr "ביטול של מדידת הביצועים הנוכחית"
+msgstr ""
 
 #. Translators: title of the dialog - first %s is the name of the volume
 #. * e.g. "Partition 1 of ATA INTEL SSDSA2MH080G1GC"
@@ -1871,11 +1841,11 @@ msgstr "ביטול של מדידת הביצועים הנוכחית"
 #: ../src/gdu-gtk/gdu-edit-partition-dialog.c:299
 #, c-format
 msgid "Edit %s"
-msgstr "עריכת %s"
+msgstr "Sunting %s"
 
 #: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:221
 msgid "Missing Physical Volume"
-msgstr "הכרך הפיזי חסר"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:222
 #, c-format
@@ -1885,52 +1855,52 @@ msgstr "UUID: %s"
 #: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:332
 #, c-format
 msgid "Edit PVs on %s (%s)"
-msgstr "עריכת הכרכים הפיזיים של %s‏ (%s)"
+msgstr "Sunting PV pada %s (%s)"
 
 #: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:343
 msgid "Physical _Volumes"
-msgstr "_כרכים פיזיים"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:373
 msgid "Physical Volume"
-msgstr "כרך פיזי"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:389
 msgid "Capacity"
-msgstr "נפח"
+msgstr "Kapasiti"
 
 #: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:398
 msgid "Unallocated"
-msgstr "לא מוקצה"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:412
 #: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:450
 #: ../src/palimpsest/gdu-section-drive.c:935
 msgid "SMART Status:"
-msgstr "מצב SMART"
+msgstr "Status SMART:"
 
 #: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:416
 #: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:462
 #: ../src/palimpsest/gdu-section-drive.c:911
 #: ../src/palimpsest/gdu-section-volumes.c:1919
 msgid "Device:"
-msgstr "התקן:"
+msgstr "Peranti:"
 
 #: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:429
 msgid "_New Physical Volume"
-msgstr "_כרך פיזי חדש"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:430
 msgid "Add a new PV to the VG"
-msgstr "הוספת כרך פיזי חדש לקבוצת הכרכים"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:439
 msgid "_Remove Physical Volume"
-msgstr "ה_סרת כרך פיזי"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:440
 msgid "Remove the PV from the VG"
-msgstr "הסרת הכרך הפיזי מקבוצת הכרכים"
+msgstr ""
 
 #. Translators: Used when SMART is not supported on the RAID pv
 #. Translators: Used when SMART is not supported on the RAID component
@@ -1939,201 +1909,201 @@ msgstr "הסרת הכרך הפיזי מקבוצת הכרכים"
 #: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:846
 #: ../src/palimpsest/gdu-section-drive.c:329
 msgid "Not Supported"
-msgstr "‏לא נתמך"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:370
 #, c-format
 msgid "Edit components on %s (%s)"
-msgstr "עריכת רכיבים על גבי %s‏ (%s)"
+msgstr "Sunting komponen pada %s (%s)"
 
 #: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:381
 msgid "C_omponents"
-msgstr "_רכיבים"
+msgstr "K_omponen"
 
 #: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:411
 msgid "Position"
-msgstr "מיקום"
+msgstr "Kedudukan"
 
 #: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:420
 msgid "Component"
-msgstr "רכיב"
+msgstr "Komponen"
 
 #: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:436
 msgid "State"
-msgstr "מצב"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:454
 msgid "Position:"
-msgstr "מיקום:"
+msgstr "Kedudukan:"
 
 #: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:458
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:683
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:974
 #: ../src/palimpsest/gdu-section-volumes.c:1908
 msgid "State:"
-msgstr "מצב:"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:475
 msgid "Add _Spare"
-msgstr "הוספת _תוספת"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:476
 msgid "Add a spare to the array"
-msgstr "הוספת תוספת למערך"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:485
 msgid "_Expand Array"
-msgstr "ה_רחבת המערך"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:486
 msgid "Increase the capacity of the array"
-msgstr "הגדלת נפח המערך"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:495
 msgid "_Attach Component"
-msgstr "_צרף רכיב"
+msgstr "_Lampir Komponen"
 
 #: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:496
 msgid "Attach the component to the array"
-msgstr "צירוף הרכיב למערך"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:505
 msgid "_Remove Component"
-msgstr "_סרת רכיב"
+msgstr "_Buang Komponen"
 
 #: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:506
 msgid "Remove the component from the array"
-msgstr "הסרת הפריטים מהמערך"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-edit-partition-dialog.c:320
 msgid "Part_ition Label:"
-msgstr "תווית המחי_צה:"
+msgstr "Lab_el Sekatan:"
 
 #. Translators: 'Type' means partition type here
 #: ../src/gdu-gtk/gdu-edit-partition-dialog.c:337
 msgid "Ty_pe:"
-msgstr "סו_ג:"
+msgstr "Je_nis:"
 
 #. ---
 #. flag used by mbr, apm
 #: ../src/gdu-gtk/gdu-edit-partition-dialog.c:351
 msgid "_Bootable"
-msgstr "ניתן ל_אתחול"
+msgstr ""
 
 #. flag used by gpt
 #: ../src/gdu-gtk/gdu-edit-partition-dialog.c:359
 msgid "Required / Firm_ware"
-msgstr "נדרש / קושח_ה"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-error-dialog.c:216
 msgid "The operation failed"
-msgstr "הפעולה נכשלה"
+msgstr "Operasi gagal"
 
 #: ../src/gdu-gtk/gdu-error-dialog.c:219
 msgid "The device is busy"
-msgstr "ההתקן נמצא בשימוש"
+msgstr "Peranti sedang sibuk"
 
 #: ../src/gdu-gtk/gdu-error-dialog.c:222
 msgid "The operation was canceled"
-msgstr "הפעולה בוטלה"
+msgstr "Operasi telah dibatalkan"
 
 #: ../src/gdu-gtk/gdu-error-dialog.c:225
 msgid "The daemon is being inhibited"
-msgstr "הסוכן נעצר"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-error-dialog.c:228
 msgid "An invalid option was passed"
-msgstr "הועברה אפשרות שגויה"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-error-dialog.c:231
 msgid "The operation is not supported"
-msgstr "הפעולה אינה נתמכת"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-error-dialog.c:234
 msgid "Getting ATA SMART data would wake up the device"
-msgstr "קבלת נתוני SMART ל־ATA עלולה להעיר את ההתקן"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-error-dialog.c:237
 msgid "Permission denied"
-msgstr "הרשאה נדחתה"
+msgstr "Kebenaran dinafikan"
 
 #: ../src/gdu-gtk/gdu-error-dialog.c:240
 msgid "Filesystem driver not installed"
-msgstr "מנהל התקן מערכת הקבצים לא הותקן"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-error-dialog.c:243
 msgid "Filesystem tools not installed"
-msgstr "כלי מערכת קבצים אינם מותקנים"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-error-dialog.c:248 ../src/palimpsest/gdu-shell.c:958
 msgid "Unknown error"
-msgstr "שגיאה לא מוכרת"
+msgstr "Ralat tidak diketahui"
 
 #: ../src/gdu-gtk/gdu-error-dialog.c:256
 #, c-format
 msgid "An error occurred while performing an operation on \"%s\" (%s): %s"
-msgstr "ארעה שגיאה בעת ביצוע הפעולה על \"%s\"‏ (%s):‏ %s"
+msgstr "Ralat telah berlaku semasa menjalankan operasi pada \"%s\" (%s): %s"
 
 #: ../src/gdu-gtk/gdu-error-dialog.c:264
 #, c-format
 msgid "An error occurred: %s"
-msgstr "ארעה שגיאה: %s"
+msgstr "Ralat telah berlaku: %s"
 
 #: ../src/gdu-gtk/gdu-error-dialog.c:273
 msgid "_Details"
-msgstr "_פרטים"
+msgstr "_Perincian"
 
 #: ../src/gdu-gtk/gdu-format-dialog.c:167
 msgid "Flags specifying the behavior of the dialog"
-msgstr "דגלונים המציינים את התנהגות הדו־שיח"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-format-dialog.c:180
 msgid "Filesystem type"
-msgstr "סוג מערכת קבצים:"
+msgstr "Jenis Fail Sistem"
 
 #: ../src/gdu-gtk/gdu-format-dialog.c:181
 msgid "The selected filesystem type"
-msgstr "סוג מערכת הקבצים הנבחרת"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-format-dialog.c:191
 msgid "Filesystem label"
-msgstr "תווית מערכת הקבצים"
+msgstr "Label Fail Sistem"
 
 #: ../src/gdu-gtk/gdu-format-dialog.c:192
 msgid "The requested filesystem label"
-msgstr "תווית מערכת הקבצים המבוקשת"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-format-dialog.c:202
 msgid "Filesystem options"
-msgstr "אפשרויות מערכת קבצים"
+msgstr "Pilihan Fail Sistem"
 
 #: ../src/gdu-gtk/gdu-format-dialog.c:203
 msgid "The options to use for creating the filesystem"
-msgstr "האפשרויות לשימוש בעת יצירת מערכת קבצים"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-format-dialog.c:213
 msgid "Encryption"
-msgstr "הצפנה"
+msgstr "Enkripsi"
 
 #: ../src/gdu-gtk/gdu-format-dialog.c:214
 msgid "Whether the volume should be encrypted"
-msgstr "האם הכרך אמור להיות מוצפן"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-format-dialog.c:224
 msgid "Take Ownership"
-msgstr "לקיחת בעלות"
+msgstr "Ambik Alih Pemilikan"
 
 #: ../src/gdu-gtk/gdu-format-dialog.c:225
 msgid "Whether the filesystem should be owned by the user"
-msgstr "האם על מערכת הקבצים להיות בשליטת המשתמש"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-format-dialog.c:235
 msgid "Affirmative Button Mnemonic"
-msgstr "לחצן חיוביות קליט"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-format-dialog.c:236
 msgid "The mnemonic label for the affirmative button"
-msgstr "התווית הקליטה ללחצן החיוביות"
+msgstr ""
 
 #. Translators: Format is used as a verb here
 #: ../src/gdu-gtk/gdu-format-dialog.c:238
@@ -2141,62 +2111,62 @@ msgstr "התווית הקליטה ללחצן החיוביות"
 #: ../src/palimpsest/gdu-section-drive.c:649
 #: ../src/palimpsest/gdu-section-volumes.c:371
 msgid "_Format"
-msgstr "_פרמוט"
+msgstr "_Format"
 
 #. Translators: Format is a verb here. The %s is the name of the volume
 #: ../src/gdu-gtk/gdu-format-dialog.c:502
 #: ../src/gdu-gtk/gdu-partition-dialog.c:211
 #, c-format
 msgid "Format %s"
-msgstr "_פרמוט %s"
+msgstr "Format %s"
 
 #: ../src/gdu-gtk/gdu-format-dialog.c:513
 msgid "Disk _Utility"
-msgstr "_תוכנית שירות הכונן"
+msgstr "Utiliti _Cakera"
 
 #. Translators: this is the tooltip for the "Disk Utility" button
 #: ../src/gdu-gtk/gdu-format-dialog.c:520
 msgid "Use Disk Utility to format volume"
-msgstr "ניתן להשתמש בתכנית שירות הכונן כדי לפרמט כרך"
+msgstr "Gunakan Utiliti Cakera untuk format volum"
 
 #. Translators: 'type' means 'filesystem type' here.
 #: ../src/gdu-gtk/gdu-format-dialog.c:553
 msgid "_Type:"
-msgstr "_סוג:"
+msgstr "_Jenis:"
 
 #: ../src/gdu-gtk/gdu-format-dialog.c:560
 msgid "Compatible with all systems (FAT)"
-msgstr "תואם לכול המערכות (FAT)"
+msgstr "Serasi dengan semua sistem (FAT)"
 
 #: ../src/gdu-gtk/gdu-format-dialog.c:562
 msgid "Compatible with Linux (ext2)"
-msgstr "תואם לינוקס (ext2)"
+msgstr "Serasi dengan Linux (ext2)"
 
 #: ../src/gdu-gtk/gdu-format-dialog.c:564
 msgid "Compatible with Linux (ext4)"
-msgstr "תואם לינוקס (ext4)"
+msgstr "Serasi dengan Linux (ext4)"
 
 #: ../src/gdu-gtk/gdu-format-dialog.c:566
 msgid "Encrypted, compatible with Linux (FAT)"
-msgstr "מוצפן, תואם לינוקס ‏(FAT)"
+msgstr "Enkripsi, serasi dengan Linux (FAT)"
 
 #. Translators: 'name' means 'filesystem label' here.
 #: ../src/gdu-gtk/gdu-format-dialog.c:609
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:204
 #: ../src/palimpsest/gdu-section-volumes.c:1722
 msgid "_Name:"
-msgstr "_שם:"
+msgstr "_Nama:"
 
 #. Translators: Default name to use for the formatted volume. Keep length of
 #. * translation of "New Volume" to less than 16 characters.
 #.
 #: ../src/gdu-gtk/gdu-format-dialog.c:616
 msgid "New Volume"
-msgstr "כרך חדש"
+msgstr "Volum Baru"
 
 #: ../src/gdu-gtk/gdu-format-dialog.c:634
 msgid "T_ake ownership of filesystem"
-msgstr "ל_קיחת בעלות על מערכת הקבצים"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-format-dialog.c:637
 msgid ""
@@ -2204,13 +2174,10 @@ msgid ""
 "created file system will be owned by you. If not checked, only the super "
 "user can access the file system."
 msgstr ""
-"מערכת הקבצים הנוכחית מבוססת על עיקרון של בעלות קבצים. אם האפשרות מסומנת, "
-"מערכת הקבצים שתיווצר תהיה בבעלותך. אם לא יסומן אז רק משתמש העל יוכל לגשת "
-"למערכת הקבצים."
 
 #: ../src/gdu-gtk/gdu-format-dialog.c:643
 msgid "_Encrypt underlying device"
-msgstr "ה_צפנת ההתקן הכפוף"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-format-dialog.c:645
 msgid ""
@@ -2218,58 +2185,55 @@ msgid ""
 "the file system can be used. May decrease performance and may not be "
 "compatible if you use the media on other operating systems."
 msgstr ""
-"הצפנה מגנה על המידע שלך על ידי דרישת מילת צופן לפני מתן האפשרות לשימוש "
-"במערכת הקבצים. מצב זה עלול לפגוע בביצועים ובמידה וברשותך מערכות הפעלה אחרות "
-"המדיה עלולה לא להתאים להן."
 
 #: ../src/gdu-gtk/gdu-format-dialog.c:678
 msgid "Warning: All data on the volume will be irrevocably lost."
-msgstr "אזהרה: כל הנתונים על הכרך יאבדו ללא אפשרות שחזור."
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-gtk.c:175
 msgctxt "application name"
 msgid "Bourne Again Shell"
-msgstr "מעטפת Bourne Again"
+msgstr "Bourne Again Shell"
 
 #: ../src/gdu-gtk/gdu-gtk.c:180
 msgctxt "application name"
 msgid "Bourne Shell"
-msgstr "מעטפת Bourne"
+msgstr "Bourne Shell"
 
 #: ../src/gdu-gtk/gdu-gtk.c:185
 msgctxt "application name"
 msgid "C Shell"
-msgstr "מעטפת C"
+msgstr "C Shell"
 
 #: ../src/gdu-gtk/gdu-gtk.c:190
 msgctxt "application name"
 msgid "TENEX C Shell"
-msgstr "מעטפת TENEX C"
+msgstr "TENEX C Shell"
 
 #: ../src/gdu-gtk/gdu-gtk.c:195
 msgctxt "application name"
 msgid "Z Shell"
-msgstr "מעטפת Z"
+msgstr "Z Shell"
 
 #: ../src/gdu-gtk/gdu-gtk.c:200
 msgctxt "application name"
 msgid "Korn Shell"
-msgstr "מעטפת Korn"
+msgstr "Korn Shell"
 
 #: ../src/gdu-gtk/gdu-gtk.c:204
 msgctxt "application name"
 msgid "Process Viewer (top)"
-msgstr "מציג התהליכים (top)"
+msgstr "Penunjuk Proses (top)"
 
 #: ../src/gdu-gtk/gdu-gtk.c:208
 msgctxt "application name"
 msgid "Terminal Pager (less)"
-msgstr "דפדפן המסוף (less)"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-gtk.c:220
 msgctxt "application name"
 msgid "Unknown"
-msgstr "לא ידוע"
+msgstr "Tidak diketahui"
 
 #: ../src/gdu-gtk/gdu-gtk.c:231
 #, c-format
@@ -2286,133 +2250,132 @@ msgstr "pid: %d  program: %s"
 #: ../src/gdu-gtk/gdu-gtk.c:1076
 #, c-format
 msgid "Partition %d on %s"
-msgstr "מחיצה %d על %s"
+msgstr "Sekatan %d pada %s"
 
 #: ../src/gdu-gtk/gdu-gtk.c:375
 msgid "Cannot unmount volume"
-msgstr "לא ניתן לנתק את הכרך"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-gtk.c:385
 msgid ""
 "One or more applications are using the volume. Quit the applications, and "
 "then try unmounting again."
 msgstr ""
-"יתכן שיש יישום אחד או יותר המשתמשים בכרך. נא לצאת מהיישומים ולנסות לנתק שוב."
 
 #: ../src/gdu-gtk/gdu-gtk.c:426
 msgid "_Unmount"
-msgstr "_ניתוק"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-gtk.c:503
 msgid "Passphrases do not match"
-msgstr "מילות הצופן אינן תואמות"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-gtk.c:510
 msgid "Passphrases do not differ"
-msgstr "מילות הצופן אינן שונות"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-gtk.c:516
 msgid "Passphrase can't be empty"
-msgstr "מילת הצופן לא יכולה להיות ריקה"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-gtk.c:590
 msgid "Cr_eate"
-msgstr "י_צירה"
+msgstr "Ci_pta"
 
 #: ../src/gdu-gtk/gdu-gtk.c:592 ../src/palimpsest/gdu-section-volumes.c:2499
 msgid "Change _Passphrase"
-msgstr "שינוי _מילת צופן"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-gtk.c:594
 msgid "_Unlock"
-msgstr "_שחרור"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-gtk.c:626
 msgid "To create an encrypted device, choose a passphrase to protect it"
-msgstr "כדי ליצור התקן מוצפן, יש לבחור במילת צופן כדי להגן עליו"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-gtk.c:629
 msgid "To change the passphrase, enter both the current and new passphrase"
-msgstr "כדי לשנות את מילת הצופן יש לשנות את מילות הצופן החדשה והנוכחית"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-gtk.c:632
 msgid ""
 "Data on this device is stored in an encrypted form protected by a passphrase"
-msgstr "הנתונים המאוחסנים על ההתקן מוצפנים ומוגנים על ידי מילת צופן"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-gtk.c:645
 msgid ""
 "Data on this device will be stored in an encrypted form protected by a "
 "passphrase."
-msgstr "הנתונים המאוחסנים על ההתקן יוצפנו ויהיו מוגנים על ידי מילת צופן."
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-gtk.c:648
 msgid ""
 "Data on this device is stored in an encrypted form protected by a passphrase."
-msgstr "הנתונים המאוחסנים על ההתקן מוצפנים ומוגנים על ידי מילת צופן."
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-gtk.c:651
 msgid ""
 "To make the data available for use, enter the passphrase for the device."
-msgstr "כדי שניתן יהיה להשתמש בנתונים, יש להזין את מילת הצופן עבור ההתקן."
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-gtk.c:660
 msgid "Incorrect Passphrase. Try again."
-msgstr "מילת צופן שגויה. נא לנסות שוב."
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-gtk.c:684
 msgid "C_urrent Passphrase:"
-msgstr "מילת צופן נו_כחית:"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-gtk.c:698
 msgid "_New Passphrase:"
-msgstr "מילת צופן _חדשה:"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-gtk.c:711
 msgid "_Verify Passphrase:"
-msgstr "_אימות מילת הצפון:"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-gtk.c:753
 msgid "_Passphrase:"
-msgstr "מילת _צופן:"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-gtk.c:768
 msgid "_Forget passphrase immediately"
-msgstr "ה_תעלמות ממילת הצופן מיד"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-gtk.c:771
 msgid "Remember passphrase until you _log out"
-msgstr "שמירת מילת הצפון עד ל_התנתקות מהמערכת"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-gtk.c:774
 msgid "_Remember forever"
-msgstr "_שמירה תמיד"
+msgstr "_Ingat selamanya"
 
 #: ../src/gdu-gtk/gdu-gtk.c:837
 msgid "Enter Passphrase"
-msgstr "הזנת מילת צופן"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-gtk.c:966 ../src/gdu/gdu-util.c:828
 #, c-format
 msgid "LUKS Passphrase for UUID %s"
-msgstr "מילת מפתח LUKS עבור ה־UUID‏ %s"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-gtk.c:1268
 msgid "Empty (don't create a file system)"
-msgstr "ריק (לא ליצור מערך קבצים)"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-gtk.c:1289
 msgid "Empty"
-msgstr "ריק"
+msgstr "Kosong"
 
 #: ../src/gdu-gtk/gdu-gtk.c:1297
 msgid "Extended Partition"
-msgstr "מחיצה מורחבת"
+msgstr "Sekatan Terluas"
 
 #: ../src/gdu-gtk/gdu-gtk.c:1556 ../src/palimpsest/gdu-section-drive.c:291
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:254
 msgid "Master Boot Record"
-msgstr "רשומת הפעלה עיקרית (MBR)"
+msgstr ""
 
 #. Translators: This string is used for conveying the partition table format
 #: ../src/gdu-gtk/gdu-gtk.c:1561 ../src/gdu/gdu-drive.c:833
@@ -2420,34 +2383,34 @@ msgstr "רשומת הפעלה עיקרית (MBR)"
 #: ../src/palimpsest/gdu-section-drive.c:293
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:256
 msgid "GUID Partition Table"
-msgstr "טבלת המחיצות ב־GUID"
+msgstr ""
 
 #: ../src/gdu-gtk/gdu-gtk.c:1566
 msgid "Don't partition"
-msgstr "לא לפצל למחיצות"
+msgstr "Jangan membuat sekatan"
 
 #: ../src/gdu-gtk/gdu-gtk.c:1571 ../src/gdu/gdu-util.c:495
 #: ../src/palimpsest/gdu-section-drive.c:289
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:252
 msgid "Apple Partition Map"
-msgstr "מפת המחיצות של Apple"
+msgstr "Peta Sekatan Apple"
 
 #: ../src/gdu-gtk/gdu-partition-dialog.c:100
 msgid "Partitioning Scheme"
-msgstr "סכימת מחיצות"
+msgstr "Skema Sekatan"
 
 #: ../src/gdu-gtk/gdu-partition-dialog.c:101
 msgid "The selected partitioning scheme"
-msgstr "סכימת המחיצות שנבחרה"
+msgstr "Skema sekatan dipilih"
 
 #. Translators: 'scheme' means 'partitioning scheme' here.
 #: ../src/gdu-gtk/gdu-partition-dialog.c:250
 msgid "_Scheme:"
-msgstr "_סכימה:"
+msgstr "_Skema:"
 
 #: ../src/gdu-gtk/gdu-size-widget.c:89
 msgid "KB"
-msgstr "ק\"ב"
+msgstr "KB"
 
 #: ../src/gdu-gtk/gdu-size-widget.c:95
 msgid "MB"
@@ -2455,11 +2418,11 @@ msgstr "MB"
 
 #: ../src/gdu-gtk/gdu-size-widget.c:98
 msgid "GB"
-msgstr "ג\"ב"
+msgstr "GB"
 
 #: ../src/gdu-gtk/gdu-size-widget.c:101
 msgid "TB"
-msgstr "ט\"ב"
+msgstr "TB"
 
 #: ../src/gdu-gtk/gdu-size-widget.c:104
 msgid "KiB"
@@ -2479,56 +2442,54 @@ msgstr "TiB"
 
 #: ../src/gdu-gtk/gdu-size-widget.c:489
 msgid "The currently selected size"
-msgstr "הגודל הנבחר הנוכחי"
+msgstr "Saiz yang dipilih sekarang"
 
 #: ../src/gdu-gtk/gdu-size-widget.c:502
 msgid "Minimum Size"
-msgstr "גודל מינימלי"
+msgstr "Saiz Minimum"
 
 #: ../src/gdu-gtk/gdu-size-widget.c:503
 msgid "The minimum size that can be selected"
-msgstr "הגודל המינימלי הניתן לבחירה"
+msgstr "Saiz minimum yang boleh dipilih"
 
 #: ../src/gdu-gtk/gdu-size-widget.c:516
 msgid "Maximum Size"
-msgstr "גודל מקסימלי"
+msgstr "Saiz Maksimum"
 
 #: ../src/gdu-gtk/gdu-size-widget.c:517
 msgid "The maximum size that can be selected"
-msgstr "הגודל המקסימלי הניתן לבחירה"
+msgstr "Saiz maksimum yang boleh dipilih"
 
 #: ../src/gdu-gtk/gdu-time-label.c:71
 #, c-format
 msgid "Less than a minute ago"
-msgstr "לפני פחות מדקה"
+msgstr "Kurang dari seminit yang lepas"
 
 #: ../src/gdu-gtk/gdu-time-label.c:75
 #, c-format
 msgid "%d minute ago"
 msgid_plural "%d minutes ago"
-msgstr[0] "לפני דקה"
-msgstr[1] "לפני %d דקות"
+msgstr[0] "%d minit yang lepas"
 
 #: ../src/gdu-gtk/gdu-time-label.c:82
 #, c-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
-msgstr[0] "לפני שעה"
-msgstr[1] "לפני %d שעות"
+msgstr[0] "%d jam yang lepas"
 
 #: ../src/gdu-gtk/gdu-volume-grid.c:504
 #: ../src/palimpsest/gdu-section-drive.c:150
 msgid "Drive"
-msgstr "כונן"
+msgstr "Peranti"
 
 #: ../src/gdu-gtk/gdu-volume-grid.c:505
 msgid "Drive to show volumes for"
-msgstr "כוננים להצגת כרכים עבורם"
+msgstr ""
 
 #. Translators: This is shown in the grid for a RAID array that is not running
 #: ../src/gdu-gtk/gdu-volume-grid.c:1195
 msgid "RAID Array is not running"
-msgstr "מערך ה־RAID אינו פעיל"
+msgstr ""
 
 #. Translators: This is shown in the grid for a drive when no media has been detected
 #. Translators: This string is used as a description text when no media has
@@ -2538,38 +2499,38 @@ msgstr "מערך ה־RAID אינו פעיל"
 #: ../src/palimpsest/gdu-section-drive.c:343
 #, c-format
 msgid "No Media Detected"
-msgstr "לא זוהה מדיה"
+msgstr ""
 
 #. Translators: shown in the grid for an extended MS-DOS partition
 #: ../src/gdu-gtk/gdu-volume-grid.c:1283
 msgid "Extended"
-msgstr "מורחב"
+msgstr "Dilanjutkan"
 
 #. Translators: shown in the grid for an encrypted LUKS volume
 #: ../src/gdu-gtk/gdu-volume-grid.c:1291
 msgid "Encrypted"
-msgstr "מוצפן"
+msgstr "Dienkrip"
 
 #. Translators: shown in the grid for an RAID Component
 #: ../src/gdu-gtk/gdu-volume-grid.c:1305 ../src/gdu/gdu-util.c:344
 #: ../src/palimpsest/gdu-section-volumes.c:2195
 #, c-format
 msgid "RAID Component"
-msgstr "רכיב RAI"
+msgstr "Komponen RAID"
 
 #. Translators: shown for free/unallocated space
 #: ../src/gdu-gtk/gdu-volume-grid.c:1313
 msgid "Free"
-msgstr "פנוי"
+msgstr "Bebas"
 
 #. Translators: this is a verb
 #: ../src/nautilus-extension/nautilus-gdu.c:223
 msgid "_Format..."
-msgstr "_פרמוט..."
+msgstr "_Format..."
 
 #: ../src/nautilus-extension/nautilus-gdu.c:224
 msgid "Create new filesystem on the selected device"
-msgstr "יצירת מערכת קבצים חדשה על ההתקן הנבחר"
+msgstr "Cipta fail sistem baru pada peranti dipilih"
 
 #. Translators: This word is used to describe the media inserted into a device
 #: ../src/gdu/gdu-drive.c:573
@@ -2594,12 +2555,12 @@ msgstr "SecureDigital"
 #. Translators: This word is used to describe the media inserted into a device
 #: ../src/gdu/gdu-drive.c:585
 msgid "SD High Capacity"
-msgstr "SD בנפח גדול"
+msgstr "SD Kapasiti Tinggi"
 
 #. Translators: This word is used to describe the media inserted into a device
 #: ../src/gdu/gdu-drive.c:588
 msgid "Floppy"
-msgstr "תקליטון"
+msgstr "Cakera Liut"
 
 #. Translators: This word is used to describe the media inserted into a device
 #: ../src/gdu/gdu-drive.c:591
@@ -2652,13 +2613,13 @@ msgstr "HDDVD"
 #: ../src/gdu/gdu-drive.c:689
 #, c-format
 msgid "%s File"
-msgstr "קובץ %s"
+msgstr "%s Fail"
 
 #. Translators: %s is the media type e.g. 'CD/DVD' or 'CompactFlash'
 #: ../src/gdu/gdu-drive.c:703 ../src/gdu/gdu-drive.c:742
 #, c-format
 msgid "%s Drive"
-msgstr "כונן %s"
+msgstr "%s Drive"
 
 #. Translators: first %s is the size, second %s is the media type
 #. * e.g. 'CD/DVD' or 'CompactFlash'
@@ -2666,7 +2627,7 @@ msgstr "כונן %s"
 #: ../src/gdu/gdu-drive.c:737
 #, c-format
 msgid "%s %s Drive"
-msgstr "כונן %s %s"
+msgstr "%s %s Drive"
 
 #. Translators: This string is used to describe a hard disk.
 #. * The first %s is the size of the drive e.g. '45 GB'.
@@ -2674,14 +2635,14 @@ msgstr "כונן %s %s"
 #: ../src/gdu/gdu-drive.c:753
 #, c-format
 msgid "%s Hard Disk"
-msgstr "כונן קשיח %s"
+msgstr "%s Cakera Keras"
 
 #. Translators: This string is used to describe a hard disk where the size
 #. * is not known.
 #.
 #: ../src/gdu/gdu-drive.c:758
 msgid "Hard Disk"
-msgstr "כונן קשיח"
+msgstr "Cakera Keras"
 
 #. Translators: This string is used to describe a SSD. The first %s is
 #. * the size of the drive e.g. '45 GB'.
@@ -2689,14 +2650,14 @@ msgstr "כונן קשיח"
 #: ../src/gdu/gdu-drive.c:765
 #, c-format
 msgid "%s Solid-State Disk"
-msgstr "כונן Solid-State ‏%s"
+msgstr ""
 
 #. Translators: This string is used to describe a SSD where the size
 #. * is not known.
 #.
 #: ../src/gdu/gdu-drive.c:771
 msgid "Solid-State Disk"
-msgstr "כונן Solid-State"
+msgstr ""
 
 #. Translators: This string is the description of a drive. The first %s is the
 #. * size of the inserted media, for example '45 GB'.
@@ -2704,88 +2665,88 @@ msgstr "כונן Solid-State"
 #: ../src/gdu/gdu-drive.c:812
 #, c-format
 msgid "%s Media"
-msgstr "מדיה %s "
+msgstr "%s Media"
 
 #. Translators: This string is used for conveying the partition table format
 #: ../src/gdu/gdu-drive.c:830 ../src/gdu/gdu-linux-md-drive.c:569
 msgid "MBR Partition Table"
-msgstr "טבלת מחיצות MBR"
+msgstr ""
 
 #. Translators: This string is used for conveying the partition table format
 #: ../src/gdu/gdu-drive.c:836 ../src/gdu/gdu-linux-md-drive.c:575
 msgid "Apple Partition Table"
-msgstr "טבלת מחיצות של Apple"
+msgstr ""
 
 #. Translators: This string is used for conveying the partition table format when
 #. * the format is unknown
 #.
 #: ../src/gdu/gdu-drive.c:841 ../src/gdu/gdu-linux-md-drive.c:580
 msgid "Partitioned"
-msgstr "מחולק למחיצות"
+msgstr ""
 
 #. Translators: This string is used for conveying a device is not partitioned.
 #.
 #: ../src/gdu/gdu-drive.c:846 ../src/palimpsest/gdu-section-drive.c:302
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:265
 msgid "Not Partitioned"
-msgstr "לא מחולק למחיצות"
+msgstr ""
 
 #. TODO: include type e.g. SATA Port Multiplier, SAS Expander etc
 #: ../src/gdu/gdu-hub.c:222
 msgid "SAS Expander"
-msgstr "מרחיב SAS"
+msgstr ""
 
 #: ../src/gdu/gdu-hub.c:230
 msgid "PATA Host Adapter"
-msgstr "מתאם לאירוח PATA"
+msgstr "Penyesuai Hos PATA"
 
 #: ../src/gdu/gdu-hub.c:232
 msgid "SATA Host Adapter"
-msgstr "מתאם לאירוח SATA"
+msgstr "Penyesuai Hos SATA"
 
 #: ../src/gdu/gdu-hub.c:234
 msgid "ATA Host Adapter"
-msgstr "מתאם לאירוח ATA"
+msgstr "Penyesuai Hos  ATA"
 
 #: ../src/gdu/gdu-hub.c:236
 msgid "SAS Host Adapter"
-msgstr "מתאם לאירוח SAS"
+msgstr "Penyesuai Hos SAS"
 
 #: ../src/gdu/gdu-hub.c:238
 msgid "SCSI Host Adapter"
-msgstr "מתאם לאירוח SCSI"
+msgstr "Penyesuai Hos SCSI"
 
 #: ../src/gdu/gdu-hub.c:240
 msgid "Host Adapter"
-msgstr "מתאם אירוח"
+msgstr "Penyesuai Hos"
 
 #. Translators: Description
 #: ../src/gdu/gdu-linux-lvm2-volume.c:330
 msgid "Logical Volume"
-msgstr "כרך לוגי"
+msgstr ""
 
 #. Translators: VPD name
 #: ../src/gdu/gdu-linux-lvm2-volume.c:333
 msgid "LVM2 Logical Volume"
-msgstr "כרך לוגי מסוג LVM2"
+msgstr ""
 
 #. Translators: Description
 #: ../src/gdu/gdu-linux-lvm2-volume-group.c:382
 #: ../src/gdu/gdu-linux-lvm2-volume-group.c:386
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:653
 msgid "Volume Group"
-msgstr "קבוצת כרכים"
+msgstr "Kumpulan Volum"
 
 #. Translators: VPD name - first %s is the size e.g. '45 GB'
 #: ../src/gdu/gdu-linux-lvm2-volume-group.c:390
 #, c-format
 msgid "%s LVM2 Volume Group"
-msgstr "קבוצת כרכים בת %s מסוג LVM2"
+msgstr "%s Kumpulan Volum LVM2"
 
 #. Translators: VPD name when size is not known
 #: ../src/gdu/gdu-linux-lvm2-volume-group.c:393
 msgid "LVM2 Volume Group"
-msgstr "קבוצת כרכים מסוג LVM2"
+msgstr "Kumpulan Volum LVM2"
 
 #. Translators: label for an unallocated space in a LVM2 volume group.
 #. * %s is the size, formatted like '45 GB'
@@ -2797,7 +2758,7 @@ msgstr "קבוצת כרכים מסוג LVM2"
 #: ../src/gdu/gdu-volume-hole.c:152
 #, c-format
 msgid "%s Free"
-msgstr "‏%s פנוי"
+msgstr "%s Bebas"
 
 #. Translators: Description
 #: ../src/gdu/gdu-linux-lvm2-volume-hole.c:205
@@ -2805,26 +2766,26 @@ msgstr "‏%s פנוי"
 #: ../src/palimpsest/gdu-section-volumes.c:2209
 #: ../src/palimpsest/gdu-section-volumes.c:2217
 msgid "Unallocated Space"
-msgstr "שטח לא משומש"
+msgstr ""
 
 #. Translators: VPD name
 #: ../src/gdu/gdu-linux-lvm2-volume-hole.c:208
 msgid "LVM2 VG Unallocated Space"
-msgstr "שטח בלתי מוקצה בקבוצת הכרכים מסוג LVM2"
+msgstr ""
 
 #. Translators: First %s is the size, second %s is a RAID level, e.g. 'RAID-5'
 #. Translators: first %s is the size e.g. '45 GB', second %s is the level e.g. 'RAID-5'
 #: ../src/gdu/gdu-linux-md-drive.c:542 ../src/gdu/gdu-linux-md-drive.c:624
 #, c-format
 msgid "%s %s Array"
-msgstr "‏%s במערך מסוג %s"
+msgstr "%s %s Array"
 
 #. Translators: %s is a RAID level, e.g. 'RAID-5'
 #. Translators: %s is the level e.g. 'RAID-5'
 #: ../src/gdu/gdu-linux-md-drive.c:547 ../src/gdu/gdu-linux-md-drive.c:629
 #, c-format
 msgid "%s Array"
-msgstr "מערך %s"
+msgstr "%s Array"
 
 #. Translators: First %s is a device file such as /dev/sda4
 #. * second %s is the state of the device
@@ -2832,13 +2793,13 @@ msgstr "מערך %s"
 #: ../src/gdu/gdu-linux-md-drive.c:600
 #, c-format
 msgid "RAID Array %s (%s)"
-msgstr "מערך RAID‏ %s‏ (%s)"
+msgstr "RAID Array %s (%s)"
 
 #. Translators: %s is a device file such as /dev/sda4
 #: ../src/gdu/gdu-linux-md-drive.c:605
 #, c-format
 msgid "RAID device %s"
-msgstr "התקן RAID ‏%s"
+msgstr "Peranti RAID %s"
 
 #. Translators: fallback for level
 #: ../src/gdu/gdu-linux-md-drive.c:612
@@ -2849,101 +2810,101 @@ msgstr "RAID"
 #: ../src/gdu/gdu-linux-md-drive.c:617
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:944
 msgid "RAID Array"
-msgstr "מערך RAID"
+msgstr "RAID Array"
 
 #: ../src/gdu/gdu-linux-md-drive.c:1114
 msgctxt "Linux MD slave state"
 msgid "Not Attached"
-msgstr "לא מצורף"
+msgstr ""
 
 #: ../src/gdu/gdu-linux-md-drive.c:1117
 msgctxt "Linux MD slave state"
 msgid "Faulty"
-msgstr "כושל"
+msgstr ""
 
 #: ../src/gdu/gdu-linux-md-drive.c:1122
 msgctxt "Linux MD slave state"
 msgid "Fully Synchronized"
-msgstr "מסונכרן לחלוטין"
+msgstr ""
 
 #: ../src/gdu/gdu-linux-md-drive.c:1124
 msgctxt "Linux MD slave state"
 msgid "Writemostly"
-msgstr "העיקרי לכתיבה"
+msgstr ""
 
 #: ../src/gdu/gdu-linux-md-drive.c:1126
 msgctxt "Linux MD slave state"
 msgid "Blocked"
-msgstr "חסום"
+msgstr ""
 
 #: ../src/gdu/gdu-linux-md-drive.c:1130
 msgctxt "Linux MD slave state"
 msgid "Partially Synchronized"
-msgstr "מסונכרן חלקית"
+msgstr ""
 
 #: ../src/gdu/gdu-linux-md-drive.c:1132
 msgctxt "Linux MD slave state"
 msgid "Spare"
-msgstr "שכפול"
+msgstr ""
 
 #: ../src/gdu/gdu-machine.c:151
 msgid "Local Storage"
-msgstr "אחסון מקומי"
+msgstr "Penyimpanan Lokal"
 
 #. TODO: use display-hostname
 #: ../src/gdu/gdu-machine.c:154
 #, c-format
 msgid "Storage on %s"
-msgstr "אחסון על גבי %s"
+msgstr "Penyimpanan pada %s"
 
 #: ../src/gdu/gdu-pool.c:885
 msgid "Multipath Devices"
-msgstr "התקנים מרובי נתיבים"
+msgstr ""
 
 #: ../src/gdu/gdu-pool.c:886
 msgid "Drives with multiple I/O paths"
-msgstr "כוננים עם מספר נתיבי קלט/פלט"
+msgstr ""
 
 #: ../src/gdu/gdu-pool.c:896
 msgid "Multi-disk Devices"
-msgstr "התקני ריבוי כוננים"
+msgstr ""
 
 #: ../src/gdu/gdu-pool.c:897
 msgid "RAID, LVM and other logical drives"
-msgstr "RAID, LVM וכוננים לוגיים אחרים"
+msgstr ""
 
 #: ../src/gdu/gdu-pool.c:907
 msgid "Peripheral Devices"
-msgstr "התקנים בחיבורים חיצוניים"
+msgstr ""
 
 #: ../src/gdu/gdu-pool.c:908
 msgid "USB, FireWire and other peripherals"
-msgstr "USB, FireWire והתקני חוץ אחרים"
+msgstr ""
 
 #: ../src/gdu/gdu-pool.c:2092
 #, c-format
 msgid "Error enumerating devices: %s"
-msgstr "שגיאה במניית הכוננים: %s"
+msgstr ""
 
 #: ../src/gdu/gdu-pool.c:2118
 #, c-format
 msgid "Error enumerating adapters: %s"
-msgstr "שגיאה במניית המתאמים: %s"
+msgstr ""
 
 #: ../src/gdu/gdu-pool.c:2141
 #, c-format
 msgid "Error enumerating expanders: %s"
-msgstr "שגיאה במניית המרחיבים: %s"
+msgstr ""
 
 #: ../src/gdu/gdu-pool.c:2164
 #, c-format
 msgid "Error enumerating ports: %s"
-msgstr "שגיאה במניית הפתחות: %s"
+msgstr ""
 
 #: ../src/gdu/gdu-ssh-bridge.c:292
 #, c-format
 msgid "Error listening to address `localhost:%d': %s: %s\n"
-msgstr "שגיאה בהאזנה לכתובת `localhost:%d':‏ %s:‏ %s\n"
+msgstr ""
 
 #: ../src/gdu/gdu-ssh-bridge.c:307
 #, c-format
@@ -2951,40 +2912,39 @@ msgid ""
 "Error creating a local TCP server, tried binding to ports 9000-10000 on "
 "localhost"
 msgstr ""
-"שגיאה ביצירת שרת TCP מקומי, ארע ניסיון לאיגוד הפתחות 9000—10000 ב־localhost"
 
 #: ../src/gdu/gdu-ssh-bridge.c:322
 #, c-format
 msgid "Error setting auth mechanisms on local DBusServer\n"
-msgstr "שגיאה בכת הגדרת מנגנוני האימות בשרת ה־D-Bus המקומי\n"
+msgstr ""
 
 #: ../src/gdu/gdu-ssh-bridge.c:347
 #, c-format
 msgid "Unable to parse command-line `%s' (Malformed address?): %s"
-msgstr "לא ניתן לפענח את שורת הפקודה `%s' (כתובת שגויה?): %s"
+msgstr ""
 
 #: ../src/gdu/gdu-ssh-bridge.c:369
 #, c-format
 msgid "Unable to spawn ssh program: %s"
-msgstr "לא ניתן להפעיל את ssh כתת־משימה: %s"
+msgstr ""
 
 #: ../src/gdu/gdu-ssh-bridge.c:398 ../src/gdu/gdu-ssh-bridge.c:510
 #, c-format
 msgid "Error reading stderr output: %s"
-msgstr "שגיאה בקריאת פלט ה־stderr:‏ %s"
+msgstr ""
 
 #: ../src/gdu/gdu-ssh-bridge.c:405
 msgid "Error reading stderr output: No content"
-msgstr "שגיאה בקריאת פלט ה־stderr: איו תוכן"
+msgstr ""
 
 #: ../src/gdu/gdu-ssh-bridge.c:471
 msgid "Error logging in"
-msgstr "שגיאה בכניסה"
+msgstr ""
 
 #: ../src/gdu/gdu-ssh-bridge.c:491
 #, c-format
 msgid "Error sending `%s': %s"
-msgstr "שגיאה בשליחת `%s': %s"
+msgstr ""
 
 #: ../src/gdu/gdu-ssh-bridge.c:519
 #, c-format
@@ -2992,18 +2952,16 @@ msgid ""
 "Unexpected stderr output - expected `udisks-tcp-bridge: Waiting for secret' "
 "but got `%s'"
 msgstr ""
-"פלט בלתי צפוי מה־stderr — התכנה ציפתה ל־`udisks-tcp-bridge: Waiting for "
-"secret' אך קיבלה `%s'"
 
 #: ../src/gdu/gdu-ssh-bridge.c:536
 #, c-format
 msgid "Error passing authorization secret: %s"
-msgstr "שגיאה בהעברת סוד האימות: %s"
+msgstr ""
 
 #: ../src/gdu/gdu-ssh-bridge.c:557
 #, c-format
 msgid "Error reading stderr from: %s"
-msgstr "שגיאה בקריאת ה־stderr מ־:%s"
+msgstr ""
 
 #: ../src/gdu/gdu-ssh-bridge.c:566
 #, c-format
@@ -3011,17 +2969,15 @@ msgid ""
 "Unexpected stderr output - expected `udisks-tcp-bridge: Attempting to "
 "connect to port %d' but got `%s'"
 msgstr ""
-"פלט בלתי צפוי מה־stderr — התכנה ציפתה ל־`udisks-tcp-bridge: Attempting to "
-"connect to port %d' אך קיבלה `%s'"
 
 #: ../src/gdu/gdu-ssh-bridge.c:585
 #, c-format
 msgid "The udisks-tcp-bridge program failed to prove it was authorized: %s"
-msgstr "התכנית udisks-tcp-bridge לא הצליחה להוכיח כי היא מאומתת: %s"
+msgstr ""
 
 #: ../src/gdu/gdu-ssh-bridge.c:592
 msgid "The udisks-tcp-bridge program failed to prove it was authorized"
-msgstr "התכנית udisks-tcp-bridge לא הצליחה להוכיח כי היא מאומתת"
+msgstr ""
 
 #. Translators: The first %s is the size in power-of-2 units, e.g. '64 KiB'
 #. * the second %s is the size as a number e.g. '65,536 bytes'
@@ -3032,12 +2988,12 @@ msgstr "התכנית udisks-tcp-bridge לא הצליחה להוכיח כי הי�
 #: ../src/gdu/gdu-util.c:131 ../src/gdu/gdu-util.c:140
 #, c-format
 msgid "%s (%s bytes)"
-msgstr "%s (%s בתים)"
+msgstr "%s (%s bytes)"
 
 #. Translators: FAT is a filesystem type
 #: ../src/gdu/gdu-util.c:175
 msgid "FAT (12-bit version)"
-msgstr "‏FAT (גרסת 12-ביט)"
+msgstr "FAT (versi 12-bit)"
 
 #. Translators: FAT is a filesystem type
 #: ../src/gdu/gdu-util.c:178 ../src/gdu/gdu-util.c:185
@@ -3049,18 +3005,18 @@ msgstr "FAT"
 #. Translators: FAT is a filesystem type
 #: ../src/gdu/gdu-util.c:183
 msgid "FAT (16-bit version)"
-msgstr "‏FAT (גרסת 16-ביט)"
+msgstr "FAT (versi 16-bit)"
 
 #. Translators: FAT is a filesystem type
 #: ../src/gdu/gdu-util.c:190
 msgid "FAT (32-bit version)"
-msgstr "‏FAT (גרסת 32-ביט)"
+msgstr "FAT (versi 32-bit)"
 
 #. Translators: NTFS is a filesystem type
 #: ../src/gdu/gdu-util.c:205
 #, c-format
 msgid "NTFS (version %s)"
-msgstr "NTFS (גרסה %s)"
+msgstr "NTFS (versi %s)"
 
 #. Translators: NTFS is a filesystem type
 #: ../src/gdu/gdu-util.c:208 ../src/gdu/gdu-util.c:210
@@ -3080,7 +3036,7 @@ msgstr "HFS+"
 
 #: ../src/gdu/gdu-util.c:228
 msgid "Linux Unified Key Setup"
-msgstr "הגדרת מפתח לינוקס מאוחד"
+msgstr ""
 
 #. Translators: LUKS is 'Linux Unified Key Setup', a disk encryption format
 #: ../src/gdu/gdu-util.c:231
@@ -3091,7 +3047,7 @@ msgstr "LUKS"
 #: ../src/gdu/gdu-util.c:237
 #, c-format
 msgid "Ext2 (version %s)"
-msgstr "‏Ext2 (גירסה %s)"
+msgstr "Ext2 (versi %s)"
 
 #. Translators: Ext2 is a filesystem type
 #: ../src/gdu/gdu-util.c:240
@@ -3108,7 +3064,7 @@ msgstr "ext2"
 #: ../src/gdu/gdu-util.c:249
 #, c-format
 msgid "Ext3 (version %s)"
-msgstr "‏Ext3 (גירסה %s)"
+msgstr "Ext3 (versi %s)"
 
 #. Translators: Ext3 is a filesystem type
 #: ../src/gdu/gdu-util.c:252
@@ -3125,13 +3081,13 @@ msgstr "ext3"
 #: ../src/gdu/gdu-util.c:261
 #, c-format
 msgid "Journal for Ext3 (version %s)"
-msgstr "מתעד עבור Ext3 (גרסה %s)"
+msgstr "Jurnal untuk Ext3 (versi %s)"
 
 #. Translators: 'Journal' refers to a filesystem technology here, see 'journaling filesystems'
 #: ../src/gdu/gdu-util.c:264
 #, c-format
 msgid "Journal for Ext3"
-msgstr "מתעד עבור Ext3"
+msgstr "Jurnal untuk Ext3"
 
 #. Translators: jbd is a filesystem type
 #: ../src/gdu/gdu-util.c:267
@@ -3142,7 +3098,7 @@ msgstr "jbd"
 #: ../src/gdu/gdu-util.c:273
 #, c-format
 msgid "Ext4 (version %s)"
-msgstr "‏Ext4 (גירסה %s)"
+msgstr "Ext4 (versi %s)"
 
 #. Translators: ext4 is a filesystem type
 #: ../src/gdu/gdu-util.c:276
@@ -3159,7 +3115,7 @@ msgstr "ext4"
 #: ../src/gdu/gdu-util.c:285
 #, c-format
 msgid "XFS (version %s)"
-msgstr "XFS (גירסה %s)"
+msgstr "XFS (versi %s)"
 
 #. Translators: xfs is a filesystem type
 #: ../src/gdu/gdu-util.c:288
@@ -3176,7 +3132,7 @@ msgstr "xfs"
 #: ../src/gdu/gdu-util.c:297
 #, c-format
 msgid "ReiserFS (version %s)"
-msgstr "ReiserFS (גירסה %s)"
+msgstr "ReiserFS (versi %s)"
 
 #. Translators: reiserfs is a filesystem type
 #: ../src/gdu/gdu-util.c:300
@@ -3202,7 +3158,7 @@ msgstr "iso9660"
 #. Translators: udf is a filesystem type
 #: ../src/gdu/gdu-util.c:316
 msgid "Universal Disk Format"
-msgstr "פרמוט דיסק אוניברסלי"
+msgstr ""
 
 #. Translators: udf is a filesystem type
 #: ../src/gdu/gdu-util.c:319
@@ -3211,7 +3167,7 @@ msgstr "udf"
 
 #: ../src/gdu/gdu-util.c:323 ../src/palimpsest/gdu-section-volumes.c:2191
 msgid "Swap Space"
-msgstr "שטח החלפה (Swap)"
+msgstr "Ruang Swap"
 
 #. Translators: filesystem type for swap space
 #: ../src/gdu/gdu-util.c:326
@@ -3221,12 +3177,12 @@ msgstr "swap"
 #: ../src/gdu/gdu-util.c:331
 #, c-format
 msgid "LVM2 Physical Volume (version %s)"
-msgstr "כרך פיזי מסוג LVM2 (גרסה %s)"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:333
 #, c-format
 msgid "LVM2 Physical Volume"
-msgstr "כרך פיזי מסוג LVM2"
+msgstr ""
 
 #. Translators: short name for LVM2 Physical Volume
 #: ../src/gdu/gdu-util.c:336
@@ -3236,7 +3192,7 @@ msgstr "lvm2_pv"
 #: ../src/gdu/gdu-util.c:342
 #, c-format
 msgid "RAID Component (version %s)"
-msgstr "רכיב RAID (גרסה %s)"
+msgstr ""
 
 #. Translators: short name for 'RAID Component'
 #: ../src/gdu/gdu-util.c:347
@@ -3255,334 +3211,334 @@ msgstr "minix"
 
 #: ../src/gdu/gdu-util.c:369
 msgid "Creating File System"
-msgstr "נוצרת מערכת קבצים"
+msgstr "Mencipta Fail Sistem"
 
 #: ../src/gdu/gdu-util.c:371
 msgid "Mounting File System"
-msgstr "מערכת קבצים מעוגנת"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:373
 msgid "Unmounting File System"
-msgstr "מערכת קבצים מנותקת"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:375
 msgid "Checking File System"
-msgstr "מערכת קבצים בבדיקה"
+msgstr "Memeriksa Fail Sistem"
 
 #: ../src/gdu/gdu-util.c:377
 msgid "Creating LUKS Device"
-msgstr "נוצר התקן LUKS"
+msgstr "Mencipta Peranti LUKS"
 
 #: ../src/gdu/gdu-util.c:379
 msgid "Unlocking LUKS Device"
-msgstr "שחרור התקן LUKS"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:381
 msgid "Locking LUKS Device"
-msgstr "נעילת התקן LUKS"
+msgstr "Mengunci Peranti LUKS"
 
 #: ../src/gdu/gdu-util.c:383
 msgid "Creating Partition Table"
-msgstr "נוצרת טבלת מחיצות"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:385
 msgid "Deleting Partition"
-msgstr "מחיצה נמחקת"
+msgstr "Memadam Sekatan"
 
 #: ../src/gdu/gdu-util.c:387
 msgid "Creating Partition"
-msgstr "מחיצה נוצרת"
+msgstr "Mencipta Sekatan"
 
 #: ../src/gdu/gdu-util.c:389
 msgid "Modifying Partition"
-msgstr "שינוי מחיצה"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:391
 msgid "Setting Label for Device"
-msgstr "הגדרת תווית להתקן"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:393
 msgid "Changing Passphrase for Encrypted LUKS Device"
-msgstr "שינוי מילת הצופן להתקן LUKS נעול"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:395
 msgid "Adding Component to RAID Array"
-msgstr "הוספת רכיב למערך RAID"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:397
 msgid "Removing Component from RAID Array"
-msgstr "הסרת רכיב ממערך RAID"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:399
 msgid "Stopping RAID Array"
-msgstr "עצירת מערך RAID"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:401
 msgid "Starting RAID Array"
-msgstr "הפעלת מערך RAID"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:403
 msgid "Checking RAID Array"
-msgstr "בדיקת מערך RAID"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:405
 msgid "Repairing RAID Array"
-msgstr "תיקון מערך RAID"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:407
 msgid "Running Short SMART Self-Test"
-msgstr "מתבצעת בדיקת SMART עצמית קצרה"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:409
 msgid "Running Extended SMART Self-Test"
-msgstr "מתבצעת בדיקת SMART עצמית מורחבת"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:411
 msgid "Running Conveyance SMART Self-Test"
-msgstr "מתבצעת בדיקת SMART עצמית בהעברה"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:413
 msgid "Ejecting Media"
-msgstr "המדיה נשלפת"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:415
 msgid "Detaching Device"
-msgstr "ההתקן מנותק"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:417
 msgid "Forcibly Unmounting Filesystem"
-msgstr "ניתוק בכוח של מערכת קבצים"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:419
 msgid "Forcibly Locking LUKS device"
-msgstr "נעילה בכוח של התקן LUKS"
+msgstr ""
 
 #. see http://en.wikipedia.org/wiki/GUID_Partition_Table
 #. Linux
 #: ../src/gdu/gdu-util.c:435
 msgid "Linux Basic Data Partition"
-msgstr "מחיצת נתונים בסיסית של לינוקס"
+msgstr ""
 
 #. Same as MS BDP
 #: ../src/gdu/gdu-util.c:436
 msgid "Linux RAID Partition"
-msgstr "מחיצת RAID של לינוקס"
+msgstr "Sekatan RAID Linux"
 
 #: ../src/gdu/gdu-util.c:437
 msgid "Linux Swap Partition"
-msgstr "מחיצת החלפה (Swap) של לינוקס"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:438
 msgid "Linux LVM Partition"
-msgstr "מחיצת LVM של לינוקס"
+msgstr "Sekatan LVM Linux"
 
 #: ../src/gdu/gdu-util.c:439
 msgid "Linux Reserved Partition"
-msgstr "מחיצה שמורה של Linux"
+msgstr ""
 
 #. Not associated with any OS
 #: ../src/gdu/gdu-util.c:441
 msgid "MBR Partition Scheme"
-msgstr "סכימת מחיצות ב־MBR"
+msgstr "Skema Sekatan MBR"
 
 #: ../src/gdu/gdu-util.c:442
 msgid "EFI System Partition"
-msgstr "מחיצת מערכת של EFI"
+msgstr "Sekatan Sistem EFI"
 
 #: ../src/gdu/gdu-util.c:443
 msgid "BIOS Boot Partition"
-msgstr "מחיצת הפעלה של ה־BIOS"
+msgstr "Sekatan Boot BIOS"
 
 #. Microsoft
 #: ../src/gdu/gdu-util.c:445
 msgid "Microsoft Reserved Partition"
-msgstr "מחיצה שמורה של מיקרוסופט"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:446
 msgid "Microsoft Basic Data Partition"
-msgstr "מחיצה נתונים בסיסית של מיקרוסופט"
+msgstr ""
 
 #. Same as Linux BDP
 #: ../src/gdu/gdu-util.c:447
 msgid "Microsoft LDM Metadata Partition"
-msgstr "מחיצת נתוני על מסוג LDM של מיקרוסופט"
+msgstr "Sekatan Metadata Microsoft LDM"
 
 #: ../src/gdu/gdu-util.c:448
 msgid "Microsoft LDM Data Partition"
-msgstr "מחיצת נתוני LDM של מיקרוסופט"
+msgstr "Sekatan Data Microsoft LDM"
 
 #: ../src/gdu/gdu-util.c:449
 msgid "Microsoft Windows Recovery Environment"
-msgstr "סביבת שחזור Windows מבית מיקרוסופט"
+msgstr ""
 
 #. HP-UX
 #: ../src/gdu/gdu-util.c:451
 msgid "HP-UX Data Partition"
-msgstr "מחיצת נתונים של HP-UX"
+msgstr "Sekatan Data HP-UX"
 
 #: ../src/gdu/gdu-util.c:452
 msgid "HP-UX Service Partition"
-msgstr "מחיצת שירות של HP-UX"
+msgstr "Servis Sekatan HP-UX"
 
 #. FreeBSD
 #: ../src/gdu/gdu-util.c:454
 msgid "FreeBSD Boot Partition"
-msgstr "מחיצת הפעלה של FreeBSD"
+msgstr "Sekatan Boot FreeBSD"
 
 #: ../src/gdu/gdu-util.c:455
 msgid "FreeBSD Data Partition"
-msgstr "מחיצת נתונים של FreeBSD"
+msgstr "Sekatan Data FreeBSD"
 
 #: ../src/gdu/gdu-util.c:456
 msgid "FreeBSD Swap Partition"
-msgstr "יצירת מחיצת החלפה של FreeBSD"
+msgstr "Sekatan Swap FreeBSD"
 
 #: ../src/gdu/gdu-util.c:457
 msgid "FreeBSD UFS Partition"
-msgstr "מחיצת UFS של FreeBSD"
+msgstr "Sekatan UFS FreeBSD"
 
 #: ../src/gdu/gdu-util.c:458
 msgid "FreeBSD Vinum Partition"
-msgstr "מחיצת Vinum של FreeBSD"
+msgstr "Sekatan Vinum FreeBSD"
 
 #: ../src/gdu/gdu-util.c:459
 msgid "FreeBSD ZFS Partition"
-msgstr "מחיצת ZFS של FreeBSD"
+msgstr "Sekatan ZFS FreeBSD"
 
 #. Solaris
 #: ../src/gdu/gdu-util.c:461
 msgid "Solaris Boot Partition"
-msgstr "מחיצת הפעלה של Solaris"
+msgstr "Sekatan Boot Solaris"
 
 #: ../src/gdu/gdu-util.c:462
 msgid "Solaris Root Partition"
-msgstr "מחיצת על של Solaris"
+msgstr "Sekatan Root Solaris"
 
 #: ../src/gdu/gdu-util.c:463
 msgid "Solaris Swap Partition"
-msgstr "מחיצת החלפה (Swap) של Solrais"
+msgstr "Sekatan Swap Solaris"
 
 #: ../src/gdu/gdu-util.c:464
 msgid "Solaris Backup Partition"
-msgstr "מחיצת גיבוי של Solaris"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:465
 msgid "Solaris /usr Partition"
-msgstr "מחיצת /usr של Solaris"
+msgstr "Sekatan /usr Solaris"
 
 #. Same as Apple ZFS
 #: ../src/gdu/gdu-util.c:466
 msgid "Solaris /var Partition"
-msgstr "מחיצת /var של Solaris"
+msgstr "Sekatan /var Solaris"
 
 #: ../src/gdu/gdu-util.c:467
 msgid "Solaris /home Partition"
-msgstr "מחיצת /home של Solaris"
+msgstr "Sekatan /home Solaris"
 
 #: ../src/gdu/gdu-util.c:468
 msgid "Solaris Alternate Sector Partition"
-msgstr "מחיצת אגף חלופי של Solaris"
+msgstr "Sekatan Sektor Alternatif Solaris"
 
 #: ../src/gdu/gdu-util.c:469
 msgid "Solaris Reserved Partition"
-msgstr "מחיצה שמורה של Solaris"
+msgstr "Sekatan Simpanan Solaris"
 
 #: ../src/gdu/gdu-util.c:470
 msgid "Solaris Reserved Partition (2)"
-msgstr "מחיצה שמורה של Solaris‏ (2)"
+msgstr "Sekatan Simpanan Solaris (2)"
 
 #: ../src/gdu/gdu-util.c:471
 msgid "Solaris Reserved Partition (3)"
-msgstr "מחיצה שמורה של Solaris‏ (3)"
+msgstr "Sekatan Simpanan Solaris (3)"
 
 #: ../src/gdu/gdu-util.c:472
 msgid "Solaris Reserved Partition (4)"
-msgstr "מחיצה שמורה של Solaris‏ (4)"
+msgstr "Solaris Reserved Partition (4)"
 
 #: ../src/gdu/gdu-util.c:473
 msgid "Solaris Reserved Partition (5)"
-msgstr "מחיצה שמורה של Solaris‏ (5)"
+msgstr "Solaris Reserved Partition (5)"
 
 #. Mac OS X
 #: ../src/gdu/gdu-util.c:475 ../src/gdu/gdu-util.c:494
 msgid "Apple HFS/HFS+ Partition"
-msgstr "מחיצת HFS/HFS+‎ של Apple"
+msgstr "Sekatan HFS/HFS+ Apple"
 
 #. see http://developer.apple.com/documentation/mac/Devices/Devices-126.html
 #. *     http://lists.apple.com/archives/Darwin-drivers/2003/May/msg00021.html
 #: ../src/gdu/gdu-util.c:476 ../src/gdu/gdu-util.c:493
 msgid "Apple UFS Partition"
-msgstr "מחיצת UFS של Apple"
+msgstr "Sekatan UFS Apple"
 
 #: ../src/gdu/gdu-util.c:477
 msgid "Apple ZFS Partition"
-msgstr "מחיצת ZFS של Apple"
+msgstr "Sekatan ZFS Apple"
 
 #. Same as Solaris /usr
 #: ../src/gdu/gdu-util.c:478
 msgid "Apple RAID Partition"
-msgstr "מחיצת RAID של Apple"
+msgstr "Sekatan HRAID Apple"
 
 #: ../src/gdu/gdu-util.c:479
 msgid "Apple RAID Partition (Offline)"
-msgstr "מחיצת RAID של Apple (לא מקוון)"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:480
 msgid "Apple Boot Partition"
-msgstr "מחיצת הפעלה של Apple"
+msgstr "Sekatan Boot Apple"
 
 #: ../src/gdu/gdu-util.c:481
 msgid "Apple Label Partition"
-msgstr "מחיצת תווית של Apple"
+msgstr "Sekatan Label Apple"
 
 #: ../src/gdu/gdu-util.c:482
 msgid "Apple TV Recovery Partition"
-msgstr "מחיצת שחזור לטלוויזיה של Apple"
+msgstr ""
 
 #. NetBSD
 #: ../src/gdu/gdu-util.c:484
 msgid "NetBSD Swap Partition"
-msgstr "מחיצת החלפה (Swap) של NetBSD"
+msgstr "Sekatan Swap NetBSD"
 
 #: ../src/gdu/gdu-util.c:485
 msgid "NetBSD FFS Partition"
-msgstr "מחיצת FFS של NetBSD"
+msgstr "Sekatan FFS NetBSD"
 
 #: ../src/gdu/gdu-util.c:486
 msgid "NetBSD LFS Partition"
-msgstr "מחיצת LFS של NetBSD"
+msgstr "Sekatan LFS NetBSD"
 
 #: ../src/gdu/gdu-util.c:487
 msgid "NetBSD RAID Partition"
-msgstr "מחיצת RAID של NetBSD"
+msgstr "Sekatan RAID NetBSD"
 
 #: ../src/gdu/gdu-util.c:488
 msgid "NetBSD Concatenated Partition"
-msgstr "מחיצה מחוברת של NetBSD"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:489
 msgid "NetBSD Encrypted Partition"
-msgstr "מחיצה מוצפנת של NetBSD"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:496
 msgid "Unused Partition"
-msgstr "מחיצה לא משומשת"
+msgstr "Sekatan yang tidak digunakan"
 
 #: ../src/gdu/gdu-util.c:497
 msgid "Empty Partition"
-msgstr "מחיצה ריקה"
+msgstr "Sekatan Kosong"
 
 #: ../src/gdu/gdu-util.c:498
 msgid "Driver Partition"
-msgstr "מחיצת Driver"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:499
 msgid "Driver 4.3 Partition"
-msgstr "מחיצת Driver בגרסה 4.3"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:500
 msgid "ProDOS file system"
-msgstr "מערכת קבצים של ProDOS"
+msgstr "Fail sistem ProDOS"
 
 #: ../src/gdu/gdu-util.c:501
 msgid "FAT 12"
@@ -3598,92 +3554,92 @@ msgstr "FAT 32"
 
 #: ../src/gdu/gdu-util.c:504
 msgid "FAT 16 (Windows)"
-msgstr "‏FAT 16 ‏(Windows)"
+msgstr "FAT 16 (Windows)"
 
 #: ../src/gdu/gdu-util.c:505
 msgid "FAT 32 (Windows)"
-msgstr "‏FAT 32 ‏(Windows)"
+msgstr "FAT 32 (Windows)"
 
 #. see http://www.win.tue.nl/~aeb/partitions/partition_types-1.html
 #: ../src/gdu/gdu-util.c:508
 msgid "Empty (0x00)"
-msgstr "ריק (0x00)"
+msgstr "Kosong (0x00)"
 
 #: ../src/gdu/gdu-util.c:509
 msgid "FAT12 (0x01)"
-msgstr "‏FAT12 ‏(0x01)"
+msgstr "FAT12 (0x01)"
 
 #: ../src/gdu/gdu-util.c:510
 msgid "FAT16 <32M (0x04)"
-msgstr "‏FAT16 <32M ‏(0x04)"
+msgstr "FAT16 <32M (0x04)"
 
 #: ../src/gdu/gdu-util.c:511
 msgid "Extended (0x05)"
-msgstr "‏Extended ‏(0x05)"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:512
 msgid "FAT16 (0x06)"
-msgstr "‏FAT16 ‏(0x06)"
+msgstr "FAT16 (0x06)"
 
 #: ../src/gdu/gdu-util.c:513
 msgid "HPFS/NTFS (0x07)"
-msgstr "‏HPFS/NTFS ‏(0x07)"
+msgstr "HPFS/NTFS (0x07)"
 
 #: ../src/gdu/gdu-util.c:514
 msgid "W95 FAT32 (0x0b)"
-msgstr "‏W95 FAT32 ‏(0x0b)"
+msgstr "W95 FAT32 (0x0b)"
 
 #: ../src/gdu/gdu-util.c:515
 msgid "W95 FAT32 (LBA) (0x0c)"
-msgstr "‏W95 FAT32 ‏(LBA) ‏(0x0c)"
+msgstr "W95 FAT32 (LBA) (0x0c)"
 
 #: ../src/gdu/gdu-util.c:516
 msgid "W95 FAT16 (LBA) (0x0e)"
-msgstr "‏W95 FAT16 ‏(LBA) ‏(0x0e)"
+msgstr "W95 FAT16 (LBA) (0x0e)"
 
 #: ../src/gdu/gdu-util.c:517
 msgid "W95 Ext d (LBA) (0x0f)"
-msgstr "‏W95 Ext d ‏(LBA) ‏(0x0f)"
+msgstr "W95 Ext d (LBA) (0x0f)"
 
 #: ../src/gdu/gdu-util.c:518
 msgid "OPUS (0x10)"
-msgstr "‏OPUS ‏(0x10)"
+msgstr "OPUS (0x10)"
 
 #: ../src/gdu/gdu-util.c:519
 msgid "Hidden FAT12 (0x11)"
-msgstr "‏FAT12 חבוי (0x16)"
+msgstr "FAT12 Terlindung (0x11)"
 
 #: ../src/gdu/gdu-util.c:520
 msgid "Compaq diagnostics (0x12)"
-msgstr "‏Compaq diagnostics ‏(0x12)"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:521
 msgid "Hidden FAT16 <32M (0x14)"
-msgstr "‏FAT16 <32M ‏חבוי ‏(0x14)"
+msgstr "FAT16 Terlindung <32M (0x14)"
 
 #: ../src/gdu/gdu-util.c:522
 msgid "Hidden FAT16 (0x16)"
-msgstr "‏FAT16 חבוי (0x16)"
+msgstr "FAT16 Terlindung (0x16)"
 
 #: ../src/gdu/gdu-util.c:523
 msgid "Hidden HPFS/NTFS (0x17)"
-msgstr "‏HPFS/NTFS ‏חבוי (0x17)"
+msgstr "HPFS/NTFS Terlindung (0x17)"
 
 #: ../src/gdu/gdu-util.c:524
 msgid "Hidden W95 FAT32 (0x1b)"
-msgstr "‏W95 FAT32 ‏חבוי ‏(0x1b)"
+msgstr "Terlindung W95 FAT32 (0x1b)"
 
 #: ../src/gdu/gdu-util.c:525
 msgid "Hidden W95 FAT32 (LBA) (0x1c)"
-msgstr "‏W95 FAT32 ‏(LBA) ‏חבוי ‏(0x1c)"
+msgstr "Terlindung W95 FAT32 (LBA) (0x1c)"
 
 #: ../src/gdu/gdu-util.c:526
 msgid "Hidden W95 FAT16 (LBA) (0x1e)"
-msgstr "‏W95 FAT16 ‏חבוי ‏(0x1e)"
+msgstr "Terlindung W95 FAT16 (LBA) (0x1e)"
 
 #: ../src/gdu/gdu-util.c:527
 msgid "PartitionMagic (0x3c)"
-msgstr "‏PartitionMagic ‏(0x3c)"
+msgstr "PartitionMagic (0x3c)"
 
 #: ../src/gdu/gdu-util.c:528
 msgid "Minix (0x81)"
@@ -3692,71 +3648,71 @@ msgstr "Minix (0x81)"
 #. cf. http://en.wikipedia.org/wiki/MINIX_file_system
 #: ../src/gdu/gdu-util.c:529
 msgid "Linux swap (0x82)"
-msgstr "‏Linux swap ‏(0x82)"
+msgstr "Linux swap (0x82)"
 
 #: ../src/gdu/gdu-util.c:530
 msgid "Linux (0x83)"
-msgstr "‏Linux ‏(0x83)"
+msgstr "Linux (0x83)"
 
 #: ../src/gdu/gdu-util.c:531
 msgid "Hibernation (0x84)"
-msgstr "‏Hibernation ‏(0x84)"
+msgstr "Hibernasi (0x84)"
 
 #: ../src/gdu/gdu-util.c:532
 msgid "Linux Extended (0x85)"
-msgstr "‏Linux Extended ‏(0x85)"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:533
 msgid "Linux LVM (0x8e)"
-msgstr "‏Linux LVM ‏(0x8e)"
+msgstr "Linux LVM (0x8e)"
 
 #: ../src/gdu/gdu-util.c:534
 msgid "Hibernation (0xa0)"
-msgstr "‏Hibernation ‏(0xa0)"
+msgstr "Hibernasi (0xa0"
 
 #: ../src/gdu/gdu-util.c:535
 msgid "FreeBSD (0xa5)"
-msgstr "‏FreeBSD ‏(0xa5)"
+msgstr "FreeBSD (0xa5)"
 
 #: ../src/gdu/gdu-util.c:536
 msgid "OpenBSD (0xa6)"
-msgstr "‏OpenBSD ‏(0xa6)"
+msgstr "OpenBSD (0xa6)"
 
 #: ../src/gdu/gdu-util.c:537
 msgid "Mac OS X (0xa8)"
-msgstr "‏Mac OS X ‏(0xa8)"
+msgstr "Mac OS X (0xa8)"
 
 #: ../src/gdu/gdu-util.c:538
 msgid "Mac OS X (0xaf)"
-msgstr "‏Mac OS X ‏(0xaf)"
+msgstr "Mac OS X (0xa8)"
 
 #: ../src/gdu/gdu-util.c:539
 msgid "Solaris boot (0xbe)"
-msgstr "אתחול Solaris ‏(0xbe)"
+msgstr "Solaris boot (0xbe)"
 
 #: ../src/gdu/gdu-util.c:540
 msgid "Solaris (0xbf)"
-msgstr "‏Solaris ‏(0xbf)"
+msgstr "Solaris (0xbf)"
 
 #: ../src/gdu/gdu-util.c:541
 msgid "BeOS BFS (0xeb)"
-msgstr "‏BeOS BFS ‏(0xeb)"
+msgstr "BeOS BFS (0xeb)"
 
 #: ../src/gdu/gdu-util.c:542
 msgid "SkyOS SkyFS (0xec)"
-msgstr "‏SkyOS SkyFS ‏(0xec)"
+msgstr "SkyOS SkyFS (0xec)"
 
 #: ../src/gdu/gdu-util.c:543
 msgid "EFI GPT (0xee)"
-msgstr "‏EFI GPT ‏(0xee)"
+msgstr "EFI GPT (0xee)"
 
 #: ../src/gdu/gdu-util.c:544
 msgid "EFI (FAT-12/16/32 (0xef)"
-msgstr "‏EFI (FAT-12/16/32 ‏(0xef)"
+msgstr "EFI (FAT-12/16/32 (0xef)"
 
 #: ../src/gdu/gdu-util.c:545
 msgid "Linux RAID autodetect (0xfd)"
-msgstr "‏Linux RAID autodetect ‏(0xfd)"
+msgstr ""
 
 #. Translators: Shown for unknown partition types.
 #. * %s is the partition type name
@@ -3764,58 +3720,49 @@ msgstr "‏Linux RAID autodetect ‏(0xfd)"
 #: ../src/gdu/gdu-util.c:572
 #, c-format
 msgid "Unknown (%s)"
-msgstr "לא ידוע (%s)"
+msgstr "Tidak diketahui (%s)"
 
 #: ../src/gdu/gdu-util.c:582
 msgid ""
 "A popular format compatible with almost any device or system, typically used "
 "for file exchange."
 msgstr ""
-"תצורה נפוצה התומכת כמעט בכל התקן או מערכת קבצים, לרב משמשמת להעברת קבצים."
 
 #: ../src/gdu/gdu-util.c:586
 msgid ""
 "This file system is compatible with Linux systems only and provides classic "
 "UNIX file permissions support. This file system does not use a journal."
 msgstr ""
-"מערכת קבצים זו תואמת רק למערכות לינוקס ומספקת תמיכה בהרשאות הקבצים הקלסיות "
-"של UNIX. מערכת קבצים זו לא משתמשת במתעד."
 
 #: ../src/gdu/gdu-util.c:592
 msgid ""
 "This file system is compatible with Linux systems only and provides classic "
 "UNIX file permissions support."
 msgstr ""
-"מערכת קבצים זו תואמת רק למערכות לינוקס ומספקת תמיכה בהרשאות הקבצים הקלסיות "
-"של UNIX."
 
 #: ../src/gdu/gdu-util.c:596
 msgid "Swap area used by the operating system for virtual memory."
-msgstr "שטח ההחלפה (Swap) משמש כזיכרון הווירטואלי של מערכת ההפעלה."
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:599
 msgid ""
 "The native Windows file system. Not widely compatible with other operating "
 "systems than Windows."
 msgstr ""
-"מערכת הקבצים הטבעית של Windows. .לא תואם עם מגוון רחב של מערכות הפעלה אחרות "
-"מ־Windows."
 
 #: ../src/gdu/gdu-util.c:603
 msgid ""
 "Simple filesystem with low overhead and UNIX permissions support. Not widely "
 "compatible with operating systems other than Linux and Minix."
 msgstr ""
-"מערכת קבצים פשוטה שמעמיסה מעט על המערכת ובעלת תמיכה בהרשאות UNIX. לא נתמכת "
-"על ידי מערכות הפעלה שאינן Linux ו־Minix."
 
 #: ../src/gdu/gdu-util.c:607
 msgid "No file system will be created."
-msgstr "לא תיווצר מערכת קבצים."
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:610
 msgid "Create an Extended Partition for logical partitions."
-msgstr "יצירת מחיצה מורחבת עבור מחיצות לוגיות."
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:623
 msgid ""
@@ -3823,47 +3770,39 @@ msgid ""
 "but has a number of limitations with respect to disk size and number of "
 "partitions."
 msgstr ""
-"סכימת רשומת ההפעלה העיקרית (MBR) תומכת כמעט בכל התקן או מערכת קבצים אך יש לה "
-"מספר מגבלות בנוגע לגודל הכונן ולמספר המחיצות."
 
 #: ../src/gdu/gdu-util.c:628
 msgid ""
 "A legacy scheme that is incompatible with most systems except Apple systems "
 "and most Linux systems. Not recommended for removable media."
 msgstr ""
-"סכימה מיושבת שאינה נתמכת ברוב המערכות למעט המערכות של Apple ורוב מערכות "
-"הלינוקס. לא מומלץ למדיה נשלפת."
 
 #: ../src/gdu/gdu-util.c:633
 msgid ""
 "The GUID scheme is compatible with most modern systems but may be "
 "incompatible with some devices and legacy systems."
 msgstr ""
-"סכימת ה־GUID נתמכת ברוב המערכת המודרנית אך יתכן שאינה תואמת לכמה מהרכיבים "
-"במערכות מיושנות."
 
 #: ../src/gdu/gdu-util.c:637
 msgid ""
 "Marks the entire disk as unused. Use this option only if you want to avoid "
 "partitioning the disk for e.g. whole disk use or floppy / Zip disks."
 msgstr ""
-"שימוש הכונן כולו כ\"לא בשימוש\". יש להשתמש באפשרות זו אם ברצונך למנוע את "
-"חלוקת הכונן למחיצות כמו לדוגמה שימוש בכונן מלא או דיסקטים/תקליטוני זיפ."
 
 #: ../src/gdu/gdu-util.c:888
 #, c-format
 msgid "%.1f KB/s"
-msgstr "%.1f ק\"ב/ש"
+msgstr "%.1f KB/s"
 
 #: ../src/gdu/gdu-util.c:891
 #, c-format
 msgid "%.1f MB/s"
-msgstr "%.1f מ\"ב/ש"
+msgstr "%.1f MB/s"
 
 #: ../src/gdu/gdu-util.c:894
 #, c-format
 msgid "%.1f GB/s"
-msgstr "%.1f ג\"ב/ש"
+msgstr "%.1f GB/s"
 
 #. Translators: interface name for serial ATA disks
 #: ../src/gdu/gdu-util.c:910
@@ -3908,13 +3847,13 @@ msgstr "SDIO"
 #. Translators: interface name for virtual disks
 #: ../src/gdu/gdu-util.c:934
 msgid "Virtual"
-msgstr "Virtual"
+msgstr "Maya"
 
 #. Translators: name shown for unknown disk connection interfaces
 #: ../src/gdu/gdu-util.c:940
 msgctxt "connection name"
 msgid "Unknown"
-msgstr "לא ידוע"
+msgstr "Tidak Diketahui"
 
 #. Translators: Connection with speed information.
 #. * First %s is the connection name, like 'SATA' or 'USB'
@@ -3923,12 +3862,12 @@ msgstr "לא ידוע"
 #: ../src/gdu/gdu-util.c:950
 #, c-format
 msgid "%s at %s"
-msgstr "‏%s במהירות %s"
+msgstr "%s di %s"
 
 #: ../src/gdu/gdu-util.c:969
 msgctxt "RAID level"
 msgid "Stripe (RAID-0)"
-msgstr "פיזור מידע (RAID-0)"
+msgstr "Jalur (RAID-0)"
 
 #: ../src/gdu/gdu-util.c:971
 msgctxt "RAID level"
@@ -3938,7 +3877,7 @@ msgstr "RAID-0"
 #: ../src/gdu/gdu-util.c:974
 msgctxt "RAID level"
 msgid "Mirror (RAID-1)"
-msgstr "שכפול (RAID-1)"
+msgstr "Cermin (RAID-1)"
 
 #: ../src/gdu/gdu-util.c:976
 msgctxt "RAID level"
@@ -3948,7 +3887,7 @@ msgstr "RAID-1"
 #: ../src/gdu/gdu-util.c:979
 msgctxt "RAID level"
 msgid "Parity Disk (RAID-4)"
-msgstr "פיזור סיבית (RAID-4)"
+msgstr "Cakera Pariti (RAID-4)"
 
 #: ../src/gdu/gdu-util.c:981
 msgctxt "RAID level"
@@ -3958,7 +3897,7 @@ msgstr "RAID-4"
 #: ../src/gdu/gdu-util.c:984
 msgctxt "RAID level"
 msgid "Distributed Parity (RAID-5)"
-msgstr "פיזור בזוגיות מפוזרת (RAID-5)"
+msgstr "Pariti Teragih (RAID-5)"
 
 #: ../src/gdu/gdu-util.c:986
 msgctxt "RAID level"
@@ -3968,7 +3907,7 @@ msgstr "RAID-5"
 #: ../src/gdu/gdu-util.c:989
 msgctxt "RAID level"
 msgid "Dual Distributed Parity (RAID-6)"
-msgstr "פיזור בקוד ריד סולומון (RAID-6)"
+msgstr "Pariti Teragih Duaan (RAID-6)"
 
 #: ../src/gdu/gdu-util.c:991
 msgctxt "RAID level"
@@ -3978,7 +3917,7 @@ msgstr "RAID-6"
 #: ../src/gdu/gdu-util.c:994
 msgctxt "RAID level"
 msgid "Stripe of Mirrors (RAID-10)"
-msgstr "פיזור מידע תחת שכפול (RAID-10)"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:996
 msgctxt "RAID level"
@@ -3988,12 +3927,12 @@ msgstr "RAID-10"
 #: ../src/gdu/gdu-util.c:999
 msgctxt "RAID level"
 msgid "Concatenated (Linear)"
-msgstr "מצורף (לינארי)"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:1001
 msgctxt "RAID level"
 msgid "Linear"
-msgstr "לינארי"
+msgstr ""
 
 #: ../src/gdu/gdu-util.c:1015
 msgid ""
@@ -4001,40 +3940,30 @@ msgid ""
 "tolerance. If a single disk in the array fails, the entire RAID-0 array "
 "fails."
 msgstr ""
-"ערכה משוכפלת ללא זוגיות. מספקת ביצועים משופרים אך ללא עמידות בפני כשלים. אם "
-"כונן יחיד במערך כושל כל מערך ה־RAID-0 ייכשל."
 
 #: ../src/gdu/gdu-util.c:1019
 msgid ""
 "Mirrored set without parity. Provides fault tolerance and improved "
 "performance for reading. RAID-1 arrays can sustain all but one disk failing."
 msgstr ""
-"ערכת מראה ללא זוגיות. מספקת עמידות בפני כשלים וביצועים משופרים לקריאה. מערכי "
-"RAID-1 עמידים בפני כל כשל למעט כשל יחיד."
 
 #: ../src/gdu/gdu-util.c:1023
 msgid ""
 "Striped set with parity on a single disk. Provides improved performance and "
 "fault tolerance. RAID-4 arrays can sustain a single disk failure."
 msgstr ""
-"ערכה משוכפלת עם זוגיות על כונן יחיד. מספקת ביצועים משופרים ועמידות בפני "
-"כשלים. מערכי RAID-4 יכולים לעמוד בכשל של כונן בודד."
 
 #: ../src/gdu/gdu-util.c:1027
 msgid ""
 "Striped set with distributed parity. Provides improved performance and fault "
 "tolerance. RAID-5 arrays can sustain a single disk failure."
 msgstr ""
-"ערכה משוכפלת עם זוגיות מבוזרת. מספקת ביצועים משופרים ועמידות בפני כשלים. "
-"מערכי RAID-5 יכולים לספוג כשל בכונן יחיד."
 
 #: ../src/gdu/gdu-util.c:1031
 msgid ""
 "Striped set with dual distributed parity. Provides improved performance and "
 "fault tolerance. RAID-6 arrays can sustain two disk failures."
 msgstr ""
-"ערכה משוכפלת עם זוגיות מבוזרת כפולה. מספקת ביצועים משופרים ועמידות בפני "
-"כשלים. מערכי RAID-6 יכולים לעמוד בכשל של שני כוננים."
 
 #: ../src/gdu/gdu-util.c:1035
 msgid ""
@@ -4042,34 +3971,31 @@ msgid ""
 "tolerance. RAID-10 arrays can sustain multiple drive losses so long as no "
 "mirror loses all its drives."
 msgstr ""
-"ערכה משוכפלת עם זוגיות מבוזרת. מספקת ביצועים משופרים ועמידות בפני כשלים. "
-"מערכי RAID-10 יכולים לספוג אבדן של מספר כוננים כל עוד אף אחת מהמראות לא "
-"מאבדת את כל הכוננים שלה."
 
 #: ../src/gdu/gdu-util.c:1041
 #, c-format
 msgid "Unknown RAID level %s."
-msgstr "רמת ה־RAID אינה מוכרת %s."
+msgstr ""
 
 #. Translators: Overall description of the GOOD status
 #: ../src/gdu/gdu-util.c:1077
 msgid "Disk is healthy"
-msgstr "הכונן תקין"
+msgstr "Disk sihat"
 
 #. Translators: Overall description of the BAD_ATTRIBUTE_IN_THE_PAST status
 #: ../src/gdu/gdu-util.c:1081
 msgid "Disk was used outside of design parameters in the past"
-msgstr "בכונן נעשה שימוש שאינו תואם לפרמטרים של התכנון בעבר"
+msgstr ""
 
 #. Translators: Overall description of the BAD_SECTOR status
 #: ../src/gdu/gdu-util.c:1085
 msgid "Disk has a few bad sectors"
-msgstr "לכונן יש מספר סקטורים פגומים"
+msgstr ""
 
 #. Translators: Overall description of the BAD_ATTRIBUTE_NOW status
 #: ../src/gdu/gdu-util.c:1089
 msgid "DISK IS BEING USED OUTSIDE DESIGN PARAMETERS"
-msgstr "בכונן נעשה שימוש שאינו תואם לפרמטרים של התכנון"
+msgstr ""
 
 #. Translators: Suggested action for the BAD_ATTRIBUTE_NOW status
 #. Translators: Suggested action for the BAD_SECTOR_MANY status
@@ -4077,174 +4003,174 @@ msgstr "בכונן נעשה שימוש שאינו תואם לפרמטרים של
 #: ../src/gdu/gdu-util.c:1091 ../src/gdu/gdu-util.c:1099
 #: ../src/gdu/gdu-util.c:1105
 msgid "Backup all data and replace the disk"
-msgstr "יש לגבות את כל המידע ולהחליף את הכונן"
+msgstr ""
 
 #. Translators: Overall description of the BAD_SECTOR_MANY status
 #: ../src/gdu/gdu-util.c:1096
 msgid "DISK HAS MANY BAD SECTORS"
-msgstr "לכונן יש יותר מדי סקטורים פגומים"
+msgstr ""
 
 #. Translators: Overall description of the BAD_STATUS status
 #: ../src/gdu/gdu-util.c:1103
 msgid "DISK FAILURE IS IMMINENT"
-msgstr "הכונן עומד להפוך לפגום לחלוטין"
+msgstr ""
 
 #. Translator: The word "blank" is used as an adjective, e.g. we are decsribing discs that are already blank
 #: ../src/gdu/gdu-volume.c:79
 msgid "CD-ROM Disc"
-msgstr "דיסק CD-ROM"
+msgstr "Cakera CD-ROM"
 
 #: ../src/gdu/gdu-volume.c:79
 msgid "Blank CD-ROM Disc"
-msgstr "דיסק CD-ROM ריק"
+msgstr "Cakera CD-ROM Kosong"
 
 #: ../src/gdu/gdu-volume.c:80
 msgid "CD-R Disc"
-msgstr "דיסק CD-R"
+msgstr "Cakera CD-R"
 
 #: ../src/gdu/gdu-volume.c:80
 msgid "Blank CD-R Disc"
-msgstr "דיסק CD-R ריק"
+msgstr "Cakera CD-R Kosong"
 
 #: ../src/gdu/gdu-volume.c:81
 msgid "CD-RW Disc"
-msgstr "דיסק CD-RW "
+msgstr "Cakera CD-RW"
 
 #: ../src/gdu/gdu-volume.c:81
 msgid "Blank CD-RW Disc"
-msgstr "דיסק CD-RW ריק"
+msgstr "Cakera CD-RW Kosong"
 
 #: ../src/gdu/gdu-volume.c:82 ../src/gdu/gdu-volume.c:83
 msgid "DVD-ROM Disc"
-msgstr "דיסק DVD-ROM"
+msgstr "Cakera DVD-ROM"
 
 #: ../src/gdu/gdu-volume.c:82 ../src/gdu/gdu-volume.c:83
 msgid "Blank DVD-ROM Disc"
-msgstr "דיסק DVD-ROM ריק"
+msgstr "Cakera DVD-ROM Kosong"
 
 #: ../src/gdu/gdu-volume.c:84
 msgid "DVD-RW Disc"
-msgstr "דיסק DVD-RW"
+msgstr "Cakera DVD-RW"
 
 #: ../src/gdu/gdu-volume.c:84
 msgid "Blank DVD-RW Disc"
-msgstr "דיסק DVD-RW ריק"
+msgstr "Cakera DVD-RW Kosong"
 
 #: ../src/gdu/gdu-volume.c:85
 msgid "DVD-RAM Disc"
-msgstr "דיסק DVD-RAM"
+msgstr "Cakera DVD-RAM"
 
 #: ../src/gdu/gdu-volume.c:85
 msgid "Blank DVD-RAM Disc"
-msgstr "דיסק DVD-RAM ריק"
+msgstr "Cakera DVD-RAM Kosong"
 
 #: ../src/gdu/gdu-volume.c:86
 msgid "DVD+R Disc"
-msgstr "דיסק DVD+R"
+msgstr "Cakera DVD+R"
 
 #: ../src/gdu/gdu-volume.c:86
 msgid "Blank DVD+R Disc"
-msgstr "דיסק DVD+R ריק"
+msgstr "Cakera DVD+R Kosong"
 
 #: ../src/gdu/gdu-volume.c:87
 msgid "DVD+RW Disc"
-msgstr "דיסק DVD+RW"
+msgstr "Cakera DVD+RW"
 
 #: ../src/gdu/gdu-volume.c:87
 msgid "Blank DVD+RW Disc"
-msgstr "דיסק DVD+RW ריק"
+msgstr "Cakera DVD+RW Kosong"
 
 #: ../src/gdu/gdu-volume.c:88
 msgid "DVD+R DL Disc"
-msgstr "דיסק DVD+R DL"
+msgstr "Cakera DVD+R DL"
 
 #: ../src/gdu/gdu-volume.c:88
 msgid "Blank DVD+R DL Disc"
-msgstr "דיסק DVD+R DL ריק"
+msgstr "Cakera DVD+R DL Kosong"
 
 #: ../src/gdu/gdu-volume.c:89
 msgid "DVD+RW DL Disc"
-msgstr "דיסק DVD+R DL ריק"
+msgstr "Cakera DVD+RW DL"
 
 #: ../src/gdu/gdu-volume.c:89
 msgid "Blank DVD+RW DL Disc"
-msgstr "דיסק HD DVD-RW ריק"
+msgstr "Cakera DVD+RW DL Kosong"
 
 #: ../src/gdu/gdu-volume.c:90
 msgid "Blu-Ray Disc"
-msgstr "דיסק Blu-Ray"
+msgstr "Cakera Blu-Ray"
 
 #: ../src/gdu/gdu-volume.c:90
 msgid "Blank Blu-Ray Disc"
-msgstr "דיסק Blu-Ray ריק"
+msgstr "Cakera Blu-Ray Kosong"
 
 #: ../src/gdu/gdu-volume.c:91
 msgid "Blu-Ray R Disc"
-msgstr "דיסק Blu-Ray R"
+msgstr "Cakera Blu-Ray R"
 
 #: ../src/gdu/gdu-volume.c:91
 msgid "Blank Blu-Ray R Disc"
-msgstr "דיסק Blu-Ray R ריק"
+msgstr "Cakera Blu-Ray R Kosong"
 
 #: ../src/gdu/gdu-volume.c:92
 msgid "Blu-Ray RW Disc"
-msgstr "דיסק Blu-Ray RW"
+msgstr "Cakera Blu-Ray RW"
 
 #: ../src/gdu/gdu-volume.c:92
 msgid "Blank Blu-Ray RW Disc"
-msgstr "דיסק Blu-Ray RW ריק"
+msgstr "Cakera Blu-Ray RW Kosong"
 
 #: ../src/gdu/gdu-volume.c:93
 msgid "HD DVD Disc"
-msgstr "דיסק HD DVD"
+msgstr "Cakera HD DVD"
 
 #: ../src/gdu/gdu-volume.c:93
 msgid "Blank HD DVD Disc"
-msgstr "דיסק HD DVD ריק"
+msgstr "Cakera HD DVD Kosong"
 
 #: ../src/gdu/gdu-volume.c:94
 msgid "HD DVD-R Disc"
-msgstr "דיסק HD DVD-R"
+msgstr "Cakera HD DVD-R"
 
 #: ../src/gdu/gdu-volume.c:94
 msgid "Blank HD DVD-R Disc"
-msgstr "דיסק HD DVD-R ריק"
+msgstr "Cakera HD DVD-R Kosong"
 
 #: ../src/gdu/gdu-volume.c:95
 msgid "HD DVD-RW Disc"
-msgstr "דיסק HD DVD-RW"
+msgstr "Cakera HD DVD-RW"
 
 #: ../src/gdu/gdu-volume.c:95
 msgid "Blank HD DVD-RW Disc"
-msgstr "דיסק HD DVD-RW ריק"
+msgstr "Cakera HD DVD-RW Kosong"
 
 #: ../src/gdu/gdu-volume.c:96
 msgid "MO Disc"
-msgstr "דיסק MO"
+msgstr "Cakera MO"
 
 #: ../src/gdu/gdu-volume.c:96
 msgid "Blank MO Disc"
-msgstr "דיסק MO ריק"
+msgstr "Cakera MO Kosong"
 
 #: ../src/gdu/gdu-volume.c:97
 msgid "MRW Disc"
-msgstr "דיסק MRW"
+msgstr "Cakera MRW"
 
 #: ../src/gdu/gdu-volume.c:97
 msgid "Blank MRW Disc"
-msgstr "דיסק MRW ריק"
+msgstr "Cakera MRW Kosong"
 
 #: ../src/gdu/gdu-volume.c:98
 msgid "MRW/W Disc"
-msgstr "דיסק MRW/W"
+msgstr "Cakera MRW/W"
 
 #: ../src/gdu/gdu-volume.c:98
 msgid "Blank MRW/W Disc"
-msgstr "דיסק MRW/W ריק"
+msgstr "Cakera MRW/W Kosong"
 
 #: ../src/gdu/gdu-volume.c:294
 msgid "Blank Optical Disc"
-msgstr "דיסק אופטי ריק"
+msgstr "Cakera Optikal Kosong"
 
 #. Translators: Label for an extended partition
 #. * %s is the size, formatted like '45 GB'
@@ -4252,11 +4178,11 @@ msgstr "דיסק אופטי ריק"
 #: ../src/gdu/gdu-volume.c:304
 #, c-format
 msgid "%s Extended"
-msgstr "‏%s מורחב"
+msgstr ""
 
 #: ../src/gdu/gdu-volume.c:305
 msgid "Contains logical partitions"
-msgstr "מכיל מחיצות לוגיות"
+msgstr ""
 
 #. Translators: Label for an extended partition
 #. * %s is the size, formatted like '45 GB'
@@ -4264,11 +4190,11 @@ msgstr "מכיל מחיצות לוגיות"
 #: ../src/gdu/gdu-volume.c:320
 #, c-format
 msgid "%s Encrypted"
-msgstr "‏%s מוצפן"
+msgstr "%s Dienkrip"
 
 #: ../src/gdu/gdu-volume.c:330
 msgid "Optical Disc"
-msgstr "דיסק אופטי"
+msgstr "Cakera Optikal"
 
 #. Translators: Label for a partition with a filesystem
 #. * %s is the size, formatted like '45 GB'
@@ -4276,7 +4202,7 @@ msgstr "דיסק אופטי"
 #: ../src/gdu/gdu-volume.c:336
 #, c-format
 msgid "%s Filesystem"
-msgstr "מערכת קבצים %s"
+msgstr "%s Sistem Fail "
 
 #. Translators: Label for a partition table
 #. * %s is the size, formatted like '45 GB'
@@ -4284,7 +4210,7 @@ msgstr "מערכת קבצים %s"
 #: ../src/gdu/gdu-volume.c:342
 #, c-format
 msgid "%s Partition Table"
-msgstr "טבלת מחיצות %s"
+msgstr ""
 
 #. Translators: Label for a LVM volume
 #. * %s is the size, formatted like '45 GB'
@@ -4292,7 +4218,7 @@ msgstr "טבלת מחיצות %s"
 #: ../src/gdu/gdu-volume.c:348
 #, c-format
 msgid "%s LVM2 Physical Volume"
-msgstr "כרך פיזי LVM2 ‏%s"
+msgstr ""
 
 #. Translators: Used if no specific RAID level could be determined
 #: ../src/gdu/gdu-volume.c:361
@@ -4307,7 +4233,7 @@ msgstr "RAID"
 #: ../src/gdu/gdu-volume.c:368 ../src/gdu/gdu-volume.c:379
 #, c-format
 msgid "%s %s Component"
-msgstr "רכיב בגודל %s במערך %s "
+msgstr "%s %s Komponen"
 
 #. Translators: description for a RAID component
 #. * First %s is the array name, e.g. 'My Photos RAID',
@@ -4315,7 +4241,7 @@ msgstr "רכיב בגודל %s במערך %s "
 #: ../src/gdu/gdu-volume.c:372
 #, c-format
 msgid "Part of \"%s\" array"
-msgstr "חלק מהמערך \"%s\""
+msgstr ""
 
 #. Translators: label for a swap partition
 #. * %s is the size, formatted like '45 GB'
@@ -4323,7 +4249,7 @@ msgstr "חלק מהמערך \"%s\""
 #: ../src/gdu/gdu-volume.c:390
 #, c-format
 msgid "%s Swap Space"
-msgstr "שטח החלפה (Swap) ‏%s"
+msgstr "%s Ruang Swap"
 
 #. Translators: label for a data partition
 #. * %s is the size, formatted like '45 GB'
@@ -4331,7 +4257,7 @@ msgstr "שטח החלפה (Swap) ‏%s"
 #: ../src/gdu/gdu-volume.c:395
 #, c-format
 msgid "%s Data"
-msgstr "‏%s נתונים"
+msgstr "%s Data"
 
 #. Translators: label for a volume of unrecognized use
 #. * %s is the size, formatted like '45 GB'
@@ -4339,12 +4265,12 @@ msgstr "‏%s נתונים"
 #: ../src/gdu/gdu-volume.c:401 ../src/gdu/gdu-volume.c:417
 #, c-format
 msgid "%s Unrecognized"
-msgstr "‏%s לא מזוהה"
+msgstr "%s Tidak Dikenalpasti"
 
 #. Translators: description for a volume of unrecognized use
 #: ../src/gdu/gdu-volume.c:403
 msgid "Unknown or Unused"
-msgstr "לא ידוע או לא בשימוש"
+msgstr ""
 
 #. Translators: label for a partition
 #. * %s is the size, formatted like '45 GB'
@@ -4352,7 +4278,7 @@ msgstr "לא ידוע או לא בשימוש"
 #: ../src/gdu/gdu-volume.c:410 ../src/gdu/gdu-volume.c:412
 #, c-format
 msgid "%s Partition"
-msgstr "מחיצה %s"
+msgstr "%s Sekatan"
 
 #. Translators: The VPD name for a volume. The %d is the partition number
 #. * and the %s is the VPD name for the drive.
@@ -4360,14 +4286,14 @@ msgstr "מחיצה %s"
 #: ../src/gdu/gdu-volume.c:447
 #, c-format
 msgid "Partition %d of %s"
-msgstr "מחיצה %d של %s"
+msgstr "Sekatan %d dari %s"
 
 #. Translators: The VPD name for a volume. The %d is the partition number.
 #.
 #: ../src/gdu/gdu-volume.c:453
 #, c-format
 msgid "Partition %d"
-msgstr "מחיצה %d"
+msgstr "Sekatan %d"
 
 #. Translators: The VPD name for a whole-disk volume.
 #. * The %s is the VPD name for the drive.
@@ -4375,67 +4301,66 @@ msgstr "מחיצה %d"
 #: ../src/gdu/gdu-volume.c:461
 #, c-format
 msgid "Whole-disk volume on %s"
-msgstr "כרך על כל הכונן ב־%s"
+msgstr ""
 
 #. Translators: The VPD name for a whole-disk volume.
 #.
 #: ../src/gdu/gdu-volume.c:466
 msgid "Whole-disk volume"
-msgstr "כרך על כל הכונן"
+msgstr ""
 
 #. Translators: %s is the name of the device
 #: ../src/notification/gdu-slow-unmount-dialog.c:162
 #, c-format
 msgid "It's now safe to remove \"%s\"."
-msgstr "כעת בטוח להסיר את \"%s\"."
+msgstr ""
 
 #. Translators: %s is the name of the device
 #: ../src/notification/gdu-slow-unmount-dialog.c:231
 #, c-format
 msgid "Writing data to \"%s\"..."
-msgstr "הנתונים נכתבים אל \"%s\"..."
+msgstr ""
 
 #: ../src/notification/gdu-slow-unmount-dialog.c:246
 msgid ""
 "To prevent data loss, wait until this has finished before removing media or "
 "disconnecting the device."
 msgstr ""
-"כדי למנוע איבוד נתונים, יש להמתין עד לסיום לפי הוצאת מדיה או ניתוק ההתקן."
 
 #. Translators: This is used as the title of the notification
 #: ../src/notification/notification-main.c:478
 #: ../src/notification/notification-main.c:496
 msgid "Hard Disk Problems Detected"
-msgstr "התגלו תקלות בכונן הקשיח"
+msgstr ""
 
 #: ../src/notification/notification-main.c:481
 #: ../src/notification/notification-main.c:499
 msgid "A hard disk is reporting health problems."
-msgstr "הכונן הקשיח מדווח על בעיות תקינות."
+msgstr ""
 
 #: ../src/notification/notification-main.c:482
 msgid "Multiple system hard disks are reporting health problems."
-msgstr "מספר כוננים קשיחים במערכת מדווחים על בעיות תקינות."
+msgstr ""
 
 #: ../src/notification/notification-main.c:489
 msgid "Examine"
-msgstr "ניתוח"
+msgstr "Periksa"
 
 #: ../src/notification/notification-main.c:500
 msgid "Multiple hard disks are reporting health problems."
-msgstr "מספר כוננים קשיחים מדווחים על בעיות תקינות."
+msgstr ""
 
 #: ../src/palimpsest/gdu-main.c:127
 msgid "Volume to show"
-msgstr "כרך להצגה"
+msgstr ""
 
 #: ../src/palimpsest/gdu-main.c:128
 msgid "Drive to show"
-msgstr "כונן להצגה"
+msgstr "Cakera untuk ditunjuk"
 
 #: ../src/palimpsest/gdu-section-drive.c:148
 msgid "Multipath Drive"
-msgstr "התקן מרובה נתיבים"
+msgstr ""
 
 #. Translators: This is used in the "Location" element for a disk
 #. * connected to a SAS Adapter or Expander - The %d is the
@@ -4445,7 +4370,7 @@ msgstr "התקן מרובה נתיבים"
 #: ../src/palimpsest/gdu-section-drive.c:189
 #, c-format
 msgid "PHY %d of %s"
-msgstr "PHY מס' %d של %s"
+msgstr "PHY %d dari %s"
 
 #. Translators: This is used in the "Location" element for a disk
 #. * connected to a Adapter or Expander - The %d is the
@@ -4455,17 +4380,17 @@ msgstr "PHY מס' %d של %s"
 #: ../src/palimpsest/gdu-section-drive.c:196
 #, c-format
 msgid "Port %d of %s"
-msgstr "פתחה %d של %s"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-drive.c:261
 msgctxt "Write Cache"
 msgid "Enabled"
-msgstr "מופעל"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-drive.c:263
 msgctxt "Write Cache"
 msgid "Disabled"
-msgstr "מכובה"
+msgstr ""
 
 #. Translators: This is for the rotation rate of a hard
 #. * disk - RPM means rounds per minute
@@ -4474,154 +4399,150 @@ msgstr "מכובה"
 #, c-format
 msgctxt "Rotation Rate"
 msgid "%d RPM"
-msgstr "%d סל\"ד"
+msgstr "%d RPM"
 
 #: ../src/palimpsest/gdu-section-drive.c:281
 msgctxt "Rotation Rate"
 msgid "Solid-State Disk"
-msgstr "כונן במצב אחיד (SS)"
+msgstr ""
 
 #. Translators: 'scheme' refers to a partition table format here, like 'mbr' or 'gpt'
 #: ../src/palimpsest/gdu-section-drive.c:296
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:259
 #, c-format
 msgid "Unknown Scheme: %s"
-msgstr "סכימה לא ידועה: %s"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-drive.c:439
 #: ../src/palimpsest/gdu-section-drive.c:459
 msgid "Error launching Brasero"
-msgstr "שגיאה בטעינת Brasero"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-drive.c:440
 msgid "The application is not installed"
-msgstr "היישום לא מותקן"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-drive.c:521
 msgid "Error ejecting medium"
-msgstr "שגיאה בשליפת המדיום"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-drive.c:565
 msgid "Error detaching drive"
-msgstr "שגיאה בניתוק כונן"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-drive.c:610
 msgid "Error formatting drive"
-msgstr "שגיאה בפרמוט הכונן"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-drive.c:648
 msgid "Are you sure you want to format the drive?"
-msgstr "האם ברצונך לפרמט את הכונן?"
+msgstr "Adakah anda ingin untuk format cakera tersebut?"
 
 #: ../src/palimpsest/gdu-section-drive.c:835
 msgid ""
 "<b>WARNING:</b> Several paths to this drive has been detected but no "
 "corresponding multipath device was found. Your OS may be misconfigured."
 msgstr ""
-"<b>שגיאה:</b> נמצאו מספר נתיבים לכונן זה אך לא נמצא התקן ריבוי נתיבים. יתכן "
-"שמערכת ההפעלה שלך אינה מוגדרת כראוי."
 
 #: ../src/palimpsest/gdu-section-drive.c:850
 msgid "Go to Multipath Device"
-msgstr "מעבר להתקן מרובה נתיבים"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-drive.c:861
 msgid ""
 "<b>NOTE:</b> This object represents one of several paths to the drive. To "
 "perform operations on the drive, use the corresponding multipath object."
 msgstr ""
-"‏<b>הערה:</b> פריט זה מייצג נתיב אחד או יותר אל הכונן. כדי לבצע פעולות על "
-"הכונן יש להשתמש בפריט ריבוי הנתיבים התואם."
 
 #: ../src/palimpsest/gdu-section-drive.c:890
 #: ../src/palimpsest/gdu-section-hub.c:225
 msgid "Model:"
-msgstr "דגם:"
+msgstr "Model:"
 
 #: ../src/palimpsest/gdu-section-drive.c:894
 msgid "Serial Number:"
-msgstr "מספר סידורי:"
+msgstr "Nombor Siri:"
 
 #: ../src/palimpsest/gdu-section-drive.c:898
 msgid "Firmware Version:"
-msgstr "גרסת קושחה:"
+msgstr "Versi Perisian Tegar:"
 
 #. Translators: if you translate "World Wide Name", please include the abbreviation "WWN"
 #: ../src/palimpsest/gdu-section-drive.c:903
 msgid "World Wide Name:"
-msgstr "שם כלל עולמי:"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-drive.c:907
 msgid "Location:"
-msgstr "מיקום:"
+msgstr "Lokasi:"
 
 #: ../src/palimpsest/gdu-section-drive.c:915
 msgid "Write Cache:"
-msgstr "מטמון כתיבה:"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-drive.c:919
 msgid "Rotation Rate:"
-msgstr "קצב הסיבוב:"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-drive.c:923
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:679
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:978
 #: ../src/palimpsest/gdu-section-volumes.c:1952
 msgid "Capacity:"
-msgstr "נפח:"
+msgstr "Kapasiti:"
 
 #: ../src/palimpsest/gdu-section-drive.c:927
 msgid "Connection:"
-msgstr "חיבור:"
+msgstr "Sambungan:"
 
 #: ../src/palimpsest/gdu-section-drive.c:931
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:970
 msgid "Partitioning:"
-msgstr "הפרדה למחיצות:"
+msgstr "Sekatan:"
 
 #: ../src/palimpsest/gdu-section-drive.c:954
 msgid "Open CD/_DVD Application"
-msgstr "פתיחת יישום _תקליטורים"
+msgstr "Buka Aplikasi CD/_DVD"
 
 #: ../src/palimpsest/gdu-section-drive.c:955
 msgid "Create and copy CDs and DVDs"
-msgstr "יצירה והעתקה של תקליטורים"
+msgstr "Cipta dan salin CD-CD dan DVD-DVD"
 
 #: ../src/palimpsest/gdu-section-drive.c:964
 msgid "Format _Drive"
-msgstr "_פרמוט כונן"
+msgstr "Format _Pemacu"
 
 #: ../src/palimpsest/gdu-section-drive.c:965
 msgid "Erase or partition the drive"
-msgstr "מחיקה או הפרדה למחיצות של הכונן"
+msgstr "Padam atau membuat sekatan pada pemacu"
 
 #: ../src/palimpsest/gdu-section-drive.c:974
 msgid "SM_ART Data"
-msgstr "נתוני SMA_RT"
+msgstr "DATA SM_ART"
 
 #: ../src/palimpsest/gdu-section-drive.c:975
 msgid "View SMART data and run self-tests"
-msgstr "צפייה בנתוני SMART והרצת בדיקות עצמיות"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-drive.c:984
 msgid "_Eject"
-msgstr "_שליפה"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-drive.c:985
 msgid "Eject medium from the drive"
-msgstr "שליפת המדיום מהכונן"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-drive.c:994
 msgid "Safe Rem_oval"
-msgstr "הסרה _בטוחה"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-drive.c:995
 msgid "Power down the drive so it can be removed"
-msgstr "כיבוי הכונן כדי שניתן יהיה להסיר אותו"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-drive.c:1005
 msgid "Measure drive performance"
-msgstr "מדידת ביצועי הכונן"
+msgstr ""
 
 #. Translators: Used for SAS to convey the number of PHYs in the
 #. * "Number of Ports" element. You should probably not translate PHY.
@@ -4630,525 +4551,525 @@ msgstr "מדידת ביצועי הכונן"
 #: ../src/palimpsest/gdu-section-hub.c:161
 #, c-format
 msgid "%d PHYs"
-msgstr "%d רכיבי PHY"
+msgstr "%d PHYs"
 
 #: ../src/palimpsest/gdu-section-hub.c:137
 msgid "Parallel ATA"
-msgstr "ATA מקבילי"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-hub.c:139
 msgid "Serial ATA"
-msgstr "ATA טורי"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-hub.c:143
 msgid "Serial Attached SCSI"
-msgstr "SCSI בחיבור טורי"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-hub.c:221
 msgid "Vendor:"
-msgstr "יצרן:"
+msgstr "Pembekal:"
 
 #: ../src/palimpsest/gdu-section-hub.c:229
 msgid "Revision:"
-msgstr "מהדורה:"
+msgstr "Semakan:"
 
 #: ../src/palimpsest/gdu-section-hub.c:233
 msgid "Driver:"
-msgstr "מנהל התקן:"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-hub.c:237
 msgid "Fabric:"
-msgstr "מבנה:"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-hub.c:241
 msgid "Number of Ports:"
-msgstr "מספר הפתחות:"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:77
 msgid "Error starting Volume Group"
-msgstr "שגיאה בהפעלת קבוצת הכרכים"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:123
 msgid "Error stopping Volume Group"
-msgstr "שגיאה בעצירת קבוצת הכרכים"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:169
 msgid "Error setting name for Volume Group"
-msgstr "שגיאה בהסרת שם קבוצת הכרכים"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:203
 msgid "Choose a new Volume Group name."
-msgstr "בחירת שם חדש לקבוצת כרכים."
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:255
 msgid "Error adding Physical Volume to Volume Group"
-msgstr "שגיאה בהוספת כרך פיזי לקבוצת כרכים"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:285
 msgid "Error creating PV for VG"
-msgstr "שגיאה ביצירת כרך פיזי או קבוצת כרכים"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:380
 msgid "Error deleting partition for Physical Volume in Volume Group"
-msgstr "שגיאה במחיקת כרך פיזי בקבוצת כרכים"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:403
 msgid "Error removing Physical Volume from Volume Group"
-msgstr "שגיאה בהסרת כרך פיזי מקבוצת כרכים"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:476
 msgid "Are you sure you want the remove the Physical Volume?"
-msgstr "האם ברצונך להסיר את הכרך הפיזי?"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:477
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:530
 msgid "_Remove"
-msgstr "ה_סרה"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:597
 msgid "Not Running"
-msgstr "לא פעיל"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:601
 msgid "Partially Running"
-msgstr "פעיל חלקית"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:606
 msgid "Running"
-msgstr "פעיל"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:610
 #, c-format
 msgid "Unknown (%d)"
-msgstr "לא ידוע (%d)"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:667
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:966
 msgid "Name:"
-msgstr "שם:"
+msgstr "Nama:"
 
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:671
 msgid "Extent Size:"
-msgstr "גודל משוער:"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:675
 msgid "Physical Volumes:"
-msgstr "כרכים פיזיים:"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:687
 msgid "Unallocated:"
-msgstr "לא מוקצה:"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:706
 msgid "St_art Volume Group"
-msgstr "ה_פעלת קבוצת הכרכים"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:707
 msgid "Activate all LVs in the VG"
-msgstr "הפעלת כל הכרכים הלוגיים בקבוצת הכרכים"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:716
 msgid "St_op Volume Group"
-msgstr "ע_צירת קבוצת הכרכים"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:717
 msgid "Deactivate all LVs in the VG"
-msgstr "נטרול כל הכרכים הלוגיים בקבוצת הכרכים"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:727
 msgid "Edit _Name"
-msgstr "עריכת ה_שם"
+msgstr "Sunting _Nama"
 
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:728
 msgid "Change the Volume Group name"
-msgstr "שינוי שם קבוצת הכרכים"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:737
 msgid "Edit _Physical Volumes"
-msgstr "עריכת הכרכים ה_פיזיים"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:738
 msgid "Create and remove PVs"
-msgstr "יצירה והסרה של כרכים פיזיים"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:84
 msgctxt "RAID status"
 msgid "Not running, partially assembled"
-msgstr "לא פעיל, מורכב באופן חלקי"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:92
 msgctxt "RAID status"
 msgid "Not running"
-msgstr "לא פועל"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:94
 msgctxt "RAID status"
 msgid "Not running, can only start degraded"
-msgstr "לא פעיל, אי אפשר להתחיל במצב מצומצם"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:96
 msgctxt "RAID status"
 msgid "Not running, not enough components to start"
-msgstr "לא פעיל, אין די רכיבים להפעלה"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:114
 msgctxt "RAID status"
 msgid "DEGRADED"
-msgstr "הוקטן"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:116
 msgctxt "RAID status"
 msgid "Running"
-msgstr "פועל"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:124
 msgctxt "RAID action"
 msgid "Reshaping"
-msgstr "ארגון מחדש"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:126
 msgctxt "RAID action"
 msgid "Resyncing"
-msgstr "סנכרון מחדש"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:128
 msgctxt "RAID action"
 msgid "Repairing"
-msgstr "תיקון"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:130
 msgctxt "RAID action"
 msgid "Recovering"
-msgstr "שחזור"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:132
 msgctxt "RAID action"
 msgid "Checking"
-msgstr "בדיקה"
+msgstr "Memeriksa"
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:137
 msgctxt "RAID action"
 msgid "Idle"
-msgstr "בהתמנה"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:315
 msgid "Error stopping RAID Array"
-msgstr "שגיאה בעצירת מערך ה־RAID"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:360
 msgid "Error starting RAID Array"
-msgstr "שגיאה בהפעלת מערך ה־RAID"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:390
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:393
 #, c-format
 msgid "Not enough components available to start the RAID Array"
-msgstr "אין די רכיבים זמינים להפעלת מערך ה־RAID"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:409
 msgid "Are you sure you want the RAID Array degraded?"
-msgstr "האם ברצונך להקטין את מערך ה־RAID?"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:410
 msgid "_Start"
-msgstr "ה_תחלה"
+msgstr "_Mula"
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:455
 msgid "Error deleting partition for component in RAID Array"
-msgstr "שגיאה במחיקת מחיצה או רכיב במחיצת RAID"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:478
 msgid "Error removing component from RAID Array"
-msgstr "שגיאה בהסרת רכיב ממערך RAID"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:529
 msgid "Are you sure you want the remove the component?"
-msgstr "האם להסיר את הרכיב?"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:566
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:650
 msgid "Error adding component to RAID Array"
-msgstr "שגיאה בהוספת רכיב למערך RAID"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:683
 #: ../src/palimpsest/gdu-shell.c:598
 msgid "Error creating component for RAID array"
-msgstr "שגיאה ביצירת רכיב עבור מערך RAID"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:722
 msgid "Error expanding RAID Array"
-msgstr "שגיאה בהרחבת מערכת ה־RAID"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:883
 msgid "Error checking RAID Array"
-msgstr "שגיאה בבדיקת מערך ה־RAID"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:958
 msgid "Level:"
-msgstr "רמה:"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:962
 msgid "Metadata Version:"
-msgstr "גרסת נתוני העל:"
+msgstr "Versi Metadata:"
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:982
 msgid "Action:"
-msgstr "פעולה::"
+msgstr "Aksi:"
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:986
 msgid "Components:"
-msgstr "רכיבים:"
+msgstr "Komponen:"
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:1003
 msgid "St_art RAID Array"
-msgstr "ה_פעלת מערך RAID"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:1004
 msgid "Bring up the RAID Array"
-msgstr "העלאת מערך ה־RAID"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:1013
 msgid "St_op RAID Array"
-msgstr "ע_צירת מערך ה־RAID"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:1014
 msgid "Tear down the RAID Array"
-msgstr "הפסקת פעולת מערך ה־RAID"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:1023
 msgid "Format/Erase RAI_D Array"
-msgstr "פרמוט/מחיקת _מערך RAID"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:1024
 msgid "Erase or partition the array"
-msgstr "מחיקה או חלוקה למחיצות של המערך"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:1033
 msgid "Chec_k Array"
-msgstr "בד_וק מערך"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:1034
 msgid "Check and repair the array"
-msgstr "בדיקה ותיקון של המערך"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:1043
 msgid "Edit Com_ponents"
-msgstr "עריכת _רכיבים"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:1044
 msgid "Create and remove components"
-msgstr "יצירה או הסרה של רכיבים"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:1054
 msgid "Measure RAID array performance"
-msgstr "מדידת ביצועי מערך RAID"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:115
 msgid "Error unmounting volume"
-msgstr "שגיאה בניתוק ההתקן"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:171
 msgid "Error mounting volume"
-msgstr "שגיאה בעגינת הכרך"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:228
 msgid "Error deleting partition"
-msgstr "שגיאה במהלך מחיקת המחיצה"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:263
 msgid "Are you sure you want to delete the partition?"
-msgstr "האם למחוק את המחיצה?"
+msgstr "Adakah anda ingin memadam sekatan tersebut?"
 
 #: ../src/palimpsest/gdu-section-volumes.c:264
 #: ../src/palimpsest/gdu-section-volumes.c:1788
 msgid "_Delete"
-msgstr "_מחיקה"
+msgstr "_Padam"
 
 #: ../src/palimpsest/gdu-section-volumes.c:317
 msgid "Error creating filesystem"
-msgstr "שגיאה ביצירת מערכת הקבצים"
+msgstr "Ralat mencipta fail sistem"
 
 #: ../src/palimpsest/gdu-section-volumes.c:370
 msgid "Are you sure you want to format the volume?"
-msgstr "האם ברצונך לפרמט את הכרך?"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:428
 msgid "Error modifying partition"
-msgstr "שגיאה בביצוע שינויים במחיצה"
+msgstr "Ralat membuat perubahan sekatan"
 
 #: ../src/palimpsest/gdu-section-volumes.c:519
 msgid "Are you sure you want to forget the passphrase?"
-msgstr "האם ברצונך להתעלם ממילת הצופן?"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:520
 msgid "_Forget"
-msgstr "ה_תעלמות"
+msgstr "_Lupakan"
 
 #: ../src/palimpsest/gdu-section-volumes.c:550
 msgid "Error locking LUKS volume"
-msgstr "שגיאה בנעילת כרך ה־LUKS"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:673
 msgid "Error unlocking LUKS volume"
-msgstr "שגיאה בשחרור כרך ה־LUKS"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:969
 msgid "Error creating partition"
-msgstr "שגיאה ביצירת מחיצה"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:1140
 msgid "Error changing label"
-msgstr "שגיאה בשינוי התווית"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:1195
 msgid "Choose a new filesystem label."
-msgstr "בחירת תווית חדשה למערכת הקבצים."
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:1196
 msgid "_Label:"
-msgstr "_תווית:"
+msgstr "_Label:"
 
 #: ../src/palimpsest/gdu-section-volumes.c:1241
 msgid "Error checking filesystem on volume"
-msgstr "שגיאה בבדיקת מערכת הקבצים בכרך"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:1268
 #, c-format
 msgid "File system check on \"%s\" (%s) completed"
-msgstr "בדיקת מערכת הקבצים שב־\"%s\"‏ (%s) הושלמה"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:1272
 msgid "File system is clean."
-msgstr "מערכת הקבצים נקייה."
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:1275
 msgid "File system is <b>NOT</b> clean."
-msgstr "מערכת הקבצים <b>אינה</b> נקייה."
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:1387
 #, c-format
 msgid "Error spawning nautilus: %s"
-msgstr "שגיאה בהפעלת nautilus כתת־תהליך: %s"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:1435
 msgid "Error creating Logical Volume"
-msgstr "שגיאה ביצירת כרך לוגי"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:1588
 msgid "Error stopping Logical Volume"
-msgstr "שגיאה בעצירת כרך לוגי"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:1634
 msgid "Error starting Logical Volume"
-msgstr "שגיאה בהפעלת כרך לוגי"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:1683
 msgid "Error setting name for Logical Volume"
-msgstr "שגיאה בהגדרת שם הכרך הלוגי"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:1721
 msgid "Choose a new name for the Logical Volume."
-msgstr "יש לבחור בשם חדש עבור הכרך הלוגי."
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:1754
 msgid "Error deleting Logical Volume"
-msgstr "שגיאה במחיקת כרך לוגי"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:1787
 msgid "Are you sure you want to delete the logical volume?"
-msgstr "האם למחוק את הכרך הלוגי?"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:1906
 msgid "Volume Name:"
-msgstr "שם הכרך:"
+msgstr "Nama Volum:"
 
 #: ../src/palimpsest/gdu-section-volumes.c:1912
 msgid "Usage:"
-msgstr "שימוש:"
+msgstr "Penggunaan:"
 
 #: ../src/palimpsest/gdu-section-volumes.c:1922
 msgid "Partition Type:"
-msgstr "סוג מחיצה:"
+msgstr "Jenis Sekatan:"
 
 #: ../src/palimpsest/gdu-section-volumes.c:1928
 msgid "Partition Label:"
-msgstr "תווית מחיצה:"
+msgstr "Label Sekatan:"
 
 #: ../src/palimpsest/gdu-section-volumes.c:1931
 msgid "Partition Flags:"
-msgstr "דגלוני המחיצה:"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:1956
 msgid "Type:"
-msgstr "סוג:"
+msgstr "Jenis:"
 
 #: ../src/palimpsest/gdu-section-volumes.c:1959
 msgid "Available:"
-msgstr "זמין:"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:1962
 msgid "Label:"
-msgstr "תווית:"
+msgstr "Label:"
 
 #: ../src/palimpsest/gdu-section-volumes.c:1965
 msgid "Mount Point:"
-msgstr "נקודת עיגון:"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:1986
 msgctxt "LVM2 LV State"
 msgid "Running"
-msgstr "פעיל"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:1987
 msgctxt "LVM2 LV State"
 msgid "Not Running"
-msgstr "לא פעיל"
+msgstr ""
 
 #. Translators: This is for the 'boot' MBR/APM partition flag
 #: ../src/palimpsest/gdu-section-volumes.c:2026
 msgid "Bootable"
-msgstr "ניתן לאתחול"
+msgstr ""
 
 #. Translators: This is for the 'required' GPT partition flag
 #: ../src/palimpsest/gdu-section-volumes.c:2029
 msgid "Required"
-msgstr "נדרש"
+msgstr "Diperlukan"
 
 #. Translators: This is for the 'allocated' APM partition flag
 #: ../src/palimpsest/gdu-section-volumes.c:2032
 msgid "Allocated"
-msgstr "מוקצה"
+msgstr ""
 
 #. Translators: This is for the 'allow_read' APM partition flag
 #: ../src/palimpsest/gdu-section-volumes.c:2035
 msgid "Allow Read"
-msgstr "אפשור קריאה"
+msgstr "Benarkan Baca"
 
 #. Translators: This is for the 'allow_write' APM partition flag
 #: ../src/palimpsest/gdu-section-volumes.c:2038
 msgid "Allow Write"
-msgstr "אפשור כתיבה"
+msgstr "Benarkan Tulis"
 
 #. Translators: This is for the 'boot_code_is_pic' APM partition flag
 #: ../src/palimpsest/gdu-section-volumes.c:2041
 msgid "Boot Code PIC"
-msgstr "קוד הפעלת PIC"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2115
 msgid "Filesystem"
-msgstr "מערכת קבצים"
+msgstr "Fail Sistem"
 
 #. Translators: this the mount point hyperlink tooltip for a
 #. * remote server - it uses the sftp:// protocol
 #.
 #: ../src/palimpsest/gdu-section-volumes.c:2148
 msgid "View files on the volume using a SFTP network share"
-msgstr "צפייה בקובצי הכונן באמצעות שיתוף רשת מסוג SFTP"
+msgstr ""
 
 #. Translators: this the mount point hyperlink tooltip
 #: ../src/palimpsest/gdu-section-volumes.c:2155
 msgid "View files on the volume"
-msgstr "צפייה בקבצים בכרך"
+msgstr ""
 
 #. Translators: this the the text for the mount point
 #. * item - %s is the mount point, e.g. '/media/disk'
@@ -5156,167 +5077,167 @@ msgstr "צפייה בקבצים בכרך"
 #: ../src/palimpsest/gdu-section-volumes.c:2162
 #, c-format
 msgid "Mounted at %s"
-msgstr "מעוגן אל %s"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2170
 msgid "Not Mounted"
-msgstr "לא מעוגן"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2180
 msgid "Encrypted Volume (Locked)"
-msgstr "כרך מוצפן (נעול)"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2183
 msgid "Encrypted Volume (Unlocked)"
-msgstr "כרך מוצפן (משוחרר)"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2196
 msgid "Go to array"
-msgstr "מעבר למערך"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2204
 msgid "Container for Logical Partitions"
-msgstr "מכל למחיצות לוגיות"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2321
 msgid "Logical _Volumes"
-msgstr "מ_חיצות לוגיות"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2323
 msgid "_Volumes"
-msgstr "_כרכים"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2387
 msgid "_Mount Volume"
-msgstr "עיגון _כרך"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2388
 msgid "Mount the volume"
-msgstr "עיגון הכרך"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2397
 msgid "Un_mount Volume"
-msgstr "_ניתוק הכרך"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2398
 msgid "Unmount the volume"
-msgstr "ניתוק הכרך"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2407
 msgid "Fo_rmat Volume"
-msgstr "_פרמוט הכרך"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2408
 msgid "Erase or format the volume"
-msgstr "מחיקה או פרמוט של הכרך"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2417
 msgid "_Check Filesystem"
-msgstr "ב_דיקת מערכת הקבצים"
+msgstr "_Periksa Fail Sistem"
 
 #: ../src/palimpsest/gdu-section-volumes.c:2418
 msgid "Check and repair the filesystem"
-msgstr "בדיקה ותיקון של מערכת הקבצים"
+msgstr "Periksa dan membaiki fail sistem"
 
 #: ../src/palimpsest/gdu-section-volumes.c:2428
 msgid "Edit Filesystem _Label"
-msgstr "עריכת _תווית מערכת הקבצים"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2429
 msgid "Change the label of the filesystem"
-msgstr "שינוי תווית מערכת הקבצים"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2438
 msgid "Ed_it Partition"
-msgstr "_עריכת מחיצה"
+msgstr "Su_nting Sekatan"
 
 #: ../src/palimpsest/gdu-section-volumes.c:2439
 msgid "Change partition type, label and flags"
-msgstr "שינוי סוג המחיצה, תווית ודגלונים"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2448
 msgid "D_elete Partition"
-msgstr "_מחיקת מחיצה"
+msgstr "P_adam Sekatan"
 
 #: ../src/palimpsest/gdu-section-volumes.c:2449
 msgid "Delete the partition"
-msgstr "מחיקת המחיצה"
+msgstr "Padam Sekatan"
 
 #: ../src/palimpsest/gdu-section-volumes.c:2458
 msgid "_Create Partition"
-msgstr "י_צירת מחיצה"
+msgstr "_Cipta Sekatan"
 
 #: ../src/palimpsest/gdu-section-volumes.c:2459
 msgid "Create a new partition"
-msgstr "יצירת מחיצה חדשה"
+msgstr "Cipta sekatan baru"
 
 #: ../src/palimpsest/gdu-section-volumes.c:2468
 msgid "_Lock Volume"
-msgstr "נ_עילת הכרך"
+msgstr "_Kunci Volum"
 
 #: ../src/palimpsest/gdu-section-volumes.c:2469
 msgid "Make encrypted data unavailable"
-msgstr "הפיכת המידע המוצפן לבלתי זמין"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2478
 msgid "Un_lock Volume"
-msgstr "שח_רור הנעילה"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2479
 msgid "Make encrypted data available"
-msgstr "הפיכת הנתונים המוצפנים לזמינים"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2488
 msgid "Forge_t Passphrase"
-msgstr "ה_תעלמות ממילת הצופן"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2489
 msgid "Delete passphrase from keyring"
-msgstr "מחיקת מילת הצופן מקבוצת המפתחות"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2500
 msgid "Change passphrase"
-msgstr "שינוי _מילת הצופן"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2509
 msgid "_Create Logical Volume"
-msgstr "י_צירת כרך לוגי"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2510
 msgid "Create a new logical volume"
-msgstr "יצירת כרך לוגי חדש"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2519
 msgid "S_tart Volume"
-msgstr "ה_תחלת כרך"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2520
 msgid "Activate the Logical Volume"
-msgstr "הפעלת הכרך הלוגי"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2530
 msgid "Edit Vol_ume Name"
-msgstr "עריכת _שם הכרך"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2531
 msgid "Change the name of the volume"
-msgstr "שינוי שם הכרך"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2540
 msgid "D_elete Volume"
-msgstr "מחי_קת כרך"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2541
 msgid "Delete the Logical Volume"
-msgstr "מחיקת הכרך הלוגי"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2550
 msgid "Sto_p Volume"
-msgstr "ע_צירת כרך"
+msgstr ""
 
 #: ../src/palimpsest/gdu-section-volumes.c:2551
 msgid "Deactivate the Logical Volume"
-msgstr "נטרול הכרך הלוגי"
+msgstr ""
 
 #. Translators: Window title when the item representing a remote machine is selected.
 #. * First %s is the hostname of the remote host (e.g. 'widget.gnome.org')
@@ -5324,7 +5245,7 @@ msgstr "נטרול הכרך הלוגי"
 #: ../src/palimpsest/gdu-shell.c:290
 #, c-format
 msgid "%s — Disk Utility"
-msgstr "%s — כלי הכוננים"
+msgstr "%s — Utiliti Cakera"
 
 #. Translators: Window title when an item on a remote machine is selected and there is a device file.
 #. * First %s is the name of the item (e.g. '80 GB Solid-State Disk' or 'Saturn').
@@ -5335,7 +5256,7 @@ msgstr "%s — כלי הכוננים"
 #: ../src/palimpsest/gdu-shell.c:300
 #, c-format
 msgid "%s (%s) [%s] @ %s — Disk Utility"
-msgstr "%s (%s) [%s] @ %s — כלי הכוננים"
+msgstr "%s (%s) [%s] @ %s — Utiliti Cakera"
 
 #. Translators: Window title when an item on a remote machine is selected.
 #. * First %s is the name of the item (e.g. '80 GB Solid-State Disk' or 'Saturn').
@@ -5345,7 +5266,7 @@ msgstr "%s (%s) [%s] @ %s — כלי הכוננים"
 #: ../src/palimpsest/gdu-shell.c:311
 #, c-format
 msgid "%s (%s) @ %s — Disk Utility"
-msgstr "%s (%s) @ %s — כלי הכוננים"
+msgstr "%s (%s) @ %s — Utiliti Cakera"
 
 #. Translators: Window title when an item on the local machine is selected and there is a device file.
 #. * First %s is the name of the item (e.g. '80 GB Solid-State Disk' or 'Saturn').
@@ -5355,7 +5276,7 @@ msgstr "%s (%s) @ %s — כלי הכוננים"
 #: ../src/palimpsest/gdu-shell.c:329
 #, c-format
 msgid "%s (%s) [%s] — Disk Utility"
-msgstr "%s (%s) [%s] — כלי הכוננים"
+msgstr "%s (%s) [%s] — Utiliti Cakera"
 
 #. Translators: Window title when an item on the local machine is selected.
 #. * First %s is the name of the item (e.g. '80 GB Solid-State Disk' or 'Saturn').
@@ -5364,127 +5285,111 @@ msgstr "%s (%s) [%s] — כלי הכוננים"
 #: ../src/palimpsest/gdu-shell.c:338
 #, c-format
 msgid "%s (%s) — Disk Utility"
-msgstr "%s (%s) — כלי הכוננים"
+msgstr "%s (%s) — Utiliti Cakera"
 
 #: ../src/palimpsest/gdu-shell.c:626
 msgid "Error creating RAID array"
-msgstr "שגיאה ביצירת מערך RAID"
+msgstr ""
 
 #: ../src/palimpsest/gdu-shell.c:755
 #, c-format
 msgid "Error connecting to “%s”"
-msgstr "שגיאה בהתחברות אל “%s”"
+msgstr ""
 
 #: ../src/palimpsest/gdu-shell.c:808
 msgid "translator-credits"
 msgstr ""
-"מארק קרפיבנר <mark125@gmail.com>\n"
-"Yaron Shahrabani <sh.yaron@gmail.com>\n"
-"\n"
-"פרויקט תרגום GNOME לעברית:\n"
-"http://gnome-il.berlios.de"
+"Ahmed Noor Kader Mustajir Md Eusoff <sir.ade@gmail.com> <http://mustajir."
+"org>, 2010Umarzuki Bin Mochlis Moktar <umar@umarzuki.org>"
 
 #: ../src/palimpsest/gdu-shell.c:837
 msgid "_File"
-msgstr "_קובץ"
+msgstr "_Fail"
 
 #: ../src/palimpsest/gdu-shell.c:838
 msgid "Connect to _Server..."
-msgstr "ה_תחברות לשרת..."
+msgstr "Sambung ke _Pelayan..."
 
 #: ../src/palimpsest/gdu-shell.c:838
 msgid "Manage storage devices on another machine"
-msgstr "ניהול התקני אחסון במחשב אחר"
+msgstr ""
 
 #: ../src/palimpsest/gdu-shell.c:839
 msgid "_Create"
-msgstr "י_צירה"
+msgstr "_Cipta"
 
 #: ../src/palimpsest/gdu-shell.c:840
 msgid "_RAID Array..."
-msgstr "מערך _RAID..."
+msgstr ""
 
 #: ../src/palimpsest/gdu-shell.c:840
 msgid "Create a RAID array"
-msgstr "יצירת מערך RAID"
+msgstr ""
 
 #: ../src/palimpsest/gdu-shell.c:841
 msgid "_Edit"
-msgstr "_עריכה"
+msgstr "_Sunting"
 
 #: ../src/palimpsest/gdu-shell.c:842 ../src/palimpsest/gdu-shell.c:845
 msgid "_Help"
-msgstr "_עזרה"
+msgstr "_Bantuan"
 
 #: ../src/palimpsest/gdu-shell.c:844
 msgid "_Quit"
-msgstr "י_ציאה"
+msgstr "_Berhenti"
 
 #: ../src/palimpsest/gdu-shell.c:844
 msgid "Quit"
-msgstr "יציאה"
+msgstr "Berhenti"
 
 #: ../src/palimpsest/gdu-shell.c:845
 msgid "Get Help on Disk Utility"
-msgstr "קבלת עזרה עם כלי הכוננים"
+msgstr "Dapatkan Bantuan mengenai Utiliti Cakera"
 
 #: ../src/palimpsest/gdu-shell.c:846
 msgid "_About"
-msgstr "על _אודות"
+msgstr "_Perihal"
 
 #: ../src/palimpsest/gdu-shell.c:925
 msgid "An error occured"
-msgstr "ארעה שגיאה"
+msgstr "Ralat telah berlaku"
 
 #: ../src/palimpsest/gdu-shell.c:934
 msgid "The operation failed."
-msgstr "הפעולה נכשלה."
+msgstr "Operasi gagal"
 
 #: ../src/palimpsest/gdu-shell.c:937
 msgid "The device is busy."
-msgstr "ההתקן נמצא בשימוש."
+msgstr "Peranti sedang sibuk."
 
 #: ../src/palimpsest/gdu-shell.c:940
 msgid "The operation was canceled."
-msgstr "הפעולה בוטלה."
+msgstr "Operasi telah dibatalkan."
 
 #: ../src/palimpsest/gdu-shell.c:943
 msgid "The daemon is being inhibited."
-msgstr "הסוכן נעצר."
+msgstr ""
 
 #: ../src/palimpsest/gdu-shell.c:946
 msgid "An invalid option was passed."
-msgstr "הועברה אפשרות שגויה."
+msgstr ""
 
 #: ../src/palimpsest/gdu-shell.c:949
 msgid "The operation is not supported."
-msgstr "הפעולה אינה נתמכת."
+msgstr ""
 
 #: ../src/palimpsest/gdu-shell.c:952
 msgid "Getting ATA SMART data would wake up the device."
-msgstr "קבלת נתוני SMART ל־ATA עלולה להעיר את ההתקן."
+msgstr ""
 
 #: ../src/palimpsest/gdu-shell.c:955
 msgid "Permission denied."
-msgstr "הרשאה נדחתה."
+msgstr ""
 
 #: ../src/palimpsest/gdu-shell.c:994
 msgid "_Details:"
-msgstr "_פרטים: "
+msgstr "_Perihal:"
 
 #: ../src/palimpsest/gdu-shell.c:1163
 msgid "_Storage Devices"
-msgstr "התקני _אחסון"
-
-#~ msgid "One or more disks are failing"
-#~ msgstr "כונן אחד או יותר נפגמו"
-
-#~ msgid "A hard disk may be failing"
-#~ msgstr "יתכן שכונן קשיח עומד להפגם"
-
-#~ msgid ""
-#~ "One or more hard disks report health problems. Click the icon to get more "
-#~ "information."
-#~ msgstr ""
-#~ "כונן קשיח אחד או יותר מדווחים על בעיות תקינות. יש ללחוץ על הסמל למידע "
-#~ "נוסף."
+msgstr "_Peranti Penyimpanan"
