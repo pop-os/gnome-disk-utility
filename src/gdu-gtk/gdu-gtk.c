@@ -345,7 +345,7 @@ gdu_util_dialog_show_filesystem_busy (GtkWidget *parent_window,
 
         dialog = gtk_dialog_new_with_buttons (window_title,
                                               GTK_WINDOW (parent_window),
-                                              GTK_DIALOG_MODAL|GTK_DIALOG_DESTROY_WITH_PARENT,
+                                              GTK_DIALOG_MODAL|GTK_DIALOG_DESTROY_WITH_PARENT|GTK_DIALOG_NO_SEPARATOR,
                                               NULL);
         content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
         action_area = gtk_dialog_get_action_area (GTK_DIALOG (dialog));
@@ -581,7 +581,7 @@ gdu_util_dialog_secret_internal (GtkWidget   *parent_window,
 
         dialog = gtk_dialog_new_with_buttons (window_title,
                                               GTK_WINDOW (parent_window),
-                                              GTK_DIALOG_MODAL|GTK_DIALOG_DESTROY_WITH_PARENT,
+                                              GTK_DIALOG_MODAL|GTK_DIALOG_DESTROY_WITH_PARENT|GTK_DIALOG_NO_SEPARATOR,
                                               GTK_STOCK_CANCEL,
                                               GTK_RESPONSE_CANCEL,
                                               NULL);
@@ -1161,7 +1161,7 @@ gdu_util_delete_confirmation_dialog (GtkWidget   *parent_window,
 
         dialog = gtk_dialog_new_with_buttons (title,
                                               GTK_WINDOW (parent_window),
-                                              GTK_DIALOG_MODAL|GTK_DIALOG_DESTROY_WITH_PARENT,
+                                              GTK_DIALOG_MODAL|GTK_DIALOG_DESTROY_WITH_PARENT|GTK_DIALOG_NO_SEPARATOR,
                                               NULL);
         content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
         action_area = gtk_dialog_get_action_area (GTK_DIALOG (dialog));
@@ -1749,7 +1749,6 @@ gdu_util_get_mix_color (GtkWidget    *widget,
                         gchar        *color_buf,
                         gsize         color_buf_size)
 {
-#if 0
         GtkStyle *style;
         GdkColor color = {0};
 
@@ -1771,11 +1770,4 @@ gdu_util_get_mix_color (GtkWidget    *widget,
                   (color.red >> 8),
                   (color.green >> 8),
                   (color.blue >> 8));
-#endif
-        /* TODO: use GtkStyleContext and/or CSS etc. instead of hard-coding colors */
-        snprintf (color_buf,
-                  color_buf_size, "#%02x%02x%02x",
-                  0x80,
-                  0x80,
-                  0x80);
 }

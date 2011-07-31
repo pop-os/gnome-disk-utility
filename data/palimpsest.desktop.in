@@ -7,4 +7,5 @@ Terminal=false
 Type=Application
 StartupNotify=true
 X-GNOME-DocPath=palimpsest/palimpsest.xml
-Categories=GNOME;GTK;Utility;HardwareSettings;
+Categories=GNOME;GTK;System;
+

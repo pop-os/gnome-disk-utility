@@ -2,30 +2,27 @@
 # Copyright (C) 2008. Free Software Foundation, Inc.
 # Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>, 2009, 2010.
 # Tryneeds translation team, 2009.
-# Wei-Lun Chao <chaoweilun@gmail.com>, 2010.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-disk-utility 2.32.2\n"
+"Project-Id-Version: gnome-disk-utility 2.30.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-12 20:05+0800\n"
-"PO-Revision-Date: 2010-12-12 20:05+0800\n"
+"POT-Creation-Date: 2010-08-24 19:42+0800\n"
+"PO-Revision-Date: 2010-08-24 19:46+0800\n"
 "Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
 "Language-Team: Chinese (Hong Kong) <community@linuxhall.org>\n"
-"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. Translators: Window title when no item is selected.
 #.
 #. Translators: Window title when the item representing the local machine is selected.
 #.
-#: ../data/palimpsest.desktop.in.h:1
-#: ../src/notification/notification-main.c:537
-#: ../src/palimpsest/gdu-shell.c:269 ../src/palimpsest/gdu-shell.c:321
-#: ../src/palimpsest/gdu-shell.c:803 ../src/palimpsest/gdu-shell.c:1114
+#: ../data/palimpsest.desktop.in.h:1 ../src/palimpsest/gdu-shell.c:269
+#: ../src/palimpsest/gdu-shell.c:321 ../src/palimpsest/gdu-shell.c:803
+#: ../src/palimpsest/gdu-shell.c:1115
 msgid "Disk Utility"
 msgstr "磁碟公用程式"
 
@@ -41,27 +38,27 @@ msgstr "磁碟通知"
 msgid "Provides notifications related to disks"
 msgstr "提供與磁碟機相關的系統通知"
 
-#: ../src/format-tool/gdu-format-progress-dialog.c:183
+#: ../src/format-tool/gdu-format-progress-dialog.c:184
 msgid ""
 "To prevent data corruption, wait until this has finished before removing "
 "media or disconnecting the device."
 msgstr "為了避免資料損毀，請等到這個操作結束才移除媒體或中斷與此裝置的連線。"
 
-#: ../src/format-tool/gdu-format-progress-dialog.c:215
-#: ../src/notification/gdu-slow-unmount-dialog.c:284
+#: ../src/format-tool/gdu-format-progress-dialog.c:216
+#: ../src/notification/gdu-slow-unmount-dialog.c:286
 msgid "Device"
 msgstr "裝置"
 
-#: ../src/format-tool/gdu-format-progress-dialog.c:216
-#: ../src/notification/gdu-slow-unmount-dialog.c:285
+#: ../src/format-tool/gdu-format-progress-dialog.c:217
+#: ../src/notification/gdu-slow-unmount-dialog.c:287
 msgid "The device to show the dialog for"
 msgstr "要顯示對話盒的裝置"
 
-#: ../src/format-tool/gdu-format-progress-dialog.c:228
+#: ../src/format-tool/gdu-format-progress-dialog.c:229
 msgid "text"
 msgstr "文字"
 
-#: ../src/format-tool/gdu-format-progress-dialog.c:229
+#: ../src/format-tool/gdu-format-progress-dialog.c:230
 msgid "Text to show"
 msgstr "要顯示的文字"
 
@@ -129,11 +126,11 @@ msgstr "正在格式化 %s 儲存區 (%s)"
 
 #: ../src/format-tool/gdu-format-tool.c:386
 msgid "Preparing..."
-msgstr "正在準備…"
+msgstr "正在準備..."
 
 #: ../src/format-tool/gdu-format-tool.c:429
 msgid "Unmounting..."
-msgstr "正在卸載…"
+msgstr "正在卸載..."
 
 #: ../src/format-tool/gdu-format-tool.c:447
 #, c-format
@@ -142,11 +139,11 @@ msgstr "無法格式化「%s」"
 
 #: ../src/format-tool/gdu-format-tool.c:462
 msgid "Formatting..."
-msgstr "正在格式化…"
+msgstr "正在格式化..."
 
 #: ../src/format-tool/gdu-format-tool.c:479
 msgid "Cancelling..."
-msgstr "正在取消…"
+msgstr "正在取消..."
 
 #: ../src/format-tool/gdu-format-tool.c:489
 msgid "Error formatting volume"
@@ -154,7 +151,7 @@ msgstr "格式化儲存區時發生錯誤"
 
 #: ../src/format-tool/gdu-format-tool.c:500
 msgid "Mounting volume..."
-msgstr "正在掛載儲存區…"
+msgstr "正在掛載儲存區..."
 
 #: ../src/format-tool/gdu-format-tool.c:524
 msgid "Error mounting device"
@@ -168,29 +165,29 @@ msgstr "儲存密碼匙圈的密語時發生錯誤"
 msgid "The RAID Array to add a component to."
 msgstr "要加入元件的 RAID 陣列。"
 
-#: ../src/gdu-gtk/gdu-add-component-linux-md-dialog.c:228
+#: ../src/gdu-gtk/gdu-add-component-linux-md-dialog.c:229
 #, c-format
 msgid "Add spare to %s"
 msgstr "加入備用碟至 %s"
 
-#: ../src/gdu-gtk/gdu-add-component-linux-md-dialog.c:229
+#: ../src/gdu-gtk/gdu-add-component-linux-md-dialog.c:230
 #, c-format
 msgid "Select a device to create a %s spare on for the RAID Array \"%s\" (%s)"
 msgstr "選擇磁碟以便在 RAID 陣列「%2$s」(%3$s) 上建立 %1$s 備用碟"
 
-#: ../src/gdu-gtk/gdu-add-component-linux-md-dialog.c:237
+#: ../src/gdu-gtk/gdu-add-component-linux-md-dialog.c:238
 #, c-format
 msgid "Expand %s"
 msgstr "擴張 %s"
 
-#: ../src/gdu-gtk/gdu-add-component-linux-md-dialog.c:238
+#: ../src/gdu-gtk/gdu-add-component-linux-md-dialog.c:239
 #, c-format
 msgid ""
 "Select one or more devices to use %s on for expanding the RAID Array \"%s"
 "\" (%s)"
 msgstr "選擇一或多個要使用 %s 的裝置磁碟以便擴張 RAID 陣列「%s」(%s)"
 
-#: ../src/gdu-gtk/gdu-add-component-linux-md-dialog.c:244
+#: ../src/gdu-gtk/gdu-add-component-linux-md-dialog.c:245
 msgid "_Expand"
 msgstr "擴張(_E)"
 
@@ -198,12 +195,12 @@ msgstr "擴張(_E)"
 msgid "The VG to add a PV to."
 msgstr "實體儲存區要加入的羣組。"
 
-#: ../src/gdu-gtk/gdu-add-pv-linux-lvm2-dialog.c:249
+#: ../src/gdu-gtk/gdu-add-pv-linux-lvm2-dialog.c:250
 #, c-format
 msgid "Add Physical Volume to %s (%s)"
 msgstr "將實體儲存區加入 %s (%s)"
 
-#: ../src/gdu-gtk/gdu-add-pv-linux-lvm2-dialog.c:265
+#: ../src/gdu-gtk/gdu-add-pv-linux-lvm2-dialog.c:266
 #: ../src/gdu-gtk/gdu-create-linux-lvm2-volume-dialog.c:203
 #: ../src/gdu-gtk/gdu-create-partition-dialog.c:220
 msgid "_Size:"
@@ -592,7 +589,7 @@ msgstr "磁頭距離磁碟表面的高度"
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:401
 #, fuzzy
 msgid "Spin High Current"
-msgstr "重新再玩這局"
+msgstr "設定組合的目前堆疊"
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:402
 msgid "Amount of high current used to spin up the drive"
@@ -816,7 +813,7 @@ msgstr "數值："
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:854
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:862
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:958
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1640
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1642
 msgid "N/A"
 msgstr "N/A"
 
@@ -888,198 +885,198 @@ msgid "%s (%s) – SMART Data"
 msgstr "%s (%s) – SMART 資料"
 
 #. Translators: Item name in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1290
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1292
 msgid "Updated:"
 msgstr "更新："
 
 #. Translators: Tooltip for the 'Updated' item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1293
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1295
 msgid ""
 "Time since SMART data was last read – SMART data is updated every 30 minutes "
 "unless the disk is sleeping"
 msgstr "從上次讀取 SMART 資料以來的時間 - 除非磁碟進入睡眠，SMART 資料每 30 分鐘會更新一次"
 
 #. Translators: Item name in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1299
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1301
 msgid "Self-tests:"
 msgstr "自我測試："
 
 #. Translators: Tooltip for the 'Self-tests' item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1302
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1304
 msgid "The result of the last self-test that ran on the disk"
 msgstr "上次在磁碟執行自我測試的結果"
 
 #. Translators: Item name in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1307
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1309
 msgid "Powered On:"
 msgstr "起動於："
 
 #. Translators: Tooltip for the 'Powered On' item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1310
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1312
 msgid "The amount of elapsed time the disk has been in a powered-up state"
 msgstr "這個磁碟過去處於電源開啟狀態的時間總數"
 
 #. Translators: Item name in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1315
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1317
 msgid "Power Cycles:"
 msgstr "電源循環："
 
 #. Translators: Tooltip for the 'Power Cycles' item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1318
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1320
 msgid "The number of full disk power on/off cycles"
 msgstr "完整的磁碟機電源開啟/關閉循環次數"
 
 #. Translators: Item name in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1323
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1325
 msgid "Temperature:"
 msgstr "溫度:"
 
 #. Translators: Tooltip for the 'Temperature' item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1326
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1328
 msgid "The temperature of the disk"
 msgstr "這個磁碟機的溫度"
 
 #. Translators: Item name in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1331
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1333
 msgid "Bad Sectors:"
 msgstr "錯誤的磁區："
 
 #. Translators: Tooltip for the 'Bad Sectors' item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1334
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1336
 msgid "The sum of pending and reallocated bad sectors"
 msgstr "目前擱置和重新配置的錯誤磁區總數"
 
 #. Translators: Item name in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1339
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1341
 msgid "Self Assessment:"
 msgstr "自我評估："
 
 #. Translators: Tooltip for the 'Self Assesment' item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1342
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1344
 msgid "The assessment from the disk itself whether it is about to fail"
 msgstr "對磁碟自我評估是否即將損壞"
 
 #. Translators: Item name in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1347
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1349
 msgid "Overall Assessment:"
 msgstr "整體評估："
 
 #. Translators: Tooltip for the 'Overall Assessment' item in the
 #. * status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1351
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1353
 msgid "An overall assessment of the health of the disk"
 msgstr "對磁碟機健康狀況的整體評估"
 
 #. Translators: Button name
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1365
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1367
 msgid "_Refresh"
 msgstr "重新整理(_R)"
 
 #. Translators: Button details
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1367
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1369
 msgid "Reads SMART Data, waking up the disk"
 msgstr "讀取 SMART 資料，喚醒磁碟"
 
 #. TODO: better icon
 #. Translators: Button name
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1377
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1379
 msgid "Run _Self-test"
 msgstr "執行自我測試(_S)"
 
 #. Translators: Button details
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1379
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1381
 msgid "Test the disk surface for errors"
 msgstr "測試磁碟表面有無錯誤"
 
 #. Translators: Button name
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1389
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1391
 msgid "_Cancel Self-test"
 msgstr "取消自我測試(_C)"
 
 #. Translators: Button details
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1391
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1393
 msgid "Cancels the self-test"
 msgstr "取消這次自我測試"
 
 #. Translators: Heading used in the main dialog for SMART attributes
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1409
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1411
 msgid "_Attributes"
 msgstr "屬性(_A)"
 
 #. Translators: This string is used as the column title in the treeview for the Attribute ID (0-255)
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1443
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1445
 msgid "ID"
 msgstr "ID"
 
 #. Translators: This string is used as the column title in the treeview for the attribute name and description
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1455
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1457
 msgid "Attribute"
 msgstr "屬性"
 
 #. Translators: This string is used as the column title in the treeview for the assessment of the attribute
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1472
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1474
 msgid "Assessment"
 msgstr "評估"
 
 #. Translators: This string is used as the column title in the treeview for the value of the attribute
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1491
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1493
 msgid "Value"
 msgstr "數值"
 
 #. ----------------------------------------------------------------------------------------------------
 #. Translators: Check button in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1519
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1521
 msgid "Don't _warn if the disk is failing"
 msgstr "磁碟機發生問題時不要警告我(_W)"
 
 #. Translators: Tooltip for the "Don't warn me if disk is failing" check button
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1521
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1523
 msgid "Leave unchecked to get notified if the disk starts failing"
 msgstr "保持不核取可在磁碟機開始有損壞時得到通知"
 
 #. Translators: Used in the treeview for the pretty/interpreted value of an attribute
 #. * for a time-based unit that exceed one year
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1586
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1588
 #, c-format
 msgid "%.1f years"
 msgstr "%.1f 年"
 
 #. Translators: Used in the treeview for the pretty/interpreted value of an attribute
 #. * for a time-based unit that exceed one day
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1590
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1592
 #, c-format
 msgid "%.1f days"
 msgstr "%.1f 天"
 
 #. Translators: Used in the treeview for the pretty/interpreted value of an attribute
 #. * for a time-based unit that exceed one hour
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1594
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1596
 #, c-format
 msgid "%.1f hours"
 msgstr "%.1f 小時"
 
 #. Translators: Used in the treeview for the pretty/interpreted value of an attribute
 #. * for a time-based unit that exceed one minute
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1598
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1600
 #, c-format
 msgid "%.1f minutes"
 msgstr "%.1f 分鐘"
 
 #. Translators: Used in the treeview for the pretty/interpreted value of an attribute
 #. * for a time-based unit that exceed one second
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1602
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1604
 #, c-format
 msgid "%.1f seconds"
 msgstr "%.1f 秒鐘"
 
 #. Translators: Used in the treeview for the pretty/interpreted value of an attribute
 #. * for a time-based unit that is counted in milliseconds
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1608
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1610
 #, c-format
 msgid "%s msec"
 msgstr "%s 毫秒"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1617
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1619
 #, c-format
 msgid "%d sector"
 msgid_plural "%d sectors"
@@ -1089,32 +1086,32 @@ msgstr[1] "%d 磁區"
 #. Translators: Used in the treeview for the pretty/interpreted value of an attribute
 #. * for a temperature-based unit - first %f is the temperature in degrees Celcius, second %f
 #. * is the temperature in degrees Fahrenheit
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1629
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1631
 #, c-format
 msgid "%.0f° C / %.0f° F"
 msgstr "%.0f° C / %.0f° F"
 
 #. Translators: Used in the tooltip for a row in the attribute treeview - please keep
 #. * "(Pre-Fail)" in English
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1697
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1699
 msgid "Failure is a sign of imminent disk failure (Pre-Fail)"
 msgstr "出現失敗是即將產生磁碟毀損的前兆 (預先發生錯誤)"
 
 #. Translators: Used in the tooltip for a row in the attribute treeview - please keep
 #. * "(Old-Age)" in English
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1701
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1703
 msgid "Failure is a sign of old age (Old-Age)"
 msgstr "出現失敗是老化的前兆 (老化)"
 
 #. Translators: Used in the tooltip for a row in the attribute treeview - please keep
 #. * "(Online)" in English
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1707
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1709
 msgid "Every time data is collected (Online)"
 msgstr "每次資料都會收集 (上線)"
 
 #. Translators: Used in the tooltip for a row in the attribute treeview - please keep
 #. * "(Not Online)" in English
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1711
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1713
 msgid "Only during off-line activities (Not Online)"
 msgstr "只在離線活動期間（非上線狀態）"
 
@@ -1123,7 +1120,7 @@ msgstr "只在離線活動期間（非上線狀態）"
 #. * Second %s is the update type (Online or Not Online).
 #. * The six %x is the raw data of the attribute.
 #.
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1719
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1721
 #, c-format
 msgid ""
 "Type: %s\n"
@@ -1136,26 +1133,26 @@ msgstr ""
 
 #. Translators: Shown in the "Overall Assessment" item in the status table
 #. * when no drive is currently selected
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1929
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1931
 msgid "No drive selected"
 msgstr "未選擇磁碟機"
 
 #. Translators: Shown in the "Overall Assessment" item in the status table
 #. * when SMART is not available
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1936
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1938
 msgid "SMART not supported"
 msgstr "不支援 SMART"
 
 #. Translators: Shown in the "Overall Assessment" item in the status table
 #. * when SMART is supported but data was never collected
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1944
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1946
 msgid "SMART data never collected"
 msgstr "SMART 資料將不會被收集"
 
 #. Translators: Shown in the "Overall Assessment" item in the status table
 #. * when the SMART data is malformed
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1951
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1957
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1953
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1959
 msgid "SMART data is malformed"
 msgstr "SMART 資料的格式錯誤"
 
@@ -1173,36 +1170,36 @@ msgstr "SMART 資料的格式錯誤"
 #. Translators: Shown in the "Self-tests" item in the status table
 #. Translators: shown when we don't know contents of the volume
 #. Translators: Description when the overall SMART status is unknown
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1987
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2005
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2025
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2033
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2042
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2104
-#: ../src/gdu-gtk/gdu-volume-grid.c:1300 ../src/gdu/gdu-util.c:1110
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1989
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2007
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2027
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2035
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2044
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2106
+#: ../src/gdu-gtk/gdu-volume-grid.c:1321 ../src/gdu/gdu-util.c:1110
 msgid "Unknown"
 msgstr "不明"
 
 #. Translators: Shown in the "Self-assessment" item in the status table
 #. * when the self-assessment of the drive is PASSED
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1992
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1994
 msgid "Passed"
 msgstr "通過"
 
 #. Translators: Shown in the "Self-assessment" item in
 #. * the status table when the self-assessment of the
 #. * drive is FAILING
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1998
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2000
 msgid "FAILING"
 msgstr "失敗"
 
 #. Translators: Shown in the "Bad Sectors" item in the status table
 #. * when we the disk has no bad sectors
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2010
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2012
 msgid "None"
 msgstr "沒有"
 
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2015
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2017
 #, c-format
 msgid "%d bad sector"
 msgid_plural "%d bad sectors"
@@ -1210,62 +1207,62 @@ msgstr[0] "%d 錯誤磁區"
 msgstr[1] "%d 錯誤磁區"
 
 #. Translators: Shown in the "Self-tests" item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2061
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2063
 msgid "Completed OK"
 msgstr "完全通過"
 
 #. Translators: Shown in the "Self-tests" item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2065
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2067
 msgid "Cancelled"
 msgstr "已取消"
 
 #. Translators: Shown in the "Self-tests" item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2069
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2071
 msgid "Cancelled (with hard or soft reset)"
 msgstr "已取消（以 hard 或 soft 重設）"
 
 #. Translators: Shown in the "Self-tests" item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2073
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2075
 msgid "Not completed (a fatal error might have occurred)"
 msgstr "未完成（可能遇到嚴重的錯誤）"
 
 #. Translators: Shown in the "Self-tests" item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2077
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2079
 msgid "FAILED (Electrical)"
 msgstr "錯誤 (電子)"
 
 #. Translators: Shown in the "Self-tests" item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2082
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2084
 #, fuzzy
 msgid "FAILED (Servo)"
-msgstr "聊天失敗：%s"
+msgstr "execvp 已失敗"
 
 #. Translators: Shown in the "Self-tests" item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2087
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2089
 msgid "FAILED (Read)"
 msgstr "錯誤 (讀取)"
 
 #. Translators: Shown in the "Self-tests" item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2092
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2094
 msgid "FAILED (Suspected of having handled damage)"
 msgstr "失敗（推測有已處理的損傷）"
 
 #. Translators: Shown in the "Self-tests" item in the status table
-#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2097
+#: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2099
 msgid "In progress"
 msgstr "進行中"
 
-#: ../src/gdu-gtk/gdu-confirmation-dialog.c:171
+#: ../src/gdu-gtk/gdu-confirmation-dialog.c:172
 #, c-format
 msgid "This operation concerns the volume \"%s\" (%s)"
 msgstr "這個操作是針對儲存區「%s」(%s)"
 
-#: ../src/gdu-gtk/gdu-confirmation-dialog.c:175
+#: ../src/gdu-gtk/gdu-confirmation-dialog.c:176
 #, c-format
 msgid "This operation concerns the drive \"%s\" (%s)"
 msgstr "這個操作是針對磁碟機「%s」(%s)"
 
-#: ../src/gdu-gtk/gdu-confirmation-dialog.c:179
+#: ../src/gdu-gtk/gdu-confirmation-dialog.c:180
 #, c-format
 msgid "This operation concerns \"%s\" (%s)"
 msgstr "這個操作是針對「%s」(%s)"
@@ -1290,46 +1287,46 @@ msgstr "選擇的位址"
 msgid "Choose Server"
 msgstr "選擇伺服器"
 
-#: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:213
+#: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:214
 msgid "Connect to Server"
 msgstr "連接伺服器"
 
-#: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:220
+#: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:221
 msgid "_Browse..."
-msgstr "瀏覽(_B)…"
+msgstr "瀏覽(_B)..."
 
 #. Translators: this is the tooltip for the "Browse..." button
-#: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:232
+#: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:233
 msgid "Browse servers discovered via the DNS-SD protocol"
 msgstr "透過 DNS-SD 通訊協定瀏覽探測到的伺服器"
 
 #. Translators: This is the label explaining the dialog
 #.
-#: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:250
+#: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:251
 msgid ""
 "To manage storage devices on another machine, enter the address and press "
 "“Connect”. The connection will be made using the <i>Secure Shell</i> "
 "protocol."
-msgstr "要管理另一臺機器上的儲存裝置，請在輸入位址後按下「連線」。這個連線會使用 <i>SSH</i> 通訊協定進行。"
+msgstr "要管理另一台機器上的儲存裝置，請在輸入位址後按下「連線」。這個連線會使用 <i>SSH</i> 通訊協定進行。"
 
 #. Translators: This is the tooltip for the "Server Address" entry
 #.
-#: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:264
+#: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:265
 msgid "The hostname or address to connect to"
 msgstr "要連接主機的名稱或位址"
 
-#: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:268
+#: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:269
 msgid "Server _Address:"
 msgstr "伺服器位址(_A):"
 
 #. Translators: This is the tooltip for the "User Name" entry
 #. * First %s is the UNIX user name e.g. 'davidz'.
 #.
-#: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:287
+#: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:288
 msgid "The user name to connect as"
 msgstr "用來連線的使用者名稱"
 
-#: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:291
+#: ../src/gdu-gtk/gdu-connect-to-server-dialog.c:292
 msgid "_User Name:"
 msgstr "使用者名稱(_U):"
 
@@ -1350,7 +1347,7 @@ msgid "The requested Logical Volume size"
 msgstr "要求的邏輯儲存區容量"
 
 #: ../src/gdu-gtk/gdu-create-linux-lvm2-volume-dialog.c:161
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:522
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:523
 #: ../src/gdu-gtk/gdu-create-partition-dialog.c:163
 #: ../src/gdu-gtk/gdu-create-partition-dialog.c:178
 msgid "C_reate"
@@ -1422,19 +1419,19 @@ msgstr "磁碟機"
 msgid "Array of drives to use for the array"
 msgstr "用於此陣列的磁碟機陣列"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:517
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:518
 msgid "Create RAID Array"
 msgstr "建立 RAID 陣列"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:535
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:536
 msgid "General"
 msgstr "一般"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:556
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:557
 msgid "RAID _Level:"
 msgstr "RAID 等級(_L):"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:595
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:596
 msgid "Array _Name:"
 msgstr "陣列名稱(_N):"
 
@@ -1442,65 +1439,65 @@ msgstr "陣列名稱(_N):"
 #. * Keep length of UTF-8 representation of the translation of "New RAID Array" to less than
 #. * 32 bytes since that's the on-disk-format limit.
 #.
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:603
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:604
 msgid "New RAID Array"
 msgstr "新增 RAID 陣列"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:619
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:620
 msgid "Stripe S_ize:"
 msgstr "帶狀大小(_I):"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:629
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:630
 msgid "4 KiB"
 msgstr "4 KiB"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:631
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:632
 msgid "8 KiB"
 msgstr "8 KiB"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:633
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:634
 msgid "16 KiB"
 msgstr "16 KiB"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:635
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:636
 msgid "32 KiB"
 msgstr "32 KiB"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:637
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:638
 msgid "64 KiB"
 msgstr "64 KiB"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:639
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:640
 msgid "128 KiB"
 msgstr "128 KiB"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:641
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:642
 msgid "256 KiB"
 msgstr "256 KiB"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:643
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:644
 msgid "512 KiB"
 msgstr "512 KiB"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:645
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:646
 msgid "1 MiB"
 msgstr "1 MiB"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:663
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:664
 msgid "Array _Size:"
 msgstr "陣列大小(_S):"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:690
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:691
 msgid "_Disks"
 msgstr "磁碟(_D)"
 
 #. --------------------------------------------------------------------------------
 #. TODO: Actually make this work
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:706
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:707
 msgid "Use entire disks instead of _partitions"
 msgstr "使用整個磁碟機而非分割區(_P)"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:707
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:708
 msgid ""
 "If checked, the entirety of each selected disk will be used for the RAID "
 "array. Otherwise partitions will be created."
@@ -1509,19 +1506,19 @@ msgstr "如果核取，每一個選取的磁碟機完全都會用於 RAID 陣列
 #. Translators: This is for the tip text shown in the dialog.
 #. * First %s is the short localized name for the RAID level, e.g. "RAID-1".
 #.
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:876
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:877
 #, c-format
 msgid "Insufficient number of disks to create a %s array."
 msgstr "磁碟數量不足以建立 %s 陣列。"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:892
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:893
 #, c-format
 msgid "To create a %s array, select a disk."
 msgid_plural "To create a %s array, select %d disks."
 msgstr[0] "要建立 %s 陣列，請選擇 1 個磁碟機。"
 msgstr[1] "要建立 %s 陣列，請選擇 %d 個磁碟機。"
 
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:899
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:900
 #, c-format
 msgid "To create a %s array, select one more disk."
 msgid_plural "To create a %s array, select %d more disks."
@@ -1533,7 +1530,7 @@ msgstr[1] "要建立 %s 陣列，請再選擇 %d 個磁碟。"
 #. * Second %s is the short localized name for the RAID level, e.g. "RAID-1".
 #. * Third parameter is the number of disks to use (always greater than 1).
 #.
-#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:923
+#: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:924
 #, c-format
 msgid "To create a %s %s array on %d disks, press \"Create\""
 msgstr "要建立 %s %s 陣列於 %d 磁碟，請按「建立」"
@@ -1643,8 +1640,8 @@ msgstr "此磁碟機將進行分割，並且會建立 %s 分割區。在這之�
 #: ../src/gdu-gtk/gdu-disk-selection-widget.c:935
 #, c-format
 msgid ""
-"The disk will be partitioned and a %s partition will be created. Afterwards "
-"%s will be available."
+"The disk will be partitioned and a %s partition will be created. Afterwards %"
+"s will be available."
 msgstr "此磁碟機將進行分割，並且會建立 %s 分割區。在這之後還有 %s 空間可用。"
 
 #. Translators: This is shown in the details column
@@ -1767,88 +1764,88 @@ msgid "%s (%s) – Benchmark"
 msgstr "%s (%s) – 效能評測"
 
 #. benchmark results
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:733
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:735
 msgid "Minimum Read Rate:"
 msgstr "最小讀取率："
 
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:737
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:739
 msgid "Minimum Write Rate:"
 msgstr "最小寫入率："
 
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:741
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:743
 msgid "Maximum Read Rate:"
 msgstr "最大讀取率："
 
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:745
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:747
 msgid "Maximum Write Rate:"
 msgstr "最大寫入率："
 
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:749
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:751
 msgid "Average Read Rate:"
 msgstr "平均讀取率："
 
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:753
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:755
 msgid "Average Write Rate:"
 msgstr "平均寫入率："
 
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:757
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:759
 msgid "Last Benchmark:"
 msgstr "上次效能評測："
 
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:765
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:767
 msgid "Average Access Time:"
 msgstr "平均存取時間："
 
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:778
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:780
 msgid "Start _Read-Only Benchmark"
 msgstr "開始唯讀的效能評測(_R)"
 
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:779
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:781
 msgid "Measure read rate and access time"
 msgstr "測量讀取速率與存取時間"
 
 #. TODO: better icon
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:787
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:789
 msgid "Start Read/_Write Benchmark"
 msgstr "開始讀取/寫入的效能評測(_W)"
 
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:788
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:790
 msgid "Measure read rate, write rate and access time"
 msgstr "測量讀取速率、寫入速率和存取時間"
 
 #. Translators: This is used in the benchmark graph - %d is megabytes per second
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:952
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:954
 #, c-format
 msgid "%d MB/s"
 msgstr "%d MB/s"
 
 #. Translators: This is used in the benchmark graph - %g is number of milliseconds
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:957
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:959
 #, c-format
 msgid "%3g ms"
 msgstr "%3g ms"
 
 #. Translators: This is used for the "Last Benchmark" element when we don't have benchmark data
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:1236
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:1238
 msgid "Never"
 msgstr "永不"
 
 #. Translators: Text used in the hyperlink in the status
 #. * table to cancel a self-test
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:1310
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:1312
 msgid "Cancel"
 msgstr "取消"
 
 #. Translators: Tooptip for the "Cancel" hyperlink
-#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:1313
+#: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:1315
 msgid "Cancels the currently running benchmark"
 msgstr "取消目前執行的效能評測"
 
 #. Translators: title of the dialog - first %s is the name of the volume
 #. * e.g. "Partition 1 of ATA INTEL SSDSA2MH080G1GC"
 #.
-#: ../src/gdu-gtk/gdu-edit-name-dialog.c:217
-#: ../src/gdu-gtk/gdu-edit-partition-dialog.c:299
+#: ../src/gdu-gtk/gdu-edit-name-dialog.c:218
+#: ../src/gdu-gtk/gdu-edit-partition-dialog.c:300
 #, c-format
 msgid "Edit %s"
 msgstr "編輯 %s"
@@ -1862,204 +1859,204 @@ msgstr "缺少實體儲存區"
 msgid "UUID: %s"
 msgstr "UUID：%s"
 
-#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:332
+#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:333
 #, c-format
 msgid "Edit PVs on %s (%s)"
 msgstr "編輯在 %s (%s) 的實體儲存區"
 
-#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:343
+#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:344
 msgid "Physical _Volumes"
 msgstr "實體儲存區(_V)"
 
-#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:373
+#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:374
 msgid "Physical Volume"
 msgstr "實體儲存區"
 
-#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:389
+#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:390
 msgid "Capacity"
 msgstr "容量"
 
-#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:398
+#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:399
 msgid "Unallocated"
 msgstr "未配置的"
 
-#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:412
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:450
+#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:413
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:451
 #: ../src/palimpsest/gdu-section-drive.c:935
 msgid "SMART Status:"
 msgstr "SMART 狀態："
 
-#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:416
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:462
+#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:417
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:463
 #: ../src/palimpsest/gdu-section-drive.c:911
 #: ../src/palimpsest/gdu-section-volumes.c:1919
 msgid "Device:"
 msgstr "裝置:"
 
-#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:429
+#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:430
 msgid "_New Physical Volume"
 msgstr "新增實體儲存區(_N)"
 
-#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:430
+#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:431
 msgid "Add a new PV to the VG"
 msgstr "將新的實體儲存區加入羣組"
 
-#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:439
+#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:440
 msgid "_Remove Physical Volume"
 msgstr "移除實體儲存區(_R)"
 
-#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:440
+#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:441
 msgid "Remove the PV from the VG"
 msgstr "將實體儲存區從羣組中移除"
 
 #. Translators: Used when SMART is not supported on the RAID pv
 #. Translators: Used when SMART is not supported on the RAID component
 #. Translators: This string is used when SMART is not supported
-#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:942
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:846
+#: ../src/gdu-gtk/gdu-edit-linux-lvm2-dialog.c:943
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:847
 #: ../src/palimpsest/gdu-section-drive.c:329
 msgid "Not Supported"
 msgstr "不支援"
 
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:370
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:371
 #, c-format
 msgid "Edit components on %s (%s)"
 msgstr "編輯 %s (%s) 的元件"
 
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:381
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:382
 msgid "C_omponents"
 msgstr "元件(_O)"
 
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:411
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:412
 msgid "Position"
 msgstr "位置"
 
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:420
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:421
 msgid "Component"
 msgstr "元件"
 
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:436
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:437
 msgid "State"
 msgstr "狀態"
 
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:454
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:455
 msgid "Position:"
 msgstr "位置："
 
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:458
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:459
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:683
 #: ../src/palimpsest/gdu-section-linux-md-drive.c:974
 #: ../src/palimpsest/gdu-section-volumes.c:1908
 msgid "State:"
 msgstr "狀態："
 
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:475
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:476
 msgid "Add _Spare"
 msgstr "加入備用碟(_S)"
 
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:476
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:477
 msgid "Add a spare to the array"
 msgstr "將備用碟附加到陣列"
 
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:485
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:486
 msgid "_Expand Array"
 msgstr "擴張陣列(_E)"
 
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:486
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:487
 msgid "Increase the capacity of the array"
 msgstr "增加陣列的容量"
 
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:495
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:496
 msgid "_Attach Component"
 msgstr "附加元件(_A)"
 
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:496
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:497
 msgid "Attach the component to the array"
 msgstr "將元件附加到陣列"
 
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:505
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:506
 msgid "_Remove Component"
 msgstr "移除元件(_R)"
 
-#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:506
+#: ../src/gdu-gtk/gdu-edit-linux-md-dialog.c:507
 msgid "Remove the component from the array"
 msgstr "從陣列中移除元件"
 
-#: ../src/gdu-gtk/gdu-edit-partition-dialog.c:320
+#: ../src/gdu-gtk/gdu-edit-partition-dialog.c:321
 msgid "Part_ition Label:"
 msgstr "分割區標籤(_I):"
 
 #. Translators: 'Type' means partition type here
-#: ../src/gdu-gtk/gdu-edit-partition-dialog.c:337
+#: ../src/gdu-gtk/gdu-edit-partition-dialog.c:338
 msgid "Ty_pe:"
 msgstr "類型(_P):"
 
 #. ---
 #. flag used by mbr, apm
-#: ../src/gdu-gtk/gdu-edit-partition-dialog.c:351
+#: ../src/gdu-gtk/gdu-edit-partition-dialog.c:352
 msgid "_Bootable"
 msgstr "可開機(_B)"
 
 #. flag used by gpt
-#: ../src/gdu-gtk/gdu-edit-partition-dialog.c:359
+#: ../src/gdu-gtk/gdu-edit-partition-dialog.c:360
 msgid "Required / Firm_ware"
 msgstr "必要的 / 韌體(_W)"
 
-#: ../src/gdu-gtk/gdu-error-dialog.c:216
+#: ../src/gdu-gtk/gdu-error-dialog.c:217
 msgid "The operation failed"
 msgstr "此操作失敗"
 
-#: ../src/gdu-gtk/gdu-error-dialog.c:219
+#: ../src/gdu-gtk/gdu-error-dialog.c:220
 msgid "The device is busy"
 msgstr "該裝置忙碌中"
 
-#: ../src/gdu-gtk/gdu-error-dialog.c:222
+#: ../src/gdu-gtk/gdu-error-dialog.c:223
 msgid "The operation was canceled"
 msgstr "此操作已被取消"
 
-#: ../src/gdu-gtk/gdu-error-dialog.c:225
+#: ../src/gdu-gtk/gdu-error-dialog.c:226
 msgid "The daemon is being inhibited"
 msgstr "伺服程式已被抑制"
 
-#: ../src/gdu-gtk/gdu-error-dialog.c:228
+#: ../src/gdu-gtk/gdu-error-dialog.c:229
 msgid "An invalid option was passed"
 msgstr "傳送了無效的選項"
 
-#: ../src/gdu-gtk/gdu-error-dialog.c:231
+#: ../src/gdu-gtk/gdu-error-dialog.c:232
 msgid "The operation is not supported"
 msgstr "此操作是不支援的"
 
-#: ../src/gdu-gtk/gdu-error-dialog.c:234
+#: ../src/gdu-gtk/gdu-error-dialog.c:235
 msgid "Getting ATA SMART data would wake up the device"
 msgstr "取得 ATA SMART 資料會喚醒該裝置"
 
-#: ../src/gdu-gtk/gdu-error-dialog.c:237
+#: ../src/gdu-gtk/gdu-error-dialog.c:238
 msgid "Permission denied"
 msgstr "權限不足"
 
-#: ../src/gdu-gtk/gdu-error-dialog.c:240
+#: ../src/gdu-gtk/gdu-error-dialog.c:241
 msgid "Filesystem driver not installed"
 msgstr "尚未安裝檔案系統驅動程式"
 
-#: ../src/gdu-gtk/gdu-error-dialog.c:243
+#: ../src/gdu-gtk/gdu-error-dialog.c:244
 msgid "Filesystem tools not installed"
 msgstr "尚未安裝檔案系統工具"
 
-#: ../src/gdu-gtk/gdu-error-dialog.c:248 ../src/palimpsest/gdu-shell.c:958
+#: ../src/gdu-gtk/gdu-error-dialog.c:249 ../src/palimpsest/gdu-shell.c:958
 msgid "Unknown error"
 msgstr "不明的錯誤"
 
-#: ../src/gdu-gtk/gdu-error-dialog.c:256
+#: ../src/gdu-gtk/gdu-error-dialog.c:257
 #, c-format
 msgid "An error occurred while performing an operation on \"%s\" (%s): %s"
 msgstr "在「%s」(%s) 進行操作時發生錯誤：%s"
 
-#: ../src/gdu-gtk/gdu-error-dialog.c:264
+#: ../src/gdu-gtk/gdu-error-dialog.c:265
 #, c-format
 msgid "An error occurred: %s"
 msgstr "發生錯誤：%s"
 
-#: ../src/gdu-gtk/gdu-error-dialog.c:273
+#: ../src/gdu-gtk/gdu-error-dialog.c:274
 msgid "_Details"
 msgstr "詳細資料(_D)"
 
@@ -2117,51 +2114,51 @@ msgstr "確定鍵按鈕的助記標籤"
 
 #. Translators: Format is used as a verb here
 #: ../src/gdu-gtk/gdu-format-dialog.c:238
-#: ../src/gdu-gtk/gdu-partition-dialog.c:219
+#: ../src/gdu-gtk/gdu-partition-dialog.c:220
 #: ../src/palimpsest/gdu-section-drive.c:649
 #: ../src/palimpsest/gdu-section-volumes.c:371
 msgid "_Format"
 msgstr "格式化(_F)"
 
 #. Translators: Format is a verb here. The %s is the name of the volume
-#: ../src/gdu-gtk/gdu-format-dialog.c:502
-#: ../src/gdu-gtk/gdu-partition-dialog.c:211
+#: ../src/gdu-gtk/gdu-format-dialog.c:503
+#: ../src/gdu-gtk/gdu-partition-dialog.c:212
 #, c-format
 msgid "Format %s"
 msgstr "格式化 %s"
 
-#: ../src/gdu-gtk/gdu-format-dialog.c:513
+#: ../src/gdu-gtk/gdu-format-dialog.c:514
 msgid "Disk _Utility"
 msgstr "磁碟公用程式(_U)"
 
 #. Translators: this is the tooltip for the "Disk Utility" button
-#: ../src/gdu-gtk/gdu-format-dialog.c:520
+#: ../src/gdu-gtk/gdu-format-dialog.c:521
 msgid "Use Disk Utility to format volume"
 msgstr "使用磁碟公用程式格式化儲存區"
 
 #. Translators: 'type' means 'filesystem type' here.
-#: ../src/gdu-gtk/gdu-format-dialog.c:553
+#: ../src/gdu-gtk/gdu-format-dialog.c:554
 msgid "_Type:"
 msgstr "類型(_T):"
 
-#: ../src/gdu-gtk/gdu-format-dialog.c:560
+#: ../src/gdu-gtk/gdu-format-dialog.c:561
 msgid "Compatible with all systems (FAT)"
 msgstr "兼容於所有的作業系統 (FAT)"
 
-#: ../src/gdu-gtk/gdu-format-dialog.c:562
+#: ../src/gdu-gtk/gdu-format-dialog.c:563
 msgid "Compatible with Linux (ext2)"
 msgstr "兼容於 Linux (ext2)"
 
-#: ../src/gdu-gtk/gdu-format-dialog.c:564
+#: ../src/gdu-gtk/gdu-format-dialog.c:565
 msgid "Compatible with Linux (ext4)"
 msgstr "兼容於 Linux (ext4)"
 
-#: ../src/gdu-gtk/gdu-format-dialog.c:566
+#: ../src/gdu-gtk/gdu-format-dialog.c:567
 msgid "Encrypted, compatible with Linux (FAT)"
 msgstr "已加密，兼容於 Linux (FAT)"
 
 #. Translators: 'name' means 'filesystem label' here.
-#: ../src/gdu-gtk/gdu-format-dialog.c:609
+#: ../src/gdu-gtk/gdu-format-dialog.c:610
 #: ../src/palimpsest/gdu-section-linux-lvm2-volume-group.c:204
 #: ../src/palimpsest/gdu-section-volumes.c:1722
 msgid "_Name:"
@@ -2170,33 +2167,33 @@ msgstr "名稱(_N):"
 #. Translators: Default name to use for the formatted volume. Keep length of
 #. * translation of "New Volume" to less than 16 characters.
 #.
-#: ../src/gdu-gtk/gdu-format-dialog.c:616
+#: ../src/gdu-gtk/gdu-format-dialog.c:617
 msgid "New Volume"
 msgstr "新儲存區"
 
-#: ../src/gdu-gtk/gdu-format-dialog.c:634
+#: ../src/gdu-gtk/gdu-format-dialog.c:635
 msgid "T_ake ownership of filesystem"
 msgstr "取得檔案系統的所有權(_A)"
 
-#: ../src/gdu-gtk/gdu-format-dialog.c:637
+#: ../src/gdu-gtk/gdu-format-dialog.c:638
 msgid ""
 "The selected file system has a concept of file ownership. If checked, the "
 "created file system will be owned by you. If not checked, only the super "
 "user can access the file system."
 msgstr "選取的檔案系統有檔案所有權的概念，如果核取，則建立的檔案系統會由你所擁有。如果沒有核取，只有超級使用者可以存取此檔案系統。"
 
-#: ../src/gdu-gtk/gdu-format-dialog.c:643
+#: ../src/gdu-gtk/gdu-format-dialog.c:644
 msgid "_Encrypt underlying device"
 msgstr "加密下面的裝置(_E)"
 
-#: ../src/gdu-gtk/gdu-format-dialog.c:645
+#: ../src/gdu-gtk/gdu-format-dialog.c:646
 msgid ""
 "Encryption protects your data, requiring a passphrase to be entered before "
 "the file system can be used. May decrease performance and may not be "
 "compatible if you use the media on other operating systems."
 msgstr "加密可以保護你的資料，在使用此檔案系統前必須輸入密碼。它可能會降低效能，如果在其他的作業系統上使用此媒體也可能會不兼容。"
 
-#: ../src/gdu-gtk/gdu-format-dialog.c:678
+#: ../src/gdu-gtk/gdu-format-dialog.c:679
 msgid "Warning: All data on the volume will be irrevocably lost."
 msgstr "警告：儲存區上的所有資料將會無法復原的消失。"
 
@@ -2414,13 +2411,13 @@ msgid "The selected partitioning scheme"
 msgstr "選取的分割區架構"
 
 #. Translators: 'scheme' means 'partitioning scheme' here.
-#: ../src/gdu-gtk/gdu-partition-dialog.c:250
+#: ../src/gdu-gtk/gdu-partition-dialog.c:251
 msgid "_Scheme:"
 msgstr "架構(_S):"
 
 #: ../src/gdu-gtk/gdu-size-widget.c:89
-msgid "kB"
-msgstr "kB"
+msgid "KB"
+msgstr "KB"
 
 #: ../src/gdu-gtk/gdu-size-widget.c:95
 msgid "MB"
@@ -2489,17 +2486,17 @@ msgid_plural "%d hours ago"
 msgstr[0] "%d 小時前"
 msgstr[1] "%d 小時前"
 
-#: ../src/gdu-gtk/gdu-volume-grid.c:483
+#: ../src/gdu-gtk/gdu-volume-grid.c:504
 #: ../src/palimpsest/gdu-section-drive.c:150
 msgid "Drive"
 msgstr "磁碟機"
 
-#: ../src/gdu-gtk/gdu-volume-grid.c:484
+#: ../src/gdu-gtk/gdu-volume-grid.c:505
 msgid "Drive to show volumes for"
 msgstr "要顯示儲存區的磁碟機"
 
 #. Translators: This is shown in the grid for a RAID array that is not running
-#: ../src/gdu-gtk/gdu-volume-grid.c:1174
+#: ../src/gdu-gtk/gdu-volume-grid.c:1195
 msgid "RAID Array is not running"
 msgstr "RAID 陣列尚未執行"
 
@@ -2507,38 +2504,38 @@ msgstr "RAID 陣列尚未執行"
 #. Translators: This string is used as a description text when no media has
 #. * been detected for a drive
 #.
-#: ../src/gdu-gtk/gdu-volume-grid.c:1177 ../src/gdu/gdu-drive.c:819
+#: ../src/gdu-gtk/gdu-volume-grid.c:1198 ../src/gdu/gdu-drive.c:819
 #: ../src/palimpsest/gdu-section-drive.c:343
 #, c-format
 msgid "No Media Detected"
 msgstr "沒有偵測到媒體"
 
 #. Translators: shown in the grid for an extended MS-DOS partition
-#: ../src/gdu-gtk/gdu-volume-grid.c:1262
+#: ../src/gdu-gtk/gdu-volume-grid.c:1283
 msgid "Extended"
 msgstr "延伸的"
 
 #. Translators: shown in the grid for an encrypted LUKS volume
-#: ../src/gdu-gtk/gdu-volume-grid.c:1270
+#: ../src/gdu-gtk/gdu-volume-grid.c:1291
 msgid "Encrypted"
 msgstr "已加密"
 
 #. Translators: shown in the grid for an RAID Component
-#: ../src/gdu-gtk/gdu-volume-grid.c:1284 ../src/gdu/gdu-util.c:344
+#: ../src/gdu-gtk/gdu-volume-grid.c:1305 ../src/gdu/gdu-util.c:344
 #: ../src/palimpsest/gdu-section-volumes.c:2195
 #, c-format
 msgid "RAID Component"
 msgstr "RAID 元件"
 
 #. Translators: shown for free/unallocated space
-#: ../src/gdu-gtk/gdu-volume-grid.c:1292
+#: ../src/gdu-gtk/gdu-volume-grid.c:1313
 msgid "Free"
 msgstr "可用空間"
 
 #. Translators: this is a verb
 #: ../src/nautilus-extension/nautilus-gdu.c:223
 msgid "_Format..."
-msgstr "格式化(_F)…"
+msgstr "格式化(_F)..."
 
 #: ../src/nautilus-extension/nautilus-gdu.c:224
 msgid "Create new filesystem on the selected device"
@@ -2618,7 +2615,7 @@ msgid "HDDVD"
 msgstr "HDDVD"
 
 #. Translators: This is the name of a "Drive" backed by a file.
-#. * The %s is the size of the file (e.g. "42 GB" or "5 kB").
+#. * The %s is the size of the file (e.g. "42 GB" or "5 KB").
 #. *
 #. * See e.g. http://people.freedesktop.org/~david/gnome-loopback-2.png
 #.
@@ -2994,7 +2991,7 @@ msgstr "udisks-tcp-bridge 程式無法提供它被驗證的資料"
 #. Translators: The first %s is the size in power-of-2 units, e.g. '64 KiB'
 #. * the second %s is the size as a number e.g. '65,536 bytes'
 #.
-#. Translators: The first %s is the size in power-of-10 units, e.g. '100 kB'
+#. Translators: The first %s is the size in power-of-10 units, e.g. '100 KB'
 #. * the second %s is the size as a number e.g. '100,000 bytes'
 #.
 #: ../src/gdu/gdu-util.c:131 ../src/gdu/gdu-util.c:140
@@ -3803,8 +3800,8 @@ msgstr "將整個磁碟機標記為未使用。如果你要避免對使用整個
 
 #: ../src/gdu/gdu-util.c:888
 #, c-format
-msgid "%.1f kB/s"
-msgstr "%.1f kB/s"
+msgid "%.1f KB/s"
+msgstr "%.1f KB/s"
 
 #: ../src/gdu/gdu-util.c:891
 #, c-format
@@ -4328,39 +4325,32 @@ msgid "It's now safe to remove \"%s\"."
 msgstr "現在可以安全的移除「%s」。"
 
 #. Translators: %s is the name of the device
-#: ../src/notification/gdu-slow-unmount-dialog.c:231
+#: ../src/notification/gdu-slow-unmount-dialog.c:233
 #, c-format
 msgid "Writing data to \"%s\"..."
-msgstr "正在寫入資料至「%s」…"
+msgstr "正在寫入資料至「%s」..."
 
-#: ../src/notification/gdu-slow-unmount-dialog.c:246
+#: ../src/notification/gdu-slow-unmount-dialog.c:248
 msgid ""
 "To prevent data loss, wait until this has finished before removing media or "
 "disconnecting the device."
 msgstr "要避免資料遺失，請等到這個工作結束才移除可攜式媒體或中斷此裝置。"
 
+#: ../src/notification/notification-main.c:170
+msgid "One or more disks are failing"
+msgstr "一或多個磁碟有問題"
+
 #. Translators: This is used as the title of the notification
-#: ../src/notification/notification-main.c:478
-#: ../src/notification/notification-main.c:496
-msgid "Hard Disk Problems Detected"
-msgstr "偵測到硬碟問題"
+#: ../src/notification/notification-main.c:535
+msgid "A hard disk may be failing"
+msgstr "磁碟機可能發生問題"
 
-#: ../src/notification/notification-main.c:481
-#: ../src/notification/notification-main.c:499
-msgid "A hard disk is reporting health problems."
-msgstr "有硬碟回報了健康問題。"
-
-#: ../src/notification/notification-main.c:482
-msgid "Multiple system hard disks are reporting health problems."
-msgstr "多個系統硬碟回報了健康問題。"
-
-#: ../src/notification/notification-main.c:489
-msgid "Examine"
-msgstr "檢查"
-
-#: ../src/notification/notification-main.c:500
-msgid "Multiple hard disks are reporting health problems."
-msgstr "多個硬碟回報了健康問題。"
+#. Translators: This is used as the text of the notification
+#: ../src/notification/notification-main.c:537
+msgid ""
+"One or more hard disks report health problems. Click the icon to get more "
+"information."
+msgstr "一或多個硬碟回報健康問題。請按此圖示以取得更多資訊。"
 
 #: ../src/palimpsest/gdu-main.c:127
 msgid "Volume to show"
@@ -5321,11 +5311,11 @@ msgstr "檔案(_F)"
 
 #: ../src/palimpsest/gdu-shell.c:838
 msgid "Connect to _Server..."
-msgstr "連接伺服器(_S)…"
+msgstr "連接伺服器(_S)..."
 
 #: ../src/palimpsest/gdu-shell.c:838
 msgid "Manage storage devices on another machine"
-msgstr "管理另一臺機器上的儲存裝置"
+msgstr "管理另一台機器上的儲存裝置"
 
 #: ../src/palimpsest/gdu-shell.c:839
 msgid "_Create"
@@ -5333,7 +5323,7 @@ msgstr "建立(_C)"
 
 #: ../src/palimpsest/gdu-shell.c:840
 msgid "_RAID Array..."
-msgstr "_RAID 陣列…"
+msgstr "_RAID 陣列..."
 
 #: ../src/palimpsest/gdu-shell.c:840
 msgid "Create a RAID array"
@@ -5403,17 +5393,6 @@ msgstr "權限被拒絕。"
 msgid "_Details:"
 msgstr "詳細資料(_D):"
 
-#: ../src/palimpsest/gdu-shell.c:1163
+#: ../src/palimpsest/gdu-shell.c:1168
 msgid "_Storage Devices"
 msgstr "儲存裝置(_S)"
-
-#~ msgid "One or more disks are failing"
-#~ msgstr "一或多個磁碟有問題"
-
-#~ msgid "A hard disk may be failing"
-#~ msgstr "磁碟機可能發生問題"
-
-#~ msgid ""
-#~ "One or more hard disks report health problems. Click the icon to get more "
-#~ "information."
-#~ msgstr "一或多個硬碟回報健康問題。請按此圖示以取得更多資訊。"

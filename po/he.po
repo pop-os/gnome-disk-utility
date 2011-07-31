@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-disk-utility master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-26 16:29+0200\n"
-"PO-Revision-Date: 2010-12-26 16:41+0200\n"
+"POT-Creation-Date: 2010-10-28 09:04+0200\n"
+"PO-Revision-Date: 2010-10-28 09:05+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -146,7 +146,7 @@ msgstr "בפרמוט..."
 
 #: ../src/format-tool/gdu-format-tool.c:479
 msgid "Cancelling..."
-msgstr "בהליכי ביטול..."
+msgstr "מבטל..."
 
 #: ../src/format-tool/gdu-format-tool.c:489
 msgid "Error formatting volume"
@@ -158,7 +158,7 @@ msgstr "הכרך בעיגון..."
 
 #: ../src/format-tool/gdu-format-tool.c:524
 msgid "Error mounting device"
-msgstr "שגיאה בחיבור ההתקן"
+msgstr "שגיאה בחיבור התקן"
 
 #: ../src/format-tool/gdu-format-tool.c:541
 msgid "Error storing passphrase in keyring"
@@ -233,7 +233,7 @@ msgstr "ממוצע ביצועי הכונן"
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:143
 msgid "Average efficiency of the disk"
-msgstr "יעילות ממוצעת של הכונן"
+msgstr "יעילות ממוצעת של הדיסק"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -497,7 +497,7 @@ msgstr ""
 #.
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:327
 msgid "Uncorrectable Sector Count"
-msgstr "מספר הסקטורים שאינם ניתנים לתיקון"
+msgstr "מספר הסקטורים שאינן ניתנים לתיקון"
 
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:328
 msgid ""
@@ -863,7 +863,7 @@ msgstr "שגיאה בקריאת נתוני SMART"
 #. Translators: Shown in the "Run self-test" dialog
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1141
 msgid "Choose SMART Self-test"
-msgstr "בחירת בדיקת SMART עצמית"
+msgstr "בחרית בדיקת SMART עצמית"
 
 #. Translators: Shown in the "Run self-test" dialog
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1152
@@ -873,7 +873,7 @@ msgid ""
 "running."
 msgstr ""
 "השלמת הבדיקות האלו יכולה לקחת זמן רב בהתאם למהירות ולגודל הכונן. ניתן להמשיך "
-"להשתמש במערכת בזמן הבדיקה."
+"את השימוש במערכת בזמן הבדיקה."
 
 #. Translators: Radio button for short test
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1161
@@ -888,12 +888,12 @@ msgstr "_מורחבת (בדרך כלל עשרות דקות)"
 #. Translators: Radio button for conveyance test
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1167
 msgid "C_onveyance (usually less than ten minutes)"
-msgstr "לאחר ה_עברה (בדרך כלל פחות מעשר דקות)"
+msgstr "בה_עברה (בדרך כלל פחות מעשר דקות)"
 
 #. Translators: Button in "Run self-test dialog"
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1175
 msgid "_Run Self Test"
-msgstr "הרצת בדיקה _עצמית"
+msgstr "הרץ בדיקה _עצמית"
 
 #. Translators: The title of the SMART dialog.
 #. * First %s is the name for the drive (e.g. "1.0 TB Hard Disk")
@@ -915,13 +915,13 @@ msgid ""
 "Time since SMART data was last read – SMART data is updated every 30 minutes "
 "unless the disk is sleeping"
 msgstr ""
-"הזמן מאז שנתוני ה־SMART נקראו לאחרונה — נתוני ה־SMART מתעדכנים כל חצי שעה "
-"למעט הזמן בו הכונן במצב שינה"
+"הזמן מאז שנתוני ה־SMART נקראו לאחרונה — נתוני SMART מעודכנים כל חצי שעה למעט "
+"הזמן בו הכונן במצב שינה"
 
 #. Translators: Item name in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1299
 msgid "Self-tests:"
-msgstr "בדיקות עצמיות:"
+msgstr "בדיקות עצמיות"
 
 #. Translators: Tooltip for the 'Self-tests' item in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1302
@@ -931,7 +931,7 @@ msgstr "תוצאות הבדיקה העצמית האחרונה שפעלה על ה
 #. Translators: Item name in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1307
 msgid "Powered On:"
-msgstr "פעילות על חשמל:"
+msgstr "דלוק:"
 
 #. Translators: Tooltip for the 'Powered On' item in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1310
@@ -992,18 +992,18 @@ msgstr "הערכה כוללת של תקינות הכונן"
 #. Translators: Button name
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1365
 msgid "_Refresh"
-msgstr "_רענון"
+msgstr "_רענן"
 
 #. Translators: Button details
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1367
 msgid "Reads SMART Data, waking up the disk"
-msgstr "קריאת נתוני SMART, הכונן יתעורר"
+msgstr "נקראים נתוני SMART, הכונן מתעורר"
 
 #. TODO: better icon
 #. Translators: Button name
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1377
 msgid "Run _Self-test"
-msgstr "הרצת בדיקה _עצמית"
+msgstr "הרץ בדיקה _עצמית"
 
 #. Translators: Button details
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1379
@@ -1028,7 +1028,7 @@ msgstr "_מאפיינים"
 #. Translators: This string is used as the column title in the treeview for the Attribute ID (0-255)
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1443
 msgid "ID"
-msgstr "מס׳"
+msgstr "מס'"
 
 #. Translators: This string is used as the column title in the treeview for the attribute name and description
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1455
@@ -1049,7 +1049,7 @@ msgstr "ערך"
 #. Translators: Check button in the status table
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1519
 msgid "Don't _warn if the disk is failing"
-msgstr "לא לה_זהיר כאשר הכונן נפגם"
+msgstr "לא לה_זהיר בעת שהדיסק נפגם"
 
 #. Translators: Tooltip for the "Don't warn me if disk is failing" check button
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:1521
@@ -1198,7 +1198,7 @@ msgstr "נתוני SMART פגומים"
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2033
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2042
 #: ../src/gdu-gtk/gdu-ata-smart-dialog.c:2104
-#: ../src/gdu-gtk/gdu-volume-grid.c:1300 ../src/gdu/gdu-util.c:1110
+#: ../src/gdu-gtk/gdu-volume-grid.c:1321 ../src/gdu/gdu-util.c:1110
 msgid "Unknown"
 msgstr "לא ידוע"
 
@@ -1508,11 +1508,11 @@ msgstr "1 MiB"
 
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:663
 msgid "Array _Size:"
-msgstr "_גודל המערך:"
+msgstr "_גודל מערך:"
 
 #: ../src/gdu-gtk/gdu-create-linux-md-dialog.c:690
 msgid "_Disks"
-msgstr "_כונן"
+msgstr "_דיסקים"
 
 #. --------------------------------------------------------------------------------
 #. TODO: Actually make this work
@@ -1840,7 +1840,7 @@ msgstr "מדידת קצב הקריאה, קצב הכתיבה וזמן הגישה"
 #: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:952
 #, c-format
 msgid "%d MB/s"
-msgstr "%d מ״ב/ש"
+msgstr "%d מ\"ב/ש"
 
 #. Translators: This is used in the benchmark graph - %g is number of milliseconds
 #: ../src/gdu-gtk/gdu-drive-benchmark-dialog.c:957
@@ -2072,7 +2072,7 @@ msgstr "שגיאה לא מוכרת"
 #: ../src/gdu-gtk/gdu-error-dialog.c:256
 #, c-format
 msgid "An error occurred while performing an operation on \"%s\" (%s): %s"
-msgstr "אירעה שגיאה בעת ביצוע הפעולה על \"%s\"‏ (%s):‏ %s"
+msgstr "ארעה שגיאה בעת ביצוע הפעולה על \"%s\"‏ (%s):‏ %s"
 
 #: ../src/gdu-gtk/gdu-error-dialog.c:264
 #, c-format
@@ -2446,8 +2446,8 @@ msgid "_Scheme:"
 msgstr "_סכימה:"
 
 #: ../src/gdu-gtk/gdu-size-widget.c:89
-msgid "kB"
-msgstr "ק״ב"
+msgid "KB"
+msgstr "ק\"ב"
 
 #: ../src/gdu-gtk/gdu-size-widget.c:95
 msgid "MB"
@@ -2455,11 +2455,11 @@ msgstr "MB"
 
 #: ../src/gdu-gtk/gdu-size-widget.c:98
 msgid "GB"
-msgstr "ג״ב"
+msgstr "ג\"ב"
 
 #: ../src/gdu-gtk/gdu-size-widget.c:101
 msgid "TB"
-msgstr "ט״ב"
+msgstr "ט\"ב"
 
 #: ../src/gdu-gtk/gdu-size-widget.c:104
 msgid "KiB"
@@ -2516,17 +2516,17 @@ msgid_plural "%d hours ago"
 msgstr[0] "לפני שעה"
 msgstr[1] "לפני %d שעות"
 
-#: ../src/gdu-gtk/gdu-volume-grid.c:483
+#: ../src/gdu-gtk/gdu-volume-grid.c:504
 #: ../src/palimpsest/gdu-section-drive.c:150
 msgid "Drive"
 msgstr "כונן"
 
-#: ../src/gdu-gtk/gdu-volume-grid.c:484
+#: ../src/gdu-gtk/gdu-volume-grid.c:505
 msgid "Drive to show volumes for"
 msgstr "כוננים להצגת כרכים עבורם"
 
 #. Translators: This is shown in the grid for a RAID array that is not running
-#: ../src/gdu-gtk/gdu-volume-grid.c:1174
+#: ../src/gdu-gtk/gdu-volume-grid.c:1195
 msgid "RAID Array is not running"
 msgstr "מערך ה־RAID אינו פעיל"
 
@@ -2534,31 +2534,31 @@ msgstr "מערך ה־RAID אינו פעיל"
 #. Translators: This string is used as a description text when no media has
 #. * been detected for a drive
 #.
-#: ../src/gdu-gtk/gdu-volume-grid.c:1177 ../src/gdu/gdu-drive.c:819
+#: ../src/gdu-gtk/gdu-volume-grid.c:1198 ../src/gdu/gdu-drive.c:819
 #: ../src/palimpsest/gdu-section-drive.c:343
 #, c-format
 msgid "No Media Detected"
 msgstr "לא זוהה מדיה"
 
 #. Translators: shown in the grid for an extended MS-DOS partition
-#: ../src/gdu-gtk/gdu-volume-grid.c:1262
+#: ../src/gdu-gtk/gdu-volume-grid.c:1283
 msgid "Extended"
 msgstr "מורחב"
 
 #. Translators: shown in the grid for an encrypted LUKS volume
-#: ../src/gdu-gtk/gdu-volume-grid.c:1270
+#: ../src/gdu-gtk/gdu-volume-grid.c:1291
 msgid "Encrypted"
 msgstr "מוצפן"
 
 #. Translators: shown in the grid for an RAID Component
-#: ../src/gdu-gtk/gdu-volume-grid.c:1284 ../src/gdu/gdu-util.c:344
+#: ../src/gdu-gtk/gdu-volume-grid.c:1305 ../src/gdu/gdu-util.c:344
 #: ../src/palimpsest/gdu-section-volumes.c:2195
 #, c-format
 msgid "RAID Component"
 msgstr "רכיב RAI"
 
 #. Translators: shown for free/unallocated space
-#: ../src/gdu-gtk/gdu-volume-grid.c:1292
+#: ../src/gdu-gtk/gdu-volume-grid.c:1313
 msgid "Free"
 msgstr "פנוי"
 
@@ -2645,7 +2645,7 @@ msgid "HDDVD"
 msgstr "HDDVD"
 
 #. Translators: This is the name of a "Drive" backed by a file.
-#. * The %s is the size of the file (e.g. "42 GB" or "5 kB").
+#. * The %s is the size of the file (e.g. "42 GB" or "5 KB").
 #. *
 #. * See e.g. http://people.freedesktop.org/~david/gnome-loopback-2.png
 #.
@@ -3026,7 +3026,7 @@ msgstr "התכנית udisks-tcp-bridge לא הצליחה להוכיח כי הי�
 #. Translators: The first %s is the size in power-of-2 units, e.g. '64 KiB'
 #. * the second %s is the size as a number e.g. '65,536 bytes'
 #.
-#. Translators: The first %s is the size in power-of-10 units, e.g. '100 kB'
+#. Translators: The first %s is the size in power-of-10 units, e.g. '100 KB'
 #. * the second %s is the size as a number e.g. '100,000 bytes'
 #.
 #: ../src/gdu/gdu-util.c:131 ../src/gdu/gdu-util.c:140
@@ -3202,7 +3202,7 @@ msgstr "iso9660"
 #. Translators: udf is a filesystem type
 #: ../src/gdu/gdu-util.c:316
 msgid "Universal Disk Format"
-msgstr "מבנה כונן אוניברסלי"
+msgstr "פרמוט דיסק אוניברסלי"
 
 #. Translators: udf is a filesystem type
 #: ../src/gdu/gdu-util.c:319
@@ -3847,23 +3847,23 @@ msgid ""
 "Marks the entire disk as unused. Use this option only if you want to avoid "
 "partitioning the disk for e.g. whole disk use or floppy / Zip disks."
 msgstr ""
-"סימון הכונן כולו כ\"לא בשימוש\". יש להשתמש באפשרות זו אם ברצונך למנוע את "
+"שימוש הכונן כולו כ\"לא בשימוש\". יש להשתמש באפשרות זו אם ברצונך למנוע את "
 "חלוקת הכונן למחיצות כמו לדוגמה שימוש בכונן מלא או דיסקטים/תקליטוני זיפ."
 
 #: ../src/gdu/gdu-util.c:888
 #, c-format
-msgid "%.1f kB/s"
-msgstr "%.1f ק״ב/ש"
+msgid "%.1f KB/s"
+msgstr "%.1f ק\"ב/ש"
 
 #: ../src/gdu/gdu-util.c:891
 #, c-format
 msgid "%.1f MB/s"
-msgstr "%.1f מ״ב/ש"
+msgstr "%.1f מ\"ב/ש"
 
 #: ../src/gdu/gdu-util.c:894
 #, c-format
 msgid "%.1f GB/s"
-msgstr "%.1f ג״ב/ש"
+msgstr "%.1f ג\"ב/ש"
 
 #. Translators: interface name for serial ATA disks
 #: ../src/gdu/gdu-util.c:910
@@ -4092,159 +4092,159 @@ msgstr "הכונן עומד להפוך לפגום לחלוטין"
 #. Translator: The word "blank" is used as an adjective, e.g. we are decsribing discs that are already blank
 #: ../src/gdu/gdu-volume.c:79
 msgid "CD-ROM Disc"
-msgstr "תקליטור CD-ROM"
+msgstr "דיסק CD-ROM"
 
 #: ../src/gdu/gdu-volume.c:79
 msgid "Blank CD-ROM Disc"
-msgstr "תקליטור CD-ROM ריק"
+msgstr "דיסק CD-ROM ריק"
 
 #: ../src/gdu/gdu-volume.c:80
 msgid "CD-R Disc"
-msgstr "תקליטור CD-R"
+msgstr "דיסק CD-R"
 
 #: ../src/gdu/gdu-volume.c:80
 msgid "Blank CD-R Disc"
-msgstr "תקליטור CD-R ריק"
+msgstr "דיסק CD-R ריק"
 
 #: ../src/gdu/gdu-volume.c:81
 msgid "CD-RW Disc"
-msgstr "תקליטור CD-RW "
+msgstr "דיסק CD-RW "
 
 #: ../src/gdu/gdu-volume.c:81
 msgid "Blank CD-RW Disc"
-msgstr "תקליטור CD-RW ריק"
+msgstr "דיסק CD-RW ריק"
 
 #: ../src/gdu/gdu-volume.c:82 ../src/gdu/gdu-volume.c:83
 msgid "DVD-ROM Disc"
-msgstr "תקליטור DVD-ROM"
+msgstr "דיסק DVD-ROM"
 
 #: ../src/gdu/gdu-volume.c:82 ../src/gdu/gdu-volume.c:83
 msgid "Blank DVD-ROM Disc"
-msgstr "תקליטור DVD-ROM ריק"
+msgstr "דיסק DVD-ROM ריק"
 
 #: ../src/gdu/gdu-volume.c:84
 msgid "DVD-RW Disc"
-msgstr "תקליטור DVD-RW"
+msgstr "דיסק DVD-RW"
 
 #: ../src/gdu/gdu-volume.c:84
 msgid "Blank DVD-RW Disc"
-msgstr "תקליטור DVD-RW ריק"
+msgstr "דיסק DVD-RW ריק"
 
 #: ../src/gdu/gdu-volume.c:85
 msgid "DVD-RAM Disc"
-msgstr "תקליטור DVD-RAM"
+msgstr "דיסק DVD-RAM"
 
 #: ../src/gdu/gdu-volume.c:85
 msgid "Blank DVD-RAM Disc"
-msgstr "תקליטור DVD-RAM ריק"
+msgstr "דיסק DVD-RAM ריק"
 
 #: ../src/gdu/gdu-volume.c:86
 msgid "DVD+R Disc"
-msgstr "תקליטור DVD+R"
+msgstr "דיסק DVD+R"
 
 #: ../src/gdu/gdu-volume.c:86
 msgid "Blank DVD+R Disc"
-msgstr "תקליטור DVD+R ריק"
+msgstr "דיסק DVD+R ריק"
 
 #: ../src/gdu/gdu-volume.c:87
 msgid "DVD+RW Disc"
-msgstr "תקליטור DVD+RW"
+msgstr "דיסק DVD+RW"
 
 #: ../src/gdu/gdu-volume.c:87
 msgid "Blank DVD+RW Disc"
-msgstr "תקליטור DVD+RW ריק"
+msgstr "דיסק DVD+RW ריק"
 
 #: ../src/gdu/gdu-volume.c:88
 msgid "DVD+R DL Disc"
-msgstr "תקליטור DVD+R DL"
+msgstr "דיסק DVD+R DL"
 
 #: ../src/gdu/gdu-volume.c:88
 msgid "Blank DVD+R DL Disc"
-msgstr "תקליטור DVD+R DL ריק"
+msgstr "דיסק DVD+R DL ריק"
 
 #: ../src/gdu/gdu-volume.c:89
 msgid "DVD+RW DL Disc"
-msgstr "תקליטור DVD+R DL ריק"
+msgstr "דיסק DVD+R DL ריק"
 
 #: ../src/gdu/gdu-volume.c:89
 msgid "Blank DVD+RW DL Disc"
-msgstr "תקליטור HD DVD-RW ריק"
+msgstr "דיסק HD DVD-RW ריק"
 
 #: ../src/gdu/gdu-volume.c:90
 msgid "Blu-Ray Disc"
-msgstr "תקליטור Blu-Ray"
+msgstr "דיסק Blu-Ray"
 
 #: ../src/gdu/gdu-volume.c:90
 msgid "Blank Blu-Ray Disc"
-msgstr "תקליטור Blu-Ray ריק"
+msgstr "דיסק Blu-Ray ריק"
 
 #: ../src/gdu/gdu-volume.c:91
 msgid "Blu-Ray R Disc"
-msgstr "תקליטור Blu-Ray R"
+msgstr "דיסק Blu-Ray R"
 
 #: ../src/gdu/gdu-volume.c:91
 msgid "Blank Blu-Ray R Disc"
-msgstr "תקליטור Blu-Ray R ריק"
+msgstr "דיסק Blu-Ray R ריק"
 
 #: ../src/gdu/gdu-volume.c:92
 msgid "Blu-Ray RW Disc"
-msgstr "תקליטור Blu-Ray RW"
+msgstr "דיסק Blu-Ray RW"
 
 #: ../src/gdu/gdu-volume.c:92
 msgid "Blank Blu-Ray RW Disc"
-msgstr "תקליטור Blu-Ray RW ריק"
+msgstr "דיסק Blu-Ray RW ריק"
 
 #: ../src/gdu/gdu-volume.c:93
 msgid "HD DVD Disc"
-msgstr "תקליטור HD DVD"
+msgstr "דיסק HD DVD"
 
 #: ../src/gdu/gdu-volume.c:93
 msgid "Blank HD DVD Disc"
-msgstr "תקליטור HD DVD ריק"
+msgstr "דיסק HD DVD ריק"
 
 #: ../src/gdu/gdu-volume.c:94
 msgid "HD DVD-R Disc"
-msgstr "תקליטור HD DVD-R"
+msgstr "דיסק HD DVD-R"
 
 #: ../src/gdu/gdu-volume.c:94
 msgid "Blank HD DVD-R Disc"
-msgstr "תקליטור HD DVD-R ריק"
+msgstr "דיסק HD DVD-R ריק"
 
 #: ../src/gdu/gdu-volume.c:95
 msgid "HD DVD-RW Disc"
-msgstr "תקליטור HD DVD-RW"
+msgstr "דיסק HD DVD-RW"
 
 #: ../src/gdu/gdu-volume.c:95
 msgid "Blank HD DVD-RW Disc"
-msgstr "תקליטור HD DVD-RW ריק"
+msgstr "דיסק HD DVD-RW ריק"
 
 #: ../src/gdu/gdu-volume.c:96
 msgid "MO Disc"
-msgstr "תקליטור MO"
+msgstr "דיסק MO"
 
 #: ../src/gdu/gdu-volume.c:96
 msgid "Blank MO Disc"
-msgstr "תקליטור MO ריק"
+msgstr "דיסק MO ריק"
 
 #: ../src/gdu/gdu-volume.c:97
 msgid "MRW Disc"
-msgstr "תקליטור MRW"
+msgstr "דיסק MRW"
 
 #: ../src/gdu/gdu-volume.c:97
 msgid "Blank MRW Disc"
-msgstr "תקליטור MRW ריק"
+msgstr "דיסק MRW ריק"
 
 #: ../src/gdu/gdu-volume.c:98
 msgid "MRW/W Disc"
-msgstr "תקליטור MRW/W"
+msgstr "דיסק MRW/W"
 
 #: ../src/gdu/gdu-volume.c:98
 msgid "Blank MRW/W Disc"
-msgstr "תקליטור MRW/W ריק"
+msgstr "דיסק MRW/W ריק"
 
 #: ../src/gdu/gdu-volume.c:294
 msgid "Blank Optical Disc"
-msgstr "תקליטור אופטי ריק"
+msgstr "דיסק אופטי ריק"
 
 #. Translators: Label for an extended partition
 #. * %s is the size, formatted like '45 GB'
@@ -4268,7 +4268,7 @@ msgstr "‏%s מוצפן"
 
 #: ../src/gdu/gdu-volume.c:330
 msgid "Optical Disc"
-msgstr "תקליטור אופטי"
+msgstr "דיסק אופטי"
 
 #. Translators: Label for a partition with a filesystem
 #. * %s is the size, formatted like '45 GB'
@@ -4465,7 +4465,7 @@ msgstr "מופעל"
 #: ../src/palimpsest/gdu-section-drive.c:263
 msgctxt "Write Cache"
 msgid "Disabled"
-msgstr "מנוטרל"
+msgstr "מכובה"
 
 #. Translators: This is for the rotation rate of a hard
 #. * disk - RPM means rounds per minute
@@ -4474,7 +4474,7 @@ msgstr "מנוטרל"
 #, c-format
 msgctxt "Rotation Rate"
 msgid "%d RPM"
-msgstr "%d סל״ד"
+msgstr "%d סל\"ד"
 
 #: ../src/palimpsest/gdu-section-drive.c:281
 msgctxt "Rotation Rate"

@@ -36,6 +36,7 @@ libgdu_gtkinclude_HEADERS =              				\
 	gdu-size-widget.h						\
 	gdu-create-linux-md-dialog.h					\
 	gdu-ata-smart-dialog.h						\
+	gdu-spinner.h							\
 	gdu-volume-grid.h						\
 	gdu-details-table.h						\
 	gdu-details-element.h						\
@@ -70,6 +71,7 @@ libgdu_gtk_la_SOURCES =                 	               				\
 	gdu-size-widget.h			gdu-size-widget.c			\
 	gdu-create-linux-md-dialog.h		gdu-create-linux-md-dialog.c		\
 	gdu-ata-smart-dialog.h			gdu-ata-smart-dialog.c			\
+	gdu-spinner.h				gdu-spinner.c				\
 	gdu-volume-grid.h			gdu-volume-grid.c			\
 	gdu-details-table.h			gdu-details-table.c			\
 	gdu-details-element.h			gdu-details-element.c			\
@@ -111,7 +113,7 @@ libgdu_gtk_la_CFLAGS = 					\
 	$(GIO_UNIX2_CFLAGS)				\
 	$(DBUS_GLIB_CFLAGS)				\
 	$(GNOME_KEYRING_CFLAGS)				\
-	$(GTK3_CFLAGS)					\
+	$(GTK2_CFLAGS)					\
 	$(WARN_CFLAGS)					\
 	$(AM_CFLAGS)					\
 	$(LIBATASMART_CFLAGS)				\
@@ -124,7 +126,7 @@ libgdu_gtk_la_LIBADD = 					\
 	$(GIO_UNIX2_LIBS)				\
 	$(DBUS_GLIB_LIBS)				\
 	$(GNOME_KEYRING_LIBS)				\
-	$(GTK3_LIBS)					\
+	$(GTK2_LIBS)					\
 	$(INTLLIBS)					\
 	$(LIBATASMART_LIBS)				\
 	$(AVAHI_UI_LIBS)				\

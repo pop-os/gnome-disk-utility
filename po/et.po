@@ -14,11 +14,10 @@ msgstr ""
 "Project-Id-Version: gnome-disk-utility MASTER\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "disk-utility&component=general\n"
-"POT-Creation-Date: 2011-01-27 21:24+0000\n"
-"PO-Revision-Date: 2011-02-24 16:02+0300\n"
-"Last-Translator: Mattias Põldaru <mahfiaz gmail com>\n"
+"POT-Creation-Date: 2010-10-27 22:18+0000\n"
+"PO-Revision-Date: 2010-10-28 16:18+0300\n"
+"Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <et@li.org>\n"
-"Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -40,7 +39,7 @@ msgid "Disk Notifications"
 msgstr "Ketta teated"
 
 msgid "Provides notifications related to disks"
-msgstr "Teated ketastega seotud sündmuste kohta"
+msgstr "Tagab teated ketastega seatud sündmuste kohta"
 
 msgid ""
 "To prevent data corruption, wait until this has finished before removing "
@@ -457,10 +456,10 @@ msgstr "Rajalt kaldumise vigade arv"
 #. * or the next string for a longer explanation.
 #.
 msgid "Data Address Mark Errors"
-msgstr "Andmeaadresside märkimise vead"
+msgstr "Andmeaadressite märkimise vead"
 
 msgid "Number of Data Address Mark (DAM) errors (or) vendor-specific"
-msgstr "Andmeaadresside märkimise (DAM) vead (või) tootjaspetsiifiline"
+msgstr "Andmeaadressite märkimise (DAM) vead (või) tootjaspetsiifiline"
 
 #. Translators: S.M.A.R.T attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -1960,8 +1959,8 @@ msgstr "Valitud partitsiooniskeem"
 msgid "_Scheme:"
 msgstr "_Skeem:"
 
-msgid "kB"
-msgstr "kB"
+msgid "KB"
+msgstr "KB"
 
 msgid "MB"
 msgstr "MB"
@@ -2118,7 +2117,7 @@ msgid "HDDVD"
 msgstr "HDDVD"
 
 #. Translators: This is the name of a "Drive" backed by a file.
-#. * The %s is the size of the file (e.g. "42 GB" or "5 kB").
+#. * The %s is the size of the file (e.g. "42 GB" or "5 KB").
 #. *
 #. * See e.g. http://people.freedesktop.org/~david/gnome-loopback-2.png
 #.
@@ -2425,7 +2424,7 @@ msgstr "Rakendus udisks-tcp-bridge ei suutnud enda autoriseerimist tõestada"
 #. Translators: The first %s is the size in power-of-2 units, e.g. '64 KiB'
 #. * the second %s is the size as a number e.g. '65,536 bytes'
 #.
-#. Translators: The first %s is the size in power-of-10 units, e.g. '100 kB'
+#. Translators: The first %s is the size in power-of-10 units, e.g. '100 KB'
 #. * the second %s is the size as a number e.g. '100,000 bytes'
 #.
 #, c-format
@@ -3075,8 +3074,8 @@ msgstr ""
 "ketastel."
 
 #, c-format
-msgid "%.1f kB/s"
-msgstr "%.1f kB/s"
+msgid "%.1f KB/s"
+msgstr "%.1f KB/s"
 
 #, c-format
 msgid "%.1f MB/s"

@@ -58,17 +58,13 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
-	$(top_srcdir)/build-aux/gnome-doc-utils.make
+	$(top_srcdir)/gnome-doc-utils.make
 subdir = help
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/gnome-doc-utils.m4 \
-	$(top_srcdir)/m4/gtk-doc.m4 $(top_srcdir)/m4/intltool.m4 \
-	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
-	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
-	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/configure.ac
+am__aclocal_m4_deps = $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
-mkinstalldirs = $(SHELL) $(top_srcdir)/build-aux/mkinstalldirs
+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
@@ -82,6 +78,7 @@ SOURCES =
 DIST_SOURCES =
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
+ACLOCAL_AMFLAGS = @ACLOCAL_AMFLAGS@
 ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
 AM_CFLAGS = @AM_CFLAGS@
@@ -109,8 +106,8 @@ DBUS_GLIB_CFLAGS = @DBUS_GLIB_CFLAGS@
 DBUS_GLIB_LIBS = @DBUS_GLIB_LIBS@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
+DISABLE_DEPRECATED = @DISABLE_DEPRECATED@
 DISTCHECK_CONFIGURE_FLAGS = @DISTCHECK_CONFIGURE_FLAGS@
-DLLTOOL = @DLLTOOL@
 DOC_USER_FORMATS = @DOC_USER_FORMATS@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
@@ -136,8 +133,8 @@ GOBJECT2_LIBS = @GOBJECT2_LIBS@
 GREP = @GREP@
 GTHREAD2_CFLAGS = @GTHREAD2_CFLAGS@
 GTHREAD2_LIBS = @GTHREAD2_LIBS@
-GTK3_CFLAGS = @GTK3_CFLAGS@
-GTK3_LIBS = @GTK3_LIBS@
+GTK2_CFLAGS = @GTK2_CFLAGS@
+GTK2_LIBS = @GTK2_LIBS@
 GTKDOC_CHECK = @GTKDOC_CHECK@
 GTKDOC_MKPDF = @GTKDOC_MKPDF@
 GTKDOC_REBASE = @GTKDOC_REBASE@
@@ -171,7 +168,6 @@ LT_CURRENT = @LT_CURRENT@
 LT_REVISION = @LT_REVISION@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
-MANIFEST_TOOL = @MANIFEST_TOOL@
 MKDIR_P = @MKDIR_P@
 MKINSTALLDIRS = @MKINSTALLDIRS@
 MSGFMT = @MSGFMT@
@@ -222,7 +218,6 @@ abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
-ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
 am__include = @am__include@
@@ -368,7 +363,7 @@ _DOC_SRC_FIGURES = \
 	$(foreach fig,$(_DOC_C_FIGURES), $(foreach lc,C $(_DOC_REAL_LINGUAS),	\
 		$(wildcard $(srcdir)/$(lc)/$(patsubst C/%,%,$(fig))) ))
 
-_DOC_POT = $(if $(DOC_MODULE),$(DOC_MODULE).pot,$(if $(DOC_ID),$(DOC_ID).pot))
+_DOC_POT = $(if $(DOC_MODULE),$(DOC_MODULE).pot)
 
 ################################################################################
 _DOC_HTML_ALL = $(if $(filter html HTML,$(_DOC_REAL_FORMATS)), \
@@ -384,11 +379,11 @@ DOC_MODULE = palimpsest
 DOC_ENTITIES = legal.xml
 DOC_INCLUDES = 
 DOC_FIGURES = figures/main-app.png
-DOC_LINGUAS = cs de el es pl pt_BR ro sv sl zh_CN
+DOC_LINGUAS = cs de el es pl pt_BR sv sl zh_CN
 all: all-am
 
 .SUFFIXES:
-$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/build-aux/gnome-doc-utils.make $(am__configure_deps)
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/gnome-doc-utils.make $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -658,7 +653,7 @@ _db2omf  ?= `$(PKG_CONFIG) --variable db2omf gnome-doc-utils`
 _malrng  ?= `$(PKG_CONFIG) --variable malrng gnome-doc-utils`
 _chunks  ?= `$(PKG_CONFIG) --variable xmldir gnome-doc-utils`/gnome/xslt/docbook/utils/chunks.xsl
 _credits ?= `$(PKG_CONFIG) --variable xmldir gnome-doc-utils`/gnome/xslt/docbook/utils/credits.xsl
-_ids ?= $(shell $(PKG_CONFIG) --variable xmldir gnome-doc-utils)/gnome/xslt/docbook/utils/ids.xsl
+_ids ?= `$(PKG_CONFIG) --variable xmldir gnome-doc-utils`/gnome/xslt/docbook/utils/ids.xsl
 @ENABLE_SK_TRUE@_skpkgdatadir ?= `scrollkeeper-config --pkgdatadir`
 @ENABLE_SK_TRUE@_sklocalstatedir ?= `scrollkeeper-config --pkglocalstatedir`
 @ENABLE_SK_TRUE@_skcontentslist ?= $(_skpkgdatadir)/Templates/C/scrollkeeper_cl.xml
