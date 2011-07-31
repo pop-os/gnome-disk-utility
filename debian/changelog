@@ -1,3 +1,9 @@
+gnome-disk-utility (2.32.1-1) UNRELEASED; urgency=low
+
+  * New upstream release.
+
+ -- Michael Biebl <biebl@debian.org>  Sun, 31 Jul 2011 15:43:45 +0200
+
 gnome-disk-utility (2.32.0-1) unstable; urgency=low
 
   [ Martin Pitt ]
