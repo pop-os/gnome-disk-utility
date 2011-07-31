@@ -1,6 +1,8 @@
 gnome-disk-utility (2.32.1-1) UNRELEASED; urgency=low
 
   * New upstream release.
+    - Update for new libnotify API. (Closes: #630273)
+  * Bump Build-Depends on libnotify-dev to (>= 0.6.1).
 
  -- Michael Biebl <biebl@debian.org>  Sun, 31 Jul 2011 15:43:45 +0200
 

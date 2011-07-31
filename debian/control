@@ -17,7 +17,7 @@ Build-Depends: debhelper (>= 8),
  libatasmart-dev (>= 0.14),
  libgnome-keyring-dev (>= 2.22),
  libunique-dev (>= 1.0),
- libnotify-dev (>= 0.3.0),
+ libnotify-dev (>= 0.6.1),
  libnautilus-extension-dev (>= 2.24),
  libavahi-ui-dev (>= 0.6.25)
 Standards-Version: 3.9.2
