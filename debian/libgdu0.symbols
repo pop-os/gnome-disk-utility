@@ -35,6 +35,7 @@ libgdu.so.0 libgdu0 #MINVER#
  gdu_device_filesystem_list_open_files@Base 0.2
  gdu_device_filesystem_list_open_files_sync@Base 0.2
  gdu_device_find_parent@Base 0.2
+ gdu_device_get_automount_hint@Base 3.0.2
  gdu_device_get_block_size@Base 0.2
  gdu_device_get_detection_time@Base 0.3
  gdu_device_get_dev@Base 0.3
