@@ -1,9 +1,9 @@
-gnome-disk-utility (3.0.2-2) UNRELEASED; urgency=low
+gnome-disk-utility (3.0.2-2) unstable; urgency=low
 
   * Upload to unstable.
   * Update debian/libgdu0.symbols.
 
- -- Michael Biebl <biebl@debian.org>  Wed, 12 Oct 2011 22:11:30 +0200
+ -- Michael Biebl <biebl@debian.org>  Thu, 13 Oct 2011 18:53:23 +0200
 
 gnome-disk-utility (3.0.2-1) experimental; urgency=low
 
