@@ -1,3 +1,10 @@
+gnome-disk-utility (3.0.2-3) UNRELEASED; urgency=low
+
+  * Build libraries for multi-arch, thanks Steve Langasek for the patch!
+    (Closes: #646204)
+
+ -- Martin Pitt <mpitt@debian.org>  Mon, 24 Oct 2011 10:44:56 +0200
+
 gnome-disk-utility (3.0.2-2) unstable; urgency=low
 
   * Upload to unstable.
