@@ -5,5 +5,5 @@ usr/share/icons
 usr/share/applications
 usr/share/omf
 etc/xdg/autostart
-usr/lib/*/gdu-* usr/lib/gnome-disk-utility
+usr/lib/gnome-disk-utility/gdu-*
 usr/lib/nautilus/*/*.so
