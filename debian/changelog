@@ -1,9 +1,9 @@
-gnome-disk-utility (3.0.2-3) UNRELEASED; urgency=low
+gnome-disk-utility (3.0.2-3) unstable; urgency=low
 
   [ Ansgar Burchardt ]
   * debian/rules: Use xz compression for binary packages. (Closes: #683841)
 
- -- Michael Biebl <biebl@debian.org>  Fri, 24 Aug 2012 15:08:07 +0200
+ -- Michael Biebl <biebl@debian.org>  Fri, 24 Aug 2012 15:08:55 +0200
 
 gnome-disk-utility (3.0.2-2) unstable; urgency=low
 
