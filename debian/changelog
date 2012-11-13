@@ -15,6 +15,7 @@ gnome-disk-utility (3.6.1-1) UNRELEASED; urgency=low
     conffile on upgrades using the dh_installdeb maintscript facility.
   * Remove obsolete configure switch.
   * Update package description: palimpsest → GNOME Disks.
+  * Update debian/copyright.
 
  -- Michael Biebl <biebl@debian.org>  Tue, 13 Nov 2012 07:18:05 +0100
 
