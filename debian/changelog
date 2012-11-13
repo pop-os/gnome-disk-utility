@@ -6,6 +6,7 @@ gnome-disk-utility (3.6.1-1) UNRELEASED; urgency=low
     - The libgdu library has been removed in favour of libudisks2.
   * Use xz compression for source tarballs.
   * Drop all binary packages besides gnome-disk-utility.
+  * Drop all patches, they are obsolete.
 
  -- Michael Biebl <biebl@debian.org>  Tue, 13 Nov 2012 07:18:05 +0100
 
