@@ -14,6 +14,7 @@ gnome-disk-utility (3.6.1-1) UNRELEASED; urgency=low
   * Remove the obsolete /etc/xdg/autostart/gdu-notification-daemon.desktop
     conffile on upgrades using the dh_installdeb maintscript facility.
   * Remove obsolete configure switch.
+  * Update package description: palimpsest → GNOME Disks.
 
  -- Michael Biebl <biebl@debian.org>  Tue, 13 Nov 2012 07:18:05 +0100
 
