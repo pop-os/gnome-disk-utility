@@ -22,7 +22,7 @@ Homepage: http://git.gnome.org/cgit/gnome-disk-utility/
 
 Package: gnome-disk-utility
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, udisks2
 Description: manage and configure disk drives and media
  palimpsest (from the gnome-disk-utility project) is a tool to manage disk
  drives and media:

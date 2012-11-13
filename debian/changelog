@@ -10,6 +10,7 @@ gnome-disk-utility (3.6.1-1) UNRELEASED; urgency=low
   * Bump debhelper compat level to 9.
   * Bump Standards-Version to 3.9.3.
   * Update Build-Depends according to configure.ac.
+  * Make gnome-disk-utility depend on udisks2.
 
  -- Michael Biebl <biebl@debian.org>  Tue, 13 Nov 2012 07:18:05 +0100
 
