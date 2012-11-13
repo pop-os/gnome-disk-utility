@@ -1,32 +1,25 @@
 NULL =
 
-SUBDIRS = icons
+SUBDIRS = ui icons
 
 desktopdir = $(datadir)/applications
-desktop_in_files = palimpsest.desktop.in
+desktop_in_files = gnome-disks.desktop.in gnome-disk-image-mounter.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
-autostartdir = $(sysconfdir)/xdg/autostart
-autostart_in_files = gdu-notification-daemon.desktop.in
-autostart_DATA = $(autostart_in_files:.desktop.in=.desktop)
-
-gdu-notification-daemon.desktop.in: gdu-notification-daemon.desktop.in.in
-	@sed -e "s|\@LIBEXECDIR\@|$(libexecdir)|" $< > $@
+# GSettings schemas
+gsettings_SCHEMAS = org.gnome.Disks.gschema.xml
 
 @INTLTOOL_DESKTOP_RULE@
-
-distuninstallcheck_listfiles = find . -type f -print | grep -v scrollkeeper
+@INTLTOOL_XML_NOMERGE_RULE@
+@GSETTINGS_RULES@
 
 EXTRA_DIST = 			\
 	$(desktop_in_files)	\
-	$(autostart_in_files)	\
 	$(NULL)
 
-CLEANFILES = \
-	$(desktop_DATA)				\
-	$(autostart_DATA)			\
-	gdu-notification-daemon.desktop.in	\
-	gdu-notification-daemon.desktop.in.in	\
+CLEANFILES = 			\
+	$(gsettings_SCHEMAS)	\
+	$(desktop_DATA)		\
 	$(NULL)
 
 clean-local :

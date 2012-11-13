@@ -1,5 +1,4 @@
-NULL =
-EXTRA_DIST =
+SUBDIRS = man
 
-# Version information for marking the documentation
-EXTRA_DIST += version.xml.in
+clean-local :
+	rm -f *~
