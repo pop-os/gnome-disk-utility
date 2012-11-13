@@ -5,7 +5,7 @@ gnome-disk-utility (3.6.1-1) UNRELEASED; urgency=low
     - Renamed to GNOME Disks or simply Disks.
     - The libgdu library has been removed in favour of libudisks2.
   * Use xz compression for source tarballs.
-  * Drop all binary packages besides gnome-disk-utility.
+  * Drop all binary packages besides gnome-disk-utility. (Closes: #646204)
   * Drop all patches, they are obsolete.
   * Bump debhelper compat level to 9.
 
