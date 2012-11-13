@@ -1,8 +1,9 @@
-gnome-disk-utility (3.0.2-4) UNRELEASED; urgency=low
+gnome-disk-utility (3.6.1-1) UNRELEASED; urgency=low
 
+  * New upstream release. (Closes: #671494)
   * Use xz compression for source tarballs.
 
- -- Michael Biebl <biebl@debian.org>  Tue, 13 Nov 2012 06:14:09 +0100
+ -- Michael Biebl <biebl@debian.org>  Tue, 13 Nov 2012 07:18:05 +0100
 
 gnome-disk-utility (3.0.2-3) unstable; urgency=low
 
