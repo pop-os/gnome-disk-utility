@@ -22,7 +22,7 @@ Build-Depends: debhelper (>= 9),
  libnotify-dev (>= 0.6.1),
  libnautilus-extension-dev (>= 2.91),
  libavahi-ui-gtk3-dev (>= 0.6.25)
-Standards-Version: 3.9.2
+Standards-Version: 3.9.3
 Vcs-Git: git://git.debian.org/git/pkg-utopia/gnome-disk-utility.git
 Vcs-Browser: http://git.debian.org/?p=pkg-utopia/gnome-disk-utility.git;a=summary
 Homepage: http://git.gnome.org/cgit/gnome-disk-utility/
