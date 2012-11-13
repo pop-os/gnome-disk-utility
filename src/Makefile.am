@@ -1,8 +1,4 @@
-SUBDIRS = gdu gdu-gtk palimpsest notification format-tool
-
-if ENABLE_NAUTILUS
-SUBDIRS += nautilus-extension
-endif
+SUBDIRS = libgdu disks disk-image-mounter
 
 clean-local :
 	rm -f *~
