@@ -9,6 +9,7 @@ gnome-disk-utility (3.6.1-1) UNRELEASED; urgency=low
   * Drop all patches, they are obsolete.
   * Bump debhelper compat level to 9.
   * Bump Standards-Version to 3.9.3.
+  * Update Build-Depends according to configure.ac.
 
  -- Michael Biebl <biebl@debian.org>  Tue, 13 Nov 2012 07:18:05 +0100
 

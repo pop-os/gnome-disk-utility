@@ -6,22 +6,15 @@ Uploaders: Michael Biebl <biebl@debian.org>,
            Martin Pitt <mpitt@debian.org>,
            Sjoerd Simons <sjoerd@debian.org>
 Build-Depends: debhelper (>= 9),
- autotools-dev,
  pkg-config,
+ libglib2.0-dev (>= 2.31.0),
+ libgtk-3-dev (>= 3.5.8),
+ libudisks2-dev (>= 1.99.0),
+ libsecret-1-dev (>= 0.7),
+ libpwquality-dev (>= 1.0.0),
  xsltproc,
- gtk-doc-tools,
- gnome-doc-utils,
- rarian-compat | scrollkeeper,
- libdbus-glib-1-dev (>= 0.76),
- libglib2.0-dev (>= 2.22),
- libgtk-3-dev,
- udisks (>= 1.0.0~),
- libatasmart-dev (>= 0.14),
- libgnome-keyring-dev (>= 2.22),
- libunique-3.0-dev,
- libnotify-dev (>= 0.6.1),
- libnautilus-extension-dev (>= 2.91),
- libavahi-ui-gtk3-dev (>= 0.6.25)
+ docbook-xsl,
+ intltool
 Standards-Version: 3.9.3
 Vcs-Git: git://git.debian.org/git/pkg-utopia/gnome-disk-utility.git
 Vcs-Browser: http://git.debian.org/?p=pkg-utopia/gnome-disk-utility.git;a=summary
