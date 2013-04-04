@@ -1,6 +1,6 @@
 /* -*- mode: C; c-file-style: "gnu"; indent-tabs-mode: nil; -*-
  *
- * Copyright (C) 2008-2012 Red Hat, Inc.
+ * Copyright (C) 2008-2013 Red Hat, Inc.
  *
  * Licensed under GPL version 2 or later.
  *
@@ -50,12 +50,53 @@ void            gdu_utils_show_error      (GtkWindow      *parent_window,
                                            const gchar    *message,
                                            GError         *error);
 
-gboolean        gdu_utils_show_confirmation (GtkWindow   *parent_window,
-                                             const gchar *message,
-                                             const gchar *secondary_message,
-                                             const gchar *affirmative_verb);
+gboolean        gdu_utils_show_confirmation (GtkWindow    *parent_window,
+                                             const gchar  *message,
+                                             const gchar  *secondary_message,
+                                             const gchar  *affirmative_verb,
+                                             const gchar  *checkbox_mnemonic,
+                                             gboolean     *inout_checkbox_value,
+                                             UDisksClient *client,
+                                             GList        *objects);
 
 gboolean gdu_utils_is_ntfs_available (void);
+
+gchar *gdu_utils_format_mdraid_level (const gchar *level,
+                                      gboolean     long_desc,
+                                      gboolean     use_markup);
+
+gboolean gdu_util_is_same_size (GList   *blocks,
+                                guint64 *out_min_size);
+
+gchar *gdu_utils_get_pretty_uri (GFile *file);
+
+gboolean gdu_utils_is_in_use (UDisksClient *client,
+                              UDisksObject *object);
+
+void gdu_utils_ensure_unused (UDisksClient         *client,
+                              GtkWindow            *parent_window,
+                              UDisksObject         *object,
+                              GAsyncReadyCallback   callback,
+                              GCancellable         *cancellable,
+                              gpointer              user_data);
+gboolean gdu_utils_ensure_unused_finish (UDisksClient  *client,
+                                         GAsyncResult  *res,
+                                         GError       **error);
+
+void gdu_utils_ensure_unused_list (UDisksClient         *client,
+                                   GtkWindow            *parent_window,
+                                   GList                *objects,
+                                   GAsyncReadyCallback   callback,
+                                   GCancellable         *cancellable,
+                                   gpointer              user_data);
+gboolean gdu_utils_ensure_unused_list_finish (UDisksClient  *client,
+                                              GAsyncResult  *res,
+                                              GError       **error);
+
+gint64 gdu_utils_get_unused_for_block (UDisksClient *client,
+                                       UDisksBlock  *block);
+
+
 
 G_END_DECLS
 

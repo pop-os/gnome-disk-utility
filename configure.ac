@@ -1,4 +1,4 @@
-AC_INIT([GNOME Disk Utility],[3.6.1],[https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-disk-utility],[gnome-disk-utility])
+AC_INIT([GNOME Disk Utility],[3.8.0],[https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-disk-utility],[gnome-disk-utility])
 
 AM_INIT_AUTOMAKE([1.9 foreign dist-xz no-dist-gzip tar-ustar])
 
@@ -82,16 +82,27 @@ CC_CHECK_CFLAGS_APPEND([                          \
 # ***************************
 
 GLIB2_REQUIRED=2.31.0
-UDISKS2_REQUIRED=1.99.0
+UDISKS2_REQUIRED=2.1.0
 GTK3_REQUIRED=3.5.8
 LIBSECRET1_REQUIRED=0.7
 PWQUALITY_REQUIRED=1.0.0
+CANBERRA_REQUIRED=0.1
+LIBDVDREAD_REQUIRED=4.2.0
+GSD_PLUGIN_REQUIRED=3.6
+LIBNOTIFY_REQUIRED=0.7
 
 PKG_CHECK_MODULES(GLIB2, [gmodule-2.0 gio-unix-2.0 >= $GLIB2_REQUIRED])
 PKG_CHECK_MODULES(UDISKS2, [udisks2 >= $UDISKS2_REQUIRED])
 PKG_CHECK_MODULES(GTK3, [gtk+-3.0 >= $GTK3_REQUIRED])
 PKG_CHECK_MODULES(LIBSECRET1, [libsecret-1 >= $LIBSECRET1_REQUIRED])
 PKG_CHECK_MODULES(PWQUALITY, [pwquality >= $PWQUALITY_REQUIRED])
+PKG_CHECK_MODULES(CANBERRA, [libcanberra-gtk3 >= $CANBERRA_REQUIRED])
+PKG_CHECK_MODULES(LIBDVDREAD, [dvdread >= $LIBDVDREAD_REQUIRED])
+PKG_CHECK_MODULES(GSD_PLUGIN, [gnome-settings-daemon >= GSD_PLUGIN_REQUIRED])
+PKG_CHECK_MODULES(LIBNOTIFY, [libnotify >= LIBNOTIFY_REQUIRED])
+
+gsd_plugindir='${libdir}/gnome-settings-daemon-3.0'
+AC_SUBST([gsd_plugindir])
 
 GLIB_GSETTINGS
 
@@ -115,6 +126,17 @@ if test "x$enable_libsystemd_login" != "xno"; then
 fi
 
 AM_CONDITIONAL(USE_LIBSYSTEMD_LOGIN, [test "$msg_libsystemd_login" = "yes"])
+
+dnl *************************************
+dnl *** gnome-settings-daemon plug-in ***
+dnl *************************************
+
+AC_ARG_ENABLE(gsd_plugin, AS_HELP_STRING([--disable-gsd-plugin],[don't build gnome-settings-daemon plug-in]))
+msg_gsd_plugin=no
+if test "x$enable_gsd_plugin" != "xno"; then
+   msg_gsd_plugin=yes
+fi
+AM_CONDITIONAL(USE_GSD_PLUGIN, [test "$msg_gsd_plugin" = "yes"])
 
 # ********************
 # Internationalization
@@ -143,17 +165,27 @@ src/Makefile
 src/libgdu/Makefile
 src/disks/Makefile
 src/disk-image-mounter/Makefile
+src/notify/Makefile
 po/Makefile.in
 data/Makefile
 data/icons/Makefile
-data/icons/16x16/Makefile
-data/icons/22x22/Makefile
-data/icons/24x24/Makefile
-data/icons/32x32/Makefile
-data/icons/48x48/Makefile
-data/icons/256x256/Makefile
-data/icons/scalable/Makefile
+data/icons/hicolor/Makefile
+data/icons/hicolor/16x16/Makefile
+data/icons/hicolor/22x22/Makefile
+data/icons/hicolor/24x24/Makefile
+data/icons/hicolor/32x32/Makefile
+data/icons/hicolor/48x48/Makefile
+data/icons/hicolor/256x256/Makefile
+data/icons/hicolor/scalable/Makefile
+data/icons/HighContrast/Makefile
+data/icons/HighContrast/16x16/Makefile
+data/icons/HighContrast/22x22/Makefile
+data/icons/HighContrast/24x24/Makefile
+data/icons/HighContrast/32x32/Makefile
+data/icons/HighContrast/48x48/Makefile
+data/icons/HighContrast/256x256/Makefile
 data/org.gnome.Disks.gschema.xml.in
+data/org.gnome.settings-daemon.plugins.gdu-sd.gschema.xml.in
 data/ui/Makefile
 doc/Makefile
 doc/man/Makefile
@@ -175,6 +207,7 @@ echo "
         localstatedir:              ${localstatedir}
 
         Use libsystem-login:        ${msg_libsystemd_login}
+        Build g-s-d plug-in:        ${msg_gsd_plugin}
 
         compiler:                   ${CC}
         cflags:                     ${CFLAGS}

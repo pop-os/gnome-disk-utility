@@ -53,6 +53,7 @@ host_triplet = @host@
 subdir = data
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(srcdir)/org.gnome.Disks.gschema.xml.in.in \
+	$(srcdir)/org.gnome.settings-daemon.plugins.gdu-sd.gschema.xml.in.in \
 	$(top_srcdir)/mkinstalldirs
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/acinclude.m4 \
@@ -61,7 +62,8 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/config.h
-CONFIG_CLEAN_FILES = org.gnome.Disks.gschema.xml.in
+CONFIG_CLEAN_FILES = org.gnome.Disks.gschema.xml.in \
+	org.gnome.settings-daemon.plugins.gdu-sd.gschema.xml.in
 CONFIG_CLEAN_VPATH_FILES =
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
@@ -166,6 +168,8 @@ AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
+CANBERRA_CFLAGS = @CANBERRA_CFLAGS@
+CANBERRA_LIBS = @CANBERRA_LIBS@
 CATALOGS = @CATALOGS@
 CATOBJEXT = @CATOBJEXT@
 CC = @CC@
@@ -194,6 +198,8 @@ GLIB_COMPILE_SCHEMAS = @GLIB_COMPILE_SCHEMAS@
 GMOFILES = @GMOFILES@
 GMSGFMT = @GMSGFMT@
 GREP = @GREP@
+GSD_PLUGIN_CFLAGS = @GSD_PLUGIN_CFLAGS@
+GSD_PLUGIN_LIBS = @GSD_PLUGIN_LIBS@
 GSETTINGS_DISABLE_SCHEMAS_COMPILE = @GSETTINGS_DISABLE_SCHEMAS_COMPILE@
 GTK3_CFLAGS = @GTK3_CFLAGS@
 GTK3_LIBS = @GTK3_LIBS@
@@ -214,6 +220,10 @@ INTLTOOL__v_MERGE_ = @INTLTOOL__v_MERGE_@
 INTLTOOL__v_MERGE_0 = @INTLTOOL__v_MERGE_0@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
+LIBDVDREAD_CFLAGS = @LIBDVDREAD_CFLAGS@
+LIBDVDREAD_LIBS = @LIBDVDREAD_LIBS@
+LIBNOTIFY_CFLAGS = @LIBNOTIFY_CFLAGS@
+LIBNOTIFY_LIBS = @LIBNOTIFY_LIBS@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
 LIBSECRET1_CFLAGS = @LIBSECRET1_CFLAGS@
@@ -291,6 +301,7 @@ datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
 exec_prefix = @exec_prefix@
+gsd_plugindir = @gsd_plugindir@
 gsettingsschemadir = @gsettingsschemadir@
 host = @host@
 host_alias = @host_alias@
@@ -329,7 +340,11 @@ desktop_in_files = gnome-disks.desktop.in gnome-disk-image-mounter.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 # GSettings schemas
-gsettings_SCHEMAS = org.gnome.Disks.gschema.xml
+gsettings_SCHEMAS = \
+	org.gnome.Disks.gschema.xml 				\
+	org.gnome.settings-daemon.plugins.gdu-sd.gschema.xml	\
+	$(NULL)
+
 EXTRA_DIST = \
 	$(desktop_in_files)	\
 	$(NULL)
@@ -373,6 +388,8 @@ $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
 org.gnome.Disks.gschema.xml.in: $(top_builddir)/config.status $(srcdir)/org.gnome.Disks.gschema.xml.in.in
+	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
+org.gnome.settings-daemon.plugins.gdu-sd.gschema.xml.in: $(top_builddir)/config.status $(srcdir)/org.gnome.settings-daemon.plugins.gdu-sd.gschema.xml.in.in
 	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
 
 mostlyclean-libtool:

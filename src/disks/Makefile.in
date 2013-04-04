@@ -88,11 +88,17 @@ am_gnome_disks_OBJECTS = gnome_disks-main.$(OBJEXT) \
 	gnome_disks-gdupasswordstrengthwidget.$(OBJEXT) \
 	gnome_disks-gduestimator.$(OBJEXT) \
 	gnome_disks-gduchangepassphrasedialog.$(OBJEXT) \
-	gnome_disks-gdudisksettingsdialog.$(OBJEXT) $(am__objects_2) \
+	gnome_disks-gdudisksettingsdialog.$(OBJEXT) \
+	gnome_disks-gdumdraiddisksdialog.$(OBJEXT) \
+	gnome_disks-gducreateraidarraydialog.$(OBJEXT) \
+	gnome_disks-gduerasemultipledisksdialog.$(OBJEXT) \
+	gnome_disks-gdudvdsupport.$(OBJEXT) \
+	gnome_disks-gdulocaljob.$(OBJEXT) $(am__objects_2) \
 	$(am__objects_1)
 gnome_disks_OBJECTS = $(am_gnome_disks_OBJECTS)
 am__DEPENDENCIES_1 =
 gnome_disks_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
 	$(top_builddir)/src/libgdu/libgdu.la $(am__DEPENDENCIES_1)
@@ -161,6 +167,8 @@ AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
+CANBERRA_CFLAGS = @CANBERRA_CFLAGS@
+CANBERRA_LIBS = @CANBERRA_LIBS@
 CATALOGS = @CATALOGS@
 CATOBJEXT = @CATOBJEXT@
 CC = @CC@
@@ -189,6 +197,8 @@ GLIB_COMPILE_SCHEMAS = @GLIB_COMPILE_SCHEMAS@
 GMOFILES = @GMOFILES@
 GMSGFMT = @GMSGFMT@
 GREP = @GREP@
+GSD_PLUGIN_CFLAGS = @GSD_PLUGIN_CFLAGS@
+GSD_PLUGIN_LIBS = @GSD_PLUGIN_LIBS@
 GSETTINGS_DISABLE_SCHEMAS_COMPILE = @GSETTINGS_DISABLE_SCHEMAS_COMPILE@
 GTK3_CFLAGS = @GTK3_CFLAGS@
 GTK3_LIBS = @GTK3_LIBS@
@@ -209,6 +219,10 @@ INTLTOOL__v_MERGE_ = @INTLTOOL__v_MERGE_@
 INTLTOOL__v_MERGE_0 = @INTLTOOL__v_MERGE_0@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
+LIBDVDREAD_CFLAGS = @LIBDVDREAD_CFLAGS@
+LIBDVDREAD_LIBS = @LIBDVDREAD_LIBS@
+LIBNOTIFY_CFLAGS = @LIBNOTIFY_CFLAGS@
+LIBNOTIFY_LIBS = @LIBNOTIFY_LIBS@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
 LIBSECRET1_CFLAGS = @LIBSECRET1_CFLAGS@
@@ -286,6 +300,7 @@ datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
 exec_prefix = @exec_prefix@
+gsd_plugindir = @gsd_plugindir@
 gsettingsschemadir = @gsettingsschemadir@
 host = @host@
 host_alias = @host_alias@
@@ -348,6 +363,11 @@ gnome_disks_SOURCES = \
 	gduestimator.h			gduestimator.c			\
 	gduchangepassphrasedialog.h	gduchangepassphrasedialog.c	\
 	gdudisksettingsdialog.h		gdudisksettingsdialog.c		\
+	gdumdraiddisksdialog.h		gdumdraiddisksdialog.c		\
+	gducreateraidarraydialog.h	gducreateraidarraydialog.c	\
+	gduerasemultipledisksdialog.h	gduerasemultipledisksdialog.c	\
+	gdudvdsupport.h			gdudvdsupport.c			\
+	gdulocaljob.h			gdulocaljob.c			\
 	$(enum_built_sources)						\
 	$(NULL)
 
@@ -366,6 +386,8 @@ gnome_disks_CFLAGS = \
 	$(LIBSECRET1_CFLAGS)				\
 	$(LIBSYSTEMD_LOGIN_CFLAGS)			\
 	$(PWQUALITY_CFLAGS)				\
+	$(CANBERRA_CFLAGS)				\
+	$(LIBDVDREAD_CFLAGS)				\
 	$(WARN_CFLAGS)					\
 	-lm						\
 	$(NULL)
@@ -377,6 +399,8 @@ gnome_disks_LDADD = \
 	$(LIBSECRET1_LIBS)				\
 	$(LIBSYSTEMD_LOGIN_LIBS)			\
 	$(PWQUALITY_LIBS)				\
+	$(CANBERRA_LIBS)				\
+	$(LIBDVDREAD_LIBS)				\
         $(top_builddir)/src/libgdu/libgdu.la        	\
 	$(NULL)
 
@@ -483,15 +507,20 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_disks-gducreatediskimagedialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_disks-gducreatefilesystemwidget.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_disks-gducreatepartitiondialog.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_disks-gducreateraidarraydialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_disks-gducrypttabdialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_disks-gdudevicetreemodel.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_disks-gdudisksettingsdialog.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_disks-gdudvdsupport.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_disks-gduenumtypes.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_disks-gduerasemultipledisksdialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_disks-gduestimator.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_disks-gdufilesystemdialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_disks-gduformatdiskdialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_disks-gduformatvolumedialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_disks-gdufstabdialog.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_disks-gdulocaljob.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_disks-gdumdraiddisksdialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_disks-gdupartitiondialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_disks-gdupasswordstrengthwidget.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gnome_disks-gdurestorediskimagedialog.Po@am__quote@
@@ -828,6 +857,76 @@ gnome_disks-gdudisksettingsdialog.obj: gdudisksettingsdialog.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gdudisksettingsdialog.c' object='gnome_disks-gdudisksettingsdialog.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_disks_CPPFLAGS) $(CPPFLAGS) $(gnome_disks_CFLAGS) $(CFLAGS) -c -o gnome_disks-gdudisksettingsdialog.obj `if test -f 'gdudisksettingsdialog.c'; then $(CYGPATH_W) 'gdudisksettingsdialog.c'; else $(CYGPATH_W) '$(srcdir)/gdudisksettingsdialog.c'; fi`
+
+gnome_disks-gdumdraiddisksdialog.o: gdumdraiddisksdialog.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_disks_CPPFLAGS) $(CPPFLAGS) $(gnome_disks_CFLAGS) $(CFLAGS) -MT gnome_disks-gdumdraiddisksdialog.o -MD -MP -MF $(DEPDIR)/gnome_disks-gdumdraiddisksdialog.Tpo -c -o gnome_disks-gdumdraiddisksdialog.o `test -f 'gdumdraiddisksdialog.c' || echo '$(srcdir)/'`gdumdraiddisksdialog.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/gnome_disks-gdumdraiddisksdialog.Tpo $(DEPDIR)/gnome_disks-gdumdraiddisksdialog.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gdumdraiddisksdialog.c' object='gnome_disks-gdumdraiddisksdialog.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_disks_CPPFLAGS) $(CPPFLAGS) $(gnome_disks_CFLAGS) $(CFLAGS) -c -o gnome_disks-gdumdraiddisksdialog.o `test -f 'gdumdraiddisksdialog.c' || echo '$(srcdir)/'`gdumdraiddisksdialog.c
+
+gnome_disks-gdumdraiddisksdialog.obj: gdumdraiddisksdialog.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_disks_CPPFLAGS) $(CPPFLAGS) $(gnome_disks_CFLAGS) $(CFLAGS) -MT gnome_disks-gdumdraiddisksdialog.obj -MD -MP -MF $(DEPDIR)/gnome_disks-gdumdraiddisksdialog.Tpo -c -o gnome_disks-gdumdraiddisksdialog.obj `if test -f 'gdumdraiddisksdialog.c'; then $(CYGPATH_W) 'gdumdraiddisksdialog.c'; else $(CYGPATH_W) '$(srcdir)/gdumdraiddisksdialog.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/gnome_disks-gdumdraiddisksdialog.Tpo $(DEPDIR)/gnome_disks-gdumdraiddisksdialog.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gdumdraiddisksdialog.c' object='gnome_disks-gdumdraiddisksdialog.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_disks_CPPFLAGS) $(CPPFLAGS) $(gnome_disks_CFLAGS) $(CFLAGS) -c -o gnome_disks-gdumdraiddisksdialog.obj `if test -f 'gdumdraiddisksdialog.c'; then $(CYGPATH_W) 'gdumdraiddisksdialog.c'; else $(CYGPATH_W) '$(srcdir)/gdumdraiddisksdialog.c'; fi`
+
+gnome_disks-gducreateraidarraydialog.o: gducreateraidarraydialog.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_disks_CPPFLAGS) $(CPPFLAGS) $(gnome_disks_CFLAGS) $(CFLAGS) -MT gnome_disks-gducreateraidarraydialog.o -MD -MP -MF $(DEPDIR)/gnome_disks-gducreateraidarraydialog.Tpo -c -o gnome_disks-gducreateraidarraydialog.o `test -f 'gducreateraidarraydialog.c' || echo '$(srcdir)/'`gducreateraidarraydialog.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/gnome_disks-gducreateraidarraydialog.Tpo $(DEPDIR)/gnome_disks-gducreateraidarraydialog.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gducreateraidarraydialog.c' object='gnome_disks-gducreateraidarraydialog.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_disks_CPPFLAGS) $(CPPFLAGS) $(gnome_disks_CFLAGS) $(CFLAGS) -c -o gnome_disks-gducreateraidarraydialog.o `test -f 'gducreateraidarraydialog.c' || echo '$(srcdir)/'`gducreateraidarraydialog.c
+
+gnome_disks-gducreateraidarraydialog.obj: gducreateraidarraydialog.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_disks_CPPFLAGS) $(CPPFLAGS) $(gnome_disks_CFLAGS) $(CFLAGS) -MT gnome_disks-gducreateraidarraydialog.obj -MD -MP -MF $(DEPDIR)/gnome_disks-gducreateraidarraydialog.Tpo -c -o gnome_disks-gducreateraidarraydialog.obj `if test -f 'gducreateraidarraydialog.c'; then $(CYGPATH_W) 'gducreateraidarraydialog.c'; else $(CYGPATH_W) '$(srcdir)/gducreateraidarraydialog.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/gnome_disks-gducreateraidarraydialog.Tpo $(DEPDIR)/gnome_disks-gducreateraidarraydialog.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gducreateraidarraydialog.c' object='gnome_disks-gducreateraidarraydialog.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_disks_CPPFLAGS) $(CPPFLAGS) $(gnome_disks_CFLAGS) $(CFLAGS) -c -o gnome_disks-gducreateraidarraydialog.obj `if test -f 'gducreateraidarraydialog.c'; then $(CYGPATH_W) 'gducreateraidarraydialog.c'; else $(CYGPATH_W) '$(srcdir)/gducreateraidarraydialog.c'; fi`
+
+gnome_disks-gduerasemultipledisksdialog.o: gduerasemultipledisksdialog.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_disks_CPPFLAGS) $(CPPFLAGS) $(gnome_disks_CFLAGS) $(CFLAGS) -MT gnome_disks-gduerasemultipledisksdialog.o -MD -MP -MF $(DEPDIR)/gnome_disks-gduerasemultipledisksdialog.Tpo -c -o gnome_disks-gduerasemultipledisksdialog.o `test -f 'gduerasemultipledisksdialog.c' || echo '$(srcdir)/'`gduerasemultipledisksdialog.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/gnome_disks-gduerasemultipledisksdialog.Tpo $(DEPDIR)/gnome_disks-gduerasemultipledisksdialog.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gduerasemultipledisksdialog.c' object='gnome_disks-gduerasemultipledisksdialog.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_disks_CPPFLAGS) $(CPPFLAGS) $(gnome_disks_CFLAGS) $(CFLAGS) -c -o gnome_disks-gduerasemultipledisksdialog.o `test -f 'gduerasemultipledisksdialog.c' || echo '$(srcdir)/'`gduerasemultipledisksdialog.c
+
+gnome_disks-gduerasemultipledisksdialog.obj: gduerasemultipledisksdialog.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_disks_CPPFLAGS) $(CPPFLAGS) $(gnome_disks_CFLAGS) $(CFLAGS) -MT gnome_disks-gduerasemultipledisksdialog.obj -MD -MP -MF $(DEPDIR)/gnome_disks-gduerasemultipledisksdialog.Tpo -c -o gnome_disks-gduerasemultipledisksdialog.obj `if test -f 'gduerasemultipledisksdialog.c'; then $(CYGPATH_W) 'gduerasemultipledisksdialog.c'; else $(CYGPATH_W) '$(srcdir)/gduerasemultipledisksdialog.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/gnome_disks-gduerasemultipledisksdialog.Tpo $(DEPDIR)/gnome_disks-gduerasemultipledisksdialog.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gduerasemultipledisksdialog.c' object='gnome_disks-gduerasemultipledisksdialog.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_disks_CPPFLAGS) $(CPPFLAGS) $(gnome_disks_CFLAGS) $(CFLAGS) -c -o gnome_disks-gduerasemultipledisksdialog.obj `if test -f 'gduerasemultipledisksdialog.c'; then $(CYGPATH_W) 'gduerasemultipledisksdialog.c'; else $(CYGPATH_W) '$(srcdir)/gduerasemultipledisksdialog.c'; fi`
+
+gnome_disks-gdudvdsupport.o: gdudvdsupport.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_disks_CPPFLAGS) $(CPPFLAGS) $(gnome_disks_CFLAGS) $(CFLAGS) -MT gnome_disks-gdudvdsupport.o -MD -MP -MF $(DEPDIR)/gnome_disks-gdudvdsupport.Tpo -c -o gnome_disks-gdudvdsupport.o `test -f 'gdudvdsupport.c' || echo '$(srcdir)/'`gdudvdsupport.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/gnome_disks-gdudvdsupport.Tpo $(DEPDIR)/gnome_disks-gdudvdsupport.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gdudvdsupport.c' object='gnome_disks-gdudvdsupport.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_disks_CPPFLAGS) $(CPPFLAGS) $(gnome_disks_CFLAGS) $(CFLAGS) -c -o gnome_disks-gdudvdsupport.o `test -f 'gdudvdsupport.c' || echo '$(srcdir)/'`gdudvdsupport.c
+
+gnome_disks-gdudvdsupport.obj: gdudvdsupport.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_disks_CPPFLAGS) $(CPPFLAGS) $(gnome_disks_CFLAGS) $(CFLAGS) -MT gnome_disks-gdudvdsupport.obj -MD -MP -MF $(DEPDIR)/gnome_disks-gdudvdsupport.Tpo -c -o gnome_disks-gdudvdsupport.obj `if test -f 'gdudvdsupport.c'; then $(CYGPATH_W) 'gdudvdsupport.c'; else $(CYGPATH_W) '$(srcdir)/gdudvdsupport.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/gnome_disks-gdudvdsupport.Tpo $(DEPDIR)/gnome_disks-gdudvdsupport.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gdudvdsupport.c' object='gnome_disks-gdudvdsupport.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_disks_CPPFLAGS) $(CPPFLAGS) $(gnome_disks_CFLAGS) $(CFLAGS) -c -o gnome_disks-gdudvdsupport.obj `if test -f 'gdudvdsupport.c'; then $(CYGPATH_W) 'gdudvdsupport.c'; else $(CYGPATH_W) '$(srcdir)/gdudvdsupport.c'; fi`
+
+gnome_disks-gdulocaljob.o: gdulocaljob.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_disks_CPPFLAGS) $(CPPFLAGS) $(gnome_disks_CFLAGS) $(CFLAGS) -MT gnome_disks-gdulocaljob.o -MD -MP -MF $(DEPDIR)/gnome_disks-gdulocaljob.Tpo -c -o gnome_disks-gdulocaljob.o `test -f 'gdulocaljob.c' || echo '$(srcdir)/'`gdulocaljob.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/gnome_disks-gdulocaljob.Tpo $(DEPDIR)/gnome_disks-gdulocaljob.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gdulocaljob.c' object='gnome_disks-gdulocaljob.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_disks_CPPFLAGS) $(CPPFLAGS) $(gnome_disks_CFLAGS) $(CFLAGS) -c -o gnome_disks-gdulocaljob.o `test -f 'gdulocaljob.c' || echo '$(srcdir)/'`gdulocaljob.c
+
+gnome_disks-gdulocaljob.obj: gdulocaljob.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_disks_CPPFLAGS) $(CPPFLAGS) $(gnome_disks_CFLAGS) $(CFLAGS) -MT gnome_disks-gdulocaljob.obj -MD -MP -MF $(DEPDIR)/gnome_disks-gdulocaljob.Tpo -c -o gnome_disks-gdulocaljob.obj `if test -f 'gdulocaljob.c'; then $(CYGPATH_W) 'gdulocaljob.c'; else $(CYGPATH_W) '$(srcdir)/gdulocaljob.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/gnome_disks-gdulocaljob.Tpo $(DEPDIR)/gnome_disks-gdulocaljob.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='gdulocaljob.c' object='gnome_disks-gdulocaljob.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_disks_CPPFLAGS) $(CPPFLAGS) $(gnome_disks_CFLAGS) $(CFLAGS) -c -o gnome_disks-gdulocaljob.obj `if test -f 'gdulocaljob.c'; then $(CYGPATH_W) 'gdulocaljob.c'; else $(CYGPATH_W) '$(srcdir)/gdulocaljob.c'; fi`
 
 gnome_disks-gduenumtypes.o: gduenumtypes.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gnome_disks_CPPFLAGS) $(CPPFLAGS) $(gnome_disks_CFLAGS) $(CFLAGS) -MT gnome_disks-gduenumtypes.o -MD -MP -MF $(DEPDIR)/gnome_disks-gduenumtypes.Tpo -c -o gnome_disks-gduenumtypes.o `test -f 'gduenumtypes.c' || echo '$(srcdir)/'`gduenumtypes.c

@@ -1,6 +1,6 @@
 /* -*- mode: C; c-file-style: "gnu"; indent-tabs-mode: nil; -*-
  *
- * Copyright (C) 2008-2012 Red Hat, Inc.
+ * Copyright (C) 2008-2013 Red Hat, Inc.
  *
  * Licensed under GPL version 2 or later.
  *
@@ -30,6 +30,26 @@ gboolean        gdu_window_select_object     (GduWindow    *window,
 
 
 void            gdu_window_show_attach_disk_image (GduWindow *window);
+
+void            gdu_window_ensure_unused (GduWindow            *window,
+                                          UDisksObject         *object,
+                                          GAsyncReadyCallback   callback,
+                                          GCancellable         *cancellable,
+                                          gpointer              user_data);
+
+gboolean        gdu_window_ensure_unused_finish (GduWindow     *window,
+                                                 GAsyncResult  *res,
+                                                 GError       **error);
+
+void            gdu_window_ensure_unused_list (GduWindow            *window,
+                                               GList                *objects,
+                                               GAsyncReadyCallback   callback,
+                                               GCancellable         *cancellable,
+                                               gpointer              user_data);
+
+gboolean        gdu_window_ensure_unused_list_finish (GduWindow     *window,
+                                                      GAsyncResult  *res,
+                                                      GError       **error);
 
 G_END_DECLS
 
