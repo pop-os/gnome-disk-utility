@@ -1,6 +1,6 @@
 /* -*- mode: C; c-file-style: "gnu"; indent-tabs-mode: nil; -*-
  *
- * Copyright (C) 2008-2012 Red Hat, Inc.
+ * Copyright (C) 2008-2013 Red Hat, Inc.
  *
  * Licensed under GPL version 2 or later.
  *
@@ -37,18 +37,17 @@
 #include "gdurestorediskimagedialog.h"
 #include "gduchangepassphrasedialog.h"
 #include "gdudisksettingsdialog.h"
-
-/* Keep in sync with tabs in disks.ui file */
-typedef enum
-{
-  DETAILS_PAGE_NOT_SELECTED,
-  DETAILS_PAGE_NOT_IMPLEMENTED,
-  DETAILS_PAGE_DEVICE,
-} DetailsPage;
+#include "gdumdraiddisksdialog.h"
+#include "gducreateraidarraydialog.h"
+#include "gduerasemultipledisksdialog.h"
+#include "gdulocaljob.h"
 
 struct _GduWindow
 {
   GtkApplicationWindow parent_instance;
+
+  gboolean in_selection_mode;
+  GtkTreeViewColumn *selection_column;
 
   GduApplication *application;
   UDisksClient *client;
@@ -57,24 +56,38 @@ struct _GduWindow
   GtkBuilder *builder;
   GduDeviceTreeModel *model;
 
-  DetailsPage current_page;
   UDisksObject *current_object;
 
   GtkWidget *volume_grid;
 
+  GtkWidget *toolbutton_generic_menu;
+
+  GtkWidget *overlay_toolbar;
+  GtkWidget *overlay_toolbar_erase_button;
+  GtkWidget *overlay_toolbar_create_raid_button;
+
   GtkWidget *main_hpane;
   GtkWidget *details_notebook;
-  GtkWidget *device_scrolledwindow;
-  GtkWidget *device_treeview;
-  GtkWidget *device_toolbar;
-  GtkWidget *device_toolbar_attach_disk_image_button;
-  GtkWidget *device_toolbar_detach_disk_image_button;
+  GtkWidget *device_tree_overlay;
+  GtkWidget *device_tree_scrolledwindow;
+  GtkWidget *device_tree_treeview;
+  GtkWidget *device_tree_selection_toolbar;
+  GtkWidget *device_tree_selection_toolbar_center_notebook;
+  GtkWidget *device_tree_selection_toolbar_select_button;
+  GtkWidget *device_tree_selection_toolbar_done_button;
+  GtkWidget *device_tree_selection_toolbar_static_label;
+  GtkWidget *device_tree_selection_toolbar_label;
+
   GtkWidget *devtab_drive_box;
   GtkWidget *devtab_drive_vbox;
   GtkWidget *devtab_drive_buttonbox;
+  GtkWidget *devtab_drive_raid_start_button;
+  GtkWidget *devtab_drive_raid_stop_button;
+  GtkWidget *devtab_drive_loop_detach_button;
   GtkWidget *devtab_drive_eject_button;
+  GtkWidget *devtab_drive_power_off_button;
   GtkWidget *devtab_drive_generic_button;
-  GtkWidget *devtab_drive_name_label;
+  GtkWidget *devtab_drive_desc_label;
   GtkWidget *devtab_drive_devices_label;
   GtkWidget *devtab_drive_image;
   GtkWidget *devtab_table;
@@ -82,27 +95,42 @@ struct _GduWindow
   GtkWidget *devtab_grid_hbox;
   GtkWidget *devtab_volumes_label;
   GtkWidget *devtab_grid_toolbar;
-  GtkWidget *devtab_action_generic;
-  GtkWidget *devtab_action_partition_create;
-  GtkWidget *devtab_action_partition_delete;
-  GtkWidget *devtab_action_mount;
-  GtkWidget *devtab_action_unmount;
-  GtkWidget *devtab_action_eject;
-  GtkWidget *devtab_action_unlock;
-  GtkWidget *devtab_action_lock;
-  GtkWidget *devtab_action_activate_swap;
-  GtkWidget *devtab_action_deactivate_swap;
-  GtkWidget *devtab_action_generic_drive;
+
+  GtkAction *devtab_action_generic;
+  GtkAction *devtab_action_partition_create;
+  GtkAction *devtab_action_partition_delete;
+  GtkAction *devtab_action_mount;
+  GtkAction *devtab_action_unmount;
+  GtkAction *devtab_action_unlock;
+  GtkAction *devtab_action_lock;
+  GtkAction *devtab_action_activate_swap;
+  GtkAction *devtab_action_deactivate_swap;
+
+  GtkAction *devtab_drive_action_raid_start;
+  GtkAction *devtab_drive_action_raid_stop;
+  GtkAction *devtab_drive_action_loop_detach;
+  GtkAction *devtab_drive_action_eject;
+  GtkAction *devtab_drive_action_power_off;
+  GtkAction *devtab_drive_action_generic;
 
   GtkWidget *generic_drive_menu;
-  GtkWidget *generic_drive_menu_item_view_smart;
-  GtkWidget *generic_drive_menu_item_disk_settings;
-  GtkWidget *generic_drive_menu_item_standby_now;
-  GtkWidget *generic_drive_menu_item_resume_now;
   GtkWidget *generic_drive_menu_item_format_disk;
   GtkWidget *generic_drive_menu_item_create_disk_image;
   GtkWidget *generic_drive_menu_item_restore_disk_image;
   GtkWidget *generic_drive_menu_item_benchmark;
+  /* Drive-specific items */
+  GtkWidget *generic_drive_menu_item_drive_sep_1;
+  GtkWidget *generic_drive_menu_item_view_smart;
+  GtkWidget *generic_drive_menu_item_disk_settings;
+  GtkWidget *generic_drive_menu_item_drive_sep_2;
+  GtkWidget *generic_drive_menu_item_standby_now;
+  GtkWidget *generic_drive_menu_item_resume_now;
+  GtkWidget *generic_drive_menu_item_power_off;
+  /* MDRaid-specific items */
+  GtkWidget *generic_drive_menu_item_mdraid_sep_1;
+  GtkWidget *generic_drive_menu_item_mdraid_disks;
+  GtkWidget *generic_drive_menu_item_mdraid_start_data_scrubbing;
+  GtkWidget *generic_drive_menu_item_mdraid_stop_data_scrubbing;
 
   GtkWidget *generic_menu;
   GtkWidget *generic_menu_item_configure_fstab;
@@ -116,6 +144,13 @@ struct _GduWindow
   GtkWidget *generic_menu_item_benchmark;
 
   GtkWidget *devtab_loop_autoclear_switch;
+  GtkWidget *devtab_drive_raid_bitmap_switch;
+
+  GtkWidget *devtab_drive_raid_state_label;
+  GtkWidget *devtab_drive_raid_state_grid;
+  GtkWidget *devtab_drive_raid_state_value_label;
+  GtkWidget *devtab_drive_raid_state_progressbar;
+  GtkWidget *devtab_drive_raid_progress_label;
 
   GtkWidget *devtab_drive_job_label;
   GtkWidget *devtab_drive_job_grid;
@@ -130,26 +165,43 @@ struct _GduWindow
   GtkWidget *devtab_job_remaining_label;
   GtkWidget *devtab_job_no_progress_label;
   GtkWidget *devtab_job_cancel_button;
+
+  /* GtkLabel instances we need to handle ::activate-link for */
+  GtkWidget *devtab_volume_type_value_label;
 };
 
 static const struct {
   goffset offset;
   const gchar *name;
 } widget_mapping[] = {
+  {G_STRUCT_OFFSET (GduWindow, toolbutton_generic_menu), "toolbutton-generic-menu"},
+  {G_STRUCT_OFFSET (GduWindow, overlay_toolbar), "overlay-toolbar"},
+  {G_STRUCT_OFFSET (GduWindow, overlay_toolbar_erase_button), "overlay-toolbar-erase-button"},
+  {G_STRUCT_OFFSET (GduWindow, overlay_toolbar_create_raid_button), "overlay-toolbar-create-raid-button"},
+
   {G_STRUCT_OFFSET (GduWindow, main_hpane), "main-hpane"},
-  {G_STRUCT_OFFSET (GduWindow, device_scrolledwindow), "device-tree-scrolledwindow"},
-  {G_STRUCT_OFFSET (GduWindow, device_toolbar), "device-tree-add-remove-toolbar"},
-  {G_STRUCT_OFFSET (GduWindow, device_toolbar_attach_disk_image_button), "device-tree-attach-disk-image-button"},
-  {G_STRUCT_OFFSET (GduWindow, device_toolbar_detach_disk_image_button), "device-tree-detach-disk-image-button"},
-  {G_STRUCT_OFFSET (GduWindow, device_treeview), "device-tree-treeview"},
+  {G_STRUCT_OFFSET (GduWindow, device_tree_overlay), "device-tree-overlay"},
+  {G_STRUCT_OFFSET (GduWindow, device_tree_scrolledwindow), "device-tree-scrolledwindow"},
+  {G_STRUCT_OFFSET (GduWindow, device_tree_selection_toolbar), "device-tree-selection-toolbar"},
+  {G_STRUCT_OFFSET (GduWindow, device_tree_selection_toolbar_center_notebook), "device-tree-selection-toolbar-center-notebook"},
+  {G_STRUCT_OFFSET (GduWindow, device_tree_selection_toolbar_select_button), "device-tree-selection-toolbar-select-button"},
+  {G_STRUCT_OFFSET (GduWindow, device_tree_selection_toolbar_done_button), "device-tree-selection-toolbar-done-button"},
+  {G_STRUCT_OFFSET (GduWindow, device_tree_selection_toolbar_static_label), "device-tree-selection-toolbar-static-label"},
+  {G_STRUCT_OFFSET (GduWindow, device_tree_selection_toolbar_label), "device-tree-selection-toolbar-label"},
+
+  {G_STRUCT_OFFSET (GduWindow, device_tree_treeview), "device-tree-treeview"},
   {G_STRUCT_OFFSET (GduWindow, details_notebook), "disks-notebook"},
   {G_STRUCT_OFFSET (GduWindow, devtab_drive_table), "devtab-drive-table"},
   {G_STRUCT_OFFSET (GduWindow, devtab_drive_box), "devtab-drive-box"},
   {G_STRUCT_OFFSET (GduWindow, devtab_drive_vbox), "devtab-drive-vbox"},
   {G_STRUCT_OFFSET (GduWindow, devtab_drive_buttonbox), "devtab-drive-buttonbox"},
+  {G_STRUCT_OFFSET (GduWindow, devtab_drive_raid_start_button), "devtab-drive-raid-start-button"},
+  {G_STRUCT_OFFSET (GduWindow, devtab_drive_raid_stop_button), "devtab-drive-raid-stop-button"},
+  {G_STRUCT_OFFSET (GduWindow, devtab_drive_loop_detach_button), "devtab-drive-loop-detach-button"},
   {G_STRUCT_OFFSET (GduWindow, devtab_drive_eject_button), "devtab-drive-eject-button"},
+  {G_STRUCT_OFFSET (GduWindow, devtab_drive_power_off_button), "devtab-drive-power-off-button"},
   {G_STRUCT_OFFSET (GduWindow, devtab_drive_generic_button), "devtab-drive-generic-button"},
-  {G_STRUCT_OFFSET (GduWindow, devtab_drive_name_label), "devtab-drive-name-label"},
+  {G_STRUCT_OFFSET (GduWindow, devtab_drive_desc_label), "devtab-drive-desc-label"},
   {G_STRUCT_OFFSET (GduWindow, devtab_drive_devices_label), "devtab-drive-devices-label"},
   {G_STRUCT_OFFSET (GduWindow, devtab_drive_image), "devtab-drive-image"},
   {G_STRUCT_OFFSET (GduWindow, devtab_table), "devtab-table"},
@@ -161,24 +213,39 @@ static const struct {
   {G_STRUCT_OFFSET (GduWindow, devtab_action_partition_delete), "devtab-action-partition-delete"},
   {G_STRUCT_OFFSET (GduWindow, devtab_action_mount), "devtab-action-mount"},
   {G_STRUCT_OFFSET (GduWindow, devtab_action_unmount), "devtab-action-unmount"},
-  {G_STRUCT_OFFSET (GduWindow, devtab_action_eject), "devtab-action-eject"},
   {G_STRUCT_OFFSET (GduWindow, devtab_action_unlock), "devtab-action-unlock"},
   {G_STRUCT_OFFSET (GduWindow, devtab_action_lock), "devtab-action-lock"},
   {G_STRUCT_OFFSET (GduWindow, devtab_action_activate_swap), "devtab-action-activate-swap"},
   {G_STRUCT_OFFSET (GduWindow, devtab_action_deactivate_swap), "devtab-action-deactivate-swap"},
-  {G_STRUCT_OFFSET (GduWindow, devtab_action_generic_drive), "devtab-action-generic-drive"},
+
+  {G_STRUCT_OFFSET (GduWindow, devtab_drive_action_raid_start), "devtab-drive-action-raid-start"},
+  {G_STRUCT_OFFSET (GduWindow, devtab_drive_action_raid_stop), "devtab-drive-action-raid-stop"},
+  {G_STRUCT_OFFSET (GduWindow, devtab_drive_action_loop_detach), "devtab-drive-action-loop-detach"},
+  {G_STRUCT_OFFSET (GduWindow, devtab_drive_action_eject), "devtab-drive-action-eject"},
+  {G_STRUCT_OFFSET (GduWindow, devtab_drive_action_power_off), "devtab-drive-action-power-off"},
+  {G_STRUCT_OFFSET (GduWindow, devtab_drive_action_generic), "devtab-drive-action-generic"},
 
   {G_STRUCT_OFFSET (GduWindow, devtab_loop_autoclear_switch), "devtab-loop-autoclear-switch"},
+  {G_STRUCT_OFFSET (GduWindow, devtab_drive_raid_bitmap_switch), "devtab-drive-raid-bitmap-switch"},
 
   {G_STRUCT_OFFSET (GduWindow, generic_drive_menu), "generic-drive-menu"},
   {G_STRUCT_OFFSET (GduWindow, generic_drive_menu_item_format_disk), "generic-drive-menu-item-format-disk"},
   {G_STRUCT_OFFSET (GduWindow, generic_drive_menu_item_create_disk_image), "generic-drive-menu-item-create-disk-image"},
   {G_STRUCT_OFFSET (GduWindow, generic_drive_menu_item_restore_disk_image), "generic-drive-menu-item-restore-disk-image"},
   {G_STRUCT_OFFSET (GduWindow, generic_drive_menu_item_benchmark), "generic-drive-menu-item-benchmark"},
+  /* Drive-specific items */
+  {G_STRUCT_OFFSET (GduWindow, generic_drive_menu_item_drive_sep_1), "generic-drive-menu-item-drive-sep-1"},
   {G_STRUCT_OFFSET (GduWindow, generic_drive_menu_item_view_smart), "generic-drive-menu-item-view-smart"},
   {G_STRUCT_OFFSET (GduWindow, generic_drive_menu_item_disk_settings), "generic-drive-menu-item-disk-settings"},
+  {G_STRUCT_OFFSET (GduWindow, generic_drive_menu_item_drive_sep_2), "generic-drive-menu-item-drive-sep-2"},
   {G_STRUCT_OFFSET (GduWindow, generic_drive_menu_item_standby_now), "generic-drive-menu-item-standby-now"},
   {G_STRUCT_OFFSET (GduWindow, generic_drive_menu_item_resume_now), "generic-drive-menu-item-resume-now"},
+  {G_STRUCT_OFFSET (GduWindow, generic_drive_menu_item_power_off), "generic-drive-menu-item-power-off"},
+  /* MDRaid-specific items */
+  {G_STRUCT_OFFSET (GduWindow, generic_drive_menu_item_mdraid_sep_1), "generic-drive-menu-item-mdraid-sep-1"},
+  {G_STRUCT_OFFSET (GduWindow, generic_drive_menu_item_mdraid_disks), "generic-drive-menu-item-mdraid-disks"},
+  {G_STRUCT_OFFSET (GduWindow, generic_drive_menu_item_mdraid_start_data_scrubbing), "generic-drive-menu-item-mdraid-start-data-scrubbing"},
+  {G_STRUCT_OFFSET (GduWindow, generic_drive_menu_item_mdraid_stop_data_scrubbing), "generic-drive-menu-item-mdraid-stop-data-scrubbing"},
 
   {G_STRUCT_OFFSET (GduWindow, generic_menu), "generic-menu"},
   {G_STRUCT_OFFSET (GduWindow, generic_menu_item_configure_fstab), "generic-menu-item-configure-fstab"},
@@ -190,6 +257,12 @@ static const struct {
   {G_STRUCT_OFFSET (GduWindow, generic_menu_item_create_volume_image), "generic-menu-item-create-volume-image"},
   {G_STRUCT_OFFSET (GduWindow, generic_menu_item_restore_volume_image), "generic-menu-item-restore-volume-image"},
   {G_STRUCT_OFFSET (GduWindow, generic_menu_item_benchmark), "generic-menu-item-benchmark"},
+
+  {G_STRUCT_OFFSET (GduWindow, devtab_drive_raid_state_label), "devtab-drive-raid-state-label"},
+  {G_STRUCT_OFFSET (GduWindow, devtab_drive_raid_state_grid), "devtab-drive-raid-state-grid"},
+  {G_STRUCT_OFFSET (GduWindow, devtab_drive_raid_state_value_label), "devtab-drive-raid-state-value-label"},
+  {G_STRUCT_OFFSET (GduWindow, devtab_drive_raid_state_progressbar), "devtab-drive-raid-state-progressbar"},
+  {G_STRUCT_OFFSET (GduWindow, devtab_drive_raid_progress_label), "devtab-drive-raid-progress-label"},
 
   {G_STRUCT_OFFSET (GduWindow, devtab_drive_job_label), "devtab-drive-job-label"},
   {G_STRUCT_OFFSET (GduWindow, devtab_drive_job_grid), "devtab-drive-job-grid"},
@@ -204,6 +277,9 @@ static const struct {
   {G_STRUCT_OFFSET (GduWindow, devtab_job_remaining_label), "devtab-job-remaining-label"},
   {G_STRUCT_OFFSET (GduWindow, devtab_job_no_progress_label), "devtab-job-no-progress-label"},
   {G_STRUCT_OFFSET (GduWindow, devtab_job_cancel_button), "devtab-job-cancel-button"},
+
+  /* GtkLabel instances we need to handle ::activate-link for */
+  {G_STRUCT_OFFSET (GduWindow, devtab_volume_type_value_label), "devtab-volume-type-value-label"},
 
   {0, NULL}
 };
@@ -220,52 +296,71 @@ enum
   PROP_CLIENT
 };
 
+/* ---------------------------------------------------------------------------------------------------- */
+
+typedef enum {
+  SHOW_FLAGS_DRIVE_BUTTONS_RAID_START       = (1<<0),
+  SHOW_FLAGS_DRIVE_BUTTONS_RAID_STOP        = (1<<1),
+  SHOW_FLAGS_DRIVE_BUTTONS_EJECT            = (1<<2),
+  SHOW_FLAGS_DRIVE_BUTTONS_POWER_OFF        = (1<<3),
+  SHOW_FLAGS_DRIVE_BUTTONS_LOOP_DETACH      = (1<<4),
+} ShowFlagsDriveButtons;
+
 typedef enum
 {
-  SHOW_FLAGS_NONE                    = 0,
+  SHOW_FLAGS_DRIVE_MENU_FORMAT_DISK           = (1<<0),
+  SHOW_FLAGS_DRIVE_MENU_CREATE_DISK_IMAGE     = (1<<1),
+  SHOW_FLAGS_DRIVE_MENU_RESTORE_DISK_IMAGE    = (1<<2),
+  SHOW_FLAGS_DRIVE_MENU_BENCHMARK             = (1<<3),
+  SHOW_FLAGS_DRIVE_MENU_VIEW_SMART            = (1<<4),
+  SHOW_FLAGS_DRIVE_MENU_DISK_SETTINGS         = (1<<5),
+  SHOW_FLAGS_DRIVE_MENU_STANDBY_NOW           = (1<<6),
+  SHOW_FLAGS_DRIVE_MENU_RESUME_NOW            = (1<<7),
+  SHOW_FLAGS_DRIVE_MENU_POWER_OFF             = (1<<8),
+  SHOW_FLAGS_DRIVE_MENU_MDRAID_DISKS          = (1<<9),
+} ShowFlagsDriveMenu;
 
-  /* device toolbar */
-  SHOW_FLAGS_DETACH_DISK_IMAGE       = (1<<0),
+typedef enum {
+  SHOW_FLAGS_VOLUME_BUTTONS_PARTITION_CREATE = (1<<0),
+  SHOW_FLAGS_VOLUME_BUTTONS_PARTITION_DELETE = (1<<1),
+  SHOW_FLAGS_VOLUME_BUTTONS_MOUNT            = (1<<2),
+  SHOW_FLAGS_VOLUME_BUTTONS_UNMOUNT          = (1<<3),
+  SHOW_FLAGS_VOLUME_BUTTONS_ACTIVATE_SWAP    = (1<<4),
+  SHOW_FLAGS_VOLUME_BUTTONS_DEACTIVATE_SWAP  = (1<<5),
+  SHOW_FLAGS_VOLUME_BUTTONS_ENCRYPTED_UNLOCK = (1<<6),
+  SHOW_FLAGS_VOLUME_BUTTONS_ENCRYPTED_LOCK   = (1<<7),
+} ShowFlagsVolumeButtons;
 
-  /* drive buttonbox */
-  SHOW_FLAGS_EJECT_BUTTON            = (1<<1),
+typedef enum
+{
+  SHOW_FLAGS_VOLUME_MENU_CONFIGURE_FSTAB       = (1<<0),
+  SHOW_FLAGS_VOLUME_MENU_CONFIGURE_CRYPTTAB    = (1<<1),
+  SHOW_FLAGS_VOLUME_MENU_CHANGE_PASSPHRASE     = (1<<2),
+  SHOW_FLAGS_VOLUME_MENU_EDIT_LABEL            = (1<<3),
+  SHOW_FLAGS_VOLUME_MENU_EDIT_PARTITION        = (1<<4),
+  SHOW_FLAGS_VOLUME_MENU_FORMAT_VOLUME         = (1<<5),
+  SHOW_FLAGS_VOLUME_MENU_CREATE_VOLUME_IMAGE   = (1<<6),
+  SHOW_FLAGS_VOLUME_MENU_RESTORE_VOLUME_IMAGE  = (1<<7),
+  SHOW_FLAGS_VOLUME_MENU_BENCHMARK             = (1<<8),
+} ShowFlagsVolumeMenu;
 
-  /* volume toolbar */
-  SHOW_FLAGS_PARTITION_CREATE_BUTTON = (1<<2),
-  SHOW_FLAGS_PARTITION_DELETE_BUTTON = (1<<3),
-  SHOW_FLAGS_MOUNT_BUTTON            = (1<<4),
-  SHOW_FLAGS_UNMOUNT_BUTTON          = (1<<5),
-  SHOW_FLAGS_ACTIVATE_SWAP_BUTTON    = (1<<6),
-  SHOW_FLAGS_DEACTIVATE_SWAP_BUTTON  = (1<<7),
-  SHOW_FLAGS_ENCRYPTED_UNLOCK_BUTTON = (1<<8),
-  SHOW_FLAGS_ENCRYPTED_LOCK_BUTTON   = (1<<9),
-
-  /* generic drive menu */
-  SHOW_FLAGS_DISK_POPUP_MENU_FORMAT_DISK           = (1<<10),
-  SHOW_FLAGS_DISK_POPUP_MENU_CREATE_DISK_IMAGE     = (1<<11),
-  SHOW_FLAGS_DISK_POPUP_MENU_RESTORE_DISK_IMAGE    = (1<<12),
-  SHOW_FLAGS_DISK_POPUP_MENU_BENCHMARK             = (1<<13),
-  SHOW_FLAGS_DISK_POPUP_MENU_VIEW_SMART            = (1<<14),
-  SHOW_FLAGS_DISK_POPUP_MENU_DISK_SETTINGS         = (1<<15),
-  SHOW_FLAGS_DISK_POPUP_MENU_STANDBY_NOW           = (1<<16),
-  SHOW_FLAGS_DISK_POPUP_MENU_RESUME_NOW            = (1<<17),
-
-  /* generic volume menu */
-  SHOW_FLAGS_POPUP_MENU_CONFIGURE_FSTAB       = (1<<20),
-  SHOW_FLAGS_POPUP_MENU_CONFIGURE_CRYPTTAB    = (1<<21),
-  SHOW_FLAGS_POPUP_MENU_CHANGE_PASSPHRASE     = (1<<22),
-  SHOW_FLAGS_POPUP_MENU_EDIT_LABEL            = (1<<23),
-  SHOW_FLAGS_POPUP_MENU_EDIT_PARTITION        = (1<<24),
-  SHOW_FLAGS_POPUP_MENU_FORMAT_VOLUME         = (1<<25),
-  SHOW_FLAGS_POPUP_MENU_CREATE_VOLUME_IMAGE   = (1<<26),
-  SHOW_FLAGS_POPUP_MENU_RESTORE_VOLUME_IMAGE  = (1<<27),
-  SHOW_FLAGS_POPUP_MENU_BENCHMARK             = (1<<28),
+typedef struct
+{
+  ShowFlagsDriveButtons      drive_buttons;
+  ShowFlagsDriveMenu         drive_menu;
+  ShowFlagsVolumeButtons     volume_buttons;
+  ShowFlagsVolumeMenu        volume_menu;
 } ShowFlags;
 
+static void generic_menu_position_func (GtkMenu       *menu,
+                                        gint          *x,
+                                        gint          *y,
+                                        gboolean      *push_in,
+                                        gpointer       user_data);
 
-static void setup_device_page (GduWindow *window, UDisksObject *object);
-static void update_device_page (GduWindow *window, ShowFlags *show_flags);
-static void teardown_device_page (GduWindow *window);
+/* ---------------------------------------------------------------------------------------------------- */
+
+static void update_all (GduWindow *window);
 
 static void on_volume_grid_changed (GduVolumeGrid  *grid,
                                     gpointer        user_data);
@@ -275,12 +370,16 @@ static void on_devtab_action_partition_create_activated (GtkAction *action, gpoi
 static void on_devtab_action_partition_delete_activated (GtkAction *action, gpointer user_data);
 static void on_devtab_action_mount_activated (GtkAction *action, gpointer user_data);
 static void on_devtab_action_unmount_activated (GtkAction *action, gpointer user_data);
-static void on_devtab_action_eject_activated (GtkAction *action, gpointer user_data);
 static void on_devtab_action_unlock_activated (GtkAction *action, gpointer user_data);
 static void on_devtab_action_lock_activated (GtkAction *action, gpointer user_data);
 static void on_devtab_action_activate_swap_activated (GtkAction *action, gpointer user_data);
 static void on_devtab_action_deactivate_swap_activated (GtkAction *action, gpointer user_data);
-static void on_devtab_action_generic_drive_activated (GtkAction *action, gpointer user_data);
+
+static void on_devtab_drive_action_raid_start_activated (GtkAction *action, gpointer user_data);
+static void on_devtab_drive_action_raid_stop_activated (GtkAction *action, gpointer user_data);
+static void on_devtab_drive_action_loop_detach_activated (GtkAction *action, gpointer user_data);
+static void on_devtab_drive_action_eject_activated (GtkAction *action, gpointer user_data);
+static void on_devtab_drive_action_power_off_activated (GtkAction *action, gpointer user_data);
 
 static void on_generic_drive_menu_item_view_smart (GtkMenuItem *menu_item,
                                              gpointer   user_data);
@@ -290,6 +389,8 @@ static void on_generic_drive_menu_item_standby_now (GtkMenuItem *menu_item,
                                                     gpointer   user_data);
 static void on_generic_drive_menu_item_resume_now (GtkMenuItem *menu_item,
                                                    gpointer   user_data);
+static void on_generic_drive_menu_item_power_off (GtkMenuItem *menu_item,
+                                                  gpointer   user_data);
 static void on_generic_drive_menu_item_format_disk (GtkMenuItem *menu_item,
                                               gpointer   user_data);
 static void on_generic_drive_menu_item_create_disk_image (GtkMenuItem *menu_item,
@@ -298,6 +399,12 @@ static void on_generic_drive_menu_item_restore_disk_image (GtkMenuItem *menu_ite
                                                            gpointer   user_data);
 static void on_generic_drive_menu_item_benchmark (GtkMenuItem *menu_item,
                                                   gpointer   user_data);
+static void on_generic_drive_menu_item_mdraid_disks (GtkMenuItem *menu_item,
+                                                     gpointer   user_data);
+static void on_generic_drive_menu_item_mdraid_start_data_scrubbing (GtkMenuItem *menu_item,
+                                                                    gpointer   user_data);
+static void on_generic_drive_menu_item_mdraid_stop_data_scrubbing (GtkMenuItem *menu_item,
+                                                                   gpointer   user_data);
 
 static void on_generic_menu_item_configure_fstab (GtkMenuItem *menu_item,
                                                   gpointer   user_data);
@@ -322,11 +429,25 @@ static void on_devtab_loop_autoclear_switch_notify_active (GObject    *object,
                                                            GParamSpec *pspec,
                                                            gpointer    user_data);
 
+static void on_devtab_drive_raid_bitmap_switch_notify_active (GObject    *object,
+                                                              GParamSpec *pspec,
+                                                              gpointer    user_data);
+
 static void on_drive_job_cancel_button_clicked (GtkButton *button,
                                                 gpointer   user_data);
 
 static void on_job_cancel_button_clicked (GtkButton     *button,
                                           gpointer       user_data);
+
+static gboolean on_activate_link (GtkLabel    *label,
+                                  const gchar *uri,
+                                  gpointer     user_data);
+
+static void on_overlay_toolbar_erase_button_clicked (GtkButton *button,
+                                                     gpointer   user_data);
+
+static void on_overlay_toolbar_create_raid_button_clicked (GtkButton *button,
+                                                           gpointer   user_data);
 
 G_DEFINE_TYPE (GduWindow, gdu_window, GTK_TYPE_APPLICATION_WINDOW);
 
@@ -342,10 +463,6 @@ static void
 gdu_window_finalize (GObject *object)
 {
   GduWindow *window = GDU_WINDOW (object);
-
-  gtk_window_remove_mnemonic (GTK_WINDOW (window),
-                              'd',
-                              window->device_treeview);
 
   g_signal_handlers_disconnect_by_func (window->client,
                                         G_CALLBACK (on_client_changed),
@@ -391,151 +508,152 @@ on_row_inserted (GtkTreeModel *tree_model,
                  gpointer      user_data)
 {
   GduWindow *window = GDU_WINDOW (user_data);
-  gtk_tree_view_expand_all (GTK_TREE_VIEW (window->device_treeview));
+  gtk_tree_view_expand_all (GTK_TREE_VIEW (window->device_tree_treeview));
 }
-
-static void select_details_page (GduWindow       *window,
-                                 UDisksObject    *object,
-                                 DetailsPage      page,
-                                 ShowFlags       *show_flags);
 
 static void
 update_for_show_flags (GduWindow *window,
-                       ShowFlags  show_flags)
+                       ShowFlags *show_flags)
 {
-  gtk_widget_set_visible (GTK_WIDGET (window->device_toolbar_detach_disk_image_button),
-                          show_flags & SHOW_FLAGS_DETACH_DISK_IMAGE);
+  gtk_action_set_sensitive (GTK_ACTION (window->devtab_drive_action_raid_start),
+                            show_flags->drive_buttons & SHOW_FLAGS_DRIVE_BUTTONS_RAID_START);
+  gtk_action_set_visible (GTK_ACTION (window->devtab_drive_action_raid_start), TRUE);
+  gtk_widget_set_visible (window->devtab_drive_raid_start_button,
+                          show_flags->drive_buttons & SHOW_FLAGS_DRIVE_BUTTONS_RAID_START);
 
-  gtk_action_set_sensitive (GTK_ACTION (window->devtab_action_eject),
-                            show_flags & SHOW_FLAGS_EJECT_BUTTON);
-  gtk_action_set_visible (GTK_ACTION (window->devtab_action_eject), TRUE);
+  gtk_action_set_sensitive (GTK_ACTION (window->devtab_drive_action_raid_stop),
+                            show_flags->drive_buttons & SHOW_FLAGS_DRIVE_BUTTONS_RAID_STOP);
+  gtk_action_set_visible (GTK_ACTION (window->devtab_drive_action_raid_stop), TRUE);
+  gtk_widget_set_visible (window->devtab_drive_raid_stop_button,
+                          show_flags->drive_buttons & SHOW_FLAGS_DRIVE_BUTTONS_RAID_STOP);
+
+  gtk_action_set_sensitive (GTK_ACTION (window->devtab_drive_action_loop_detach),
+                            show_flags->drive_buttons & SHOW_FLAGS_DRIVE_BUTTONS_LOOP_DETACH);
+  gtk_action_set_visible (GTK_ACTION (window->devtab_drive_action_loop_detach), TRUE);
+  gtk_widget_set_visible (window->devtab_drive_loop_detach_button,
+                          show_flags->drive_buttons & SHOW_FLAGS_DRIVE_BUTTONS_LOOP_DETACH);
+
+  gtk_action_set_sensitive (GTK_ACTION (window->devtab_drive_action_eject),
+                            show_flags->drive_buttons & SHOW_FLAGS_DRIVE_BUTTONS_EJECT);
+  gtk_action_set_visible (GTK_ACTION (window->devtab_drive_action_eject), TRUE);
   gtk_widget_set_visible (window->devtab_drive_eject_button,
-                          show_flags & SHOW_FLAGS_EJECT_BUTTON);
+                          show_flags->drive_buttons & SHOW_FLAGS_DRIVE_BUTTONS_EJECT);
+
+  gtk_action_set_sensitive (GTK_ACTION (window->devtab_drive_action_power_off),
+                            show_flags->drive_buttons & SHOW_FLAGS_DRIVE_BUTTONS_POWER_OFF);
+  gtk_action_set_visible (GTK_ACTION (window->devtab_drive_action_power_off), TRUE);
+  gtk_widget_set_visible (window->devtab_drive_power_off_button,
+                          show_flags->drive_buttons & SHOW_FLAGS_DRIVE_BUTTONS_POWER_OFF);
 
   gtk_action_set_visible (GTK_ACTION (window->devtab_action_partition_create),
-                          show_flags & SHOW_FLAGS_PARTITION_CREATE_BUTTON);
+                          show_flags->volume_buttons & SHOW_FLAGS_VOLUME_BUTTONS_PARTITION_CREATE);
   gtk_action_set_visible (GTK_ACTION (window->devtab_action_partition_delete),
-                          show_flags & SHOW_FLAGS_PARTITION_DELETE_BUTTON);
+                          show_flags->volume_buttons & SHOW_FLAGS_VOLUME_BUTTONS_PARTITION_DELETE);
   gtk_action_set_visible (GTK_ACTION (window->devtab_action_unmount),
-                          show_flags & SHOW_FLAGS_UNMOUNT_BUTTON);
+                          show_flags->volume_buttons & SHOW_FLAGS_VOLUME_BUTTONS_UNMOUNT);
   gtk_action_set_visible (GTK_ACTION (window->devtab_action_mount),
-                          show_flags & SHOW_FLAGS_MOUNT_BUTTON);
+                          show_flags->volume_buttons & SHOW_FLAGS_VOLUME_BUTTONS_MOUNT);
   gtk_action_set_visible (GTK_ACTION (window->devtab_action_activate_swap),
-                          show_flags & SHOW_FLAGS_ACTIVATE_SWAP_BUTTON);
+                          show_flags->volume_buttons & SHOW_FLAGS_VOLUME_BUTTONS_ACTIVATE_SWAP);
   gtk_action_set_visible (GTK_ACTION (window->devtab_action_deactivate_swap),
-                          show_flags & SHOW_FLAGS_DEACTIVATE_SWAP_BUTTON);
+                          show_flags->volume_buttons & SHOW_FLAGS_VOLUME_BUTTONS_DEACTIVATE_SWAP);
   gtk_action_set_visible (GTK_ACTION (window->devtab_action_unlock),
-                          show_flags & SHOW_FLAGS_ENCRYPTED_UNLOCK_BUTTON);
+                          show_flags->volume_buttons & SHOW_FLAGS_VOLUME_BUTTONS_ENCRYPTED_UNLOCK);
   gtk_action_set_visible (GTK_ACTION (window->devtab_action_lock),
-                          show_flags & SHOW_FLAGS_ENCRYPTED_LOCK_BUTTON);
+                          show_flags->volume_buttons & SHOW_FLAGS_VOLUME_BUTTONS_ENCRYPTED_LOCK);
 
   gtk_widget_set_sensitive (GTK_WIDGET (window->generic_drive_menu_item_format_disk),
-                            show_flags & SHOW_FLAGS_DISK_POPUP_MENU_FORMAT_DISK);
+                            show_flags->drive_menu & SHOW_FLAGS_DRIVE_MENU_FORMAT_DISK);
   gtk_widget_set_sensitive (GTK_WIDGET (window->generic_drive_menu_item_view_smart),
-                            show_flags & SHOW_FLAGS_DISK_POPUP_MENU_VIEW_SMART);
+                            show_flags->drive_menu & SHOW_FLAGS_DRIVE_MENU_VIEW_SMART);
   gtk_widget_set_sensitive (GTK_WIDGET (window->generic_drive_menu_item_disk_settings),
-                            show_flags & SHOW_FLAGS_DISK_POPUP_MENU_DISK_SETTINGS);
+                            show_flags->drive_menu & SHOW_FLAGS_DRIVE_MENU_DISK_SETTINGS);
   gtk_widget_set_sensitive (GTK_WIDGET (window->generic_drive_menu_item_create_disk_image),
-                            show_flags & SHOW_FLAGS_DISK_POPUP_MENU_CREATE_DISK_IMAGE);
+                            show_flags->drive_menu & SHOW_FLAGS_DRIVE_MENU_CREATE_DISK_IMAGE);
   gtk_widget_set_sensitive (GTK_WIDGET (window->generic_drive_menu_item_restore_disk_image),
-                            show_flags & SHOW_FLAGS_DISK_POPUP_MENU_RESTORE_DISK_IMAGE);
+                            show_flags->drive_menu & SHOW_FLAGS_DRIVE_MENU_RESTORE_DISK_IMAGE);
   gtk_widget_set_sensitive (GTK_WIDGET (window->generic_drive_menu_item_benchmark),
-                            show_flags & SHOW_FLAGS_DISK_POPUP_MENU_BENCHMARK);
-
-  if (!(show_flags & (SHOW_FLAGS_DISK_POPUP_MENU_STANDBY_NOW|SHOW_FLAGS_DISK_POPUP_MENU_RESUME_NOW)))
-    {
-      /* no PM capabilities... only show "standby" greyed out */
-      gtk_widget_show (GTK_WIDGET (window->generic_drive_menu_item_standby_now));
-      gtk_widget_hide (GTK_WIDGET (window->generic_drive_menu_item_resume_now));
-      gtk_widget_set_sensitive (GTK_WIDGET (window->generic_drive_menu_item_standby_now), FALSE);
-    }
-  else
-    {
-      /* Only show one of Standby and Resume (they are mutually exclusive) */
-      gtk_widget_set_sensitive (GTK_WIDGET (window->generic_drive_menu_item_standby_now), TRUE);
-      gtk_widget_set_sensitive (GTK_WIDGET (window->generic_drive_menu_item_resume_now), TRUE);
-      if (show_flags & SHOW_FLAGS_DISK_POPUP_MENU_STANDBY_NOW)
-        {
-          gtk_widget_show (GTK_WIDGET (window->generic_drive_menu_item_standby_now));
-          gtk_widget_hide (GTK_WIDGET (window->generic_drive_menu_item_resume_now));
-        }
-      else
-        {
-          gtk_widget_hide (GTK_WIDGET (window->generic_drive_menu_item_standby_now));
-          gtk_widget_show (GTK_WIDGET (window->generic_drive_menu_item_resume_now));
-        }
-    }
+                            show_flags->drive_menu & SHOW_FLAGS_DRIVE_MENU_BENCHMARK);
+  gtk_widget_set_sensitive (GTK_WIDGET (window->generic_drive_menu_item_mdraid_disks),
+                            show_flags->drive_menu & SHOW_FLAGS_DRIVE_MENU_MDRAID_DISKS);
+  gtk_widget_set_sensitive (GTK_WIDGET (window->generic_drive_menu_item_power_off),
+                            show_flags->drive_menu & SHOW_FLAGS_DRIVE_MENU_POWER_OFF);
 
   gtk_widget_set_sensitive (GTK_WIDGET (window->generic_menu_item_configure_fstab),
-                            show_flags & SHOW_FLAGS_POPUP_MENU_CONFIGURE_FSTAB);
+                            show_flags->volume_menu & SHOW_FLAGS_VOLUME_MENU_CONFIGURE_FSTAB);
   gtk_widget_set_sensitive (GTK_WIDGET (window->generic_menu_item_configure_crypttab),
-                            show_flags & SHOW_FLAGS_POPUP_MENU_CONFIGURE_CRYPTTAB);
+                            show_flags->volume_menu & SHOW_FLAGS_VOLUME_MENU_CONFIGURE_CRYPTTAB);
   gtk_widget_set_sensitive (GTK_WIDGET (window->generic_menu_item_change_passphrase),
-                            show_flags & SHOW_FLAGS_POPUP_MENU_CHANGE_PASSPHRASE);
+                            show_flags->volume_menu & SHOW_FLAGS_VOLUME_MENU_CHANGE_PASSPHRASE);
   gtk_widget_set_sensitive (GTK_WIDGET (window->generic_menu_item_edit_label),
-                            show_flags & SHOW_FLAGS_POPUP_MENU_EDIT_LABEL);
+                            show_flags->volume_menu & SHOW_FLAGS_VOLUME_MENU_EDIT_LABEL);
   gtk_widget_set_sensitive (GTK_WIDGET (window->generic_menu_item_edit_partition),
-                            show_flags & SHOW_FLAGS_POPUP_MENU_EDIT_PARTITION);
+                            show_flags->volume_menu & SHOW_FLAGS_VOLUME_MENU_EDIT_PARTITION);
   gtk_widget_set_sensitive (GTK_WIDGET (window->generic_menu_item_format_volume),
-                            show_flags & SHOW_FLAGS_POPUP_MENU_FORMAT_VOLUME);
+                            show_flags->volume_menu & SHOW_FLAGS_VOLUME_MENU_FORMAT_VOLUME);
   gtk_widget_set_sensitive (GTK_WIDGET (window->generic_menu_item_create_volume_image),
-                            show_flags & SHOW_FLAGS_POPUP_MENU_CREATE_VOLUME_IMAGE);
+                            show_flags->volume_menu & SHOW_FLAGS_VOLUME_MENU_CREATE_VOLUME_IMAGE);
   gtk_widget_set_sensitive (GTK_WIDGET (window->generic_menu_item_restore_volume_image),
-                            show_flags & SHOW_FLAGS_POPUP_MENU_RESTORE_VOLUME_IMAGE);
+                            show_flags->volume_menu & SHOW_FLAGS_VOLUME_MENU_RESTORE_VOLUME_IMAGE);
   gtk_widget_set_sensitive (GTK_WIDGET (window->generic_menu_item_benchmark),
-                            show_flags & SHOW_FLAGS_POPUP_MENU_BENCHMARK);
+                            show_flags->volume_menu & SHOW_FLAGS_VOLUME_MENU_BENCHMARK);
   /* TODO: don't show the button bringing up the popup menu if it has no items */
 }
 
 static gboolean
-set_selected_object (GduWindow    *window,
-                     UDisksObject *object)
+select_object (GduWindow    *window,
+               UDisksObject *object)
 {
   gboolean ret = FALSE;
-  ShowFlags show_flags;
   GtkTreeIter iter;
 
-  if (gdu_device_tree_model_get_iter_for_object (window->model, object, &iter))
+  if (object != NULL && gdu_device_tree_model_get_iter_for_object (window->model, object, &iter))
     {
       GtkTreePath *path;
       GtkTreeSelection *tree_selection;
-      tree_selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (window->device_treeview));
+      tree_selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (window->device_tree_treeview));
       gtk_tree_selection_select_iter (tree_selection, &iter);
       path = gtk_tree_model_get_path (GTK_TREE_MODEL (window->model), &iter);
-      gtk_tree_view_set_cursor (GTK_TREE_VIEW (window->device_treeview),
+      gtk_tree_view_set_cursor (GTK_TREE_VIEW (window->device_tree_treeview),
                                 path,
                                 NULL,
                                 FALSE);
       gtk_tree_path_free (path);
       ret = TRUE;
     }
-  else
+  else if (object != NULL)
     {
+      UDisksBlock *block;
+
+      /* that didn't work, maybe it's a block device that is shown as another root object */
+      block = udisks_object_peek_block (object);
+      if (block != NULL)
+        {
+          UDisksObject *mdraid_object;
+          /* MD-RAID */
+          mdraid_object = udisks_client_peek_object (window->client, udisks_block_get_mdraid (block));
+          if (mdraid_object != NULL)
+            {
+              select_object (window, mdraid_object);
+              goto out;
+            }
+        }
+
       if (object != NULL)
         g_warning ("Cannot display object with object path %s",
                    g_dbus_object_get_object_path (G_DBUS_OBJECT (object)));
       goto out;
     }
 
-  show_flags = SHOW_FLAGS_NONE;
-  if (object != NULL)
+  if (window->current_object != object)
     {
-      if (udisks_object_peek_drive (object) != NULL ||
-          udisks_object_peek_block (object) != NULL)
-        {
-          select_details_page (window, object, DETAILS_PAGE_DEVICE, &show_flags);
-        }
-      else
-        {
-          g_warning ("no page for object %s", g_dbus_object_get_object_path (G_DBUS_OBJECT (object)));
-          select_details_page (window, NULL, DETAILS_PAGE_NOT_IMPLEMENTED, &show_flags);
-        }
+      if (window->current_object != NULL)
+        g_object_unref (window->current_object);
+      window->current_object = object != NULL ? g_object_ref (object) : NULL;
     }
-  else
-    {
-      select_details_page (window, NULL, DETAILS_PAGE_NOT_SELECTED, &show_flags);
-    }
-  update_for_show_flags (window, show_flags);
+
+  update_all (window);
+
  out:
   return ret;
 }
@@ -564,7 +682,7 @@ ensure_something_selected (GduWindow *window)
                           &object);
   if (object != NULL)
     {
-      set_selected_object (window, object);
+      select_object (window, object);
       g_object_unref (object);
     }
 }
@@ -585,12 +703,12 @@ on_tree_selection_changed (GtkTreeSelection *tree_selection,
                           GDU_DEVICE_TREE_MODEL_COLUMN_OBJECT,
                           &object,
                           -1);
-      set_selected_object (window, object);
+      select_object (window, object);
       g_object_unref (object);
     }
   else
     {
-      set_selected_object (window, NULL);
+      select_object (window, NULL);
       ensure_something_selected (window);
     }
 }
@@ -617,27 +735,56 @@ loop_delete_cb (UDisksLoop   *loop,
 }
 
 static void
-on_device_tree_detach_disk_image_button_clicked (GtkToolButton *button,
-                                                 gpointer       user_data)
+loop_delete_ensure_unused_cb (GduWindow     *window,
+                              GAsyncResult  *res,
+                              gpointer       user_data)
+{
+  UDisksObject *object = UDISKS_OBJECT (user_data);
+  if (gdu_window_ensure_unused_finish (window, res, NULL))
+    {
+      UDisksBlock *block;
+      UDisksLoop *loop;
+
+      udisks_client_settle (window->client);
+
+      block = udisks_object_peek_block (object);
+      loop = udisks_object_peek_loop (object);
+      if (loop != NULL)
+        {
+          /* Could be that the loop device is using Auto-clear so
+           * already detached because we just did ensure_unused() on
+           * it
+           */
+          if (block != NULL && udisks_block_get_size (block) > 0)
+            {
+              GVariantBuilder options_builder;
+              g_variant_builder_init (&options_builder, G_VARIANT_TYPE_VARDICT);
+              udisks_loop_call_delete (loop,
+                                       g_variant_builder_end (&options_builder),
+                                       NULL, /* GCancellable */
+                                       (GAsyncReadyCallback) loop_delete_cb,
+                                       g_object_ref (window));
+            }
+        }
+      else
+        {
+          g_warning ("no loop interface");
+        }
+    }
+  g_object_unref (object);
+}
+
+
+static void
+on_devtab_drive_action_loop_detach_activated (GtkAction *action,
+                                              gpointer   user_data)
 {
   GduWindow *window = GDU_WINDOW (user_data);
-  UDisksLoop *loop;
-
-  loop = udisks_object_peek_loop (window->current_object);
-  if (loop != NULL)
-    {
-      GVariantBuilder options_builder;
-      g_variant_builder_init (&options_builder, G_VARIANT_TYPE_VARDICT);
-      udisks_loop_call_delete (loop,
-                               g_variant_builder_end (&options_builder),
-                               NULL, /* GCancellable */
-                               (GAsyncReadyCallback) loop_delete_cb,
-                               g_object_ref (window));
-    }
-  else
-    {
-      g_warning ("remove action not implemented for object");
-    }
+  gdu_window_ensure_unused (window,
+                            window->current_object,
+                            (GAsyncReadyCallback) loop_delete_ensure_unused_cb,
+                            NULL, /* GCancellable */
+                            g_object_ref (window->current_object));
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -697,7 +844,7 @@ loop_setup_cb (UDisksManager  *manager,
       udisks_client_settle (data->window->client);
 
       object = udisks_client_get_object (data->window->client, out_loop_device_object_path);
-      set_selected_object (data->window, object);
+      select_object (data->window, object);
       g_object_unref (object);
       g_free (out_loop_device_object_path);
     }
@@ -730,7 +877,7 @@ gdu_window_show_attach_disk_image (GduWindow *window)
 
   /* Add a RO check button that defaults to RO */
   ro_checkbutton = gtk_check_button_new_with_mnemonic (_("Set up _read-only loop device"));
-  gtk_widget_set_tooltip_markup (ro_checkbutton, _("If checked, the loop device will be read-only. This is useful if you don't want the underlying file to be modified"));
+  gtk_widget_set_tooltip_markup (ro_checkbutton, _("If checked, the loop device will be read-only. This is useful if you don’t want the underlying file to be modified"));
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (ro_checkbutton), TRUE);
   gtk_file_chooser_set_extra_widget (GTK_FILE_CHOOSER (dialog), ro_checkbutton);
 
@@ -778,12 +925,57 @@ gdu_window_show_attach_disk_image (GduWindow *window)
   g_free (filename);
 }
 
+/* ---------------------------------------------------------------------------------------------------- */
+
 static void
-on_device_tree_attach_disk_image_button_clicked (GtkToolButton *button,
-                                                 gpointer       user_data)
+device_tree_selection_toolbar_select_done_toggle (GduWindow *window,
+                                                  gboolean   set_clicked)
+{
+  GtkStyleContext *context;
+
+  context = gtk_widget_get_style_context (window->device_tree_selection_toolbar);
+  if (set_clicked)
+    {
+      window->in_selection_mode = TRUE;
+      gtk_widget_set_visible (GTK_WIDGET (window->device_tree_selection_toolbar_select_button), FALSE);
+      gtk_widget_set_visible (GTK_WIDGET (window->device_tree_selection_toolbar_done_button), TRUE);
+      gtk_notebook_set_current_page (GTK_NOTEBOOK (window->device_tree_selection_toolbar_center_notebook), 1);
+      gtk_style_context_add_class (context, "selection-mode");
+      gdu_device_tree_model_clear_selected (window->model);
+    }
+  else
+    {
+      window->in_selection_mode = FALSE;
+      gtk_widget_set_visible (GTK_WIDGET (window->device_tree_selection_toolbar_select_button), TRUE);
+      gtk_widget_set_visible (GTK_WIDGET (window->device_tree_selection_toolbar_done_button), FALSE);
+      gtk_notebook_set_current_page (GTK_NOTEBOOK (window->device_tree_selection_toolbar_center_notebook), 0);
+      gtk_style_context_remove_class (context, "selection-mode");
+    }
+  update_all (window);
+
+  gtk_tree_view_column_set_visible (window->selection_column, window->in_selection_mode);
+
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+static void
+on_device_tree_selection_toolbar_select_button_clicked (GtkButton *button,
+                                                        gpointer   user_data)
 {
   GduWindow *window = GDU_WINDOW (user_data);
-  gdu_window_show_attach_disk_image (window);
+  device_tree_selection_toolbar_select_done_toggle (window, TRUE);
+  update_all (window);
+}
+
+
+static void
+on_device_tree_selection_toolbar_done_button_clicked (GtkButton *button,
+                                                      gpointer   user_data)
+{
+  GduWindow *window = GDU_WINDOW (user_data);
+  device_tree_selection_toolbar_select_done_toggle (window, FALSE);
+  update_all (window);
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -795,7 +987,22 @@ gdu_window_select_object (GduWindow    *window,
   gboolean ret = FALSE;
   UDisksPartition *partition;
   UDisksPartitionTable *table = NULL;
+  UDisksMDRaid *mdraid = NULL;
   UDisksDrive *drive = NULL;
+
+  mdraid = udisks_object_peek_mdraid (object);
+  if (mdraid != NULL)
+    {
+      select_object (window, object);
+      goto out;
+    }
+
+  drive = udisks_object_peek_drive (object);
+  if (drive != NULL)
+    {
+      select_object (window, object);
+      goto out;
+    }
 
   partition = udisks_object_peek_partition (object);
 
@@ -839,14 +1046,14 @@ gdu_window_select_object (GduWindow    *window,
               drive_object = (UDisksObject *) g_dbus_interface_get_object (G_DBUS_INTERFACE (drive));
               if (drive_object != NULL)
                 {
-                  if (!set_selected_object (window, drive_object))
+                  if (!select_object (window, drive_object))
                     goto out;
                   ret = TRUE;
                 }
             }
           else
             {
-              if (!set_selected_object (window, object))
+              if (!select_object (window, object))
                 goto out;
               ret = TRUE;
             }
@@ -905,7 +1112,7 @@ init_css (GduWindow *window)
                                         -1,
                                         &error))
     {
-      g_warning ("Can't parse custom CSS: %s\n", error->message);
+      g_warning ("Can’t parse custom CSS: %s\n", error->message);
       g_error_free (error);
       goto out;
     }
@@ -920,15 +1127,6 @@ init_css (GduWindow *window)
 }
 
 
-static gboolean
-on_constructed_in_idle (gpointer user_data)
-{
-  GduWindow *window = GDU_WINDOW (user_data);
-  /* select something sensible */
-  ensure_something_selected (window);
-  return FALSE; /* remove source */
-}
-
 static gint
 device_sort_function (GtkTreeModel *model,
                       GtkTreeIter *a,
@@ -936,6 +1134,7 @@ device_sort_function (GtkTreeModel *model,
                       gpointer user_data)
 {
   gchar *sa, *sb;
+  gint ret;
 
   gtk_tree_model_get (model, a,
                       GDU_DEVICE_TREE_MODEL_COLUMN_SORT_KEY, &sa,
@@ -943,8 +1142,10 @@ device_sort_function (GtkTreeModel *model,
   gtk_tree_model_get (model, b,
                       GDU_DEVICE_TREE_MODEL_COLUMN_SORT_KEY, &sb,
                       -1);
-
-  return g_strcmp0 (sa, sb);
+  ret = g_strcmp0 (sa, sb);
+  g_free (sa);
+  g_free (sb);
+  return ret;
 }
 
 static void
@@ -969,9 +1170,79 @@ power_state_cell_func (GtkTreeViewColumn *column,
 }
 
 static void
+selected_cell_func (GtkTreeViewColumn *column,
+                    GtkCellRenderer   *renderer,
+                    GtkTreeModel      *model,
+                    GtkTreeIter       *iter,
+                    gpointer           user_data)
+{
+  gboolean visible = FALSE;
+  gboolean selected = FALSE;
+  UDisksObject *object = NULL;
+
+  gtk_tree_model_get (model,
+                      iter,
+                      GDU_DEVICE_TREE_MODEL_COLUMN_OBJECT, &object,
+                      GDU_DEVICE_TREE_MODEL_COLUMN_SELECTED, &selected,
+                      -1);
+
+  if (object != NULL)
+    visible = TRUE;
+
+  gtk_cell_renderer_set_visible (renderer, visible);
+  gtk_cell_renderer_toggle_set_active (GTK_CELL_RENDERER_TOGGLE (renderer), selected);
+
+  g_clear_object (&object);
+}
+
+static void
+on_selected_toggled (GtkCellRendererToggle *renderer,
+                     const gchar           *path_string,
+                     gpointer               user_data)
+{
+  GduWindow *window = GDU_WINDOW (user_data);
+  GtkTreeIter iter;
+
+  if (!gtk_tree_model_get_iter_from_string (GTK_TREE_MODEL (window->model),
+                                            &iter,
+                                            path_string))
+    goto out;
+
+  gdu_device_tree_model_toggle_selected (window->model, &iter);
+
+  update_all (window);
+
+ out:
+  ;
+}
+
+static gboolean
+device_tree_overlay_on_get_child_position (GtkOverlay   *overlay,
+                                           GtkWidget    *widget,
+                                           GdkRectangle *allocation,
+                                           gpointer      user_data)
+{
+  //GduWindow *window = GDU_WINDOW (user_data);
+  gint border = 16;
+  gint height = 56;
+
+  /* TODO: choose height so we get square buttons */
+
+  allocation->x = border;
+  allocation->y = gtk_widget_get_allocated_height (GTK_WIDGET (overlay)) - height - border;
+  allocation->width = gtk_widget_get_allocated_width (GTK_WIDGET (overlay)) - 2 * border;
+  allocation->height = height;
+
+  return TRUE; /* allocation was filled in */
+}
+
+static void
 gdu_window_constructed (GObject *object)
 {
   GduWindow *window = GDU_WINDOW (object);
+  guint key;
+  GdkModifierType mod;
+  GtkAccelGroup *accelgroup;
   GtkTreeViewColumn *column;
   GtkCellRenderer *renderer;
   GtkTreeSelection *selection;
@@ -996,10 +1267,22 @@ gdu_window_constructed (GObject *object)
       g_warn_if_fail (*p != NULL);
     }
 
+  /* bah, glade deletes this property because it does not know about GtkOverlay :-/ */
+  gtk_label_set_mnemonic_widget (GTK_LABEL (window->device_tree_selection_toolbar_label), window->device_tree_treeview);
+  gtk_label_set_mnemonic_widget (GTK_LABEL (window->device_tree_selection_toolbar_static_label), window->device_tree_treeview);
+
   gtk_widget_reparent (window->main_hpane, GTK_WIDGET (window));
   gtk_window_set_title (GTK_WINDOW (window), _("Disks"));
   gtk_window_set_default_size (GTK_WINDOW (window), 800, 600);
   gtk_container_set_border_width (GTK_CONTAINER (window), 12);
+
+  /* detach overlay toolbar and attach it to the right place - see also update_for_multi_selection() */
+  gtk_widget_unparent (window->overlay_toolbar);
+  gtk_overlay_add_overlay (GTK_OVERLAY (window->device_tree_overlay), window->overlay_toolbar);
+  g_signal_connect (window->device_tree_overlay,
+                    "get-child-position",
+                    G_CALLBACK (device_tree_overlay_on_get_child_position),
+                    window);
 
   /* hide all children in the devtab list, otherwise the dialog is going to be huge by default */
   children = gtk_container_get_children (GTK_CONTAINER (window->devtab_drive_table));
@@ -1019,20 +1302,15 @@ gdu_window_constructed (GObject *object)
   gtk_notebook_set_show_tabs (GTK_NOTEBOOK (window->details_notebook), FALSE);
   gtk_notebook_set_show_border (GTK_NOTEBOOK (window->details_notebook), FALSE);
 
-  context = gtk_widget_get_style_context (window->device_scrolledwindow);
-  gtk_style_context_set_junction_sides (context, GTK_JUNCTION_BOTTOM);
-  context = gtk_widget_get_style_context (window->device_toolbar);
-  gtk_style_context_add_class (context, GTK_STYLE_CLASS_INLINE_TOOLBAR);
+  context = gtk_widget_get_style_context (window->device_tree_scrolledwindow);
   gtk_style_context_set_junction_sides (context, GTK_JUNCTION_TOP);
+  context = gtk_widget_get_style_context (window->device_tree_selection_toolbar);
+  //gtk_style_context_add_class (context, GTK_STYLE_CLASS_INLINE_TOOLBAR);
+  gtk_style_context_set_junction_sides (context, GTK_JUNCTION_BOTTOM);
 
-  window->model = gdu_device_tree_model_new (window->client);
+  window->model = gdu_device_tree_model_new (window->application);
 
-  /* set up mnemonic */
-  gtk_window_add_mnemonic (GTK_WINDOW (window),
-                           'd',
-                           window->device_treeview);
-
-  gtk_tree_view_set_model (GTK_TREE_VIEW (window->device_treeview), GTK_TREE_MODEL (window->model));
+  gtk_tree_view_set_model (GTK_TREE_VIEW (window->device_tree_treeview), GTK_TREE_MODEL (window->model));
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (window->model),
                                         GDU_DEVICE_TREE_MODEL_COLUMN_SORT_KEY,
                                         GTK_SORT_ASCENDING);
@@ -1043,15 +1321,18 @@ gdu_window_constructed (GObject *object)
                                    NULL, /* user_data */
                                    NULL); /* GDestroyNotify */
 
-  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (window->device_treeview));
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (window->device_tree_treeview));
   gtk_tree_selection_set_select_function (selection, dont_select_headings, NULL, NULL);
   g_signal_connect (selection,
                     "changed",
                     G_CALLBACK (on_tree_selection_changed),
                     window);
 
+  /* -------------------- */
+
   column = gtk_tree_view_column_new ();
-  gtk_tree_view_append_column (GTK_TREE_VIEW (window->device_treeview), column);
+  gtk_tree_view_column_set_expand (column, TRUE);
+  gtk_tree_view_append_column (GTK_TREE_VIEW (window->device_tree_treeview), column);
 
   renderer = gtk_cell_renderer_text_new ();
   gtk_tree_view_column_pack_start (column, renderer, FALSE);
@@ -1104,12 +1385,32 @@ gdu_window_constructed (GObject *object)
                                            NULL,  /* user_data */
                                            NULL); /* user_data GDestroyNotify */
 
+  /* -------------------- */
+
+  column = gtk_tree_view_column_new ();
+  gtk_tree_view_append_column (GTK_TREE_VIEW (window->device_tree_treeview), column);
+  renderer = gtk_cell_renderer_toggle_new ();
+  //g_object_set (G_OBJECT (renderer), "indicator-size", 20, NULL);
+  gtk_tree_view_column_pack_start (column, renderer, FALSE);
+  gtk_tree_view_column_set_cell_data_func (column,
+                                           renderer,
+                                           selected_cell_func,
+                                           window,  /* user_data */
+                                           NULL); /* user_data GDestroyNotify */
+  window->selection_column = column;
+  g_signal_connect (renderer,
+                    "toggled",
+                    G_CALLBACK (on_selected_toggled),
+                    window);
+
+  /* -------------------- */
+
   /* expand on insertion - hmm, I wonder if there's an easier way to do this */
   g_signal_connect (window->model,
                     "row-inserted",
                     G_CALLBACK (on_row_inserted),
                     window);
-  gtk_tree_view_expand_all (GTK_TREE_VIEW (window->device_treeview));
+  gtk_tree_view_expand_all (GTK_TREE_VIEW (window->device_tree_treeview));
 
   g_signal_connect (window->client,
                     "changed",
@@ -1118,7 +1419,8 @@ gdu_window_constructed (GObject *object)
 
   /* set up non-standard widgets that isn't in the .ui file */
 
-  window->volume_grid = gdu_volume_grid_new (window->client);
+  window->volume_grid = gdu_volume_grid_new (window->application);
+  gtk_widget_show (window->volume_grid);
   gtk_box_pack_start (GTK_BOX (window->devtab_grid_hbox),
                       window->volume_grid,
                       TRUE, TRUE, 0);
@@ -1134,13 +1436,13 @@ gdu_window_constructed (GObject *object)
   gtk_style_context_set_junction_sides (context, GTK_JUNCTION_TOP);
 
   /* main toolbar */
-  g_signal_connect (window->device_toolbar_attach_disk_image_button,
+  g_signal_connect (window->device_tree_selection_toolbar_select_button,
                     "clicked",
-                    G_CALLBACK (on_device_tree_attach_disk_image_button_clicked),
+                    G_CALLBACK (on_device_tree_selection_toolbar_select_button_clicked),
                     window);
-  g_signal_connect (window->device_toolbar_detach_disk_image_button,
+  g_signal_connect (window->device_tree_selection_toolbar_done_button,
                     "clicked",
-                    G_CALLBACK (on_device_tree_detach_disk_image_button_clicked),
+                    G_CALLBACK (on_device_tree_selection_toolbar_done_button_clicked),
                     window);
 
   /* actions */
@@ -1164,10 +1466,6 @@ gdu_window_constructed (GObject *object)
                     "activate",
                     G_CALLBACK (on_devtab_action_unmount_activated),
                     window);
-  g_signal_connect (window->devtab_action_eject,
-                    "activate",
-                    G_CALLBACK (on_devtab_action_eject_activated),
-                    window);
   g_signal_connect (window->devtab_action_unlock,
                     "activate",
                     G_CALLBACK (on_devtab_action_unlock_activated),
@@ -1184,9 +1482,27 @@ gdu_window_constructed (GObject *object)
                     "activate",
                     G_CALLBACK (on_devtab_action_deactivate_swap_activated),
                     window);
-  g_signal_connect (window->devtab_action_generic_drive,
+
+  /* drive actions */
+  g_signal_connect (window->devtab_drive_action_raid_start,
                     "activate",
-                    G_CALLBACK (on_devtab_action_generic_drive_activated),
+                    G_CALLBACK (on_devtab_drive_action_raid_start_activated),
+                    window);
+  g_signal_connect (window->devtab_drive_action_raid_stop,
+                    "activate",
+                    G_CALLBACK (on_devtab_drive_action_raid_stop_activated),
+                    window);
+  g_signal_connect (window->devtab_drive_action_loop_detach,
+                    "activate",
+                    G_CALLBACK (on_devtab_drive_action_loop_detach_activated),
+                    window);
+  g_signal_connect (window->devtab_drive_action_eject,
+                    "activate",
+                    G_CALLBACK (on_devtab_drive_action_eject_activated),
+                    window);
+  g_signal_connect (window->devtab_drive_action_power_off,
+                    "activate",
+                    G_CALLBACK (on_devtab_drive_action_power_off_activated),
                     window);
 
   /* drive menu */
@@ -1206,6 +1522,10 @@ gdu_window_constructed (GObject *object)
                     "activate",
                     G_CALLBACK (on_generic_drive_menu_item_resume_now),
                     window);
+  g_signal_connect (window->generic_drive_menu_item_power_off,
+                    "activate",
+                    G_CALLBACK (on_generic_drive_menu_item_power_off),
+                    window);
   g_signal_connect (window->generic_drive_menu_item_format_disk,
                     "activate",
                     G_CALLBACK (on_generic_drive_menu_item_format_disk),
@@ -1221,6 +1541,18 @@ gdu_window_constructed (GObject *object)
   g_signal_connect (window->generic_drive_menu_item_benchmark,
                     "activate",
                     G_CALLBACK (on_generic_drive_menu_item_benchmark),
+                    window);
+  g_signal_connect (window->generic_drive_menu_item_mdraid_disks,
+                    "activate",
+                    G_CALLBACK (on_generic_drive_menu_item_mdraid_disks),
+                    window);
+  g_signal_connect (window->generic_drive_menu_item_mdraid_start_data_scrubbing,
+                    "activate",
+                    G_CALLBACK (on_generic_drive_menu_item_mdraid_start_data_scrubbing),
+                    window);
+  g_signal_connect (window->generic_drive_menu_item_mdraid_stop_data_scrubbing,
+                    "activate",
+                    G_CALLBACK (on_generic_drive_menu_item_mdraid_stop_data_scrubbing),
                     window);
 
   /* volume menu */
@@ -1267,6 +1599,12 @@ gdu_window_constructed (GObject *object)
                     G_CALLBACK (on_devtab_loop_autoclear_switch_notify_active),
                     window);
 
+  /* MDRAID's bitmap switch */
+  g_signal_connect (window->devtab_drive_raid_bitmap_switch,
+                    "notify::active",
+                    G_CALLBACK (on_devtab_drive_raid_bitmap_switch_notify_active),
+                    window);
+
   /* cancel-button for drive job */
   g_signal_connect (window->devtab_drive_job_cancel_button,
                     "clicked",
@@ -1279,7 +1617,72 @@ gdu_window_constructed (GObject *object)
                     G_CALLBACK (on_job_cancel_button_clicked),
                     window);
 
-  g_idle_add (on_constructed_in_idle, g_object_ref (window));
+  /* GtkLabel instances we need to handle ::activate-link for */
+  g_signal_connect (window->devtab_volume_type_value_label,
+                    "activate-link",
+                    G_CALLBACK (on_activate_link),
+                    window);
+
+  /* multiple-selection toolbar */
+  g_signal_connect (window->overlay_toolbar_erase_button,
+                    "clicked",
+                    G_CALLBACK (on_overlay_toolbar_erase_button_clicked),
+                    window);
+
+  /* Create RAID array */
+  g_signal_connect (window->overlay_toolbar_create_raid_button,
+                    "clicked",
+                    G_CALLBACK (on_overlay_toolbar_create_raid_button_clicked),
+                    window);
+
+  ensure_something_selected (window);
+  device_tree_selection_toolbar_select_done_toggle (window, FALSE);
+  gtk_widget_grab_focus (window->device_tree_treeview);
+  update_all (window);
+
+  /* TODO: would be better to have all this in the .ui file - no idea
+   * why it doesn't work - accelerator support in GTK+ seems extremely
+   * confusing and flaky :-(
+   */
+  accelgroup = gtk_accel_group_new ();
+  gtk_window_add_accel_group (GTK_WINDOW (window), accelgroup);
+
+  /* Translators: This is the short-cut to open the disks/drive gear menu */
+  gtk_accelerator_parse (C_("accelerator", "F10"), &key, &mod);
+  gtk_accel_map_add_entry ("<Disks>/DriveMenu", key, mod);
+  gtk_widget_set_accel_path (window->devtab_drive_generic_button, "<Disks>/DriveMenu", accelgroup);
+
+  /* Translators: This is the short-cut to format a disk */
+  gtk_accelerator_parse (C_("accelerator", "<Ctrl>F"), &key, &mod);
+  gtk_accel_map_add_entry ("<Disks>/DriveMenu/Format", key, mod);
+  gtk_widget_set_accel_path (window->generic_drive_menu_item_format_disk, "<Disks>/DriveMenu/Format", accelgroup);
+
+  /* Translators: This is the short-cut to view SMART data for a disk */
+  gtk_accelerator_parse (C_("accelerator", "<Ctrl>S"), &key, &mod);
+  gtk_accel_map_add_entry ("<Disks>/DriveMenu/ViewSmart", key, mod);
+  gtk_widget_set_accel_path (window->generic_drive_menu_item_view_smart, "<Disks>/DriveMenu/ViewSmart", accelgroup);
+
+  /* Translators: This is the short-cut to view RAID Disks for a RAID array */
+  gtk_accelerator_parse (C_("accelerator", "<Ctrl>R"), &key, &mod);
+  gtk_accel_map_add_entry ("<Disks>/DriveMenu/MDRaidDisks", key, mod);
+  gtk_widget_set_accel_path (window->generic_drive_menu_item_mdraid_disks, "<Disks>/DriveMenu/MDRaidDisks", accelgroup);
+
+  /* Translators: This is the short-cut to view the "Drive Settings" dialog for a hard disk */
+  gtk_accelerator_parse (C_("accelerator", "<Ctrl>E"), &key, &mod);
+  gtk_accel_map_add_entry ("<Disks>/DriveMenu/Settings", key, mod);
+  gtk_widget_set_accel_path (window->generic_drive_menu_item_disk_settings, "<Disks>/DriveMenu/Settings", accelgroup);
+
+  /* Translators: This is the short-cut to open the volume gear menu */
+  gtk_accelerator_parse (C_("accelerator", "<Shift>F10"), &key, &mod);
+  gtk_accel_map_add_entry ("<Disks>/VolumeMenu", key, mod);
+  gtk_action_set_accel_group (window->devtab_action_generic, accelgroup);
+  gtk_action_set_accel_path (window->devtab_action_generic, "<Disks>/VolumeMenu");
+  gtk_action_connect_accelerator (window->devtab_action_generic);
+
+  /* Translators: This is the short-cut to format a volume */
+  gtk_accelerator_parse (C_("accelerator", "<Shift><Ctrl>F"), &key, &mod);
+  gtk_accel_map_add_entry ("<Disks>/VolumeMenu/Format", key, mod);
+  gtk_widget_set_accel_path (window->generic_menu_item_format_volume, "<Disks>/VolumeMenu/Format", accelgroup);
 }
 
 static void
@@ -1398,28 +1801,6 @@ gdu_window_get_client (GduWindow *window)
   return window->client;
 }
 
-static void
-teardown_details_page (GduWindow    *window,
-                       UDisksObject *object,
-                       DetailsPage   page)
-{
-  //g_debug ("teardown for %s, page %d",
-  //       object != NULL ? g_dbus_object_get_object_path (object) : "<none>",
-  //         page);
-  switch (page)
-    {
-    case DETAILS_PAGE_NOT_SELECTED:
-      break;
-
-    case DETAILS_PAGE_NOT_IMPLEMENTED:
-      break;
-
-    case DETAILS_PAGE_DEVICE:
-      teardown_device_page (window);
-      break;
-    }
-}
-
 typedef enum
 {
   SET_MARKUP_FLAGS_NONE = 0,
@@ -1536,85 +1917,47 @@ block_compare_on_preferred (UDisksObject *a,
 
 /* ---------------------------------------------------------------------------------------------------- */
 
-static void
-setup_details_page (GduWindow     *window,
-                    UDisksObject  *object,
-                    DetailsPage    page)
+static void update_device_page (GduWindow *window, ShowFlags *show_flags);
+static void update_for_multi_selection (GduWindow *window, ShowFlags *show_flags);
+
+/* Keep in sync with tabs in disks.ui file */
+typedef enum
 {
-  //g_debug ("setup for %s, page %d",
-  //         object != NULL ? g_dbus_object_get_object_path (object) : "<none>",
-  //         page);
-
-  switch (page)
-    {
-    case DETAILS_PAGE_NOT_SELECTED:
-      break;
-
-    case DETAILS_PAGE_NOT_IMPLEMENTED:
-      break;
-
-    case DETAILS_PAGE_DEVICE:
-      setup_device_page (window, object);
-      break;
-    }
-}
-
-/* ---------------------------------------------------------------------------------------------------- */
+  DETAILS_PAGE_NOT_SELECTED,
+  DETAILS_PAGE_NOT_IMPLEMENTED,
+  DETAILS_PAGE_DEVICE,
+} DetailsPage;
 
 static void
-update_details_page (GduWindow      *window,
-                     DetailsPage     page,
-                     ShowFlags      *show_flags)
+update_all (GduWindow *window)
 {
-  ;
-  //g_debug ("update for %s, page %d",
-  //         object != NULL ? g_dbus_object_get_object_path (object) : "<none>",
-  //         page);
+  ShowFlags show_flags = {0};
+  DetailsPage page = DETAILS_PAGE_NOT_IMPLEMENTED;
 
-  switch (page)
-    {
-    case DETAILS_PAGE_NOT_SELECTED:
-      break;
-
-    case DETAILS_PAGE_NOT_IMPLEMENTED:
-      break;
-
-    case DETAILS_PAGE_DEVICE:
-      update_device_page (window, show_flags);
-      break;
-    }
-}
-
-static void
-select_details_page (GduWindow      *window,
-                     UDisksObject   *object,
-                     DetailsPage     page,
-                     ShowFlags      *show_flags)
-{
-  teardown_details_page (window,
-                         window->current_object,
-                         window->current_page);
-
-  window->current_page = page;
+  /* figure out page to display */
   if (window->current_object != NULL)
-    g_object_unref (window->current_object);
-  window->current_object = object != NULL ? g_object_ref (object) : NULL;
+    {
+      if (udisks_object_peek_drive (window->current_object) != NULL ||
+          udisks_object_peek_block (window->current_object) != NULL ||
+          udisks_object_peek_mdraid (window->current_object) != NULL)
+        {
+          page = DETAILS_PAGE_DEVICE;
+        }
+    }
+  else
+    {
+      page = DETAILS_PAGE_NOT_SELECTED;
+    }
 
+  if (page == DETAILS_PAGE_NOT_IMPLEMENTED)
+    {
+      g_warning ("no page for object %s", g_dbus_object_get_object_path (G_DBUS_OBJECT (window->current_object)));
+    }
   gtk_notebook_set_current_page (GTK_NOTEBOOK (window->details_notebook), page);
 
-  setup_details_page (window,
-                      window->current_object,
-                      window->current_page);
+  update_for_multi_selection (window, &show_flags);
 
-  update_details_page (window, window->current_page, show_flags);
-}
-
-static void
-update_all (GduWindow     *window)
-{
-  ShowFlags show_flags;
-
-  switch (window->current_page)
+  switch (page)
     {
     case DETAILS_PAGE_NOT_SELECTED:
       /* Nothing to update */
@@ -1625,11 +1968,10 @@ update_all (GduWindow     *window)
       break;
 
     case DETAILS_PAGE_DEVICE:
-      show_flags = SHOW_FLAGS_NONE;
-      update_details_page (window, window->current_page, &show_flags);
-      update_for_show_flags (window, show_flags);
+      update_device_page (window, &show_flags);
       break;
     }
+  update_for_show_flags (window, &show_flags);
 }
 
 static void
@@ -1652,43 +1994,6 @@ on_volume_grid_changed (GduVolumeGrid  *grid,
 
 /* ---------------------------------------------------------------------------------------------------- */
 
-static void
-setup_device_page (GduWindow     *window,
-                   UDisksObject  *object)
-{
-  UDisksDrive *drive;
-  UDisksBlock *block;
-
-  drive = udisks_object_peek_drive (object);
-  block = udisks_object_peek_block (object);
-
-  gdu_volume_grid_set_container_visible (GDU_VOLUME_GRID (window->volume_grid), FALSE);
-  if (drive != NULL)
-    {
-      GList *blocks;
-
-      /* TODO: for multipath, ensure e.g. mpathk is before sda, sdb */
-      blocks = get_top_level_blocks_for_drive (window, g_dbus_object_get_object_path (G_DBUS_OBJECT (object)));
-      blocks = g_list_sort (blocks, (GCompareFunc) block_compare_on_preferred);
-
-      if (blocks != NULL)
-        gdu_volume_grid_set_block_object (GDU_VOLUME_GRID (window->volume_grid), blocks->data);
-      else
-        gdu_volume_grid_set_block_object (GDU_VOLUME_GRID (window->volume_grid), NULL);
-
-      g_list_foreach (blocks, (GFunc) g_object_unref, NULL);
-      g_list_free (blocks);
-    }
-  else if (block != NULL)
-    {
-      gdu_volume_grid_set_block_object (GDU_VOLUME_GRID (window->volume_grid), object);
-    }
-  else
-    {
-      g_assert_not_reached ();
-    }
-}
-
 static gchar *
 get_device_file_for_display (UDisksBlock *block)
 {
@@ -1710,45 +2015,707 @@ static gchar *
 get_job_progress_text (GduWindow *window,
                        UDisksJob *job)
 {
-  gchar *s;
-  gchar *desc;
+  gchar *s = NULL, *tmp;
   gint64 expected_end_time_usec;
-
-  desc = udisks_client_get_job_description (window->client, job);
+  guint64 rate;
+  guint64 bytes;
 
   expected_end_time_usec = udisks_job_get_expected_end_time (job);
+  rate = udisks_job_get_rate (job);
+  bytes = udisks_job_get_bytes (job);
   if (expected_end_time_usec > 0)
     {
       gint64 usec_left;
       gchar *s2, *s3;
 
       usec_left = expected_end_time_usec - g_get_real_time ();
-      if (usec_left < 0)
+      if (usec_left < 1)
+        usec_left = 1;
+      s2 = gdu_utils_format_duration_usec (usec_left, GDU_FORMAT_DURATION_FLAGS_NO_SECONDS);
+      if (rate > 0)
         {
-          /* Translators: Shown instead of e.g. "10 seconds remaining" when we've passed
-           * the expected end time...
+          s3 = g_format_size (rate);
+          /* Translators: Used for job progress.
+           *              The first %s is the estimated amount of time remaining (ex. "1 minute" or "5 minutes").
+           *              The second %s is the average amount of bytes transfered per second (ex. "8.9 MB").
            */
-          s3 = g_strdup_printf (C_("job-remaining-exceeded", "Almost done..."));
+          s = g_strdup_printf (C_("job-remaining-with-rate", "%s remaining (%s/sec)"), s2, s3);
+          g_free (s3);
         }
       else
         {
-          s2 = gdu_utils_format_duration_usec (usec_left, GDU_FORMAT_DURATION_FLAGS_NONE);
-          s3 = g_strdup_printf (C_("job-remaining", "%s remaining"), s2);
+          /* Translators: Used for job progress.
+           *              The first %s is the estimated amount of time remaining (ex. "1 minute" or "5 minutes").
+           */
+          s = g_strdup_printf (C_("job-remaining", "%s remaining"), s2);
+        }
+      g_free (s2);
+
+      if (bytes > 0 && udisks_job_get_progress_valid (job))
+        {
+          guint64 bytes_done = bytes * udisks_job_get_progress (job);
+          s2 = g_format_size (bytes_done);
+          s3 = g_format_size (bytes);
+          tmp = s;
+          /* Translators: Used to convey job progress where the amount of bytes to process is known.
+           *              The first %s is the amount of bytes processed (ex. "650 MB").
+           *              The second %s is the total amount of bytes to process (ex. "8.5 GB").
+           *              The third %s is the estimated amount of time remaining including speed (if known) (ex. "1 minute remaining", "5 minutes remaining (42.3 MB/s)", "Less than a minute remaining").
+           */
+          s = g_strdup_printf (_("%s of %s – %s"), s2, s3, s);
+          g_free (tmp);
+          g_free (s3);
           g_free (s2);
         }
-      s = g_strdup_printf ("<small>%s — %s</small>", desc, s3);
-      g_free (s3);
-    }
-  else
-    {
-      s = g_strdup_printf ("<small>%s</small>", desc);
     }
 
-  g_free (desc);
+  if (GDU_IS_LOCAL_JOB (job))
+    {
+      const gchar *extra_markup = gdu_local_job_get_extra_markup (GDU_LOCAL_JOB (job));
+      if (extra_markup != NULL)
+        {
+          if (s != NULL)
+            {
+              tmp = s;
+              s = g_strdup_printf ("%s\n%s", s, extra_markup);
+              g_free (tmp);
+            }
+          else
+            {
+              s = g_strdup (extra_markup);
+            }
+        }
+    }
+
+  if (s != NULL)
+    {
+      tmp = s;
+      s = g_strdup_printf ("<small>%s</small>", s);
+      g_free (tmp);
+    }
 
   return s;
 }
 
+/* ---------------------------------------------------------------------------------------------------- */
+
+static void
+update_jobs (GduWindow *window,
+             GList     *jobs,
+             gboolean   is_volume)
+{
+  GtkWidget *label = window->devtab_drive_job_label;
+  GtkWidget *grid = window->devtab_drive_job_grid;
+  GtkWidget *progressbar = window->devtab_drive_job_progressbar;
+  GtkWidget *remaining_label = window->devtab_drive_job_remaining_label;
+  GtkWidget *no_progress_label = window->devtab_drive_job_no_progress_label;
+  GtkWidget *cancel_button = window->devtab_drive_job_cancel_button;
+
+  if (is_volume)
+    {
+      label = window->devtab_job_label;
+      grid = window->devtab_job_grid;
+      progressbar = window->devtab_job_progressbar;
+      remaining_label = window->devtab_job_remaining_label;
+      no_progress_label = window->devtab_job_no_progress_label;
+      cancel_button = window->devtab_job_cancel_button;
+    }
+
+  if (jobs == NULL)
+    {
+      gtk_widget_hide (label);
+      gtk_widget_hide (grid);
+    }
+  else
+    {
+      UDisksJob *job = UDISKS_JOB (jobs->data);
+      gchar *s, *s2;
+
+      gtk_widget_show (label);
+      gtk_widget_show (grid);
+      if (udisks_job_get_progress_valid (job))
+        {
+          gdouble progress = udisks_job_get_progress (job);
+          gtk_widget_show (progressbar);
+          gtk_widget_hide (no_progress_label);
+
+          gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (progressbar), progress);
+
+          if (GDU_IS_LOCAL_JOB (job))
+            s2 = g_strdup (gdu_local_job_get_description (GDU_LOCAL_JOB (job)));
+          else
+            s2 = udisks_client_get_job_description (window->client, job);
+          /* Translators: Used in job progress bar.
+           *              The %s is the job description (e.g. "Erasing Device").
+           *              The %f is the completion percentage (between 0.0 and 100.0).
+           */
+          s = g_strdup_printf (_("%s: %2.1f%%"),
+                                s2,
+                                100.0 * progress);
+          g_free (s2);
+          gtk_progress_bar_set_show_text (GTK_PROGRESS_BAR (progressbar), TRUE);
+          gtk_progress_bar_set_text (GTK_PROGRESS_BAR (progressbar), s);
+          g_free (s);
+
+          s = get_job_progress_text (window, job);
+          if (s != NULL)
+            {
+              gtk_widget_show (remaining_label);
+              gtk_label_set_markup (GTK_LABEL (remaining_label), s);
+              g_free (s);
+            }
+          else
+            {
+              gtk_widget_hide (remaining_label);
+            }
+        }
+      else
+        {
+          gtk_widget_hide (progressbar);
+          gtk_widget_hide (remaining_label);
+          gtk_widget_show (no_progress_label);
+          if (GDU_IS_LOCAL_JOB (job))
+            s = g_strdup (gdu_local_job_get_description (GDU_LOCAL_JOB (job)));
+          else
+            s = udisks_client_get_job_description (window->client, job);
+          gtk_label_set_text (GTK_LABEL (no_progress_label), s);
+          g_free (s);
+        }
+      if (udisks_job_get_cancelable (job))
+        gtk_widget_show (cancel_button);
+      else
+        gtk_widget_hide (cancel_button);
+    }
+}
+
+static void
+update_drive_jobs (GduWindow *window,
+                   GList     *jobs)
+{
+  update_jobs (window, jobs, FALSE);
+}
+
+static void
+update_volume_jobs (GduWindow *window,
+                    GList     *jobs)
+{
+  update_jobs (window, jobs, TRUE);
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+static void
+update_generic_drive_bits (GduWindow      *window,
+                           UDisksBlock    *block,          /* should be the whole disk */
+                           GList          *jobs,           /* jobs not specific to @block */
+                           ShowFlags      *show_flags)
+{
+  if (block != NULL)
+    {
+      gchar *s = NULL;
+      guint64 size = 0;
+      UDisksObject *object = NULL;
+      UDisksPartitionTable *partition_table = NULL;
+
+      object = (UDisksObject *) g_dbus_interface_get_object (G_DBUS_INTERFACE (block));
+      partition_table = udisks_object_get_partition_table (object);
+
+      gdu_volume_grid_set_no_media_string (GDU_VOLUME_GRID (window->volume_grid),
+                                           _("Block device is empty"));
+
+      size = udisks_block_get_size (block);
+
+      /* -------------------------------------------------- */
+      /* 'Size' field */
+
+      set_size (window,
+                "devtab-drive-size-label",
+                "devtab-drive-size-value-label",
+                size, SET_MARKUP_FLAGS_HYPHEN_IF_EMPTY);
+
+      /* -------------------------------------------------- */
+      /* 'Partitioning' field - only show if actually partitioned */
+
+      s = NULL;
+      if (partition_table != NULL)
+        {
+          const gchar *table_type = udisks_partition_table_get_type_ (partition_table);
+          s = g_strdup (udisks_client_get_partition_table_type_for_display (window->client, table_type));
+          if (s == NULL)
+            {
+              /* Translators: Shown for unknown partitioning type. The first %s is the low-level type. */
+              s = g_strdup_printf (C_("partitioning", "Unknown (%s)"), table_type);
+            }
+        }
+      set_markup (window,
+                  "devtab-drive-partitioning-label",
+                  "devtab-drive-partitioning-value-label",
+                  s, SET_MARKUP_FLAGS_NONE);
+      g_free (s);
+
+      g_clear_object (&partition_table);
+    }
+
+  /* -------------------------------------------------- */
+  /* 'Job' field - only shown if a job is running */
+
+  /* if there are no given jobs, look at the block object */
+  if (jobs == NULL && block != NULL)
+    {
+      UDisksObject *block_object = (UDisksObject *) g_dbus_interface_get_object (G_DBUS_INTERFACE (block));
+      jobs = udisks_client_get_jobs_for_object (window->client, block_object);
+      jobs = g_list_concat (jobs, gdu_application_get_local_jobs_for_object (window->application, block_object));
+      update_drive_jobs (window, jobs);
+      g_list_free_full (jobs, g_object_unref);
+    }
+  else
+    {
+      update_drive_jobs (window, jobs);
+    }
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+static void
+update_grid_for_mdraid (GduWindow      *window,
+                        UDisksMDRaid   *mdraid)
+{
+  UDisksBlock *mdraid_block = NULL;
+  UDisksObject *mdraid_block_object = NULL;
+
+  mdraid_block = udisks_client_get_block_for_mdraid (window->client, mdraid);
+  if (mdraid_block != NULL)
+    mdraid_block_object = (UDisksObject *) g_dbus_interface_dup_object (G_DBUS_INTERFACE (mdraid_block));
+  gdu_volume_grid_set_block_object (GDU_VOLUME_GRID (window->volume_grid), mdraid_block_object);
+  g_clear_object (&mdraid_block_object);
+  g_clear_object (&mdraid_block);
+}
+
+static void
+update_device_page_for_mdraid (GduWindow      *window,
+                               UDisksObject   *object,
+                               UDisksMDRaid   *mdraid,
+                               ShowFlags      *show_flags)
+{
+  UDisksObjectInfo *info = NULL;
+  gchar *s = NULL, *s2, *s3;
+  gchar *desc = NULL;
+  gchar *device_desc = NULL;
+  GList *all_blocks = NULL;
+  UDisksBlock *block = NULL;
+  guint64 size = 0;
+  guint num_devices = 0;
+  gchar *name = NULL;
+  gchar *homehost = NULL;
+  gchar *level_desc = NULL;
+  char hostname[512];
+  GList *jobs = NULL;
+  GList *members = NULL;
+  guint degraded = 0;
+  guint64 chunk_size = 0;
+  const gchar *sync_action;
+  gdouble sync_completed;
+  const gchar *bitmap_location;
+  gchar *degraded_markup = NULL;
+  gchar *raid_state = NULL;
+  gchar *raid_state_extra = NULL;
+  guint64 sync_rate = 0;
+  guint64 sync_remaining_time = 0;
+  gboolean show_stop_data_scrubbing = FALSE;
+  gboolean show_start_data_scrubbing = FALSE;
+
+  gdu_volume_grid_set_no_media_string (GDU_VOLUME_GRID (window->volume_grid),
+                                       _("RAID array is not running"));
+
+  size = udisks_mdraid_get_size (mdraid);
+  num_devices = udisks_mdraid_get_num_devices (mdraid);
+  block = udisks_client_get_block_for_mdraid (window->client, mdraid);
+  all_blocks = udisks_client_get_all_blocks_for_mdraid (window->client, mdraid);
+  members = udisks_client_get_members_for_mdraid (window->client, mdraid);
+  degraded = udisks_mdraid_get_degraded (mdraid);
+  sync_action = udisks_mdraid_get_sync_action (mdraid);
+  sync_completed = udisks_mdraid_get_sync_completed (mdraid);
+  sync_rate = udisks_mdraid_get_sync_rate (mdraid);
+  sync_remaining_time = udisks_mdraid_get_sync_remaining_time (mdraid);
+  bitmap_location = udisks_mdraid_get_bitmap_location (mdraid);
+  chunk_size = udisks_mdraid_get_chunk_size (mdraid);
+
+  info = udisks_client_get_object_info (window->client, object);
+
+  if (size > 0)
+    {
+      s = udisks_client_get_size_for_display (window->client, size, FALSE, FALSE);
+      /* Translators: Used in the main window for a RAID array, the first %s is the size */
+      desc = g_strdup_printf (C_("md-raid-window", "%s RAID Array"), s);
+      g_free (s);
+    }
+  else
+    {
+      /* Translators: Used in the main window for a RAID array where the size is not known  */
+      desc = g_strdup (C_("md-raid-window", "RAID Array"));
+    }
+
+  update_grid_for_mdraid (window, mdraid);
+
+  if (all_blocks != NULL)
+    {
+      GString *str;
+      GList *l;
+      str = g_string_new (NULL);
+      for (l = all_blocks; l != NULL; l = l->next)
+        {
+          UDisksBlock *mdraid_block = UDISKS_BLOCK (l->data);
+          if (str->len > 0)
+            g_string_append_c (str, ' ');
+          s = get_device_file_for_display (mdraid_block);
+          g_string_append (str, s);
+          g_free (s);
+        }
+      device_desc = g_string_free (str, FALSE);
+      show_flags->drive_buttons |= SHOW_FLAGS_DRIVE_BUTTONS_RAID_STOP;
+      show_flags->drive_menu |= SHOW_FLAGS_DRIVE_MENU_MDRAID_DISKS;
+    }
+  else
+    {
+      /* Translators: shown as the device for a RAID array that is not currently running */
+      device_desc = g_strdup (C_("mdraid", "Not running"));
+      show_flags->drive_buttons |= SHOW_FLAGS_DRIVE_BUTTONS_RAID_START;
+    }
+
+  jobs = udisks_client_get_jobs_for_object (window->client, object);
+  jobs = g_list_concat (jobs, gdu_application_get_local_jobs_for_object (window->application, object));
+  update_generic_drive_bits (window, block, jobs, show_flags);
+
+  gtk_image_set_from_gicon (GTK_IMAGE (window->devtab_drive_image),
+                            udisks_object_info_get_icon (info),
+                            GTK_ICON_SIZE_DIALOG);
+  gtk_widget_show (window->devtab_drive_image);
+
+  s = g_strdup_printf ("<big><b>%s</b></big>", desc);
+  gtk_label_set_markup (GTK_LABEL (window->devtab_drive_desc_label), s);
+  gtk_widget_show (window->devtab_drive_desc_label);
+  g_free (s);
+  s = g_strdup_printf ("<small>%s</small>", device_desc);
+  gtk_label_set_markup (GTK_LABEL (window->devtab_drive_devices_label), s);
+  gtk_widget_show (window->devtab_drive_devices_label);
+  g_free (s);
+
+  gtk_widget_show (window->devtab_drive_box);
+  gtk_widget_show (window->devtab_drive_vbox);
+  gtk_widget_show (window->devtab_drive_buttonbox);
+  gtk_widget_show (window->devtab_drive_generic_button);
+
+  /* -------------------------------------------------- */
+  /* 'Size' field */
+
+  set_size (window,
+            "devtab-drive-size-label",
+            "devtab-drive-size-value-label",
+            size, SET_MARKUP_FLAGS_HYPHEN_IF_EMPTY);
+
+  /* -------------------------------------------------- */
+  /* 'Name' field */
+
+  /* figure out hostname of this box */
+  hostname[sizeof hostname - 1] = '\0';
+  if (gethostname (hostname, sizeof hostname - 1) != 0)
+    {
+      g_warning ("Error getting hostname: %m");
+      hostname[0] = '\0';
+    }
+
+  /* figure out the hostname the array is local to */
+  homehost = udisks_mdraid_dup_name (mdraid);
+  s = strstr (homehost, ":");
+  if (s != NULL)
+    {
+      name = g_strdup (s + 1);
+      *s = '\0';
+    }
+  else
+    {
+      name = homehost;
+      homehost = NULL;
+    }
+
+  if (homehost != NULL && strlen (homehost) > 0 && g_strcmp0 (homehost, hostname) != 0)
+    {
+      /* Translators: Shown in the 'Array Name' field when the RAID array is deemed to belong to another machine.
+       *              Search for "homehost" in the mdadm(8) documentation for more information.
+       *              The first %s is the array name (e.g. "My Raid Disk").
+       *              The second %s is the hostname that the RAID array belongs to (e.g. "big-server-042").
+       */
+      s = g_strdup_printf (C_("mdraid", "%s (local to %s)"), name, homehost);
+      set_markup (window,
+                  "devtab-drive-arrayname-label",
+                  "devtab-drive-arrayname-value-label",
+                  s, SET_MARKUP_FLAGS_HYPHEN_IF_EMPTY);
+      g_free (s);
+    }
+  else
+    {
+      set_markup (window,
+                  "devtab-drive-arrayname-label",
+                  "devtab-drive-arrayname-value-label",
+                  name, SET_MARKUP_FLAGS_HYPHEN_IF_EMPTY);
+    }
+
+  /* -------------------------------------------------- */
+  /* 'Bitmap' field */
+
+  if (strlen (bitmap_location) > 0)
+    {
+      gboolean has_bitmap = FALSE;
+      if (bitmap_location != NULL && strlen (bitmap_location) > 0 && g_strcmp0 (bitmap_location, "none") != 0)
+        has_bitmap = TRUE;
+
+      set_switch (window,
+                  "devtab-drive-raid-bitmap-label",
+                  "devtab-drive-raid-bitmap-switch-box",
+                  "devtab-drive-raid-bitmap-switch",
+                  has_bitmap);
+    }
+
+  /* -------------------------------------------------- */
+  /* 'Raid Level' field */
+
+  level_desc = gdu_utils_format_mdraid_level (udisks_mdraid_get_level (mdraid), FALSE, FALSE);
+
+  /* Translators: Used to convey the number of required disks for a RAID array
+   *              The %d is the number of required disks.
+   */
+  s2 = g_strdup_printf (dngettext (GETTEXT_PACKAGE,
+                                   "%d Disk",
+                                   "%d Disks",
+                                   (gint) num_devices),
+                        (gint) num_devices);
+  if (chunk_size > 0)
+    {
+      s3 = udisks_client_get_size_for_display (window->client, chunk_size, TRUE, FALSE);
+      /* Translators: Used to combine number of disks and the chunk size.
+       *              The first %s is the number of disks e.g. "3 disks".
+       *              The second %s is the chunk size e.g. "512 KiB".
+       */
+      s = s2;
+      s2 = g_strdup_printf (C_("mdraid-disks-and-chunk-size", "%s, %s Chunk"), s2, s3);
+      g_free (s);
+      g_free (s3);
+    }
+
+  /* Translators: Shown in the "RAID Level" field.
+   *              The first %s is the long description of the RAID level e.g. "RAID 6 (Dual Distributed Parity)".
+   *              The second %s is the number of RAID disks optionally with the chunk size e.g. "8 disks" or "8 disks, 512 KiB Chunk".
+   */
+  s = g_strdup_printf (C_("mdraid", "%s, %s"),
+                       level_desc,
+                       s2);
+  g_free (s2);
+  set_markup (window,
+              "devtab-drive-raidlevel-label",
+              "devtab-drive-raidlevel-value-label",
+              s, SET_MARKUP_FLAGS_NONE);
+  g_free (s);
+
+  /* -------------------------------------------------- */
+  /* 'State' field */
+
+  degraded_markup = NULL;
+  if (degraded > 0)
+    {
+      /* Translators: Shown in the 'Degraded' field for a degraded RAID array.
+       *              The %d is the number of missing disks (always > 0).
+       */
+      s2 = g_strdup_printf (dngettext (GETTEXT_PACKAGE,
+                                       "%d disk is missing",
+                                       "%d disks are missing",
+                                       (gint) degraded),
+                            (gint) degraded);
+      /* Translators: string shown when the RAID array is degraded. All-caps is used for emphasis */
+      s3 = g_strdup_printf ("<span foreground=\"#ff0000\"><b>%s</b></span>",
+                            C_("mdraid", "ARRAY IS DEGRADED"));
+      /* Translators: The first %s is the sentence 'ARRAY IS DEGRADED'.
+       *              The second %s conveys the number of devices missing e.g. "1 disk is missing".
+       */
+      degraded_markup = g_strdup_printf (C_("mdraid-degraded", "%s — %s"),
+                                         s3, s2);
+      g_free (s2);
+      g_free (s3);
+    }
+
+  if (sync_action == NULL || strlen (sync_action) == 0)
+    {
+      /* could be we're already running but don't have any redundancy built-in */
+      if (block != NULL)
+        {
+          raid_state = g_strdup (C_("mdraid-state", "Running"));
+        }
+      else
+        {
+          /* Translators: Shown in the 'State' field for MD-RAID when not running */
+          raid_state = g_strdup (C_("mdraid-state", "Not running"));
+        }
+    }
+  else
+    {
+      if (degraded_markup != NULL)
+        {
+          raid_state = g_strdup (degraded_markup);
+        }
+      else
+        {
+          raid_state = g_strdup (C_("mdraid-state", "Running"));
+        }
+
+      if (g_strcmp0 (sync_action, "idle") == 0)
+        {
+          show_start_data_scrubbing = TRUE;
+        }
+      else if (g_strcmp0 (sync_action, "check") == 0)
+        {
+          raid_state_extra = g_strdup (C_("mdraid-state", "Data Scrubbing"));
+          show_stop_data_scrubbing = TRUE;
+        }
+      else if (g_strcmp0 (sync_action, "repair") == 0)
+        {
+          raid_state_extra = g_strdup (C_("mdraid-state", "Data Scrubbing and Repair"));
+          show_stop_data_scrubbing = TRUE;
+        }
+      else if (g_strcmp0 (sync_action, "resync") == 0)
+        {
+          raid_state_extra = g_strdup (C_("mdraid-state", "Resyncing"));
+        }
+      else if (g_strcmp0 (sync_action, "recover") == 0)
+        {
+          raid_state_extra = g_strdup (C_("mdraid-state", "Recovering"));
+        }
+      else if (g_strcmp0 (sync_action, "frozen") == 0)
+        {
+          raid_state_extra = g_strdup (C_("mdraid-state", "Frozen"));
+        }
+      else
+        {
+          g_warning ("unhandled sync action %s", sync_action);
+          raid_state_extra = g_strdup (sync_action);
+        }
+    }
+
+  /* If we've detected a split-brain situation, this is more important
+   * to convey than the actual array state
+   */
+  if (g_list_length (all_blocks) > 1)
+    {
+      s = g_strdup_printf ("<span foreground=\"#ff0000\"><b>%s</b></span>",
+                           /* Translators: String for conveying the raid array is misconfigured */
+                           C_("raid-split-brain", "RAID ARRAY IS MISCONFIGURED"));
+      s2 = g_strdup_printf ("<a href='http://en.wikipedia.org/wiki/Split-brain_(computing)'>%s</a>",
+                           /* Translators: The specific type of misconfiguration, see
+                            * http://en.wikipedia.org/wiki/Split-brain_(computing)
+                            * for more details
+                            */
+                            C_("raid-split-brain", "Split-Brain"));
+      g_free (raid_state);
+      /* Translators: Combiner for the RAID split-brain strings.
+       *              The first %s is "SYSTEM IS MISCONFIGURED".
+       *              The second %s is "Split-Brain" as a hyperlink.
+       */
+      raid_state = g_strdup_printf (C_("raid-split-brain", "%s (%s)"), s, s2);
+      g_free (s2);
+      g_free (s);
+    }
+
+  if (sync_completed == 0.0 && sync_rate == 0 && sync_remaining_time == 0)
+    {
+      if (raid_state_extra != NULL)
+        {
+          s = g_strdup_printf ("%s\n%s", raid_state, raid_state_extra);
+          gtk_label_set_markup (GTK_LABEL (window->devtab_drive_raid_state_value_label), raid_state);
+          g_free (s);
+        }
+      else
+        {
+          gtk_label_set_markup (GTK_LABEL (window->devtab_drive_raid_state_value_label), raid_state);
+        }
+      gtk_widget_hide (window->devtab_drive_raid_state_progressbar);
+    }
+  else
+    {
+      gtk_label_set_markup (GTK_LABEL (window->devtab_drive_raid_state_value_label), raid_state);
+
+      s = g_strdup_printf ("%2.1f%%", 100.0 * sync_completed);
+      if (raid_state_extra != NULL)
+        {
+          /* Translators: Shown in RAID progress bar.
+           *              The first %s is about the operation, e.g. 'Data Scrubbing'.
+           *              The second is the percentage completed, e.g. '42.5%'
+           */
+          s2 = g_strdup_printf (C_("raid-state-progress", "%s: %s"), raid_state_extra, s);
+        }
+      else
+        {
+          s2 = s; s = NULL;
+        }
+      gtk_progress_bar_set_show_text (GTK_PROGRESS_BAR (window->devtab_drive_raid_state_progressbar), TRUE);
+      gtk_progress_bar_set_text (GTK_PROGRESS_BAR (window->devtab_drive_raid_state_progressbar), s2);
+      g_free (s2);
+      g_free (s);
+
+      gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (window->devtab_drive_raid_state_progressbar), sync_completed);
+
+      gtk_widget_show (window->devtab_drive_raid_state_progressbar);
+    }
+  gtk_widget_show (window->devtab_drive_raid_state_value_label);
+  gtk_widget_show (window->devtab_drive_raid_state_label);
+  gtk_widget_show (window->devtab_drive_raid_state_grid);
+
+  if (sync_remaining_time > 0)
+    {
+      s2 = gdu_utils_format_duration_usec (sync_remaining_time, GDU_FORMAT_DURATION_FLAGS_NO_SECONDS);
+      s3 = g_format_size (sync_rate);
+      /* Translators: Used for MD-RAID sync operation.
+       *              The first %s is the estimated amount of time remaining (ex. "1 minute" or "5 minutes").
+       *              The second %s is the average amount of bytes transfered per second (ex. "8.9 MB").
+       */
+      s = g_strdup_printf (C_("mdraid-sync-op", "%s remaining (%s/sec)"), s2, s3);
+      g_free (s3);
+      g_free (s2);
+      s2 = g_strdup_printf ("<small>%s</small>", s);
+      g_free (s);
+      gtk_label_set_markup (GTK_LABEL (window->devtab_drive_raid_progress_label), s2);
+      g_free (s2);
+      gtk_widget_show (window->devtab_drive_raid_progress_label);
+    }
+  else
+    {
+      gtk_widget_hide (window->devtab_drive_raid_progress_label);
+    }
+
+  /* -------------------------------------------------- */
+
+  /* Show MDRaid-specific items */
+  gtk_widget_show (GTK_WIDGET (window->generic_drive_menu_item_mdraid_sep_1));
+  gtk_widget_show (GTK_WIDGET (window->generic_drive_menu_item_mdraid_disks));
+  gtk_widget_set_visible (GTK_WIDGET (window->generic_drive_menu_item_mdraid_start_data_scrubbing), show_start_data_scrubbing);
+  gtk_widget_set_visible (GTK_WIDGET (window->generic_drive_menu_item_mdraid_stop_data_scrubbing), show_stop_data_scrubbing);
+
+  /* -------------------------------------------------- */
+
+  g_free (raid_state);
+  g_free (raid_state_extra);
+  g_free (degraded_markup);
+  g_list_free_full (members, g_object_unref);
+  g_list_free_full (jobs, g_object_unref);
+  g_free (level_desc);
+  g_free (homehost);
+  g_free (name);
+  g_free (device_desc);
+  g_free (desc);
+  g_clear_object (&info);
+
+  g_clear_object (&block);
+  g_list_free_full (all_blocks, g_object_unref);
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
 
 static void
 update_device_page_for_drive (GduWindow      *window,
@@ -1763,11 +2730,8 @@ update_device_page_for_drive (GduWindow      *window,
   const gchar *drive_vendor;
   const gchar *drive_model;
   const gchar *drive_revision;
-  gchar *name;
-  gchar *description;
-  gchar *media_description;
-  GIcon *drive_icon;
-  GIcon *media_icon;
+  UDisksBlock *block = NULL; /* first block */
+  UDisksObjectInfo *info = NULL;
   guint64 size;
   UDisksDriveAta *ata;
   const gchar *our_seat;
@@ -1780,16 +2744,19 @@ update_device_page_for_drive (GduWindow      *window,
   /* TODO: for multipath, ensure e.g. mpathk is before sda, sdb */
   blocks = get_top_level_blocks_for_drive (window, g_dbus_object_get_object_path (G_DBUS_OBJECT (object)));
   blocks = g_list_sort (blocks, (GCompareFunc) block_compare_on_preferred);
+  if (blocks != NULL)
+    block = udisks_object_peek_block (UDISKS_OBJECT (blocks->data));
+
+  jobs = udisks_client_get_jobs_for_object (window->client, object);
+  jobs = g_list_concat (jobs, gdu_application_get_local_jobs_for_object (window->application, object));
+  update_generic_drive_bits (window, block, jobs, show_flags);
+
+  gdu_volume_grid_set_no_media_string (GDU_VOLUME_GRID (window->volume_grid),
+                                       _("No Media"));
 
   ata = udisks_object_peek_drive_ata (object);
 
-  udisks_client_get_drive_info (window->client,
-                                drive,
-                                &name,
-                                &description,
-                                &drive_icon,
-                                &media_description,
-                                &media_icon);
+  info = udisks_client_get_object_info (window->client, object);
 
   drive_vendor = udisks_drive_get_vendor (drive);
   drive_model = udisks_drive_get_model (drive);
@@ -1805,10 +2772,9 @@ update_device_page_for_drive (GduWindow      *window,
       g_string_append (str, s);
       g_free (s);
     }
-  s = g_strdup_printf ("<big><b>%s</b></big>",
-                       description);
-  gtk_label_set_markup (GTK_LABEL (window->devtab_drive_name_label), s);
-  gtk_widget_show (window->devtab_drive_name_label);
+  s = g_strdup_printf ("<big><b>%s</b></big>", udisks_object_info_get_description (info));
+  gtk_label_set_markup (GTK_LABEL (window->devtab_drive_desc_label), s);
+  gtk_widget_show (window->devtab_drive_desc_label);
   g_free (s);
   s = g_strdup_printf ("<small>%s</small>", str->str);
   gtk_label_set_markup (GTK_LABEL (window->devtab_drive_devices_label), s);
@@ -1818,13 +2784,12 @@ update_device_page_for_drive (GduWindow      *window,
   gtk_widget_show (window->devtab_drive_box);
   gtk_widget_show (window->devtab_drive_vbox);
   gtk_widget_show (window->devtab_drive_buttonbox);
-  gtk_widget_show (window->devtab_drive_eject_button);
   gtk_widget_show (window->devtab_drive_generic_button);
 
-  if (media_icon != NULL)
-    gtk_image_set_from_gicon (GTK_IMAGE (window->devtab_drive_image), media_icon, GTK_ICON_SIZE_DIALOG);
+  if (udisks_object_info_get_media_icon (info) != NULL)
+    gtk_image_set_from_gicon (GTK_IMAGE (window->devtab_drive_image), udisks_object_info_get_media_icon (info), GTK_ICON_SIZE_DIALOG);
   else
-    gtk_image_set_from_gicon (GTK_IMAGE (window->devtab_drive_image), drive_icon, GTK_ICON_SIZE_DIALOG);
+    gtk_image_set_from_gicon (GTK_IMAGE (window->devtab_drive_image), udisks_object_info_get_icon (info), GTK_ICON_SIZE_DIALOG);
   gtk_widget_show (window->devtab_drive_image);
 
   str = g_string_new (NULL);
@@ -1837,20 +2802,21 @@ update_device_page_for_drive (GduWindow      *window,
   if (strlen (drive_revision) > 0)
     g_string_append_printf (str, " (%s)", drive_revision);
   set_markup (window,
-              "devtab-model-label",
-              "devtab-model-value-label", str->str, SET_MARKUP_FLAGS_HYPHEN_IF_EMPTY);
+              "devtab-drive-model-label",
+              "devtab-drive-model-value-label",
+              str->str, SET_MARKUP_FLAGS_HYPHEN_IF_EMPTY);
   g_string_free (str, TRUE);
 
   serial = udisks_drive_get_serial (drive);
   set_markup (window,
-              "devtab-serial-number-label",
-              "devtab-serial-number-value-label",
+              "devtab-drive-serial-number-label",
+              "devtab-drive-serial-number-value-label",
               serial, SET_MARKUP_FLAGS_NONE);
   if (serial == NULL || strlen (serial) == 0)
     {
       set_markup (window,
-                  "devtab-wwn-label",
-                  "devtab-wwn-value-label",
+                  "devtab-drive-wwn-label",
+                  "devtab-drive-wwn-value-label",
                   udisks_drive_get_wwn (drive), SET_MARKUP_FLAGS_NONE);
     }
 
@@ -1896,8 +2862,8 @@ update_device_page_for_drive (GduWindow      *window,
   if (s != NULL)
     {
       set_markup (window,
-                  "devtab-location-label",
-                  "devtab-location-value-label",
+                  "devtab-drive-location-label",
+                  "devtab-drive-location-value-label",
                   s, SET_MARKUP_FLAGS_NONE);
       g_free (s);
     }
@@ -1912,12 +2878,12 @@ update_device_page_for_drive (GduWindow      *window,
                   "devtab-drive-smart-value-label",
                   s, SET_MARKUP_FLAGS_NONE);
       if (smart_is_supported)
-        *show_flags |= SHOW_FLAGS_DISK_POPUP_MENU_VIEW_SMART;
+        show_flags->drive_menu |= SHOW_FLAGS_DRIVE_MENU_VIEW_SMART;
       g_free (s);
     }
 
   if (gdu_disk_settings_dialog_should_show (object))
-    *show_flags |= SHOW_FLAGS_DISK_POPUP_MENU_DISK_SETTINGS;
+    show_flags->drive_menu |= SHOW_FLAGS_DRIVE_MENU_DISK_SETTINGS;
 
   if (ata != NULL)
     {
@@ -1935,10 +2901,17 @@ update_device_page_for_drive (GduWindow      *window,
                                   -1);
             }
           if (power_state_flags & GDU_POWER_STATE_FLAGS_STANDBY)
-            *show_flags |= SHOW_FLAGS_DISK_POPUP_MENU_RESUME_NOW;
+            show_flags->drive_menu |= SHOW_FLAGS_DRIVE_MENU_RESUME_NOW;
           else
-            *show_flags |= SHOW_FLAGS_DISK_POPUP_MENU_STANDBY_NOW;
+            show_flags->drive_menu |= SHOW_FLAGS_DRIVE_MENU_STANDBY_NOW;
         }
+    }
+
+
+  if (udisks_drive_get_can_power_off (drive))
+    {
+      show_flags->drive_menu |= SHOW_FLAGS_DRIVE_MENU_POWER_OFF;
+      show_flags->drive_buttons |= SHOW_FLAGS_DRIVE_BUTTONS_POWER_OFF;
     }
 
   size = udisks_drive_get_size (drive);
@@ -1963,91 +2936,168 @@ update_device_page_for_drive (GduWindow      *window,
   if (udisks_drive_get_media_available (drive))
     {
       set_markup (window,
-                  "devtab-media-label",
-                  "devtab-media-value-label",
-                  media_description, SET_MARKUP_FLAGS_NONE);
+                  "devtab-drive-media-label",
+                  "devtab-drive-media-value-label",
+                  udisks_object_info_get_media_description (info), SET_MARKUP_FLAGS_NONE);
     }
   else
     {
       set_markup (window,
-                  "devtab-media-label",
-                  "devtab-media-value-label",
+                  "devtab-drive-media-label",
+                  "devtab-drive-media-value-label",
                   "",
                   SET_MARKUP_FLAGS_HYPHEN_IF_EMPTY);
     }
 
-  jobs = udisks_client_get_jobs_for_object (window->client, object);
-  /* if there are no jobs on the drive, look at the first block object if it's partitioned
-   * (because: if it's not partitioned, we'll see the job in Volumes below so no need to show it here)
-   */
-  if (jobs == NULL && blocks != NULL)
+  if (udisks_drive_get_ejectable (drive) && udisks_drive_get_media_removable (drive))
     {
-      UDisksObject *block_object = UDISKS_OBJECT (blocks->data);
-      if (udisks_object_peek_partition_table (block_object) != NULL)
-        {
-          jobs = udisks_client_get_jobs_for_object (window->client, block_object);
-        }
+      show_flags->drive_buttons |= SHOW_FLAGS_DRIVE_BUTTONS_EJECT;
     }
-  if (jobs == NULL)
+
+  /* Show Drive-specific items */
+  gtk_widget_show (GTK_WIDGET (window->generic_drive_menu_item_drive_sep_1));
+  gtk_widget_show (GTK_WIDGET (window->generic_drive_menu_item_view_smart));
+  gtk_widget_show (GTK_WIDGET (window->generic_drive_menu_item_disk_settings));
+  gtk_widget_show (GTK_WIDGET (window->generic_drive_menu_item_drive_sep_2));
+  if (!(show_flags->drive_menu & (SHOW_FLAGS_DRIVE_MENU_STANDBY_NOW|SHOW_FLAGS_DRIVE_MENU_RESUME_NOW)))
     {
-      gtk_widget_hide (window->devtab_drive_job_label);
-      gtk_widget_hide (window->devtab_drive_job_grid);
+      /* no PM / safely-remove capabilities... only show "standby" greyed out */
+      gtk_widget_show (GTK_WIDGET (window->generic_drive_menu_item_standby_now));
+      gtk_widget_set_sensitive (GTK_WIDGET (window->generic_drive_menu_item_standby_now), FALSE);
     }
   else
     {
-      UDisksJob *job = UDISKS_JOB (jobs->data);
-
-      gtk_widget_show (window->devtab_drive_job_label);
-      gtk_widget_show (window->devtab_drive_job_grid);
-      if (udisks_job_get_progress_valid (job))
-        {
-          gdouble progress = udisks_job_get_progress (job);
-          gtk_widget_show (window->devtab_drive_job_progressbar);
-          gtk_widget_show (window->devtab_drive_job_remaining_label);
-          gtk_widget_hide (window->devtab_drive_job_no_progress_label);
-
-          gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (window->devtab_drive_job_progressbar), progress);
-
-          s = g_strdup_printf ("%2.1f%%", 100.0 * progress);
-          gtk_progress_bar_set_show_text (GTK_PROGRESS_BAR (window->devtab_drive_job_progressbar), TRUE);
-          gtk_progress_bar_set_text (GTK_PROGRESS_BAR (window->devtab_drive_job_progressbar), s);
-          g_free (s);
-
-          s = get_job_progress_text (window, job);
-          gtk_label_set_markup (GTK_LABEL (window->devtab_drive_job_remaining_label), s);
-          g_free (s);
-        }
+      /* Only show one of Standby and Resume (they are mutually exclusive) */
+      gtk_widget_set_sensitive (GTK_WIDGET (window->generic_drive_menu_item_standby_now), TRUE);
+      gtk_widget_set_sensitive (GTK_WIDGET (window->generic_drive_menu_item_resume_now), TRUE);
+      if (show_flags->drive_menu & SHOW_FLAGS_DRIVE_MENU_STANDBY_NOW)
+        gtk_widget_show (GTK_WIDGET (window->generic_drive_menu_item_standby_now));
       else
-        {
-          gtk_widget_hide (window->devtab_drive_job_progressbar);
-          gtk_widget_hide (window->devtab_drive_job_remaining_label);
-          gtk_widget_show (window->devtab_drive_job_no_progress_label);
-          s = udisks_client_get_job_description (window->client, job);
-          gtk_label_set_text (GTK_LABEL (window->devtab_drive_job_no_progress_label), s);
-          g_free (s);
-        }
-      if (udisks_job_get_cancelable (job))
-        gtk_widget_show (window->devtab_drive_job_cancel_button);
-      else
-        gtk_widget_hide (window->devtab_drive_job_cancel_button);
+        gtk_widget_show (GTK_WIDGET (window->generic_drive_menu_item_resume_now));
     }
-  g_list_foreach (jobs, (GFunc) g_object_unref, NULL);
-  g_list_free (jobs);
-
-  if (udisks_drive_get_ejectable (drive))
-    {
-      *show_flags |= SHOW_FLAGS_EJECT_BUTTON;
-    }
+  gtk_widget_show (GTK_WIDGET (window->generic_drive_menu_item_power_off));
 
   g_list_foreach (blocks, (GFunc) g_object_unref, NULL);
   g_list_free (blocks);
-  if (media_icon != NULL)
-    g_object_unref (media_icon);
-  g_object_unref (drive_icon);
-  g_free (description);
-  g_free (media_description);
-  g_free (name);
+  g_clear_object (&info);
+
+  g_list_foreach (jobs, (GFunc) g_object_unref, NULL);
+  g_list_free (jobs);
 }
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+static void
+update_device_page_for_loop (GduWindow      *window,
+                             UDisksObject   *object,
+                             UDisksBlock    *block,
+                             UDisksLoop     *loop,
+                             ShowFlags      *show_flags)
+{
+  UDisksObjectInfo *info = NULL;
+  gchar *s = NULL;
+  gchar *device_desc = NULL;
+
+  gdu_volume_grid_set_no_media_string (GDU_VOLUME_GRID (window->volume_grid),
+                                       _("Loop device is empty"));
+
+  info = udisks_client_get_object_info (window->client, object);
+  device_desc = get_device_file_for_display (block);
+
+  gtk_image_set_from_gicon (GTK_IMAGE (window->devtab_drive_image),
+                            udisks_object_info_get_icon (info),
+                            GTK_ICON_SIZE_DIALOG);
+  gtk_widget_show (window->devtab_drive_image);
+
+  s = g_strdup_printf ("<big><b>%s</b></big>", udisks_object_info_get_description (info));
+  gtk_label_set_markup (GTK_LABEL (window->devtab_drive_desc_label), s);
+  gtk_widget_show (window->devtab_drive_desc_label);
+  g_free (s);
+  s = g_strdup_printf ("<small>%s</small>", device_desc);
+  gtk_label_set_markup (GTK_LABEL (window->devtab_drive_devices_label), s);
+  gtk_widget_show (window->devtab_drive_devices_label);
+  g_free (s);
+
+  gtk_widget_show (window->devtab_drive_box);
+  gtk_widget_show (window->devtab_drive_vbox);
+  gtk_widget_show (window->devtab_drive_buttonbox);
+  gtk_widget_show (window->devtab_drive_generic_button);
+
+  update_generic_drive_bits (window, block, NULL, show_flags);
+
+  /* -------------------------------------------------- */
+  /* 'Auto-clear' and 'Backing File' fields */
+
+  if (loop != NULL)
+    {
+      s = gdu_utils_unfuse_path (udisks_loop_get_backing_file (loop));
+      set_markup (window,
+                  "devtab-backing-file-label",
+                  "devtab-backing-file-value-label",
+                  s, SET_MARKUP_FLAGS_NONE);
+      g_free (s);
+
+      set_switch (window,
+                  "devtab-loop-autoclear-label",
+                  "devtab-loop-autoclear-switch-box",
+                  "devtab-loop-autoclear-switch",
+                  udisks_loop_get_autoclear (loop));
+    }
+
+  /* cleanup */
+  g_clear_object (&info);
+  g_free (device_desc);
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+/* this is for setting the drive stuff for things any random block
+ * device that we don't have explicit support for... (typically things
+ * like LVM)
+ */
+static void
+update_device_page_for_fake_block (GduWindow      *window,
+                                   UDisksObject   *object,
+                                   UDisksBlock    *block,
+                                   ShowFlags      *show_flags)
+{
+  UDisksObjectInfo *info = NULL;
+  gchar *s = NULL;
+  gchar *device_desc = NULL;
+
+  gdu_volume_grid_set_no_media_string (GDU_VOLUME_GRID (window->volume_grid),
+                                       _("Block device is empty"));
+
+  info = udisks_client_get_object_info (window->client, object);
+  device_desc = get_device_file_for_display (block);
+
+  gtk_image_set_from_gicon (GTK_IMAGE (window->devtab_drive_image),
+                            udisks_object_info_get_icon (info),
+                            GTK_ICON_SIZE_DIALOG);
+  gtk_widget_show (window->devtab_drive_image);
+
+  s = g_strdup_printf ("<big><b>%s</b></big>", udisks_object_info_get_description (info));
+  gtk_label_set_markup (GTK_LABEL (window->devtab_drive_desc_label), s);
+  gtk_widget_show (window->devtab_drive_desc_label);
+  g_free (s);
+  s = g_strdup_printf ("<small>%s</small>", device_desc);
+  gtk_label_set_markup (GTK_LABEL (window->devtab_drive_devices_label), s);
+  gtk_widget_show (window->devtab_drive_devices_label);
+  g_free (s);
+
+  gtk_widget_show (window->devtab_drive_box);
+  gtk_widget_show (window->devtab_drive_vbox);
+  gtk_widget_show (window->devtab_drive_buttonbox);
+  gtk_widget_show (window->devtab_drive_generic_button);
+
+  update_generic_drive_bits (window, block, NULL, show_flags);
+
+  /* cleanup */
+  g_clear_object (&info);
+  g_free (device_desc);
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
 
 static UDisksObject *
 lookup_cleartext_device_for_crypto_device (UDisksClient  *client,
@@ -2097,19 +3147,22 @@ update_device_page_for_block (GduWindow          *window,
   const gchar *version;
   UDisksFilesystem *filesystem;
   UDisksPartition *partition;
-  UDisksLoop *loop;
+  UDisksPartitionTable *partition_table = NULL;
   gboolean read_only;
-  gchar *s;
+  gchar *s, *s2, *s3;
+  gchar *in_use_markup = NULL;
   UDisksObject *drive_object;
   UDisksDrive *drive = NULL;
-  GList *jobs;
+  GList *jobs = NULL;
+  gint64 unused_space = -1;
 
   read_only = udisks_block_get_read_only (block);
   partition = udisks_object_peek_partition (object);
   filesystem = udisks_object_peek_filesystem (object);
 
-  /* loop device of main block device (not partition) */
-  loop = udisks_object_peek_loop (window->current_object);
+  partition_table = udisks_object_get_partition_table (object);
+  if (partition_table == NULL && partition != NULL)
+    partition_table = udisks_client_get_partition_table (window->client, partition);
 
   drive_object = (UDisksObject *) g_dbus_object_manager_get_object (udisks_client_get_object_manager (window->client),
                                                                         udisks_block_get_drive (block));
@@ -2122,23 +3175,25 @@ update_device_page_for_block (GduWindow          *window,
   /* TODO: don't show on CD-ROM drives etc. */
   if (udisks_block_get_size (block) > 0 || (drive != NULL && !udisks_drive_get_media_change_detected (drive)))
     {
-      *show_flags |= SHOW_FLAGS_POPUP_MENU_CREATE_VOLUME_IMAGE;
-      *show_flags |= SHOW_FLAGS_POPUP_MENU_BENCHMARK;
-      *show_flags |= SHOW_FLAGS_DISK_POPUP_MENU_BENCHMARK;
-      *show_flags |= SHOW_FLAGS_DISK_POPUP_MENU_CREATE_DISK_IMAGE;
+      show_flags->volume_menu |= SHOW_FLAGS_VOLUME_MENU_CREATE_VOLUME_IMAGE;
+      show_flags->volume_menu |= SHOW_FLAGS_VOLUME_MENU_BENCHMARK;
+      show_flags->drive_menu |= SHOW_FLAGS_DRIVE_MENU_BENCHMARK;
+      show_flags->drive_menu |= SHOW_FLAGS_DRIVE_MENU_CREATE_DISK_IMAGE;
       if (!read_only)
-        *show_flags |= SHOW_FLAGS_DISK_POPUP_MENU_RESTORE_DISK_IMAGE;
+        show_flags->drive_menu |= SHOW_FLAGS_DRIVE_MENU_RESTORE_DISK_IMAGE;
       if (!read_only)
         {
-          *show_flags |= SHOW_FLAGS_POPUP_MENU_RESTORE_VOLUME_IMAGE;
+          show_flags->volume_menu |= SHOW_FLAGS_VOLUME_MENU_RESTORE_VOLUME_IMAGE;
           if (udisks_block_get_hint_partitionable (block))
-            *show_flags |= SHOW_FLAGS_DISK_POPUP_MENU_FORMAT_DISK;
-          *show_flags |= SHOW_FLAGS_POPUP_MENU_FORMAT_VOLUME;
+            show_flags->drive_menu |= SHOW_FLAGS_DRIVE_MENU_FORMAT_DISK;
+          show_flags->volume_menu |= SHOW_FLAGS_VOLUME_MENU_FORMAT_VOLUME;
         }
     }
 
+  unused_space = gdu_utils_get_unused_for_block (window->client, block);
+
   if (partition != NULL && !read_only)
-    *show_flags |= SHOW_FLAGS_PARTITION_DELETE_BUTTON;
+    show_flags->volume_buttons |= SHOW_FLAGS_VOLUME_BUTTONS_PARTITION_DELETE;
 
   /* Since /etc/fstab, /etc/crypttab and so on can reference
    * any device regardless of its content ... we want to show
@@ -2146,19 +3201,19 @@ update_device_page_for_block (GduWindow          *window,
    * if the device matches the configuration....
    */
   if (gdu_utils_has_configuration (block, "fstab", NULL))
-    *show_flags |= SHOW_FLAGS_POPUP_MENU_CONFIGURE_FSTAB;
+    show_flags->volume_menu |= SHOW_FLAGS_VOLUME_MENU_CONFIGURE_FSTAB;
   if (gdu_utils_has_configuration (block, "crypttab", NULL))
-    *show_flags |= SHOW_FLAGS_POPUP_MENU_CONFIGURE_CRYPTTAB;
+    show_flags->volume_menu |= SHOW_FLAGS_VOLUME_MENU_CONFIGURE_CRYPTTAB;
 
   /* if the device has no media and there is no existing configuration, then
    * show CONFIGURE_FSTAB since the user might want to add an entry for e.g.
    * /media/cdrom
    */
   if (udisks_block_get_size (block) == 0 &&
-      !(*show_flags & (SHOW_FLAGS_POPUP_MENU_CONFIGURE_FSTAB |
-                       SHOW_FLAGS_POPUP_MENU_CONFIGURE_CRYPTTAB)))
+      !(show_flags->volume_menu & (SHOW_FLAGS_VOLUME_MENU_CONFIGURE_FSTAB |
+                                   SHOW_FLAGS_VOLUME_MENU_CONFIGURE_CRYPTTAB)))
     {
-      *show_flags |= SHOW_FLAGS_POPUP_MENU_CONFIGURE_FSTAB;
+      show_flags->volume_menu |= SHOW_FLAGS_VOLUME_MENU_CONFIGURE_FSTAB;
     }
 
   //g_debug ("In update_device_page_for_block() - size=%" G_GUINT64_FORMAT " selected=%s",
@@ -2173,10 +3228,33 @@ update_device_page_for_block (GduWindow          *window,
   g_free (s);
   if (size > 0)
     {
-      set_size (window,
-                "devtab-size-label",
-                "devtab-size-value-label",
-                size, SET_MARKUP_FLAGS_HYPHEN_IF_EMPTY);
+      if (unused_space > 0)
+        {
+          s2 = udisks_client_get_size_for_display (window->client, unused_space, FALSE, FALSE);
+          s3 = udisks_client_get_size_for_display (window->client, size, FALSE, FALSE);
+          /* Translators: Shown in 'Size' field for a filesystem where we know the amount of unused
+           *              space.
+           *              The first %s is a short string with the size (e.g. '69 GB (68,719,476,736 bytes)').
+           *              The second %s is a short string with the space free (e.g. '43 GB').
+           *              The %f is the percentage in use (e.g. 62.2).
+           */
+          s = g_strdup_printf (_("%s — %s free (%.1f%% full)"), s3, s2,
+                               100.0 * (size - unused_space) / size);
+          g_free (s3);
+          g_free (s2);
+          set_markup (window,
+                      "devtab-size-label",
+                      "devtab-size-value-label",
+                      s, SET_MARKUP_FLAGS_NONE);
+          g_free (s);
+        }
+      else
+        {
+          set_size (window,
+                    "devtab-size-label",
+                    "devtab-size-value-label",
+                    size, SET_MARKUP_FLAGS_HYPHEN_IF_EMPTY);
+        }
     }
   else
     {
@@ -2198,40 +3276,138 @@ update_device_page_for_block (GduWindow          *window,
       g_free (s);
     }
 
-  if (loop != NULL)
-    {
-      s = gdu_utils_unfuse_path (udisks_loop_get_backing_file (loop));
-      set_markup (window,
-                  "devtab-backing-file-label",
-                  "devtab-backing-file-value-label",
-                  s, SET_MARKUP_FLAGS_NONE);
-      g_free (s);
-
-      set_switch (window,
-                  "devtab-loop-autoclear-label",
-                  "devtab-loop-autoclear-switch-box",
-                  "devtab-loop-autoclear-switch",
-                  udisks_loop_get_autoclear (loop));
-    }
+  /* ------------------------------ */
+  /* 'Contents' field */
 
   usage = udisks_block_get_id_usage (block);
   type = udisks_block_get_id_type (block);
   version = udisks_block_get_id_version (block);
 
+  /* Figure out in use */
+  in_use_markup = NULL;
+  if (filesystem != NULL)
+    {
+      const gchar *const *mount_points;
+      mount_points = udisks_filesystem_get_mount_points (filesystem);
+      if (g_strv_length ((gchar **) mount_points) > 0)
+        {
+          /* TODO: right now we only display the first mount point */
+          if (g_strcmp0 (mount_points[0], "/") == 0)
+            {
+              /* Translators: Use for mount point '/' simply because '/' is too small to hit as a hyperlink
+               */
+              s = g_strdup_printf ("<a href=\"file:///\">%s</a>", C_("volume-content-fs", "Filesystem Root"));
+            }
+          else
+            {
+              s = g_strdup_printf ("<a href=\"file://%s\">%s</a>",
+                                   mount_points[0], mount_points[0]);
+            }
+          /* Translators: Shown as in-use part of 'Contents'. The first %s is the mount point, e.g. /media/foobar */
+          in_use_markup = g_strdup_printf (C_("volume-content-fs", "Mounted at %s"), s);
+          g_free (s);
+        }
+      else
+        {
+          /* Translators: Shown when the device is not mounted next to the "In Use" label */
+          in_use_markup = g_strdup (C_("volume-content-fs", "Not Mounted"));
+        }
+
+      if (g_strv_length ((gchar **) mount_points) > 0)
+        show_flags->volume_buttons |= SHOW_FLAGS_VOLUME_BUTTONS_UNMOUNT;
+      else
+        show_flags->volume_buttons |= SHOW_FLAGS_VOLUME_BUTTONS_MOUNT;
+
+      show_flags->volume_menu |= SHOW_FLAGS_VOLUME_MENU_CONFIGURE_FSTAB;
+      if (!read_only)
+        show_flags->volume_menu |= SHOW_FLAGS_VOLUME_MENU_EDIT_LABEL;
+    }
+  else if (g_strcmp0 (udisks_block_get_id_usage (block), "other") == 0 &&
+           g_strcmp0 (udisks_block_get_id_type (block), "swap") == 0)
+    {
+      UDisksSwapspace *swapspace;
+      swapspace = udisks_object_peek_swapspace (object);
+      if (swapspace != NULL)
+        {
+          if (udisks_swapspace_get_active (swapspace))
+            {
+              show_flags->volume_buttons |= SHOW_FLAGS_VOLUME_BUTTONS_DEACTIVATE_SWAP;
+              /* Translators: Shown as in-use part of 'Contents' if the swap device is in use */
+              in_use_markup = g_strdup (C_("volume-content-swap", "Active"));
+            }
+          else
+            {
+              show_flags->volume_buttons |= SHOW_FLAGS_VOLUME_BUTTONS_ACTIVATE_SWAP;
+              /* Translators: Shown as in-use part of 'Contents' if the swap device is not in use */
+              in_use_markup = g_strdup (C_("volume-content-swap", "Not Active"));
+            }
+        }
+    }
+  else if (g_strcmp0 (udisks_block_get_id_usage (block), "crypto") == 0)
+    {
+      UDisksObject *cleartext_device;
+      cleartext_device = lookup_cleartext_device_for_crypto_device (window->client,
+                                                                    g_dbus_object_get_object_path (G_DBUS_OBJECT (object)));
+      if (cleartext_device != NULL)
+        {
+          show_flags->volume_buttons |= SHOW_FLAGS_VOLUME_BUTTONS_ENCRYPTED_LOCK;
+          /* Translators: Shown as in-use part of 'Contents' if the encrypted device is unlocked */
+          in_use_markup = g_strdup (C_("volume-content-luks", "Unlocked"));
+        }
+      else
+        {
+          show_flags->volume_buttons |= SHOW_FLAGS_VOLUME_BUTTONS_ENCRYPTED_UNLOCK;
+          /* Translators: Shown as in-use part of 'Contents' if the encrypted device is unlocked */
+          in_use_markup = g_strdup (C_("volume-content-luks", "Locked"));
+        }
+      show_flags->volume_menu |= SHOW_FLAGS_VOLUME_MENU_CONFIGURE_CRYPTTAB;
+      show_flags->volume_menu |= SHOW_FLAGS_VOLUME_MENU_CHANGE_PASSPHRASE;
+    }
+
   if (size > 0)
     {
       if (partition != NULL && udisks_partition_get_is_container (partition))
         {
-          s = g_strdup (_("Extended Partition"));
+          s = g_strdup (C_("volume-contents-msdos-ext", "Extended Partition"));
         }
       else
         {
           s = udisks_client_get_id_for_display (window->client, usage, type, version, TRUE);
+          if (g_strcmp0 (udisks_block_get_mdraid_member (block), "/") != 0)
+            {
+              s2 = g_strdup_printf ("<a href=\"x-udisks://%s\">%s</a>",
+                                    udisks_block_get_mdraid_member (block),
+                                    /* Translators: Shown as a hyperlink in the 'Contents' field for a member of an RAID Array */
+                                    C_("volume-contents-raid", "Go To Array"));
+              /* Translators: Shown in the 'Contents' field for a member of an RAID array.
+               *              The first %s is the usual contents string (e.g. "Linux RAID Member").
+               *              The second %s is the hyperlink "Go To Array".
+               */
+              s3 = g_strdup_printf (C_("volume-contents-raid", "%s — %s"), s, s2);
+              g_free (s); s = s3;
+            }
         }
     }
   else
     {
       s = NULL;
+    }
+
+  if (in_use_markup != NULL)
+    {
+      if (s != NULL)
+        {
+          /* Translators: Shown in 'Contents' field for a member that can be "mounted" (e.g. filesystem or swap area).
+           *              The first %s is the usual contents string e.g. "Swapspace" or "Ext4 (version 1.0)".
+           *              The second %s is either "Mounted at /path/to/fs", "Not Mounted, "Active", "Not Active", "Unlocked" or "Locked".
+           */
+          s2 = g_strdup_printf (C_("volume-contents-combiner", "%s — %s"), s, in_use_markup);
+          g_free (s); s = s2;
+        }
+      else
+        {
+          s = in_use_markup; in_use_markup = NULL;
+        }
     }
   set_markup (window,
               "devtab-volume-type-label",
@@ -2242,162 +3418,27 @@ update_device_page_for_block (GduWindow          *window,
   if (partition != NULL)
     {
       if (!read_only)
-        *show_flags |= SHOW_FLAGS_POPUP_MENU_EDIT_PARTITION;
+        show_flags->volume_menu |= SHOW_FLAGS_VOLUME_MENU_EDIT_PARTITION;
     }
   else
     {
-      if (drive != NULL && udisks_drive_get_ejectable (drive))
-        *show_flags |= SHOW_FLAGS_EJECT_BUTTON;
+      if (drive != NULL && udisks_drive_get_ejectable (drive) && udisks_drive_get_media_removable (drive))
+        show_flags->drive_buttons |= SHOW_FLAGS_DRIVE_BUTTONS_EJECT;
     }
 
-  if (filesystem != NULL)
+  /* Only show jobs if the volume is a partition (if it's not, we're already showing
+   * the jobs in the drive section)
+   */
+  if (partition != NULL)
     {
-      const gchar *const *mount_points;
-      gchar *mount_point;
-
-      mount_points = udisks_filesystem_get_mount_points (filesystem);
-      if (g_strv_length ((gchar **) mount_points) > 0)
-        {
-          /* TODO: right now we only display the first mount point */
-          if (g_strcmp0 (mount_points[0], "/") == 0)
-            {
-              /* Translators: Use for mount point '/' simply because '/' is too small to hit as a hyperlink
-               */
-              s = g_strdup_printf ("<a href=\"file:///\">%s</a>", _("Filesystem Root"));
-            }
-          else
-            {
-              s = g_strdup_printf ("<a href=\"file://%s\">%s</a>",
-                                   mount_points[0], mount_points[0]);
-            }
-          /* Translators: Shown next to "In Use". The first %s is the mount point, e.g. /media/foobar */
-          mount_point = g_strdup_printf (_("Yes, mounted at %s"), s);
-          g_free (s);
-        }
-      else
-        {
-          /* Translators: Shown when the device is not mounted next to the "In Use" label */
-          mount_point = g_strdup (_("No"));
-        }
-      set_markup (window,
-                  "devtab-volume-in-use-label",
-                  "devtab-volume-in-use-value-label",
-                  mount_point,
-                  SET_MARKUP_FLAGS_NONE);
-      g_free (mount_point);
-
-      if (g_strv_length ((gchar **) mount_points) > 0)
-        *show_flags |= SHOW_FLAGS_UNMOUNT_BUTTON;
-      else
-        *show_flags |= SHOW_FLAGS_MOUNT_BUTTON;
-
-      *show_flags |= SHOW_FLAGS_POPUP_MENU_CONFIGURE_FSTAB;
-      if (!read_only)
-        *show_flags |= SHOW_FLAGS_POPUP_MENU_EDIT_LABEL;
+      jobs = udisks_client_get_jobs_for_object (window->client, object);
+      jobs = g_list_concat (jobs, gdu_application_get_local_jobs_for_object (window->application, object));
     }
-  else if (g_strcmp0 (udisks_block_get_id_usage (block), "other") == 0 &&
-           g_strcmp0 (udisks_block_get_id_type (block), "swap") == 0)
-    {
-      UDisksSwapspace *swapspace;
-      const gchar *str;
-      swapspace = udisks_object_peek_swapspace (object);
-      if (swapspace != NULL)
-        {
-          if (udisks_swapspace_get_active (swapspace))
-            {
-              *show_flags |= SHOW_FLAGS_DEACTIVATE_SWAP_BUTTON;
-              /* Translators: Shown if the swap device is in use next to the "In Use" label */
-              str = _("Yes");
-            }
-          else
-            {
-              *show_flags |= SHOW_FLAGS_ACTIVATE_SWAP_BUTTON;
-              /* Translators: Shown if the swap device is not in use next to the "In Use" label */
-              str = _("No");
-            }
-          set_markup (window,
-                      "devtab-volume-in-use-label",
-                      "devtab-volume-in-use-value-label",
-                      str,
-                      SET_MARKUP_FLAGS_NONE);
-        }
-    }
-  else if (g_strcmp0 (udisks_block_get_id_usage (block), "crypto") == 0)
-    {
-      UDisksObject *cleartext_device;
-      const gchar *str;
-
-      cleartext_device = lookup_cleartext_device_for_crypto_device (window->client,
-                                                                    g_dbus_object_get_object_path (G_DBUS_OBJECT (object)));
-      if (cleartext_device != NULL)
-        {
-          *show_flags |= SHOW_FLAGS_ENCRYPTED_LOCK_BUTTON;
-          /* Translators: Shown if the encrypted device is unlocked next to the "In Use" label */
-          str = _("Yes");
-        }
-      else
-        {
-          *show_flags |= SHOW_FLAGS_ENCRYPTED_UNLOCK_BUTTON;
-          /* Translators: Shown if the encrypted device is not unlocked next to the "In Use" label */
-          str = _("No");
-        }
-      set_markup (window,
-                  "devtab-volume-in-use-label",
-                  "devtab-volume-in-use-value-label",
-                  str,
-                  SET_MARKUP_FLAGS_NONE);
-
-      *show_flags |= SHOW_FLAGS_POPUP_MENU_CONFIGURE_CRYPTTAB;
-      *show_flags |= SHOW_FLAGS_POPUP_MENU_CHANGE_PASSPHRASE;
-    }
-
-
-  jobs = udisks_client_get_jobs_for_object (window->client, object);
-  if (jobs == NULL)
-    {
-      gtk_widget_hide (window->devtab_job_label);
-      gtk_widget_hide (window->devtab_job_grid);
-    }
-  else
-    {
-      UDisksJob *job = UDISKS_JOB (jobs->data);
-
-      gtk_widget_show (window->devtab_job_label);
-      gtk_widget_show (window->devtab_job_grid);
-      if (udisks_job_get_progress_valid (job))
-        {
-          gdouble progress = udisks_job_get_progress (job);
-          gtk_widget_show (window->devtab_job_progressbar);
-          gtk_widget_show (window->devtab_job_remaining_label);
-          gtk_widget_hide (window->devtab_job_no_progress_label);
-
-          gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (window->devtab_job_progressbar), progress);
-
-          s = g_strdup_printf ("%2.1f%%", 100.0 * progress);
-          gtk_progress_bar_set_show_text (GTK_PROGRESS_BAR (window->devtab_job_progressbar), TRUE);
-          gtk_progress_bar_set_text (GTK_PROGRESS_BAR (window->devtab_job_progressbar), s);
-          g_free (s);
-
-          s = get_job_progress_text (window, job);
-          gtk_label_set_markup (GTK_LABEL (window->devtab_job_remaining_label), s);
-          g_free (s);
-        }
-      else
-        {
-          gtk_widget_hide (window->devtab_job_progressbar);
-          gtk_widget_hide (window->devtab_job_remaining_label);
-          gtk_widget_show (window->devtab_job_no_progress_label);
-          s = udisks_client_get_job_description (window->client, job);
-          gtk_label_set_text (GTK_LABEL (window->devtab_job_no_progress_label), s);
-          g_free (s);
-        }
-      if (udisks_job_get_cancelable (job))
-        gtk_widget_show (window->devtab_job_cancel_button);
-      else
-        gtk_widget_hide (window->devtab_job_cancel_button);
-    }
+  update_volume_jobs (window, jobs);
   g_list_foreach (jobs, (GFunc) g_object_unref, NULL);
   g_list_free (jobs);
+  g_clear_object (&partition_table);
+  g_free (in_use_markup);
 }
 
 static void
@@ -2419,8 +3460,6 @@ update_device_page_for_free_space (GduWindow          *window,
 {
   gchar *s;
   UDisksLoop *loop;
-  UDisksPartitionTable *table;
-  const gchar *table_type = NULL;
   gboolean read_only;
 
   //g_debug ("In update_device_page_for_free_space() - size=%" G_GUINT64_FORMAT " selected=%s",
@@ -2430,12 +3469,12 @@ update_device_page_for_free_space (GduWindow          *window,
   read_only = udisks_block_get_read_only (block);
   loop = udisks_object_peek_loop (window->current_object);
 
-  *show_flags |= SHOW_FLAGS_DISK_POPUP_MENU_BENCHMARK;
+  show_flags->drive_menu |= SHOW_FLAGS_DRIVE_MENU_BENCHMARK;
   if (!read_only)
     {
-      *show_flags |= SHOW_FLAGS_DISK_POPUP_MENU_FORMAT_DISK;
-      *show_flags |= SHOW_FLAGS_DISK_POPUP_MENU_CREATE_DISK_IMAGE;
-      *show_flags |= SHOW_FLAGS_DISK_POPUP_MENU_RESTORE_DISK_IMAGE;
+      show_flags->drive_menu |= SHOW_FLAGS_DRIVE_MENU_FORMAT_DISK;
+      show_flags->drive_menu |= SHOW_FLAGS_DRIVE_MENU_CREATE_DISK_IMAGE;
+      show_flags->drive_menu |= SHOW_FLAGS_DRIVE_MENU_RESTORE_DISK_IMAGE;
     }
 
   if (loop != NULL)
@@ -2454,27 +3493,6 @@ update_device_page_for_free_space (GduWindow          *window,
                   udisks_loop_get_autoclear (loop));
     }
 
-  table = udisks_object_peek_partition_table (object);
-  if (table != NULL)
-    table_type = udisks_partition_table_get_type_ (table);
-
-  if (table_type != NULL)
-    {
-      const gchar *table_type_for_display;
-      table_type_for_display = udisks_client_get_partition_table_type_for_display (window->client, table_type);
-      if (table_type_for_display == NULL)
-        table_type_for_display = table_type;
-      /* Translators: used to convey free space for partitions - the %s is the
-       * partition table format e.g. "Master Boot Record" or "GUID Partition Table"
-       */
-      s = g_strdup_printf (_("Unallocated Space (%s)"), table_type_for_display);
-    }
-  else
-    {
-      /* Translators: used to convey free space for partitions (partition table format not known) */
-      s = g_strdup (_("Unallocated Space"));
-    }
-
   set_size (window,
             "devtab-size-label",
             "devtab-size-value-label",
@@ -2482,11 +3500,11 @@ update_device_page_for_free_space (GduWindow          *window,
   set_markup (window,
               "devtab-volume-type-label",
               "devtab-volume-type-value-label",
-              s,
+              /* Translators: used to convey free space for partitions */
+              _("Unallocated Space"),
               SET_MARKUP_FLAGS_NONE);
   if (!read_only)
-    *show_flags |= SHOW_FLAGS_PARTITION_CREATE_BUTTON;
-  g_free (s);
+    show_flags->volume_buttons |= SHOW_FLAGS_VOLUME_BUTTONS_PARTITION_CREATE;
 
   s = get_device_file_for_display (block);
   set_markup (window,
@@ -2494,6 +3512,76 @@ update_device_page_for_free_space (GduWindow          *window,
               "devtab-device-value-label",
               s, SET_MARKUP_FLAGS_NONE);
   g_free (s);
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+static void
+device_page_ensure_grid (GduWindow *window)
+{
+  UDisksDrive *drive;
+  UDisksMDRaid *mdraid;
+  UDisksBlock *block;
+
+  drive = udisks_object_peek_drive (window->current_object);
+  mdraid = udisks_object_peek_mdraid (window->current_object);
+  block = udisks_object_peek_block (window->current_object);
+
+  if (drive != NULL)
+    {
+      GList *blocks;
+
+      /* TODO: for multipath, ensure e.g. mpathk is before sda, sdb */
+      blocks = get_top_level_blocks_for_drive (window, g_dbus_object_get_object_path (G_DBUS_OBJECT (window->current_object)));
+      blocks = g_list_sort (blocks, (GCompareFunc) block_compare_on_preferred);
+
+      if (blocks != NULL)
+        gdu_volume_grid_set_block_object (GDU_VOLUME_GRID (window->volume_grid), blocks->data);
+      else
+        gdu_volume_grid_set_block_object (GDU_VOLUME_GRID (window->volume_grid), NULL);
+
+      g_list_foreach (blocks, (GFunc) g_object_unref, NULL);
+      g_list_free (blocks);
+    }
+  else if (mdraid != NULL)
+    {
+      /* happens in update_device_page_for_mdraid as the /dev/md* device can come and go */
+    }
+  else if (block != NULL)
+    {
+      gdu_volume_grid_set_block_object (GDU_VOLUME_GRID (window->volume_grid), window->current_object);
+    }
+  else
+    {
+      g_assert_not_reached ();
+    }
+}
+
+static void
+maybe_hide (GtkWidget *widget,
+            gpointer   user_data)
+{
+  GduWindow *window = GDU_WINDOW (user_data);
+
+  /* Don't hide drive box since visibility of its children (buttons)
+   * are controlled in update_for_show_flags() - hiding it here only
+   * to show it later may cause focus problems so the buttons can't
+   * be clicked if the window is continously updated (say, a job is
+   * running).
+   *
+   * Same for the grid containing the job widgets. Their visibility is
+   * manually controlled in update_jobs().
+   */
+  if (widget == window->devtab_drive_box ||
+      widget == window->devtab_drive_job_grid ||
+      widget == window->devtab_job_grid)
+    {
+      /* do nothing */
+    }
+  else
+    {
+      gtk_widget_hide (widget);
+    }
 }
 
 static void
@@ -2504,17 +3592,35 @@ update_device_page (GduWindow      *window,
   GduVolumeGridElementType type;
   UDisksBlock *block;
   UDisksDrive *drive;
+  UDisksMDRaid *mdraid;
+  UDisksLoop *loop = NULL;
   guint64 size;
-  GList *children;
-  GList *l;
 
-  /* first hide everything */
-  gtk_container_foreach (GTK_CONTAINER (window->devtab_drive_table), (GtkCallback) gtk_widget_hide, NULL);
-  gtk_container_foreach (GTK_CONTAINER (window->devtab_table), (GtkCallback) gtk_widget_hide, NULL);
-  children = gtk_action_group_list_actions (GTK_ACTION_GROUP (gtk_builder_get_object (window->builder, "devtab-actions")));
-  for (l = children; l != NULL; l = l->next)
-    gtk_action_set_visible (GTK_ACTION (l->data), FALSE);
-  g_list_free (children);
+  /* First hide everything
+   *
+   * (TODO: this is wrong as hiding a widget only to show it again, is
+   * a cause for bad focus problems in GTK+)
+   */
+  gtk_container_foreach (GTK_CONTAINER (window->devtab_drive_table), maybe_hide, window);
+  gtk_container_foreach (GTK_CONTAINER (window->devtab_table), maybe_hide, window);
+
+  /* Hide all Drive-specific menu items - will be turned on again in update_device_page_for_drive() */
+  gtk_widget_hide (GTK_WIDGET (window->generic_drive_menu_item_drive_sep_1));
+  gtk_widget_hide (GTK_WIDGET (window->generic_drive_menu_item_view_smart));
+  gtk_widget_hide (GTK_WIDGET (window->generic_drive_menu_item_disk_settings));
+  gtk_widget_hide (GTK_WIDGET (window->generic_drive_menu_item_drive_sep_2));
+  gtk_widget_hide (GTK_WIDGET (window->generic_drive_menu_item_standby_now));
+  gtk_widget_hide (GTK_WIDGET (window->generic_drive_menu_item_resume_now));
+  gtk_widget_hide (GTK_WIDGET (window->generic_drive_menu_item_power_off));
+
+  /* Hide all MDRaid-specific menu items - will be turned on again in update_device_page_for_mdraid() */
+  gtk_widget_hide (GTK_WIDGET (window->generic_drive_menu_item_mdraid_sep_1));
+  gtk_widget_hide (GTK_WIDGET (window->generic_drive_menu_item_mdraid_disks));
+  gtk_widget_hide (GTK_WIDGET (window->generic_drive_menu_item_mdraid_start_data_scrubbing));
+  gtk_widget_hide (GTK_WIDGET (window->generic_drive_menu_item_mdraid_stop_data_scrubbing));
+
+  /* ensure grid is set to the right volumes */
+  device_page_ensure_grid (window);
 
   /* always show the generic toolbar item */
   gtk_action_set_visible (GTK_ACTION (gtk_builder_get_object (window->builder,
@@ -2522,16 +3628,26 @@ update_device_page (GduWindow      *window,
 
 
   object = window->current_object;
-  drive = udisks_object_peek_drive (window->current_object);
   block = udisks_object_peek_block (window->current_object);
-  type = gdu_volume_grid_get_selected_type (GDU_VOLUME_GRID (window->volume_grid));
-  size = gdu_volume_grid_get_selected_size (GDU_VOLUME_GRID (window->volume_grid));
+  drive = udisks_object_peek_drive (window->current_object);
+  mdraid = udisks_object_peek_mdraid (window->current_object);
+  if (block != NULL)
+    loop = udisks_client_get_loop_for_block (window->client, block);
 
   if (udisks_object_peek_loop (object) != NULL)
-    *show_flags |= SHOW_FLAGS_DETACH_DISK_IMAGE;
+    show_flags->drive_buttons |= SHOW_FLAGS_DRIVE_BUTTONS_LOOP_DETACH;
 
   if (drive != NULL)
     update_device_page_for_drive (window, object, drive, show_flags);
+  else if (mdraid != NULL)
+    update_device_page_for_mdraid (window, object, mdraid, show_flags);
+  else if (loop != NULL)
+    update_device_page_for_loop (window, object, block, loop, show_flags);
+  else
+    update_device_page_for_fake_block (window, object, block, show_flags);
+
+  type = gdu_volume_grid_get_selected_type (GDU_VOLUME_GRID (window->volume_grid));
+  size = gdu_volume_grid_get_selected_size (GDU_VOLUME_GRID (window->volume_grid));
 
   if (type == GDU_VOLUME_GRID_ELEMENT_TYPE_CONTAINER)
     {
@@ -2567,12 +3683,8 @@ update_device_page (GduWindow      *window,
             }
         }
     }
-}
 
-static void
-teardown_device_page (GduWindow *window)
-{
-  gdu_volume_grid_set_block_object (GDU_VOLUME_GRID (window->volume_grid), NULL);
+  g_clear_object (&loop);
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -2745,6 +3857,86 @@ on_generic_drive_menu_item_disk_settings (GtkMenuItem *menu_item,
   gdu_disk_settings_dialog_show (window, window->current_object);
 }
 
+static void
+on_generic_drive_menu_item_mdraid_disks (GtkMenuItem *menu_item,
+                                         gpointer     user_data)
+{
+  GduWindow *window = GDU_WINDOW (user_data);
+  gdu_mdraid_disks_dialog_show (window, window->current_object);
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+static void
+request_sync_action_cb (GObject      *source_object,
+                        GAsyncResult *res,
+                        gpointer      user_data)
+{
+  GduWindow *window = GDU_WINDOW (user_data);
+  GError *error = NULL;
+
+  if (!udisks_mdraid_call_request_sync_action_finish (UDISKS_MDRAID (source_object),
+                                                      res,
+                                                      &error))
+    {
+      gdu_utils_show_error (GTK_WINDOW (window),
+                            _("An error occurred when requesting data redundancy check"),
+                            error);
+      g_clear_error (&error);
+    }
+  g_object_unref (window);
+}
+
+static void
+on_generic_drive_menu_item_mdraid_start_data_scrubbing (GtkMenuItem *menu_item,
+                                                        gpointer     user_data)
+{
+  GduWindow *window = GDU_WINDOW (user_data);
+  UDisksMDRaid *mdraid = udisks_object_peek_mdraid (window->current_object);
+  const gchar *heading;
+  const gchar *message;
+  gboolean opt_repair = TRUE;
+
+  /* Translators: Heading for data scrubbing dialog */
+  heading = C_("mdraid-scrub-dialog", "Data Scrubbing");
+  /* Translators: Message for data scrubbing dialog */
+  message = C_("mdraid-scrub-dialog", "As storage devices can develop bad blocks at any time it is valuable to regularly read all blocks on all disks in a RAID array so as to catch such bad blocks early.\n\nThe RAID array will remain operational for the duration of the operation but performance will be impacted. For more information about data scrubbing, see the <a href='https://raid.wiki.kernel.org/index.php/RAID_Administration'>RAID Administration</a> article.");
+
+  if (!gdu_utils_show_confirmation (GTK_WINDOW (window),
+                                    heading,
+                                    message,
+                                    C_("mdraid-scrub-dialog", "_Start"),
+                                    C_("mdraid-scrub-dialog", "_Repair mismatched blocks, if possible"),
+                                    &opt_repair,
+                                    window->client, NULL))
+    goto out;
+
+  udisks_mdraid_call_request_sync_action (mdraid,
+                                          opt_repair ? "repair" : "check",
+                                          g_variant_new ("a{sv}", NULL), /* options */
+                                          NULL, /* cancellable */
+                                          (GAsyncReadyCallback) request_sync_action_cb,
+                                          g_object_ref (window));
+
+ out:
+  ;
+}
+
+static void
+on_generic_drive_menu_item_mdraid_stop_data_scrubbing (GtkMenuItem *menu_item,
+                                                       gpointer     user_data)
+{
+  GduWindow *window = GDU_WINDOW (user_data);
+  UDisksMDRaid *mdraid = udisks_object_peek_mdraid (window->current_object);
+
+  udisks_mdraid_call_request_sync_action (mdraid,
+                                          "idle",
+                                          g_variant_new ("a{sv}", NULL), /* options */
+                                          NULL, /* cancellable */
+                                          (GAsyncReadyCallback) request_sync_action_cb,
+                                          g_object_ref (window));
+}
+
 /* ---------------------------------------------------------------------------------------------------- */
 
 static void
@@ -2835,6 +4027,111 @@ on_generic_drive_menu_item_resume_now (GtkMenuItem *menu_item,
     {
       g_warning ("object is not an ATA drive");
     }
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+static void
+power_off_cb (GObject      *source_object,
+              GAsyncResult *res,
+              gpointer      user_data)
+{
+  GduWindow *window = GDU_WINDOW (user_data);
+  GError *error = NULL;
+
+  if (!udisks_drive_call_power_off_finish (UDISKS_DRIVE (source_object),
+                                           res,
+                                           &error))
+    {
+      gdu_utils_show_error (GTK_WINDOW (window),
+                            _("Error powering off drive"),
+                            error);
+      g_clear_error (&error);
+    }
+  g_object_unref (window);
+}
+
+static void
+power_off_ensure_unused_cb (GduWindow     *window,
+                            GAsyncResult  *res,
+                            gpointer       user_data)
+{
+  UDisksObject *object = UDISKS_OBJECT (user_data);
+  if (gdu_window_ensure_unused_finish (window, res, NULL))
+    {
+      UDisksDrive *drive = udisks_object_peek_drive (object);
+      udisks_drive_call_power_off (drive,
+                                   g_variant_new ("a{sv}", NULL), /* options */
+                                   NULL, /* GCancellable */
+                                   (GAsyncReadyCallback) power_off_cb,
+                                   g_object_ref (window));
+    }
+  g_object_unref (object);
+}
+
+static void
+do_power_off (GduWindow *window)
+{
+  UDisksObject *object;
+  GList *objects = NULL;
+  GList *siblings, *l;
+  UDisksDrive *drive;
+  const gchar *heading;
+  const gchar *message;
+
+  object = window->current_object;
+  drive = udisks_object_peek_drive (object);
+  objects = g_list_append (NULL, object);
+
+  /* include other drives this will affect */
+  siblings = udisks_client_get_drive_siblings (window->client, drive);
+  for (l = siblings; l != NULL; l = l->next)
+    {
+      UDisksDrive *sibling = UDISKS_DRIVE (l->data);
+      UDisksObject *sibling_object = (UDisksObject *) g_dbus_interface_get_object (G_DBUS_INTERFACE (sibling));
+      if (sibling_object != NULL)
+        objects = g_list_append (objects, sibling_object);
+    }
+
+  if (siblings != NULL)
+    {
+      /* Translators: Heading for powering off a device with multiple drives */
+      heading = _("Are you sure you want to power off the drives?");
+      /* Translators: Message for powering off a device with multiple drives */
+      message = _("This operation will prepare the system for the following drives to be powered down and removed.");
+      if (!gdu_utils_show_confirmation (GTK_WINDOW (window),
+                                        heading,
+                                        message,
+                                        _("_Power Off"),
+                                        NULL, NULL,
+                                        window->client, objects))
+        goto out;
+    }
+
+  gdu_window_ensure_unused_list (window,
+                                 objects,
+                                 (GAsyncReadyCallback) power_off_ensure_unused_cb,
+                                 NULL, /* GCancellable */
+                                 g_object_ref (object));
+ out:
+  g_list_free_full (siblings, g_object_unref);
+  g_list_free (objects);
+}
+
+static void
+on_generic_drive_menu_item_power_off (GtkMenuItem *menu_item,
+                                      gpointer     user_data)
+{
+  GduWindow *window = GDU_WINDOW (user_data);
+  do_power_off (window);
+}
+
+static void
+on_devtab_drive_action_power_off_activated (GtkAction *action,
+                                            gpointer   user_data)
+{
+  GduWindow *window = GDU_WINDOW (user_data);
+  do_power_off (window);
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -2949,25 +4246,89 @@ on_devtab_action_unmount_activated (GtkAction *action,
 /* ---------------------------------------------------------------------------------------------------- */
 
 static void
+generic_menu_position_func (GtkMenu       *menu,
+                            gint          *x,
+                            gint          *y,
+                            gboolean      *push_in,
+                            gpointer       user_data)
+{
+  GtkWidget *align_widget = GTK_WIDGET (user_data);
+  GtkRequisition menu_req;
+  GtkTextDirection direction;
+  GdkRectangle monitor;
+  gint monitor_num;
+  GdkScreen *screen;
+  GdkWindow *gdk_window;
+  GtkAllocation allocation, arrow_allocation;
+  GtkAlign align;
+  GtkWidget *toplevel;
+
+  align = gtk_widget_get_halign (GTK_WIDGET (menu));
+  direction = gtk_widget_get_direction (align_widget);
+  gdk_window = gtk_widget_get_window (align_widget);
+
+  gtk_widget_get_preferred_size (GTK_WIDGET (menu),
+                                 &menu_req,
+                                 NULL);
+
+  toplevel = gtk_widget_get_toplevel (GTK_WIDGET (menu));
+  gtk_window_set_type_hint (GTK_WINDOW (toplevel), GDK_WINDOW_TYPE_HINT_DROPDOWN_MENU);
+
+  screen = gtk_widget_get_screen (GTK_WIDGET (menu));
+  monitor_num = gdk_screen_get_monitor_at_window (screen, gdk_window);
+  if (monitor_num < 0)
+    monitor_num = 0;
+  gdk_screen_get_monitor_workarea (screen, monitor_num, &monitor);
+
+  gtk_widget_get_allocation (align_widget, &allocation);
+  gtk_widget_get_allocation (align_widget, &arrow_allocation);
+
+  gdk_window_get_origin (gdk_window, x, y);
+  *x += allocation.x;
+  *y += allocation.y;
+
+  /* treat the default align value like START */
+  if (align == GTK_ALIGN_FILL)
+    align = GTK_ALIGN_START;
+
+  if (align == GTK_ALIGN_CENTER)
+    *x -= (menu_req.width - allocation.width) / 2;
+  else if ((align == GTK_ALIGN_START && direction == GTK_TEXT_DIR_LTR) ||
+           (align == GTK_ALIGN_END && direction == GTK_TEXT_DIR_RTL))
+    *x += MAX (allocation.width - menu_req.width, 0);
+  else if (menu_req.width > allocation.width)
+    *x -= menu_req.width - allocation.width;
+
+  if ((*y + arrow_allocation.height + menu_req.height) <= monitor.y + monitor.height)
+    *y += arrow_allocation.height;
+  else if ((*y - menu_req.height) >= monitor.y)
+    *y -= menu_req.height;
+  else if (monitor.y + monitor.height - (*y + arrow_allocation.height) > *y)
+    *y += arrow_allocation.height;
+  else
+    *y -= menu_req.height;
+
+  *push_in = FALSE;
+}
+
+static void
 on_devtab_action_generic_activated (GtkAction *action,
                                     gpointer   user_data)
 {
   GduWindow *window = GDU_WINDOW (user_data);
-  update_all (window);
-  gtk_menu_popup (GTK_MENU (window->generic_menu),
-                  NULL, NULL, NULL, NULL, 1, gtk_get_current_event_time ());
-}
+  GdkEventButton *event = NULL;
 
-/* ---------------------------------------------------------------------------------------------------- */
-
-static void
-on_devtab_action_generic_drive_activated (GtkAction *action,
-                                          gpointer   user_data)
-{
-  GduWindow *window = GDU_WINDOW (user_data);
   update_all (window);
-  gtk_menu_popup (GTK_MENU (window->generic_drive_menu),
-                  NULL, NULL, NULL, NULL, 1, gtk_get_current_event_time ());
+
+  gtk_menu_popup_for_device (GTK_MENU (window->generic_menu),
+                             event != NULL ? event->device : NULL,
+                             NULL, /* parent_menu_shell */
+                             NULL, /* parent_menu_item */
+                             generic_menu_position_func,
+                             window->toolbutton_generic_menu,
+                             NULL, /* user_data GDestroyNotify */
+                             event != NULL ? event->button : 0,
+                             event != NULL ? event->time : gtk_get_current_event_time ());
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -3011,29 +4372,51 @@ partition_delete_cb (UDisksPartition *partition,
 }
 
 static void
+partition_delete_ensure_unused_cb (GduWindow     *window,
+                                   GAsyncResult  *res,
+                                   gpointer       user_data)
+{
+  UDisksObject *object = UDISKS_OBJECT (user_data);
+  if (gdu_window_ensure_unused_finish (window, res, NULL))
+    {
+      UDisksPartition *partition;
+      partition = udisks_object_peek_partition (object);
+      udisks_partition_call_delete (partition,
+                                    g_variant_new ("a{sv}", NULL), /* options */
+                                    NULL, /* cancellable */
+                                    (GAsyncReadyCallback) partition_delete_cb,
+                                    g_object_ref (window));
+
+    }
+  g_object_unref (object);
+}
+
+static void
 on_devtab_action_partition_delete_activated (GtkAction *action,
                                              gpointer   user_data)
 {
   GduWindow *window = GDU_WINDOW (user_data);
   UDisksObject *object;
-  UDisksPartition *partition;
+  GList *objects = NULL;
 
+  object = gdu_volume_grid_get_selected_device (GDU_VOLUME_GRID (window->volume_grid));
+  objects = g_list_append (NULL, object);
   if (!gdu_utils_show_confirmation (GTK_WINDOW (window),
                                     _("Are you sure you want to delete the partition?"),
                                     _("All data on the partition will be lost"),
-                                    _("_Delete")))
+                                    _("_Delete"),
+                                    NULL, NULL,
+                                    window->client, objects))
     goto out;
 
-  object = gdu_volume_grid_get_selected_device (GDU_VOLUME_GRID (window->volume_grid));
-  partition = udisks_object_peek_partition (object);
-  udisks_partition_call_delete (partition,
-                                g_variant_new ("a{sv}", NULL), /* options */
-                                NULL, /* cancellable */
-                                (GAsyncReadyCallback) partition_delete_cb,
-                                g_object_ref (window));
+  gdu_window_ensure_unused (window,
+                            object,
+                            (GAsyncReadyCallback) partition_delete_ensure_unused_cb,
+                            NULL, /* GCancellable */
+                            g_object_ref (object));
 
  out:
-  ;
+  g_list_free (objects);
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -3059,19 +4442,153 @@ eject_cb (UDisksDrive  *drive,
   g_object_unref (window);
 }
 
+
 static void
-on_devtab_action_eject_activated (GtkAction *action,
-                                  gpointer   user_data)
+eject_ensure_unused_cb (GduWindow     *window,
+                        GAsyncResult  *res,
+                        gpointer       user_data)
+{
+  UDisksObject *object = UDISKS_OBJECT (user_data);
+  if (gdu_window_ensure_unused_finish (window, res, NULL))
+    {
+      UDisksDrive *drive = udisks_object_peek_drive (object);
+      udisks_drive_call_eject (drive,
+                               g_variant_new ("a{sv}", NULL), /* options */
+                               NULL, /* cancellable */
+                               (GAsyncReadyCallback) eject_cb,
+                               g_object_ref (window));
+    }
+  g_object_unref (object);
+}
+
+static void
+on_devtab_drive_action_eject_activated (GtkAction *action,
+                                        gpointer   user_data)
 {
   GduWindow *window = GDU_WINDOW (user_data);
-  UDisksDrive *drive;
+  gdu_window_ensure_unused (window,
+                            window->current_object,
+                            (GAsyncReadyCallback) eject_ensure_unused_cb,
+                            NULL, /* GCancellable */
+                            g_object_ref (window->current_object));
+}
 
-  drive = udisks_object_peek_drive (window->current_object);
-  udisks_drive_call_eject (drive,
-                           g_variant_new ("a{sv}", NULL), /* options */
-                           NULL, /* cancellable */
-                           (GAsyncReadyCallback) eject_cb,
-                           g_object_ref (window));
+/* ---------------------------------------------------------------------------------------------------- */
+
+static void
+mdraid_start_cb (UDisksMDRaid  *mdraid,
+                 GAsyncResult  *res,
+                 gpointer       user_data)
+{
+  GduWindow *window = GDU_WINDOW (user_data);
+  GError *error;
+
+  error = NULL;
+  if (!udisks_mdraid_call_start_finish (mdraid,
+                                        res,
+                                        &error))
+    {
+      /* TODO: When udisks has a suitable error code - for example MDRAID_CAN_NOT_START_NORMALLY - and
+       * this is returned, put up a dialog with a --force and --run check-boxes.
+       */
+      gdu_utils_show_error (GTK_WINDOW (window),
+                            _("Error starting RAID array"),
+                            error);
+      g_error_free (error);
+    }
+  g_object_unref (window);
+}
+
+static void
+on_devtab_drive_action_raid_start_activated (GtkAction *action,
+                                             gpointer   user_data)
+{
+  GduWindow *window = GDU_WINDOW (user_data);
+  GVariantBuilder options_builder;
+  UDisksMDRaid *mdraid;
+
+  mdraid = udisks_object_peek_mdraid (window->current_object);
+  g_variant_builder_init (&options_builder, G_VARIANT_TYPE_VARDICT);
+
+  /* g_variant_builder_add (&options_builder, "{sv}", "start-degraded", g_variant_new_boolean (TRUE)); */
+  udisks_mdraid_call_start (mdraid,
+                            g_variant_builder_end (&options_builder),
+                            NULL, /* cancellable */
+                            (GAsyncReadyCallback) mdraid_start_cb,
+                            g_object_ref (window));
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+static void
+mdraid_stop_cb (UDisksMDRaid  *mdraid,
+                GAsyncResult  *res,
+                gpointer       user_data)
+{
+  GduWindow *window = GDU_WINDOW (user_data);
+  GError *error;
+
+  error = NULL;
+  if (!udisks_mdraid_call_stop_finish (mdraid,
+                                        res,
+                                        &error))
+    {
+      gdu_utils_show_error (GTK_WINDOW (window),
+                            _("Error stopping RAID array"),
+                            error);
+      g_error_free (error);
+    }
+  g_object_unref (window);
+}
+
+static void
+raid_stop_ensure_unused_cb (GduWindow     *window,
+                            GAsyncResult  *res,
+                            gpointer       user_data)
+{
+  UDisksObject *object = UDISKS_OBJECT (user_data);
+  if (gdu_window_ensure_unused_finish (window, res, NULL))
+    {
+      udisks_mdraid_call_stop (udisks_object_peek_mdraid (object),
+                               g_variant_new ("a{sv}", NULL), /* options */
+                               NULL, /* cancellable */
+                               (GAsyncReadyCallback) mdraid_stop_cb,
+                               g_object_ref (window));
+    }
+  g_object_unref (object);
+}
+
+static void
+on_devtab_drive_action_raid_stop_activated (GtkAction *action,
+                                            gpointer   user_data)
+{
+  GduWindow *window = GDU_WINDOW (user_data);
+  UDisksMDRaid *mdraid = NULL;
+  UDisksBlock *block_for_mdraid = NULL;
+
+  mdraid = udisks_object_get_mdraid (window->current_object);
+  if (mdraid == NULL)
+    {
+      g_warning ("No MDRaid interface");
+      goto out;
+    }
+
+  block_for_mdraid = udisks_client_get_block_for_mdraid (window->client, mdraid);
+  if (block_for_mdraid == NULL)
+    {
+      g_warning ("No block device for MDRaid object");
+      goto out;
+    }
+
+  gdu_window_ensure_unused (window,
+                            (UDisksObject *) g_dbus_interface_get_object (G_DBUS_INTERFACE (block_for_mdraid)),
+                            (GAsyncReadyCallback) raid_stop_ensure_unused_cb,
+                            NULL, /* GCancellable */
+                            g_object_ref (window->current_object));
+
+ out:
+  g_clear_object (&block_for_mdraid);
+  g_clear_object (&mdraid);
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -3112,21 +4629,45 @@ lock_cb (UDisksEncrypted *encrypted,
 }
 
 static void
+lock_ensure_unused_cb (GduWindow     *window,
+                       GAsyncResult  *res,
+                       gpointer       user_data)
+{
+  UDisksObject *object = UDISKS_OBJECT (user_data);
+  if (gdu_window_ensure_unused_finish (window, res, NULL))
+    {
+      UDisksEncrypted *encrypted = udisks_object_peek_encrypted (object);
+      udisks_encrypted_call_lock (encrypted,
+                                  g_variant_new ("a{sv}", NULL), /* options */
+                                  NULL, /* cancellable */
+                                  (GAsyncReadyCallback) lock_cb,
+                                  g_object_ref (window));
+    }
+  g_object_unref (object);
+}
+
+static void
 on_devtab_action_lock_activated (GtkAction *action,
                                  gpointer   user_data)
 {
   GduWindow *window = GDU_WINDOW (user_data);
   UDisksObject *object;
-  UDisksEncrypted *encrypted;
+  UDisksBlock *block;
+  UDisksBlock *cleartext;
+  UDisksObject *cleartext_object;
 
   object = gdu_volume_grid_get_selected_device (GDU_VOLUME_GRID (window->volume_grid));
-  encrypted = udisks_object_peek_encrypted (object);
+  block = udisks_object_peek_block (object);
 
-  udisks_encrypted_call_lock (encrypted,
-                              g_variant_new ("a{sv}", NULL), /* options */
-                              NULL, /* cancellable */
-                              (GAsyncReadyCallback) lock_cb,
-                              g_object_ref (window));
+  /* ensure the cleartext object is unused (e.g. unmounted) before tearing down the encrypted device... */
+  cleartext = udisks_client_get_cleartext_block (window->client, block);
+  cleartext_object = (UDisksObject *) g_dbus_interface_get_object (G_DBUS_INTERFACE (cleartext));
+  gdu_window_ensure_unused (window,
+                            cleartext_object,
+                            (GAsyncReadyCallback) lock_ensure_unused_cb,
+                            NULL, /* GCancellable */
+                            g_object_ref (object));
+  g_object_unref (cleartext);
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -3203,6 +4744,69 @@ on_devtab_action_deactivate_swap_activated (GtkAction *action, gpointer user_dat
                               NULL, /* cancellable */
                               (GAsyncReadyCallback) swapspace_stop_cb,
                               g_object_ref (window));
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+static void
+mdraid_set_bitmap_location_cb (UDisksMDRaid  *mdraid,
+                               GAsyncResult  *res,
+                               gpointer       user_data)
+{
+  GduWindow *window = GDU_WINDOW (user_data);
+  GError *error;
+
+  error = NULL;
+  if (!udisks_mdraid_call_set_bitmap_location_finish (mdraid,
+                                                      res,
+                                                      &error))
+    {
+      gdu_utils_show_error (GTK_WINDOW (window),
+                            _("Error setting bitmap for the RAID array"),
+                            error);
+      g_error_free (error);
+      /* in case of error, make sure the GtkSwitch:active reverts */
+      update_all (window);
+    }
+  g_object_unref (window);
+}
+
+static void
+on_devtab_drive_raid_bitmap_switch_notify_active (GObject    *gobject,
+                                                  GParamSpec *pspec,
+                                                  gpointer    user_data)
+{
+  GduWindow *window = GDU_WINDOW (user_data);
+  UDisksMDRaid *mdraid;
+  gboolean sw_value = FALSE;
+  const gchar *bitmap_location;
+  gboolean has_bitmap = FALSE;
+
+  mdraid = udisks_object_peek_mdraid (window->current_object);
+
+  bitmap_location = udisks_mdraid_get_bitmap_location (mdraid);
+  if (bitmap_location != NULL && strlen (bitmap_location) > 0 && g_strcmp0 (bitmap_location, "none") != 0)
+    has_bitmap = TRUE;
+
+  sw_value = !! gtk_switch_get_active (GTK_SWITCH (gobject));
+  if (sw_value != (!!has_bitmap))
+    {
+      const gchar *bitmap_location_new_value;
+      GVariantBuilder options_builder;
+
+      if (sw_value)
+        bitmap_location_new_value = "internal";
+      else
+        bitmap_location_new_value = "none";
+
+      g_variant_builder_init (&options_builder, G_VARIANT_TYPE_VARDICT);
+      udisks_mdraid_call_set_bitmap_location (mdraid,
+                                              bitmap_location_new_value,
+                                              g_variant_builder_end (&options_builder),
+                                              NULL, /* cancellable */
+                                              (GAsyncReadyCallback) mdraid_set_bitmap_location_cb,
+                                              g_object_ref (window));
+    }
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -3292,6 +4896,7 @@ on_drive_job_cancel_button_clicked (GtkButton   *button,
   GList *jobs;
 
   jobs = udisks_client_get_jobs_for_object (window->client, window->current_object);
+  jobs = g_list_concat (jobs, gdu_application_get_local_jobs_for_object (window->application, window->current_object));
   /* if there are no jobs on the drive, look at the first block object */
   if (jobs == NULL)
     {
@@ -3302,6 +4907,7 @@ on_drive_job_cancel_button_clicked (GtkButton   *button,
         {
           UDisksObject *block_object = UDISKS_OBJECT (blocks->data);
           jobs = udisks_client_get_jobs_for_object (window->client, block_object);
+          jobs = g_list_concat (jobs, gdu_application_get_local_jobs_for_object (window->application, block_object));
         }
       g_list_foreach (blocks, (GFunc) g_object_unref, NULL);
       g_list_free (blocks);
@@ -3309,11 +4915,18 @@ on_drive_job_cancel_button_clicked (GtkButton   *button,
   if (jobs != NULL)
     {
       UDisksJob *job = UDISKS_JOB (jobs->data);
-      udisks_job_call_cancel (job,
-                              g_variant_new ("a{sv}", NULL), /* options */
-                              NULL, /* cancellable */
-                              (GAsyncReadyCallback) drive_job_cancel_cb,
-                              g_object_ref (window));
+      if (GDU_IS_LOCAL_JOB (job))
+        {
+          gdu_local_job_canceled (GDU_LOCAL_JOB (job));
+        }
+      else
+        {
+          udisks_job_call_cancel (job,
+                                  g_variant_new ("a{sv}", NULL), /* options */
+                                  NULL, /* cancellable */
+                                  (GAsyncReadyCallback) drive_job_cancel_cb,
+                                  g_object_ref (window));
+        }
     }
   g_list_foreach (jobs, (GFunc) g_object_unref, NULL);
   g_list_free (jobs);
@@ -3351,15 +4964,225 @@ on_job_cancel_button_clicked (GtkButton    *button,
   g_assert (object != NULL);
 
   jobs = udisks_client_get_jobs_for_object (window->client, object);
+  jobs = g_list_concat (jobs, gdu_application_get_local_jobs_for_object (window->application, object));
   if (jobs != NULL)
     {
       UDisksJob *job = UDISKS_JOB (jobs->data);
-      udisks_job_call_cancel (job,
-                              g_variant_new ("a{sv}", NULL), /* options */
-                              NULL, /* cancellable */
-                              (GAsyncReadyCallback) job_cancel_cb,
-                              g_object_ref (window));
+      if (GDU_IS_LOCAL_JOB (job))
+        {
+          gdu_local_job_canceled (GDU_LOCAL_JOB (job));
+        }
+      else
+        {
+          udisks_job_call_cancel (job,
+                                  g_variant_new ("a{sv}", NULL), /* options */
+                                  NULL, /* cancellable */
+                                  (GAsyncReadyCallback) job_cancel_cb,
+                                  g_object_ref (window));
+        }
     }
   g_list_foreach (jobs, (GFunc) g_object_unref, NULL);
   g_list_free (jobs);
 }
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+static gboolean
+on_activate_link (GtkLabel    *label,
+                  const gchar *uri,
+                  gpointer     user_data)
+{
+  GduWindow *window = GDU_WINDOW (user_data);
+  gboolean handled = FALSE;
+
+  if (g_str_has_prefix (uri, "x-udisks://"))
+    {
+      UDisksObject *object = udisks_client_peek_object (window->client, uri + strlen ("x-udisks://"));
+      if (object != NULL)
+        {
+          select_object (window, object);
+          handled = TRUE;
+        }
+    }
+
+  return handled;
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+static void
+update_for_multi_selection (GduWindow *window, ShowFlags *show_flags)
+{
+  GList *selected;
+  GList *selected_blocks;
+  GList *l;
+  guint num_disks = 0;
+  guint num_blocks = 0;
+  guint64 total_size = 0;
+  guint64 total_size_block = 0;
+  gchar *s, *s2;
+
+  selected_blocks = gdu_device_tree_model_get_selected_blocks (window->model);
+  for (l = selected_blocks; l != NULL; l = l->next)
+    {
+      UDisksBlock *block = UDISKS_BLOCK (l->data);
+      total_size_block += udisks_block_get_size (block);
+      num_blocks++;
+    }
+
+  selected = gdu_device_tree_model_get_selected (window->model);
+  for (l = selected; l != NULL; l = l->next)
+    {
+      UDisksObject *object = UDISKS_OBJECT (l->data);
+      UDisksDrive *drive = NULL;
+      UDisksBlock *block = NULL;
+      UDisksMDRaid *mdraid = NULL;
+
+      drive = udisks_object_peek_drive (object);
+      block = udisks_object_peek_block (object);
+      mdraid = udisks_object_peek_mdraid (object);
+
+      if (drive != NULL)
+        {
+          total_size += udisks_drive_get_size (drive);
+          num_disks++;
+        }
+      else if (block != NULL)
+        {
+          total_size += udisks_block_get_size (block);
+          num_disks++;
+        }
+      else if (mdraid != NULL)
+        {
+          total_size += udisks_mdraid_get_size (mdraid);
+          num_disks++;
+        }
+      else
+        {
+          g_warning ("unhandled object of with path %s", g_dbus_object_get_object_path (G_DBUS_OBJECT (object)));
+        }
+    }
+
+  if (num_disks == 0)
+    {
+      /* Translators: Shown when no devices are selected but multiple selection is active.
+       */
+      s = g_strdup (C_("multi-disk-menu", "No _Devices Selected"));
+    }
+  else
+    {
+      s2 = udisks_client_get_size_for_display (window->client, total_size, FALSE, FALSE);
+      /* Translators: Shown when N>=1 devices are selected.
+       *              The %d is the number of disks selected (e.g. 4).
+       *              The %s is a string with the combined size (e.g. '42.0 GB').
+       */
+      s = g_strdup_printf (g_dngettext (GETTEXT_PACKAGE,
+                                        "%d _Device Selected (%s)",
+                                        "%d _Devices Selected (%s)",
+                                        num_disks),
+                              num_disks, s2);
+      g_free (s2);
+    }
+  gtk_label_set_markup_with_mnemonic (GTK_LABEL (window->device_tree_selection_toolbar_label), s);
+  g_free (s);
+
+  /* visibility - TODO: use ShowFlags instead */
+  if (window->in_selection_mode && num_blocks > 0)
+    {
+      guint64 disk_size;
+      gtk_widget_show (window->overlay_toolbar);
+
+      gtk_widget_show (window->overlay_toolbar_erase_button);
+
+      /* Createing a RAID array requires at all disks are the same size and that there are at least two of them */
+      if (gdu_util_is_same_size (selected_blocks, &disk_size) && num_blocks >= 2)
+        {
+          gtk_widget_show (window->overlay_toolbar_create_raid_button);
+        }
+      else
+        {
+          gtk_widget_hide (window->overlay_toolbar_create_raid_button);
+        }
+    }
+  else
+    {
+      gtk_widget_hide (window->overlay_toolbar);
+    }
+
+  g_list_free_full (selected, g_object_unref);
+  g_list_free_full (selected_blocks, g_object_unref);
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+static void
+on_overlay_toolbar_erase_button_clicked (GtkButton *button,
+                                         gpointer   user_data)
+{
+  GduWindow *window = GDU_WINDOW (user_data);
+  GList *selected_blocks;
+
+  selected_blocks = gdu_device_tree_model_get_selected_blocks (window->model);
+  /* exit multiple selection mode UNLESS user cancelled */
+  if (gdu_erase_multiple_disks_dialog_show (window, selected_blocks))
+    device_tree_selection_toolbar_select_done_toggle (window, FALSE);
+  g_list_free_full (selected_blocks, g_object_unref);
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+static void
+on_overlay_toolbar_create_raid_button_clicked (GtkButton *button,
+                                               gpointer   user_data)
+{
+  GduWindow *window = GDU_WINDOW (user_data);
+  GList *selected_blocks;
+
+  selected_blocks = gdu_device_tree_model_get_selected_blocks (window->model);
+  /* exit multiple selection mode UNLESS user cancelled */
+  if (gdu_create_raid_array_dialog_show (window, selected_blocks))
+    device_tree_selection_toolbar_select_done_toggle (window, FALSE);
+  g_list_free_full (selected_blocks, g_object_unref);
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+void
+gdu_window_ensure_unused_list (GduWindow            *window,
+                               GList                *objects,
+                               GAsyncReadyCallback   callback,
+                               GCancellable         *cancellable,
+                               gpointer              user_data)
+{
+  gdu_utils_ensure_unused_list (window->client, GTK_WINDOW (window), objects, callback, cancellable, user_data);
+}
+
+gboolean
+gdu_window_ensure_unused_list_finish (GduWindow     *window,
+                                      GAsyncResult  *res,
+                                      GError       **error)
+{
+  return gdu_utils_ensure_unused_list_finish (window->client, res, error);
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+void
+gdu_window_ensure_unused (GduWindow            *window,
+                          UDisksObject         *object,
+                          GAsyncReadyCallback   callback,
+                          GCancellable         *cancellable,
+                          gpointer              user_data)
+{
+  gdu_utils_ensure_unused (window->client, GTK_WINDOW (window), object, callback, cancellable, user_data);
+}
+
+gboolean
+gdu_window_ensure_unused_finish (GduWindow     *window,
+                                 GAsyncResult  *res,
+                                 GError       **error)
+{
+  return gdu_utils_ensure_unused_finish (window->client, res, error);
+}
+
+/* ---------------------------------------------------------------------------------------------------- */

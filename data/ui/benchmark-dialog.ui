@@ -4,11 +4,11 @@
   <object class="GtkDialog" id="dialog1">
     <property name="can_focus">False</property>
     <property name="border_width">12</property>
+    <property name="title" translatable="yes">Benchmark</property>
     <property name="resizable">False</property>
     <property name="modal">True</property>
     <property name="destroy_with_parent">True</property>
     <property name="type_hint">dialog</property>
-    <property name="title" translatable="yes">Benchmark</property>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox1">
         <property name="can_focus">False</property>
@@ -20,12 +20,10 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="start-benchmark-button">
-                <property name="label" translatable="yes">_Start Benchmark...</property>
-                <property name="use_action_appearance">False</property>
+                <property name="label" translatable="yes">_Start Benchmark…</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_underline">True</property>
               </object>
               <packing>
@@ -38,11 +36,9 @@
             <child>
               <object class="GtkButton" id="stop-benchmark-button">
                 <property name="label" translatable="yes">_Abort Benchmark</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_underline">True</property>
               </object>
               <packing>
@@ -55,11 +51,9 @@
             <child>
               <object class="GtkButton" id="button1">
                 <property name="label">gtk-close</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -105,7 +99,9 @@
                     <property name="can_focus">False</property>
                     <property name="xalign">1</property>
                     <property name="label" translatable="yes">Last Benchmarked</property>
-                    <style><class name="dim-label"/></style>
+                    <style>
+                      <class name="dim-label"/>
+                    </style>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -120,7 +116,9 @@
                     <property name="can_focus">False</property>
                     <property name="xalign">1</property>
                     <property name="label" translatable="yes">Average Read Rate</property>
-                    <style><class name="dim-label"/></style>
+                    <style>
+                      <class name="dim-label"/>
+                    </style>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -135,7 +133,9 @@
                     <property name="can_focus">False</property>
                     <property name="xalign">1</property>
                     <property name="label" translatable="yes">Average Write Rate</property>
-                    <style><class name="dim-label"/></style>
+                    <style>
+                      <class name="dim-label"/>
+                    </style>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -150,7 +150,9 @@
                     <property name="can_focus">False</property>
                     <property name="xalign">1</property>
                     <property name="label" translatable="yes">Average Access Time</property>
-                    <style><class name="dim-label"/></style>
+                    <style>
+                      <class name="dim-label"/>
+                    </style>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -228,8 +230,10 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="xalign">1</property>
-                    <property name="label" translatable="yes">Disk Drive or Device</property>
-                    <style><class name="dim-label"/></style>
+                    <property name="label" translatable="yes">Disk or Device</property>
+                    <style>
+                      <class name="dim-label"/>
+                    </style>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -260,7 +264,9 @@
                     <property name="can_focus">False</property>
                     <property name="xalign">1</property>
                     <property name="label" translatable="yes">Sample Size</property>
-                    <style><class name="dim-label"/></style>
+                    <style>
+                      <class name="dim-label"/>
+                    </style>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -310,6 +316,7 @@
   <object class="GtkDialog" id="dialog2">
     <property name="can_focus">False</property>
     <property name="border_width">12</property>
+    <property name="title" translatable="yes">Benchmark Settings</property>
     <property name="resizable">False</property>
     <property name="modal">True</property>
     <property name="destroy_with_parent">True</property>
@@ -326,11 +333,9 @@
             <child>
               <object class="GtkButton" id="button2">
                 <property name="label">gtk-cancel</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -341,13 +346,11 @@
             </child>
             <child>
               <object class="GtkButton" id="button3">
-                <property name="label" translatable="yes">_Start Benchmarking...</property>
-                <property name="use_action_appearance">False</property>
+                <property name="label" translatable="yes">_Start Benchmarking…</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_underline">True</property>
               </object>
               <packing>
@@ -416,7 +419,9 @@
                     <property name="label" translatable="yes">Number of S_amples</property>
                     <property name="use_underline">True</property>
                     <property name="mnemonic_widget">num-samples-spinbutton</property>
-                    <style><class name="dim-label"/></style>
+                    <style>
+                      <class name="dim-label"/>
+                    </style>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -433,7 +438,9 @@
                     <property name="label" translatable="yes">Sample S_ize (MiB)</property>
                     <property name="use_underline">True</property>
                     <property name="mnemonic_widget">sample-size-spinbutton</property>
-                    <style><class name="dim-label"/></style>
+                    <style>
+                      <class name="dim-label"/>
+                    </style>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -444,15 +451,13 @@
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="write-checkbutton">
-                    <property name="label" translatable="yes">Also perform _write-benchmark</property>
-                    <property name="use_action_appearance">False</property>
+                    <property name="label" translatable="yes">Perform _write-benchmark</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
-                    <property name="tooltip_text" translatable="yes">Bechmarking the write-rate of a disk requires exclusive access to the disk (e.g. the disk or its partitions cannot be mounted or in use) and involves reading data and then writing it back. As a result, the contents of the disk is not changed.
+                    <property name="tooltip_text" translatable="yes">Benchmarking the write-rate of a disk requires exclusive access to the disk (e.g. the disk or its partitions cannot be mounted or in use) and involves reading data and then writing it back. As a result, the contents of the disk is not changed.
 
-If not checked, the write-part of the benchmark will not be done but on the other hand exclusive access to the device is not needed (e.g. the disk or device can be in use) .</property>
-                    <property name="use_action_appearance">False</property>
+If not checked, the write-part of the benchmark will not be done but on the other hand exclusive access to the device is not needed (e.g. the disk or device can be in use).</property>
                     <property name="use_underline">True</property>
                     <property name="xalign">0</property>
                     <property name="active">True</property>
@@ -550,7 +555,9 @@ If not checked, the write-part of the benchmark will not be done but on the othe
                     <property name="label" translatable="yes">Number of Sampl_es</property>
                     <property name="use_underline">True</property>
                     <property name="mnemonic_widget">num-access-samples-spinbutton</property>
-                    <style><class name="dim-label"/></style>
+                    <style>
+                      <class name="dim-label"/>
+                    </style>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>

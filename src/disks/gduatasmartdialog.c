@@ -1,6 +1,6 @@
 /* -*- mode: C; c-file-style: "gnu"; indent-tabs-mode: nil; -*-
  *
- * Copyright (C) 2008-2012 Red Hat, Inc.
+ * Copyright (C) 2008-2013 Red Hat, Inc.
  *
  * Licensed under GPL version 2 or later.
  *
@@ -25,12 +25,16 @@ enum
   NORMALIZED_COLUMN,
   THRESHOLD_COLUMN,
   WORST_COLUMN,
+  TYPE_COLUMN,
+  UPDATES_COLUMN,
   FLAGS_COLUMN,
   N_COLUMNS,
 };
 
 typedef struct
 {
+  volatile guint ref_count;
+
   UDisksObject *object;
   UDisksDriveAta *ata;
 
@@ -38,6 +42,11 @@ typedef struct
   GtkBuilder *builder;
 
   GtkListStore *attributes_list;
+
+  GtkWidget *enabled_switch;
+  GtkWidget *status_grid;
+  GtkWidget *attributes_label;
+  GtkWidget *attributes_vbox;
 
   GtkWidget *dialog;
   GtkWidget *updated_label;
@@ -47,14 +56,11 @@ typedef struct
   GtkWidget *self_assessment_label;
   GtkWidget *overall_assessment_label;
 
-  GtkWidget *attr_value_label;
-  GtkWidget *attr_type_label;
-  GtkWidget *attr_long_description_label;
-
   GtkWidget *attributes_treeview;
 
   GtkWidget *start_selftest_button;
   GtkWidget *stop_selftest_button;
+  GtkWidget *refresh_button;
 
   GtkWidget *selftest_menu;
   GtkWidget *selftest_short_menuitem;
@@ -66,6 +72,12 @@ static const struct {
   goffset offset;
   const gchar *name;
 } widget_mapping[] = {
+  {G_STRUCT_OFFSET (DialogData, enabled_switch), "enabled-switch"},
+
+  {G_STRUCT_OFFSET (DialogData, status_grid), "status-grid"},
+  {G_STRUCT_OFFSET (DialogData, attributes_label), "attributes-label"},
+  {G_STRUCT_OFFSET (DialogData, attributes_vbox), "attributes-vbox"},
+
   {G_STRUCT_OFFSET (DialogData, updated_label), "updated-label"},
   {G_STRUCT_OFFSET (DialogData, temperature_label), "temperature-label"},
   {G_STRUCT_OFFSET (DialogData, powered_on_label), "powered-on-label"},
@@ -77,31 +89,43 @@ static const struct {
   {G_STRUCT_OFFSET (DialogData, selftest_short_menuitem), "selftest-short-menuitem"},
   {G_STRUCT_OFFSET (DialogData, selftest_extended_menuitem), "selftest-extended-menuitem"},
   {G_STRUCT_OFFSET (DialogData, selftest_conveyance_menuitem), "selftest-conveyance-menuitem"},
-  {G_STRUCT_OFFSET (DialogData, attr_value_label), "attr-value-label"},
-  {G_STRUCT_OFFSET (DialogData, attr_type_label), "attr-type-label"},
-  {G_STRUCT_OFFSET (DialogData, attr_long_description_label), "attr-long-description-label"},
+
+  {G_STRUCT_OFFSET (DialogData, start_selftest_button), "start-selftest-button"},
+  {G_STRUCT_OFFSET (DialogData, stop_selftest_button), "stop-selftest-button"},
+  {G_STRUCT_OFFSET (DialogData, refresh_button), "refresh-button"},
   {0, NULL}
 };
 
-static void
-dialog_data_free (DialogData *data)
+
+static DialogData *
+dialog_data_ref (DialogData *data)
 {
-  if (data->dialog != NULL)
+  g_atomic_int_inc (&data->ref_count);
+  return data;
+}
+
+static void
+dialog_data_unref (DialogData *data)
+{
+  if (g_atomic_int_dec_and_test (&data->ref_count))
     {
-      gtk_widget_hide (data->dialog);
-      gtk_widget_destroy (data->dialog);
+      if (data->dialog != NULL)
+        {
+          gtk_widget_hide (data->dialog);
+          gtk_widget_destroy (data->dialog);
+        }
+      if (data->object != NULL)
+        g_object_unref (data->object);
+      if (data->window != NULL)
+        g_object_unref (data->window);
+      if (data->builder != NULL)
+        g_object_unref (data->builder);
+
+      if (data->attributes_list != NULL)
+        g_object_unref (data->attributes_list);
+
+      g_free (data);
     }
-  if (data->object != NULL)
-    g_object_unref (data->object);
-  if (data->window != NULL)
-    g_object_unref (data->window);
-  if (data->builder != NULL)
-    g_object_unref (data->builder);
-
-  if (data->attributes_list != NULL)
-    g_object_unref (data->attributes_list);
-
-  g_free (data);
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -161,7 +185,7 @@ static const SmartDetails smart_details[] = {
   N_("Reallocated Sector Count"),
   N_("Count of remapped sectors. "
      "When the hard drive finds a read/write/verification error, it marks the sector "
-     "as \"reallocated\" and transfers data to a special reserved area (spare area)")
+     "as “reallocated” and transfers data to a special reserved area (spare area)")
 },
 {
   "read-channel-margin",
@@ -411,7 +435,7 @@ static const SmartDetails smart_details[] = {
    * or the next string for a longer explanation.
    */
   N_("Offline Seek Performance"),
-  N_("Drive's seek performance during offline operations")
+  N_("Drive’s seek performance during offline operations")
 },
 {
   "disk-shift",
@@ -564,7 +588,7 @@ static const SmartDetails smart_details[] = {
 static gboolean
 attribute_get_details (const gchar  *name,
                        const gchar **out_name,
-                       const gchar **out_description)
+                       const gchar **out_desc)
 {
   SmartDetails *details;
   static volatile gsize have_hash = 0;
@@ -591,14 +615,13 @@ attribute_get_details (const gchar  *name,
     {
       if (out_name != NULL)
         *out_name = gettext (details->pretty_name);
-      if (out_description != NULL)
-        *out_description = gettext (details->desc);;
+      if (out_desc != NULL)
+        *out_desc = gettext (details->desc);
       ret = TRUE;
     }
 
   return ret;
 }
-
 
 /* ---------------------------------------------------------------------------------------------------- */
 
@@ -625,17 +648,13 @@ static gchar *
 attr_format_desc (gint id, const gchar *name)
 {
   const gchar *localized_name;
-  const gchar *localized_desc;
   gchar *ret;
 
-  if (!attribute_get_details (name, &localized_name, &localized_desc))
+  if (!attribute_get_details (name, &localized_name, NULL))
     {
       localized_name = name;
-      localized_desc = "";
     }
-
   ret = g_strdup (localized_name);
-
   return ret;
 }
 
@@ -734,92 +753,6 @@ pretty_to_string (guint64 pretty,
 
 /* ---------------------------------------------------------------------------------------------------- */
 
-/* called whenever a new attribute is selected */
-static void
-update_attr (DialogData *data)
-{
-  gboolean prefail;
-  gboolean online;
-  const gchar *prefail_str;
-  const gchar *online_str;
-  gchar *pretty = NULL;
-  gchar *type_str = NULL;
-  gint normalized, threshold, worst;
-  gint flags;
-  GtkTreeIter tree_iter;
-  gchar *value_str = NULL;
-  gchar *long_description_str = NULL;
-
-  if (!gtk_tree_selection_get_selected (gtk_tree_view_get_selection (GTK_TREE_VIEW (data->attributes_treeview)),
-                                        NULL,
-                                        &tree_iter))
-    goto out;
-
-  gtk_tree_model_get (GTK_TREE_MODEL (data->attributes_list),
-                      &tree_iter,
-                      PRETTY_COLUMN, &pretty,
-                      NORMALIZED_COLUMN, &normalized,
-                      THRESHOLD_COLUMN, &threshold,
-                      WORST_COLUMN, &worst,
-                      FLAGS_COLUMN, &flags,
-                      LONG_DESC_COLUMN, &long_description_str,
-                      -1);
-
-  /* Translators: The first %s is the pretty value (such as '300
-   * sectors' or '2.5 years' or '53° C / 127° F').
-   *
-   * The three %d are the normalized, threshold and worst values -
-   * these are all decimal numbers.
-   */
-  value_str = g_strdup_printf (_("%s <span size=\"small\">(Normalized: %d, Threshold: %d, Worst: %d)</span>"),
-                               pretty, normalized, threshold, worst);
-
-  prefail = (flags & 0x0001);
-  online = (flags & 0x0002);
-
-  if (prefail)
-    {
-      /* Translators: Please keep "(Pre-Fail)" in English
-       */
-      prefail_str = _("Failure is a sign the disk will fail within 24 hours <span size=\"small\">(Pre-Fail)</span>");
-    }
-  else
-    {
-      /* Translators: Please keep "(Old-Age)" in English
-       */
-      prefail_str = _("Failure is a sign the disk exceeded its intended design life period <span size=\"small\">(Old-Age)</span>");
-    }
-
-  if (online)
-    {
-      /* Translators: Please keep "(Online)" in English
-       */
-      online_str = _("Updated every time data is collected <span size=\"small\">(Online)</span>");
-    }
-  else
-    {
-      /* Translators: Please keep "(Not Online)" in English
-       */
-      online_str = _("Updated only during off-line activities <span size=\"small\">(Not Online)</span>");
-    }
-
-  type_str = g_strdup_printf ("%s\n%s",
-                              prefail_str,
-                              online_str);
-
- out:
-  gtk_label_set_markup (GTK_LABEL (data->attr_value_label), value_str);
-  gtk_label_set_markup (GTK_LABEL (data->attr_type_label), type_str);
-  gtk_label_set_markup (GTK_LABEL (data->attr_long_description_label), long_description_str);
-
-  g_free (long_description_str);
-  g_free (value_str);
-  g_free (type_str);
-  g_free (pretty);
-}
-
-/* ---------------------------------------------------------------------------------------------------- */
-
 static gchar *
 calculate_self_test (UDisksDriveAta *ata,
                      gboolean       *out_selftest_running)
@@ -893,18 +826,25 @@ calculate_self_test (UDisksDriveAta *ata,
 static void
 update_updated_label (DialogData *data)
 {
-  time_t now;
-  time_t updated;
-  gchar *s;
-  gchar *s2;
+  gchar *s = NULL;
+  if (udisks_drive_ata_get_smart_enabled (data->ata))
+    {
+      time_t now;
+      time_t updated;
+      gchar *s2;
 
-  now = time (NULL);
-  updated = udisks_drive_ata_get_smart_updated (data->ata);
-  s = gdu_utils_format_duration_usec ((now - updated) * G_USEC_PER_SEC,
-                                      GDU_FORMAT_DURATION_FLAGS_NONE);
-  s2 = g_strdup_printf (_("%s ago"), s);
-  gtk_label_set_text (GTK_LABEL (data->updated_label), s2);
-  g_free (s2);
+      now = time (NULL);
+      updated = udisks_drive_ata_get_smart_updated (data->ata);
+      s2 = gdu_utils_format_duration_usec ((now - updated) * G_USEC_PER_SEC,
+                                           GDU_FORMAT_DURATION_FLAGS_NO_SECONDS);
+      s = g_strdup_printf (_("%s ago"), s2);
+      g_free (s2);
+    }
+  else
+    {
+      s = g_strdup ("—");
+    }
+  gtk_label_set_text (GTK_LABEL (data->updated_label), s);
   g_free (s);
 }
 
@@ -964,13 +904,13 @@ gdu_ata_smart_get_overall_assessment (UDisksDriveAta *ata,
       goto out_no_smart;
     }
 
+  smart_is_supported = TRUE;
+
   if (!udisks_drive_ata_get_smart_enabled (ata))
     {
       ret = g_strdup (_("SMART is not enabled"));
       goto out_no_smart;
     }
-
-  smart_is_supported = TRUE;
 
   num_failing = udisks_drive_ata_get_smart_num_attributes_failing (ata);
   num_failed_in_the_past = udisks_drive_ata_get_smart_num_attributes_failed_in_the_past (ata);
@@ -1100,46 +1040,15 @@ gdu_ata_smart_get_one_liner_assessment (UDisksDriveAta *ata,
   return gdu_ata_smart_get_overall_assessment (ata, TRUE, out_smart_is_supported, out_warn);
 }
 
+/* ---------------------------------------------------------------------------------------------------- */
+
 static void
-update_dialog (DialogData *data)
+update_attributes_list (DialogData *data,
+                        GVariant   *attributes)
 {
-  gchar *s;
-  GVariant *attributes = NULL;
-  GError *error;
   GtkTreeIter tree_iter;
   GtkTreeIter *tree_iter_to_select;
   gint selected_id;
-  gboolean selftest_running;
-
-  /* TODO: do it async and show spinner while call is pending */
-  error = NULL;
-  if (!udisks_drive_ata_call_smart_get_attributes_sync (udisks_object_peek_drive_ata (data->object),
-                                                        g_variant_new ("a{sv}", NULL), /* options */
-                                                        &attributes,
-                                                        NULL, /* GCancellable */
-                                                        &error))
-    {
-      g_warning ("Error getting ATA SMART information: %s (%s, %d)",
-                 error->message, g_quark_to_string (error->domain), error->code);
-      g_error_free (error);
-    }
-
-  update_updated_label (data);
-
-  s = calculate_self_test (data->ata, &selftest_running);
-  gtk_label_set_text (GTK_LABEL (data->self_test_label), s);
-  g_free (s);
-
-  if (selftest_running)
-    {
-      gtk_widget_set_visible (data->start_selftest_button, FALSE);
-      gtk_widget_set_visible (data->stop_selftest_button, TRUE);
-    }
-  else
-    {
-      gtk_widget_set_visible (data->start_selftest_button, TRUE);
-      gtk_widget_set_visible (data->stop_selftest_button, FALSE);
-    }
 
   /* record currently selected row so we can reselect it */
   selected_id = -1;
@@ -1180,11 +1089,35 @@ update_dialog (DialogData *data)
           gchar *desc_str;
           gchar *assessment_str;
           gchar *pretty_str;
+          gchar *current_str;
+          gchar *threshold_str;
+          gchar *worst_str;
+          const gchar *type_str;
+          const gchar *updates_str;
+          const gchar *na_str;
 
           desc_str = attr_format_desc (id, name);
           long_desc_str = attr_format_long_desc (id, name);
           assessment_str = attr_format_assessment (current, worst, threshold, flags);
           pretty_str = pretty_to_string (pretty, pretty_unit);
+
+          if (flags & 0x0001)
+            type_str = _("Pre-Fail");
+          else
+            type_str = _("Old-Age");
+
+          if (flags & 0x0002)
+            updates_str = _("Online");
+          else
+            updates_str = _("Offline");
+
+          /* Translators: Shown for normalized values (current, worst, threshold) if the value is
+           * not applicable, e.g. meaningless. See http://en.wikipedia.org/wiki/N/A
+           */
+          na_str = _("N/A");
+          current_str   = (current == -1   ? g_strdup (na_str) : g_strdup_printf ("%d", current));
+          threshold_str = (threshold == -1 ? g_strdup (na_str) : g_strdup_printf ("%d", threshold));
+          worst_str     = (worst == -1     ? g_strdup (na_str) : g_strdup_printf ("%d", worst));
 
           gtk_list_store_append (data->attributes_list, &titer);
           gtk_list_store_set (data->attributes_list, &titer,
@@ -1193,19 +1126,24 @@ update_dialog (DialogData *data)
                               LONG_DESC_COLUMN, long_desc_str,
                               ASSESSMENT_COLUMN, assessment_str,
                               PRETTY_COLUMN, pretty_str,
-                              NORMALIZED_COLUMN, current,
-                              THRESHOLD_COLUMN, threshold,
-                              WORST_COLUMN, worst,
+                              NORMALIZED_COLUMN, current_str,
+                              THRESHOLD_COLUMN, threshold_str,
+                              WORST_COLUMN, worst_str,
+                              TYPE_COLUMN, type_str,
+                              UPDATES_COLUMN, updates_str,
                               FLAGS_COLUMN, flags,
                               -1);
 
           if (id == selected_id)
             tree_iter_to_select = gtk_tree_iter_copy (&titer);
 
-          g_free (long_desc_str);
           g_free (desc_str);
+          g_free (long_desc_str);
           g_free (assessment_str);
           g_free (pretty_str);
+          g_free (current_str);
+          g_free (threshold_str);
+          g_free (worst_str);
 
           g_variant_unref (expansion);
         }
@@ -1228,38 +1166,103 @@ update_dialog (DialogData *data)
                                           &titer);
         }
     }
+}
 
-  if (udisks_drive_ata_get_smart_failing (data->ata))
+static void
+update_dialog (DialogData *data)
+{
+  gchar *s;
+  gboolean enabled = FALSE;
+
+  enabled = udisks_drive_ata_get_smart_enabled (data->ata);
+  gtk_switch_set_active (GTK_SWITCH (data->enabled_switch), enabled);
+
+  if (enabled)
     {
-      /* Translators: XXX */
-      s = g_strdup (_("Threshold exceeded"));
+      GVariant *attributes = NULL;
+      GError *error = NULL;
+      gboolean selftest_running = FALSE;
+
+      /* TODO: do it async and show spinner while call is pending */
+      if (!udisks_drive_ata_call_smart_get_attributes_sync (udisks_object_peek_drive_ata (data->object),
+                                                            g_variant_new ("a{sv}", NULL), /* options */
+                                                            &attributes,
+                                                            NULL, /* GCancellable */
+                                                            &error))
+        {
+          g_warning ("Error getting ATA SMART information: %s (%s, %d)",
+                     error->message, g_quark_to_string (error->domain), error->code);
+          g_error_free (error);
+        }
+
+
+      s = calculate_self_test (data->ata, &selftest_running);
+      gtk_label_set_text (GTK_LABEL (data->self_test_label), s);
+      g_free (s);
+
+      if (selftest_running)
+        {
+          gtk_widget_set_visible (data->start_selftest_button, FALSE);
+          gtk_widget_set_visible (data->stop_selftest_button, TRUE);
+        }
+      else
+        {
+          gtk_widget_set_visible (data->start_selftest_button, TRUE);
+          gtk_widget_set_visible (data->stop_selftest_button, FALSE);
+        }
+      gtk_widget_set_visible (data->refresh_button, TRUE);
+
+      update_attributes_list (data, attributes);
+      update_updated_label (data);
+
+      if (udisks_drive_ata_get_smart_failing (data->ata))
+        {
+          /* Translators: XXX */
+          s = g_strdup (_("Threshold exceeded"));
+        }
+      else
+        {
+          /* Translators: XXX */
+          s = g_strdup (_("Threshold not exceeded"));
+        }
+      gtk_label_set_markup (GTK_LABEL (data->self_assessment_label), s);
+      g_free (s);
+
+      s = format_powered_on (data->ata);
+      if (s == NULL)
+        s = g_strdup ("—");
+      gtk_label_set_markup (GTK_LABEL (data->powered_on_label), s);
+      g_free (s);
+
+      s = format_temp (data->ata);
+      if (s == NULL)
+        s = g_strdup ("—");
+      gtk_label_set_markup (GTK_LABEL (data->temperature_label), s);
+      g_free (s);
+
+      s = gdu_ata_smart_get_overall_assessment (data->ata, FALSE, NULL, NULL);
+      gtk_label_set_markup (GTK_LABEL (data->overall_assessment_label), s);
+      g_free (s);
+
+      if (attributes != NULL)
+        g_variant_unref (attributes);
     }
   else
     {
-      /* Translators: XXX */
-      s = g_strdup (_("Threshold not exceeded"));
+      gtk_widget_set_visible (data->start_selftest_button, FALSE);
+      gtk_widget_set_visible (data->stop_selftest_button, FALSE);
+      gtk_widget_set_visible (data->refresh_button, FALSE);
+      update_attributes_list (data, NULL);
+      update_updated_label (data);
+      gtk_label_set_markup (GTK_LABEL (data->self_test_label), "—");
+      gtk_label_set_markup (GTK_LABEL (data->temperature_label), "—");
+      gtk_label_set_markup (GTK_LABEL (data->powered_on_label), "—");
+      gtk_label_set_markup (GTK_LABEL (data->self_assessment_label), "—");
+      gtk_label_set_markup (GTK_LABEL (data->overall_assessment_label), "—");
     }
-  gtk_label_set_markup (GTK_LABEL (data->self_assessment_label), s);
-  g_free (s);
-
-  s = format_powered_on (data->ata);
-  if (s == NULL)
-    s = g_strdup ("—");
-  gtk_label_set_markup (GTK_LABEL (data->powered_on_label), s);
-  g_free (s);
-
-  s = format_temp (data->ata);
-  if (s == NULL)
-    s = g_strdup ("—");
-  gtk_label_set_markup (GTK_LABEL (data->temperature_label), s);
-  g_free (s);
-
-  s = gdu_ata_smart_get_overall_assessment (data->ata, FALSE, NULL, NULL);
-  gtk_label_set_markup (GTK_LABEL (data->overall_assessment_label), s);
-  g_free (s);
-
-  if (attributes != NULL)
-    g_variant_unref (attributes);
+  gtk_widget_set_sensitive (data->status_grid, enabled);
+  gtk_widget_set_sensitive (data->attributes_label, enabled);
+  gtk_widget_set_sensitive (data->attributes_vbox, enabled);
 }
 
 /* called when properties on the Drive.Ata object changes */
@@ -1408,8 +1411,51 @@ static void
 on_tree_selection_changed (GtkTreeSelection *tree_selection,
                            gpointer          user_data)
 {
+  /* DialogData *data = user_data;*/
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+static void
+smart_set_enabled_cb (GObject      *source_object,
+                      GAsyncResult *res,
+                      gpointer      user_data)
+{
   DialogData *data = user_data;
-  update_attr (data);
+  GError *error = NULL;
+
+  if (!udisks_drive_ata_call_smart_set_enabled_finish (UDISKS_DRIVE_ATA (source_object),
+                                                       res,
+                                                       &error))
+    {
+      gdu_utils_show_error (GTK_WINDOW (data->window),
+                            _("An error occurred when trying toggle whether SMART is enabled"),
+                            error);
+      g_clear_error (&error);
+    }
+  udisks_client_settle (gdu_window_get_client (data->window));
+  update_dialog (data);
+  dialog_data_unref (data);
+}
+
+static void
+on_enabled_switch_notify_active (GObject    *object,
+                                 GParamSpec *pspec,
+                                 gpointer    user_data)
+{
+  DialogData *data = user_data;
+  gboolean enabled;
+
+  enabled = gtk_switch_get_active (GTK_SWITCH (data->enabled_switch));
+  if (!!enabled != !!udisks_drive_ata_get_smart_enabled (data->ata))
+    {
+      udisks_drive_ata_call_smart_set_enabled (data->ata,
+                                               enabled,
+                                               g_variant_new ("a{sv}", NULL), /* options */
+                                               NULL, /* GCancellable */
+                                               (GAsyncReadyCallback) smart_set_enabled_cb,
+                                               dialog_data_ref (data));
+    }
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -1426,6 +1472,7 @@ gdu_ata_smart_dialog_show (GduWindow    *window,
   guint timeout_id;
 
   data = g_new0 (DialogData, 1);
+  data->ref_count = 1;
   data->object = g_object_ref (object);
   data->ata = udisks_object_peek_drive_ata (data->object);
   data->window = g_object_ref (window);
@@ -1438,6 +1485,7 @@ gdu_ata_smart_dialog_show (GduWindow    *window,
     {
       gpointer *p = (gpointer *) ((char *) data + widget_mapping[n].offset);
       *p = GTK_WIDGET (gtk_builder_get_object (data->builder, widget_mapping[n].name));
+      g_warn_if_fail (*p != NULL);
     }
 
   data->attributes_list = gtk_list_store_new (N_COLUMNS,
@@ -1446,9 +1494,11 @@ gdu_ata_smart_dialog_show (GduWindow    *window,
                                               G_TYPE_STRING,      /* long_desc */
                                               G_TYPE_STRING,      /* assessment */
                                               G_TYPE_STRING,      /* pretty */
-                                              G_TYPE_INT,         /* normalized */
-                                              G_TYPE_INT,         /* threshold */
-                                              G_TYPE_INT,         /* worst */
+                                              G_TYPE_STRING,      /* normalized */
+                                              G_TYPE_STRING,      /* threshold */
+                                              G_TYPE_STRING,      /* worst */
+                                              G_TYPE_STRING,      /* type */
+                                              G_TYPE_STRING,      /* updates */
                                               G_TYPE_INT);        /* flags */
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (data->attributes_list),
                                         ID_COLUMN,
@@ -1499,6 +1549,66 @@ gdu_ata_smart_dialog_show (GduWindow    *window,
 
   column = gtk_tree_view_column_new ();
   gtk_tree_view_append_column (GTK_TREE_VIEW (data->attributes_treeview), column);
+  /* Translators: This string is used as the column title in the treeview for the normalized value */
+  gtk_tree_view_column_set_title (column, _("Normalized"));
+  renderer = gtk_cell_renderer_text_new ();
+  g_object_set (G_OBJECT (renderer),
+                "yalign", 0.5,
+                NULL);
+  gtk_tree_view_column_pack_start (column, renderer, TRUE);
+  gtk_tree_view_column_set_attributes (column, renderer,
+                                       "markup", NORMALIZED_COLUMN, NULL);
+
+  column = gtk_tree_view_column_new ();
+  gtk_tree_view_append_column (GTK_TREE_VIEW (data->attributes_treeview), column);
+  /* Translators: This string is used as the column title in the treeview for the threshold value */
+  gtk_tree_view_column_set_title (column, _("Threshold"));
+  renderer = gtk_cell_renderer_text_new ();
+  g_object_set (G_OBJECT (renderer),
+                "yalign", 0.5,
+                NULL);
+  gtk_tree_view_column_pack_start (column, renderer, TRUE);
+  gtk_tree_view_column_set_attributes (column, renderer,
+                                       "markup", THRESHOLD_COLUMN, NULL);
+
+  column = gtk_tree_view_column_new ();
+  gtk_tree_view_append_column (GTK_TREE_VIEW (data->attributes_treeview), column);
+  /* Translators: This string is used as the column title in the treeview for the worst value */
+  gtk_tree_view_column_set_title (column, _("Worst"));
+  renderer = gtk_cell_renderer_text_new ();
+  g_object_set (G_OBJECT (renderer),
+                "yalign", 0.5,
+                NULL);
+  gtk_tree_view_column_pack_start (column, renderer, TRUE);
+  gtk_tree_view_column_set_attributes (column, renderer,
+                                       "markup", WORST_COLUMN, NULL);
+
+  column = gtk_tree_view_column_new ();
+  gtk_tree_view_append_column (GTK_TREE_VIEW (data->attributes_treeview), column);
+  /* Translators: This string is used as the column title in the treeview for the type */
+  gtk_tree_view_column_set_title (column, _("Type"));
+  renderer = gtk_cell_renderer_text_new ();
+  g_object_set (G_OBJECT (renderer),
+                "yalign", 0.5,
+                NULL);
+  gtk_tree_view_column_pack_start (column, renderer, TRUE);
+  gtk_tree_view_column_set_attributes (column, renderer,
+                                       "markup", TYPE_COLUMN, NULL);
+
+  column = gtk_tree_view_column_new ();
+  gtk_tree_view_append_column (GTK_TREE_VIEW (data->attributes_treeview), column);
+  /* Translators: This string is used as the column title in the treeview for the update type (Online / Offline) */
+  gtk_tree_view_column_set_title (column, _("Updates"));
+  renderer = gtk_cell_renderer_text_new ();
+  g_object_set (G_OBJECT (renderer),
+                "yalign", 0.5,
+                NULL);
+  gtk_tree_view_column_pack_start (column, renderer, TRUE);
+  gtk_tree_view_column_set_attributes (column, renderer,
+                                       "markup", UPDATES_COLUMN, NULL);
+
+  column = gtk_tree_view_column_new ();
+  gtk_tree_view_append_column (GTK_TREE_VIEW (data->attributes_treeview), column);
   /* Translators: This string is used as the column title in the treeview for the assessment of the attribute */
   gtk_tree_view_column_set_title (column, _("Assessment"));
   renderer = gtk_cell_renderer_text_new ();
@@ -1508,8 +1618,6 @@ gdu_ata_smart_dialog_show (GduWindow    *window,
                 NULL);
   gtk_tree_view_column_set_attributes (column, renderer,
                                        "markup", ASSESSMENT_COLUMN, NULL);
-
-  column = gtk_tree_view_column_new ();
 
 
   g_signal_connect (gtk_tree_view_get_selection (GTK_TREE_VIEW (data->attributes_treeview)),
@@ -1526,10 +1634,10 @@ gdu_ata_smart_dialog_show (GduWindow    *window,
   g_signal_connect (data->selftest_extended_menuitem, "activate", G_CALLBACK (on_selftest_extended), data);
   g_signal_connect (data->selftest_conveyance_menuitem, "activate", G_CALLBACK (on_selftest_conveyance), data);
 
-  data->start_selftest_button = gtk_dialog_get_widget_for_response (GTK_DIALOG (data->dialog), 0);
-  data->stop_selftest_button = gtk_dialog_get_widget_for_response (GTK_DIALOG (data->dialog), 1);
-
   update_dialog (data);
+  gtk_widget_grab_focus (data->attributes_treeview);
+
+  g_signal_connect (data->enabled_switch, "notify::active", G_CALLBACK (on_enabled_switch_notify_active), data);
 
   while (TRUE)
     {
@@ -1539,7 +1647,7 @@ gdu_ata_smart_dialog_show (GduWindow    *window,
       switch (response)
         {
         case 0:
-          gtk_menu_popup (GTK_MENU (data->selftest_menu), NULL, NULL, NULL, NULL, 1, 0);
+          /* handled by GtkMenuButton */
           break;
         case 1:
           selftest_do (data, "abort");
@@ -1556,5 +1664,5 @@ gdu_ata_smart_dialog_show (GduWindow    *window,
   g_source_remove (timeout_id);
   g_signal_handler_disconnect (data->ata, notify_id);
 
-  dialog_data_free (data);
+  dialog_data_unref (data);
 }

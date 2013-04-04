@@ -1,6 +1,6 @@
 /* -*- mode: C; c-file-style: "gnu"; indent-tabs-mode: nil; -*-
  *
- * Copyright (C) 2008-2012 Red Hat, Inc.
+ * Copyright (C) 2008-2013 Red Hat, Inc.
  *
  * Licensed under GPL version 2 or later.
  *
@@ -10,6 +10,7 @@
 #include "config.h"
 
 #include <glib/gi18n.h>
+#include <gdk/gdkx.h>
 
 #include "gduapplication.h"
 #include "gduwindow.h"
@@ -22,7 +23,7 @@
 
 typedef struct
 {
-  GduWindow *window;
+  GtkWindow *parent_window;
   UDisksObject *object;
   UDisksBlock *block;
   UDisksDrive *drive;
@@ -37,7 +38,7 @@ typedef struct
 static void
 format_volume_data_free (FormatVolumeData *data)
 {
-  g_object_unref (data->window);
+  g_clear_object (&data->parent_window);
   g_object_unref (data->object);
   g_object_unref (data->block);
   g_clear_object (&data->drive);
@@ -83,33 +84,86 @@ format_cb (GObject      *source_object,
                                         res,
                                         &error))
     {
-      gdu_utils_show_error (GTK_WINDOW (data->window), _("Error formatting volume"), error);
+      gdu_utils_show_error (GTK_WINDOW (data->parent_window), _("Error formatting volume"), error);
       g_error_free (error);
     }
   format_volume_data_free (data);
 }
 
-void
-gdu_format_volume_dialog_show (GduWindow    *window,
-                               UDisksObject *object)
+static void
+ensure_unused_cb (UDisksClient  *client,
+                  GAsyncResult  *res,
+                  gpointer       user_data)
 {
+  FormatVolumeData *data = user_data;
+  GVariantBuilder options_builder;
+  const gchar *erase_type;
+  const gchar *fstype;
+  const gchar *name;
+  const gchar *passphrase;
+
+  if (!gdu_utils_ensure_unused_finish (client, res, NULL))
+    {
+      format_volume_data_free (data);
+      goto out;
+    }
+
+  erase_type = gdu_create_filesystem_widget_get_erase (GDU_CREATE_FILESYSTEM_WIDGET (data->create_filesystem_widget));
+  fstype = gdu_create_filesystem_widget_get_fstype (GDU_CREATE_FILESYSTEM_WIDGET (data->create_filesystem_widget));
+  name = gdu_create_filesystem_widget_get_name (GDU_CREATE_FILESYSTEM_WIDGET (data->create_filesystem_widget));
+  passphrase = gdu_create_filesystem_widget_get_passphrase (GDU_CREATE_FILESYSTEM_WIDGET (data->create_filesystem_widget));
+
+  g_variant_builder_init (&options_builder, G_VARIANT_TYPE_VARDICT);
+  if (name != NULL && strlen (name) > 0)
+    g_variant_builder_add (&options_builder, "{sv}", "label", g_variant_new_string (name));
+  if (!(g_strcmp0 (fstype, "vfat") == 0 || g_strcmp0 (fstype, "ntfs") == 0))
+    {
+      /* TODO: need a better way to determine if this should be TRUE */
+      g_variant_builder_add (&options_builder, "{sv}", "take-ownership", g_variant_new_boolean (TRUE));
+    }
+  if (passphrase != NULL && strlen (passphrase) > 0)
+    g_variant_builder_add (&options_builder, "{sv}", "encrypt.passphrase", g_variant_new_string (passphrase));
+
+  if (erase_type != NULL)
+    g_variant_builder_add (&options_builder, "{sv}", "erase", g_variant_new_string (erase_type));
+
+  g_variant_builder_add (&options_builder, "{sv}", "update-partition-type", g_variant_new_boolean (TRUE));
+
+  udisks_block_call_format (data->block,
+                            fstype,
+                            g_variant_builder_end (&options_builder),
+                            NULL, /* GCancellable */
+                            format_cb,
+                            data);
+
+ out:
+  ;
+}
+
+static void
+gdu_format_volume_dialog_show_internal (UDisksClient *client,
+                                        GtkWindow    *parent_window,
+                                        gint          parent_xid,
+                                        UDisksObject *object)
+{
+  GduApplication *app = GDU_APPLICATION (g_application_get_default ());
   FormatVolumeData *data;
   gint response;
 
   data = g_new0 (FormatVolumeData, 1);
-  data->window = g_object_ref (window);
+  data->parent_window = (parent_window != NULL) ? g_object_ref (parent_window) : NULL;
   data->object = g_object_ref (object);
   data->block = udisks_object_get_block (object);
   g_assert (data->block != NULL);
-  data->drive = udisks_client_get_drive_for_block (gdu_window_get_client (window), data->block);
+  data->drive = udisks_client_get_drive_for_block (client, data->block);
 
-  data->dialog = GTK_WIDGET (gdu_application_new_widget (gdu_window_get_application (window),
+  data->dialog = GTK_WIDGET (gdu_application_new_widget (app,
                                                          "format-volume-dialog.ui",
                                                          "format-volume-dialog",
                                                          &data->builder));
 
   data->contents_box = GTK_WIDGET (gtk_builder_get_object (data->builder, "contents-box"));
-  data->create_filesystem_widget = gdu_create_filesystem_widget_new (gdu_window_get_application (window),
+  data->create_filesystem_widget = gdu_create_filesystem_widget_new (app,
                                                                      data->drive,
                                                                      NULL); /* additional_fstypes */
   gtk_box_pack_start (GTK_BOX (data->contents_box),
@@ -118,7 +172,18 @@ gdu_format_volume_dialog_show (GduWindow    *window,
   g_signal_connect (data->create_filesystem_widget, "notify::has-info",
                     G_CALLBACK (format_volume_property_changed), data);
 
-  gtk_window_set_transient_for (GTK_WINDOW (data->dialog), GTK_WINDOW (window));
+  if (parent_window != NULL)
+    {
+      gtk_window_set_transient_for (GTK_WINDOW (data->dialog), parent_window);
+    }
+  else if (parent_xid != -1)
+    {
+      GdkWindow *foreign_window = gdk_x11_window_foreign_new_for_display (gdk_display_get_default (), parent_xid);
+      if (!gtk_widget_get_realized (data->dialog))
+          gtk_widget_realize (data->dialog);
+      gdk_window_set_transient_for (gtk_widget_get_window (data->dialog), foreign_window);
+    }
+
   gtk_dialog_set_default_response (GTK_DIALOG (data->dialog), GTK_RESPONSE_OK);
 
   format_volume_update (data);
@@ -129,20 +194,14 @@ gdu_format_volume_dialog_show (GduWindow    *window,
   response = gtk_dialog_run (GTK_DIALOG (data->dialog));
   if (response == GTK_RESPONSE_OK)
     {
-      GVariantBuilder options_builder;
-      const gchar *erase_type;
-      const gchar *fstype;
-      const gchar *name;
-      const gchar *passphrase;
       const gchar *primary_message;
+      const gchar *erase_type;
       GString *str;
-
-      erase_type = gdu_create_filesystem_widget_get_erase (GDU_CREATE_FILESYSTEM_WIDGET (data->create_filesystem_widget));
-      fstype = gdu_create_filesystem_widget_get_fstype (GDU_CREATE_FILESYSTEM_WIDGET (data->create_filesystem_widget));
-      name = gdu_create_filesystem_widget_get_name (GDU_CREATE_FILESYSTEM_WIDGET (data->create_filesystem_widget));
-      passphrase = gdu_create_filesystem_widget_get_passphrase (GDU_CREATE_FILESYSTEM_WIDGET (data->create_filesystem_widget));
+      GList *objects = NULL;
 
       gtk_widget_hide (data->dialog);
+
+      erase_type = gdu_create_filesystem_widget_get_erase (GDU_CREATE_FILESYSTEM_WIDGET (data->create_filesystem_widget));
 
       primary_message = _("Are you sure you want to format the volume?");
       if (erase_type == NULL || g_strcmp0 (erase_type, "") == 0)
@@ -158,38 +217,47 @@ gdu_format_volume_dialog_show (GduWindow    *window,
           str = g_string_new (_("All data on the volume will be overwritten and will likely not be recoverable by data recovery services"));
         }
 
-      if (!gdu_utils_show_confirmation (GTK_WINDOW (window),
+      objects = g_list_append (NULL, object);
+      if (!gdu_utils_show_confirmation (GTK_WINDOW (data->parent_window),
                                         primary_message,
                                         str->str,
-                                        _("_Format")))
+                                        _("_Format"),
+                                        NULL, NULL,
+                                        client, objects))
         {
+          g_list_free (objects);
           g_string_free (str, TRUE);
           goto out;
         }
+
+      g_list_free (objects);
       g_string_free (str, TRUE);
 
-      g_variant_builder_init (&options_builder, G_VARIANT_TYPE_VARDICT);
-      if (name != NULL && strlen (name) > 0)
-        g_variant_builder_add (&options_builder, "{sv}", "label", g_variant_new_string (name));
-      if (!(g_strcmp0 (fstype, "vfat") == 0 || g_strcmp0 (fstype, "ntfs") == 0))
-        {
-          /* TODO: need a better way to determine if this should be TRUE */
-          g_variant_builder_add (&options_builder, "{sv}", "take-ownership", g_variant_new_boolean (TRUE));
-        }
-      if (passphrase != NULL && strlen (passphrase) > 0)
-        g_variant_builder_add (&options_builder, "{sv}", "encrypt.passphrase", g_variant_new_string (passphrase));
-
-      if (erase_type != NULL)
-        g_variant_builder_add (&options_builder, "{sv}", "erase", g_variant_new_string (erase_type));
-
-      udisks_block_call_format (data->block,
-                                fstype,
-                                g_variant_builder_end (&options_builder),
-                                NULL, /* GCancellable */
-                                format_cb,
-                                data);
+      /* ensure the volume is unused (e.g. unmounted) before formatting it... */
+      gdu_utils_ensure_unused (client,
+                               GTK_WINDOW (data->parent_window),
+                               data->object,
+                               (GAsyncReadyCallback) ensure_unused_cb,
+                               NULL, /* GCancellable */
+                               data);
       return;
     }
  out:
   format_volume_data_free (data);
+}
+
+void
+gdu_format_volume_dialog_show_for_xid (UDisksClient *client,
+                                       gint          xid,
+                                       UDisksObject *object)
+{
+  gdu_format_volume_dialog_show_internal (client, NULL, xid, object);
+}
+
+void
+gdu_format_volume_dialog_show (GduWindow    *window,
+                               UDisksObject *object)
+{
+  gdu_format_volume_dialog_show_internal (gdu_window_get_client (window), GTK_WINDOW (window),
+                                          -1, object);
 }

@@ -1,6 +1,6 @@
 /* -*- mode: C; c-file-style: "gnu"; indent-tabs-mode: nil; -*-
  *
- * Copyright (C) 2008-2012 Red Hat, Inc.
+ * Copyright (C) 2008-2013 Red Hat, Inc.
  *
  * Licensed under GPL version 2 or later.
  *
@@ -16,6 +16,7 @@
 #include <stdlib.h>
 
 #include "gduvolumegrid.h"
+#include "gduapplication.h"
 
 /* ---------------------------------------------------------------------------------------------------- */
 
@@ -42,6 +43,7 @@ struct GridElement
   UDisksObject *object;
   gint64 offset;
   gint64 size;
+  gint64 unused;
 
   GList *embedded_elements;
   GridElement *parent;
@@ -83,11 +85,9 @@ struct _GduVolumeGrid
 {
   GtkWidget parent;
 
+  GduApplication *application;
   UDisksClient *client;
   UDisksObject *block_object;
-
-  gboolean container_visible;
-  gchar *container_markup;
 
   GList *elements;
 
@@ -95,6 +95,8 @@ struct _GduVolumeGrid
   GridElement *focused;
 
   gboolean animating_spinner;
+
+  gchar *no_media_string;
 };
 
 struct _GduVolumeGridClass
@@ -108,8 +110,9 @@ struct _GduVolumeGridClass
 enum
 {
   PROP_0,
-  PROP_CLIENT,
-  PROP_BLOCK_OBJECT
+  PROP_APPLICATION,
+  PROP_BLOCK_OBJECT,
+  PROP_NO_MEDIA_STRING,
 };
 
 enum
@@ -147,8 +150,6 @@ gdu_volume_grid_finalize (GObject *object)
 {
   GduVolumeGrid *grid = GDU_VOLUME_GRID (object);
 
-  g_free (grid->container_markup);
-
   g_signal_handlers_disconnect_by_func (grid->client,
                                         G_CALLBACK (on_client_changed),
                                         grid);
@@ -158,7 +159,9 @@ gdu_volume_grid_finalize (GObject *object)
 
   if (grid->block_object != NULL)
     g_object_unref (grid->block_object);
-  g_object_unref (grid->client);
+  g_object_unref (grid->application);
+
+  g_free (grid->no_media_string);
 
   G_OBJECT_CLASS (gdu_volume_grid_parent_class)->finalize (object);
 }
@@ -173,12 +176,16 @@ gdu_volume_grid_get_property (GObject    *object,
 
   switch (property_id)
     {
-    case PROP_CLIENT:
-      g_value_set_object (value, grid->client);
+    case PROP_APPLICATION:
+      g_value_set_object (value, grid->application);
       break;
 
     case PROP_BLOCK_OBJECT:
       g_value_set_object (value, grid->block_object);
+      break;
+
+    case PROP_NO_MEDIA_STRING:
+      g_value_set_string (value, grid->no_media_string);
       break;
 
     default:
@@ -197,12 +204,17 @@ gdu_volume_grid_set_property (GObject      *object,
 
   switch (property_id)
     {
-    case PROP_CLIENT:
-      grid->client = g_value_dup_object (value);
+    case PROP_APPLICATION:
+      grid->application = g_value_dup_object (value);
+      grid->client = gdu_application_get_client (grid->application);
       break;
 
     case PROP_BLOCK_OBJECT:
       gdu_volume_grid_set_block_object (grid, g_value_get_object (value));
+      break;
+
+    case PROP_NO_MEDIA_STRING:
+      gdu_volume_grid_set_no_media_string (grid, g_value_get_string (value));
       break;
 
     default:
@@ -496,11 +508,11 @@ gdu_volume_grid_class_init (GduVolumeGridClass *klass)
   gtkwidget_class->draw                 = gdu_volume_grid_draw;
 
   g_object_class_install_property (gobject_class,
-                                   PROP_CLIENT,
-                                   g_param_spec_object ("client",
-                                                        "Client",
-                                                        "The UDisksClient to use",
-                                                        UDISKS_TYPE_CLIENT,
+                                   PROP_APPLICATION,
+                                   g_param_spec_object ("application",
+                                                        "Application",
+                                                        "The GduApplication to use",
+                                                        GDU_TYPE_APPLICATION,
                                                         G_PARAM_READABLE |
                                                         G_PARAM_WRITABLE |
                                                         G_PARAM_CONSTRUCT_ONLY |
@@ -514,6 +526,17 @@ gdu_volume_grid_class_init (GduVolumeGridClass *klass)
                                                         G_TYPE_DBUS_OBJECT,
                                                         G_PARAM_READABLE |
                                                         G_PARAM_WRITABLE |
+                                                        G_PARAM_STATIC_STRINGS));
+
+  g_object_class_install_property (gobject_class,
+                                   PROP_NO_MEDIA_STRING,
+                                   g_param_spec_string ("no-media-string",
+                                                        "No Media String",
+                                                        "The string to show when there is no media or block device",
+                                                        _("No Media"),
+                                                        G_PARAM_READABLE |
+                                                        G_PARAM_WRITABLE |
+                                                        G_PARAM_CONSTRUCT |
                                                         G_PARAM_STATIC_STRINGS));
 
   signals[CHANGED_SIGNAL] = g_signal_new ("changed",
@@ -535,11 +558,11 @@ gdu_volume_grid_init (GduVolumeGrid *grid)
 }
 
 GtkWidget *
-gdu_volume_grid_new (UDisksClient *client)
+gdu_volume_grid_new (GduApplication *application)
 {
-  g_return_val_if_fail (UDISKS_IS_CLIENT (client), NULL);
+  g_return_val_if_fail (GDU_IS_APPLICATION (application), NULL);
   return GTK_WIDGET (g_object_new (GDU_TYPE_VOLUME_GRID,
-                                   "client", client,
+                                   "application", application,
                                    NULL));
 }
 
@@ -729,6 +752,7 @@ render_element (GduVolumeGrid *grid,
   GtkStateFlags state;
   GtkJunctionSides sides;
   GtkBorder border;
+  const gchar *markup;
 
   animate_spinner = FALSE;
 
@@ -743,10 +767,13 @@ render_element (GduVolumeGrid *grid,
   gtk_style_context_save (context);
   state = gtk_widget_get_state_flags (GTK_WIDGET (grid));
 
+  state &= ~(GTK_STATE_FLAG_SELECTED | GTK_STATE_FLAG_FOCUSED | GTK_STATE_FLAG_ACTIVE);
   if (is_selected)
     state |= GTK_STATE_FLAG_SELECTED;
   if (is_grid_focused)
     state |= GTK_STATE_FLAG_FOCUSED;
+  if (element->show_spinner)
+    state |= GTK_STATE_FLAG_ACTIVE;
   gtk_style_context_set_state (context, state);
 
   /* frames */
@@ -778,6 +805,24 @@ render_element (GduVolumeGrid *grid,
   gtk_render_frame (context, cr, x, y, w, h);
   if (is_focused && is_grid_focused)
     gtk_render_focus (context, cr, x + 2, y + 2, w - 4, h - 4);
+  if (element->unused > 0)
+    {
+      gdouble unused_height = element->unused * h / element->size;
+      cairo_pattern_t *gradient;
+      cairo_save (cr);
+      gradient = cairo_pattern_create_linear (x, y + unused_height - 10, x, y + unused_height);
+      cairo_pattern_add_color_stop_rgba (gradient, 0.0,  1.0, 1.0, 1.0, 0.25);
+      cairo_pattern_add_color_stop_rgba (gradient, 1.0,  1.0, 1.0, 1.0, 0.00);
+      cairo_set_source (cr, gradient);
+      cairo_pattern_destroy (gradient);
+      cairo_rectangle (cr,
+                       x,
+                       y,
+                       w,
+                       unused_height);
+      cairo_fill (cr);
+      cairo_restore (cr);
+    }
   gtk_style_context_restore (context);
 
   /* icons */
@@ -856,7 +901,10 @@ render_element (GduVolumeGrid *grid,
 
   /* text */
   layout = pango_cairo_create_layout (cr);
-  pango_layout_set_markup (layout, element->markup != NULL ? element->markup : "", -1);
+  markup = element->markup;
+  if (markup == NULL)
+    markup = grid->no_media_string;
+  pango_layout_set_markup (layout, markup, -1);
   desc = pango_font_description_from_string ("Sans 7.0");
   pango_layout_set_font_description (layout, desc);
   pango_font_description_free (desc);
@@ -932,15 +980,10 @@ gdu_volume_grid_draw (GtkWidget *widget,
 
   if (animate_spinner != grid->animating_spinner)
     {
-      GtkStyleContext *context = gtk_widget_get_style_context (widget);
-      gtk_style_context_save (context);
-      gtk_style_context_add_class (context, GTK_STYLE_CLASS_SPINNER);
-      gtk_style_context_notify_state_change (context,
-                                             gtk_widget_get_window (widget),
-                                             NULL, /* region_id */
-                                             GTK_STATE_ACTIVE,
-                                             animate_spinner);
-      gtk_style_context_restore (context);
+      if (animate_spinner)
+        gtk_widget_set_state_flags (widget, GTK_STATE_FLAG_ACTIVE, FALSE);
+      else
+        gtk_widget_unset_state_flags (widget, GTK_STATE_FLAG_ACTIVE);
     }
   if (animate_spinner)
     grid->animating_spinner = TRUE;
@@ -1283,21 +1326,9 @@ recompute_grid (GduVolumeGrid *grid)
   g_list_free (grid->elements);
   grid->elements = NULL;
 
-  //g_debug ("TODO: recompute grid for %s, container_visible=%d",
+  //g_debug ("TODO: recompute grid for %s",
   //         grid->block_object != NULL ?
-  //         g_dbus_object_get_object_path (grid->block_object) : "<nothing selected>",
-  //         grid->container_visible);
-
-  if (grid->container_visible)
-    {
-      element = g_new0 (GridElement, 1);
-      element->type = GDU_VOLUME_GRID_ELEMENT_TYPE_CONTAINER;
-      element->fixed_width = 40;
-      element->offset = 0;
-      element->size = 0;
-      element->markup = g_strdup (grid->container_markup);
-      grid->elements = g_list_append (grid->elements, element);
-    }
+  //         g_dbus_object_get_object_path (grid->block_object) : "<nothing selected>");
 
   if (grid->block_object == NULL)
     {
@@ -1322,9 +1353,9 @@ recompute_grid (GduVolumeGrid *grid)
   top_size = udisks_block_get_size (top_block);
 
   /* include "Free Space" elements if there is at least this much slack between
-   * partitions (currently 1% of the disk, at least 1MB)
+   * partitions (currently 1% of the disk, but at most 1MiB)
    */
-  free_space_slack = MAX (top_size / 100, 1000*1000);
+  free_space_slack = MIN (top_size / 100, 1024*1024);
 
   partitions = NULL;
   logical_partitions = NULL;
@@ -1549,7 +1580,7 @@ grid_element_set_details (GduVolumeGrid  *grid,
 
     case GDU_VOLUME_GRID_ELEMENT_TYPE_NO_MEDIA:
       {
-        element->markup = g_strdup (_("No Media"));
+        element->markup = NULL; /* means that grid->no_media_string will be used */
 
         if (grid->block_object != NULL)
           {
@@ -1602,6 +1633,7 @@ grid_element_set_details (GduVolumeGrid  *grid,
           element->show_configured = TRUE;
 
         jobs = udisks_client_get_jobs_for_object (grid->client, element->object);
+        jobs = g_list_concat (jobs, gdu_application_get_local_jobs_for_object (grid->application, element->object));
         element->show_spinner = (jobs != NULL);
         g_list_foreach (jobs, (GFunc) g_object_unref, NULL);
         g_list_free (jobs);
@@ -1642,6 +1674,10 @@ grid_element_set_details (GduVolumeGrid  *grid,
             mount_points = udisks_filesystem_get_mount_points (filesystem);
             if (g_strv_length ((gchar **) mount_points) > 0)
               element->show_mounted = TRUE;
+
+            element->unused = gdu_utils_get_unused_for_block (grid->client, block);
+            if (element->unused < 0)
+              element->unused = 0;
           }
         else if (g_strcmp0 (usage, "other") == 0 && g_strcmp0 (type, "swap") == 0)
           {
@@ -1667,7 +1703,32 @@ grid_element_set_details (GduVolumeGrid  *grid,
         else if (g_strcmp0 (usage, "raid") == 0 && strlen (label) > 0)
           {
             type_for_display = udisks_client_get_id_for_display (grid->client, usage, type, version, FALSE);
-            g_ptr_array_add (lines, g_strdup (label));
+            if (g_strcmp0 (type, "linux_raid_member") == 0)
+              {
+                const gchar *sep = strstr (label, ":");
+                if (sep != NULL && strlen (sep) > 1)
+                  {
+                    gchar *homehost = g_strndup (label, sep - label);
+                    g_ptr_array_add (lines,
+                                     /* Translators: Shown in volume grid for Linux RAID members. Please
+                                      *              keep this as short as possible.
+                                      *              The first %s is the array name (e.g. 'MirrorOnTheWall').
+                                      *              The second %s is the homehost (e.g. 'thinkpad').
+                                      */
+                                     g_strdup_printf (C_("volume-grid", "%s [local to %s]"),
+                                                      sep + 1,
+                                                      homehost));
+                    g_free (homehost);
+                  }
+                else
+                  {
+                    g_ptr_array_add (lines, g_strdup (label));
+                  }
+              }
+            else
+              {
+                g_ptr_array_add (lines, g_strdup (label));
+              }
             maybe_add_partition (grid, lines, partition);
             g_ptr_array_add (lines, g_strdup_printf ("%s %s", size_str, type_for_display));
             g_free (type_for_display);
@@ -1829,26 +1890,28 @@ on_client_changed (UDisksClient   *client,
 /* ---------------------------------------------------------------------------------------------------- */
 
 void
-gdu_volume_grid_set_container_visible (GduVolumeGrid  *grid,
-                                       gboolean        visible)
+gdu_volume_grid_set_no_media_string   (GduVolumeGrid       *grid,
+                                       const gchar         *str)
 {
   g_return_if_fail (GDU_IS_VOLUME_GRID (grid));
-  if (!!grid->container_visible != !!visible)
-    {
-      grid->container_visible = visible;
-      recompute_grid (grid);
-    }
+  if (g_strcmp0 (grid->no_media_string, str) == 0)
+    goto out;
+
+  g_free (grid->no_media_string);
+  grid->no_media_string = g_strdup (str);
+
+  g_object_notify (G_OBJECT (grid), "no-media-string");
+
+  gtk_widget_queue_draw (GTK_WIDGET (grid));
+
+ out:
+  ;
 }
 
-void
-gdu_volume_grid_set_container_markup (GduVolumeGrid  *grid,
-                                      const gchar    *markup)
+const gchar *
+gdu_volume_grid_get_no_media_string   (GduVolumeGrid      *grid)
 {
-  g_return_if_fail (GDU_IS_VOLUME_GRID (grid));
-  if (g_strcmp0 (grid->container_markup, markup) != 0)
-    {
-      g_free (grid->container_markup);
-      grid->container_markup = g_strdup (markup);
-      recompute_grid (grid);
-    }
+  g_return_val_if_fail (GDU_IS_VOLUME_GRID (grid), NULL);
+  return grid->no_media_string;
 }
+

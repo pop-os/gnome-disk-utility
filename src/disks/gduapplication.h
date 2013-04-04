@@ -1,6 +1,6 @@
 /* -*- mode: C; c-file-style: "gnu"; indent-tabs-mode: nil; -*-
  *
- * Copyright (C) 2008-2012 Red Hat, Inc.
+ * Copyright (C) 2008-2013 Red Hat, Inc.
  *
  * Licensed under GPL version 2 or later.
  *
@@ -26,6 +26,13 @@ GObject      *gdu_application_new_widget (GduApplication  *application,
                                           const gchar     *ui_file,
                                           const gchar     *name,
                                           GtkBuilder     **out_builder);
+
+GduLocalJob  *gdu_application_create_local_job  (GduApplication *application,
+                                                 UDisksObject   *object);
+void          gdu_application_destroy_local_job (GduApplication *application,
+                                                 GduLocalJob    *job);
+GList        *gdu_application_get_local_jobs_for_object (GduApplication *application,
+                                                         UDisksObject   *object);
 
 
 G_END_DECLS

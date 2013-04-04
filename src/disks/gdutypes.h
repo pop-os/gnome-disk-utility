@@ -1,6 +1,6 @@
 /* -*- mode: C; c-file-style: "gnu"; indent-tabs-mode: nil; -*-
  *
- * Copyright (C) 2008-2012 Red Hat, Inc.
+ * Copyright (C) 2008-2013 Red Hat, Inc.
  *
  * Licensed under GPL version 2 or later.
  *
@@ -11,7 +11,6 @@
 #define __GDU_TYPES_H__
 
 #include <gtk/gtk.h>
-#define UDISKS_API_IS_SUBJECT_TO_CHANGE
 #include <udisks/udisks.h>
 
 #include <libgdu/libgdu.h>
@@ -40,6 +39,12 @@ typedef struct _GduPasswordStrengthWidget GduPasswordStrengthWidget;
 
 struct _GduEstimator;
 typedef struct _GduEstimator GduEstimator;
+
+struct GduDVDSupport;
+typedef struct GduDVDSupport GduDVDSupport;
+
+struct GduLocalJob;
+typedef struct GduLocalJob GduLocalJob;
 
 G_END_DECLS
 

@@ -1,6 +1,6 @@
 /* -*- mode: C; c-file-style: "gnu"; indent-tabs-mode: nil; -*-
  *
- * Copyright (C) 2008-2012 Red Hat, Inc.
+ * Copyright (C) 2008-2013 Red Hat, Inc.
  *
  * Licensed under GPL version 2 or later.
  *
@@ -446,9 +446,6 @@ populate (GduCreateFilesystemWidget *widget)
       gtk_combo_box_set_active_id (GTK_COMBO_BOX (widget->type_combobox), "ext4");
     }
 
-  /* Translators: this is the default name for the filesystem */
-  gtk_entry_set_text (GTK_ENTRY (widget->name_entry), _("New Volume"));
-
   /* Set 'btrfs' for the custom filesystem */
   gtk_entry_set_text (GTK_ENTRY (widget->filesystem_entry), "btrfs");
 
@@ -486,7 +483,7 @@ populate (GduCreateFilesystemWidget *widget)
 
   /* Quick */
   s = g_strdup_printf ("%s <span size=\"small\">(%s)</span>",
-                       _("Don't overwrite existing data"),
+                       _("Don’t overwrite existing data"),
                        _("Quick"));
   gtk_list_store_insert_with_values (model, NULL /* out_iter */, G_MAXINT, /* position */
                                      MODEL_COLUMN_ID, "", MODEL_COLUMN_MARKUP, s, -1);

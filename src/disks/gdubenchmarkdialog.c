@@ -1,6 +1,6 @@
 /* -*- mode: C; c-file-style: "gnu"; indent-tabs-mode: nil; -*-
  *
- * Copyright (C) 2008-2012 Red Hat, Inc.
+ * Copyright (C) 2008-2013 Red Hat, Inc.
  *
  * Licensed under GPL version 2 or later.
  *
@@ -687,7 +687,7 @@ update_updated_label (DialogData *data)
           time_benchmarked_str = g_date_time_format (time_benchmarked_dt_local, "%c");
 
           s = gdu_utils_format_duration_usec ((now_usec - data->bm_time_benchmarked_usec),
-                                              GDU_FORMAT_DURATION_FLAGS_NONE);
+                                              GDU_FORMAT_DURATION_FLAGS_NO_SECONDS);
           /* Translators: The first %s is the date and time the benchmark took place in the preferred
            * format for the locale (e.g. "%c" for strftime()/g_date_time_format()), for example
            * "Tue 12 Jun 2012 03:57:08 PM EDT". The second %s is how long ago that is from right
@@ -710,18 +710,18 @@ update_updated_label (DialogData *data)
       break;
 
     case BM_STATE_OPENING_DEVICE:
-      gtk_label_set_markup (GTK_LABEL (data->updated_label), C_("benchmark-updated", "Opening Device..."));
+      gtk_label_set_markup (GTK_LABEL (data->updated_label), C_("benchmark-updated", "Opening Device…"));
       break;
 
     case BM_STATE_TRANSFER_RATE:
-      s = g_strdup_printf (C_("benchmark-updated", "Measuring transfer rate (%2.1f%% complete)..."),
+      s = g_strdup_printf (C_("benchmark-updated", "Measuring transfer rate (%2.1f%% complete)…"),
                            data->bm_read_samples->len * 100.0 / data->bm_num_samples);
       gtk_label_set_markup (GTK_LABEL (data->updated_label), s);
       g_free (s);
       break;
 
     case BM_STATE_ACCESS_TIME:
-      s = g_strdup_printf (C_("benchmark-updated", "Measuring access time (%2.1f%% complete)..."),
+      s = g_strdup_printf (C_("benchmark-updated", "Measuring access time (%2.1f%% complete)…"),
                            data->bm_access_time_samples->len * 100.0 / data->bm_num_access_samples);
       gtk_label_set_markup (GTK_LABEL (data->updated_label), s);
       g_free (s);
@@ -737,77 +737,24 @@ static gchar *
 get_bm_filename (DialogData *data)
 {
   gchar *ret = NULL;
-  UDisksDrive *drive = NULL;
-  GDBusObject *drive_object = NULL;
-  UDisksPartition *partition = NULL;
-  const gchar *object_path;
   gchar *bench_dir = NULL;
-  gchar *tmp;
-  guint n;
+  const gchar *id = NULL;
 
-  /* If the device has a _distinct_ preferred name, use that for the filename */
-  if (g_strcmp0 (udisks_block_get_preferred_device (data->block),
-                 udisks_block_get_device (data->block)) != 0)
-    {
-      ret = g_strdup (udisks_block_get_preferred_device (data->block));
-      for (n = 0; ret[n] != '\0'; n++)
-        {
-          if (ret[n] == '/')
-            {
-              ret[n] = '_';
-            }
-        }
-    }
-  else
-    {
-      /* otherwise, we only load/save benchmarks for drives... */
-      drive = udisks_client_get_drive_for_block (gdu_window_get_client (data->window), data->block);
-      if (drive == NULL)
-        goto out;
+  id = udisks_block_get_id (data->block);
+  if (id == NULL || strlen (id) == 0)
+    goto out;
 
-      /* ... where the medium is not removable (the benchmark would be for the media, not the drive) */
-      if (udisks_drive_get_media_removable (drive))
-        goto out;
-
-      drive_object = g_dbus_interface_dup_object (G_DBUS_INTERFACE (drive));
-      if (drive_object == NULL)
-        goto out;
-
-      object_path = g_dbus_object_get_object_path (drive_object);
-      object_path = strrchr (object_path, '/');
-      if (object_path == NULL)
-        goto out;
-
-      ret = g_strdup (object_path + 1);
-
-      partition = udisks_object_get_partition (data->object);
-      if (partition != NULL)
-        {
-          tmp = ret;
-          ret = g_strdup_printf ("%s-part-offset%lld-size%lld", ret,
-                                 (long long int) udisks_partition_get_offset (partition),
-                                 (long long int) udisks_partition_get_size (partition));
-          g_free (tmp);
-        }
-    }
-
-  bench_dir = g_strdup_printf ("%s/gnome-disks/benchmarks",
-                               g_get_user_cache_dir ());
+  bench_dir = g_strdup_printf ("%s/gnome-disks/benchmarks", g_get_user_cache_dir ());
   if (g_mkdir_with_parents (bench_dir, 0777) != 0)
     {
       g_warning ("Error creating directory %s: %m", bench_dir);
       goto out;
     }
 
-  tmp = ret;
-  ret = g_strdup_printf ("%s/%s.gnome-disks-benchmark", bench_dir, ret);
-  g_free (tmp);
+  ret = g_strdup_printf ("%s/%s.gnome-disks-benchmark", bench_dir, id);
 
  out:
   g_free (bench_dir);
-  g_clear_object (&drive_object);
-  g_clear_object (&drive);
-  g_clear_object (&partition);
   return ret;
 }
 
@@ -821,7 +768,7 @@ update_dialog (DialogData *data)
   gdouble access_time_avg = 0.0;
   gchar *s = NULL;
   UDisksDrive *drive = NULL;
-  UDisksPartition *partition = NULL;
+  UDisksObjectInfo *info = NULL;
 
   G_LOCK (bm_lock);
   if (data->bm_error != NULL)
@@ -855,46 +802,9 @@ update_dialog (DialogData *data)
 
   /* disk / device label */
   drive = udisks_client_get_drive_for_block (gdu_window_get_client (data->window), data->block);
-  partition = udisks_object_get_partition (data->object);
-  if (drive != NULL)
-    {
-      gchar *name;
-      gchar *desc;
-      udisks_client_get_drive_info (gdu_window_get_client (data->window),
-                                    drive,
-                                    &name,
-                                    &desc,
-                                    NULL,   /* out_drive_icon */
-                                    NULL,   /* out_media_desc */
-                                    NULL);  /* out_media_icon */
-      if (partition != NULL)
-        {
-          gchar *str_size = g_format_size (udisks_block_get_size (data->block));
-          /* Translators: The first %s is the partition size (e.g. "10.0 GB") and the two
-           * following %s are make/model (e.g. "ST 3160A") and description (e.g. "60 GB Hard Disk")
-           */
-          s = g_strdup_printf (C_("benchmark-drive-name", "%s partition on %s (%s)"),
-                               str_size,
-                               name, desc);
-          g_free (str_size);
-        }
-      else
-        {
-          /* Translators: The first %s is the make/model (e.g. "ST 3160A"), the second %s is
-           * the description (e.g. "60 GB Hard Disk")
-           */
-          s = g_strdup_printf (C_("benchmark-drive-name", "%s (%s)"), name, desc);
-        }
-      g_free (name);
-      g_free (desc);
-    }
-  else
-    {
-      s = udisks_block_dup_preferred_device (data->block);
-    }
-  gtk_label_set_text (GTK_LABEL (data->device_label), s);
+  info = udisks_client_get_object_info (gdu_window_get_client (data->window), data->object);
+  gtk_label_set_text (GTK_LABEL (data->device_label), udisks_object_info_get_one_liner (info));
   g_free (s);
-
 
   G_LOCK (bm_lock);
 
@@ -968,7 +878,7 @@ update_dialog (DialogData *data)
     gdk_window_invalidate_rect (window, NULL, TRUE);
 
   g_clear_object (&drive);
-  g_clear_object (&partition);
+  g_clear_object (&info);
 }
 
 
@@ -1286,6 +1196,7 @@ benchmark_thread (gpointer user_data)
   G_UNLOCK (bm_lock);
   for (n = 0; n < data->bm_num_samples; n++)
     {
+      gchar *s, *s2;
       gint64 begin_usec;
       gint64 end_usec;
       gint64 offset;
@@ -1310,33 +1221,41 @@ benchmark_thread (gpointer user_data)
         }
       if (read (fd, buffer, page_size) != page_size)
         {
+          s = g_format_size_full (page_size, G_FORMAT_SIZE_LONG_FORMAT);
+          s2 = g_format_size_full (offset, G_FORMAT_SIZE_LONG_FORMAT);
           g_set_error (&error,
                        G_IO_ERROR,
                        g_io_error_from_errno (errno),
-                       C_("benchmarking", "Error pre-reading %lld bytes from offset %lld"),
-                       (long long int) page_size,
-                       (long long int) offset);
+                       C_("benchmarking", "Error pre-reading %s from offset %s"),
+                       s, s2);
+          g_free (s2);
+          g_free (s);
           goto out;
         }
       if (lseek (fd, offset, SEEK_SET) != offset)
         {
+          s = g_format_size_full (offset, G_FORMAT_SIZE_LONG_FORMAT);
           g_set_error (&error,
                        G_IO_ERROR,
                        g_io_error_from_errno (errno),
-                       C_("benchmarking", "Error seeking to offset %lld"),
-                       (long long int) offset);
+                       C_("benchmarking", "Error seeking to offset %s"),
+                       s);
+          g_free (s);
           goto out;
         }
       begin_usec = g_get_monotonic_time ();
       num_read = read (fd, buffer, data->bm_sample_size_mib*1024*1024);
       if (G_UNLIKELY (num_read < 0))
         {
+          s = g_format_size_full (data->bm_sample_size_mib * 1024 * 1024, G_FORMAT_SIZE_LONG_FORMAT);
+          s2 = g_format_size_full (offset, G_FORMAT_SIZE_LONG_FORMAT);
           g_set_error (&error,
                        G_IO_ERROR,
                        g_io_error_from_errno (errno),
-                       C_("benchmarking", "Error reading %d MB from offset %lld"),
-                       data->bm_sample_size_mib,
-                       (long long int) offset);
+                       C_("benchmarking", "Error reading %s from offset %s"),
+                       s, s2);
+          g_free (s2);
+          g_free (s);
           goto out;
         }
       end_usec = g_get_monotonic_time ();
@@ -1525,6 +1444,36 @@ abort_benchmark (DialogData *data)
 }
 
 static void
+start_benchmark2 (DialogData *data)
+{
+  data->bm_in_progress = TRUE;
+  data->bm_state = BM_STATE_OPENING_DEVICE;
+  g_clear_error (&data->bm_error);
+  g_array_set_size (data->bm_read_samples, 0);
+  g_array_set_size (data->bm_write_samples, 0);
+  g_array_set_size (data->bm_access_time_samples, 0);
+  data->bm_time_benchmarked_usec = 0;
+  g_cancellable_reset (data->bm_cancellable);
+
+  data->bm_thread = g_thread_new ("benchmark-thread",
+                                  benchmark_thread,
+                                  dialog_data_ref (data));
+}
+
+static void
+ensure_unused_cb (GduWindow     *window,
+                  GAsyncResult  *res,
+                  gpointer       user_data)
+{
+  DialogData *data = user_data;
+  if (gdu_window_ensure_unused_finish (window, res, NULL))
+    {
+      start_benchmark2 (data);
+    }
+  dialog_data_unref (data);
+}
+
+static void
 start_benchmark (DialogData *data)
 {
   GtkWidget *dialog;
@@ -1560,6 +1509,12 @@ start_benchmark (DialogData *data)
       gtk_widget_set_sensitive (write_checkbutton, FALSE);
     }
 
+  /* If the device is currently in use, uncheck the "perform write-test" check-button */
+  if (gdu_utils_is_in_use (gdu_window_get_client (data->window), data->object))
+    {
+      gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (write_checkbutton), FALSE);
+    }
+
   /* and scene... */
   response = gtk_dialog_run (GTK_DIALOG (dialog));
 
@@ -1578,18 +1533,19 @@ start_benchmark (DialogData *data)
   //g_print ("do_write=%d\n", data->bm_do_write);
   //g_print ("num_access_samples=%d\n", data->bm_num_access_samples);
 
-  data->bm_in_progress = TRUE;
-  data->bm_state = BM_STATE_OPENING_DEVICE;
-  g_clear_error (&data->bm_error);
-  g_array_set_size (data->bm_read_samples, 0);
-  g_array_set_size (data->bm_write_samples, 0);
-  g_array_set_size (data->bm_access_time_samples, 0);
-  data->bm_time_benchmarked_usec = 0;
-  g_cancellable_reset (data->bm_cancellable);
-
-  data->bm_thread = g_thread_new ("benchmark-thread",
-                                  benchmark_thread,
-                                  dialog_data_ref (data));
+  if (data->bm_do_write)
+    {
+      /* ensure the device is unused (e.g. unmounted) before formatting it... */
+      gdu_window_ensure_unused (data->window,
+                                data->object,
+                                (GAsyncReadyCallback) ensure_unused_cb,
+                                NULL, /* GCancellable */
+                                dialog_data_ref (data));
+    }
+  else
+    {
+      start_benchmark2 (data);
+    }
 
  out:
   gtk_widget_destroy (dialog);

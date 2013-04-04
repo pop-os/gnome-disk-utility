@@ -47,6 +47,11 @@ gnome_disks_SOURCES = 							\
 	gduestimator.h			gduestimator.c			\
 	gduchangepassphrasedialog.h	gduchangepassphrasedialog.c	\
 	gdudisksettingsdialog.h		gdudisksettingsdialog.c		\
+	gdumdraiddisksdialog.h		gdumdraiddisksdialog.c		\
+	gducreateraidarraydialog.h	gducreateraidarraydialog.c	\
+	gduerasemultipledisksdialog.h	gduerasemultipledisksdialog.c	\
+	gdudvdsupport.h			gdudvdsupport.c			\
+	gdulocaljob.h			gdulocaljob.c			\
 	$(enum_built_sources)						\
 	$(NULL)
 
@@ -65,6 +70,8 @@ gnome_disks_CFLAGS = 					\
 	$(LIBSECRET1_CFLAGS)				\
 	$(LIBSYSTEMD_LOGIN_CFLAGS)			\
 	$(PWQUALITY_CFLAGS)				\
+	$(CANBERRA_CFLAGS)				\
+	$(LIBDVDREAD_CFLAGS)				\
 	$(WARN_CFLAGS)					\
 	-lm						\
 	$(NULL)
@@ -76,6 +83,8 @@ gnome_disks_LDADD = 					\
 	$(LIBSECRET1_LIBS)				\
 	$(LIBSYSTEMD_LOGIN_LIBS)			\
 	$(PWQUALITY_LIBS)				\
+	$(CANBERRA_LIBS)				\
+	$(LIBDVDREAD_LIBS)				\
         $(top_builddir)/src/libgdu/libgdu.la        	\
 	$(NULL)
 

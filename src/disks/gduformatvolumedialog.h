@@ -1,6 +1,6 @@
 /* -*- mode: C; c-file-style: "gnu"; indent-tabs-mode: nil; -*-
  *
- * Copyright (C) 2008-2012 Red Hat, Inc.
+ * Copyright (C) 2008-2013 Red Hat, Inc.
  *
  * Licensed under GPL version 2 or later.
  *
@@ -15,8 +15,11 @@
 
 G_BEGIN_DECLS
 
-void     gdu_format_volume_dialog_show (GduWindow    *window,
-                                        UDisksObject *object);
+void     gdu_format_volume_dialog_show         (GduWindow    *window,
+                                                UDisksObject *object);
+void     gdu_format_volume_dialog_show_for_xid (UDisksClient *client,
+                                                gint          xid,
+                                                UDisksObject *object);
 
 G_END_DECLS
 
