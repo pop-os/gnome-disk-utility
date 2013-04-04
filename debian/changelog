@@ -1,3 +1,13 @@
+gnome-disk-utility (3.8.0-1) UNRELEASED; urgency=low
+
+  * Imported Upstream version 3.8.0
+  * Bump udisks2 build-dependency to >= 2.1.0 according to configure.ac
+  * Add new build-dependencies according to configure.ac
+    - canberra, libdvdread, gnome-settings-daemon, libnotify
+  * Don't ship any *.la files
+
+ -- Andreas Henriksson <andreas@fatal.se>  Thu, 04 Apr 2013 16:46:18 +0200
+
 gnome-disk-utility (3.6.1-1) experimental; urgency=low
 
   * New upstream release. (Closes: #671494)
