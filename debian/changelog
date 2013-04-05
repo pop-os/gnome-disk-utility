@@ -5,6 +5,7 @@ gnome-disk-utility (3.8.0-1) UNRELEASED; urgency=low
   * Add new build-dependencies according to configure.ac
     - canberra, libdvdread, gnome-settings-daemon, libnotify
   * Don't ship any *.la files
+  * Bump gsd to >= 3.8 according to https://bugzilla.gnome.org/697146
 
  -- Andreas Henriksson <andreas@fatal.se>  Thu, 04 Apr 2013 16:46:18 +0200
 
