@@ -16,6 +16,7 @@ Build-Depends: debhelper (>= 9),
  libdvdread-dev (>= 4.2.0),
  gnome-settings-daemon-dev (>= 3.8),
  libnotify-dev (>= 0.7),
+ libsystemd-login-dev (>= 44),
  xsltproc,
  docbook-xsl,
  intltool
