@@ -1,5 +1,6 @@
-gnome-disk-utility (3.8.0-1) UNRELEASED; urgency=low
+gnome-disk-utility (3.8.0-1) experimental; urgency=low
 
+  * Team upload.
   * Imported Upstream version 3.8.0
   * Bump udisks2 build-dependency to >= 2.1.0 according to configure.ac
   * Add new build-dependencies according to configure.ac
@@ -8,7 +9,7 @@ gnome-disk-utility (3.8.0-1) UNRELEASED; urgency=low
   * Bump gsd to >= 3.8 according to https://bugzilla.gnome.org/697146
   * Add libsystemd-login-dev build-dependency to enable multiseat support
 
- -- Andreas Henriksson <andreas@fatal.se>  Thu, 04 Apr 2013 16:46:18 +0200
+ -- Andreas Henriksson <andreas@fatal.se>  Sat, 25 May 2013 16:20:41 +0200
 
 gnome-disk-utility (3.6.1-1) experimental; urgency=low
 
