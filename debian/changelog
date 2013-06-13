@@ -1,6 +1,7 @@
 gnome-disk-utility (3.8.2-1) UNRELEASED; urgency=low
 
   * New upstream release.
+  * Bump Standards-Version to 3.9.4. No further changes.
 
  -- Michael Biebl <biebl@debian.org>  Fri, 14 Jun 2013 00:59:24 +0200
 
