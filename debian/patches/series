@@ -1,1 +1,2 @@
 # Debian patches for gnome-disk-utility
+01-avoid-needing-gsd-during-build.patch

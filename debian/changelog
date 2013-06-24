@@ -1,6 +1,8 @@
 gnome-disk-utility (3.8.2-2) UNRELEASED; urgency=low
 
   * Upload to unstable.
+  * Disable the gnome-setting-daemon plugin for now until we have a recent
+    enough version of gnome-settings-daemon in unstable.
 
  -- Michael Biebl <biebl@debian.org>  Tue, 25 Jun 2013 01:05:07 +0200
 
