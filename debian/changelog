@@ -1,11 +1,11 @@
-gnome-disk-utility (3.8.2-2) UNRELEASED; urgency=low
+gnome-disk-utility (3.8.2-2) unstable; urgency=low
 
   * Upload to unstable.
   * Disable the gnome-setting-daemon plugin for now until we have a recent
     enough version of gnome-settings-daemon in unstable.
   * Bump Depends on udisks2 to (>= 2.1.0).
 
- -- Michael Biebl <biebl@debian.org>  Tue, 25 Jun 2013 01:05:07 +0200
+ -- Michael Biebl <biebl@debian.org>  Wed, 18 Sep 2013 03:55:18 +0200
 
 gnome-disk-utility (3.8.2-1) experimental; urgency=low
 
