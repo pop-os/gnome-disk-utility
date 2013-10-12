@@ -1,3 +1,10 @@
+gnome-disk-utility (3.8.2-3) UNRELEASED; urgency=low
+
+  * debian/patches/02-fix-ftbfs-format.patch: Fix FTBFS on several
+    architectures (cherrypick from upstream)
+
+ -- Laurent Bigonville <bigon@debian.org>  Sat, 12 Oct 2013 16:56:24 -0400
+
 gnome-disk-utility (3.8.2-2) unstable; urgency=low
 
   * Upload to unstable.
