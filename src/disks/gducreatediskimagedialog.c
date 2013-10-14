@@ -9,6 +9,9 @@
 
 #include "config.h"
 
+#define _GNU_SOURCE
+#include <fcntl.h>
+
 #include <glib/gi18n.h>
 #include <gio/gunixfdlist.h>
 #include <gio/gunixinputstream.h>
@@ -281,7 +284,9 @@ create_disk_image_populate (DialogData *data)
   g_time_zone_unref (tz);
   g_free (now_string);
 
-  gdu_utils_configure_file_chooser_for_disk_images (GTK_FILE_CHOOSER (data->folder_fcbutton), FALSE);
+  gdu_utils_configure_file_chooser_for_disk_images (GTK_FILE_CHOOSER (data->folder_fcbutton),
+                                                    FALSE,   /* set file types */
+                                                    FALSE);  /* allow_compressed */
 
   /* Source label */
   info = udisks_client_get_object_info (gdu_window_get_client (data->window), data->object);
@@ -475,7 +480,7 @@ on_success (gpointer user_data)
                                                    /* Translators: Primary message in dialog shown if some data was unreadable while creating a disk image */
                                                    _("Unrecoverable read errors while creating disk image"));
       s = g_format_size (data->num_error_bytes);
-      percentage = 100.0 * ((gdouble) data->num_error_bytes) / ((gdouble) gdu_estimator_get_completed_bytes (data->estimator));
+      percentage = 100.0 * ((gdouble) data->num_error_bytes) / ((gdouble) gdu_estimator_get_target_bytes (data->estimator));
       gtk_message_dialog_format_secondary_markup (GTK_MESSAGE_DIALOG (dialog),
                                                   /* Translators: Secondary message in dialog shown if some data was unreadable while creating a disk image.
                                                    * The %f is the percentage of unreadable data (ex. 13.0).
@@ -610,7 +615,7 @@ copy_span (int              fd,
                                   error))
     {
       g_prefix_error (error,
-                      "Error writing %" G_GUINT64_FORMAT " bytes to offset %" G_GUINT64_FORMAT ": ",
+                      "Error writing %" G_GSIZE_FORMAT " bytes to offset %" G_GUINT64_FORMAT ": ",
                       num_bytes_to_write,
                       offset);
       goto out;
@@ -727,36 +732,47 @@ copy_thread_func (gpointer user_data)
       goto out;
     }
 
-  /* Allocate space at once to ensure blocks are laid out contigously,
-   * see http://lwn.net/Articles/226710/
+  /* If supported, allocate space at once to ensure blocks are laid
+   * out contigously, see http://lwn.net/Articles/226710/
    */
+#ifdef HAVE_FALLOCATE
   if (G_IS_FILE_DESCRIPTOR_BASED (data->output_file_stream))
     {
       gint output_fd = g_file_descriptor_based_get_fd (G_FILE_DESCRIPTOR_BASED (data->output_file_stream));
       gint rc;
 
-      /* With some filesystems drivers - for example ntfs-3g - posix_fallocate(3) may take a
-       * loong time since it may be implemented as writing zeroes to the file.
-       */
       g_mutex_lock (&data->copy_lock);
       data->allocating_file = TRUE;
       g_mutex_unlock (&data->copy_lock);
       g_idle_add (on_update_job, dialog_data_ref (data));
 
-      rc = posix_fallocate (output_fd, (off_t) 0, (off_t) block_device_size);
+      rc = fallocate (output_fd,
+                      0, /* mode */
+                      (off_t) 0,
+                      (off_t) block_device_size);
+
+      if (rc != 0)
+        {
+          if (errno == ENOSYS || errno == EOPNOTSUPP)
+            {
+              /* If the kernel or filesystem does not support it, too
+               * bad. Just continue.
+               */
+            }
+          else
+            {
+              error = g_error_new (G_IO_ERROR, g_io_error_from_errno (errno), "%s", strerror (errno));
+              g_prefix_error (&error, _("Error allocating space for disk image file: "));
+              goto out;
+            }
+        }
 
       g_mutex_lock (&data->copy_lock);
       data->allocating_file = FALSE;
       g_mutex_unlock (&data->copy_lock);
       g_idle_add (on_update_job, dialog_data_ref (data));
-
-      if (rc != 0)
-        {
-          error = g_error_new (G_IO_ERROR, g_io_error_from_errno (rc), "%s", strerror (rc));
-          g_prefix_error (&error, _("Error allocating space for disk image file: "));
-          goto out;
-        }
     }
+#endif
 
   page_size = sysconf (_SC_PAGESIZE);
   buffer_unaligned = g_new0 (guchar, buffer_size + page_size);
@@ -976,7 +992,7 @@ start_copying (DialogData *data)
     }
 
   /* now that we know the user picked a folder, update file chooser settings */
-  gdu_utils_file_chooser_for_disk_images_update_settings (GTK_FILE_CHOOSER (data->folder_fcbutton));
+  gdu_utils_file_chooser_for_disk_images_set_default_folder (folder);
 
   data->inhibit_cookie = gtk_application_inhibit (GTK_APPLICATION (gdu_window_get_application (data->window)),
                                                   GTK_WINDOW (data->dialog),
@@ -1035,12 +1051,24 @@ on_dialog_response (GtkDialog     *dialog,
     case GTK_RESPONSE_OK:
       if (check_overwrite (data))
         {
-          /* ensure the device is unused (e.g. unmounted) before copying data from it... */
-          gdu_window_ensure_unused (data->window,
-                                    data->object,
-                                    (GAsyncReadyCallback) ensure_unused_cb,
-                                    NULL, /* GCancellable */
-                                    data);
+          /* If it's a optical drive, we don't need to try and
+           * manually unmount etc.  everything as we're attempting to
+           * open it O_RDONLY anyway - see copy_thread_func() for
+           * details.
+           */
+          if (g_str_has_prefix (udisks_block_get_device (data->block), "/dev/sr"))
+            {
+              start_copying (data);
+            }
+          else
+            {
+              /* ensure the device is unused (e.g. unmounted) before copying data from it... */
+              gdu_window_ensure_unused (data->window,
+                                        data->object,
+                                        (GAsyncReadyCallback) ensure_unused_cb,
+                                        NULL, /* GCancellable */
+                                        data);
+            }
         }
       break;
 

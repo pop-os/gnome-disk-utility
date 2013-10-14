@@ -65,7 +65,8 @@ gdu_utils_has_configuration (UDisksBlock  *block,
 
 void
 gdu_utils_configure_file_chooser_for_disk_images (GtkFileChooser *file_chooser,
-                                                  gboolean        set_file_types)
+                                                  gboolean        set_file_types,
+                                                  gboolean        allow_compressed)
 {
   GtkFileFilter *filter;
   gchar *folder;
@@ -92,8 +93,17 @@ gdu_utils_configure_file_chooser_for_disk_images (GtkFileChooser *file_chooser,
       gtk_file_filter_add_pattern (filter, "*");
       gtk_file_chooser_add_filter (file_chooser, filter); /* adopts filter */
       filter = gtk_file_filter_new ();
-      gtk_file_filter_set_name (filter, _("Disk Images (*.img, *.iso)"));
+      if (allow_compressed)
+        gtk_file_filter_set_name (filter, _("Disk Images (*.img, *.img.xz, *.iso)"));
+      else
+        gtk_file_filter_set_name (filter, _("Disk Images (*.img, *.iso)"));
+      gtk_file_filter_add_pattern (filter, "*.raw-disk-image");
       gtk_file_filter_add_pattern (filter, "*.img");
+      if (allow_compressed)
+        {
+          gtk_file_filter_add_pattern (filter, "*.raw-disk-image.xz");
+          gtk_file_filter_add_pattern (filter, "*.img.xz");
+        }
       gtk_file_filter_add_pattern (filter, "*.iso");
       gtk_file_chooser_add_filter (file_chooser, filter); /* adopts filter */
       gtk_file_chooser_set_filter (file_chooser, filter);
@@ -105,24 +115,16 @@ gdu_utils_configure_file_chooser_for_disk_images (GtkFileChooser *file_chooser,
 
 /* should be called when user chooses file/dir from @file_chooser */
 void
-gdu_utils_file_chooser_for_disk_images_update_settings (GtkFileChooser *file_chooser)
+gdu_utils_file_chooser_for_disk_images_set_default_folder (GFile *folder)
 {
-  const gchar *orig_folder;
-  gchar *cur_folder;
+  gchar *folder_uri;
+  GSettings *settings;
 
-  orig_folder = g_object_get_data (G_OBJECT (file_chooser), "x-gdu-orig-folder");
-  cur_folder = gtk_file_chooser_get_current_folder_uri (file_chooser);
-  /* NOTE: cur_folder may be NULL if e.g. something in "Search" or
-   * "Recently Used" is selected... in that case, do not update
-   * the GSetting
-   */
-  if (cur_folder != NULL && g_strcmp0 (orig_folder, cur_folder) != 0)
-    {
-      GSettings *settings = g_settings_new ("org.gnome.Disks");
-      g_settings_set_string (settings, "image-dir-uri", cur_folder);
-      g_clear_object (&settings);
-    }
-  g_free (cur_folder);
+  folder_uri = g_file_get_uri (folder);
+  settings = g_settings_new ("org.gnome.Disks");
+  g_settings_set_string (settings, "image-dir-uri", folder_uri);
+  g_clear_object (&settings);
+  g_free (folder_uri);
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -194,7 +196,9 @@ gdu_utils_unfuse_path (const gchar *path)
   gchar *ret;
   GFile *file;
   gchar *uri;
+  const gchar *home;
 
+  /* Map GVfs FUSE paths to GVfs URIs */
   file = g_file_new_for_path (path);
   uri = g_file_get_uri (file);
   if (g_str_has_prefix (uri, "file:"))
@@ -207,6 +211,24 @@ gdu_utils_unfuse_path (const gchar *path)
     }
   g_object_unref (file);
   g_free (uri);
+
+  /* Replace $HOME with ~ */
+  home = g_get_home_dir ();
+  if (g_str_has_prefix (ret, home))
+    {
+      size_t home_len = strlen (home);
+      if (home_len > 2)
+        {
+          if (home[home_len - 1] == '/')
+            home_len--;
+          if (ret[home_len] == '/')
+            {
+              gchar *tmp = ret;
+              ret = g_strdup_printf ("~/%s", ret + home_len + 1);
+              g_free (tmp);
+            }
+        }
+    }
 
   return ret;
 }

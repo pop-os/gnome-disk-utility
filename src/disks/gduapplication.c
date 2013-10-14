@@ -18,6 +18,7 @@
 
 #include "gduapplication.h"
 #include "gduformatvolumedialog.h"
+#include "gdurestorediskimagedialog.h"
 #include "gduwindow.h"
 #include "gdulocaljob.h"
 
@@ -128,14 +129,14 @@ gdu_application_object_from_block_device (GduApplication *app,
 
   if (stat (block_device, &statbuf) != 0)
     {
-      *error_message = g_strdup_printf (_("Error opening %s: %s\n"), block_device, g_strerror (errno));
+      *error_message = g_strdup_printf (_("Error opening %s: %s"), block_device, g_strerror (errno));
       goto out;
     }
 
   block = udisks_client_get_block_for_dev (app->client, statbuf.st_rdev);
   if (block == NULL)
     {
-      *error_message = g_strdup_printf (_("Error looking up block device for %s\n"), block_device);
+      *error_message = g_strdup_printf (_("Error looking up block device for %s"), block_device);
       goto out;
     }
 
@@ -172,12 +173,14 @@ gdu_application_command_line (GApplication            *_app,
   gchar *opt_block_device = NULL, *error_message = NULL;
   gboolean opt_help = FALSE;
   gboolean opt_format = FALSE;
+  gchar *opt_restore_disk_image = NULL;
   gint opt_xid = -1;
   GOptionEntry opt_entries[] =
   {
     {"block-device", 0, 0, G_OPTION_ARG_STRING, &opt_block_device, N_("Select device"), NULL },
     {"format-device", 0, 0, G_OPTION_ARG_NONE, &opt_format, N_("Format selected device"), NULL },
     {"xid", 0, 0, G_OPTION_ARG_INT, &opt_xid, N_("Parent window XID for the format dialog"), NULL },
+    {"restore-disk-image", 0, 0, G_OPTION_ARG_FILENAME, &opt_restore_disk_image, N_("Restore disk image"), NULL },
     {"help", '?', G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_NONE, &opt_help, N_("Show help options"), NULL },
     {NULL}
   };
@@ -224,8 +227,19 @@ gdu_application_command_line (GApplication            *_app,
       object_to_select = gdu_application_object_from_block_device (app, opt_block_device, &error_message);
       if (object_to_select == NULL)
         {
-          g_application_command_line_print (command_line, "%s", error_message);
+          g_application_command_line_printerr (command_line, "%s\n", error_message);
           g_free (error_message);
+          goto out;
+        }
+    }
+
+  if (opt_restore_disk_image != NULL)
+    {
+      if (!g_file_test (opt_restore_disk_image, G_FILE_TEST_IS_REGULAR))
+        {
+          g_application_command_line_printerr (command_line,
+                                               "%s does not appear to be a regular file\n",
+                                               opt_restore_disk_image);
           goto out;
         }
     }
@@ -254,6 +268,10 @@ gdu_application_command_line (GApplication            *_app,
       gdu_format_volume_dialog_show_for_xid (app->client, opt_xid, object_to_select);
     }
 
+  if (opt_restore_disk_image != NULL)
+    {
+      gdu_restore_disk_image_dialog_show (app->window, NULL, opt_restore_disk_image);
+    }
 
   ret = 0;
 
@@ -261,6 +279,7 @@ gdu_application_command_line (GApplication            *_app,
   g_option_context_free (context);
   g_clear_object (&object_to_select);
   g_free (opt_block_device);
+  g_free (opt_restore_disk_image);
   g_strfreev (argv);
   return ret;
 }

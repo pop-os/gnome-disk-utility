@@ -1,7 +1,8 @@
-AC_INIT([GNOME Disk Utility],[3.8.2],[https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-disk-utility],[gnome-disk-utility])
+AC_INIT([GNOME Disk Utility],[3.10.0],[https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-disk-utility],[gnome-disk-utility])
 
 AM_INIT_AUTOMAKE([1.9 foreign dist-xz no-dist-gzip tar-ustar])
 
+AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_SRCDIR([src])
 AC_CONFIG_HEADERS([config.h])
 
@@ -77,12 +78,32 @@ CC_CHECK_CFLAGS_APPEND([                          \
         -fno-strict-aliasing                      \
 ])
 
+AC_MSG_CHECKING([for valid fallocate() function])
+AC_LINK_IFELSE([
+AC_LANG_PROGRAM([[
+#include <unistd.h>
+#include <sys/types.h>
+#include <linux/falloc.h>
+#include <fcntl.h>
+]],[[
+   long ret;
+
+   ret = fallocate(0, FALLOC_FL_KEEP_SIZE, 0xfffffffful, 0xfffffffful);
+
+   if (ret != 0) {
+      return 1;
+   }
+   ]])],[
+AC_MSG_RESULT([yes])
+AC_DEFINE(HAVE_FALLOCATE,1,[Have valid fallocate() function])],[
+AC_MSG_RESULT([no])])
+
 # ***************************
 # Check for required packages
 # ***************************
 
 GLIB2_REQUIRED=2.31.0
-UDISKS2_REQUIRED=2.1.0
+UDISKS2_REQUIRED=2.1.1
 GTK3_REQUIRED=3.5.8
 LIBSECRET1_REQUIRED=0.7
 PWQUALITY_REQUIRED=1.0.0
@@ -90,6 +111,7 @@ CANBERRA_REQUIRED=0.1
 LIBDVDREAD_REQUIRED=4.2.0
 GSD_PLUGIN_REQUIRED=3.6
 LIBNOTIFY_REQUIRED=0.7
+LIBLZMA_REQUIRED=5.0.5
 
 PKG_CHECK_MODULES(GLIB2, [gmodule-2.0 gio-unix-2.0 >= $GLIB2_REQUIRED])
 PKG_CHECK_MODULES(UDISKS2, [udisks2 >= $UDISKS2_REQUIRED])
@@ -98,8 +120,9 @@ PKG_CHECK_MODULES(LIBSECRET1, [libsecret-1 >= $LIBSECRET1_REQUIRED])
 PKG_CHECK_MODULES(PWQUALITY, [pwquality >= $PWQUALITY_REQUIRED])
 PKG_CHECK_MODULES(CANBERRA, [libcanberra-gtk3 >= $CANBERRA_REQUIRED])
 PKG_CHECK_MODULES(LIBDVDREAD, [dvdread >= $LIBDVDREAD_REQUIRED])
-PKG_CHECK_MODULES(GSD_PLUGIN, [gnome-settings-daemon >= GSD_PLUGIN_REQUIRED])
-PKG_CHECK_MODULES(LIBNOTIFY, [libnotify >= LIBNOTIFY_REQUIRED])
+PKG_CHECK_MODULES(GSD_PLUGIN, [gnome-settings-daemon >= $GSD_PLUGIN_REQUIRED])
+PKG_CHECK_MODULES(LIBNOTIFY, [libnotify >= $LIBNOTIFY_REQUIRED])
+PKG_CHECK_MODULES(LIBLZMA, [liblzma >= $LIBLZMA_REQUIRED])
 
 gsd_plugindir='${libdir}/gnome-settings-daemon-3.0'
 AC_SUBST([gsd_plugindir])
