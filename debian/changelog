@@ -5,6 +5,7 @@ gnome-disk-utility (3.10.0-1) UNRELEASED; urgency=low
   * Add Build-Depends on liblzma-dev (>= 5.0.5) to get support for restoring
     XZ compressed disk images.
   * Remove debian/patches/02-fix-ftbfs-format.patch, merged upstream.
+  * Re-enable gnome-settings-daemon plugin. (Closes: #726334)
 
  -- Michael Biebl <biebl@debian.org>  Mon, 14 Oct 2013 19:11:12 +0200
 
