@@ -11,7 +11,7 @@ Build-Depends: debhelper (>= 9),
  gnome-common,
  libglib2.0-dev (>= 2.31.0),
  libgtk-3-dev (>= 3.5.8),
- libudisks2-dev (>= 2.1.0),
+ libudisks2-dev (>= 2.1.1),
  libsecret-1-dev (>= 0.7),
  libpwquality-dev (>= 1.0.0),
  libcanberra-gtk3-dev (>= 0.1),
@@ -29,7 +29,7 @@ Homepage: http://git.gnome.org/cgit/gnome-disk-utility/
 
 Package: gnome-disk-utility
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, udisks2 (>= 2.1.0)
+Depends: ${shlibs:Depends}, ${misc:Depends}, udisks2 (>= 2.1.1)
 Pre-Depends: ${misc:Pre-Depends}
 Description: manage and configure disk drives and media
  GNOME Disks is a tool to manage disk drives and media:
