@@ -858,14 +858,12 @@ void
 gdu_window_show_attach_disk_image (GduWindow *window)
 {
   GtkWidget *dialog;
-  gchar *filename;
-  gint fd;
+  GFile *folder = NULL;
+  gchar *filename = NULL;
+  gint fd = -1;
   GUnixFDList *fd_list;
   GVariantBuilder options_builder;
   GtkWidget *ro_checkbutton;
-
-  filename = NULL;
-  fd = -1;
 
   dialog = gtk_file_chooser_dialog_new (_("Select Disk Image to Attach"),
                                         GTK_WINDOW (window),
@@ -873,7 +871,9 @@ gdu_window_show_attach_disk_image (GduWindow *window)
                                         GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
                                         _("_Attach"), GTK_RESPONSE_ACCEPT,
                                         NULL);
-  gdu_utils_configure_file_chooser_for_disk_images (GTK_FILE_CHOOSER (dialog), TRUE);
+  gdu_utils_configure_file_chooser_for_disk_images (GTK_FILE_CHOOSER (dialog),
+                                                    TRUE,   /* set file types */
+                                                    FALSE); /* allow_compressed */
 
   /* Add a RO check button that defaults to RO */
   ro_checkbutton = gtk_check_button_new_with_mnemonic (_("Set up _read-only loop device"));
@@ -905,7 +905,8 @@ gdu_window_show_attach_disk_image (GduWindow *window)
     }
 
   /* now that we know the user picked a folder, update file chooser settings */
-  gdu_utils_file_chooser_for_disk_images_update_settings (GTK_FILE_CHOOSER (dialog));
+  folder = gtk_file_chooser_get_current_folder_file (GTK_FILE_CHOOSER (dialog));
+  gdu_utils_file_chooser_for_disk_images_set_default_folder (folder);
 
   g_variant_builder_init (&options_builder, G_VARIANT_TYPE_VARDICT);
   if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (ro_checkbutton)))
@@ -923,6 +924,7 @@ gdu_window_show_attach_disk_image (GduWindow *window)
  out:
   gtk_widget_destroy (dialog);
   g_free (filename);
+  g_clear_object (&folder);
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -1273,7 +1275,9 @@ gdu_window_constructed (GObject *object)
 
   gtk_widget_reparent (window->main_hpane, GTK_WIDGET (window));
   gtk_window_set_title (GTK_WINDOW (window), _("Disks"));
-  gtk_window_set_default_size (GTK_WINDOW (window), 800, 600);
+  /* Fortunately the window manager resizes the window if it's too tall for the monitor.. so 900 pixels is fine */
+  gtk_window_set_default_size (GTK_WINDOW (window), 800, 900);
+  gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_CENTER);
   gtk_container_set_border_width (GTK_CONTAINER (window), 12);
 
   /* detach overlay toolbar and attach it to the right place - see also update_for_multi_selection() */
@@ -1308,7 +1312,9 @@ gdu_window_constructed (GObject *object)
   //gtk_style_context_add_class (context, GTK_STYLE_CLASS_INLINE_TOOLBAR);
   gtk_style_context_set_junction_sides (context, GTK_JUNCTION_BOTTOM);
 
-  window->model = gdu_device_tree_model_new (window->application);
+  window->model = gdu_device_tree_model_new (window->application,
+                                             GDU_DEVICE_TREE_MODEL_FLAGS_UPDATE_POWER_STATE |
+                                             GDU_DEVICE_TREE_MODEL_FLAGS_UPDATE_PULSE);
 
   gtk_tree_view_set_model (GTK_TREE_VIEW (window->device_tree_treeview), GTK_TREE_MODEL (window->model));
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (window->model),
@@ -3772,7 +3778,7 @@ on_generic_drive_menu_item_restore_disk_image (GtkMenuItem *menu_item,
 
   object = gdu_volume_grid_get_block_object (GDU_VOLUME_GRID (window->volume_grid));
   g_assert (object != NULL);
-  gdu_restore_disk_image_dialog_show (window, object);
+  gdu_restore_disk_image_dialog_show (window, object, NULL);
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -3814,7 +3820,7 @@ on_generic_menu_item_restore_volume_image (GtkMenuItem *menu_item,
 
   object = gdu_volume_grid_get_selected_device (GDU_VOLUME_GRID (window->volume_grid));
   g_assert (object != NULL);
-  gdu_restore_disk_image_dialog_show (window, object);
+  gdu_restore_disk_image_dialog_show (window, object, NULL);
 }
 
 /* ---------------------------------------------------------------------------------------------------- */

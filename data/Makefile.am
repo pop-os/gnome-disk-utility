@@ -3,7 +3,12 @@ NULL =
 SUBDIRS = ui icons
 
 desktopdir = $(datadir)/applications
-desktop_in_files = gnome-disks.desktop.in gnome-disk-image-mounter.desktop.in
+desktop_in_files =				\
+	gnome-disks.desktop.in 			\
+	gnome-disk-image-mounter.desktop.in 	\
+	gnome-disk-image-writer.desktop.in	\
+	$(NULL)
+
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 # GSettings schemas

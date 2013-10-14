@@ -25,6 +25,8 @@
 #include "gduvolumegrid.h"
 #include "gduestimator.h"
 #include "gdulocaljob.h"
+#include "gdudevicetreemodel.h"
+#include "gduxzdecompressor.h"
 
 /* ---------------------------------------------------------------------------------------------------- */
 
@@ -34,6 +36,9 @@ typedef struct
 
   GduWindow *window;
   UDisksObject *object;
+  gchar *disk_image_filename;
+  gboolean switch_to_object;
+
   UDisksBlock *block;
   UDisksDrive *drive;
 
@@ -47,10 +52,17 @@ typedef struct
   GtkWidget *error_label;
 
   GtkWidget *image_key_label;
-  GtkWidget *image_fcbutton;
+  GtkWidget *image_label;
+  GtkWidget *selectable_image_label;
+  GtkWidget *selectable_image_fcbutton;
+
+  GtkWidget *image_size_key_label;
+  GtkWidget *image_size_label;
 
   GtkWidget *destination_key_label;
   GtkWidget *destination_label;
+  GtkWidget *selectable_destination_label;
+  GtkWidget *selectable_destination_combobox;
 
   GtkWidget *start_copying_button;
   GtkWidget *cancel_button;
@@ -61,8 +73,8 @@ typedef struct
 
   GCancellable *cancellable;
   GOutputStream *block_stream;
-  GFileInputStream *file_input_stream;
-  guint64 file_size;
+  GInputStream *input_stream;
+  guint64 input_size;
 
   guchar *buffer;
   guint64 total_bytes_read;
@@ -91,9 +103,17 @@ static const struct {
   {G_STRUCT_OFFSET (DialogData, infobar_vbox), "infobar-vbox"},
 
   {G_STRUCT_OFFSET (DialogData, image_key_label), "image-key-label"},
-  {G_STRUCT_OFFSET (DialogData, image_fcbutton), "image-fcbutton"},
+  {G_STRUCT_OFFSET (DialogData, image_label), "image-label"},
+  {G_STRUCT_OFFSET (DialogData, selectable_image_label), "selectable-image-label"},
+  {G_STRUCT_OFFSET (DialogData, selectable_image_fcbutton), "selectable-image-fcbutton"},
+
+  {G_STRUCT_OFFSET (DialogData, image_size_key_label), "image-size-key-label"},
+  {G_STRUCT_OFFSET (DialogData, image_size_label), "image-size-label"},
+
   {G_STRUCT_OFFSET (DialogData, destination_key_label), "destination-key-label"},
   {G_STRUCT_OFFSET (DialogData, destination_label), "destination-label"},
+  {G_STRUCT_OFFSET (DialogData, selectable_destination_label), "selectable-destination-label"},
+  {G_STRUCT_OFFSET (DialogData, selectable_destination_combobox), "selectable-destination-combobox"},
 
   {G_STRUCT_OFFSET (DialogData, start_copying_button), "start-copying-button"},
   {G_STRUCT_OFFSET (DialogData, cancel_button), "cancel-button"},
@@ -158,16 +178,17 @@ dialog_data_unref (DialogData *data)
       g_object_unref (data->warning_infobar);
       g_object_unref (data->error_infobar);
       g_object_unref (data->window);
-      g_object_unref (data->object);
-      g_object_unref (data->block);
+      g_clear_object (&data->object);
+      g_clear_object (&data->block);
       g_clear_object (&data->drive);
+      g_free (data->disk_image_filename);
       if (data->builder != NULL)
         g_object_unref (data->builder);
       g_free (data->buffer);
       g_clear_object (&data->estimator);
 
       g_clear_object (&data->cancellable);
-      g_clear_object (&data->file_input_stream);
+      g_clear_object (&data->input_stream);
       g_clear_object (&data->block_stream);
       g_mutex_clear (&data->copy_lock);
       g_free (data);
@@ -213,6 +234,7 @@ restore_disk_image_update (DialogData *data)
   gboolean can_proceed = FALSE;
   gchar *restore_warning = NULL;
   gchar *restore_error = NULL;
+  gchar *image_size_str = NULL;
   GFile *restore_file = NULL;
 
   if (data->dialog == NULL)
@@ -223,25 +245,61 @@ restore_disk_image_update (DialogData *data)
     goto out;
 
   /* Check if we have a file */
-  restore_file = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (data->image_fcbutton));
+  if (data->disk_image_filename != NULL)
+    restore_file = g_file_new_for_commandline_arg (data->disk_image_filename);
+  else
+    restore_file = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (data->selectable_image_fcbutton));
+
   if (restore_file != NULL)
     {
+      gboolean is_xz_compressed = FALSE;
       GFileInfo *info;
       guint64 size;
       gchar *s;
+
       info = g_file_query_info (restore_file,
+                                G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE ","
                                 G_FILE_ATTRIBUTE_STANDARD_SIZE,
                                 G_FILE_QUERY_INFO_NONE,
                                 NULL,
                                 NULL);
+      if (g_str_has_suffix (g_file_info_get_content_type (info), "-xz-compressed"))
+        is_xz_compressed = TRUE;
       size = g_file_info_get_size (info);
       g_object_unref (info);
+
+      if (is_xz_compressed)
+        {
+          gsize uncompressed_size;
+          uncompressed_size = gdu_xz_decompressor_get_uncompressed_size (restore_file);
+          if (uncompressed_size == 0)
+            {
+              restore_error = g_strdup (_("File does not appear to be XZ compressed"));
+              size = 0;
+            }
+          else
+            {
+              s = udisks_client_get_size_for_display (gdu_window_get_client (data->window), uncompressed_size, FALSE, TRUE);
+              /* Translators: Shown for a compressed disk image in the "Size" field.
+               *              The %s is the uncompressed size as a long string, e.g. "4.2 MB (4,300,123 bytes)".
+               */
+              image_size_str = g_strdup_printf (_("%s when decompressed"), s);
+              g_free (s);
+              size = uncompressed_size;
+            }
+        }
+      else
+        {
+          image_size_str = udisks_client_get_size_for_display (gdu_window_get_client (data->window), size, FALSE, TRUE);
+        }
 
       if (data->block_size > 0)
         {
           if (size == 0)
             {
-              restore_error = g_strdup (_("Cannot restore image of size 0"));
+              /* if size is 0, error may be set already.. */
+              if (restore_error == NULL)
+                restore_error = g_strdup (_("Cannot restore image of size 0"));
             }
           else if (size < data->block_size)
             {
@@ -289,9 +347,12 @@ restore_disk_image_update (DialogData *data)
       gtk_widget_hide (data->error_infobar);
     }
 
+  gtk_label_set_text (GTK_LABEL (data->image_size_label), image_size_str != NULL ? image_size_str : "—");
+
   g_free (restore_warning);
   g_free (restore_error);
   g_clear_object (&restore_file);
+  g_free (image_size_str);
 
   gtk_dialog_set_response_sensitive (GTK_DIALOG (data->dialog), GTK_RESPONSE_OK, can_proceed);
 
@@ -327,16 +388,170 @@ on_notify (GObject    *object,
 /* ---------------------------------------------------------------------------------------------------- */
 
 static void
+destination_combobox_sensitive_cb (GtkCellLayout   *cell_layout,
+                                   GtkCellRenderer *renderer,
+                                   GtkTreeModel    *model,
+                                   GtkTreeIter     *iter,
+                                   gpointer         user_data)
+{
+  /* DialogData *data = user_data; */
+  gboolean sensitive = FALSE;
+  UDisksBlock *block = NULL;
+
+  gtk_tree_model_get (model, iter,
+                      GDU_DEVICE_TREE_MODEL_COLUMN_BLOCK, &block,
+                      -1);
+
+  if (block == NULL)
+    sensitive = TRUE;
+
+  if (block != NULL &&
+      udisks_block_get_size (block) > 0 &&
+      !udisks_block_get_read_only (block))
+    sensitive = TRUE;
+
+  gtk_cell_renderer_set_sensitive (renderer, sensitive);
+
+  g_clear_object (&block);
+}
+
+static void
+set_destination_object (DialogData *data,
+                        UDisksObject *object)
+{
+  if (data->object != object)
+    {
+      g_clear_object (&data->object);
+      g_clear_object (&data->block);
+      g_clear_object (&data->drive);
+      data->block_size = 0;
+      if (object != NULL)
+        {
+          data->object = g_object_ref (object);
+          data->block = udisks_object_get_block (data->object);
+          g_assert (data->block != NULL);
+          data->drive = udisks_client_get_drive_for_block (gdu_window_get_client (data->window), data->block);
+          /* TODO: use a method call for this so it works on e.g. floppy drives where e.g. we don't know the size */
+          data->block_size = udisks_block_get_size (data->block);
+        }
+    }
+}
+
+static void
+on_destination_combobox_notify_active (GObject    *gobject,
+                                       GParamSpec *pspec,
+                                       gpointer    user_data)
+{
+  DialogData *data = user_data;
+  UDisksObject *object = NULL;
+  GtkTreeIter iter;
+  GtkComboBox *combobox;
+
+  combobox = GTK_COMBO_BOX (data->selectable_destination_combobox);
+  if (gtk_combo_box_get_active_iter (combobox, &iter))
+    {
+      UDisksBlock *block = NULL;
+      gtk_tree_model_get (gtk_combo_box_get_model (combobox),
+                          &iter,
+                          GDU_DEVICE_TREE_MODEL_COLUMN_BLOCK, &block,
+                          -1);
+      if (block != NULL)
+        object = (UDisksObject *) g_dbus_interface_dup_object (G_DBUS_INTERFACE (block));
+      g_clear_object (&block);
+    }
+  set_destination_object (data, object);
+  restore_disk_image_update (data);
+  g_clear_object (&object);
+}
+
+static void
+populate_destination_combobox (DialogData *data)
+{
+  GduDeviceTreeModel *model;
+  GtkComboBox *combobox;
+  GtkCellRenderer *renderer;
+
+  combobox = GTK_COMBO_BOX (data->selectable_destination_combobox);
+  model = gdu_device_tree_model_new (gdu_window_get_application (data->window),
+                                     GDU_DEVICE_TREE_MODEL_FLAGS_FLAT |
+                                     GDU_DEVICE_TREE_MODEL_FLAGS_ONE_LINE_NAME |
+                                     GDU_DEVICE_TREE_MODEL_FLAGS_INCLUDE_DEVICE_NAME |
+                                     GDU_DEVICE_TREE_MODEL_FLAGS_INCLUDE_NONE_ITEM);
+  gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (model),
+                                        GDU_DEVICE_TREE_MODEL_COLUMN_SORT_KEY,
+                                        GTK_SORT_ASCENDING);
+  gtk_combo_box_set_model (combobox, GTK_TREE_MODEL (model));
+  g_object_unref (model);
+
+  renderer = gtk_cell_renderer_pixbuf_new ();
+  g_object_set (G_OBJECT (renderer),
+                "stock-size", GTK_ICON_SIZE_MENU,
+                NULL);
+  gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (combobox), renderer, FALSE);
+  gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (combobox), renderer,
+                                  "gicon", GDU_DEVICE_TREE_MODEL_COLUMN_ICON,
+                                  NULL);
+  gtk_cell_layout_set_cell_data_func (GTK_CELL_LAYOUT (combobox), renderer,
+                                      destination_combobox_sensitive_cb, data, NULL);
+
+  renderer = gtk_cell_renderer_text_new ();
+  gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (combobox), renderer, FALSE);
+  gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (combobox), renderer,
+                                  "markup", GDU_DEVICE_TREE_MODEL_COLUMN_NAME,
+                                  NULL);
+  gtk_cell_layout_set_cell_data_func (GTK_CELL_LAYOUT (combobox), renderer,
+                                      destination_combobox_sensitive_cb, data, NULL);
+
+  g_signal_connect (combobox, "notify::active", G_CALLBACK (on_destination_combobox_notify_active), data);
+
+  /* Select (None) item */
+  gtk_combo_box_set_active (combobox, 0);
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+static void
 restore_disk_image_populate (DialogData *data)
 {
-  UDisksObjectInfo *info;
+  gdu_utils_configure_file_chooser_for_disk_images (GTK_FILE_CHOOSER (data->selectable_image_fcbutton),
+                                                    TRUE,   /* set file types */
+                                                    TRUE);  /* allow_compressed */
 
-  gdu_utils_configure_file_chooser_for_disk_images (GTK_FILE_CHOOSER (data->image_fcbutton), TRUE);
+  /* Image: Show label if image is known, otherwise show a filechooser button */
+  if (data->disk_image_filename != NULL)
+    {
+      gchar *s;
+      s = gdu_utils_unfuse_path (data->disk_image_filename);
+      gtk_label_set_text (GTK_LABEL (data->image_label), s);
+      g_free (s);
 
-  /* Destination label */
-  info = udisks_client_get_object_info (gdu_window_get_client (data->window), data->object);
-  gtk_label_set_text (GTK_LABEL (data->destination_label), udisks_object_info_get_one_liner (info));
-  g_clear_object (&info);
+      gtk_widget_hide (data->selectable_image_label);
+      gtk_widget_hide (data->selectable_image_fcbutton);
+    }
+  else
+    {
+      gtk_widget_hide (data->image_key_label);
+      gtk_widget_hide (data->image_label);
+    }
+
+  /* Destination: Show label if device is known, otherwise show a combobox */
+  if (data->object != NULL)
+    {
+      UDisksObjectInfo *info;
+      info = udisks_client_get_object_info (gdu_window_get_client (data->window), data->object);
+      gtk_label_set_text (GTK_LABEL (data->destination_label), udisks_object_info_get_one_liner (info));
+      g_clear_object (&info);
+
+      gtk_widget_hide (data->selectable_destination_label);
+      gtk_widget_hide (data->selectable_destination_combobox);
+    }
+  else
+    {
+      gtk_widget_hide (data->destination_key_label);
+      gtk_widget_hide (data->destination_label);
+
+      populate_destination_combobox (data);
+    }
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -546,7 +761,7 @@ copy_thread_func (gpointer user_data)
   buffer = (guchar*) (((gintptr) (buffer_unaligned + page_size)) & (~(page_size - 1)));
 
   g_mutex_lock (&data->copy_lock);
-  data->estimator = gdu_estimator_new (data->file_size);
+  data->estimator = gdu_estimator_new (data->input_size);
   data->update_id = 0;
   data->start_time_usec = g_get_real_time ();
   g_mutex_unlock (&data->copy_lock);
@@ -555,7 +770,7 @@ copy_thread_func (gpointer user_data)
    * device even if it was only partially read.
    */
   num_bytes_completed = 0;
-  while (num_bytes_completed < data->file_size)
+  while (num_bytes_completed < data->input_size)
     {
       gsize num_bytes_to_read;
       gsize num_bytes_read;
@@ -563,8 +778,8 @@ copy_thread_func (gpointer user_data)
       gint64 now_usec;
 
       num_bytes_to_read = buffer_size;
-      if (num_bytes_to_read + num_bytes_completed > data->file_size)
-        num_bytes_to_read = data->file_size - num_bytes_completed;
+      if (num_bytes_to_read + num_bytes_completed > data->input_size)
+        num_bytes_to_read = data->input_size - num_bytes_completed;
 
       /* Update GUI - but only every 200 ms and only if last update isn't pending */
       g_mutex_lock (&data->copy_lock);
@@ -579,7 +794,7 @@ copy_thread_func (gpointer user_data)
         }
       g_mutex_unlock (&data->copy_lock);
 
-      if (!g_input_stream_read_all (G_INPUT_STREAM (data->file_input_stream),
+      if (!g_input_stream_read_all (data->input_stream,
                                     buffer,
                                     num_bytes_to_read,
                                     &num_bytes_read,
@@ -587,7 +802,7 @@ copy_thread_func (gpointer user_data)
                                     &error))
         {
           g_prefix_error (&error,
-                          "Error reading %" G_GUINT64_FORMAT " bytes from offset %" G_GUINT64_FORMAT ": ",
+                          "Error reading %" G_GSIZE_FORMAT " bytes from offset %" G_GUINT64_FORMAT ": ",
                           num_bytes_to_read,
                           num_bytes_completed);
           goto out;
@@ -595,7 +810,7 @@ copy_thread_func (gpointer user_data)
       if (num_bytes_read != num_bytes_to_read)
         {
           g_set_error (&error, G_IO_ERROR, G_IO_ERROR_FAILED,
-                       "Requested %" G_GUINT64_FORMAT " bytes from offset %" G_GUINT64_FORMAT " but only read %" G_GUINT64_FORMAT " bytes",
+                       "Requested %" G_GSIZE_FORMAT " bytes from offset %" G_GUINT64_FORMAT " but only read %" G_GSIZE_FORMAT " bytes",
                        num_bytes_read,
                        num_bytes_completed,
                        num_bytes_to_read);
@@ -610,7 +825,7 @@ copy_thread_func (gpointer user_data)
             goto copy_write_again;
 
           g_set_error (&error, G_IO_ERROR, G_IO_ERROR_FAILED,
-                       "Error writing %" G_GUINT64_FORMAT " bytes to offset %" G_GUINT64_FORMAT ": %m",
+                       "Error writing %" G_GSIZE_FORMAT " bytes to offset %" G_GUINT64_FORMAT ": %m",
                        num_bytes_read,
                        num_bytes_completed);
           goto out;
@@ -627,7 +842,7 @@ copy_thread_func (gpointer user_data)
   data->end_time_usec = g_get_real_time ();
 
   /* in either case, close the stream */
-  if (!g_input_stream_close (G_INPUT_STREAM (data->file_input_stream),
+  if (!g_input_stream_close (G_INPUT_STREAM (data->input_stream),
                               NULL, /* cancellable */
                               &error2))
     {
@@ -635,7 +850,7 @@ copy_thread_func (gpointer user_data)
                  error2->message, g_quark_to_string (error2->domain), error2->code);
       g_clear_error (&error2);
     }
-  g_clear_object (&data->file_input_stream);
+  g_clear_object (&data->input_stream);
 
   if (fd != -1 )
     {
@@ -712,11 +927,13 @@ start_copying (DialogData *data)
   GError *error;
 
   error = NULL;
-  file = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (data->image_fcbutton));
-  data->file_input_stream = g_file_read (file,
-                                         NULL,
-                                         &error);
-  if (data->file_input_stream == NULL)
+  if (data->disk_image_filename != NULL)
+    file = g_file_new_for_commandline_arg (data->disk_image_filename);
+  else
+    file = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (data->selectable_image_fcbutton));
+
+  data->input_stream = (GInputStream *) g_file_read (file, NULL, &error);
+  if (data->input_stream == NULL)
     {
       if (!(error->domain == G_IO_ERROR && error->code == G_IO_ERROR_CANCELLED))
         gdu_utils_show_error (GTK_WINDOW (data->dialog), _("Error opening file for reading"), error);
@@ -727,6 +944,7 @@ start_copying (DialogData *data)
 
   error = NULL;
   info = g_file_query_info (file,
+                            G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE ","
                             G_FILE_ATTRIBUTE_STANDARD_SIZE,
                             G_FILE_QUERY_INFO_NONE,
                             NULL,
@@ -738,7 +956,22 @@ start_copying (DialogData *data)
       dialog_data_complete_and_unref (data);
       goto out;
     }
-  data->file_size = g_file_info_get_size (info);
+  data->input_size = g_file_info_get_size (info);
+  if (g_str_has_suffix (g_file_info_get_content_type (info), "-xz-compressed"))
+    {
+      GduXzDecompressor *decompressor;
+      GInputStream *decompressed_input_stream;
+
+      data->input_size = gdu_xz_decompressor_get_uncompressed_size (file);
+
+      decompressor = gdu_xz_decompressor_new ();
+      decompressed_input_stream = g_converter_input_stream_new (G_INPUT_STREAM (data->input_stream),
+                                                                G_CONVERTER (decompressor));
+      g_clear_object (&decompressor);
+
+      g_object_unref (data->input_stream);
+      data->input_stream = decompressed_input_stream;
+    }
   g_object_unref (info);
 
   data->inhibit_cookie = gtk_application_inhibit (GTK_APPLICATION (gdu_window_get_application (data->window)),
@@ -760,6 +993,9 @@ start_copying (DialogData *data)
                     data);
 
   dialog_data_hide (data);
+
+  if (data->switch_to_object)
+    gdu_window_select_object (data->window, data->object);
 
   g_thread_new ("copy-disk-image-thread",
                 copy_thread_func,
@@ -794,6 +1030,7 @@ on_dialog_response (GtkDialog     *dialog,
 {
   DialogData *data = user_data;
   GList *objects = NULL;
+  GFile *folder = NULL;
 
   if (data->dialog == NULL)
     goto out;
@@ -815,7 +1052,8 @@ on_dialog_response (GtkDialog     *dialog,
         }
 
       /* now that we know the user picked a folder, update file chooser settings */
-      gdu_utils_file_chooser_for_disk_images_update_settings (GTK_FILE_CHOOSER (data->image_fcbutton));
+      folder = gtk_file_chooser_get_current_folder_file (GTK_FILE_CHOOSER (data->selectable_image_fcbutton));
+      gdu_utils_file_chooser_for_disk_images_set_default_folder (folder);
 
       /* ensure the device is unused (e.g. unmounted) before copying data to it... */
       gdu_window_ensure_unused (data->window,
@@ -832,11 +1070,13 @@ on_dialog_response (GtkDialog     *dialog,
     }
  out:
   g_list_free (objects);
+  g_clear_object (&folder);
 }
 
 void
 gdu_restore_disk_image_dialog_show (GduWindow    *window,
-                                    UDisksObject *object)
+                                    UDisksObject *object,
+                                    const gchar  *disk_image_filename)
 {
   guint n;
   DialogData *data;
@@ -845,14 +1085,11 @@ gdu_restore_disk_image_dialog_show (GduWindow    *window,
   data->ref_count = 1;
   g_mutex_init (&data->copy_lock);
   data->window = g_object_ref (window);
-  data->object = g_object_ref (object);
-  data->block = udisks_object_get_block (object);
-  g_assert (data->block != NULL);
-  data->drive = udisks_client_get_drive_for_block (gdu_window_get_client (window), data->block);
+  set_destination_object (data, object);
+  if (object == NULL)
+    data->switch_to_object = TRUE;
+  data->disk_image_filename = g_strdup (disk_image_filename);
   data->cancellable = g_cancellable_new ();
-
-  /* TODO: use a method call for this so it works on e.g. floppy drives where e.g. we don't know the size */
-  data->block_size = udisks_block_get_size (data->block);
 
   data->dialog = GTK_WIDGET (gdu_application_new_widget (gdu_window_get_application (data->window),
                                                          "restore-disk-image-dialog.ui",
@@ -863,7 +1100,7 @@ gdu_restore_disk_image_dialog_show (GduWindow    *window,
       gpointer *p = (gpointer *) ((char *) data + widget_mapping[n].offset);
       *p = gtk_builder_get_object (data->builder, widget_mapping[n].name);
     }
-  g_signal_connect (data->image_fcbutton, "file-set", G_CALLBACK (on_file_set), data);
+  g_signal_connect (data->selectable_image_fcbutton, "file-set", G_CALLBACK (on_file_set), data);
 
   data->warning_infobar = gdu_utils_create_info_bar (GTK_MESSAGE_INFO, "", &data->warning_label);
   gtk_box_pack_start (GTK_BOX (data->infobar_vbox), data->warning_infobar, TRUE, TRUE, 0);
@@ -881,7 +1118,7 @@ gdu_restore_disk_image_dialog_show (GduWindow    *window,
   /* unfortunately, GtkFileChooserButton:file-set is not emitted when the user
    * unselects a file but we can work around that.. (TODO: file bug against gtk+)
    */
-  g_signal_connect (data->image_fcbutton, "notify",
+  g_signal_connect (data->selectable_image_fcbutton, "notify",
                     G_CALLBACK (on_notify), data);
 
   data->response_signal_handler_id = g_signal_connect (data->dialog,
@@ -891,6 +1128,9 @@ gdu_restore_disk_image_dialog_show (GduWindow    *window,
 
   gtk_window_set_transient_for (GTK_WINDOW (data->dialog), GTK_WINDOW (window));
   gtk_window_present (GTK_WINDOW (data->dialog));
+
+  gtk_widget_realize (data->selectable_destination_combobox);
+  gtk_widget_grab_focus (data->selectable_destination_combobox);
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
