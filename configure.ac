@@ -1,4 +1,4 @@
-AC_INIT([GNOME Disk Utility],[3.10.0],[https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-disk-utility],[gnome-disk-utility])
+AC_INIT([GNOME Disk Utility],[3.12.0],[https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-disk-utility],[gnome-disk-utility])
 
 AM_INIT_AUTOMAKE([1.9 foreign dist-xz no-dist-gzip tar-ustar])
 
@@ -104,7 +104,7 @@ AC_MSG_RESULT([no])])
 
 GLIB2_REQUIRED=2.31.0
 UDISKS2_REQUIRED=2.1.1
-GTK3_REQUIRED=3.5.8
+GTK3_REQUIRED=3.10.0
 LIBSECRET1_REQUIRED=0.7
 PWQUALITY_REQUIRED=1.0.0
 CANBERRA_REQUIRED=0.1
@@ -128,6 +128,8 @@ gsd_plugindir='${libdir}/gnome-settings-daemon-3.0'
 AC_SUBST([gsd_plugindir])
 
 GLIB_GSETTINGS
+
+AC_PATH_PROG(GLIB_COMPILE_RESOURCES, glib-compile-resources)
 
 dnl **********************************
 dnl *** Check for libsystemd-login ***
@@ -209,7 +211,6 @@ data/icons/HighContrast/48x48/Makefile
 data/icons/HighContrast/256x256/Makefile
 data/org.gnome.Disks.gschema.xml.in
 data/org.gnome.settings-daemon.plugins.gdu-sd.gschema.xml.in
-data/ui/Makefile
 doc/Makefile
 doc/man/Makefile
 ])

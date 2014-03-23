@@ -152,24 +152,24 @@ gdu_utils_create_info_bar (GtkMessageType   message_type,
   switch (message_type)
     {
     case GTK_MESSAGE_QUESTION:
-      stock_id = GTK_STOCK_DIALOG_QUESTION;
+      stock_id = "dialog-question";
       break;
 
     default:                 /* explicit fall-through */
     case GTK_MESSAGE_OTHER:  /* explicit fall-through */
     case GTK_MESSAGE_INFO:
-      stock_id = GTK_STOCK_DIALOG_INFO;
+      stock_id = "dialog-information";
       break;
 
     case GTK_MESSAGE_WARNING:
-      stock_id = GTK_STOCK_DIALOG_WARNING;
+      stock_id = "dialog-warning";
       break;
 
     case GTK_MESSAGE_ERROR:
-      stock_id = GTK_STOCK_DIALOG_ERROR;
+      stock_id = "dialog-error";
       break;
     }
-  image = gtk_image_new_from_stock (stock_id, GTK_ICON_SIZE_BUTTON);
+  image = gtk_image_new_from_icon_name (stock_id, GTK_ICON_SIZE_BUTTON);
   gtk_box_pack_start (GTK_BOX (hbox), image, FALSE, TRUE, 0);
 
   label = gtk_label_new (NULL);
@@ -730,7 +730,7 @@ gdu_utils_show_confirmation (GtkWindow    *parent_window,
       scrolled_window = gtk_scrolled_window_new (NULL, NULL);
       gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
       gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolled_window), GTK_SHADOW_OUT);
-      gtk_scrolled_window_add_with_viewport (GTK_SCROLLED_WINDOW (scrolled_window), vbox);
+      gtk_container_add (GTK_CONTAINER (scrolled_window), vbox);
       gtk_scrolled_window_set_min_content_height (GTK_SCROLLED_WINDOW (scrolled_window), 125);
 
       gtk_box_pack_start (GTK_BOX (gtk_message_dialog_get_message_area (GTK_MESSAGE_DIALOG (dialog))),
@@ -779,78 +779,6 @@ gdu_utils_is_ntfs_available (void)
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
-
-gchar *
-gdu_utils_format_mdraid_level (const gchar *level,
-                               gboolean     long_desc,
-                               gboolean     use_markup)
-{
-  gchar *ret = NULL;
-  const gchar *markup_format;
-
-  if (long_desc)
-    {
-      if (use_markup)
-        markup_format = "%s <span size=\"small\">(%s)</span>";
-      else
-        markup_format = "%s (%s)";
-    }
-  else
-    {
-      markup_format = "%s";
-    }
-
-  /* we know better than the compiler here */
-#ifdef __GNUC_PREREQ
-# if __GNUC_PREREQ(4,6)
-#  pragma GCC diagnostic push
-#  pragma GCC diagnostic ignored "-Wformat-nonliteral"
-# endif
-#endif
-
-  if (g_strcmp0 (level, "raid0") == 0)
-    {
-      ret = g_strdup_printf (markup_format,
-                             _("RAID 0"),
-                             _("Stripe"));
-    }
-  else if (g_strcmp0 (level, "raid1") == 0)
-    {
-      ret = g_strdup_printf (markup_format,
-                             _("RAID 1"),
-                             _("Mirror"));
-    }
-  else if (g_strcmp0 (level, "raid4") == 0)
-    {
-      ret = g_strdup_printf (markup_format,
-                             _("RAID 4"),
-                             _("Dedicated Parity"));
-    }
-  else if (g_strcmp0 (level, "raid5") == 0)
-    {
-      ret = g_strdup_printf (markup_format,
-                             _("RAID 5"),
-                             _("Distributed Parity"));
-    }
-  else if (g_strcmp0 (level, "raid6") == 0)
-    {
-      ret = g_strdup_printf (markup_format,
-                             _("RAID 6"),
-                             _("Double Distributed Parity"));
-    }
-  else if (g_strcmp0 (level, "raid10") == 0)
-    {
-      ret = g_strdup_printf (markup_format,
-                             _("RAID 10"),
-                             _("Stripe of Mirrors"));
-    }
-
-  if (ret == NULL)
-    {
-      ret = g_strdup_printf (_("RAID (%s)"), level);
-    }
-  return ret;
-}
 
 #ifdef __GNUC_PREREQ
 # if __GNUC_PREREQ(4,6)
