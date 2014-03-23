@@ -2,14 +2,14 @@
 # Copyright (C) 2009 gnome-disk-utility's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-disk-utility package.
 #
-# Nilamdyuti Goswami <ngoswami@redhat.com>, 2012, 2013.
+# Nilamdyuti Goswami <ngoswami@redhat.com>, 2012, 2013, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-disk-utility master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "disk-utility&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-09-07 17:26+0000\n"
-"PO-Revision-Date: 2013-09-11 18:52+0530\n"
+"POT-Creation-Date: 2014-02-11 07:46+0000\n"
+"PO-Revision-Date: 2014-02-11 20:11+0630\n"
 "Last-Translator: Nilamdyuti Goswami <ngoswami@redhat.com>\n"
 "Language-Team: Assamese <kde-i18n-doc@kde.org>\n"
 "Language: as_IN\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Lokalize 1.5\n"
 
 #: ../data/gnome-disk-image-mounter.desktop.in.h:1
-#: ../src/disk-image-mounter/main.c:46
+#: ../src/disk-image-mounter/main.c:48
 msgid "Disk Image Mounter"
 msgstr "ডিস্ক ছবি মাউন্টাৰ"
 
@@ -29,17 +29,14 @@ msgid "Mount Disk Images"
 msgstr "ডিস্ক ছবিসমূহ মাউন্ট কৰক"
 
 #: ../data/gnome-disk-image-writer.desktop.in.h:1
-#| msgid "Disk Image Mounter"
 msgid "Disk Image Writer"
 msgstr "ডিস্ক ছবি লেখক"
 
 #: ../data/gnome-disk-image-writer.desktop.in.h:2
-#| msgctxt "restore-inhibit-message"
-#| msgid "Copying disk image to device"
 msgid "Write Disk Images to Devices"
 msgstr "ডিস্ক ছবিক ডিভাইচলৈ লিখক"
 
-#: ../data/gnome-disks.desktop.in.h:1 ../src/disks/gduwindow.c:1277
+#: ../data/gnome-disks.desktop.in.h:1 ../src/disks/gduwindow.c:1044
 msgid "Disks"
 msgstr "ডিস্ক"
 
@@ -86,1208 +83,33 @@ msgstr ""
 "gnome-settings-daemon আৰম্ভণি শাৰীত এই প্লাগিনৰ বাবে ব্যৱহাৰ কৰিব লগিয়া "
 "প্ৰাথমিকতা"
 
-#: ../data/ui/about-dialog.ui.h:1
-msgid ""
-"Copyright © 2008-2013 Red Hat, Inc.\n"
-"Copyright © 2008-2013 David Zeuthen"
-msgstr ""
-"স্বত্বাধিকাৰ © ২০০৮-২০১৩ Red Hat, Inc.\n"
-"স্বত্বাধিকাৰ © ২০০৮-২০১৩ ডেভিড জিউথেন"
-
-#: ../data/ui/about-dialog.ui.h:3
-msgid "View, modify and configure disks and media"
-msgstr "ডিস্ক আৰু মাধ্যম দৰ্শন, পৰিবৰ্তন আৰু সংৰূপণ কৰক"
-
-#: ../data/ui/about-dialog.ui.h:4
-msgid "translator-credits"
-msgstr ""
-"অমিতাক্ষ ফুকন (aphukan@fedoraproject.org), নীলমদ্যুতি গোস্বামী "
-"(ngoswami@redhat."
-"com)"
-
-#: ../data/ui/app-menu.ui.h:1
-msgid "Attach Disk _Image…"
-msgstr "ডিস্ক ছবি সংলগ্ন কৰক (_I)…"
-
-#: ../data/ui/app-menu.ui.h:2
-msgid "_Help"
-msgstr "সহায় (_H)"
-
-#: ../data/ui/app-menu.ui.h:3
-msgid "_About Disks"
-msgstr "ডিস্কসমূহৰ বিষয়ে (_A)"
-
-#: ../data/ui/app-menu.ui.h:4
-msgid "_Quit"
-msgstr "প্ৰস্থান কৰক (_Q)"
-
-#: ../data/ui/benchmark-dialog.ui.h:1
-msgid "Benchmark"
-msgstr "ধাপ"
-
-#: ../data/ui/benchmark-dialog.ui.h:2
-msgid "_Start Benchmark…"
-msgstr "ধাপ আৰম্ভ কৰক (_S)…"
-
-#: ../data/ui/benchmark-dialog.ui.h:3
-msgid "_Abort Benchmark"
-msgstr "ধাপ বাদ দিয়ক (_A)"
-
-#: ../data/ui/benchmark-dialog.ui.h:4
-msgid "Last Benchmarked"
-msgstr "সৰ্বশেষ ধাপ"
-
-#: ../data/ui/benchmark-dialog.ui.h:5
-msgid "Average Read Rate"
-msgstr "গড় পঢ়াৰ হাৰ"
-
-#: ../data/ui/benchmark-dialog.ui.h:6
-msgid "Average Write Rate"
-msgstr "গড় লিখাৰ হাৰ"
-
-#: ../data/ui/benchmark-dialog.ui.h:7
-msgid "Average Access Time"
-msgstr "গড় অভিগম সময়"
-
-#: ../data/ui/benchmark-dialog.ui.h:8 ../data/ui/md-raid-disks-dialog.ui.h:4
-msgid "Disk or Device"
-msgstr "ডিস্ক অথবা ডিভাইচ"
-
-#: ../data/ui/benchmark-dialog.ui.h:9
-msgid "Sample Size"
-msgstr "নমুনা আকাৰ"
-
-#: ../data/ui/benchmark-dialog.ui.h:10
-msgid "Benchmark Settings"
-msgstr "ধাপ সংহতিসমূহ"
-
-#: ../data/ui/benchmark-dialog.ui.h:11
-msgid "_Start Benchmarking…"
-msgstr "ধাপ সৃষ্টি আৰম্ভ কৰক (_S)…"
-
-#: ../data/ui/benchmark-dialog.ui.h:12
-msgid ""
-"Benchmarking involves measuring the transfer rate on various area of the "
-"device as well as measuring how long it takes to seek from one random area "
-"to another. Please back up important data before using the write benchmark."
-msgstr ""
-"ধাপ সৃষ্টি কৰাত ডিভাইচৰ বিভিন্ন স্থানত স্থানান্তৰ হাৰ গণনা লগতে এটা যাদৃচ্ছইক "
-"স্থানৰ "
-"পৰা আন এটালে সন্ধানৰ সময় অন্তৰ্ভুক্ত হয়। অনুগ্ৰহ কৰি লিখা ধাপ ব্যৱহাৰ কৰাৰ "
-"আগত "
-"গুৰুত্বপূৰ্ণ তথ্যৰ বেকআপ লব।"
-
-#: ../data/ui/benchmark-dialog.ui.h:13
-msgid "Transfer Rate"
-msgstr "স্থানান্তৰ হাৰ"
-
-#: ../data/ui/benchmark-dialog.ui.h:14
-msgid "Number of S_amples"
-msgstr "নমুনাৰ সংখ্যা (_a)"
-
-#: ../data/ui/benchmark-dialog.ui.h:15
-msgid "Sample S_ize (MiB)"
-msgstr "নমুনাৰ আকাৰ (MiB) (_i)"
-
-#: ../data/ui/benchmark-dialog.ui.h:16
-msgid "Perform _write-benchmark"
-msgstr "write-benchmark পৰিৱেশন কৰক (_w)"
-
-#: ../data/ui/benchmark-dialog.ui.h:17
-msgid ""
-"Benchmarking the write-rate of a disk requires exclusive access to the disk "
-"(e.g. the disk or its partitions cannot be mounted or in use) and involves "
-"reading data and then writing it back. As a result, the contents of the disk "
-"is not changed.\n"
-"\n"
-"If not checked, the write-part of the benchmark will not be done but on the "
-"other hand exclusive access to the device is not needed (e.g. the disk or "
-"device can be in use)."
-msgstr ""
-"এটা ডিস্কৰ লিখা-হাৰৰ ধাপ সৃষ্টি কৰিবলে ডিস্কৰ উপৰত বিশেষ অভিগমৰ প্ৰয়োজন হয় "
-"(উদাহৰণস্বৰূপ ডিস্ক অথবা তাৰ বিভাজনসমূহ মাউন্ট কৰা অথবা ব্যৱহাৰ অৱস্থাত থাকিব "
-"নালাগিব) আৰু তথ্য পঢ়ি তাৰ পুনৰ লিখা অন্তৰ্ভুক্ত কৰে। ফলস্বৰূপ, ডিস্কৰ সমল "
-"পৰিবৰ্তন কৰা "
-"নহয়।\n"
-"\n"
-"যদি নীৰিক্ষণ কৰা নাথাকে, ধাপৰ লিখা-অংশ কৰা নহয় কিন্তু আনফালে ডিভাইচলে বিশেষ "
-"অভিগমৰ প্ৰয়োজন নাথাকিব (উদাহৰণস্বৰূপ ডিস্ক অথবা ডিভাইচ ব্যৱহাৰত থাকিব পাৰে)।"
-
-#: ../data/ui/benchmark-dialog.ui.h:20
-msgid ""
-"Number of samples. Bigger number produces a more accurate picture of access "
-"time patterns but takes more time."
-msgstr ""
-"নমুনাসমূহৰ সংখ্যা। ডাঙৰ সংখ্যায় অভিগম সময় বিন্যাসসমূহৰ এটা অধিক সঠিক ছবি "
-"প্ৰদান কৰে "
-"কিন্তু ইয়াৰ বাবে অধিক সময় ব্যয় হয়।"
-
-#: ../data/ui/benchmark-dialog.ui.h:21
-msgid ""
-"The number of MiB (1048576 bytes) to read/write for each sample. Big sample "
-"sizes tend to produce more accurate benchmarks at the cost of the benchmark "
-"taking more time."
-msgstr ""
-"প্ৰত্যক নমুনা পঢ়িব/লিখিবলে MiB (1048576 বাইট) ৰ সংখ্যা। ডাঙৰ নমুনা আকাৰসমূহে "
-"অধিক "
-"সঠিক ধাপ সৃষ্টি কৰে কিন্তু ধাপত অধিক সময় ব্যয় হয়।"
-
-#: ../data/ui/benchmark-dialog.ui.h:22
-msgid "Access Time"
-msgstr "অভিগম সময়"
-
-#: ../data/ui/benchmark-dialog.ui.h:23
-msgid "Number of Sampl_es"
-msgstr "নমুনাসমূহৰ সংখ্যা (_e)"
-
-#: ../data/ui/benchmark-dialog.ui.h:24
-msgid ""
-"Number of samples. Bigger number produces more smooth graphs but the "
-"benchmark will take more time."
-msgstr ""
-"নমুনাসমূহৰ সংখ্যা। ডাঙৰ সংখ্যায় অধিক নিমজ লেখচিত্ৰ প্ৰদান কৰে কিন্তু ধাপত "
-"অধিক সময় "
-"ব্যয় হয়।"
-
-#: ../data/ui/change-passphrase-dialog.ui.h:1
-msgid "Change Passphrase"
-msgstr "পাচফ্ৰেইছ পৰিবৰ্তন কৰক"
-
-#: ../data/ui/change-passphrase-dialog.ui.h:2
-#: ../data/ui/edit-dos-partition-dialog.ui.h:2
-#: ../data/ui/edit-filesystem-dialog.ui.h:2
-#: ../data/ui/edit-gpt-partition-dialog.ui.h:2
-#: ../data/ui/edit-partition-dialog.ui.h:2
-msgid "C_hange"
-msgstr "পৰিবৰ্তন কৰক (_h)"
-
-#: ../data/ui/change-passphrase-dialog.ui.h:3
-msgid "Curr_ent Passphrase"
-msgstr "বৰ্তমান পাচফ্ৰেইছ (_e)"
-
-#: ../data/ui/change-passphrase-dialog.ui.h:4
-msgid "Enter current passphrase used to protect the data"
-msgstr "তথ্য সুৰক্ষিত কৰিবলে বৰ্তমান পাচফ্ৰেইছ সুমুৱাওক"
-
-#: ../data/ui/change-passphrase-dialog.ui.h:5
-#: ../data/ui/filesystem-create.ui.h:10
-msgid "Sho_w Passphrases"
-msgstr "পাচফ্ৰেইছসমূহ দেখুৱাওক (_w)"
-
-#: ../data/ui/change-passphrase-dialog.ui.h:6
-#: ../data/ui/filesystem-create.ui.h:11
-msgid "Check this box to see the passphrases entered above"
-msgstr "উপৰত সুমুৱা পাচফ্ৰেইছসমূহ চাবলে এই বাকচ চেক কৰক"
-
-#: ../data/ui/change-passphrase-dialog.ui.h:7
-#: ../data/ui/filesystem-create.ui.h:9
-msgid "Confirm passphrase entered above"
-msgstr "উপৰত সুমুৱা পাচফ্ৰেইছ সুনিশ্চিত কৰক"
-
-#: ../data/ui/change-passphrase-dialog.ui.h:8
-msgid "Enter new passphrase used to protect the data"
-msgstr "তথ্য সুৰক্ষিত কৰিবলে নতুন পাচফ্ৰেইছ সুমুৱাওক"
-
-#: ../data/ui/change-passphrase-dialog.ui.h:9
-#: ../data/ui/filesystem-create.ui.h:7
-msgid "C_onfirm Passphrase"
-msgstr "পাচফ্ৰেইছ সুনিশ্চিত কৰক (_o)"
-
-#: ../data/ui/change-passphrase-dialog.ui.h:10
-msgid "New _Passphrase"
-msgstr "নতুন পাচফ্ৰেইছ (_P)"
-
-#: ../data/ui/create-disk-image-dialog.ui.h:1
-msgid "Create Disk Image"
-msgstr "ডিস্ক ছবি সৃষ্টি কৰক"
-
-#: ../data/ui/create-disk-image-dialog.ui.h:2
-#: ../data/ui/create-raid-array-dialog.ui.h:5
-#: ../data/ui/edit-crypttab-dialog.ui.h:4
-#: ../data/ui/edit-gpt-partition-dialog.ui.h:5
-#: ../data/ui/filesystem-create.ui.h:2
-msgid "_Name"
-msgstr "নাম (_N)"
-
-#: ../data/ui/create-disk-image-dialog.ui.h:3
-msgid "Save in _Folder"
-msgstr "ফোল্ডাৰত সংৰক্ষণ কৰক (_F)"
-
-#: ../data/ui/create-disk-image-dialog.ui.h:4
-msgid "Select a Folder"
-msgstr "এটা ফোল্ডাৰ বাছক"
-
-#: ../data/ui/create-disk-image-dialog.ui.h:5
-msgid "Source"
-msgstr "উৎস"
-
-#: ../data/ui/create-disk-image-dialog.ui.h:6
-msgid "_Start Creating…"
-msgstr "সৃষ্টি কৰা আৰম্ভ কৰক (_S)…"
-
-#: ../data/ui/create-partition-dialog.ui.h:1
-msgid "Create Partition"
-msgstr "বিভাজন সৃষ্টি কৰক"
-
-#: ../data/ui/create-partition-dialog.ui.h:2
-#: ../src/disks/gducreateraidarraydialog.c:575
-msgid "C_reate"
-msgstr "সৃষ্টি কৰক (_r)"
-
-#: ../data/ui/create-partition-dialog.ui.h:3
-msgid "Partition _Size"
-msgstr "বিভাজন আকাৰ (_S)"
-
-#: ../data/ui/create-partition-dialog.ui.h:4
-msgid "The size of the partition to create, in megabytes"
-msgstr "সৃষ্টি কৰিবলে বিভাজনৰ আকাৰ, মেগাবাইটত"
-
-#: ../data/ui/create-partition-dialog.ui.h:5
-msgid "bytes"
-msgstr "বাইটসমূহ"
-
-#: ../data/ui/create-partition-dialog.ui.h:6
-msgid "kB"
-msgstr "kB"
-
-#: ../data/ui/create-partition-dialog.ui.h:7
-msgid "MB"
-msgstr "মেগাবাইট"
-
-#: ../data/ui/create-partition-dialog.ui.h:8
-msgid "GB"
-msgstr "GB"
-
-#: ../data/ui/create-partition-dialog.ui.h:9
-msgid "TB"
-msgstr "TB"
-
-#: ../data/ui/create-partition-dialog.ui.h:10
-msgid "PB"
-msgstr "PB"
-
-#: ../data/ui/create-partition-dialog.ui.h:11
-msgid "KiB"
-msgstr "KiB"
-
-#: ../data/ui/create-partition-dialog.ui.h:12
-msgid "MiB"
-msgstr "MiB"
-
-#: ../data/ui/create-partition-dialog.ui.h:13
-msgid "GiB"
-msgstr "GiB"
-
-#: ../data/ui/create-partition-dialog.ui.h:14
-msgid "TiB"
-msgstr "TiB"
-
-#: ../data/ui/create-partition-dialog.ui.h:15
-msgid "PiB"
-msgstr "PiB"
-
-#: ../data/ui/create-partition-dialog.ui.h:16
-msgid "Free Space _Following"
-msgstr "অনুসৰণ কৰা ৰিক্ত স্থান (_F)"
-
-#: ../data/ui/create-partition-dialog.ui.h:17
-msgid "The free space following the partition, in megabytes"
-msgstr "বিভাজন অনুসৰণ কৰা ৰিক্ত স্থান, মেগাবাইটত"
-
-#. The contents of the device, for example 'Unknown', 'FAT (32-bit version)', 'Ext4 (version 1.0)', 'Swap (version 2)'
-#: ../data/ui/create-partition-dialog.ui.h:18 ../data/ui/disks.ui.h:39
-msgid "Contents"
-msgstr "সমলসমূহ"
-
-#: ../data/ui/create-raid-array-dialog.ui.h:1
-msgid "Create RAID Array"
-msgstr "RAID এৰে সৃষ্টি কৰক"
-
-#: ../data/ui/create-raid-array-dialog.ui.h:2
-msgid "C_reate…"
-msgstr "সৃষ্টি কৰক (_r)…"
-
-#: ../data/ui/create-raid-array-dialog.ui.h:3
-msgid "RAID _Level"
-msgstr "RAID ৰ স্তৰ (_L)"
-
-#: ../data/ui/create-raid-array-dialog.ui.h:4
-msgid "Chunk _Size"
-msgstr "টুকুৰাৰ আকাৰ (_S)"
-
-#: ../data/ui/create-raid-array-dialog.ui.h:6
-msgid "Usable Size"
-msgstr "ব্যৱহাৰযোগ্য আকাৰ"
-
-#: ../data/ui/create-raid-array-dialog.ui.h:7
-msgid "Number of Disks"
-msgstr "ডিস্কসমূহৰ সংখ্যা"
-
-#: ../data/ui/create-raid-array-dialog.ui.h:8
-msgid "For example, “My RAID Array” or “Backup Data”"
-msgstr "উদাহৰণস্বৰূপ, “মোৰ RAID এৰে“ অথবা “বেকআপ তথ্য“"
-
-#: ../data/ui/disk-settings-dialog.ui.h:1
-msgid "Drive Settings"
-msgstr "ড্ৰাইভ সংহতিসমূহ"
-
-#: ../data/ui/disk-settings-dialog.ui.h:2
-msgid "Apply Standby Timeout Settings"
-msgstr "স্টেণ্ডবাই সময়অন্ত সংহতিসমূহ প্ৰয়োগ কৰক"
-
-#: ../data/ui/disk-settings-dialog.ui.h:3
-msgid ""
-"Turn on to configure Standby Timeout at startup and when the disk is "
-"connected"
-msgstr ""
-"আৰম্ভণিত আৰু যেতিয়া ডিস্ক সংযুক্ত তেতিয়া স্টেণ্ডবাই সময়অন্ত সংৰূপণ কৰিবলে অন "
-"কৰক"
-
-#: ../data/ui/disk-settings-dialog.ui.h:4
-msgid "Enter Standby After"
-msgstr "চিহ্নিত সময়ৰ পিছত স্টেণ্ডবাই সুমুৱাওক "
-
-#: ../data/ui/disk-settings-dialog.ui.h:5
-msgid "_Standby"
-msgstr "স্টেণ্ডবাই (_S)"
-
-#: ../data/ui/disk-settings-dialog.ui.h:6
-msgid "Apply Advanced Power Management Settings"
-msgstr "উন্নত শক্তি ব্যৱস্থাপনা সংহতিসমূহ প্ৰয়োগ কৰক"
-
-#: ../data/ui/disk-settings-dialog.ui.h:7
-msgid "Turn on to configure APM at startup and when the disk is connected"
-msgstr "আৰম্ভণিত আৰু যেতিয়া ডিস্ক সংযুক্ত APM সংৰূপণ কৰিবলে অন কৰক"
-
-#: ../data/ui/disk-settings-dialog.ui.h:8
-msgid "APM Level"
-msgstr "APM স্তৰ"
-
-#: ../data/ui/disk-settings-dialog.ui.h:9
-msgid ""
-"Agressive spin-down may wear out the drive faster than anticipated. Please "
-"check the “Start/Stop Count” SMART attribute from time to time"
-msgstr ""
-"অধিক স্পিন-ডাউনে ড্ৰাইভক ভৱাতকৈ অধিক সোনকালে ক্ষতি কৰিব পাৰে। অনুগ্ৰহ কৰি "
-"মাজে "
-"মাজে “গণনা আৰম্ভ কৰক/বন্ধ কৰক” SMART বৈশিষ্ট নীৰিক্ষণ কৰক"
-
-#: ../data/ui/disk-settings-dialog.ui.h:10
-msgid "A_PM"
-msgstr "APM (_P)"
-
-#: ../data/ui/disk-settings-dialog.ui.h:11
-msgid "Apply Automatic Acoustic Management Settings"
-msgstr "স্বচালিত একৌস্টিক ব্যৱস্থাপনা সংহতিসমূহ প্ৰয়োগ কৰক"
-
-#: ../data/ui/disk-settings-dialog.ui.h:12
-msgid "Turn on to configure AAM at startup and when the disk is connected"
-msgstr "আৰম্ভণিত আৰু যেতিয়া ডিস্ক সংযুক্ত AAM সংৰূপণ কৰিবলে অন কৰক"
-
-#: ../data/ui/disk-settings-dialog.ui.h:13
-msgid "Vendor Recommended"
-msgstr "বিক্ৰেতা উপদেশীত"
-
-#: ../data/ui/disk-settings-dialog.ui.h:14
-msgid "AAM Level"
-msgstr "AAM স্তৰ"
-
-#: ../data/ui/disk-settings-dialog.ui.h:15
-msgid "_AAM"
-msgstr "AAM (_A)"
-
-#: ../data/ui/disk-settings-dialog.ui.h:16
-msgid "Apply Write Cache Settings"
-msgstr "লিখা ক্যাশ সংহতিসমূহ প্ৰয়োগ কৰক"
-
-#: ../data/ui/disk-settings-dialog.ui.h:17
-msgid ""
-"Turn on to configure Write Cache setting at startup and when the disk is "
-"connected"
-msgstr ""
-"আৰম্ভণিত আৰু যেতিয়া ডিস্ক সংযুক্ত লিখা ক্যাশ সংহতি সংৰূপণ কৰিবলে অন কৰক"
-
-#: ../data/ui/disk-settings-dialog.ui.h:18
-msgid "S_etting"
-msgstr "সংহতি (_e)"
-
-#: ../data/ui/disk-settings-dialog.ui.h:19
-msgid "Enable Write Cache"
-msgstr "লিখা ক্যাশ সামৰ্থবান কৰক"
-
-#: ../data/ui/disk-settings-dialog.ui.h:20
-msgid "Disable Write Cache"
-msgstr "লিখা ক্যাশ অসামৰ্থবান কৰক"
-
-#: ../data/ui/disk-settings-dialog.ui.h:21
-msgid ""
-"Performance is increased by enabling write caching, but leaves the system "
-"susceptible to data loss in the event of a power failure"
-msgstr ""
-"লিখা ক্যাশিং সামৰ্থবান কৰি পৰিৱেশন বৃদ্ধি কৰা হয়, কিন্তু এটা শক্তি ব্যৰ্থতাৰ "
-"ক্ষেত্ৰত "
-"চিস্টেমৰ তথ্য হানিৰ আশংকা থাকি যায়"
-
-#: ../data/ui/disk-settings-dialog.ui.h:22
-msgid "Wr_ite Cache"
-msgstr "লিখা ক্যাশ (_i)"
-
-#: ../data/ui/disks.ui.h:1
-msgid "Create a new partition"
-msgstr "এটা নতুন বিভাজন সৃষ্টি কৰক"
-
-#: ../data/ui/disks.ui.h:2
-msgid "Mount the filesystem"
-msgstr "ফাইলচিস্টেম মাউন্ট কৰক"
-
-#: ../data/ui/disks.ui.h:3
-msgid "Unmount the filesystem"
-msgstr "ফাইলচিস্টেম আনমাউন্ট কৰক"
-
-#: ../data/ui/disks.ui.h:4
-msgid "Eject the media"
-msgstr "মাধ্যম বাহিৰ উলিয়াওক"
-
-#: ../data/ui/disks.ui.h:5
-msgid "Power off the drive"
-msgstr "ড্ৰাইভ বন্ধ কৰক"
-
-#: ../data/ui/disks.ui.h:6
-msgid "Unlock the encrypted device"
-msgstr "ইনক্ৰিপ্টেড ডিভাইচ আনলক কৰক"
-
-#: ../data/ui/disks.ui.h:7
-msgid "Activate the swap space"
-msgstr "শ্বাপ স্থান সক্ৰিয় কৰক"
-
-#: ../data/ui/disks.ui.h:8
-msgid "Deactivate the swap space"
-msgstr "শ্বাপ স্থান নিষ্ক্ৰিয় কৰক"
-
-#: ../data/ui/disks.ui.h:9
-msgid "Lock the encrypted device"
-msgstr "ইনক্ৰিপ্টেড ডিভাইচ লক কৰক"
-
-#: ../data/ui/disks.ui.h:10
-msgid "More actions"
-msgstr "অতিৰিক্ত কাৰ্য্যসমূহ"
-
-#: ../data/ui/disks.ui.h:11
-msgid "Delete partition"
-msgstr "বিভাজন মচি পেলাওক"
-
-#: ../data/ui/disks.ui.h:12
-msgid "Start RAID Array"
-msgstr "RAID এৰে আৰম্ভ কৰক"
-
-#: ../data/ui/disks.ui.h:13
-msgid "Stop RAID Array"
-msgstr "RAID এৰে বন্ধ কৰক"
-
-#: ../data/ui/disks.ui.h:14
-msgid "Detach Loop Device"
-msgstr "লুপ ডিভাইচ অসংলগ্ন কৰক"
-
-#: ../data/ui/disks.ui.h:15
-msgid "_Devices"
-msgstr "ডিভাইচসমূহ (_D)"
-
-#: ../data/ui/disks.ui.h:16
-msgid "Click to select multiple disks to perform operations on"
-msgstr "কাৰ্য্যসমূহ পৰিৱেশন কৰিবলে একাধিক ডিস্ক নিৰ্বাচন কৰিবলে ক্লিক কৰক"
-
-#: ../data/ui/disks.ui.h:17
-msgid "Done"
-msgstr "কৰা হল"
-
-#: ../data/ui/disks.ui.h:18
-msgid "Select a device"
-msgstr "এটা ডিভাইচ বাছক"
-
-#: ../data/ui/disks.ui.h:19
-msgid "Model"
-msgstr "আৰ্হি"
-
-#: ../data/ui/disks.ui.h:20 ../data/ui/md-raid-disks-dialog.ui.h:2
-msgid "Serial Number"
-msgstr "ক্ৰমিক সংখ্যা"
-
-#: ../data/ui/disks.ui.h:21
-msgid "World Wide Name"
-msgstr "বিশ্বব্যাপী নাম"
-
-#. The physical location of the drive, could be 'Connected to another seat'  or 'Bay 11 of Promise VTrak' or 'USB connector II'
-#: ../data/ui/disks.ui.h:23
-msgid "Location"
-msgstr "অবস্থান"
-
-#: ../data/ui/disks.ui.h:24
-msgid "Media"
-msgstr "মাধ্যম"
-
-#. Translators: This string is used as the column title in the treeview for the assessment of the attribute
-#: ../data/ui/disks.ui.h:25 ../data/ui/md-raid-disks-dialog.ui.h:3
-#: ../src/disks/gduatasmartdialog.c:1613
-msgid "Assessment"
-msgstr "বিশ্লেষণ"
-
-#: ../data/ui/disks.ui.h:26
-msgid "Eject the medium in the drive"
-msgstr "ড্ৰাইভত থকা মাধ্যম বাহিৰ ওলিয়াওক"
-
-#: ../data/ui/disks.ui.h:27
-msgid "Job"
-msgstr "কাৰ্য্য"
-
-#: ../data/ui/disks.ui.h:28
-msgid "Name"
-msgstr "নাম"
-
-#: ../data/ui/disks.ui.h:29
-msgid "RAID Level"
-msgstr "RAID ৰ স্তৰ"
-
-#: ../data/ui/disks.ui.h:30
-msgid "Size"
-msgstr "মাপ"
-
-#: ../data/ui/disks.ui.h:31
-msgid "State"
-msgstr "অৱস্থা"
-
-#: ../data/ui/disks.ui.h:32
-msgid "Auto-clear"
-msgstr "স্ব-পৰিষ্কাৰ"
-
-#. The filename or URI of the file that is used as backing store for the loop device.
-#: ../data/ui/disks.ui.h:34
-msgid "Backing File"
-msgstr "ফাইল বেকআপ লোৱা"
-
-#: ../data/ui/disks.ui.h:35
-msgid "Partitioning"
-msgstr "বিভাজন প্ৰক্ৰিয়া"
-
-#: ../data/ui/disks.ui.h:36
-msgid "Bitmap"
-msgstr "বিটমেপ"
-
-#: ../data/ui/disks.ui.h:37
-msgid "_Volumes"
-msgstr "আয়তনসমূহ (_V)"
-
-#: ../data/ui/disks.ui.h:40
-msgid "Device"
-msgstr "ডিভাইচ"
-
-#: ../data/ui/disks.ui.h:41
-msgid "Partition Type"
-msgstr "বিভাজন ধৰণ"
-
-#: ../data/ui/disks.ui.h:42
-msgid "Format…"
-msgstr "ফৰমেট কৰক (_F)…"
-
-#: ../data/ui/disks.ui.h:43
-msgid "Create Disk Image…"
-msgstr "ডিস্ক ছবি সৃষ্টি কৰক…"
-
-#: ../data/ui/disks.ui.h:44
-msgid "Restore Disk Image…"
-msgstr "ডিস্ক ছবি পুনৰুদ্ধাৰ কৰক…"
-
-#: ../data/ui/disks.ui.h:45
-msgid "Benchmark…"
-msgstr "ধাপ…"
-
-#: ../data/ui/disks.ui.h:46
-msgid "SMART Data & Self-Tests…"
-msgstr "SMART তথ্য আৰু স্ব-পৰিক্ষণসমূহ…"
-
-#: ../data/ui/disks.ui.h:47
-msgid "Drive Settings…"
-msgstr "ড্ৰাইভ সংহতিসমূহ…"
-
-#: ../data/ui/disks.ui.h:48
-msgid "Standby Now"
-msgstr "এতিয়া স্টেণ্ডবাই হওক"
-
-#: ../data/ui/disks.ui.h:49
-msgid "Wake-Up from Standby"
-msgstr "স্টেণ্ডবাইৰ পৰা সাৰ পাওক"
-
-#: ../data/ui/disks.ui.h:50
-msgid "Power Off…"
-msgstr "বন্ধ কৰক (_P)…"
-
-#: ../data/ui/disks.ui.h:51
-msgid "RAID Disks…"
-msgstr "RAID ডিস্কসমূহ…"
-
-#: ../data/ui/disks.ui.h:52
-msgid "Start Data Scrubbing…"
-msgstr "তথ্য ঘঁহা আৰম্ভ কৰক…"
-
-#: ../data/ui/disks.ui.h:53
-msgid "Stop Data Scrubbing"
-msgstr "তথ্য ঘঁহা বন্ধ কৰক"
-
-#: ../data/ui/disks.ui.h:54
-msgid "Edit Partition…"
-msgstr "বিভাজন সম্পাদন কৰক…"
-
-#: ../data/ui/disks.ui.h:55
-msgid "Edit Filesystem…"
-msgstr "ফাইলচিস্টেম সম্পাদন কৰক…"
-
-#: ../data/ui/disks.ui.h:56
-msgid "Change Passphrase…"
-msgstr "পাচফ্ৰেইছ পৰিবৰ্তন কৰক…"
-
-#: ../data/ui/disks.ui.h:57
-msgid "Edit Mount Options…"
-msgstr "মাউন্ট বিকল্পসমূহ সম্পাদন কৰক…"
-
-#: ../data/ui/disks.ui.h:58
-msgid "Edit Encryption Options…"
-msgstr "ইনক্ৰিপষণ বিকল্পসমূহ সম্পাদন কৰক…"
-
-#: ../data/ui/disks.ui.h:59
-msgid "Create RAID"
-msgstr "RAID সৃষ্টি কৰক"
-
-#: ../data/ui/edit-crypttab-dialog.ui.h:1
-msgid "Encryption Options"
-msgstr "ইনক্ৰিপষণ বিকল্পসমূহ"
-
-#: ../data/ui/edit-crypttab-dialog.ui.h:2
-msgid "_Automatic Encryption Options"
-msgstr "স্বচালিত ইনক্ৰিপষণ বিকল্পসমূহ (_A)"
-
-#: ../data/ui/edit-crypttab-dialog.ui.h:3
-msgid ""
-"Switch off <i>Automatic Encryption Options</i> to manage encryption options "
-"and passphrase for the device. The options correspond to an entry in the <b>/"
-"etc/crypttab</b> file"
-msgstr ""
-"ডিভাইচৰ বাবে ইনক্ৰিপষণ বিকল্পসমূহ আৰু পাচফ্ৰেইছ ব্যৱস্থাপনা কৰিবলে <i>"
-"স্বচালিত "
-"ইনক্ৰিপষণ বিকল্পসমূহ</i> বন্ধ কৰক। বিকল্পসমূহ <b>/etc/crypttab</b> ফাইলত "
-"যিকোনো "
-"প্ৰবিষ্টিলে প্ৰসংগ কৰে।"
-
-#: ../data/ui/edit-crypttab-dialog.ui.h:5
-msgid "Opt_ions"
-msgstr "বিকল্পসমূহ (_i)"
-
-#: ../data/ui/edit-crypttab-dialog.ui.h:6
-msgid ""
-"The name to use for the unlocked device - the device is set up as the name "
-"prefixed with <b>/dev/mapper</b>/"
-msgstr ""
-"আনলক কৰা ডিভাইচৰ বাবে ব্যৱহাৰ কৰিব লগিয়া নাম - ডিভাইচ <b>/dev/mapper</b>/ ৰ "
-"সৈতে উপসৰ্গিত নাম হিচাপে সংস্থাপন কৰা হয়"
-
-#: ../data/ui/edit-crypttab-dialog.ui.h:7
-msgid "Options to use when unlocking the device"
-msgstr "ডিভাইচ আনলক কৰোতে ব্যৱহাৰ কৰা বিকল্পসমূহ"
-
-#: ../data/ui/edit-crypttab-dialog.ui.h:8
-msgid "Passphrase File"
-msgstr "পাচফ্ৰেইছ ফাইল"
-
-#: ../data/ui/edit-crypttab-dialog.ui.h:9
-#: ../data/ui/unlock-device-dialog.ui.h:3
-msgid "Sho_w passphrase"
-msgstr "পাচফ্ৰেইছ দেখুৱাওক (_w)"
-
-#: ../data/ui/edit-crypttab-dialog.ui.h:10
-msgid ""
-"Passphrase of the device or empty to request from user when setting up the "
-"device"
-msgstr ""
-"ডিভাইচ সংস্থাপন কৰোতে ব্যৱহাৰকাৰীৰ পৰা অনুৰোধ কৰা ডিভাইচৰ পাচফ্ৰেইছ অথবা ৰিক্ত"
-
-#: ../data/ui/edit-crypttab-dialog.ui.h:11 ../data/ui/filesystem-create.ui.h:6
-#: ../data/ui/unlock-device-dialog.ui.h:2
-msgid "_Passphrase"
-msgstr "পাচফ্ৰেইছ (_P)"
-
-#: ../data/ui/edit-crypttab-dialog.ui.h:12
-msgid "_Unlock at startup"
-msgstr "আৰম্ভণিত আনলক কৰক (_U)"
-
-#: ../data/ui/edit-crypttab-dialog.ui.h:13
-msgid "If checked, the device will be unlocked at startup [!noauto]"
-msgstr "যদি নীৰিক্ষিত, ডিভাইচ আৰম্ভণিত আনলক কৰা হব [!noauto]"
-
-#: ../data/ui/edit-crypttab-dialog.ui.h:14
-msgid "Require additional authori_zation to unlock"
-msgstr "আনলক কৰিবলে অতিৰিক্ত প্ৰমাণীকৰণৰ প্ৰয়োজন (_z)"
-
-#: ../data/ui/edit-crypttab-dialog.ui.h:15
-msgid ""
-"If checked, additional authorization is required to unlock the device [x-"
-"udisks-auth]"
-msgstr ""
-"যদি নীৰিক্ষিত, ডিভাইচ আনলক কৰিবলে অতিৰিক্ত প্ৰমাণীকৰণৰ প্ৰয়োজন [x-udisks-auth]"
-
-#: ../data/ui/edit-dos-partition-dialog.ui.h:1
-#: ../data/ui/edit-gpt-partition-dialog.ui.h:1
-#: ../data/ui/edit-partition-dialog.ui.h:1
-msgid "Edit Partition"
-msgstr "বিভাজন সম্পাদন কৰক"
-
-#: ../data/ui/edit-dos-partition-dialog.ui.h:3
-#: ../data/ui/edit-gpt-partition-dialog.ui.h:3
-#: ../data/ui/edit-partition-dialog.ui.h:3 ../data/ui/filesystem-create.ui.h:1
-msgid "_Type"
-msgstr "ধৰণ (_T)"
-
-#: ../data/ui/edit-dos-partition-dialog.ui.h:4
-msgid "The partition type as a 8-bit unsigned integer"
-msgstr "এটা 8-bit অস্বাক্ষৰীত পূৰ্ণসংখ্যা হিচাপে বিভাজন ধৰণ"
-
-#: ../data/ui/edit-dos-partition-dialog.ui.h:5
-msgid "_Bootable"
-msgstr "বুট কৰাৰ যোগ্য (_B)"
-
-#: ../data/ui/edit-dos-partition-dialog.ui.h:6
-msgid ""
-"A flag used by the Platform bootloader to determine where the OS should be "
-"loaded from. Sometimes the partition with this flag set is referred to as "
-"the <i>active</i> partition"
-msgstr ""
-"OS কৰ পৰা ল'ড কৰা হব নিৰ্ধাৰণ কৰিবলে প্লেটফৰ্ম বুটল'ডাৰ দ্বাৰা ব্যৱহৃত এটা "
-"ফ্লেগ। "
-"কেতিয়াবা এই ফ্লেগ সংহত থকা বিভাজনক <i>সক্ৰিয়</i> বিভাজন হিচাপে প্ৰসংগ কৰা হয়"
-
-#: ../data/ui/edit-filesystem-dialog.ui.h:1
-msgid "Change Filesystem Label"
-msgstr "ফাইলচিস্টেম লেবেল পৰিবৰ্তন কৰক"
-
-#: ../data/ui/edit-filesystem-dialog.ui.h:3
-msgid "_Label"
-msgstr "লেবেল (_L)"
-
-#: ../data/ui/edit-fstab-dialog.ui.h:1
-msgid "Mount Options"
-msgstr "মাউন্ট বিকল্পসমূহ"
-
-#: ../data/ui/edit-fstab-dialog.ui.h:2
-msgid "_Automatic Mount Options"
-msgstr "স্বচালিত মাউন্ট বিকল্পসমূহ (_A)"
-
-#: ../data/ui/edit-fstab-dialog.ui.h:3
-msgid ""
-"Switch off <i>Automatic Mount Options</i> to manage mount point and mount "
-"options for the device. The options correspond to an entry in the <b>/etc/"
-"fstab</b> file"
-msgstr ""
-"ডিভাইচৰ বাবে মাউন্ট বিন্দু আৰু মাউন্ট বিকল্পসমূহ ব্যৱস্থাপনা কৰিবলে <i>"
-"স্বচালিত মাউন্ট "
-"বিকল্পসমূহ</i> বন্ধ কৰক। বিকল্পসমূহ <b>/etc/fstab</b> ফাইলৰ এটা প্ৰবিষ্টিলে "
-"প্ৰসংগ "
-"কৰে"
-
-#: ../data/ui/edit-fstab-dialog.ui.h:4
-msgid "I_dentify As"
-msgstr "হিচাপে চিনাক্ত কৰক (_d)"
-
-#: ../data/ui/edit-fstab-dialog.ui.h:5
-msgid ""
-"The <b>special device file</b> - use symlinks in the <b>/dev/disk</b> "
-"hierarchy to control the scope of the entry"
-msgstr ""
-"<b>বিশেষ ডিভাইচ ফাইল</b> - প্ৰবিষ্টিৰ অৱকাশ নিয়ন্ত্ৰণ কৰিবলে <b>/dev/disk</b> "
-"অধিক্ৰমত চিমসংযোগসমূহ ব্যৱহাৰ কৰে"
-
-#: ../data/ui/edit-fstab-dialog.ui.h:6
-msgid ""
-"The special device file - use symlinks in the /dev/disk hierarchy to control "
-"the scope of the entry"
-msgstr ""
-"বিশেষ ডিভাইচ ফাইল - প্ৰবিষ্টিৰ অৱকাশ নিয়ন্ত্ৰণ কৰিবলে /dev/disk অধিক্ৰমত "
-"চিমসংযোগসমূহ ব্যৱহাৰ কৰক "
-
-#: ../data/ui/edit-fstab-dialog.ui.h:7
-msgid "Mount _Point"
-msgstr "মাউন্ট বিন্দু (_P)"
-
-#: ../data/ui/edit-fstab-dialog.ui.h:8
-msgid "Filesystem _Type"
-msgstr "ফাইলচিস্টেমৰ ধৰণ (_T)"
-
-#: ../data/ui/edit-fstab-dialog.ui.h:9
-msgid "The directory to mount the device in"
-msgstr "ডিভাইচ মাউন্ট কৰিবলে ডাইৰেকটৰি"
-
-#: ../data/ui/edit-fstab-dialog.ui.h:10
-msgid "The filesystem type to use"
-msgstr "ব্যৱহাৰ কৰিবলে ফাইলচিস্টেম ধৰণ"
-
-#: ../data/ui/edit-fstab-dialog.ui.h:11
-msgid "Display _Name"
-msgstr "প্ৰদৰ্শন নাম (_N)"
-
-#: ../data/ui/edit-fstab-dialog.ui.h:12
-msgid ""
-"If set, the name to use for the device in the user interface [x-gvfs-name=]"
-msgstr ""
-"যদি সংহত, ব্যৱহাৰকাৰী আন্তঃপৃষ্ঠত ডিভাইচৰ বাবে ব্যৱহাৰ কৰিব লগিয়া নাম [x-gvfs-"
-"name=]"
-
-#: ../data/ui/edit-fstab-dialog.ui.h:13
-msgid "Icon Na_me"
-msgstr "আইকন নাম (_m)"
-
-#: ../data/ui/edit-fstab-dialog.ui.h:14
-msgid ""
-"If set, the name of the icon to use in the device in the user interface [x-"
-"gvfs-icon=]"
-msgstr ""
-"যদি সংহত, ব্যৱহাৰকাৰী আন্তঃপৃষ্ঠত ডিভাইচত ব্যৱহাৰ কৰিব লগিয়া আইকনৰ নাম "
-"[x-gvfs-"
-"icon=]"
-
-#: ../data/ui/edit-fstab-dialog.ui.h:15
-msgid "Sho_w in user interface"
-msgstr "ব্যৱহাৰকাৰী আন্তঃপৃষ্ঠত দেখুৱাওক (_w)"
-
-#: ../data/ui/edit-fstab-dialog.ui.h:16
-msgid ""
-"If checked, the device is always shown in the user interface no matter what "
-"its directory is [x-gvfs-show]"
-msgstr ""
-"যদি সংহত, ডিভাইচক সদায় ব্যৱহাৰকাৰী আন্তঃপৃষ্ঠত দেখুৱা হয় তাৰ ডাইৰেকটৰি "
-"যেনেকুৱা "
-"নহওক [x-gvfs-show]"
-
-#: ../data/ui/edit-fstab-dialog.ui.h:17
-msgid "Require additional authori_zation to mount"
-msgstr "মাউন্ট কৰিবলে অতিৰিক্ত প্ৰমাণীকৰণৰ প্ৰয়োজন (_z)"
-
-#: ../data/ui/edit-fstab-dialog.ui.h:18
-msgid ""
-"If checked, additional authorization is required to mount the device [x-"
-"udisks-auth]"
-msgstr ""
-"যদি নীৰিক্ষিত, ডিভাইচ মাউন্ট কৰিবলে অতিৰিক্ত প্ৰমাণীকৰণৰ প্ৰয়োজন "
-"[x-udisks-auth]"
-
-#: ../data/ui/edit-fstab-dialog.ui.h:19
-msgid "Mount at _startup"
-msgstr "আৰম্ভণিত মাউন্ট (_s)"
-
-#: ../data/ui/edit-fstab-dialog.ui.h:20
-msgid "If checked, the device will be mounted at startup [!noauto]"
-msgstr "যদি নীৰিক্ষিত, ডিভাইচ আৰম্ভণিত মাউন্ট কৰা হব [!noauto]"
-
-#: ../data/ui/edit-fstab-dialog.ui.h:21
-msgid "S_ymbolic Icon Name"
-msgstr "সাংকেতিক আইকন নাম (_y)"
-
-#: ../data/ui/edit-fstab-dialog.ui.h:22
-msgid ""
-"If set, the name of the symbolic icon to use in the device in the user "
-"interface [x-gvfs-symbolic-icon=]"
-msgstr ""
-"যদি সংহিত, ব্যৱহাৰকাৰী আন্তঃপৃষ্ঠত ডিভাইচত ব্যৱহাৰ কৰিব লগিয়া সাংকেতিক আইকনৰ "
-"নাম "
-"[x-gvfs-symbolic-icon=]"
-
-#: ../data/ui/edit-fstab-dialog.ui.h:23
-msgid "Mount Opt_ions"
-msgstr "মাউন্ট বিকল্পসমূহ (_i)"
-
-#: ../data/ui/edit-fstab-dialog.ui.h:24
-msgid "The mount options stored in the <b>/etc/fstab</b> file"
-msgstr "<b>/etc/fstab</b> ফাইলত সংৰক্ষিত মাউন্ট বিকল্পসমূহ"
-
-#: ../data/ui/edit-gpt-partition-dialog.ui.h:4
-msgid "The partition type represented as a 32-bit <i>GUID</i>"
-msgstr "এটা 32-bit <i>GUID</i> হিচাপে প্ৰতিনিদ্ধিত্ব কৰা বিভাজন ধৰণ"
-
-#: ../data/ui/edit-gpt-partition-dialog.ui.h:6
-msgid ""
-"The partition name (up to 36 unicode characters). This is useful if you want "
-"to refer to the device via a symlink in the <b>/dev/disk/by-partlabel</b> "
-"directory"
-msgstr ""
-"বিভাজন নাম (৩৬ ইউনিক'ড আখৰসমূহ লৈকে )। ই উপযোগী যদি আপুনি <b>/dev/disk/by-"
-"partlabel</b> ডাইৰেকটৰিত এটা চিমসংযোগৰ সহায়ত ডিভাইচলে প্ৰসংগ কৰিব বিচাৰে"
-
-#: ../data/ui/edit-gpt-partition-dialog.ui.h:7
-msgid "_System partition"
-msgstr "চিস্টেম বিভাজন (_S)"
-
-#: ../data/ui/edit-gpt-partition-dialog.ui.h:8
-msgid ""
-"Used to indicate that the partition and its contents are required for the OS/"
-"Platform to function. Special care should be taken to not delete or "
-"overwrite the contents"
-msgstr ""
-"বিভাজন আৰু তাৰ সমলসমূহ OS/ প্লেটফৰ্ম কাৰ্য্য কৰিবলে প্ৰয়োজনীয় ইংগিত দিবলে "
-"ব্যৱহাৰ "
-"কৰা হয়। সমলসমূহ মচা বা পুনৰ লিখা নহবলে বিশেষ যত্ন লব লাগিব"
-
-#: ../data/ui/edit-gpt-partition-dialog.ui.h:9
-msgid "Legacy BIOS _Bootable"
-msgstr "কিম্বদংতি BIOS বুট কৰিব পৰা (_B)"
-
-#: ../data/ui/edit-gpt-partition-dialog.ui.h:10
-msgid ""
-"Legacy BIOS Bootable. This is equivalent to Master Boot Record <i>bootable</"
-"i> flag. It is normally only used for GPT partitions on MBR systems"
-msgstr ""
-"কিম্বদন্তী BIOS বুট কৰিব পৰা। ই মাস্টাৰ বুট ৰেকৰ্ড <i>bootable</i> ফ্লেগৰ "
-"সমতূল্য। "
-"ইয়াক সাধাৰণত MBR চিস্টেমসমূহত GPT বিভাজনসমূহৰ বাবে কেৱল ব্যৱহাৰ কৰা হয়"
-
-#: ../data/ui/edit-gpt-partition-dialog.ui.h:11
-msgid "_Read-Only"
-msgstr "কেৱল-পঢ়িব পৰা (_R)"
-
-#: ../data/ui/edit-gpt-partition-dialog.ui.h:12
-msgid ""
-"If set, some OSes may mount or use the contents of the partition as read-"
-"only instead of read-write"
-msgstr ""
-"যদি সংহত, কিছুমান OS এ বিভাজনৰ সমলসমূহক পঢ়া-লিখাৰ পৰিৱৰ্তে কেৱল-পঢ়িব পৰা "
-"হিচাপ "
-"মাউন্ট অথবা ব্যৱহাৰ কৰিব পাৰিব"
-
-#: ../data/ui/edit-gpt-partition-dialog.ui.h:13
-msgid "H_idden"
-msgstr "লুকুৱা (_i)"
-
-#: ../data/ui/edit-gpt-partition-dialog.ui.h:14
-msgid ""
-"If set, some OSes may hide the contents of the partition in their user "
-"interfaces"
-msgstr ""
-"যদি সংহত, কিছুমান OS এ বিভাজনৰ সমলসমূহক সিহতৰ ব্যৱহাৰকাৰী আন্তঃপৃষ্ঠসমূহত "
-"লুকাব পাৰে"
-
-#: ../data/ui/edit-gpt-partition-dialog.ui.h:15
-msgid "Do Not _Automount"
-msgstr "স্বমাউন্ট নকৰিব (_A)"
-
-#: ../data/ui/edit-gpt-partition-dialog.ui.h:16
-msgid "If set, some OSes may not automount the contents of the partition"
-msgstr "যদি সংহত, কিছুমান OS এ বিভাজনৰ সমলসমূহ স্বমাউন্ট কৰিব নোৱাৰিব"
-
-#: ../data/ui/erase-multiple-disks-dialog.ui.h:1
-msgid "Erase Multiple Disks"
-msgstr "একাধিক ডিস্ক মচি পেলাওক"
-
-#: ../data/ui/erase-multiple-disks-dialog.ui.h:2
-msgid "_Erase…"
-msgstr "মচি পেলাওক (_E)…"
-
-#: ../data/ui/erase-multiple-disks-dialog.ui.h:3
-msgid "Erase _Type"
-msgstr "মচাৰ ধৰণ (_T)"
-
-#: ../data/ui/filesystem-create.ui.h:3
-msgid "F_ilesystem"
-msgstr "ফাইলচিস্টেম (_i)"
-
-#: ../data/ui/filesystem-create.ui.h:4
-msgid ""
-"The custom filesystem type to create e.g. <i>btrfs</i>, <i>xfs</i> or "
-"<i>swap</i>"
-msgstr ""
-"সৃষ্টি কৰিবলে স্বনিৰ্বাচিত ফাইলচিস্টেম ধৰণ উদাহৰণস্বৰূপ <i>btrfs</i>, <i>xfs<"
-"/i> "
-"অথবা <i>swap</i>"
-
-#: ../data/ui/filesystem-create.ui.h:5
-msgid "The custom filesystem type to create e.g. btrfs, xfs or swap"
-msgstr ""
-"সৃষ্টি কৰিবলে স্বনিৰ্বাচিত ফাইলচিস্টেম ধৰণ উদাহৰণস্বৰূপ btrfs, xfs অথবা swap"
-
-#: ../data/ui/filesystem-create.ui.h:8
-msgid "Enter passphrase used to protect the data"
-msgstr "তথ্য সুৰক্ষিত কৰিবলে ব্যৱহৃত পাচফ্ৰেইছ সুমুৱাওক"
-
-#: ../data/ui/filesystem-create.ui.h:12 ../data/ui/format-disk-dialog.ui.h:4
-#: ../src/disks/gduerasemultipledisksdialog.c:396
-msgid "_Erase"
-msgstr "আঁতৰাওক (_E)"
-
-#: ../data/ui/filesystem-create.ui.h:13
-msgid ""
-"The name to use for the filesystem. This is useful if you want to refer to "
-"the device via a symlink in the <b>/dev/disk/by-label</b> directory"
-msgstr ""
-"ফাইলচিস্টেমৰ বাবে ব্যৱহাৰ কৰিব লগিয়া। ই উপযোগী যদি আপুনি ডিভাইচক <b>/dev/disk/"
-"by-label</b> ডাইৰেকটৰিত এটা চিমসংযোগৰ সহায়ত প্ৰসংগ কৰিব বিচাৰে"
-
-#: ../data/ui/filesystem-create.ui.h:14
-msgid ""
-"The name to use for the filesystem. This is useful if you want to refer to "
-"the device via a symlink in the /dev/disk/by-label directory"
-msgstr ""
-"ফাইল চিস্টেমৰ বাবে ব্যৱহাৰ কৰিব লগিয়া নাম। ই উপযোগী যদি আপুনি /dev/disk/by-"
-"label ডাইৰেকটৰিত ডিভাইচক এটা চিমসংযোগৰ সহায়ত প্ৰসংগ কৰিব বিচাৰে"
-
-#: ../data/ui/filesystem-create.ui.h:15
-msgid "For example, “My Files” or “Backup Data”"
-msgstr "উদাহৰণস্বৰূপ, “মোৰ ফাইলসমূহ“ অথবা “বেকআপ তথ্য“"
-
-#: ../data/ui/format-disk-dialog.ui.h:1
-msgid "Format Disk"
-msgstr "ডিস্ক ফৰমেট কৰক"
-
-#: ../data/ui/format-disk-dialog.ui.h:2 ../data/ui/format-volume-dialog.ui.h:2
-msgid "_Format…"
-msgstr "ফৰমেট কৰক (_F)…"
-
-#: ../data/ui/format-disk-dialog.ui.h:3
-msgid "_Partitioning"
-msgstr "বিভাজন প্ৰক্ৰিয়া (_P)"
-
-#: ../data/ui/format-volume-dialog.ui.h:1
-msgid "Format Volume"
-msgstr "আয়তন ফৰমেট কৰক"
-
-#: ../data/ui/md-raid-disks-dialog.ui.h:1
-msgid "RAID Disks"
-msgstr "RAID ডিস্কসমূহ"
-
-#: ../data/ui/restore-disk-image-dialog.ui.h:1
-msgid "Restore Disk Image"
-msgstr "ডিস্ক ছবি পুনৰুদ্ধাৰ কৰক"
-
-#: ../data/ui/restore-disk-image-dialog.ui.h:2
-msgid "_Image to Restore"
-msgstr "পুনৰুদ্ধাৰ কৰিবলে ছবি (_I)"
-
-#: ../data/ui/restore-disk-image-dialog.ui.h:3
-msgid "Select Disk Image to restore"
-msgstr "পুনৰুদ্ধাৰ কৰিবলে ডিস্ক ছবি বাছক"
-
-#: ../data/ui/restore-disk-image-dialog.ui.h:4
-msgid "Destination"
-msgstr "গন্তব্য"
-
-#: ../data/ui/restore-disk-image-dialog.ui.h:5
-#| msgid "_Image to Restore"
-msgid "Image to Restore"
-msgstr "পুনৰুদ্ধাৰ কৰিবলৈ ছবি"
-
-#: ../data/ui/restore-disk-image-dialog.ui.h:6
-#| msgid "Sample Size"
-msgid "Image Size"
-msgstr "ছবিৰ আকাৰ"
-
-#: ../data/ui/restore-disk-image-dialog.ui.h:7
-msgid "_Start Restoring…"
-msgstr "পুনৰুদ্ধাৰ কৰা আৰম্ভ কৰক (_S)…"
-
-#: ../data/ui/smart-dialog.ui.h:1
-msgid "SMART Data & Self-Tests"
-msgstr "SMART তথ্য আৰু স্ব-পৰিক্ষণসমূহ"
-
-#: ../data/ui/smart-dialog.ui.h:2
-msgid "_Start Self-test"
-msgstr "স্ব-পৰীক্ষণ আৰম্ভ কৰক (_S)"
-
-#: ../data/ui/smart-dialog.ui.h:3
-msgid "Click to start a SMART self-test"
-msgstr "এটা SMART স্ব-পৰীক্ষণ আৰম্ভ কৰিবলে ক্লিক কৰক"
-
-#: ../data/ui/smart-dialog.ui.h:4
-msgid "_Stop Self-test"
-msgstr "স্ব-পৰীক্ষণ বন্ধ কৰক (_S)"
-
-#: ../data/ui/smart-dialog.ui.h:5
-msgid "Click to stop the SMART self-test currently in progress"
-msgstr "বৰ্তমানে চলি থকা SMART স্ব-পৰিক্ষণ বন্ধ কৰিবলে ক্লিক কৰক"
-
-#: ../data/ui/smart-dialog.ui.h:6
-msgid "Click to force re-reading SMART data from the hard disk"
-msgstr "হাৰ্ড ডিস্কৰ পৰা SMART তথ্য পুনৰ-পঢ়া বলৱৎ কৰিবলে ক্লিক কৰক"
-
-#: ../data/ui/smart-dialog.ui.h:7
-msgid "Powered On"
-msgstr "পাৱাৰ অন কৰা হল"
-
-#: ../data/ui/smart-dialog.ui.h:8
-msgid "Updated"
-msgstr "আপডেইট কৰা হল"
-
-#. Translators: SMART attribute, see http://smartmontools.sourceforge.net/doc.html
-#. * or the next string for a longer explanation.
-#.
-#: ../data/ui/smart-dialog.ui.h:9 ../src/disks/gduatasmartdialog.c:308
-#: ../src/disks/gduatasmartdialog.c:527
-msgid "Temperature"
-msgstr "তাপমাত্ৰা"
-
-#: ../data/ui/smart-dialog.ui.h:10
-msgid "Self-test Result"
-msgstr "স্ব-পৰীক্ষণ ফলাফল"
-
-#: ../data/ui/smart-dialog.ui.h:11
-msgid "Self-assessment"
-msgstr "স্ব-বিশ্লেষণ"
-
-#: ../data/ui/smart-dialog.ui.h:12
-msgid "Overall Assessment"
-msgstr "সম্পূৰ্ণ বিশ্লেষণ"
-
-#: ../data/ui/smart-dialog.ui.h:13
-msgid "Click to toggle whether SMART is enabled for the hard disk"
-msgstr "হাৰ্ড ডিস্কৰ বাবে SMART সামৰ্থবান আছে নে টগ'ল কৰিবলে ক্লিক কৰক"
-
-#: ../data/ui/smart-dialog.ui.h:14
-msgid "SMART _Attributes"
-msgstr "SMART বৈশিষ্টসমূহ (_A)"
-
-#: ../data/ui/smart-dialog.ui.h:15
-msgid "Short"
-msgstr "সৰু"
-
-#: ../data/ui/smart-dialog.ui.h:16
-msgid "Extended"
-msgstr "প্ৰসাৰিত"
-
-#: ../data/ui/smart-dialog.ui.h:17
-msgid "Conveyance"
-msgstr "হস্তান্তৰ"
-
-#: ../data/ui/unlock-device-dialog.ui.h:1
-msgid "Enter passphrase to unlock"
-msgstr "আনলক কৰিবলে পাচফ্ৰেইছ সুমুৱাওক"
-
-#: ../data/ui/unlock-device-dialog.ui.h:4
-msgid "_Unlock"
-msgstr "আনলক কৰক (_U)"
-
-#: ../src/disk-image-mounter/main.c:44
+#: ../src/disk-image-mounter/main.c:46
 msgid "An error occurred"
 msgstr "এটা ত্ৰুটি দেখা দিছে"
 
-#: ../src/disk-image-mounter/main.c:65
+#: ../src/disk-image-mounter/main.c:67
 msgid "Allow writing to the image"
 msgstr "ছবিলে লিখাৰ অনুমতি দিয়ক"
 
-#: ../src/disk-image-mounter/main.c:80
+#: ../src/disk-image-mounter/main.c:82
 msgid "Select Disk Image(s) to Mount"
 msgstr "মাউন্ট কৰিবলে ডিস্ক ছবি(সমূহ) বাছক"
 
-#: ../src/disk-image-mounter/main.c:84
+#: ../src/disk-image-mounter/main.c:85
+#: ../src/disks/gducreatediskimagedialog.c:931 ../src/disks/gduwindow.c:725
+msgid "_Cancel"
+msgstr "বাতিল কৰক (_C)"
+
+#: ../src/disk-image-mounter/main.c:86
 msgid "_Mount"
 msgstr "মাউন্ট কৰক (_M)"
 
 #. Add a RO check button that defaults to RO
-#: ../src/disk-image-mounter/main.c:92
+#: ../src/disk-image-mounter/main.c:94
 msgid "Set up _read-only mount"
 msgstr "কেৱল-পঢ়িব মাউন্ট সংস্থাপন কৰক (_r)"
 
-#: ../src/disk-image-mounter/main.c:93
+#: ../src/disk-image-mounter/main.c:95
 msgid ""
 "If checked, the mount will be read-only. This is useful if you don't want "
 "the underlying disk image to be modified"
@@ -1296,68 +118,65 @@ msgstr ""
 "ডিস্ক "
 "ছবিক পৰিবৰ্তন কৰিব নিবিচাৰে"
 
-#: ../src/disk-image-mounter/main.c:135
+#: ../src/disk-image-mounter/main.c:136
 #, c-format
 msgid "Error connecting to udisks daemon: %s (%s, %d)"
 msgstr "udisks ডিমনলে সংযোগ কৰোতে ত্ৰুটি: %s (%s, %d)"
 
-#: ../src/disk-image-mounter/main.c:143
+#: ../src/disk-image-mounter/main.c:144
 msgid "Attach and mount one or more disk image files."
 msgstr "এটা বা অধিক ডিস্ক ছবি ফাইলসমূহ সংলগ্ন আৰু মাউন্ট কৰক।"
 
-#: ../src/disk-image-mounter/main.c:191
+#: ../src/disk-image-mounter/main.c:192
 #, c-format
 msgid "Cannot open `%s' - maybe the volume isn't mounted?"
 msgstr "'%s' খোলিব নোৱাৰি - হয়তো আয়তন মাউন্ট কৰা নাই?"
 
-#: ../src/disk-image-mounter/main.c:198
+#: ../src/disk-image-mounter/main.c:199
 #, c-format
 msgid "Error opening `%s': %m"
 msgstr "'%s' খোলোতে ত্ৰুটি: %m"
 
-#: ../src/disk-image-mounter/main.c:219
+#: ../src/disk-image-mounter/main.c:220
 #, c-format
 msgid "Error attaching disk image: %s (%s, %d)"
 msgstr "ডিস্ক ছবি সংলগ্ন কৰোতে ত্ৰুটি: %s (%s, %d)"
 
-#: ../src/disks/gduapplication.c:132
+#: ../src/disks/gduapplication.c:110
 #, c-format
-#| msgid "Error opening %s: %s\n"
 msgid "Error opening %s: %s"
 msgstr "%s খোলোতে ত্ৰুটি: %s"
 
-#: ../src/disks/gduapplication.c:139
+#: ../src/disks/gduapplication.c:117
 #, c-format
-#| msgid "Error looking up block device for %s\n"
 msgid "Error looking up block device for %s"
 msgstr "%s ৰ বাবে খণ্ড ডিভাইচ চাওতে ত্ৰুটি"
 
-#: ../src/disks/gduapplication.c:180
+#: ../src/disks/gduapplication.c:158
 msgid "Select device"
 msgstr "ডিভাইচ বাছক"
 
-#: ../src/disks/gduapplication.c:181
+#: ../src/disks/gduapplication.c:159
 msgid "Format selected device"
 msgstr "নিৰ্বাচিত ডিভাইচ ফৰমেট কৰক"
 
-#: ../src/disks/gduapplication.c:182
+#: ../src/disks/gduapplication.c:160
 msgid "Parent window XID for the format dialog"
 msgstr "ফৰমেট ডাইলগৰ বাবে উপধায়ক উইন্ডো XID"
 
-#: ../src/disks/gduapplication.c:183
-#| msgid "Restore Disk Image"
+#: ../src/disks/gduapplication.c:161
 msgid "Restore disk image"
 msgstr "ডিস্ক ছবি পুনৰুদ্ধাৰ কৰক"
 
-#: ../src/disks/gduapplication.c:184
+#: ../src/disks/gduapplication.c:162
 msgid "Show help options"
 msgstr "সহায় বিকল্পসমূহ দেখুৱাওক"
 
-#: ../src/disks/gduapplication.c:213
+#: ../src/disks/gduapplication.c:191
 msgid "--format-device must be used together with --block-device\n"
 msgstr "--format-device ক --block-device ৰ সৈতে একেলগে ব্যৱহাৰ কৰিব লাগিব\n"
 
-#: ../src/disks/gduapplication.c:219
+#: ../src/disks/gduapplication.c:197
 msgid "--format-device must be specified when using --xid\n"
 msgstr "--format-device ক --xid ব্যৱহাৰ কৰোতে ধাৰ্য্য কৰিব লাগিব\n"
 
@@ -1366,7 +185,7 @@ msgstr "--format-device ক --xid ব্যৱহাৰ কৰোতে ধা�
 #. *              The second %s is the version of the running udisks daemon (for example "2.0.90").
 #. *              The third, fourth and fifth %d are the major, minor and micro versions of libudisks2 that was used when compiling the Disks application (for example 2, 0 and 90).
 #.
-#: ../src/disks/gduapplication.c:331
+#: ../src/disks/gduapplication.c:311
 #, c-format
 msgid ""
 "gnome-disk-utility %s\n"
@@ -1597,6 +416,14 @@ msgstr "ল'ড/আনল'ড চক্ৰৰ গণনা"
 #: ../src/disks/gduatasmartdialog.c:301
 msgid "Number of cycles into landing zone position"
 msgstr "স্থাপনা ক্ষেত্ৰত অৱস্থানত চক্ৰৰ সংখ্যা"
+
+#. Translators: SMART attribute, see http://smartmontools.sourceforge.net/doc.html
+#. * or the next string for a longer explanation.
+#.
+#: ../src/disks/gduatasmartdialog.c:308 ../src/disks/gduatasmartdialog.c:527
+#: ../src/disks/ui/smart-dialog.ui.h:9
+msgid "Temperature"
+msgstr "তাপমাত্ৰা"
 
 #: ../src/disks/gduatasmartdialog.c:309
 msgid "Current internal temperature of the drive"
@@ -2175,7 +1002,6 @@ msgid "Error starting SMART self-test"
 msgstr "SMART স্ব-পৰীক্ষণ আৰম্ভ কৰোতে ত্ৰুটি"
 
 #: ../src/disks/gduatasmartdialog.c:1432
-#| msgid "An error occurred when trying toggle whether SMART is enabled"
 msgid "An error occurred when trying to toggle whether SMART is enabled"
 msgstr "SMART সামৰ্থবান আছে নে টগ'ল কৰাৰ চেষ্টা কৰোতে এটা ত্ৰুটি দেখা দিলে"
 
@@ -2218,6 +1044,11 @@ msgstr "ধৰণ"
 #: ../src/disks/gduatasmartdialog.c:1601
 msgid "Updates"
 msgstr "আপডেইটসমূহ"
+
+#. Translators: This string is used as the column title in the treeview for the assessment of the attribute
+#: ../src/disks/gduatasmartdialog.c:1613 ../src/disks/ui/disks.ui.h:8
+msgid "Assessment"
+msgstr "বিশ্লেষণ"
 
 #. Translators: This is used in the benchmark graph - %d is megabytes per second
 #: ../src/disks/gdubenchmarkdialog.c:327
@@ -2607,34 +1438,6 @@ msgstr ""
 msgid "This is the last primary partition that can be created."
 msgstr "ই সৃষ্টি কৰিব পৰা অন্তিম প্ৰাথমিক বিভাজন।"
 
-#: ../src/disks/gducreateraidarraydialog.c:296
-#, c-format
-msgid "%d disk"
-msgid_plural "%d disks"
-msgstr[0] "%d ডিস্ক"
-msgstr[1] "%d ডিস্কসমূহ"
-
-#. Translators: Shown in "Create RAID Array" dialog.
-#. *              The first %s is the number of disks e.g. '3 disks'.
-#. *              The second %s is the size of the disk e.g. '42 GB' or '3 TB'.
-#.
-#: ../src/disks/gducreateraidarraydialog.c:305
-#, c-format
-msgid "%s of %s each"
-msgstr "%s প্ৰতিটোৰ %s"
-
-#: ../src/disks/gducreateraidarraydialog.c:417
-msgid "Error creating RAID array"
-msgstr "RAID এৰে সৃষ্টি কৰোতে ত্ৰুটি"
-
-#: ../src/disks/gducreateraidarraydialog.c:573
-msgid "Are you sure you want to use the disks for a RAID array?"
-msgstr "আপুনি এটা RAID এৰেৰ বাবে ডিস্কসমূহ ব্যৱহাৰ কৰিবলে নিশ্চিত নে?"
-
-#: ../src/disks/gducreateraidarraydialog.c:574
-msgid "Existing content on the devices will be erased"
-msgstr "ডিভাইচসমূহৰ স্থায়ী সমল মচি পেলোৱা হব"
-
 #: ../src/disks/gducrypttabdialog.c:108 ../src/disks/gducrypttabdialog.c:128
 msgid "Will be created"
 msgstr "সৃষ্টি কৰা হব"
@@ -2668,43 +1471,15 @@ msgstr ""
 "অন-"
 "ডিস্ক পাচফ্ৰেইছ পৰিবৰ্তন কৰিবলে,  <i>পাচফ্ৰেইছ পৰিবৰ্তন কৰক…</i> ব্যৱহাৰ কৰক"
 
-#: ../src/disks/gdudevicetreemodel.c:507
-#| msgid "None"
+#: ../src/disks/gdudevicetreemodel.c:496
 msgid "(None)"
 msgstr "(কোনো নহয়)"
 
-#: ../src/disks/gdudevicetreemodel.c:622
+#: ../src/disks/gdudevicetreemodel.c:611
 msgid "Disk Drives"
 msgstr "ডিস্ক ড্ৰাইভসমূহ"
 
-#: ../src/disks/gdudevicetreemodel.c:698
-msgid "RAID Arrays"
-msgstr "RAID এৰেসমূহ"
-
-#. Translators: Used in the device tree for a RAID Array, the first %s is the size
-#: ../src/disks/gdudevicetreemodel.c:1174
-#, c-format
-msgctxt "md-raid-tree-primary"
-msgid "%s RAID Array"
-msgstr "%s RAID এৰে"
-
-#. Translators: Used in the device tree for a RAID Array where the size is not known
-#: ../src/disks/gdudevicetreemodel.c:1180
-msgctxt "md-raid-tree-primary"
-msgid "RAID Array"
-msgstr "RAID এৰে"
-
-#. Translators: Used as a secondary line in device tree for RAID Array.
-#. *              The first %s is the name of the array (e.g. "My RAID Array").
-#. *              The second %s is the RAID level (e.g. "RAID-5").
-#.
-#: ../src/disks/gdudevicetreemodel.c:1191
-#, c-format
-msgctxt "md-raid-tree-secondary"
-msgid "%s (%s)"
-msgstr "%s (%s)"
-
-#: ../src/disks/gdudevicetreemodel.c:1351
+#: ../src/disks/gdudevicetreemodel.c:1025
 msgid "Other Devices"
 msgstr "অন্য ডিভাইচসমূহ"
 
@@ -2828,7 +1603,7 @@ msgstr ""
 
 #: ../src/disks/gduerasemultipledisksdialog.c:373
 #: ../src/disks/gduformatdiskdialog.c:424
-#: ../src/disks/gduformatvolumedialog.c:212
+#: ../src/disks/gduformatvolumedialog.c:222
 msgid ""
 "<b>Tip</b>: If you are planning to recycle, sell or give away your old "
 "computer or disk, you should use a more thorough erase type to keep your "
@@ -2867,6 +1642,12 @@ msgstr ""
 "অথবা লক হৈ যাব পাৰে। আগবঢ়াৰ আগত, অনুগ্ৰহ কৰি <a href='https://ata.wiki.kernel."
 "org/index.php/ATA_Secure_Erase'>ATA সুৰক্ষিত মচা</a> ৰ বিষয়ে অধ্যায় পঢ়ক আৰু "
 "সুনিশ্চিত কৰক যে আপুনি বিপদসমূহ বুজি পায়"
+
+#: ../src/disks/gduerasemultipledisksdialog.c:396
+#: ../src/disks/ui/filesystem-create.ui.h:12
+#: ../src/disks/ui/format-disk-dialog.ui.h:4
+msgid "_Erase"
+msgstr "আঁতৰাওক (_E)"
 
 #: ../src/disks/gdufilesystemdialog.c:60
 msgid "Error setting label"
@@ -2947,20 +1728,20 @@ msgstr ""
 "নাযাব"
 
 #: ../src/disks/gduformatdiskdialog.c:445
-#: ../src/disks/gduformatvolumedialog.c:224
+#: ../src/disks/gduformatvolumedialog.c:234
 msgid "_Format"
 msgstr "ফৰমেট কৰক (_F)"
 
-#: ../src/disks/gduformatvolumedialog.c:87
+#: ../src/disks/gduformatvolumedialog.c:92
 msgid "Error formatting volume"
 msgstr "আয়তন ফৰমেট কৰোতে ত্ৰুটি"
 
-#: ../src/disks/gduformatvolumedialog.c:206
+#: ../src/disks/gduformatvolumedialog.c:216
 msgid "Are you sure you want to format the volume?"
 msgstr "আপুনি আয়তন ফৰমেট কৰিবলে নিশ্চিত নে?"
 
 #. Translators: warning used for quick format of the volume
-#: ../src/disks/gduformatvolumedialog.c:210
+#: ../src/disks/gduformatvolumedialog.c:220
 msgid ""
 "All data on the volume will be lost but may still be recoverable by data "
 "recovery services"
@@ -2970,7 +1751,7 @@ msgstr ""
 "যাব"
 
 #. Translators: warning used when overwriting data of the volume
-#: ../src/disks/gduformatvolumedialog.c:217
+#: ../src/disks/gduformatvolumedialog.c:227
 msgid ""
 "All data on the volume will be overwritten and will likely not be "
 "recoverable by data recovery services"
@@ -3031,141 +1812,15 @@ msgstr "নতুন /etc/fstab প্ৰবিষ্টি যোগ কৰো�
 msgid "Error updating /etc/fstab entry"
 msgstr "/etc/fstab প্ৰবিষ্টি আপডেইট কৰোতে ত্ৰুটি"
 
-#. Translators: Shown for a read-only device. The %s is the device file, e.g. /dev/sdb1
-#: ../src/disks/gdumdraiddisksdialog.c:251 ../src/disks/gduwindow.c:2028
-#, c-format
-msgid "%s <span size=\"smaller\">(Read-Only)</span>"
-msgstr "%s <span size=\"smaller\">(কেৱল-পঢ়িব পৰা)</span>"
-
-#: ../src/disks/gdumdraiddisksdialog.c:334
-msgid "An error occurred when removing a disk from the RAID Array"
-msgstr "RAID এৰেৰ পৰা এটা ডিস্ক আতৰাওতে এটা ত্ৰুটি দেখা দিলে"
-
-#: ../src/disks/gdumdraiddisksdialog.c:372
-msgctxt "mdraid-disks"
-msgid "Are you sure you want to remove the disk?"
-msgstr "আপুনি ডিস্ক আতৰাবলে নিশ্চিত নে?"
-
-#: ../src/disks/gdumdraiddisksdialog.c:373
-msgctxt "mdraid-disks"
-msgid "Removing a disk from a RAID array may degrade it"
-msgstr "এটা RAID এৰেৰ পৰা এটা ডিস্ক আতৰালে ইয়াৰ স্খলন হব পাৰে"
-
-#: ../src/disks/gdumdraiddisksdialog.c:374
-msgctxt "mdraid-disks"
-msgid "_Remove"
-msgstr "আতৰাওক (_R)"
-
-#: ../src/disks/gdumdraiddisksdialog.c:615
-msgctxt "mdraid-disks-state"
-msgid "FAILED"
-msgstr "ব্যৰ্থ হল"
-
-#. Translators: MD-RAID member state for 'in_sync'
-#: ../src/disks/gdumdraiddisksdialog.c:622
-msgctxt "mdraid-disks-state"
-msgid "In Sync"
-msgstr "সুসংগত আছে"
-
-#. Translators: MD-RAID member state for 'spare'
-#: ../src/disks/gdumdraiddisksdialog.c:631
-msgctxt "mdraid-disks-state"
-msgid "Spare"
-msgstr "অতিৰিক্ত"
-
-#. Translators: MD-RAID member state for 'spare' but is being recovered to
-#: ../src/disks/gdumdraiddisksdialog.c:638
-msgctxt "mdraid-disks-state"
-msgid "Recovering"
-msgstr "পুনৰুদ্ধাৰ কৰা হৈছে"
-
-#. Translators: MD-RAID member state for 'writemostly'
-#: ../src/disks/gdumdraiddisksdialog.c:646
-msgctxt "mdraid-disks-state"
-msgid "Write-mostly"
-msgstr "লিখা-বেছিৰভাগ"
-
-#. Translators: MD-RAID member state for 'blocked'
-#: ../src/disks/gdumdraiddisksdialog.c:653
-msgctxt "mdraid-disks-state"
-msgid "Blocked"
-msgstr "প্ৰতিৰোধিত"
-
-#. Translators: MD-RAID member state unknown. The %s is the raw state from sysfs
-#: ../src/disks/gdumdraiddisksdialog.c:660
-#, c-format
-msgctxt "mdraid-disks-state"
-msgid "Unknown (%s)"
-msgstr "অজ্ঞাত (%s)"
-
-#. Translators: column name for the position of the disk in the RAID array
-#: ../src/disks/gdumdraiddisksdialog.c:744
-msgctxt "mdraid-disks"
-msgid "Position"
-msgstr "অৱস্থান"
-
-#. Translators: column name for the disk in the RAID array
-#: ../src/disks/gdumdraiddisksdialog.c:760
-msgctxt "mdraid-disks"
-msgid "Disk"
-msgstr "ডিস্ক"
-
-#. Translators: column name for the state of the disk in the RAID array
-#: ../src/disks/gdumdraiddisksdialog.c:790
-msgctxt "mdraid-disks"
-msgid "State"
-msgstr "অৱস্থা"
-
-#. Translators: column name for the number of read errors of the disk in the RAID array
-#: ../src/disks/gdumdraiddisksdialog.c:806
-msgctxt "mdraid-disks"
-msgid "Errors"
-msgstr "ত্ৰুটিসমূহ"
-
-#: ../src/disks/gdumdraiddisksdialog.c:948
-msgid "An error occurred when adding a disk to the RAID Array"
-msgstr "RAID এৰেলে এটা ডিস্ক যোগ কৰোতে এটা ত্ৰুটি দেখা দিলে"
-
-#: ../src/disks/gdumdraiddisksdialog.c:970
-msgctxt "mdraid-disks"
-msgid "Are you sure you want to add the disk to the array?"
-msgstr "আপুনি ডিস্কটো এৰেলে যোগ কৰিবলে নিশ্চিত নে?"
-
-#: ../src/disks/gdumdraiddisksdialog.c:971
-msgctxt "mdraid-disks"
-msgid "All existing data on the disk will be lost"
-msgstr "ডিস্কৰ সকলো স্থায়ী তথ্য হেৰাই যাব"
-
-#: ../src/disks/gdumdraiddisksdialog.c:972
-msgctxt "mdraid-disks"
-msgid "_Add"
-msgstr "যোগ কৰক (_A)"
-
-#. Translators: Shown in sole item in popup menu for the "+" button when there are no disks of the
-#. *              right size available
-#.
-#: ../src/disks/gdumdraiddisksdialog.c:1150
-msgctxt "mdraid-add"
-msgid "No disks of suitable size available"
-msgstr "উপযুক্ত আকাৰৰ কোনো ডিস্ক উপলব্ধ নাই"
-
-#. Translators: Top-most item in popup menu for the "+" button. Other items in the menu include
-#. *              disks that can be added to the array
-#.
-#: ../src/disks/gdumdraiddisksdialog.c:1161
-msgctxt "mdraid-add"
-msgid "Select disk to add"
-msgstr "যোগ কৰিবলে ডিস্ক বাছক"
-
-#: ../src/disks/gdupartitiondialog.c:362
+#: ../src/disks/gdupartitiondialog.c:351
 msgid "Error setting partition type"
 msgstr "বিভাজন ধৰণ সংহতি কৰোতে ত্ৰুটি"
 
-#: ../src/disks/gdupartitiondialog.c:376
+#: ../src/disks/gdupartitiondialog.c:365
 msgid "Error setting partition name"
 msgstr "বিভাজন নাম সংহতি কৰোতে ত্ৰুটি"
 
-#: ../src/disks/gdupartitiondialog.c:390
+#: ../src/disks/gdupartitiondialog.c:379
 msgid "Error setting partition flags"
 msgstr "বিভাজন ফ্লেগসমূহ সংহতি কৰোতে ত্ৰুটি"
 
@@ -3258,14 +1913,14 @@ msgstr "ইনক্ৰিপ্টেড ডিভাইচ আনলক কৰ
 msgid "The encryption passphrase was retrieved from the keyring"
 msgstr "ইনক্ৰিপষণ পাচফ্ৰেইছসমূহ কিৰিংৰ পৰা উদ্ধাৰ কৰা হৈছিল"
 
-#: ../src/disks/gduvolumegrid.c:536 ../src/disks/gduwindow.c:2779
+#: ../src/disks/gduvolumegrid.c:536 ../src/disks/gduwindow.c:2026
 msgid "No Media"
 msgstr "কোনো মাধ্যম নাই"
 
 #. Translators: This is shown in the volume grid for a partition with a name/label.
 #. *              The %d is the partition number. The %s is the name
 #.
-#: ../src/disks/gduvolumegrid.c:1556
+#: ../src/disks/gduvolumegrid.c:1549
 #, c-format
 msgctxt "volume-grid"
 msgid "Partition %d: %s"
@@ -3274,67 +1929,56 @@ msgstr "বিভাজন %d: %s"
 #. Translators: This is shown in the volume grid for a partition with no name/label.
 #. *              The %d is the partition number
 #.
-#: ../src/disks/gduvolumegrid.c:1563
+#: ../src/disks/gduvolumegrid.c:1556
 #, c-format
 msgctxt "volume-grid"
 msgid "Partition %d"
 msgstr "বিভাজন %d"
 
-#: ../src/disks/gduvolumegrid.c:1600
+#: ../src/disks/gduvolumegrid.c:1593
 msgctxt "volume-grid"
 msgid "Free Space"
 msgstr "ৰিক্ত স্থান"
 
-#: ../src/disks/gduvolumegrid.c:1643
+#: ../src/disks/gduvolumegrid.c:1636
 msgctxt "volume-grid"
 msgid "Extended Partition"
 msgstr "প্ৰসাৰিত বিভাজন"
 
-#: ../src/disks/gduvolumegrid.c:1667
+#: ../src/disks/gduvolumegrid.c:1660
 msgctxt "volume-grid"
 msgid "Filesystem"
 msgstr "ফাইলচিস্টেম"
 
-#: ../src/disks/gduvolumegrid.c:1689
+#: ../src/disks/gduvolumegrid.c:1682
 msgctxt "volume-grid"
 msgid "Swap"
 msgstr "শ্বাপ"
 
-#. Translators: Shown in volume grid for Linux RAID members. Please
-#. *              keep this as short as possible.
-#. *              The first %s is the array name (e.g. 'MirrorOnTheWall').
-#. *              The second %s is the homehost (e.g. 'thinkpad').
-#.
-#: ../src/disks/gduvolumegrid.c:1718
-#, c-format
-msgctxt "volume-grid"
-msgid "%s [local to %s]"
-msgstr "%s [%s লে স্থানীয়]"
-
-#: ../src/disks/gduwindow.c:730
+#: ../src/disks/gduwindow.c:584
 msgid "Error deleting loop device"
 msgstr "লুপ ডিভাইচ মচোতে ত্ৰুটি"
 
-#: ../src/disks/gduwindow.c:830 ../src/disks/gduwindow.c:901
+#: ../src/disks/gduwindow.c:684 ../src/disks/gduwindow.c:755
 msgid "Error attaching disk image"
 msgstr "ডিস্ক ছবি সংযুক্ত কৰোতে ত্ৰুটি"
 
-#: ../src/disks/gduwindow.c:868
+#: ../src/disks/gduwindow.c:722
 msgid "Select Disk Image to Attach"
 msgstr "সংলগ্ন কৰিবলে ডিস্ক ছবি বাছক"
 
-#: ../src/disks/gduwindow.c:872
+#: ../src/disks/gduwindow.c:726
 msgid "_Attach"
 msgstr "সংলগ্ন কৰক (_A)"
 
 #. set file types
 #. allow_compressed
 #. Add a RO check button that defaults to RO
-#: ../src/disks/gduwindow.c:879
+#: ../src/disks/gduwindow.c:733
 msgid "Set up _read-only loop device"
 msgstr "কেৱল-পঢ়িব পৰা লুপ ডিভাইচ সংস্থাপন কৰক (_r)"
 
-#: ../src/disks/gduwindow.c:880
+#: ../src/disks/gduwindow.c:734
 msgid ""
 "If checked, the loop device will be read-only. This is useful if you don’t "
 "want the underlying file to be modified"
@@ -3343,7 +1987,7 @@ msgstr ""
 "ফাইলক পৰিবৰ্তন কৰিব নিবিচাৰে"
 
 #. Translators: This is the short-cut to open the disks/drive gear menu
-#: ../src/disks/gduwindow.c:1657
+#: ../src/disks/gduwindow.c:1350
 msgctxt "accelerator"
 msgid "F10"
 msgstr "F10"
@@ -3352,7 +1996,7 @@ msgstr "F10"
 #. *              The Ctrl modifier must not be translated or parsing will fail.
 #. *              You can however change to another English modifier (e.g. <Shift>).
 #.
-#: ../src/disks/gduwindow.c:1665
+#: ../src/disks/gduwindow.c:1358
 msgctxt "accelerator"
 msgid "<Ctrl>F"
 msgstr "<Ctrl>F"
@@ -3361,34 +2005,21 @@ msgstr "<Ctrl>F"
 #. *              The Ctrl modifier must not be translated or parsing will fail.
 #. *              You can however change to another English modifier (e.g. <Shift>).
 #.
-#: ../src/disks/gduwindow.c:1673
+#: ../src/disks/gduwindow.c:1366
 msgctxt "accelerator"
 msgid "<Ctrl>S"
 msgstr "<Ctrl>S"
-
-#. Translators: This is the short-cut to view RAID Disks for a RAID array.
-#. *              The Ctrl modifier must not be translated or parsing will fail.
-#. *              You can however change to another English modifier (e.g. <Shift>).
-#.
-#: ../src/disks/gduwindow.c:1681
-msgctxt "accelerator"
-msgid "<Ctrl>R"
-msgstr "<Ctrl>R"
 
 #. Translators: This is the short-cut to view the "Drive Settings" dialog for a hard disk.
 #. *              The Ctrl modifier must not be translated or parsing will fail.
 #. *              You can however change to another English modifier (e.g. <Shift>).
 #.
-#: ../src/disks/gduwindow.c:1689
+#: ../src/disks/gduwindow.c:1374
 msgctxt "accelerator"
 msgid "<Ctrl>E"
 msgstr "<Ctrl>E"
 
-#. Translators: This is the short-cut to open the volume gear menu.
-#. *              The Shift modifier must not be translated or parsing will fail.
-#. *              You can however change to another English modifier (e.g. <Ctrl>).
-#.
-#: ../src/disks/gduwindow.c:1697
+#: ../src/disks/gduwindow.c:1389
 msgctxt "accelerator"
 msgid "<Shift>F10"
 msgstr "<Shift>F10"
@@ -3397,16 +2028,22 @@ msgstr "<Shift>F10"
 #. *              The Shift and Ctrl modifiers must not be translated or parsing will fail.
 #. *              You can however change to other English modifiers.
 #.
-#: ../src/disks/gduwindow.c:1707
+#: ../src/disks/gduwindow.c:1399
 msgctxt "accelerator"
 msgid "<Shift><Ctrl>F"
 msgstr "<Shift><Ctrl>F"
+
+#. Translators: Shown for a read-only device. The %s is the device file, e.g. /dev/sdb1
+#: ../src/disks/gduwindow.c:1716
+#, c-format
+msgid "%s (Read-Only)"
+msgstr "%s (কেৱল-পঢ়িব পৰা)"
 
 #. Translators: Used for job progress.
 #. *              The first %s is the estimated amount of time remaining (ex. "1 minute" or "5 minutes").
 #. *              The second %s is the average amount of bytes transfered per second (ex. "8.9 MB").
 #.
-#: ../src/disks/gduwindow.c:2066
+#: ../src/disks/gduwindow.c:1754
 #, c-format
 msgctxt "job-remaining-with-rate"
 msgid "%s remaining (%s/sec)"
@@ -3415,7 +2052,7 @@ msgstr "%s অৱশিষ্ট (%s/sec)"
 #. Translators: Used for job progress.
 #. *              The first %s is the estimated amount of time remaining (ex. "1 minute" or "5 minutes").
 #.
-#: ../src/disks/gduwindow.c:2074
+#: ../src/disks/gduwindow.c:1762
 #, c-format
 msgctxt "job-remaining"
 msgid "%s remaining"
@@ -3426,7 +2063,7 @@ msgstr "%s অৱশিষ্ট"
 #. *              The second %s is the total amount of bytes to process (ex. "8.5 GB").
 #. *              The third %s is the estimated amount of time remaining including speed (if known) (ex. "1 minute remaining", "5 minutes remaining (42.3 MB/s)", "Less than a minute remaining").
 #.
-#: ../src/disks/gduwindow.c:2089
+#: ../src/disks/gduwindow.c:1777
 #, c-format
 msgid "%s of %s – %s"
 msgstr "%s – %s ৰ %s"
@@ -3435,193 +2072,30 @@ msgstr "%s – %s ৰ %s"
 #. *              The %s is the job description (e.g. "Erasing Device").
 #. *              The %f is the completion percentage (between 0.0 and 100.0).
 #.
-#: ../src/disks/gduwindow.c:2176
+#: ../src/disks/gduwindow.c:1864
 #, c-format
 msgid "%s: %2.1f%%"
 msgstr "%s: %2.1f%%"
 
-#: ../src/disks/gduwindow.c:2248 ../src/disks/gduwindow.c:3093
+#: ../src/disks/gduwindow.c:1936 ../src/disks/gduwindow.c:2311
 msgid "Block device is empty"
 msgstr "খন্ড ডিভাইচ ৰিক্ত"
 
 #. Translators: Shown for unknown partitioning type. The first %s is the low-level type.
-#: ../src/disks/gduwindow.c:2271
+#: ../src/disks/gduwindow.c:1959
 #, c-format
 msgctxt "partitioning"
 msgid "Unknown (%s)"
 msgstr "অজ্ঞাত (%s)"
 
-#: ../src/disks/gduwindow.c:2352
-msgid "RAID array is not running"
-msgstr "RAID এৰে চলি থকা নাই"
-
-#. Translators: Used in the main window for a RAID array, the first %s is the size
-#: ../src/disks/gduwindow.c:2373
-#, c-format
-msgctxt "md-raid-window"
-msgid "%s RAID Array"
-msgstr "%s RAID এৰে"
-
-#. Translators: Used in the main window for a RAID array where the size is not known
-#: ../src/disks/gduwindow.c:2379
-msgctxt "md-raid-window"
-msgid "RAID Array"
-msgstr "RAID এৰে"
-
-#. Translators: shown as the device for a RAID array that is not currently running
-#: ../src/disks/gduwindow.c:2405
-msgctxt "mdraid"
-msgid "Not running"
-msgstr "চলি থকা নাই"
-
-#. Translators: Shown in the 'Array Name' field when the RAID array is deemed to belong to another machine.
-#. *              Search for "homehost" in the mdadm(8) documentation for more information.
-#. *              The first %s is the array name (e.g. "My Raid Disk").
-#. *              The second %s is the hostname that the RAID array belongs to (e.g. "big-server-042").
-#.
-#: ../src/disks/gduwindow.c:2472
-#, c-format
-msgctxt "mdraid"
-msgid "%s (local to %s)"
-msgstr "%s (%s লে স্থানীয়)"
-
-#: ../src/disks/gduwindow.c:2512
-#, c-format
-msgid "%d Disk"
-msgid_plural "%d Disks"
-msgstr[0] "%d ডিস্ক"
-msgstr[1] "%d ডিস্কসমূহ"
-
-#. Translators: Used to combine number of disks and the chunk size.
-#. *              The first %s is the number of disks e.g. "3 disks".
-#. *              The second %s is the chunk size e.g. "512 KiB".
-#.
-#: ../src/disks/gduwindow.c:2524
-#, c-format
-msgctxt "mdraid-disks-and-chunk-size"
-msgid "%s, %s Chunk"
-msgstr "%s, %s টুকুৰা"
-
-#. Translators: Shown in the "RAID Level" field.
-#. *              The first %s is the long description of the RAID level e.g. "RAID 6 (Dual Distributed Parity)".
-#. *              The second %s is the number of RAID disks optionally with the chunk size e.g. "8 disks" or "8 disks, 512 KiB Chunk".
-#.
-#: ../src/disks/gduwindow.c:2533
-#, c-format
-msgctxt "mdraid"
-msgid "%s, %s"
-msgstr "%s, %s"
-
-#: ../src/disks/gduwindow.c:2553
-#, c-format
-msgid "%d disk is missing"
-msgid_plural "%d disks are missing"
-msgstr[0] "%d ডিস্ক সন্ধানহিন"
-msgstr[1] "%d ডিস্কসমূহ সন্ধানহিন"
-
-#: ../src/disks/gduwindow.c:2559
-msgctxt "mdraid"
-msgid "ARRAY IS DEGRADED"
-msgstr "এৰে স্খলিত"
-
-#. Translators: The first %s is the sentence 'ARRAY IS DEGRADED'.
-#. *              The second %s conveys the number of devices missing e.g. "1 disk is missing".
-#.
-#: ../src/disks/gduwindow.c:2563
-#, c-format
-msgctxt "mdraid-degraded"
-msgid "%s — %s"
-msgstr "%s — %s"
-
-#: ../src/disks/gduwindow.c:2574 ../src/disks/gduwindow.c:2590
-msgctxt "mdraid-state"
-msgid "Running"
-msgstr "চলি আছে"
-
-#. Translators: Shown in the 'State' field for MD-RAID when not running
-#: ../src/disks/gduwindow.c:2579
-msgctxt "mdraid-state"
-msgid "Not running"
-msgstr "চলি থকা নাই"
-
-#: ../src/disks/gduwindow.c:2599
-msgctxt "mdraid-state"
-msgid "Data Scrubbing"
-msgstr "তথ্য ঘঁহা"
-
-#: ../src/disks/gduwindow.c:2604
-msgctxt "mdraid-state"
-msgid "Data Scrubbing and Repair"
-msgstr "তথ্য ঘঁহা আৰু মেৰামতি"
-
-#: ../src/disks/gduwindow.c:2609
-msgctxt "mdraid-state"
-msgid "Resyncing"
-msgstr "পুনৰ সংমিহলি কৰা হৈছে"
-
-#: ../src/disks/gduwindow.c:2613
-msgctxt "mdraid-state"
-msgid "Recovering"
-msgstr "পুনৰুদ্ধাৰ কৰা হৈছে"
-
-#: ../src/disks/gduwindow.c:2617
-msgctxt "mdraid-state"
-msgid "Frozen"
-msgstr "বৰফাবৃত"
-
-#. Translators: String for conveying the raid array is misconfigured
-#: ../src/disks/gduwindow.c:2633
-msgctxt "raid-split-brain"
-msgid "RAID ARRAY IS MISCONFIGURED"
-msgstr "RAID এৰে ভুলভাৱে সংৰূপিত"
-
-#. Translators: The specific type of misconfiguration, see
-#. * http://en.wikipedia.org/wiki/Split-brain_(computing)
-#. * for more details
-#.
-#: ../src/disks/gduwindow.c:2639
-msgctxt "raid-split-brain"
-msgid "Split-Brain"
-msgstr "Split-Brain"
-
-#. Translators: Combiner for the RAID split-brain strings.
-#. *              The first %s is "SYSTEM IS MISCONFIGURED".
-#. *              The second %s is "Split-Brain" as a hyperlink.
-#.
-#: ../src/disks/gduwindow.c:2645
-#, c-format
-msgctxt "raid-split-brain"
-msgid "%s (%s)"
-msgstr "%s (%s)"
-
-#. Translators: Shown in RAID progress bar.
-#. *              The first %s is about the operation, e.g. 'Data Scrubbing'.
-#. *              The second is the percentage completed, e.g. '42.5%'
-#.
-#: ../src/disks/gduwindow.c:2675
-#, c-format
-msgctxt "raid-state-progress"
-msgid "%s: %s"
-msgstr "%s: %s"
-
-#. Translators: Used for MD-RAID sync operation.
-#. *              The first %s is the estimated amount of time remaining (ex. "1 minute" or "5 minutes").
-#. *              The second %s is the average amount of bytes transfered per second (ex. "8.9 MB").
-#.
-#: ../src/disks/gduwindow.c:2702
-#, c-format
-msgctxt "mdraid-sync-op"
-msgid "%s remaining (%s/sec)"
-msgstr "%s অৱশিষ্ট (%s/sec)"
-
 #. Translators: Shown in "Location" when drive is connected to another seat than where
 #. * our application is running.
 #.
-#: ../src/disks/gduwindow.c:2882
+#: ../src/disks/gduwindow.c:2114
 msgid "Connected to another seat"
 msgstr "অন্য আসনৰ সৈতে সংযুক্ত"
 
-#: ../src/disks/gduwindow.c:3026
+#: ../src/disks/gduwindow.c:2259
 msgid "Loop device is empty"
 msgstr "লুপ ডিভাইচ ৰিক্ত"
 
@@ -3631,160 +2105,100 @@ msgstr "লুপ ডিভাইচ ৰিক্ত"
 #. *              The second %s is a short string with the space free (e.g. '43 GB').
 #. *              The %f is the percentage in use (e.g. 62.2).
 #.
-#: ../src/disks/gduwindow.c:3265
+#: ../src/disks/gduwindow.c:2469
 #, c-format
 msgid "%s — %s free (%.1f%% full)"
 msgstr "%s — %s মুক্ত (%.1f%% পূৰ্ণ)"
 
-#: ../src/disks/gduwindow.c:3295
+#: ../src/disks/gduwindow.c:2499
 msgctxt "partition type"
 msgid "Unknown"
 msgstr "অজ্ঞাত"
 
 #. Translators: Use for mount point '/' simply because '/' is too small to hit as a hyperlink
 #.
-#: ../src/disks/gduwindow.c:3323
+#: ../src/disks/gduwindow.c:2527
 msgctxt "volume-content-fs"
 msgid "Filesystem Root"
 msgstr "ফাইলচিস্টেম ৰুট"
 
 #. Translators: Shown as in-use part of 'Contents'. The first %s is the mount point, e.g. /media/foobar
-#: ../src/disks/gduwindow.c:3331
+#: ../src/disks/gduwindow.c:2535
 #, c-format
 msgctxt "volume-content-fs"
 msgid "Mounted at %s"
 msgstr "%s ত মাউন্ট কৰা আছে"
 
 #. Translators: Shown when the device is not mounted next to the "In Use" label
-#: ../src/disks/gduwindow.c:3337
+#: ../src/disks/gduwindow.c:2541
 msgctxt "volume-content-fs"
 msgid "Not Mounted"
 msgstr "মাউন্টেড নহয়"
 
 #. Translators: Shown as in-use part of 'Contents' if the swap device is in use
-#: ../src/disks/gduwindow.c:3360
+#: ../src/disks/gduwindow.c:2564
 msgctxt "volume-content-swap"
 msgid "Active"
 msgstr "সক্ৰিয়"
 
 #. Translators: Shown as in-use part of 'Contents' if the swap device is not in use
-#: ../src/disks/gduwindow.c:3366
+#: ../src/disks/gduwindow.c:2570
 msgctxt "volume-content-swap"
 msgid "Not Active"
 msgstr "সক্ৰিয় নহয়"
 
 #. Translators: Shown as in-use part of 'Contents' if the encrypted device is unlocked
-#: ../src/disks/gduwindow.c:3379
+#: ../src/disks/gduwindow.c:2583
 msgctxt "volume-content-luks"
 msgid "Unlocked"
 msgstr "আনলক কৰা আছে"
 
 #. Translators: Shown as in-use part of 'Contents' if the encrypted device is unlocked
-#: ../src/disks/gduwindow.c:3385
+#: ../src/disks/gduwindow.c:2589
 msgctxt "volume-content-luks"
 msgid "Locked"
 msgstr "লক কৰা আছে"
 
-#: ../src/disks/gduwindow.c:3395
+#: ../src/disks/gduwindow.c:2599
 msgctxt "volume-contents-msdos-ext"
 msgid "Extended Partition"
 msgstr "প্ৰসাৰিত বিভাজন"
-
-#. Translators: Shown as a hyperlink in the 'Contents' field for a member of an RAID Array
-#: ../src/disks/gduwindow.c:3405
-msgctxt "volume-contents-raid"
-msgid "Go To Array"
-msgstr "এৰেলৈ যাওক"
-
-#. Translators: Shown in the 'Contents' field for a member of an RAID array.
-#. *              The first %s is the usual contents string (e.g. "Linux RAID Member").
-#. *              The second %s is the hyperlink "Go To Array".
-#.
-#: ../src/disks/gduwindow.c:3410
-#, c-format
-msgctxt "volume-contents-raid"
-msgid "%s — %s"
-msgstr "%s — %s"
 
 #. Translators: Shown in 'Contents' field for a member that can be "mounted" (e.g. filesystem or swap area).
 #. *              The first %s is the usual contents string e.g. "Swapspace" or "Ext4 (version 1.0)".
 #. *              The second %s is either "Mounted at /path/to/fs", "Not Mounted, "Active", "Not Active", "Unlocked" or "Locked".
 #.
-#: ../src/disks/gduwindow.c:3428
+#: ../src/disks/gduwindow.c:2619
 #, c-format
 msgctxt "volume-contents-combiner"
 msgid "%s — %s"
 msgstr "%s — %s"
 
 #. Translators: used to convey free space for partitions
-#: ../src/disks/gduwindow.c:3528
+#: ../src/disks/gduwindow.c:2719
 msgid "Unallocated Space"
 msgstr "অআবন্টিত স্থান"
 
-#: ../src/disks/gduwindow.c:3907
-msgid "An error occurred when requesting data redundancy check"
-msgstr "তথ্য প্ৰয়োজনাধিক্য নীৰিক্ষণ অনুৰোধ কৰোতে এটা ত্ৰুটি দেখা দিলে"
-
-#. Translators: Heading for data scrubbing dialog
-#: ../src/disks/gduwindow.c:3925
-msgctxt "mdraid-scrub-dialog"
-msgid "Data Scrubbing"
-msgstr "তথ্য ঘঁহা"
-
-#. Translators: Message for data scrubbing dialog
-#: ../src/disks/gduwindow.c:3927
-msgctxt "mdraid-scrub-dialog"
-msgid ""
-"As storage devices can develop bad blocks at any time it is valuable to "
-"regularly read all blocks on all disks in a RAID array so as to catch such "
-"bad blocks early.\n"
-"\n"
-"The RAID array will remain operational for the duration of the operation but "
-"performance will be impacted. For more information about data scrubbing, see "
-"the <a href='https://raid.wiki.kernel.org/index.php/"
-"RAID_Administration'>RAID Administration</a> article."
-msgstr ""
-"যিহেতু সংৰক্ষণ ডিভাইচসমূহে যিকোনো সময়ত বেয়া খণ্ড উৎপন্ন কৰিব পাৰে সেয়েহে এটা "
-"RAID "
-"এৰেত সকলো ডিস্কত নিয়মিতভাৱে সকলো খণ্ড পঢ়াটো মূল্যবান যাতে এনেধৰণৰ বেয়া খণ্ডক "
-"আগতে "
-"ধৰা পেলাব পাৰি।\n"
-"\n"
-"RAID এৰে কাৰ্য্যৰ অৱধিকালিন কাৰ্য্যকৰী থাকিব কিন্তু পৰিৱেশনৰ ওপৰত প্ৰভাৱ "
-"পৰিব। তথ্য "
-"ঘঁহাৰ ওপৰত অধিক তথ্যৰ বাবে, <a href='https://raid.wiki.kernel.org/index.php/"
-"RAID_Administration'>RAID প্ৰশাসন</a> অধ্যায় চাওক।"
-
-#: ../src/disks/gduwindow.c:3932
-msgctxt "mdraid-scrub-dialog"
-msgid "_Start"
-msgstr "আৰম্ভ কৰক (_S)"
-
-#: ../src/disks/gduwindow.c:3933
-msgctxt "mdraid-scrub-dialog"
-msgid "_Repair mismatched blocks, if possible"
-msgstr "অমিল থকা খণ্ডসমূহ মেৰামতি কৰক, যদি সম্ভব"
-
-#: ../src/disks/gduwindow.c:3980
+#: ../src/disks/gduwindow.c:3065
 msgid "An error occurred when trying to put the drive into standby mode"
 msgstr "ড্ৰাইভক স্টেণ্ডবাই অৱস্থাত লোৱাৰ চেষ্টা কৰোতে এটা ত্ৰুটি দেখা দিলে"
 
-#: ../src/disks/gduwindow.c:4026
+#: ../src/disks/gduwindow.c:3111
 msgid "An error occurred when trying to wake up the drive from standby mode"
 msgstr ""
 "ড্ৰাইভক স্টেণ্ডবাই অৱস্থাৰ পৰা জগোৱাৰ চেষ্টা কৰোতে এটা ত্ৰুটি দেখা দিলে"
 
-#: ../src/disks/gduwindow.c:4071
+#: ../src/disks/gduwindow.c:3156
 msgid "Error powering off drive"
 msgstr "ড্ৰাইভ পাৱাৰ অফ কৰিবলে ত্ৰুটি"
 
 #. Translators: Heading for powering off a device with multiple drives
-#: ../src/disks/gduwindow.c:4123
+#: ../src/disks/gduwindow.c:3208
 msgid "Are you sure you want to power off the drives?"
 msgstr "আপুনি ড্ৰাইভসমূহ বন্ধ কৰিবলে নিশ্চিত নে?"
 
 #. Translators: Message for powering off a device with multiple drives
-#: ../src/disks/gduwindow.c:4125
+#: ../src/disks/gduwindow.c:3210
 msgid ""
 "This operation will prepare the system for the following drives to be "
 "powered down and removed."
@@ -3792,83 +2206,57 @@ msgstr ""
 "এই কাৰ্য্যয় চিস্টেমক নিম্নলিখিত ড্ৰাইভসমূহ বন্ধ কৰি আতৰোৱাৰ বাবে প্ৰস্তুত "
 "কৰিব।"
 
-#: ../src/disks/gduwindow.c:4129
+#: ../src/disks/gduwindow.c:3214
 msgid "_Power Off"
 msgstr "বন্ধ কৰক (_P)"
 
-#: ../src/disks/gduwindow.c:4206
+#: ../src/disks/gduwindow.c:3291
 msgid "Error mounting filesystem"
 msgstr "ফাইলচিস্টেম মাউন্ট কৰোতে ত্ৰুটি"
 
-#: ../src/disks/gduwindow.c:4246 ../src/libgdu/gduutils.c:1122
+#: ../src/disks/gduwindow.c:3330 ../src/libgdu/gduutils.c:1050
 msgid "Error unmounting filesystem"
 msgstr "ফাইলচিস্টেম আনমাউন্ট কৰোতে ত্ৰুটি"
 
-#: ../src/disks/gduwindow.c:4391
+#: ../src/disks/gduwindow.c:3472
 msgid "Error deleting partition"
 msgstr "বিভাজন মচোতে ত্ৰুটি"
 
-#: ../src/disks/gduwindow.c:4429
+#: ../src/disks/gduwindow.c:3509
 msgid "Are you sure you want to delete the partition?"
 msgstr "আপুনি বিভাজন মচি পেলাবলে নিশ্চিত নে?"
 
-#: ../src/disks/gduwindow.c:4430
+#: ../src/disks/gduwindow.c:3510
 msgid "All data on the partition will be lost"
 msgstr "বিভাজনৰ সকলো তথ্য হেৰাই যাব"
 
-#: ../src/disks/gduwindow.c:4431
+#: ../src/disks/gduwindow.c:3511
 msgid "_Delete"
 msgstr "মচি পেলাওক (_D)"
 
-#: ../src/disks/gduwindow.c:4462
+#: ../src/disks/gduwindow.c:3542
 msgid "Error ejecting media"
 msgstr "মাধ্যম বাহিৰ উলাওতে ত্ৰুটি"
 
-#: ../src/disks/gduwindow.c:4519
-msgid "Error starting RAID array"
-msgstr "RAID এৰে আৰম্ভ কৰোতে ত্ৰুটি"
-
-#: ../src/disks/gduwindow.c:4561
-msgid "Error stopping RAID array"
-msgstr "RAID এৰে বন্ধ কৰোতে ত্ৰুটি"
-
-#: ../src/disks/gduwindow.c:4648
+#: ../src/disks/gduwindow.c:3609
 msgid "Error locking encrypted device"
 msgstr "এনক্ৰিপ্ট কৰা ডিভাইচ লক কৰোতে ত্ৰুটি"
 
-#: ../src/disks/gduwindow.c:4713
+#: ../src/disks/gduwindow.c:3673
 msgid "Error starting swap"
 msgstr "শ্বাপ আৰম্ভ কৰোতে ত্ৰুটি"
 
-#: ../src/disks/gduwindow.c:4750
+#: ../src/disks/gduwindow.c:3710
 msgid "Error stopping swap"
 msgstr "শ্বাপ বন্ধ কৰোতে ত্ৰুটি"
 
-#: ../src/disks/gduwindow.c:4789
-msgid "Error setting bitmap for the RAID array"
-msgstr "RAID এৰেৰ বাবে বিটমেপ সংহতি কৰোতে ত্ৰুটি"
-
-#: ../src/disks/gduwindow.c:4855
+#: ../src/disks/gduwindow.c:3752
 msgid "Error setting autoclear flag"
 msgstr "autoclear ফ্লেগ সংহতি কৰোতে ত্ৰুটি"
 
-#: ../src/disks/gduwindow.c:4908 ../src/disks/gduwindow.c:4972
+#: ../src/disks/gduwindow.c:3805 ../src/disks/gduwindow.c:3869
 msgid "Error canceling job"
 msgstr "কাৰ্য্য বাতিল কৰোতে ত্ৰুটি"
-
-#. Translators: Shown when no devices are selected but multiple selection is active.
-#.
-#: ../src/disks/gduwindow.c:5094
-msgctxt "multi-disk-menu"
-msgid "No _Devices Selected"
-msgstr "কোনো ডিভাইচ নিৰ্বাচন কৰা হোৱা নাই (_D)"
-
-#: ../src/disks/gduwindow.c:5104
-#, c-format
-msgid "%d _Device Selected (%s)"
-msgid_plural "%d _Devices Selected (%s)"
-msgstr[0] "%d ডিভাইচ নিৰ্বাচন কৰা হৈছে (%s) (_D)"
-msgstr[1] "%d ডিভাইচসমূহ নিৰ্বাচন কৰা হৈছে (%s) (_D)"
 
 #: ../src/disks/gduxzdecompressor.c:122
 msgid "Invalid compressed data"
@@ -3887,12 +2275,1022 @@ msgstr "অভ্যন্তৰীক ত্ৰুটি"
 msgid "Need more input"
 msgstr "অধিক ইনপুটৰ প্ৰয়োজন"
 
+#: ../src/disks/ui/about-dialog.ui.h:1
+msgid ""
+"Copyright © 2008-2013 Red Hat, Inc.\n"
+"Copyright © 2008-2013 David Zeuthen"
+msgstr ""
+"স্বত্বাধিকাৰ © ২০০৮-২০১৩ Red Hat, Inc.\n"
+"স্বত্বাধিকাৰ © ২০০৮-২০১৩ ডেভিড জিউথেন"
+
+#: ../src/disks/ui/about-dialog.ui.h:3
+msgid "View, modify and configure disks and media"
+msgstr "ডিস্ক আৰু মাধ্যম দৰ্শন, পৰিবৰ্তন আৰু সংৰূপণ কৰক"
+
+#: ../src/disks/ui/about-dialog.ui.h:4
+msgid "translator-credits"
+msgstr ""
+"অমিতাক্ষ ফুকন (aphukan@fedoraproject.org), নীলমদ্যুতি গোস্বামী "
+"(ngoswami@redhat."
+"com)"
+
+#: ../src/disks/ui/app-menu.ui.h:1
+msgid "Attach Disk _Image…"
+msgstr "ডিস্ক ছবি সংলগ্ন কৰক (_I)…"
+
+#: ../src/disks/ui/app-menu.ui.h:2
+msgid "_Help"
+msgstr "সহায় (_H)"
+
+#: ../src/disks/ui/app-menu.ui.h:3
+msgid "_About"
+msgstr "বিষয়ে (_A)"
+
+#: ../src/disks/ui/app-menu.ui.h:4
+msgid "_Quit"
+msgstr "প্ৰস্থান কৰক (_Q)"
+
+#: ../src/disks/ui/benchmark-dialog.ui.h:1
+msgid "Benchmark"
+msgstr "ধাপ"
+
+#: ../src/disks/ui/benchmark-dialog.ui.h:2
+msgid "_Start Benchmark…"
+msgstr "ধাপ আৰম্ভ কৰক (_S)…"
+
+#: ../src/disks/ui/benchmark-dialog.ui.h:3
+msgid "_Abort Benchmark"
+msgstr "ধাপ বাদ দিয়ক (_A)"
+
+#: ../src/disks/ui/benchmark-dialog.ui.h:4
+msgid "Last Benchmarked"
+msgstr "সৰ্বশেষ ধাপ"
+
+#: ../src/disks/ui/benchmark-dialog.ui.h:5
+msgid "Average Read Rate"
+msgstr "গড় পঢ়াৰ হাৰ"
+
+#: ../src/disks/ui/benchmark-dialog.ui.h:6
+msgid "Average Write Rate"
+msgstr "গড় লিখাৰ হাৰ"
+
+#: ../src/disks/ui/benchmark-dialog.ui.h:7
+msgid "Average Access Time"
+msgstr "গড় অভিগম সময়"
+
+#: ../src/disks/ui/benchmark-dialog.ui.h:8
+msgid "Disk or Device"
+msgstr "ডিস্ক অথবা ডিভাইচ"
+
+#: ../src/disks/ui/benchmark-dialog.ui.h:9
+msgid "Sample Size"
+msgstr "নমুনা আকাৰ"
+
+#: ../src/disks/ui/benchmark-dialog.ui.h:10
+msgid "Benchmark Settings"
+msgstr "ধাপ সংহতিসমূহ"
+
+#: ../src/disks/ui/benchmark-dialog.ui.h:11
+msgid "_Start Benchmarking…"
+msgstr "ধাপ সৃষ্টি আৰম্ভ কৰক (_S)…"
+
+#: ../src/disks/ui/benchmark-dialog.ui.h:12
+msgid ""
+"Benchmarking involves measuring the transfer rate on various area of the "
+"device as well as measuring how long it takes to seek from one random area "
+"to another. Please back up important data before using the write benchmark."
+msgstr ""
+"ধাপ সৃষ্টি কৰাত ডিভাইচৰ বিভিন্ন স্থানত স্থানান্তৰ হাৰ গণনা লগতে এটা যাদৃচ্ছইক "
+"স্থানৰ "
+"পৰা আন এটালে সন্ধানৰ সময় অন্তৰ্ভুক্ত হয়। অনুগ্ৰহ কৰি লিখা ধাপ ব্যৱহাৰ কৰাৰ "
+"আগত "
+"গুৰুত্বপূৰ্ণ তথ্যৰ বেকআপ লব।"
+
+#: ../src/disks/ui/benchmark-dialog.ui.h:13
+msgid "Transfer Rate"
+msgstr "স্থানান্তৰ হাৰ"
+
+#: ../src/disks/ui/benchmark-dialog.ui.h:14
+msgid "Number of S_amples"
+msgstr "নমুনাৰ সংখ্যা (_a)"
+
+#: ../src/disks/ui/benchmark-dialog.ui.h:15
+msgid "Sample S_ize (MiB)"
+msgstr "নমুনাৰ আকাৰ (MiB) (_i)"
+
+#: ../src/disks/ui/benchmark-dialog.ui.h:16
+msgid "Perform _write-benchmark"
+msgstr "write-benchmark পৰিৱেশন কৰক (_w)"
+
+#: ../src/disks/ui/benchmark-dialog.ui.h:17
+msgid ""
+"Benchmarking the write-rate of a disk requires exclusive access to the disk "
+"(e.g. the disk or its partitions cannot be mounted or in use) and involves "
+"reading data and then writing it back. As a result, the contents of the disk "
+"is not changed.\n"
+"\n"
+"If not checked, the write-part of the benchmark will not be done but on the "
+"other hand exclusive access to the device is not needed (e.g. the disk or "
+"device can be in use)."
+msgstr ""
+"এটা ডিস্কৰ লিখা-হাৰৰ ধাপ সৃষ্টি কৰিবলে ডিস্কৰ উপৰত বিশেষ অভিগমৰ প্ৰয়োজন হয় "
+"(উদাহৰণস্বৰূপ ডিস্ক অথবা তাৰ বিভাজনসমূহ মাউন্ট কৰা অথবা ব্যৱহাৰ অৱস্থাত থাকিব "
+"নালাগিব) আৰু তথ্য পঢ়ি তাৰ পুনৰ লিখা অন্তৰ্ভুক্ত কৰে। ফলস্বৰূপ, ডিস্কৰ সমল "
+"পৰিবৰ্তন কৰা "
+"নহয়।\n"
+"\n"
+"যদি নীৰিক্ষণ কৰা নাথাকে, ধাপৰ লিখা-অংশ কৰা নহয় কিন্তু আনফালে ডিভাইচলে বিশেষ "
+"অভিগমৰ প্ৰয়োজন নাথাকিব (উদাহৰণস্বৰূপ ডিস্ক অথবা ডিভাইচ ব্যৱহাৰত থাকিব পাৰে)।"
+
+#: ../src/disks/ui/benchmark-dialog.ui.h:20
+msgid ""
+"Number of samples. Bigger number produces a more accurate picture of access "
+"time patterns but takes more time."
+msgstr ""
+"নমুনাসমূহৰ সংখ্যা। ডাঙৰ সংখ্যায় অভিগম সময় বিন্যাসসমূহৰ এটা অধিক সঠিক ছবি "
+"প্ৰদান কৰে "
+"কিন্তু ইয়াৰ বাবে অধিক সময় ব্যয় হয়।"
+
+#: ../src/disks/ui/benchmark-dialog.ui.h:21
+msgid ""
+"The number of MiB (1048576 bytes) to read/write for each sample. Big sample "
+"sizes tend to produce more accurate benchmarks at the cost of the benchmark "
+"taking more time."
+msgstr ""
+"প্ৰত্যক নমুনা পঢ়িব/লিখিবলে MiB (1048576 বাইট) ৰ সংখ্যা। ডাঙৰ নমুনা আকাৰসমূহে "
+"অধিক "
+"সঠিক ধাপ সৃষ্টি কৰে কিন্তু ধাপত অধিক সময় ব্যয় হয়।"
+
+#: ../src/disks/ui/benchmark-dialog.ui.h:22
+msgid "Access Time"
+msgstr "অভিগম সময়"
+
+#: ../src/disks/ui/benchmark-dialog.ui.h:23
+msgid "Number of Sampl_es"
+msgstr "নমুনাসমূহৰ সংখ্যা (_e)"
+
+#: ../src/disks/ui/benchmark-dialog.ui.h:24
+msgid ""
+"Number of samples. Bigger number produces more smooth graphs but the "
+"benchmark will take more time."
+msgstr ""
+"নমুনাসমূহৰ সংখ্যা। ডাঙৰ সংখ্যায় অধিক নিমজ লেখচিত্ৰ প্ৰদান কৰে কিন্তু ধাপত "
+"অধিক সময় "
+"ব্যয় হয়।"
+
+#: ../src/disks/ui/change-passphrase-dialog.ui.h:1
+msgid "Change Passphrase"
+msgstr "পাচফ্ৰেইছ পৰিবৰ্তন কৰক"
+
+#: ../src/disks/ui/change-passphrase-dialog.ui.h:2
+#: ../src/disks/ui/edit-dos-partition-dialog.ui.h:2
+#: ../src/disks/ui/edit-filesystem-dialog.ui.h:2
+#: ../src/disks/ui/edit-gpt-partition-dialog.ui.h:2
+#: ../src/disks/ui/edit-partition-dialog.ui.h:2
+msgid "C_hange"
+msgstr "পৰিবৰ্তন কৰক (_h)"
+
+#: ../src/disks/ui/change-passphrase-dialog.ui.h:3
+msgid "Curr_ent Passphrase"
+msgstr "বৰ্তমান পাচফ্ৰেইছ (_e)"
+
+#: ../src/disks/ui/change-passphrase-dialog.ui.h:4
+msgid "Enter current passphrase used to protect the data"
+msgstr "তথ্য সুৰক্ষিত কৰিবলে বৰ্তমান পাচফ্ৰেইছ সুমুৱাওক"
+
+#: ../src/disks/ui/change-passphrase-dialog.ui.h:5
+#: ../src/disks/ui/filesystem-create.ui.h:10
+msgid "Sho_w Passphrases"
+msgstr "পাচফ্ৰেইছসমূহ দেখুৱাওক (_w)"
+
+#: ../src/disks/ui/change-passphrase-dialog.ui.h:6
+#: ../src/disks/ui/filesystem-create.ui.h:11
+msgid "Check this box to see the passphrases entered above"
+msgstr "উপৰত সুমুৱা পাচফ্ৰেইছসমূহ চাবলে এই বাকচ চেক কৰক"
+
+#: ../src/disks/ui/change-passphrase-dialog.ui.h:7
+#: ../src/disks/ui/filesystem-create.ui.h:9
+msgid "Confirm passphrase entered above"
+msgstr "উপৰত সুমুৱা পাচফ্ৰেইছ সুনিশ্চিত কৰক"
+
+#: ../src/disks/ui/change-passphrase-dialog.ui.h:8
+msgid "Enter new passphrase used to protect the data"
+msgstr "তথ্য সুৰক্ষিত কৰিবলে নতুন পাচফ্ৰেইছ সুমুৱাওক"
+
+#: ../src/disks/ui/change-passphrase-dialog.ui.h:9
+#: ../src/disks/ui/filesystem-create.ui.h:7
+msgid "C_onfirm Passphrase"
+msgstr "পাচফ্ৰেইছ সুনিশ্চিত কৰক (_o)"
+
+#: ../src/disks/ui/change-passphrase-dialog.ui.h:10
+msgid "New _Passphrase"
+msgstr "নতুন পাচফ্ৰেইছ (_P)"
+
+#: ../src/disks/ui/create-disk-image-dialog.ui.h:1
+msgid "Create Disk Image"
+msgstr "ডিস্ক ছবি সৃষ্টি কৰক"
+
+#: ../src/disks/ui/create-disk-image-dialog.ui.h:2
+#: ../src/disks/ui/edit-crypttab-dialog.ui.h:4
+#: ../src/disks/ui/edit-gpt-partition-dialog.ui.h:5
+#: ../src/disks/ui/filesystem-create.ui.h:2
+msgid "_Name"
+msgstr "নাম (_N)"
+
+#: ../src/disks/ui/create-disk-image-dialog.ui.h:3
+msgid "Save in _Folder"
+msgstr "ফোল্ডাৰত সংৰক্ষণ কৰক (_F)"
+
+#: ../src/disks/ui/create-disk-image-dialog.ui.h:4
+msgid "Select a Folder"
+msgstr "এটা ফোল্ডাৰ বাছক"
+
+#: ../src/disks/ui/create-disk-image-dialog.ui.h:5
+msgid "Source"
+msgstr "উৎস"
+
+#: ../src/disks/ui/create-disk-image-dialog.ui.h:6
+msgid "_Start Creating…"
+msgstr "সৃষ্টি কৰা আৰম্ভ কৰক (_S)…"
+
+#: ../src/disks/ui/create-partition-dialog.ui.h:1
+msgid "Create Partition"
+msgstr "বিভাজন সৃষ্টি কৰক"
+
+#: ../src/disks/ui/create-partition-dialog.ui.h:2
+msgid "C_reate"
+msgstr "সৃষ্টি কৰক (_r)"
+
+#: ../src/disks/ui/create-partition-dialog.ui.h:3
+msgid "Partition _Size"
+msgstr "বিভাজন আকাৰ (_S)"
+
+#: ../src/disks/ui/create-partition-dialog.ui.h:4
+msgid "The size of the partition to create, in megabytes"
+msgstr "সৃষ্টি কৰিবলে বিভাজনৰ আকাৰ, মেগাবাইটত"
+
+#: ../src/disks/ui/create-partition-dialog.ui.h:5
+msgid "bytes"
+msgstr "বাইটসমূহ"
+
+#: ../src/disks/ui/create-partition-dialog.ui.h:6
+msgid "kB"
+msgstr "kB"
+
+#: ../src/disks/ui/create-partition-dialog.ui.h:7
+msgid "MB"
+msgstr "মেগাবাইট"
+
+#: ../src/disks/ui/create-partition-dialog.ui.h:8
+msgid "GB"
+msgstr "GB"
+
+#: ../src/disks/ui/create-partition-dialog.ui.h:9
+msgid "TB"
+msgstr "TB"
+
+#: ../src/disks/ui/create-partition-dialog.ui.h:10
+msgid "PB"
+msgstr "PB"
+
+#: ../src/disks/ui/create-partition-dialog.ui.h:11
+msgid "KiB"
+msgstr "KiB"
+
+#: ../src/disks/ui/create-partition-dialog.ui.h:12
+msgid "MiB"
+msgstr "MiB"
+
+#: ../src/disks/ui/create-partition-dialog.ui.h:13
+msgid "GiB"
+msgstr "GiB"
+
+#: ../src/disks/ui/create-partition-dialog.ui.h:14
+msgid "TiB"
+msgstr "TiB"
+
+#: ../src/disks/ui/create-partition-dialog.ui.h:15
+msgid "PiB"
+msgstr "PiB"
+
+#: ../src/disks/ui/create-partition-dialog.ui.h:16
+msgid "Free Space _Following"
+msgstr "অনুসৰণ কৰা ৰিক্ত স্থান (_F)"
+
+#: ../src/disks/ui/create-partition-dialog.ui.h:17
+msgid "The free space following the partition, in megabytes"
+msgstr "বিভাজন অনুসৰণ কৰা ৰিক্ত স্থান, মেগাবাইটত"
+
+#. The contents of the device, for example 'Unknown', 'FAT (32-bit version)', 'Ext4 (version 1.0)', 'Swap (version 2)'
+#: ../src/disks/ui/create-partition-dialog.ui.h:18
+#: ../src/disks/ui/disks.ui.h:18
+msgid "Contents"
+msgstr "সমলসমূহ"
+
+#: ../src/disks/ui/disk-settings-dialog.ui.h:1
+msgid "Drive Settings"
+msgstr "ড্ৰাইভ সংহতিসমূহ"
+
+#: ../src/disks/ui/disk-settings-dialog.ui.h:2
+msgid "Apply Standby Timeout Settings"
+msgstr "স্টেণ্ডবাই সময়অন্ত সংহতিসমূহ প্ৰয়োগ কৰক"
+
+#: ../src/disks/ui/disk-settings-dialog.ui.h:3
+msgid ""
+"Turn on to configure Standby Timeout at startup and when the disk is "
+"connected"
+msgstr ""
+"আৰম্ভণিত আৰু যেতিয়া ডিস্ক সংযুক্ত তেতিয়া স্টেণ্ডবাই সময়অন্ত সংৰূপণ কৰিবলে অন "
+"কৰক"
+
+#: ../src/disks/ui/disk-settings-dialog.ui.h:4
+msgid "Enter Standby After"
+msgstr "চিহ্নিত সময়ৰ পিছত স্টেণ্ডবাই সুমুৱাওক "
+
+#: ../src/disks/ui/disk-settings-dialog.ui.h:5
+msgid "_Standby"
+msgstr "স্টেণ্ডবাই (_S)"
+
+#: ../src/disks/ui/disk-settings-dialog.ui.h:6
+msgid "Apply Advanced Power Management Settings"
+msgstr "উন্নত শক্তি ব্যৱস্থাপনা সংহতিসমূহ প্ৰয়োগ কৰক"
+
+#: ../src/disks/ui/disk-settings-dialog.ui.h:7
+msgid "Turn on to configure APM at startup and when the disk is connected"
+msgstr "আৰম্ভণিত আৰু যেতিয়া ডিস্ক সংযুক্ত APM সংৰূপণ কৰিবলে অন কৰক"
+
+#: ../src/disks/ui/disk-settings-dialog.ui.h:8
+msgid "APM Level"
+msgstr "APM স্তৰ"
+
+#: ../src/disks/ui/disk-settings-dialog.ui.h:9
+msgid ""
+"Agressive spin-down may wear out the drive faster than anticipated. Please "
+"check the “Start/Stop Count” SMART attribute from time to time"
+msgstr ""
+"অধিক স্পিন-ডাউনে ড্ৰাইভক ভৱাতকৈ অধিক সোনকালে ক্ষতি কৰিব পাৰে। অনুগ্ৰহ কৰি "
+"মাজে "
+"মাজে “গণনা আৰম্ভ কৰক/বন্ধ কৰক” SMART বৈশিষ্ট নীৰিক্ষণ কৰক"
+
+#: ../src/disks/ui/disk-settings-dialog.ui.h:10
+msgid "A_PM"
+msgstr "APM (_P)"
+
+#: ../src/disks/ui/disk-settings-dialog.ui.h:11
+msgid "Apply Automatic Acoustic Management Settings"
+msgstr "স্বচালিত একৌস্টিক ব্যৱস্থাপনা সংহতিসমূহ প্ৰয়োগ কৰক"
+
+#: ../src/disks/ui/disk-settings-dialog.ui.h:12
+msgid "Turn on to configure AAM at startup and when the disk is connected"
+msgstr "আৰম্ভণিত আৰু যেতিয়া ডিস্ক সংযুক্ত AAM সংৰূপণ কৰিবলে অন কৰক"
+
+#: ../src/disks/ui/disk-settings-dialog.ui.h:13
+msgid "Vendor Recommended"
+msgstr "বিক্ৰেতা উপদেশীত"
+
+#: ../src/disks/ui/disk-settings-dialog.ui.h:14
+msgid "AAM Level"
+msgstr "AAM স্তৰ"
+
+#: ../src/disks/ui/disk-settings-dialog.ui.h:15
+msgid "_AAM"
+msgstr "AAM (_A)"
+
+#: ../src/disks/ui/disk-settings-dialog.ui.h:16
+msgid "Apply Write Cache Settings"
+msgstr "লিখা ক্যাশ সংহতিসমূহ প্ৰয়োগ কৰক"
+
+#: ../src/disks/ui/disk-settings-dialog.ui.h:17
+msgid ""
+"Turn on to configure Write Cache setting at startup and when the disk is "
+"connected"
+msgstr ""
+"আৰম্ভণিত আৰু যেতিয়া ডিস্ক সংযুক্ত লিখা ক্যাশ সংহতি সংৰূপণ কৰিবলে অন কৰক"
+
+#: ../src/disks/ui/disk-settings-dialog.ui.h:18
+msgid "S_etting"
+msgstr "সংহতি (_e)"
+
+#: ../src/disks/ui/disk-settings-dialog.ui.h:19
+msgid "Enable Write Cache"
+msgstr "লিখা ক্যাশ সামৰ্থবান কৰক"
+
+#: ../src/disks/ui/disk-settings-dialog.ui.h:20
+msgid "Disable Write Cache"
+msgstr "লিখা ক্যাশ অসামৰ্থবান কৰক"
+
+#: ../src/disks/ui/disk-settings-dialog.ui.h:21
+msgid ""
+"Performance is increased by enabling write caching, but leaves the system "
+"susceptible to data loss in the event of a power failure"
+msgstr ""
+"লিখা ক্যাশিং সামৰ্থবান কৰি পৰিৱেশন বৃদ্ধি কৰা হয়, কিন্তু এটা শক্তি ব্যৰ্থতাৰ "
+"ক্ষেত্ৰত "
+"চিস্টেমৰ তথ্য হানিৰ আশংকা থাকি যায়"
+
+#: ../src/disks/ui/disk-settings-dialog.ui.h:22
+msgid "Wr_ite Cache"
+msgstr "লিখা ক্যাশ (_i)"
+
+#: ../src/disks/ui/disks.ui.h:1
+msgid "Select a device"
+msgstr "এটা ডিভাইচ বাছক"
+
+#: ../src/disks/ui/disks.ui.h:2
+msgid "Model"
+msgstr "আৰ্হি"
+
+#: ../src/disks/ui/disks.ui.h:3
+msgid "Serial Number"
+msgstr "ক্ৰমিক সংখ্যা"
+
+#: ../src/disks/ui/disks.ui.h:4
+msgid "World Wide Name"
+msgstr "বিশ্বব্যাপী নাম"
+
+#. The physical location of the drive, could be 'Connected to another seat'  or 'Bay 11 of Promise VTrak' or 'USB connector II'
+#: ../src/disks/ui/disks.ui.h:6
+msgid "Location"
+msgstr "অবস্থান"
+
+#: ../src/disks/ui/disks.ui.h:7
+msgid "Media"
+msgstr "মাধ্যম"
+
+#: ../src/disks/ui/disks.ui.h:9
+msgid "Job"
+msgstr "কাৰ্য্য"
+
+#: ../src/disks/ui/disks.ui.h:10
+msgid "Name"
+msgstr "নাম"
+
+#: ../src/disks/ui/disks.ui.h:11
+msgid "Size"
+msgstr "মাপ"
+
+#: ../src/disks/ui/disks.ui.h:12
+msgid "Auto-clear"
+msgstr "স্ব-পৰিষ্কাৰ"
+
+#. The filename or URI of the file that is used as backing store for the loop device.
+#: ../src/disks/ui/disks.ui.h:14
+msgid "Backing File"
+msgstr "ফাইল বেকআপ লোৱা"
+
+#: ../src/disks/ui/disks.ui.h:15
+msgid "Partitioning"
+msgstr "বিভাজন প্ৰক্ৰিয়া"
+
+#: ../src/disks/ui/disks.ui.h:16
+msgid "_Volumes"
+msgstr "আয়তনসমূহ (_V)"
+
+#: ../src/disks/ui/disks.ui.h:19
+msgid "Device"
+msgstr "ডিভাইচ"
+
+#: ../src/disks/ui/disks.ui.h:20
+msgid "Partition Type"
+msgstr "বিভাজন ধৰণ"
+
+#: ../src/disks/ui/disks.ui.h:21
+msgid "Format…"
+msgstr "ফৰমেট কৰক (_F)…"
+
+#: ../src/disks/ui/disks.ui.h:22
+msgid "Create Disk Image…"
+msgstr "ডিস্ক ছবি সৃষ্টি কৰক…"
+
+#: ../src/disks/ui/disks.ui.h:23
+msgid "Restore Disk Image…"
+msgstr "ডিস্ক ছবি পুনৰুদ্ধাৰ কৰক…"
+
+#: ../src/disks/ui/disks.ui.h:24
+msgid "Benchmark…"
+msgstr "ধাপ…"
+
+#: ../src/disks/ui/disks.ui.h:25
+msgid "SMART Data & Self-Tests…"
+msgstr "SMART তথ্য আৰু স্ব-পৰিক্ষণসমূহ…"
+
+#: ../src/disks/ui/disks.ui.h:26
+msgid "Drive Settings…"
+msgstr "ড্ৰাইভ সংহতিসমূহ…"
+
+#: ../src/disks/ui/disks.ui.h:27
+msgid "Standby Now"
+msgstr "এতিয়া স্টেণ্ডবাই হওক"
+
+#: ../src/disks/ui/disks.ui.h:28
+msgid "Wake-Up from Standby"
+msgstr "স্টেণ্ডবাইৰ পৰা সাৰ পাওক"
+
+#: ../src/disks/ui/disks.ui.h:29
+msgid "Power Off…"
+msgstr "বন্ধ কৰক (_P)…"
+
+#: ../src/disks/ui/disks.ui.h:30
+msgid "Edit Partition…"
+msgstr "বিভাজন সম্পাদন কৰক…"
+
+#: ../src/disks/ui/disks.ui.h:31
+msgid "Edit Filesystem…"
+msgstr "ফাইলচিস্টেম সম্পাদন কৰক…"
+
+#: ../src/disks/ui/disks.ui.h:32
+msgid "Change Passphrase…"
+msgstr "পাচফ্ৰেইছ পৰিবৰ্তন কৰক…"
+
+#: ../src/disks/ui/disks.ui.h:33
+msgid "Edit Mount Options…"
+msgstr "মাউন্ট বিকল্পসমূহ সম্পাদন কৰক…"
+
+#: ../src/disks/ui/disks.ui.h:34
+msgid "Edit Encryption Options…"
+msgstr "ইনক্ৰিপষণ বিকল্পসমূহ সম্পাদন কৰক…"
+
+#: ../src/disks/ui/edit-crypttab-dialog.ui.h:1
+msgid "Encryption Options"
+msgstr "ইনক্ৰিপষণ বিকল্পসমূহ"
+
+#: ../src/disks/ui/edit-crypttab-dialog.ui.h:2
+msgid "_Automatic Encryption Options"
+msgstr "স্বচালিত ইনক্ৰিপষণ বিকল্পসমূহ (_A)"
+
+#: ../src/disks/ui/edit-crypttab-dialog.ui.h:3
+msgid ""
+"Switch off <i>Automatic Encryption Options</i> to manage encryption options "
+"and passphrase for the device. The options correspond to an entry in the <b>/"
+"etc/crypttab</b> file"
+msgstr ""
+"ডিভাইচৰ বাবে ইনক্ৰিপষণ বিকল্পসমূহ আৰু পাচফ্ৰেইছ ব্যৱস্থাপনা কৰিবলে <i>"
+"স্বচালিত "
+"ইনক্ৰিপষণ বিকল্পসমূহ</i> বন্ধ কৰক। বিকল্পসমূহ <b>/etc/crypttab</b> ফাইলত "
+"যিকোনো "
+"প্ৰবিষ্টিলে প্ৰসংগ কৰে।"
+
+#: ../src/disks/ui/edit-crypttab-dialog.ui.h:5
+msgid "Opt_ions"
+msgstr "বিকল্পসমূহ (_i)"
+
+#: ../src/disks/ui/edit-crypttab-dialog.ui.h:6
+msgid ""
+"The name to use for the unlocked device - the device is set up as the name "
+"prefixed with <b>/dev/mapper</b>/"
+msgstr ""
+"আনলক কৰা ডিভাইচৰ বাবে ব্যৱহাৰ কৰিব লগিয়া নাম - ডিভাইচ <b>/dev/mapper</b>/ ৰ "
+"সৈতে উপসৰ্গিত নাম হিচাপে সংস্থাপন কৰা হয়"
+
+#: ../src/disks/ui/edit-crypttab-dialog.ui.h:7
+msgid "Options to use when unlocking the device"
+msgstr "ডিভাইচ আনলক কৰোতে ব্যৱহাৰ কৰা বিকল্পসমূহ"
+
+#: ../src/disks/ui/edit-crypttab-dialog.ui.h:8
+msgid "Passphrase File"
+msgstr "পাচফ্ৰেইছ ফাইল"
+
+#: ../src/disks/ui/edit-crypttab-dialog.ui.h:9
+#: ../src/disks/ui/unlock-device-dialog.ui.h:3
+msgid "Sho_w passphrase"
+msgstr "পাচফ্ৰেইছ দেখুৱাওক (_w)"
+
+#: ../src/disks/ui/edit-crypttab-dialog.ui.h:10
+msgid ""
+"Passphrase of the device or empty to request from user when setting up the "
+"device"
+msgstr ""
+"ডিভাইচ সংস্থাপন কৰোতে ব্যৱহাৰকাৰীৰ পৰা অনুৰোধ কৰা ডিভাইচৰ পাচফ্ৰেইছ অথবা ৰিক্ত"
+
+#: ../src/disks/ui/edit-crypttab-dialog.ui.h:11
+#: ../src/disks/ui/filesystem-create.ui.h:6
+#: ../src/disks/ui/unlock-device-dialog.ui.h:2
+msgid "_Passphrase"
+msgstr "পাচফ্ৰেইছ (_P)"
+
+#: ../src/disks/ui/edit-crypttab-dialog.ui.h:12
+msgid "_Unlock at startup"
+msgstr "আৰম্ভণিত আনলক কৰক (_U)"
+
+#: ../src/disks/ui/edit-crypttab-dialog.ui.h:13
+msgid "If checked, the device will be unlocked at startup [!noauto]"
+msgstr "যদি নীৰিক্ষিত, ডিভাইচ আৰম্ভণিত আনলক কৰা হব [!noauto]"
+
+#: ../src/disks/ui/edit-crypttab-dialog.ui.h:14
+msgid "Require additional authori_zation to unlock"
+msgstr "আনলক কৰিবলে অতিৰিক্ত প্ৰমাণীকৰণৰ প্ৰয়োজন (_z)"
+
+#: ../src/disks/ui/edit-crypttab-dialog.ui.h:15
+msgid ""
+"If checked, additional authorization is required to unlock the device [x-"
+"udisks-auth]"
+msgstr ""
+"যদি নীৰিক্ষিত, ডিভাইচ আনলক কৰিবলে অতিৰিক্ত প্ৰমাণীকৰণৰ প্ৰয়োজন [x-udisks-auth]"
+
+#: ../src/disks/ui/edit-dos-partition-dialog.ui.h:1
+#: ../src/disks/ui/edit-gpt-partition-dialog.ui.h:1
+#: ../src/disks/ui/edit-partition-dialog.ui.h:1
+msgid "Edit Partition"
+msgstr "বিভাজন সম্পাদন কৰক"
+
+#: ../src/disks/ui/edit-dos-partition-dialog.ui.h:3
+#: ../src/disks/ui/edit-gpt-partition-dialog.ui.h:3
+#: ../src/disks/ui/edit-partition-dialog.ui.h:3
+#: ../src/disks/ui/filesystem-create.ui.h:1
+msgid "_Type"
+msgstr "ধৰণ (_T)"
+
+#: ../src/disks/ui/edit-dos-partition-dialog.ui.h:4
+msgid "The partition type as a 8-bit unsigned integer"
+msgstr "এটা 8-bit অস্বাক্ষৰীত পূৰ্ণসংখ্যা হিচাপে বিভাজন ধৰণ"
+
+#: ../src/disks/ui/edit-dos-partition-dialog.ui.h:5
+msgid "_Bootable"
+msgstr "বুট কৰাৰ যোগ্য (_B)"
+
+#: ../src/disks/ui/edit-dos-partition-dialog.ui.h:6
+msgid ""
+"A flag used by the Platform bootloader to determine where the OS should be "
+"loaded from. Sometimes the partition with this flag set is referred to as "
+"the <i>active</i> partition"
+msgstr ""
+"OS কৰ পৰা ল'ড কৰা হব নিৰ্ধাৰণ কৰিবলে প্লেটফৰ্ম বুটল'ডাৰ দ্বাৰা ব্যৱহৃত এটা "
+"ফ্লেগ। "
+"কেতিয়াবা এই ফ্লেগ সংহত থকা বিভাজনক <i>সক্ৰিয়</i> বিভাজন হিচাপে প্ৰসংগ কৰা হয়"
+
+#: ../src/disks/ui/edit-filesystem-dialog.ui.h:1
+msgid "Change Filesystem Label"
+msgstr "ফাইলচিস্টেম লেবেল পৰিবৰ্তন কৰক"
+
+#: ../src/disks/ui/edit-filesystem-dialog.ui.h:3
+msgid "_Label"
+msgstr "লেবেল (_L)"
+
+#: ../src/disks/ui/edit-fstab-dialog.ui.h:1
+msgid "Mount Options"
+msgstr "মাউন্ট বিকল্পসমূহ"
+
+#: ../src/disks/ui/edit-fstab-dialog.ui.h:2
+msgid "_Automatic Mount Options"
+msgstr "স্বচালিত মাউন্ট বিকল্পসমূহ (_A)"
+
+#: ../src/disks/ui/edit-fstab-dialog.ui.h:3
+msgid ""
+"Switch off <i>Automatic Mount Options</i> to manage mount point and mount "
+"options for the device. The options correspond to an entry in the <b>/etc/"
+"fstab</b> file"
+msgstr ""
+"ডিভাইচৰ বাবে মাউন্ট বিন্দু আৰু মাউন্ট বিকল্পসমূহ ব্যৱস্থাপনা কৰিবলে <i>"
+"স্বচালিত মাউন্ট "
+"বিকল্পসমূহ</i> বন্ধ কৰক। বিকল্পসমূহ <b>/etc/fstab</b> ফাইলৰ এটা প্ৰবিষ্টিলে "
+"প্ৰসংগ "
+"কৰে"
+
+#: ../src/disks/ui/edit-fstab-dialog.ui.h:4
+msgid "I_dentify As"
+msgstr "হিচাপে চিনাক্ত কৰক (_d)"
+
+#: ../src/disks/ui/edit-fstab-dialog.ui.h:5
+msgid ""
+"The <b>special device file</b> - use symlinks in the <b>/dev/disk</b> "
+"hierarchy to control the scope of the entry"
+msgstr ""
+"<b>বিশেষ ডিভাইচ ফাইল</b> - প্ৰবিষ্টিৰ অৱকাশ নিয়ন্ত্ৰণ কৰিবলে <b>/dev/disk</b> "
+"অধিক্ৰমত চিমসংযোগসমূহ ব্যৱহাৰ কৰে"
+
+#: ../src/disks/ui/edit-fstab-dialog.ui.h:6
+msgid ""
+"The special device file - use symlinks in the /dev/disk hierarchy to control "
+"the scope of the entry"
+msgstr ""
+"বিশেষ ডিভাইচ ফাইল - প্ৰবিষ্টিৰ অৱকাশ নিয়ন্ত্ৰণ কৰিবলে /dev/disk অধিক্ৰমত "
+"চিমসংযোগসমূহ ব্যৱহাৰ কৰক "
+
+#: ../src/disks/ui/edit-fstab-dialog.ui.h:7
+msgid "Mount _Point"
+msgstr "মাউন্ট বিন্দু (_P)"
+
+#: ../src/disks/ui/edit-fstab-dialog.ui.h:8
+msgid "Filesystem _Type"
+msgstr "ফাইলচিস্টেমৰ ধৰণ (_T)"
+
+#: ../src/disks/ui/edit-fstab-dialog.ui.h:9
+msgid "The directory to mount the device in"
+msgstr "ডিভাইচ মাউন্ট কৰিবলে ডাইৰেকটৰি"
+
+#: ../src/disks/ui/edit-fstab-dialog.ui.h:10
+msgid "The filesystem type to use"
+msgstr "ব্যৱহাৰ কৰিবলে ফাইলচিস্টেম ধৰণ"
+
+#: ../src/disks/ui/edit-fstab-dialog.ui.h:11
+msgid "Display _Name"
+msgstr "প্ৰদৰ্শন নাম (_N)"
+
+#: ../src/disks/ui/edit-fstab-dialog.ui.h:12
+msgid ""
+"If set, the name to use for the device in the user interface [x-gvfs-name=]"
+msgstr ""
+"যদি সংহত, ব্যৱহাৰকাৰী আন্তঃপৃষ্ঠত ডিভাইচৰ বাবে ব্যৱহাৰ কৰিব লগিয়া নাম [x-gvfs-"
+"name=]"
+
+#: ../src/disks/ui/edit-fstab-dialog.ui.h:13
+msgid "Icon Na_me"
+msgstr "আইকন নাম (_m)"
+
+#: ../src/disks/ui/edit-fstab-dialog.ui.h:14
+msgid ""
+"If set, the name of the icon to use in the device in the user interface [x-"
+"gvfs-icon=]"
+msgstr ""
+"যদি সংহত, ব্যৱহাৰকাৰী আন্তঃপৃষ্ঠত ডিভাইচত ব্যৱহাৰ কৰিব লগিয়া আইকনৰ নাম "
+"[x-gvfs-"
+"icon=]"
+
+#: ../src/disks/ui/edit-fstab-dialog.ui.h:15
+msgid "Sho_w in user interface"
+msgstr "ব্যৱহাৰকাৰী আন্তঃপৃষ্ঠত দেখুৱাওক (_w)"
+
+#: ../src/disks/ui/edit-fstab-dialog.ui.h:16
+msgid ""
+"If checked, the device is always shown in the user interface no matter what "
+"its directory is [x-gvfs-show]"
+msgstr ""
+"যদি সংহত, ডিভাইচক সদায় ব্যৱহাৰকাৰী আন্তঃপৃষ্ঠত দেখুৱা হয় তাৰ ডাইৰেকটৰি "
+"যেনেকুৱা "
+"নহওক [x-gvfs-show]"
+
+#: ../src/disks/ui/edit-fstab-dialog.ui.h:17
+msgid "Require additional authori_zation to mount"
+msgstr "মাউন্ট কৰিবলে অতিৰিক্ত প্ৰমাণীকৰণৰ প্ৰয়োজন (_z)"
+
+#: ../src/disks/ui/edit-fstab-dialog.ui.h:18
+msgid ""
+"If checked, additional authorization is required to mount the device [x-"
+"udisks-auth]"
+msgstr ""
+"যদি নীৰিক্ষিত, ডিভাইচ মাউন্ট কৰিবলে অতিৰিক্ত প্ৰমাণীকৰণৰ প্ৰয়োজন "
+"[x-udisks-auth]"
+
+#: ../src/disks/ui/edit-fstab-dialog.ui.h:19
+msgid "Mount at _startup"
+msgstr "আৰম্ভণিত মাউন্ট (_s)"
+
+#: ../src/disks/ui/edit-fstab-dialog.ui.h:20
+msgid "If checked, the device will be mounted at startup [!noauto]"
+msgstr "যদি নীৰিক্ষিত, ডিভাইচ আৰম্ভণিত মাউন্ট কৰা হব [!noauto]"
+
+#: ../src/disks/ui/edit-fstab-dialog.ui.h:21
+msgid "S_ymbolic Icon Name"
+msgstr "সাংকেতিক আইকন নাম (_y)"
+
+#: ../src/disks/ui/edit-fstab-dialog.ui.h:22
+msgid ""
+"If set, the name of the symbolic icon to use in the device in the user "
+"interface [x-gvfs-symbolic-icon=]"
+msgstr ""
+"যদি সংহিত, ব্যৱহাৰকাৰী আন্তঃপৃষ্ঠত ডিভাইচত ব্যৱহাৰ কৰিব লগিয়া সাংকেতিক আইকনৰ "
+"নাম "
+"[x-gvfs-symbolic-icon=]"
+
+#: ../src/disks/ui/edit-fstab-dialog.ui.h:23
+msgid "Mount Opt_ions"
+msgstr "মাউন্ট বিকল্পসমূহ (_i)"
+
+#: ../src/disks/ui/edit-fstab-dialog.ui.h:24
+msgid "The mount options stored in the <b>/etc/fstab</b> file"
+msgstr "<b>/etc/fstab</b> ফাইলত সংৰক্ষিত মাউন্ট বিকল্পসমূহ"
+
+#: ../src/disks/ui/edit-gpt-partition-dialog.ui.h:4
+msgid "The partition type represented as a 32-bit <i>GUID</i>"
+msgstr "এটা 32-bit <i>GUID</i> হিচাপে প্ৰতিনিদ্ধিত্ব কৰা বিভাজন ধৰণ"
+
+#: ../src/disks/ui/edit-gpt-partition-dialog.ui.h:6
+msgid ""
+"The partition name (up to 36 unicode characters). This is useful if you want "
+"to refer to the device via a symlink in the <b>/dev/disk/by-partlabel</b> "
+"directory"
+msgstr ""
+"বিভাজন নাম (৩৬ ইউনিক'ড আখৰসমূহ লৈকে )। ই উপযোগী যদি আপুনি <b>/dev/disk/by-"
+"partlabel</b> ডাইৰেকটৰিত এটা চিমসংযোগৰ সহায়ত ডিভাইচলে প্ৰসংগ কৰিব বিচাৰে"
+
+#: ../src/disks/ui/edit-gpt-partition-dialog.ui.h:7
+#| msgid "_System partition"
+msgid "_System Partition"
+msgstr "চিস্টেম বিভাজন (_S)"
+
+#: ../src/disks/ui/edit-gpt-partition-dialog.ui.h:8
+msgid ""
+"Used to indicate that the partition and its contents are required for the OS/"
+"Platform to function. Special care should be taken to not delete or "
+"overwrite the contents"
+msgstr ""
+"বিভাজন আৰু তাৰ সমলসমূহ OS/ প্লেটফৰ্ম কাৰ্য্য কৰিবলে প্ৰয়োজনীয় ইংগিত দিবলে "
+"ব্যৱহাৰ "
+"কৰা হয়। সমলসমূহ মচা বা পুনৰ লিখা নহবলে বিশেষ যত্ন লব লাগিব"
+
+#: ../src/disks/ui/edit-gpt-partition-dialog.ui.h:9
+msgid "Legacy BIOS _Bootable"
+msgstr "কিম্বদংতি BIOS বুট কৰিব পৰা (_B)"
+
+#: ../src/disks/ui/edit-gpt-partition-dialog.ui.h:10
+msgid ""
+"Legacy BIOS Bootable. This is equivalent to Master Boot Record <i>bootable</"
+"i> flag. It is normally only used for GPT partitions on MBR systems"
+msgstr ""
+"কিম্বদন্তী BIOS বুট কৰিব পৰা। ই মাস্টাৰ বুট ৰেকৰ্ড <i>bootable</i> ফ্লেগৰ "
+"সমতূল্য। "
+"ইয়াক সাধাৰণত MBR চিস্টেমসমূহত GPT বিভাজনসমূহৰ বাবে কেৱল ব্যৱহাৰ কৰা হয়"
+
+#: ../src/disks/ui/edit-gpt-partition-dialog.ui.h:11
+msgid "Flags"
+msgstr "ফ্ল্যাগসমূহ"
+
+#: ../src/disks/ui/edit-gpt-partition-dialog.ui.h:12
+msgid "Hide from _Firmware"
+msgstr "ফাৰ্মৱাৰৰ পৰা লুকুৱাওক (_F)"
+
+#: ../src/disks/ui/erase-multiple-disks-dialog.ui.h:1
+msgid "Erase Multiple Disks"
+msgstr "একাধিক ডিস্ক মচি পেলাওক"
+
+#: ../src/disks/ui/erase-multiple-disks-dialog.ui.h:2
+msgid "_Erase…"
+msgstr "মচি পেলাওক (_E)…"
+
+#: ../src/disks/ui/erase-multiple-disks-dialog.ui.h:3
+msgid "Erase _Type"
+msgstr "মচাৰ ধৰণ (_T)"
+
+#: ../src/disks/ui/filesystem-create.ui.h:3
+msgid "F_ilesystem"
+msgstr "ফাইলচিস্টেম (_i)"
+
+#: ../src/disks/ui/filesystem-create.ui.h:4
+msgid ""
+"The custom filesystem type to create e.g. <i>btrfs</i>, <i>xfs</i> or "
+"<i>swap</i>"
+msgstr ""
+"সৃষ্টি কৰিবলে স্বনিৰ্বাচিত ফাইলচিস্টেম ধৰণ উদাহৰণস্বৰূপ <i>btrfs</i>, <i>xfs<"
+"/i> "
+"অথবা <i>swap</i>"
+
+#: ../src/disks/ui/filesystem-create.ui.h:5
+msgid "The custom filesystem type to create e.g. btrfs, xfs or swap"
+msgstr ""
+"সৃষ্টি কৰিবলে স্বনিৰ্বাচিত ফাইলচিস্টেম ধৰণ উদাহৰণস্বৰূপ btrfs, xfs অথবা swap"
+
+#: ../src/disks/ui/filesystem-create.ui.h:8
+msgid "Enter passphrase used to protect the data"
+msgstr "তথ্য সুৰক্ষিত কৰিবলে ব্যৱহৃত পাচফ্ৰেইছ সুমুৱাওক"
+
+#: ../src/disks/ui/filesystem-create.ui.h:13
+msgid ""
+"The name to use for the filesystem. This is useful if you want to refer to "
+"the device via a symlink in the <b>/dev/disk/by-label</b> directory"
+msgstr ""
+"ফাইলচিস্টেমৰ বাবে ব্যৱহাৰ কৰিব লগিয়া। ই উপযোগী যদি আপুনি ডিভাইচক <b>/dev/disk/"
+"by-label</b> ডাইৰেকটৰিত এটা চিমসংযোগৰ সহায়ত প্ৰসংগ কৰিব বিচাৰে"
+
+#: ../src/disks/ui/filesystem-create.ui.h:14
+msgid ""
+"The name to use for the filesystem. This is useful if you want to refer to "
+"the device via a symlink in the /dev/disk/by-label directory"
+msgstr ""
+"ফাইল চিস্টেমৰ বাবে ব্যৱহাৰ কৰিব লগিয়া নাম। ই উপযোগী যদি আপুনি /dev/disk/by-"
+"label ডাইৰেকটৰিত ডিভাইচক এটা চিমসংযোগৰ সহায়ত প্ৰসংগ কৰিব বিচাৰে"
+
+#: ../src/disks/ui/filesystem-create.ui.h:15
+msgid "For example, “My Files” or “Backup Data”"
+msgstr "উদাহৰণস্বৰূপ, “মোৰ ফাইলসমূহ“ অথবা “বেকআপ তথ্য“"
+
+#: ../src/disks/ui/format-disk-dialog.ui.h:1
+msgid "Format Disk"
+msgstr "ডিস্ক ফৰমেট কৰক"
+
+#: ../src/disks/ui/format-disk-dialog.ui.h:2
+#: ../src/disks/ui/format-volume-dialog.ui.h:2
+msgid "_Format…"
+msgstr "ফৰমেট কৰক (_F)…"
+
+#: ../src/disks/ui/format-disk-dialog.ui.h:3
+msgid "_Partitioning"
+msgstr "বিভাজন প্ৰক্ৰিয়া (_P)"
+
+#: ../src/disks/ui/format-volume-dialog.ui.h:1
+msgid "Format Volume"
+msgstr "আয়তন ফৰমেট কৰক"
+
+#: ../src/disks/ui/restore-disk-image-dialog.ui.h:1
+msgid "Restore Disk Image"
+msgstr "ডিস্ক ছবি পুনৰুদ্ধাৰ কৰক"
+
+#: ../src/disks/ui/restore-disk-image-dialog.ui.h:2
+msgid "_Image to Restore"
+msgstr "পুনৰুদ্ধাৰ কৰিবলে ছবি (_I)"
+
+#: ../src/disks/ui/restore-disk-image-dialog.ui.h:3
+#| msgid "Select Disk Image to restore"
+msgid "Select Disk Image to Restore"
+msgstr "পুনৰুদ্ধাৰ কৰিবলে ডিস্ক ছবি বাছক"
+
+#: ../src/disks/ui/restore-disk-image-dialog.ui.h:4
+msgid "Destination"
+msgstr "গন্তব্য"
+
+#: ../src/disks/ui/restore-disk-image-dialog.ui.h:5
+#| msgid "Destination"
+msgid "_Destination"
+msgstr "গন্তব্য (_D)"
+
+#: ../src/disks/ui/restore-disk-image-dialog.ui.h:6
+msgid "Image to Restore"
+msgstr "পুনৰুদ্ধাৰ কৰিবলৈ ছবি"
+
+#: ../src/disks/ui/restore-disk-image-dialog.ui.h:7
+msgid "Image Size"
+msgstr "ছবিৰ আকাৰ"
+
+#: ../src/disks/ui/restore-disk-image-dialog.ui.h:8
+msgid "_Start Restoring…"
+msgstr "পুনৰুদ্ধাৰ কৰা আৰম্ভ কৰক (_S)…"
+
+#: ../src/disks/ui/smart-dialog.ui.h:1
+msgid "SMART Data & Self-Tests"
+msgstr "SMART তথ্য আৰু স্ব-পৰিক্ষণসমূহ"
+
+#: ../src/disks/ui/smart-dialog.ui.h:2
+msgid "_Start Self-test"
+msgstr "স্ব-পৰীক্ষণ আৰম্ভ কৰক (_S)"
+
+#: ../src/disks/ui/smart-dialog.ui.h:3
+msgid "Click to start a SMART self-test"
+msgstr "এটা SMART স্ব-পৰীক্ষণ আৰম্ভ কৰিবলে ক্লিক কৰক"
+
+#: ../src/disks/ui/smart-dialog.ui.h:4
+msgid "_Stop Self-test"
+msgstr "স্ব-পৰীক্ষণ বন্ধ কৰক (_S)"
+
+#: ../src/disks/ui/smart-dialog.ui.h:5
+msgid "Click to stop the SMART self-test currently in progress"
+msgstr "বৰ্তমানে চলি থকা SMART স্ব-পৰিক্ষণ বন্ধ কৰিবলে ক্লিক কৰক"
+
+#: ../src/disks/ui/smart-dialog.ui.h:6
+msgid "Click to force re-reading SMART data from the hard disk"
+msgstr "হাৰ্ড ডিস্কৰ পৰা SMART তথ্য পুনৰ-পঢ়া বলৱৎ কৰিবলে ক্লিক কৰক"
+
+#: ../src/disks/ui/smart-dialog.ui.h:7
+msgid "Powered On"
+msgstr "পাৱাৰ অন কৰা হল"
+
+#: ../src/disks/ui/smart-dialog.ui.h:8
+msgid "Updated"
+msgstr "আপডেইট কৰা হল"
+
+#: ../src/disks/ui/smart-dialog.ui.h:10
+msgid "Self-test Result"
+msgstr "স্ব-পৰীক্ষণ ফলাফল"
+
+#: ../src/disks/ui/smart-dialog.ui.h:11
+msgid "Self-assessment"
+msgstr "স্ব-বিশ্লেষণ"
+
+#: ../src/disks/ui/smart-dialog.ui.h:12
+msgid "Overall Assessment"
+msgstr "সম্পূৰ্ণ বিশ্লেষণ"
+
+#: ../src/disks/ui/smart-dialog.ui.h:13
+msgid "Click to toggle whether SMART is enabled for the hard disk"
+msgstr "হাৰ্ড ডিস্কৰ বাবে SMART সামৰ্থবান আছে নে টগ'ল কৰিবলে ক্লিক কৰক"
+
+#: ../src/disks/ui/smart-dialog.ui.h:14
+msgid "SMART _Attributes"
+msgstr "SMART বৈশিষ্টসমূহ (_A)"
+
+#: ../src/disks/ui/smart-dialog.ui.h:15
+msgid "Short"
+msgstr "সৰু"
+
+#: ../src/disks/ui/smart-dialog.ui.h:16
+msgid "Extended"
+msgstr "প্ৰসাৰিত"
+
+#: ../src/disks/ui/smart-dialog.ui.h:17
+msgid "Conveyance"
+msgstr "হস্তান্তৰ"
+
+#: ../src/disks/ui/unlock-device-dialog.ui.h:1
+msgid "Enter passphrase to unlock"
+msgstr "আনলক কৰিবলে পাচফ্ৰেইছ সুমুৱাওক"
+
+#: ../src/disks/ui/unlock-device-dialog.ui.h:4
+msgid "_Unlock"
+msgstr "আনলক কৰক (_U)"
+
 #: ../src/libgdu/gduutils.c:92
 msgid "All Files"
 msgstr "সকলো ফাইল"
 
 #: ../src/libgdu/gduutils.c:97
-#| msgid "Disk Images (*.img, *.iso)"
 msgid "Disk Images (*.img, *.img.xz, *.iso)"
 msgstr "ডিস্ক ছবিসমূহ (*.img, *.img.xz, *.iso)"
 
@@ -4016,96 +3414,25 @@ msgctxt "confirmation-list-of-devices"
 msgid "Affected Devices"
 msgstr "প্ৰভাৱিত ডিভাইচসমূহ"
 
-#: ../src/libgdu/gduutils.c:814
-msgid "RAID 0"
-msgstr "RAID 0"
-
-#: ../src/libgdu/gduutils.c:815
-msgid "Stripe"
-msgstr "স্ট্ৰাইপ"
-
-#: ../src/libgdu/gduutils.c:820
-msgid "RAID 1"
-msgstr "RAID 1"
-
-#: ../src/libgdu/gduutils.c:821
-msgid "Mirror"
-msgstr "মিৰৰ"
-
-#: ../src/libgdu/gduutils.c:826
-msgid "RAID 4"
-msgstr "RAID 4"
-
-#: ../src/libgdu/gduutils.c:827
-msgid "Dedicated Parity"
-msgstr "উসৰ্গিত পেৰিটি"
-
-#: ../src/libgdu/gduutils.c:832
-msgid "RAID 5"
-msgstr "RAID 5"
-
-#: ../src/libgdu/gduutils.c:833
-msgid "Distributed Parity"
-msgstr "বিতৰিত পেৰিটি"
-
-#: ../src/libgdu/gduutils.c:838
-msgid "RAID 6"
-msgstr "RAID 6"
-
-#: ../src/libgdu/gduutils.c:839
-msgid "Double Distributed Parity"
-msgstr "দুবাৰ বিতিৰিত পেৰিটি"
-
-#: ../src/libgdu/gduutils.c:844
-msgid "RAID 10"
-msgstr "RAID 10"
-
-#: ../src/libgdu/gduutils.c:845
-msgid "Stripe of Mirrors"
-msgstr "মিৰৰসমূহৰ স্ট্ৰাইপ"
-
-#: ../src/libgdu/gduutils.c:850
-#, c-format
-msgid "RAID (%s)"
-msgstr "RAID (%s)"
-
-#: ../src/libgdu/gduutils.c:1142
+#: ../src/libgdu/gduutils.c:1070
 msgid "Error locking device"
 msgstr "ডিভাইচ লক কৰোতে ত্ৰুটি"
 
 #. Translators: This is used as the title of the SMART failure notification
-#: ../src/notify/gdusdmonitor.c:403
+#: ../src/notify/gdusdmonitor.c:356
 msgctxt "notify-smart"
 msgid "Hard Disk Problems Detected"
 msgstr "হাৰ্ড ডিস্কৰ সমস্যাসমূহ চিনাক্ত কৰা হৈছে"
 
 #. Translators: This is used as the text of the SMART failure notification
-#: ../src/notify/gdusdmonitor.c:405
+#: ../src/notify/gdusdmonitor.c:358
 msgctxt "notify-smart"
 msgid "A hard disk is likely to fail soon."
 msgstr "এটা হাৰ্ড ডিস্ক অতিশিঘ্ৰে ব্যৰ্থ হোৱা সম্ভাবনা আছে।"
 
 #. Translators: Text for button in SMART failure notification
-#: ../src/notify/gdusdmonitor.c:409
+#: ../src/notify/gdusdmonitor.c:362
 msgctxt "notify-smart"
-msgid "Examine"
-msgstr "পৰীক্ষা কৰক"
-
-#. Translators: This is used as the title of the MD-RAID degraded notification
-#: ../src/notify/gdusdmonitor.c:416
-msgctxt "notify-mdraid"
-msgid "RAID Problems Detected"
-msgstr "RAID সমস্যাসমূহ দেখা দিছে"
-
-#. Translators: This is used as the text of the MD-RAID degraded notification
-#: ../src/notify/gdusdmonitor.c:418
-msgctxt "notify-mdraid"
-msgid "A RAID array is degraded."
-msgstr "এটা RAID এৰে স্খলিত হৈছে।"
-
-#. Translators: Text for button in MD-RAID degraded notification
-#: ../src/notify/gdusdmonitor.c:422
-msgctxt "notify-mdraid"
 msgid "Examine"
 msgstr "পৰীক্ষা কৰক"
 
@@ -4116,6 +3443,460 @@ msgstr "ডিস্কসমূহ সমস্যা পৰ্যবেক্�
 #: ../src/notify/gdu-sd-plugin.gnome-settings-plugin.in.h:2
 msgid "Warns about problems with disks and storage devices"
 msgstr "ডিস্কসমূহ আৰু সংৰক্ষণ ডিভাইচসমূহৰ সমস্যাৰ বিষয়ে সতৰ্ক কৰে"
+
+#~ msgid "_Read-Only"
+#~ msgstr "কেৱল-পঢ়িব পৰা (_R)"
+
+#~ msgid ""
+#~ "If set, some OSes may mount or use the contents of the partition as read-"
+#~ "only instead of read-write"
+#~ msgstr ""
+#~ "যদি সংহত, কিছুমান OS এ বিভাজনৰ সমলসমূহক পঢ়া-লিখাৰ পৰিৱৰ্তে কেৱল-পঢ়িব পৰা "
+#~ "হিচাপ মাউন্ট অথবা ব্যৱহাৰ কৰিব পাৰিব"
+
+#~ msgid "H_idden"
+#~ msgstr "লুকুৱা (_i)"
+
+#~ msgid ""
+#~ "If set, some OSes may hide the contents of the partition in their user "
+#~ "interfaces"
+#~ msgstr ""
+#~ "যদি সংহত, কিছুমান OS এ বিভাজনৰ সমলসমূহক সিহতৰ ব্যৱহাৰকাৰী আন্তঃপৃষ্ঠসমূহত লুকাব "
+#~ "পাৰে"
+
+#~ msgid "Do Not _Automount"
+#~ msgstr "স্বমাউন্ট নকৰিব (_A)"
+
+#~ msgid "If set, some OSes may not automount the contents of the partition"
+#~ msgstr "যদি সংহত, কিছুমান OS এ বিভাজনৰ সমলসমূহ স্বমাউন্ট কৰিব নোৱাৰিব"
+
+#~ msgid "Create RAID Array"
+#~ msgstr "RAID এৰে সৃষ্টি কৰক"
+
+#~ msgid "C_reate…"
+#~ msgstr "সৃষ্টি কৰক (_r)…"
+
+#~ msgid "RAID _Level"
+#~ msgstr "RAID ৰ স্তৰ (_L)"
+
+#~ msgid "Chunk _Size"
+#~ msgstr "টুকুৰাৰ আকাৰ (_S)"
+
+#~ msgid "Usable Size"
+#~ msgstr "ব্যৱহাৰযোগ্য আকাৰ"
+
+#~ msgid "Number of Disks"
+#~ msgstr "ডিস্কসমূহৰ সংখ্যা"
+
+#~ msgid "For example, “My RAID Array” or “Backup Data”"
+#~ msgstr "উদাহৰণস্বৰূপ, “মোৰ RAID এৰে“ অথবা “বেকআপ তথ্য“"
+
+#~ msgid "Create a new partition"
+#~ msgstr "এটা নতুন বিভাজন সৃষ্টি কৰক"
+
+#~ msgid "Mount the filesystem"
+#~ msgstr "ফাইলচিস্টেম মাউন্ট কৰক"
+
+#~ msgid "Unmount the filesystem"
+#~ msgstr "ফাইলচিস্টেম আনমাউন্ট কৰক"
+
+#~ msgid "Eject the media"
+#~ msgstr "মাধ্যম বাহিৰ উলিয়াওক"
+
+#~ msgid "Power off the drive"
+#~ msgstr "ড্ৰাইভ বন্ধ কৰক"
+
+#~ msgid "Unlock the encrypted device"
+#~ msgstr "ইনক্ৰিপ্টেড ডিভাইচ আনলক কৰক"
+
+#~ msgid "Activate the swap space"
+#~ msgstr "শ্বাপ স্থান সক্ৰিয় কৰক"
+
+#~ msgid "Deactivate the swap space"
+#~ msgstr "শ্বাপ স্থান নিষ্ক্ৰিয় কৰক"
+
+#~ msgid "Lock the encrypted device"
+#~ msgstr "ইনক্ৰিপ্টেড ডিভাইচ লক কৰক"
+
+#~ msgid "More actions"
+#~ msgstr "অতিৰিক্ত কাৰ্য্যসমূহ"
+
+#~ msgid "Delete partition"
+#~ msgstr "বিভাজন মচি পেলাওক"
+
+#~ msgid "Start RAID Array"
+#~ msgstr "RAID এৰে আৰম্ভ কৰক"
+
+#~ msgid "Stop RAID Array"
+#~ msgstr "RAID এৰে বন্ধ কৰক"
+
+#~ msgid "Detach Loop Device"
+#~ msgstr "লুপ ডিভাইচ অসংলগ্ন কৰক"
+
+#~ msgid "_Devices"
+#~ msgstr "ডিভাইচসমূহ (_D)"
+
+#~ msgid "Click to select multiple disks to perform operations on"
+#~ msgstr "কাৰ্য্যসমূহ পৰিৱেশন কৰিবলে একাধিক ডিস্ক নিৰ্বাচন কৰিবলে ক্লিক কৰক"
+
+#~ msgid "Done"
+#~ msgstr "কৰা হল"
+
+#~ msgid "Eject the medium in the drive"
+#~ msgstr "ড্ৰাইভত থকা মাধ্যম বাহিৰ ওলিয়াওক"
+
+#~ msgid "RAID Level"
+#~ msgstr "RAID ৰ স্তৰ"
+
+#~ msgid "State"
+#~ msgstr "অৱস্থা"
+
+#~ msgid "Bitmap"
+#~ msgstr "বিটমেপ"
+
+#~ msgid "RAID Disks…"
+#~ msgstr "RAID ডিস্কসমূহ…"
+
+#~ msgid "Start Data Scrubbing…"
+#~ msgstr "তথ্য ঘঁহা আৰম্ভ কৰক…"
+
+#~ msgid "Stop Data Scrubbing"
+#~ msgstr "তথ্য ঘঁহা বন্ধ কৰক"
+
+#~ msgid "Create RAID"
+#~ msgstr "RAID সৃষ্টি কৰক"
+
+#~ msgid "RAID Disks"
+#~ msgstr "RAID ডিস্কসমূহ"
+
+#~ msgid "%d disk"
+#~ msgid_plural "%d disks"
+#~ msgstr[0] "%d ডিস্ক"
+#~ msgstr[1] "%d ডিস্কসমূহ"
+
+#~ msgid "%s of %s each"
+#~ msgstr "%s প্ৰতিটোৰ %s"
+
+#~ msgid "Error creating RAID array"
+#~ msgstr "RAID এৰে সৃষ্টি কৰোতে ত্ৰুটি"
+
+#~ msgid "Are you sure you want to use the disks for a RAID array?"
+#~ msgstr "আপুনি এটা RAID এৰেৰ বাবে ডিস্কসমূহ ব্যৱহাৰ কৰিবলে নিশ্চিত নে?"
+
+#~ msgid "Existing content on the devices will be erased"
+#~ msgstr "ডিভাইচসমূহৰ স্থায়ী সমল মচি পেলোৱা হব"
+
+#~ msgid "RAID Arrays"
+#~ msgstr "RAID এৰেসমূহ"
+
+#~ msgctxt "md-raid-tree-primary"
+#~ msgid "%s RAID Array"
+#~ msgstr "%s RAID এৰে"
+
+#~ msgctxt "md-raid-tree-primary"
+#~ msgid "RAID Array"
+#~ msgstr "RAID এৰে"
+
+#~ msgctxt "md-raid-tree-secondary"
+#~ msgid "%s (%s)"
+#~ msgstr "%s (%s)"
+
+#~ msgid "%s <span size=\"smaller\">(Read-Only)</span>"
+#~ msgstr "%s <span size=\"smaller\">(কেৱল-পঢ়িব পৰা)</span>"
+
+#~ msgid "An error occurred when removing a disk from the RAID Array"
+#~ msgstr "RAID এৰেৰ পৰা এটা ডিস্ক আতৰাওতে এটা ত্ৰুটি দেখা দিলে"
+
+#~ msgctxt "mdraid-disks"
+#~ msgid "Are you sure you want to remove the disk?"
+#~ msgstr "আপুনি ডিস্ক আতৰাবলে নিশ্চিত নে?"
+
+#~ msgctxt "mdraid-disks"
+#~ msgid "Removing a disk from a RAID array may degrade it"
+#~ msgstr "এটা RAID এৰেৰ পৰা এটা ডিস্ক আতৰালে ইয়াৰ স্খলন হব পাৰে"
+
+#~ msgctxt "mdraid-disks"
+#~ msgid "_Remove"
+#~ msgstr "আতৰাওক (_R)"
+
+#~ msgctxt "mdraid-disks-state"
+#~ msgid "FAILED"
+#~ msgstr "ব্যৰ্থ হল"
+
+#~ msgctxt "mdraid-disks-state"
+#~ msgid "In Sync"
+#~ msgstr "সুসংগত আছে"
+
+#~ msgctxt "mdraid-disks-state"
+#~ msgid "Spare"
+#~ msgstr "অতিৰিক্ত"
+
+#~ msgctxt "mdraid-disks-state"
+#~ msgid "Recovering"
+#~ msgstr "পুনৰুদ্ধাৰ কৰা হৈছে"
+
+#~ msgctxt "mdraid-disks-state"
+#~ msgid "Write-mostly"
+#~ msgstr "লিখা-বেছিৰভাগ"
+
+#~ msgctxt "mdraid-disks-state"
+#~ msgid "Blocked"
+#~ msgstr "প্ৰতিৰোধিত"
+
+#~ msgctxt "mdraid-disks-state"
+#~ msgid "Unknown (%s)"
+#~ msgstr "অজ্ঞাত (%s)"
+
+#~ msgctxt "mdraid-disks"
+#~ msgid "Position"
+#~ msgstr "অৱস্থান"
+
+#~ msgctxt "mdraid-disks"
+#~ msgid "Disk"
+#~ msgstr "ডিস্ক"
+
+#~ msgctxt "mdraid-disks"
+#~ msgid "State"
+#~ msgstr "অৱস্থা"
+
+#~ msgctxt "mdraid-disks"
+#~ msgid "Errors"
+#~ msgstr "ত্ৰুটিসমূহ"
+
+#~ msgid "An error occurred when adding a disk to the RAID Array"
+#~ msgstr "RAID এৰেলে এটা ডিস্ক যোগ কৰোতে এটা ত্ৰুটি দেখা দিলে"
+
+#~ msgctxt "mdraid-disks"
+#~ msgid "Are you sure you want to add the disk to the array?"
+#~ msgstr "আপুনি ডিস্কটো এৰেলে যোগ কৰিবলে নিশ্চিত নে?"
+
+#~ msgctxt "mdraid-disks"
+#~ msgid "All existing data on the disk will be lost"
+#~ msgstr "ডিস্কৰ সকলো স্থায়ী তথ্য হেৰাই যাব"
+
+#~ msgctxt "mdraid-disks"
+#~ msgid "_Add"
+#~ msgstr "যোগ কৰক (_A)"
+
+#~ msgctxt "mdraid-add"
+#~ msgid "No disks of suitable size available"
+#~ msgstr "উপযুক্ত আকাৰৰ কোনো ডিস্ক উপলব্ধ নাই"
+
+#~ msgctxt "mdraid-add"
+#~ msgid "Select disk to add"
+#~ msgstr "যোগ কৰিবলে ডিস্ক বাছক"
+
+#~ msgctxt "volume-grid"
+#~ msgid "%s [local to %s]"
+#~ msgstr "%s [%s লে স্থানীয়]"
+
+#~ msgctxt "accelerator"
+#~ msgid "<Ctrl>R"
+#~ msgstr "<Ctrl>R"
+
+#~ msgid "RAID array is not running"
+#~ msgstr "RAID এৰে চলি থকা নাই"
+
+#~ msgctxt "md-raid-window"
+#~ msgid "%s RAID Array"
+#~ msgstr "%s RAID এৰে"
+
+#~ msgctxt "md-raid-window"
+#~ msgid "RAID Array"
+#~ msgstr "RAID এৰে"
+
+#~ msgctxt "mdraid"
+#~ msgid "Not running"
+#~ msgstr "চলি থকা নাই"
+
+#~ msgctxt "mdraid"
+#~ msgid "%s (local to %s)"
+#~ msgstr "%s (%s লে স্থানীয়)"
+
+#~ msgid "%d Disk"
+#~ msgid_plural "%d Disks"
+#~ msgstr[0] "%d ডিস্ক"
+#~ msgstr[1] "%d ডিস্কসমূহ"
+
+#~ msgctxt "mdraid-disks-and-chunk-size"
+#~ msgid "%s, %s Chunk"
+#~ msgstr "%s, %s টুকুৰা"
+
+#~ msgctxt "mdraid"
+#~ msgid "%s, %s"
+#~ msgstr "%s, %s"
+
+#~ msgid "%d disk is missing"
+#~ msgid_plural "%d disks are missing"
+#~ msgstr[0] "%d ডিস্ক সন্ধানহিন"
+#~ msgstr[1] "%d ডিস্কসমূহ সন্ধানহিন"
+
+#~ msgctxt "mdraid"
+#~ msgid "ARRAY IS DEGRADED"
+#~ msgstr "এৰে স্খলিত"
+
+#~ msgctxt "mdraid-degraded"
+#~ msgid "%s — %s"
+#~ msgstr "%s — %s"
+
+#~ msgctxt "mdraid-state"
+#~ msgid "Running"
+#~ msgstr "চলি আছে"
+
+#~ msgctxt "mdraid-state"
+#~ msgid "Not running"
+#~ msgstr "চলি থকা নাই"
+
+#~ msgctxt "mdraid-state"
+#~ msgid "Data Scrubbing"
+#~ msgstr "তথ্য ঘঁহা"
+
+#~ msgctxt "mdraid-state"
+#~ msgid "Data Scrubbing and Repair"
+#~ msgstr "তথ্য ঘঁহা আৰু মেৰামতি"
+
+#~ msgctxt "mdraid-state"
+#~ msgid "Resyncing"
+#~ msgstr "পুনৰ সংমিহলি কৰা হৈছে"
+
+#~ msgctxt "mdraid-state"
+#~ msgid "Recovering"
+#~ msgstr "পুনৰুদ্ধাৰ কৰা হৈছে"
+
+#~ msgctxt "mdraid-state"
+#~ msgid "Frozen"
+#~ msgstr "বৰফাবৃত"
+
+#~ msgctxt "raid-split-brain"
+#~ msgid "RAID ARRAY IS MISCONFIGURED"
+#~ msgstr "RAID এৰে ভুলভাৱে সংৰূপিত"
+
+#~ msgctxt "raid-split-brain"
+#~ msgid "Split-Brain"
+#~ msgstr "Split-Brain"
+
+#~ msgctxt "raid-split-brain"
+#~ msgid "%s (%s)"
+#~ msgstr "%s (%s)"
+
+#~ msgctxt "raid-state-progress"
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
+
+#~ msgctxt "mdraid-sync-op"
+#~ msgid "%s remaining (%s/sec)"
+#~ msgstr "%s অৱশিষ্ট (%s/sec)"
+
+#~ msgctxt "volume-contents-raid"
+#~ msgid "Go To Array"
+#~ msgstr "এৰেলৈ যাওক"
+
+#~ msgctxt "volume-contents-raid"
+#~ msgid "%s — %s"
+#~ msgstr "%s — %s"
+
+#~ msgid "An error occurred when requesting data redundancy check"
+#~ msgstr "তথ্য প্ৰয়োজনাধিক্য নীৰিক্ষণ অনুৰোধ কৰোতে এটা ত্ৰুটি দেখা দিলে"
+
+#~ msgctxt "mdraid-scrub-dialog"
+#~ msgid "Data Scrubbing"
+#~ msgstr "তথ্য ঘঁহা"
+
+#~ msgctxt "mdraid-scrub-dialog"
+#~ msgid ""
+#~ "As storage devices can develop bad blocks at any time it is valuable to "
+#~ "regularly read all blocks on all disks in a RAID array so as to catch "
+#~ "such bad blocks early.\n"
+#~ "\n"
+#~ "The RAID array will remain operational for the duration of the operation "
+#~ "but performance will be impacted. For more information about data "
+#~ "scrubbing, see the <a href='https://raid.wiki.kernel.org/index.php/"
+#~ "RAID_Administration'>RAID Administration</a> article."
+#~ msgstr ""
+#~ "যিহেতু সংৰক্ষণ ডিভাইচসমূহে যিকোনো সময়ত বেয়া খণ্ড উৎপন্ন কৰিব পাৰে সেয়েহে এটা "
+#~ "RAID এৰেত সকলো ডিস্কত নিয়মিতভাৱে সকলো খণ্ড পঢ়াটো মূল্যবান যাতে এনেধৰণৰ বেয়া "
+#~ "খণ্ডক আগতে ধৰা পেলাব পাৰি।\n"
+#~ "\n"
+#~ "RAID এৰে কাৰ্য্যৰ অৱধিকালিন কাৰ্য্যকৰী থাকিব কিন্তু পৰিৱেশনৰ ওপৰত প্ৰভাৱ পৰিব। "
+#~ "তথ্য ঘঁহাৰ ওপৰত অধিক তথ্যৰ বাবে, <a href='https://raid.wiki.kernel.org/index."
+#~ "php/RAID_Administration'>RAID প্ৰশাসন</a> অধ্যায় চাওক।"
+
+#~ msgctxt "mdraid-scrub-dialog"
+#~ msgid "_Start"
+#~ msgstr "আৰম্ভ কৰক (_S)"
+
+#~ msgctxt "mdraid-scrub-dialog"
+#~ msgid "_Repair mismatched blocks, if possible"
+#~ msgstr "অমিল থকা খণ্ডসমূহ মেৰামতি কৰক, যদি সম্ভব"
+
+#~ msgid "Error starting RAID array"
+#~ msgstr "RAID এৰে আৰম্ভ কৰোতে ত্ৰুটি"
+
+#~ msgid "Error stopping RAID array"
+#~ msgstr "RAID এৰে বন্ধ কৰোতে ত্ৰুটি"
+
+#~ msgid "Error setting bitmap for the RAID array"
+#~ msgstr "RAID এৰেৰ বাবে বিটমেপ সংহতি কৰোতে ত্ৰুটি"
+
+#~ msgctxt "multi-disk-menu"
+#~ msgid "No _Devices Selected"
+#~ msgstr "কোনো ডিভাইচ নিৰ্বাচন কৰা হোৱা নাই (_D)"
+
+#~ msgid "%d _Device Selected (%s)"
+#~ msgid_plural "%d _Devices Selected (%s)"
+#~ msgstr[0] "%d ডিভাইচ নিৰ্বাচন কৰা হৈছে (%s) (_D)"
+#~ msgstr[1] "%d ডিভাইচসমূহ নিৰ্বাচন কৰা হৈছে (%s) (_D)"
+
+#~ msgid "RAID 0"
+#~ msgstr "RAID 0"
+
+#~ msgid "Stripe"
+#~ msgstr "স্ট্ৰাইপ"
+
+#~ msgid "RAID 1"
+#~ msgstr "RAID 1"
+
+#~ msgid "Mirror"
+#~ msgstr "মিৰৰ"
+
+#~ msgid "RAID 4"
+#~ msgstr "RAID 4"
+
+#~ msgid "Dedicated Parity"
+#~ msgstr "উসৰ্গিত পেৰিটি"
+
+#~ msgid "RAID 5"
+#~ msgstr "RAID 5"
+
+#~ msgid "Distributed Parity"
+#~ msgstr "বিতৰিত পেৰিটি"
+
+#~ msgid "RAID 6"
+#~ msgstr "RAID 6"
+
+#~ msgid "Double Distributed Parity"
+#~ msgstr "দুবাৰ বিতিৰিত পেৰিটি"
+
+#~ msgid "RAID 10"
+#~ msgstr "RAID 10"
+
+#~ msgid "Stripe of Mirrors"
+#~ msgstr "মিৰৰসমূহৰ স্ট্ৰাইপ"
+
+#~ msgid "RAID (%s)"
+#~ msgstr "RAID (%s)"
+
+#~ msgctxt "notify-mdraid"
+#~ msgid "RAID Problems Detected"
+#~ msgstr "RAID সমস্যাসমূহ দেখা দিছে"
+
+#~ msgctxt "notify-mdraid"
+#~ msgid "A RAID array is degraded."
+#~ msgstr "এটা RAID এৰে স্খলিত হৈছে।"
+
+#~ msgctxt "notify-mdraid"
+#~ msgid "Examine"
+#~ msgstr "পৰীক্ষা কৰক"
 
 #~ msgctxt "benchmarking"
 #~ msgid "Error pre-reading %s bytes from offset %s"

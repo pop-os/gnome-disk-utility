@@ -476,7 +476,11 @@ gdu_volume_grid_get_preferred_width (GtkWidget *widget,
       width += element->fixed_width;
     }
 
-  *minimal_width = *natural_width = width;
+  *natural_width = width;
+
+  if (width > 300)
+    width = 300;
+  *minimal_width = width;
 }
 
 static void
@@ -851,11 +855,10 @@ render_element (GduVolumeGrid *grid,
             }
           else
             {
-              GdkPixbuf *base_pixbuf;
               GdkPixbuf *pixbuf;
               GError *error = NULL;
-              base_pixbuf = gtk_icon_info_load_symbolic_for_context (info, context, NULL, &error);
-              if (base_pixbuf == NULL)
+              pixbuf = gtk_icon_info_load_symbolic_for_context (info, context, NULL, &error);
+              if (pixbuf == NULL)
                 {
                   g_warning ("Error loading icon %s: %s (%s, %d)",
                              name, error->message, g_quark_to_string (error->domain), error->code);
@@ -865,10 +868,6 @@ render_element (GduVolumeGrid *grid,
                 {
                   guint icon_width;
                   guint icon_height;
-                  GtkIconSource *source;
-                  source = gtk_icon_source_new ();
-                  gtk_icon_source_set_pixbuf (source, base_pixbuf);
-                  pixbuf = gtk_render_icon_pixbuf (context, source, -1);
                   icon_width = gdk_pixbuf_get_width (pixbuf);
                   icon_height = gdk_pixbuf_get_height (pixbuf);
                   gtk_render_icon (context, cr, pixbuf,
@@ -876,10 +875,8 @@ render_element (GduVolumeGrid *grid,
                                    ceil (element->y + element->height - icon_height - 4));
                   icon_offset += icon_width + 2; /* padding */
                   g_object_unref (pixbuf);
-                  g_object_unref (base_pixbuf);
-                  gtk_icon_source_free (source);
                 }
-              gtk_icon_info_free (info);
+              g_object_unref (info);
             }
         }
       gtk_style_context_restore (context);
@@ -1699,39 +1696,6 @@ grid_element_set_details (GduVolumeGrid  *grid,
                 if (udisks_swapspace_get_active (swapspace))
                   element->show_mounted = TRUE;
               }
-          }
-        else if (g_strcmp0 (usage, "raid") == 0 && strlen (label) > 0)
-          {
-            type_for_display = udisks_client_get_id_for_display (grid->client, usage, type, version, FALSE);
-            if (g_strcmp0 (type, "linux_raid_member") == 0)
-              {
-                const gchar *sep = strstr (label, ":");
-                if (sep != NULL && strlen (sep) > 1)
-                  {
-                    gchar *homehost = g_strndup (label, sep - label);
-                    g_ptr_array_add (lines,
-                                     /* Translators: Shown in volume grid for Linux RAID members. Please
-                                      *              keep this as short as possible.
-                                      *              The first %s is the array name (e.g. 'MirrorOnTheWall').
-                                      *              The second %s is the homehost (e.g. 'thinkpad').
-                                      */
-                                     g_strdup_printf (C_("volume-grid", "%s [local to %s]"),
-                                                      sep + 1,
-                                                      homehost));
-                    g_free (homehost);
-                  }
-                else
-                  {
-                    g_ptr_array_add (lines, g_strdup (label));
-                  }
-              }
-            else
-              {
-                g_ptr_array_add (lines, g_strdup (label));
-              }
-            maybe_add_partition (grid, lines, partition);
-            g_ptr_array_add (lines, g_strdup_printf ("%s %s", size_str, type_for_display));
-            g_free (type_for_display);
           }
         else
           {
