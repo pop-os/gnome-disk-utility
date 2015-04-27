@@ -1,23 +1,21 @@
 -------------------------
-gnome-disk-utility 3.12.1
+gnome-disk-utility 3.16.0
 -------------------------
 
-The gnome-disk-utility project provides the Disks and Disk Image
-Mounter applications for dealing with storage devices and a
-gnome-settings-daemon plug-in for notifying the user about problems
-with storage devices.
+* Make SMART dialog resizable (#723469, Alexandre Franke)
+* Disambiguate menu items to reduce confusion (#742652, Michael Catanzaro)
+* Fix halign of hamburger menu (Michael Catanzaro)
+* Fix a typo in a translatable string (determing) (Anders Jonsson)
+* Translation updates
 
-Changes since gnome-disk-utility 3.12.0:
+-------------------------
+gnome-disk-utility 3.14.0
+-------------------------
 
-David Zeuthen (3):
-      Post-release version-bump to 3.12.1
-      GduVolumeGrid: Fix theming problem.
-      Update NEWS for release.
-
-Updated translations.
-
-David Zeuthen,
-April 19, 2014
+* Fix theming in the volume grid (#723495, David Zeuthen)
+* Fix headerbar item positions (#729349, Yosef Or Boczko)
+* Use new icon for the gear menu (#732980, Matthias Clasen)
+* Translation updates
 
 -------------------------
 gnome-disk-utility 3.12.0
