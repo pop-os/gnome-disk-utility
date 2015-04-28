@@ -978,8 +978,13 @@ create_header (GduWindow *window)
   header = gtk_header_bar_new ();
   gtk_header_bar_set_show_close_button (GTK_HEADER_BAR (header), TRUE);
 
-  button = window->devtab_drive_loop_detach_button = gtk_button_new ();
-  image = gtk_image_new_from_icon_name ("list-remove-symbolic", GTK_ICON_SIZE_MENU);
+  button = window->devtab_drive_generic_button = gtk_menu_button_new ();
+  gtk_menu_button_set_popup (GTK_MENU_BUTTON (button), window->generic_drive_menu);
+  gtk_menu_button_set_direction (GTK_MENU_BUTTON (button), GTK_ARROW_NONE);
+  gtk_header_bar_pack_end (GTK_HEADER_BAR (header), button);
+
+  button = window->devtab_drive_power_off_button = gtk_button_new ();
+  image = gtk_image_new_from_icon_name ("system-shutdown-symbolic", GTK_ICON_SIZE_MENU);
   gtk_button_set_image (GTK_BUTTON (button), image);
   gtk_header_bar_pack_end (GTK_HEADER_BAR (header), button);
 
@@ -988,16 +993,11 @@ create_header (GduWindow *window)
   gtk_button_set_image (GTK_BUTTON (button), image);
   gtk_header_bar_pack_end (GTK_HEADER_BAR (header), button);
 
-  button = window->devtab_drive_power_off_button = gtk_button_new ();
-  image = gtk_image_new_from_icon_name ("system-shutdown-symbolic", GTK_ICON_SIZE_MENU);
+  button = window->devtab_drive_loop_detach_button = gtk_button_new ();
+  image = gtk_image_new_from_icon_name ("list-remove-symbolic", GTK_ICON_SIZE_MENU);
   gtk_button_set_image (GTK_BUTTON (button), image);
   gtk_header_bar_pack_end (GTK_HEADER_BAR (header), button);
 
-  button = window->devtab_drive_generic_button = gtk_menu_button_new ();
-  gtk_menu_button_set_popup (GTK_MENU_BUTTON (button), window->generic_drive_menu);
-  image = gtk_image_new_from_icon_name ("emblem-system-symbolic", GTK_ICON_SIZE_MENU);
-  gtk_button_set_image (GTK_BUTTON (button), image);
-  gtk_header_bar_pack_end (GTK_HEADER_BAR (header), button);
   return header;
 }
 
