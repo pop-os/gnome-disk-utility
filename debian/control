@@ -24,8 +24,8 @@ Build-Depends: debhelper (>= 9),
  docbook-xsl,
  intltool
 Standards-Version: 3.9.6
-Vcs-Git: git://git.debian.org/git/pkg-utopia/gnome-disk-utility.git
-Vcs-Browser: http://git.debian.org/?p=pkg-utopia/gnome-disk-utility.git;a=summary
+Vcs-Git: git://anonscm.debian.org/pkg-utopia/gnome-disk-utility.git
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-utopia/gnome-disk-utility.git
 Homepage: http://git.gnome.org/cgit/gnome-disk-utility/
 
 Package: gnome-disk-utility

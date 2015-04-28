@@ -5,6 +5,7 @@ gnome-disk-utility (3.16.0-1) UNRELEASED; urgency=medium
   * Add support for building against the merged libsystemd-dev. Update
     Build-Depends accordingly. (Closes: #779742)
   * Bump Standards-Version to 3.9.6. No further changes.
+  * Update Vcs-Browser to use cgit and https and use the canonical Vcs-* URLs.
 
  -- Michael Biebl <biebl@debian.org>  Tue, 28 Apr 2015 02:27:10 +0200
 
