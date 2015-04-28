@@ -1,1 +1,2 @@
 # Debian patches for gnome-disk-utility
+0001-Fix-configure-check-for-libsystemd.patch
