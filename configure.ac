@@ -1,4 +1,4 @@
-AC_INIT([GNOME Disk Utility],[3.16.0],[https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-disk-utility],[gnome-disk-utility])
+AC_INIT([GNOME Disk Utility],[3.16.1],[https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-disk-utility],[gnome-disk-utility])
 
 AM_INIT_AUTOMAKE([1.11 foreign dist-xz no-dist-gzip tar-ustar])
 
@@ -197,13 +197,6 @@ data/icons/hicolor/32x32/Makefile
 data/icons/hicolor/48x48/Makefile
 data/icons/hicolor/256x256/Makefile
 data/icons/hicolor/scalable/Makefile
-data/icons/HighContrast/Makefile
-data/icons/HighContrast/16x16/Makefile
-data/icons/HighContrast/22x22/Makefile
-data/icons/HighContrast/24x24/Makefile
-data/icons/HighContrast/32x32/Makefile
-data/icons/HighContrast/48x48/Makefile
-data/icons/HighContrast/256x256/Makefile
 data/org.gnome.Disks.gschema.xml.in
 data/org.gnome.settings-daemon.plugins.gdu-sd.gschema.xml.in
 doc/Makefile
