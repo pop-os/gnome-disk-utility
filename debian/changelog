@@ -1,9 +1,9 @@
-gnome-disk-utility (3.16.2-1) UNRELEASED; urgency=medium
+gnome-disk-utility (3.16.2-1) unstable; urgency=medium
 
   * New upstream release.
   * Track stable upstream releases.
 
- -- Michael Biebl <biebl@debian.org>  Sun, 31 May 2015 18:24:11 +0200
+ -- Michael Biebl <biebl@debian.org>  Sun, 31 May 2015 18:26:32 +0200
 
 gnome-disk-utility (3.16.1-1) unstable; urgency=medium
 
