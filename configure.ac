@@ -1,18 +1,18 @@
-AC_INIT([GNOME Disk Utility],[3.16.2],[https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-disk-utility],[gnome-disk-utility])
+AC_INIT([GNOME Disk Utility],[3.18.0],[https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-disk-utility],[gnome-disk-utility])
 
-AM_INIT_AUTOMAKE([1.11 foreign dist-xz no-dist-gzip tar-ustar])
+AX_IS_RELEASE([git-directory])
 
+AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_SRCDIR([src])
 AC_CONFIG_HEADERS([config.h])
 
-AM_MAINTAINER_MODE([enable])
-AM_SILENT_RULES([yes])
-
-GNOME_DEBUG_CHECK
-
 AC_PROG_CC
 AC_HEADER_STDC
+
+AM_INIT_AUTOMAKE([1.11 foreign dist-xz no-dist-gzip tar-ustar])
+AM_MAINTAINER_MODE([enable])
+AM_SILENT_RULES([yes])
 
 LT_PREREQ([2.2])
 LT_INIT
@@ -21,57 +21,7 @@ LT_INIT
 # Compilation
 # ***********
 
-GNOME_COMPILE_WARNINGS([maximum])
-
-CC_CHECK_CFLAGS_APPEND([                          \
-        -Waggregate-return                        \
-        -Wall                                     \
-        -W                                        \
-        -Wextra                                   \
-        -Wcast-align                              \
-        -Wdeclaration-after-statement             \
-        -Wendif-labels                            \
-        -Wformat-security                         \
-        -Wimplicit-function-declaration           \
-        -Woverflow                                \
-        -Wformat-nonliteral                       \
-        -Wformat=2                                \
-        -Wimplicit                                \
-        -Winit-self                               \
-        -Wlogical-op                              \
-        -Wmissing-declarations                    \
-        -Wmissing-format-attribute                \
-        -Wmissing-include-dirs                    \
-        -Wmissing-noreturn                        \
-        -Wmissing-prototypes                      \
-        -Wnested-externs                          \
-        -Wno-inline                               \
-        -Wno-long-long                            \
-        -Wno-missing-field-initializers           \
-        -Wno-overlength-strings                   \
-        -Wno-switch-enum                          \
-        -Wno-unused-parameter                     \
-        -Wno-unused-result                        \
-        -Wold-style-definition                    \
-        -Wpacked                                  \
-        -Wpointer-arith                           \
-        -Wshadow                                  \
-        -Wsign-compare                            \
-        -Wstrict-aliasing=2                       \
-        -Wstrict-prototypes                       \
-        -Wundef                                   \
-        -Wuninitialized                           \
-        -Wmaybe-uninitialized                     \
-        -Wunsafe-loop-optimizations               \
-        -Wvla                                     \
-        -Wwrite-strings                           \
-        -fdata-sections                           \
-        -fdiagnostics-show-option                 \
-        -ffast-math                               \
-        -ffunction-sections                       \
-        -fno-common                               \
-        -fno-strict-aliasing                      \
-])
+AX_COMPILER_FLAGS([WARN_CFLAGS],[WARN_LDFLAGS])
 
 AC_MSG_CHECKING([for valid fallocate() function])
 AC_LINK_IFELSE([
@@ -90,7 +40,7 @@ AC_LANG_PROGRAM([[
    }
    ]])],[
 AC_MSG_RESULT([yes])
-AC_DEFINE(HAVE_FALLOCATE,1,[Have valid fallocate() function])],[
+AC_DEFINE([HAVE_FALLOCATE],[1],[Have valid fallocate() function])],[
 AC_MSG_RESULT([no])])
 
 # ***************************
@@ -99,64 +49,70 @@ AC_MSG_RESULT([no])])
 
 GLIB2_REQUIRED=2.31.0
 UDISKS2_REQUIRED=2.1.1
-GTK3_REQUIRED=3.12.0
+GTK3_REQUIRED=3.16.0
 LIBSECRET1_REQUIRED=0.7
 PWQUALITY_REQUIRED=1.0.0
 CANBERRA_REQUIRED=0.1
 LIBDVDREAD_REQUIRED=4.2.0
-GSD_PLUGIN_REQUIRED=3.6
+GSD_PLUGIN_REQUIRED=3.8
 LIBNOTIFY_REQUIRED=0.7
 LIBLZMA_REQUIRED=5.0.5
 
-PKG_CHECK_MODULES(GLIB2, [gmodule-2.0 gio-unix-2.0 >= $GLIB2_REQUIRED])
-PKG_CHECK_MODULES(UDISKS2, [udisks2 >= $UDISKS2_REQUIRED])
-PKG_CHECK_MODULES(GTK3, [gtk+-3.0 >= $GTK3_REQUIRED])
-PKG_CHECK_MODULES(LIBSECRET1, [libsecret-1 >= $LIBSECRET1_REQUIRED])
-PKG_CHECK_MODULES(PWQUALITY, [pwquality >= $PWQUALITY_REQUIRED])
-PKG_CHECK_MODULES(CANBERRA, [libcanberra-gtk3 >= $CANBERRA_REQUIRED])
-PKG_CHECK_MODULES(LIBDVDREAD, [dvdread >= $LIBDVDREAD_REQUIRED])
-PKG_CHECK_MODULES(GSD_PLUGIN, [gnome-settings-daemon >= $GSD_PLUGIN_REQUIRED])
-PKG_CHECK_MODULES(LIBNOTIFY, [libnotify >= $LIBNOTIFY_REQUIRED])
-PKG_CHECK_MODULES(LIBLZMA, [liblzma >= $LIBLZMA_REQUIRED])
+PKG_CHECK_MODULES([GLIB2], [gmodule-2.0 gio-unix-2.0 >= $GLIB2_REQUIRED])
+PKG_CHECK_MODULES([UDISKS2], [udisks2 >= $UDISKS2_REQUIRED])
+PKG_CHECK_MODULES([GTK3], [gtk+-3.0 >= $GTK3_REQUIRED])
+PKG_CHECK_MODULES([LIBSECRET1], [libsecret-1 >= $LIBSECRET1_REQUIRED])
+PKG_CHECK_MODULES([PWQUALITY], [pwquality >= $PWQUALITY_REQUIRED])
+PKG_CHECK_MODULES([CANBERRA], [libcanberra-gtk3 >= $CANBERRA_REQUIRED])
+PKG_CHECK_MODULES([LIBDVDREAD], [dvdread >= $LIBDVDREAD_REQUIRED])
+PKG_CHECK_MODULES([LIBNOTIFY], [libnotify >= $LIBNOTIFY_REQUIRED])
+PKG_CHECK_MODULES([LIBLZMA], [liblzma >= $LIBLZMA_REQUIRED])
 
 gsd_plugindir='${libdir}/gnome-settings-daemon-3.0'
 AC_SUBST([gsd_plugindir])
 
+AX_REQUIRE_DEFINED([GLIB_GSETTINGS])
 GLIB_GSETTINGS
 
-AC_PATH_PROG(GLIB_COMPILE_RESOURCES, glib-compile-resources)
+AC_PATH_PROG([GLIB_COMPILE_RESOURCES], [glib-compile-resources])
 
-dnl **********************************
-dnl *** Check for libsystemd-login ***
-dnl **********************************
+dnl ****************************
+dnl *** Check for libsystemd ***
+dnl ****************************
 
-AC_ARG_ENABLE(libsystemd_login, AS_HELP_STRING([--disable-libsystemd-login],[build without liblibsystemd-login]))
-msg_libsystemd_login=no
-LIBSYSTEMD_LOGIN_LIBS=
-LIBSYSTEMD_LOGIN_CFLAGS=
-LIBSYSTEMD_LOGIN_REQUIRED=44
+AC_ARG_ENABLE([libsystemd], AS_HELP_STRING([--disable-libsystemd], [build without libsystemd]))
+msg_libsystemd=no
+LIBSYSTEMD_REQUIRED=209
 
-if test "x$enable_libsystemd_login" != "xno"; then
-  PKG_CHECK_EXISTS([libsystemd-login >= $LIBSYSTEMD_LOGIN_REQUIRED], msg_libsystemd_login=yes)
+if test "x$enable_libsystemd" != "xno"; then
+  PKG_CHECK_EXISTS([libsystemd >= $LIBSYSTEMD_REQUIRED], [msg_libsystemd=yes])
 
-  if test "x$msg_libsystemd_login" = "xyes"; then
-    PKG_CHECK_MODULES([LIBSYSTEMD_LOGIN],[libsystemd-login >= $LIBSYSTEMD_LOGIN_REQUIRED])
-    AC_DEFINE(HAVE_LIBSYSTEMD_LOGIN, 1, [Define to 1 if liblibsystemd_login is available])
+  if test "x$msg_libsystemd" = "xyes"; then
+    PKG_CHECK_MODULES([LIBSYSTEMD], [libsystemd >= $LIBSYSTEMD_REQUIRED])
+    AC_DEFINE(HAVE_LIBSYSTEMD, 1, [Define to 1 if libsystemd is available])
   fi
 fi
 
-AM_CONDITIONAL(USE_LIBSYSTEMD_LOGIN, [test "$msg_libsystemd_login" = "yes"])
+AM_CONDITIONAL([USE_LIBSYSTEMD], [test "$msg_libsystemd" = "yes"])
 
 dnl *************************************
 dnl *** gnome-settings-daemon plug-in ***
 dnl *************************************
 
-AC_ARG_ENABLE(gsd_plugin, AS_HELP_STRING([--disable-gsd-plugin],[don't build gnome-settings-daemon plug-in]))
+AC_ARG_ENABLE([gsd_plugin], AS_HELP_STRING([--disable-gsd-plugin],[don't build gnome-settings-daemon plug-in]))
 msg_gsd_plugin=no
 if test "x$enable_gsd_plugin" != "xno"; then
-   msg_gsd_plugin=yes
+  msg_gsd_plugin=yes
+  PKG_CHECK_MODULES([GSD_PLUGIN], [gnome-settings-daemon >= GSD_PLUGIN_REQUIRED])
 fi
-AM_CONDITIONAL(USE_GSD_PLUGIN, [test "$msg_gsd_plugin" = "yes"])
+AM_CONDITIONAL([USE_GSD_PLUGIN], [test "$msg_gsd_plugin" = "yes"])
+
+# *******
+# Appdata
+# *******
+
+AX_REQUIRE_DEFINED([APPSTREAM_XML])
+APPSTREAM_XML
 
 # ********************
 # Internationalization
@@ -167,11 +123,11 @@ if test -z "$XSLTPROC"; then
   AC_MSG_ERROR([xsltproc is needed])
 fi
 
-IT_PROG_INTLTOOL([$INTLTOOL_REQUIRED])
+AX_REQUIRE_DEFINED([IT_PROG_INTLTOOL])
+IT_PROG_INTLTOOL([0.50.2])
 
 GETTEXT_PACKAGE=gnome-disk-utility
 AC_SUBST([GETTEXT_PACKAGE])
-AM_GLIB_GNU_GETTEXT
 AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE],["$GETTEXT_PACKAGE"],[gettext domain])
 
 AC_SUBST([AM_CPPFLAGS])
@@ -197,8 +153,6 @@ data/icons/hicolor/32x32/Makefile
 data/icons/hicolor/48x48/Makefile
 data/icons/hicolor/256x256/Makefile
 data/icons/hicolor/scalable/Makefile
-data/org.gnome.Disks.gschema.xml.in
-data/org.gnome.settings-daemon.plugins.gdu-sd.gschema.xml.in
 doc/Makefile
 doc/man/Makefile
 ])
@@ -218,7 +172,7 @@ echo "
         sysconfdir:                 ${sysconfdir}
         localstatedir:              ${localstatedir}
 
-        Use libsystem-login:        ${msg_libsystemd_login}
+        Use libsystemd:             ${msg_libsystemd}
         Build g-s-d plug-in:        ${msg_gsd_plugin}
 
         compiler:                   ${CC}
