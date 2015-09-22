@@ -67,6 +67,7 @@ struct _GduWindow
 
   GtkWidget *header;
 
+  GtkWidget *main_box;
   GtkWidget *main_hpane;
   GtkWidget *details_notebook;
   GtkWidget *device_tree_scrolledwindow;
@@ -141,6 +142,7 @@ static const struct {
   {G_STRUCT_OFFSET (GduWindow, toolbutton_activate_swap), "toolbutton-activate-swap"},
   {G_STRUCT_OFFSET (GduWindow, toolbutton_deactivate_swap), "toolbutton-deactivate-swap"},
 
+  {G_STRUCT_OFFSET (GduWindow, main_box), "main-box"},
   {G_STRUCT_OFFSET (GduWindow, main_hpane), "main-hpane"},
   {G_STRUCT_OFFSET (GduWindow, device_tree_scrolledwindow), "device-tree-scrolledwindow"},
 
@@ -789,48 +791,13 @@ static void
 init_css (GduWindow *window)
 {
   GtkCssProvider *provider;
+  GFile *file;
   GError *error;
-  const gchar *css =
-"#devtab-grid-toolbar.toolbar {\n"
-"    border-width: 1px;\n"
-"    border-radius: 3px;\n"
-"    border-style: solid;\n"
-"    background-color: @theme_base_color;\n"
-"}\n"
-"\n"
-".gnome-disk-utility-grid {\n"
-"  border-width: 1px;\n"
-"  border-radius: 3px;\n"
-"  border-style: solid;\n"
-"  border-color: @borders;\n"
-"  background-color: @theme_base_color;\n"
-"}\n"
-"\n"
-".gnome-disk-utility-grid:selected {\n"
-"  background-image: -gtk-gradient(radial,\n"
-"                                  center center, 0,\n"
-"                                  center center, 1,\n"
-"                                  from(@theme_selected_bg_color),\n"
-"                                  to(shade (@theme_selected_bg_color, 0.80)));\n"
-"  -adwaita-focus-border-color: mix(@theme_selected_fg_color, @theme_selected_bg_color, 0.30);\n"
-"}\n"
-"\n"
-".gnome-disk-utility-grid:selected:backdrop {\n"
-"  background-image: -gtk-gradient(radial,\n"
-"                                  center center, 0,\n"
-"                                  center center, 1,\n"
-"                                  from(@theme_unfocused_selected_bg_color),\n"
-"                                  to(shade (@theme_unfocused_selected_bg_color, 0.80)));\n"
-"  -adwaita-focus-border-color: mix(@theme_unfocused_selected_fg_color, @theme_unfocused_selected_bg_color, 0.30);\n"
-"}\n"
-;
 
   provider = gtk_css_provider_new ();
+  file = g_file_new_for_uri ("resource:///org/gnome/Disks/ui/gdu.css");
   error = NULL;
-  if (!gtk_css_provider_load_from_data (provider,
-                                        css,
-                                        -1,
-                                        &error))
+  if (!gtk_css_provider_load_from_file (provider, file, NULL))
     {
       g_warning ("Can’t parse custom CSS: %s\n", error->message);
       g_error_free (error);
@@ -840,6 +807,8 @@ init_css (GduWindow *window)
   gtk_style_context_add_provider_for_screen (gtk_widget_get_screen (GTK_WIDGET (window)),
                                              GTK_STYLE_PROVIDER (provider),
                                              GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+
+  g_object_unref (file);
   g_object_unref (provider);
 
  out:
@@ -986,19 +955,45 @@ create_header (GduWindow *window)
   button = window->devtab_drive_power_off_button = gtk_button_new ();
   image = gtk_image_new_from_icon_name ("system-shutdown-symbolic", GTK_ICON_SIZE_MENU);
   gtk_button_set_image (GTK_BUTTON (button), image);
+  gtk_widget_set_tooltip_text (button, _("Power off this disk"));
   gtk_header_bar_pack_end (GTK_HEADER_BAR (header), button);
 
   button = window->devtab_drive_eject_button = gtk_button_new ();
   image = gtk_image_new_from_icon_name ("media-eject-symbolic", GTK_ICON_SIZE_MENU);
   gtk_button_set_image (GTK_BUTTON (button), image);
+  gtk_widget_set_tooltip_text (button, _("Eject this disk"));
   gtk_header_bar_pack_end (GTK_HEADER_BAR (header), button);
 
   button = window->devtab_drive_loop_detach_button = gtk_button_new ();
   image = gtk_image_new_from_icon_name ("list-remove-symbolic", GTK_ICON_SIZE_MENU);
   gtk_button_set_image (GTK_BUTTON (button), image);
+  gtk_widget_set_tooltip_text (button, _("Detach this loop device"));
   gtk_header_bar_pack_end (GTK_HEADER_BAR (header), button);
 
   return header;
+}
+
+static gboolean
+in_desktop (const gchar *name)
+{
+    const gchar *desktop_name_list;
+    gchar **names;
+    gboolean in_list = FALSE;
+    gint i;
+
+    desktop_name_list = g_getenv ("XDG_CURRENT_DESKTOP");
+    if (!desktop_name_list)
+        return FALSE;
+
+    names = g_strsplit (desktop_name_list, ":", -1);
+    for (i = 0; names[i] && !in_list; i++)
+      {
+        if (strcmp (names[i], name) == 0)
+            in_list = TRUE;
+      }
+    g_strfreev (names);
+
+    return in_list;
 }
 
 static void
@@ -1033,10 +1028,24 @@ gdu_window_constructed (GObject *object)
     }
 
   window->header = create_header (window);
-  gtk_window_set_titlebar (GTK_WINDOW (window), window->header);
+  if (!in_desktop ("Unity"))
+      gtk_window_set_titlebar (GTK_WINDOW (window), window->header);
+  else
+    {
+      gtk_box_pack_start (GTK_BOX (window->main_box),
+                          GTK_WIDGET (window->header),
+                          FALSE, TRUE, 0);
+      gtk_header_bar_set_show_close_button (GTK_HEADER_BAR (window->header),
+                                            FALSE);
+      context = gtk_widget_get_style_context (GTK_WIDGET (window->header));
+      gtk_style_context_remove_class (context, "header-bar");
+      gtk_style_context_add_class (context, "toolbar");
+      gtk_style_context_add_class (context, "primary-toolbar");
+    }
+
   gtk_widget_show_all (window->header);
 
-  gtk_widget_reparent (window->main_hpane, GTK_WIDGET (window));
+  gtk_widget_reparent (window->main_box, GTK_WIDGET (window));
   gtk_window_set_title (GTK_WINDOW (window), _("Disks"));
   gtk_window_set_default_size (GTK_WINDOW (window), 800, 700);
   gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_CENTER);
@@ -1678,6 +1687,9 @@ update_all (GduWindow *window)
     case DETAILS_PAGE_DEVICE:
       update_device_page (window, &show_flags);
       break;
+
+    default:
+      g_assert_not_reached ();
     }
   update_for_show_flags (window, &show_flags);
 }
@@ -2004,6 +2016,7 @@ update_device_page_for_drive (GduWindow      *window,
   const gchar *our_seat;
   const gchar *serial;
   GList *jobs;
+  gchar *title = NULL;
 
   //g_debug ("In update_device_page_for_drive() - selected=%s",
   //         object != NULL ? g_dbus_object_get_object_path (object) : "<nothing>");
@@ -2039,9 +2052,22 @@ update_device_page_for_drive (GduWindow      *window,
       g_string_append (str, s);
       g_free (s);
     }
-  gtk_header_bar_set_title (GTK_HEADER_BAR (window->header), udisks_object_info_get_description (info));
-  gtk_header_bar_set_subtitle (GTK_HEADER_BAR (window->header), str->str);
+
+  if (!in_desktop ("Unity"))
+    {
+      gtk_header_bar_set_title (GTK_HEADER_BAR (window->header), udisks_object_info_get_description (info));
+      gtk_header_bar_set_subtitle (GTK_HEADER_BAR (window->header), str->str);
+    }
+  else
+    {
+      title = g_strdup_printf ("%s — %s", udisks_object_info_get_description (info), str->str);
+      gtk_window_set_title (GTK_WINDOW (window), title);
+
+      g_free (title);
+    }
+
   g_string_free (str, TRUE);
+
   gtk_widget_show (window->devtab_drive_generic_button);
 
   str = g_string_new (NULL);
@@ -2250,6 +2276,7 @@ update_device_page_for_loop (GduWindow      *window,
   UDisksObjectInfo *info = NULL;
   gchar *s = NULL;
   gchar *device_desc = NULL;
+  gchar *title = NULL;
 
   gdu_volume_grid_set_no_media_string (GDU_VOLUME_GRID (window->volume_grid),
                                        _("Loop device is empty"));
@@ -2257,8 +2284,16 @@ update_device_page_for_loop (GduWindow      *window,
   info = udisks_client_get_object_info (window->client, object);
   device_desc = get_device_file_for_display (block);
 
-  gtk_header_bar_set_title (GTK_HEADER_BAR (window->header), udisks_object_info_get_description (info));
-  gtk_header_bar_set_subtitle (GTK_HEADER_BAR (window->header), device_desc);
+  if (!in_desktop ("Unity"))
+    {
+      gtk_header_bar_set_title (GTK_HEADER_BAR (window->header), udisks_object_info_get_description (info));
+      gtk_header_bar_set_subtitle (GTK_HEADER_BAR (window->header), device_desc);
+    }
+  else
+    {
+      title = g_strdup_printf ("%s — %s", udisks_object_info_get_description (info), device_desc);
+      gtk_window_set_title (GTK_WINDOW (window), title);
+    }
 
   gtk_widget_show (window->devtab_drive_generic_button);
 
@@ -2286,6 +2321,7 @@ update_device_page_for_loop (GduWindow      *window,
   /* cleanup */
   g_clear_object (&info);
   g_free (device_desc);
+  g_free (title);
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -2302,6 +2338,7 @@ update_device_page_for_fake_block (GduWindow      *window,
 {
   UDisksObjectInfo *info = NULL;
   gchar *device_desc = NULL;
+  gchar *title = NULL;
 
   gdu_volume_grid_set_no_media_string (GDU_VOLUME_GRID (window->volume_grid),
                                        _("Block device is empty"));
@@ -2309,8 +2346,16 @@ update_device_page_for_fake_block (GduWindow      *window,
   info = udisks_client_get_object_info (window->client, object);
   device_desc = get_device_file_for_display (block);
 
-  gtk_header_bar_set_title (GTK_HEADER_BAR (window->header), udisks_object_info_get_description (info));
-  gtk_header_bar_set_subtitle (GTK_HEADER_BAR (window->header), device_desc);
+  if (!in_desktop ("Unity"))
+    {
+      gtk_header_bar_set_title (GTK_HEADER_BAR (window->header), udisks_object_info_get_description (info));
+      gtk_header_bar_set_subtitle (GTK_HEADER_BAR (window->header), device_desc);
+    }
+  else
+    {
+      title = g_strdup_printf ("%s — %s", udisks_object_info_get_description (info), device_desc);
+      gtk_window_set_title (GTK_WINDOW (window), title);
+    }
 
   gtk_widget_show (window->devtab_drive_generic_button);
 
@@ -2319,6 +2364,7 @@ update_device_page_for_fake_block (GduWindow      *window,
   /* cleanup */
   g_clear_object (&info);
   g_free (device_desc);
+  g_free (title);
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -2865,6 +2911,9 @@ update_device_page (GduWindow      *window,
             case GDU_VOLUME_GRID_ELEMENT_TYPE_FREE_SPACE:
               update_device_page_for_free_space (window, object, block, size, show_flags);
               break;
+
+            default:
+              g_assert_not_reached ();
             }
         }
     }
@@ -3928,7 +3977,7 @@ on_activate_link (GtkLabel    *label,
 /* ---------------------------------------------------------------------------------------------------- */
 
 typedef struct {
-  GSimpleAsyncResult *simple;
+  GTask *task;
   GduWindow *window;
 } EnsureListData;
 
@@ -3936,7 +3985,7 @@ static void
 ensure_list_data_free (EnsureListData *data)
 {
   g_object_unref (data->window);
-  g_object_unref (data->simple);
+  g_object_unref (data->task);
   g_slice_free (EnsureListData, data);
 }
 
@@ -3946,8 +3995,8 @@ ensure_list_cb (GObject      *source_object,
                 gpointer      user_data)
 {
   EnsureListData *data = user_data;
-  g_simple_async_result_set_op_res_gpointer (data->simple, g_object_ref (res), g_object_unref);
-  g_simple_async_result_complete (data->simple);
+  g_task_set_task_data (data->task, g_object_ref (res), g_object_unref);
+  g_task_return_pointer (data->task, NULL, NULL);
   ensure_list_data_free (data);
 }
 
@@ -3960,11 +4009,10 @@ gdu_window_ensure_unused_list (GduWindow            *window,
 {
   EnsureListData *data = g_slice_new0 (EnsureListData);
   data->window = g_object_ref (window);
-  data->simple = g_simple_async_result_new (G_OBJECT (window),
-                                            callback,
-                                            user_data,
-                                            gdu_window_ensure_unused_list);
-  g_simple_async_result_set_check_cancellable (data->simple, cancellable);
+  data->task = g_task_new (G_OBJECT (window),
+                           cancellable,
+                           callback,
+                           user_data);
   gdu_utils_ensure_unused_list (window->client,
                                 GTK_WINDOW (window),
                                 objects,
@@ -3978,15 +4026,13 @@ gdu_window_ensure_unused_list_finish (GduWindow     *window,
                                       GAsyncResult  *res,
                                       GError       **error)
 {
-  GSimpleAsyncResult *simple = G_SIMPLE_ASYNC_RESULT (res);
+  GTask *task = G_TASK (res);
 
-  g_return_val_if_fail (G_IS_ASYNC_RESULT (res), FALSE);
+  g_return_val_if_fail (G_IS_TASK (res), FALSE);
   g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
 
-  g_warn_if_fail (g_simple_async_result_get_source_tag (simple) == gdu_window_ensure_unused_list);
-
   return gdu_utils_ensure_unused_list_finish (window->client,
-                                              G_ASYNC_RESULT (g_simple_async_result_get_op_res_gpointer (simple)),
+                                              G_ASYNC_RESULT (g_task_get_task_data (task)),
                                               error);
 }
 
