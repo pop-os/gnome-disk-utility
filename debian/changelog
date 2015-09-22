@@ -1,3 +1,15 @@
+gnome-disk-utility (3.18.0-1) unstable; urgency=medium
+
+  * Imported Upstream version 3.18.0
+  * Drop debian/patches/0001-Fix-configure-check-for-libsystemd.patch
+    - now included in upstream release.
+  * Update build-dependencies according to configure.ac changes:
+    - drop gnome-common
+    - bump gtk+ to >= 3.16
+    - bump gnome-settings-daemon to >= 3.8
+
+ -- Andreas Henriksson <andreas@fatal.se>  Tue, 22 Sep 2015 15:15:36 +0200
+
 gnome-disk-utility (3.16.2-1) unstable; urgency=medium
 
   * New upstream release.
