@@ -1,6 +1,7 @@
 gnome-disk-utility (3.18.1-1) UNRELEASED; urgency=medium
 
   * New upstream release.
+  * Stop overriding dh_builddeb, xz is the default compression nowadays.
 
  -- Michael Biebl <biebl@debian.org>  Mon, 12 Oct 2015 18:02:16 +0200
 
