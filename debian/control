@@ -22,7 +22,7 @@ Build-Depends: debhelper (>= 9),
  xsltproc,
  docbook-xsl,
  intltool
-Standards-Version: 3.9.6
+Standards-Version: 3.9.7
 Vcs-Git: git://anonscm.debian.org/pkg-utopia/gnome-disk-utility.git
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-utopia/gnome-disk-utility.git
 Homepage: http://git.gnome.org/cgit/gnome-disk-utility/
