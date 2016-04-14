@@ -2,6 +2,7 @@ gnome-disk-utility (3.20.1-1) UNRELEASED; urgency=medium
 
   * New upstream release.
   * Run wrap-and-sort -at.
+  * Add Build-Depends on appstream-util (required for autoreconf).
 
  -- Michael Biebl <biebl@debian.org>  Fri, 15 Apr 2016 00:34:31 +0200
 
