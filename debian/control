@@ -23,7 +23,7 @@ Build-Depends: appstream-util,
                libudisks2-dev (>= 2.1.1),
                pkg-config,
                xsltproc,
-Standards-Version: 3.9.7
+Standards-Version: 3.9.8
 Vcs-Git: git://anonscm.debian.org/pkg-utopia/gnome-disk-utility.git
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-utopia/gnome-disk-utility.git
 Homepage: http://git.gnome.org/cgit/gnome-disk-utility/
