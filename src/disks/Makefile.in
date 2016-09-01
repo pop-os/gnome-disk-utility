@@ -229,11 +229,7 @@ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
-AM_CFLAGS = @AM_CFLAGS@
-AM_CPPFLAGS = @AM_CPPFLAGS@
-AM_CXXFLAGS = @AM_CXXFLAGS@
 AM_DEFAULT_VERBOSITY = @AM_DEFAULT_VERBOSITY@
-AM_LDFLAGS = @AM_LDFLAGS@
 APPSTREAM_UTIL = @APPSTREAM_UTIL@
 AR = @AR@
 AUTOCONF = @AUTOCONF@
@@ -443,7 +439,11 @@ gnome_disks_SOURCES = \
 
 gnome_disks_CPPFLAGS = \
 	-I$(top_srcdir)/src/				\
+	-I$(top_srcdir)/src/disks			\
+	-I$(top_srcdir)/src/libgdu			\
 	-I$(top_builddir)/src/				\
+	-I$(top_builddir)/src/disks			\
+	-I$(top_builddir)/src/libgdu			\
 	-DPACKAGE_DATA_DIR=\""$(datadir)"\"		\
 	-DG_LOG_DOMAIN=\"GNOME-Disks\"			\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
