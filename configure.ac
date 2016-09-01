@@ -1,4 +1,4 @@
-AC_INIT([GNOME Disk Utility],[3.20.2],[https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-disk-utility],[gnome-disk-utility])
+AC_INIT([GNOME Disk Utility],[3.21.91],[https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-disk-utility],[gnome-disk-utility])
 
 AX_IS_RELEASE([git-directory])
 
@@ -8,7 +8,6 @@ AC_CONFIG_SRCDIR([src])
 AC_CONFIG_HEADERS([config.h])
 
 AC_PROG_CC
-AC_HEADER_STDC
 
 AM_INIT_AUTOMAKE([1.11 foreign dist-xz no-dist-gzip tar-ustar])
 AM_MAINTAINER_MODE([enable])
@@ -129,11 +128,6 @@ IT_PROG_INTLTOOL([0.50.2])
 GETTEXT_PACKAGE=gnome-disk-utility
 AC_SUBST([GETTEXT_PACKAGE])
 AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE],["$GETTEXT_PACKAGE"],[gettext domain])
-
-AC_SUBST([AM_CPPFLAGS])
-AC_SUBST([AM_CFLAGS])
-AC_SUBST([AM_CXXFLAGS])
-AC_SUBST([AM_LDFLAGS])
 
 AC_CONFIG_FILES([
 Makefile
