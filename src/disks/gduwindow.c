@@ -1016,6 +1016,8 @@ gdu_window_constructed (GObject *object)
   if (G_OBJECT_CLASS (gdu_window_parent_class)->constructed != NULL)
     G_OBJECT_CLASS (gdu_window_parent_class)->constructed (object);
 
+  gtk_window_set_icon_name (GTK_WINDOW (window), "gnome-disks");
+
   /* load UI file */
   gdu_application_new_widget (window->application, "disks.ui", NULL, &window->builder);
 
@@ -1343,6 +1345,11 @@ gdu_window_constructed (GObject *object)
   ensure_something_selected (window);
   gtk_widget_grab_focus (window->device_tree_treeview);
   update_all (window);
+
+  /* attach the generic menu to the toplevel window for correct placement */
+  gtk_menu_attach_to_widget (GTK_MENU (window->generic_menu),
+                             GTK_WIDGET (window),
+                             NULL);
 
   /* TODO: would be better to have all this in the .ui file - no idea
    * why it doesn't work - accelerator support in GTK+ seems extremely
