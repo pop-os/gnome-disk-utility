@@ -1,3 +1,10 @@
+gnome-disk-utility (3.22.0-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream version 3.22.0
+
+ -- Andreas Henriksson <andreas@fatal.se>  Mon, 19 Sep 2016 11:33:14 +0200
+
 gnome-disk-utility (3.21.91-1) unstable; urgency=medium
 
   * Team upload.
