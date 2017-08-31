@@ -2,7 +2,9 @@ gnome-disk-utility (3.25.91-1) UNRELEASED; urgency=medium
 
   * New upstream version 3.25.91
   * Build with meson
-  * Drop obsolete Build-Depends on gnome-settings-daemon-dev
+  * debian/control.in:
+    - Drop obsolete Build-Depends on gnome-settings-daemon-dev
+    - Bump minimum udisks2 to 2.7.2
   * debian/rules: Drop obsolete lines
 
  -- Jeremy Bicha <jbicha@debian.org>  Wed, 30 Aug 2017 22:06:41 -0400

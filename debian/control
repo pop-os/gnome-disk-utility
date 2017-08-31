@@ -18,7 +18,7 @@ Build-Depends: appstream-util,
                libpwquality-dev (>= 1.0.0),
                libsecret-1-dev (>= 0.7),
                libsystemd-dev (>= 209),
-               libudisks2-dev (>= 2.1.1),
+               libudisks2-dev (>= 2.7.2),
                meson (>= 0.41.0),
                pkg-config,
                xsltproc,
@@ -29,7 +29,7 @@ Homepage: http://git.gnome.org/cgit/gnome-disk-utility/
 
 Package: gnome-disk-utility
 Architecture: any
-Depends: udisks2 (>= 2.1.1),
+Depends: udisks2 (>= 2.7.2),
          ${misc:Depends},
          ${shlibs:Depends},
 Pre-Depends: ${misc:Pre-Depends},
