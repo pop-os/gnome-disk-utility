@@ -1,4 +1,4 @@
-gnome-disk-utility (3.25.91-1) UNRELEASED; urgency=medium
+gnome-disk-utility (3.25.91-1) unstable; urgency=medium
 
   * New upstream version 3.25.91
   * Build with meson
@@ -8,7 +8,7 @@ gnome-disk-utility (3.25.91-1) UNRELEASED; urgency=medium
   * debian/rules: Drop obsolete lines
   * Bump Standards-Version to 4.1.0
 
- -- Jeremy Bicha <jbicha@debian.org>  Wed, 30 Aug 2017 22:06:41 -0400
+ -- Jeremy Bicha <jbicha@debian.org>  Wed, 30 Aug 2017 22:37:39 -0400
 
 gnome-disk-utility (3.22.1-1) unstable; urgency=medium
 
