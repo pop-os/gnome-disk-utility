@@ -1,6 +1,7 @@
 gnome-disk-utility (3.25.91-1) UNRELEASED; urgency=medium
 
   * New upstream version 3.25.91
+  * Build with meson
 
  -- Jeremy Bicha <jbicha@debian.org>  Wed, 30 Aug 2017 22:06:41 -0400
 
