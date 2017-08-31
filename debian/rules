@@ -12,8 +12,3 @@ override_dh_install:
 	fi
 	# delete .la files.
 	find $(CURDIR)/debian/gnome-disk-utility/usr \( -name '*.la' -o -name '*.a' \) -delete
-
-override_dh_auto_test:
-
-override_dh_makeshlibs:
-	dh_makeshlibs -X/usr/lib/$(DEB_HOST_MULTIARCH)/gnome-settings-daemon-3.0/
