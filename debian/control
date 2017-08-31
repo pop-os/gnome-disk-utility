@@ -5,6 +5,7 @@ Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.
 Uploaders: Michael Biebl <biebl@debian.org>,
            Martin Pitt <mpitt@debian.org>,
            Sjoerd Simons <sjoerd@debian.org>,
+           Jeremy Bicha <jbicha@debian.org>
 Build-Depends: appstream-util,
                debhelper (>= 10),
                docbook-xsl,
