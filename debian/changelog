@@ -1,3 +1,9 @@
+gnome-disk-utility (3.25.92-1) UNRELEASED; urgency=medium
+
+  * New upstream version 3.25.92
+
+ -- Michael Biebl <biebl@debian.org>  Tue, 05 Sep 2017 15:40:24 +0200
+
 gnome-disk-utility (3.25.91-1) unstable; urgency=medium
 
   * New upstream version 3.25.91
