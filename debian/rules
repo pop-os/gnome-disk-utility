@@ -3,6 +3,10 @@
 %:
 	dh $@ --buildsystem=meson
 
+override_dh_auto_configure:
+	dh_auto_configure -- \
+		--libexecdir=/usr/lib/gnome-disk-utility
+
 override_dh_install:
 	dh_install
 	# when building for Ubuntu, move menu entry from Apps → System Tools
