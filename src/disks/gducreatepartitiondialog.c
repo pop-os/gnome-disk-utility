@@ -16,25 +16,9 @@
 #include "gduwindow.h"
 #include "gducreatepartitiondialog.h"
 #include "gducreatefilesystemwidget.h"
+#include "gduutils.h"
 
 /* ---------------------------------------------------------------------------------------------------- */
-
-#define NUM_UNITS 11
-
-/* Keep in sync with Glade file */
-static const guint64 unit_sizes[NUM_UNITS] = {
-  (1ULL),                /*  0: bytes */
-  (1000ULL),             /*  1: kB */
-  (1000000ULL),          /*  2: MB */
-  (1000000000ULL),       /*  3: GB */
-  (1000000000000ULL),    /*  4: TB */
-  (1000000000000000ULL), /*  5: PB */
-  ((1ULL)<<10),          /*  6: KiB */
-  ((1ULL)<<20),          /*  7: MiB */
-  ((1ULL)<<30),          /*  8: GiB */
-  ((1ULL)<<40),          /*  9: TiB */
-  ((1ULL)<<50),          /* 10: PiB */
-};
 
 typedef struct
 {
@@ -82,67 +66,6 @@ create_partition_data_free (CreatePartitionData *data)
   g_free (data);
 }
 
-static guint
-count_primary_dos_partitions (CreatePartitionData *data)
-{
-  GList *partitions, *l;
-  guint ret = 0;
-  partitions = udisks_client_get_partitions (gdu_window_get_client (data->window), data->table);
-  for (l = partitions; l != NULL; l = l->next)
-    {
-      UDisksPartition *partition = UDISKS_PARTITION (l->data);
-      if (!udisks_partition_get_is_contained (partition))
-        ret += 1;
-    }
-  g_list_foreach (partitions, (GFunc) g_object_unref, NULL);
-  g_list_free (partitions);
-  return ret;
-}
-
-static gboolean
-have_dos_extended (CreatePartitionData *data)
-{
-  GList *partitions, *l;
-  gboolean ret = FALSE;
-  partitions = udisks_client_get_partitions (gdu_window_get_client (data->window), data->table);
-  for (l = partitions; l != NULL; l = l->next)
-    {
-      UDisksPartition *partition = UDISKS_PARTITION (l->data);
-      if (udisks_partition_get_is_container (partition))
-        {
-          ret = TRUE;
-          break;
-        }
-    }
-  g_list_foreach (partitions, (GFunc) g_object_unref, NULL);
-  g_list_free (partitions);
-  return ret;
-}
-
-static gboolean
-is_inside_dos_extended (CreatePartitionData *data, guint64 offset)
-{
-  GList *partitions, *l;
-  gboolean ret = FALSE;
-  partitions = udisks_client_get_partitions (gdu_window_get_client (data->window), data->table);
-  for (l = partitions; l != NULL; l = l->next)
-    {
-      UDisksPartition *partition = UDISKS_PARTITION (l->data);
-      if (udisks_partition_get_is_container (partition))
-        {
-          if (offset >= udisks_partition_get_offset (partition) &&
-              offset < udisks_partition_get_offset (partition) + udisks_partition_get_size (partition))
-            {
-              ret = TRUE;
-              break;
-            }
-        }
-    }
-  g_list_foreach (partitions, (GFunc) g_object_unref, NULL);
-  g_list_free (partitions);
-  return ret;
-}
-
 static void
 create_partition_update (CreatePartitionData *data)
 {
@@ -158,10 +81,10 @@ create_partition_update (CreatePartitionData *data)
    */
   if (g_strcmp0 (udisks_partition_table_get_type_ (data->table), "dos") == 0)
     {
-      if (!is_inside_dos_extended (data, data->offset))
+      if (!gdu_utils_is_inside_dos_extended (gdu_window_get_client (data->window), data->table, data->offset))
         {
           guint num_primary;
-          num_primary = count_primary_dos_partitions (data);
+          num_primary = gdu_utils_count_primary_dos_partitions (gdu_window_get_client (data->window), data->table);
           if (num_primary == 4)
             show_dos_error = TRUE;
           else if (num_primary == 3)
@@ -261,36 +184,7 @@ set_unit_num (CreatePartitionData *data,
 static void
 create_partition_populate (CreatePartitionData *data)
 {
-  gint unit_num;
-
-  /* figure out default unit */
-  if (data->max_size > unit_sizes[4] * 100ULL)
-    {
-      /*         size > 100TB -> TB */
-      unit_num = 4;
-    }
-  else if (data->max_size > unit_sizes[3] * 100ULL)
-    {
-      /* 100TB > size > 100GB -> GB */
-      unit_num = 3;
-    }
-  else if (data->max_size > unit_sizes[2] * 100ULL)
-    {
-      /* 100GB > size > 100MB -> MB */
-      unit_num = 2;
-    }
-  else if (data->max_size > unit_sizes[1] * 100ULL)
-    {
-      /* 100MB > size > 100kB -> kB */
-      unit_num = 1;
-    }
-  else
-    {
-      /* 100kB > size > 0 -> bytes */
-      unit_num = 0;
-    }
-
-  set_unit_num (data, unit_num);
+  set_unit_num (data, gdu_utils_get_default_unit (data->max_size));
 }
 
 static void
@@ -355,6 +249,7 @@ create_partition_cb (GObject      *source_object,
   const gchar *fstype;
   const gchar *name;
   const gchar *passphrase;
+  gboolean encrypt;
 
   error = NULL;
   if (!udisks_partition_table_call_create_partition_finish (UDISKS_PARTITION_TABLE (source_object),
@@ -386,6 +281,7 @@ create_partition_cb (GObject      *source_object,
   fstype = gdu_create_filesystem_widget_get_fstype (GDU_CREATE_FILESYSTEM_WIDGET (data->create_filesystem_widget));
   name = gdu_create_filesystem_widget_get_name (GDU_CREATE_FILESYSTEM_WIDGET (data->create_filesystem_widget));
   passphrase = gdu_create_filesystem_widget_get_passphrase (GDU_CREATE_FILESYSTEM_WIDGET (data->create_filesystem_widget));
+  encrypt = gdu_create_filesystem_widget_get_encrypt (GDU_CREATE_FILESYSTEM_WIDGET (data->create_filesystem_widget));
 
   /* Not meaningful to create a filesystem if requested to create an extended partition */
   if (g_strcmp0 (fstype, "dos_extended") == 0)
@@ -402,7 +298,7 @@ create_partition_cb (GObject      *source_object,
           /* TODO: need a better way to determine if this should be TRUE */
           g_variant_builder_add (&options_builder, "{sv}", "take-ownership", g_variant_new_boolean (TRUE));
         }
-      if (passphrase != NULL && strlen (passphrase) > 0)
+      if (encrypt && passphrase != NULL && strlen (passphrase) > 0)
         g_variant_builder_add (&options_builder, "{sv}", "encrypt.passphrase", g_variant_new_string (passphrase));
 
       if (erase != NULL)
@@ -448,7 +344,7 @@ gdu_create_partition_dialog_show (GduWindow    *window,
 
   if (g_strcmp0 (udisks_partition_table_get_type_ (data->table), "dos") == 0)
     {
-      if (!have_dos_extended (data))
+      if (!gdu_utils_have_dos_extended (gdu_window_get_client (data->window), data->table))
         {
           snprintf (dos_extended_partition_name, sizeof dos_extended_partition_name,
                     "%s <span size=\"small\">(%s)</span>",

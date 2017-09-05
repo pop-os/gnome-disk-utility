@@ -1,12 +1,10 @@
-[encoding: UTF-8]
 # List of source files containing translatable strings.
 # Please keep this file sorted alphabetically.
 data/gnome-disk-image-mounter.desktop.in
 data/gnome-disk-image-writer.desktop.in
+data/org.gnome.Disks.gschema.xml
 data/org.gnome.DiskUtility.appdata.xml.in
 data/org.gnome.DiskUtility.desktop.in
-data/org.gnome.Disks.gschema.xml
-data/org.gnome.settings-daemon.plugins.gdu-sd.gschema.xml
 src/disk-image-mounter/main.c
 src/disks/gduapplication.c
 src/disks/gduatasmartdialog.c
@@ -19,40 +17,42 @@ src/disks/gducrypttabdialog.c
 src/disks/gdudevicetreemodel.c
 src/disks/gdudisksettingsdialog.c
 src/disks/gduestimator.c
-src/disks/gduerasemultipledisksdialog.c
 src/disks/gdufilesystemdialog.c
 src/disks/gduformatdiskdialog.c
 src/disks/gduformatvolumedialog.c
 src/disks/gdufstabdialog.c
+src/disks/gdunewdiskimagedialog.c
 src/disks/gdupartitiondialog.c
 src/disks/gdupasswordstrengthwidget.c
+src/disks/gduresizedialog.c
 src/disks/gdurestorediskimagedialog.c
 src/disks/gduunlockdialog.c
 src/disks/gduvolumegrid.c
 src/disks/gduwindow.c
 src/disks/gduxzdecompressor.c
 src/disks/main.c
-[type: gettext/glade]src/disks/ui/about-dialog.ui
-[type: gettext/glade]src/disks/ui/app-menu.ui
-[type: gettext/glade]src/disks/ui/benchmark-dialog.ui
-[type: gettext/glade]src/disks/ui/change-passphrase-dialog.ui
-[type: gettext/glade]src/disks/ui/create-disk-image-dialog.ui
-[type: gettext/glade]src/disks/ui/create-partition-dialog.ui
-[type: gettext/glade]src/disks/ui/disk-settings-dialog.ui
-[type: gettext/glade]src/disks/ui/disks.ui
-[type: gettext/glade]src/disks/ui/edit-crypttab-dialog.ui
-[type: gettext/glade]src/disks/ui/edit-dos-partition-dialog.ui
-[type: gettext/glade]src/disks/ui/edit-filesystem-dialog.ui
-[type: gettext/glade]src/disks/ui/edit-fstab-dialog.ui
-[type: gettext/glade]src/disks/ui/edit-gpt-partition-dialog.ui
-[type: gettext/glade]src/disks/ui/edit-partition-dialog.ui
-[type: gettext/glade]src/disks/ui/erase-multiple-disks-dialog.ui
-[type: gettext/glade]src/disks/ui/filesystem-create.ui
-[type: gettext/glade]src/disks/ui/format-disk-dialog.ui
-[type: gettext/glade]src/disks/ui/format-volume-dialog.ui
-[type: gettext/glade]src/disks/ui/restore-disk-image-dialog.ui
-[type: gettext/glade]src/disks/ui/smart-dialog.ui
-[type: gettext/glade]src/disks/ui/unlock-device-dialog.ui
+src/disks/ui/about-dialog.ui
+src/disks/ui/app-menu.ui
+src/disks/ui/benchmark-dialog.ui
+src/disks/ui/change-passphrase-dialog.ui
+src/disks/ui/create-disk-image-dialog.ui
+src/disks/ui/create-partition-dialog.ui
+src/disks/ui/disk-settings-dialog.ui
+src/disks/ui/disks.ui
+src/disks/ui/edit-crypttab-dialog.ui
+src/disks/ui/edit-dos-partition-dialog.ui
+src/disks/ui/edit-filesystem-dialog.ui
+src/disks/ui/edit-fstab-dialog.ui
+src/disks/ui/edit-gpt-partition-dialog.ui
+src/disks/ui/edit-partition-dialog.ui
+src/disks/ui/erase-multiple-disks-dialog.ui
+src/disks/ui/filesystem-create.ui
+src/disks/ui/format-disk-dialog.ui
+src/disks/ui/format-volume-dialog.ui
+src/disks/ui/new-disk-image-dialog.ui
+src/disks/ui/resize-dialog.ui
+src/disks/ui/restore-disk-image-dialog.ui
+src/disks/ui/smart-dialog.ui
+src/disks/ui/unlock-device-dialog.ui
 src/libgdu/gduutils.c
 src/notify/gdusdmonitor.c
-[type: gettext/ini]src/notify/gdu-sd-plugin.gnome-settings-plugin.in

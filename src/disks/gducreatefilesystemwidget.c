@@ -15,6 +15,7 @@
 #include <gdk/gdkx.h>
 #include <stdlib.h>
 
+#include "gduutils.h"
 #include "gduapplication.h"
 #include "gduwindow.h"
 #include "gducreatefilesystemwidget.h"
@@ -49,6 +50,7 @@ struct _GduCreateFilesystemWidget
   gchar *fstype;
   gchar *name;
   gchar *passphrase;
+  gboolean encrypt;
   gboolean has_info;
 };
 
@@ -66,6 +68,7 @@ enum
   PROP_FSTYPE,
   PROP_NAME,
   PROP_PASSPHRASE,
+  PROP_ENCRYPT,
   PROP_HAS_INFO
 };
 
@@ -128,6 +131,10 @@ gdu_create_filesystem_widget_get_property (GObject    *object,
       g_value_set_string (value, widget->passphrase);
       break;
 
+    case PROP_ENCRYPT:
+      g_value_set_boolean (value, widget->encrypt);
+      break;
+
     case PROP_HAS_INFO:
       g_value_set_boolean (value, widget->has_info);
       break;
@@ -175,12 +182,19 @@ update (GduCreateFilesystemWidget *widget)
   gboolean show_filesystem_widgets = FALSE;
   gboolean show_passphrase_widgets = FALSE;
   gboolean has_info = FALSE;
+  gboolean encrypt = FALSE;
   const gchar *fstype = NULL;
   const gchar *name = NULL;
   const gchar *passphrase = NULL;
   const gchar *id;
 
-  name = gtk_entry_get_text (GTK_ENTRY (widget->name_entry));
+  gtk_entry_set_icon_from_icon_name (GTK_ENTRY (widget->confirm_passphrase_entry),
+                                     GTK_ENTRY_ICON_SECONDARY,
+                                     NULL);
+  gtk_entry_set_icon_tooltip_text (GTK_ENTRY (widget->confirm_passphrase_entry),
+                                   GTK_ENTRY_ICON_SECONDARY,
+                                   NULL);
+
   passphrase = gtk_entry_get_text (GTK_ENTRY (widget->passphrase_entry));
 
   id = gtk_combo_box_get_active_id (GTK_COMBO_BOX (widget->type_combobox));
@@ -202,6 +216,7 @@ update (GduCreateFilesystemWidget *widget)
   else if (g_strcmp0 (id, "luks+ext4") == 0)
     {
       fstype = "ext4";
+      encrypt = TRUE;
       /* Encrypted, compatible with Linux (LUKS + ext4) */
       show_passphrase_widgets = TRUE;
       if (strlen (gtk_entry_get_text (GTK_ENTRY (widget->passphrase_entry))) > 0)
@@ -210,6 +225,15 @@ update (GduCreateFilesystemWidget *widget)
                          gtk_entry_get_text (GTK_ENTRY (widget->confirm_passphrase_entry))) == 0)
             {
               has_info = TRUE;
+            }
+          else if (strlen (gtk_entry_get_text (GTK_ENTRY (widget->confirm_passphrase_entry))) > 0)
+            {
+              gtk_entry_set_icon_from_icon_name (GTK_ENTRY (widget->confirm_passphrase_entry),
+                                                 GTK_ENTRY_ICON_SECONDARY,
+                                                 "dialog-warning-symbolic");
+              gtk_entry_set_icon_tooltip_text (GTK_ENTRY (widget->confirm_passphrase_entry),
+                                               GTK_ENTRY_ICON_SECONDARY,
+                                               _("The passphrases do not match"));
             }
         }
       gdu_password_strength_widget_set_password (GDU_PASSWORD_STRENGTH_WIDGET (widget->passphrase_strengh_widget),
@@ -235,6 +259,10 @@ update (GduCreateFilesystemWidget *widget)
       fstype = id;
       has_info = TRUE;
     }
+
+  _gtk_entry_buffer_truncate_bytes (gtk_entry_get_buffer (GTK_ENTRY (widget->name_entry)),
+                                    gdu_utils_get_max_label_length (fstype));
+  name = gtk_entry_get_text (GTK_ENTRY (widget->name_entry));
 
   if (show_name_widgets)
     {
@@ -304,6 +332,11 @@ update (GduCreateFilesystemWidget *widget)
       widget->has_info = has_info;
       g_object_notify (G_OBJECT (widget), "has-info");
     }
+  if (widget->encrypt != encrypt)
+    {
+      widget->encrypt = encrypt;
+      g_object_notify (G_OBJECT (widget), "encrypt");
+    }
   g_object_thaw_notify (G_OBJECT (widget));
 }
 
@@ -314,28 +347,6 @@ on_property_changed (GObject     *object,
 {
   GduCreateFilesystemWidget *widget = GDU_CREATE_FILESYSTEM_WIDGET (user_data);
   update (widget);
-}
-
-
-static gboolean
-is_flash (UDisksDrive *drive)
-{
-  gboolean ret = FALSE;
-  guint n;
-  const gchar *const *media_compat;
-
-  media_compat = udisks_drive_get_media_compatibility (drive);
-  for (n = 0; media_compat != NULL && media_compat[n] != NULL; n++)
-    {
-      if (g_str_has_prefix (media_compat[n], "flash"))
-        {
-          ret = TRUE;
-          goto out;
-        }
-    }
-
- out:
-  return ret;
 }
 
 static gboolean
@@ -432,7 +443,7 @@ populate (GduCreateFilesystemWidget *widget)
   if (widget->drive != NULL && udisks_drive_get_removable (widget->drive))
     {
       /* default FAT for flash and disks/media smaller than 20G (assumed to be flash cards) */
-      if (is_flash (widget->drive) || udisks_drive_get_size (widget->drive) < (guint64)(20ULL * 1000ULL*1000ULL*1000ULL))
+      if (gdu_utils_is_flash (widget->drive) || udisks_drive_get_size (widget->drive) < (guint64)(20ULL * 1000ULL*1000ULL*1000ULL))
         {
           gtk_combo_box_set_active_id (GTK_COMBO_BOX (widget->type_combobox), "vfat");
         }
@@ -543,7 +554,11 @@ gdu_create_filesystem_widget_constructed (GObject *object)
                       TRUE, TRUE, 0);
 
   /* reparent and nuke the dummy window */
-  gtk_widget_reparent (widget->grid, GTK_WIDGET (widget));
+  g_object_ref (widget->grid);
+  gtk_container_remove (GTK_CONTAINER (dummy_window), widget->grid);
+  gtk_container_add (GTK_CONTAINER (widget), widget->grid);
+  g_object_unref (widget->grid);
+
   gtk_widget_destroy (dummy_window);
 
   populate (widget);
@@ -606,6 +621,12 @@ gdu_create_filesystem_widget_class_init (GduCreateFilesystemWidgetClass *klass)
                                                         G_PARAM_READABLE |
                                                         G_PARAM_STATIC_STRINGS));
 
+  g_object_class_install_property (gobject_class, PROP_ENCRYPT,
+                                   g_param_spec_boolean ("encrypt", NULL, NULL,
+                                                         FALSE,
+                                                         G_PARAM_READABLE |
+                                                         G_PARAM_STATIC_STRINGS));
+
   g_object_class_install_property (gobject_class, PROP_HAS_INFO,
                                    g_param_spec_boolean ("has-info", NULL, NULL,
                                                          FALSE,
@@ -657,6 +678,13 @@ gdu_create_filesystem_widget_get_fstype (GduCreateFilesystemWidget *widget)
 {
   g_return_val_if_fail (GDU_IS_CREATE_FILESYSTEM_WIDGET (widget), NULL);
   return widget->fstype;
+}
+
+gboolean
+gdu_create_filesystem_widget_get_encrypt (GduCreateFilesystemWidget *widget)
+{
+  g_return_val_if_fail (GDU_IS_CREATE_FILESYSTEM_WIDGET (widget), FALSE);
+  return widget->encrypt;
 }
 
 const gchar *

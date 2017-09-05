@@ -1,3 +1,131 @@
+3.25.91 - August 21, 2017
+=========================
+
+Jeremy Bicha:
+  * Fix translation headers
+
+Mitchell Horne:
+  * Tweak memory management in filesystem dialog
+  * Add unmount function to edit filesystem dialog
+
+Kai Lüke:
+  * Correct tooltip texts in resize dialog
+  * Correct text for partition size entry
+  * Disable action buttons during jobs
+  * Delay sensitivity during job updates
+
+Updated translations:
+  * Andika Triwidada and Kukuh Syafaat (id), Baurzhan Muftakhidinov (kk),
+    Balázs Meskó (hu), Claude Paroz (fr), Daniel Mustieles (es),
+    Emin Tufan Çetin (tr), Fabio Tomat (fur), Fran Dieguez (gl), gogo (hr),
+    Marek Cernocky (cs), Мирослав Николић (sr), Wolfgang Stöggl (de)
+
+3.25.90 - August 7, 2017
+========================
+
+Piotr Drąg:
+  * Update POTFILES.in
+  * Unmark placeholder strings from translation
+
+Kalev Lember:
+  * Fix appdata file name
+
+Kai Lüke:
+  * Add a more detailed description for the project
+  * Detect UDisks version 2.7.2
+  * Move partition size helpers
+  * Move volume and partition utility functions
+  * Resize and repair helper functions
+  * Resize, Check and Repair Dialogs
+
+Updated translations:
+  * Balázs Meskó (hu), Daniel Mustieles (es), Fabio Tomat (fur),
+    gogo (hr), Marek Cernocky (cs), Mario Blättermann (de)
+
+3.25.4 - July 17, 2017
+======================
+
+Mitchell Horne:
+  * Enable Large File Support for Disks
+
+Kai Lüke:
+  * Update Window for Power State Changes
+  * Update AppData Information
+
+Iñigo Martínez:
+  * build: Created template file for service file
+  * build: Port to meson build system
+  * build: Remove autotools
+
+Updated translations:
+  * Aurimas Černius (lt), Baurzhan Muftakhidinov (kk),
+    Daniel Mustieles (es), Dušan Kazik (sk), Fabio Tomat (fur),
+    Jordi Mas (ca), Kukuh Syafaat (id), Mario Blättermann (de)
+
+3.25.2 - May 22, 2017
+=====================
+
+Mitchell Horne:
+  * Use MIME types for disk images
+
+Kai Lüke:
+  * Prompt to stop jobs when closing
+  * update doap file with new maintainer
+  * Clarify meaning of encryption/mounting options
+  * Disable auto-clear before operations needing unmount
+  * Implicit auto-clear handling for unmount and lock buttons
+  * Use correct callback finish method
+  * Insensitive auto-clear switch for unused loop device
+  * Remove unused erase disks dialog
+  * Fix unmounting and probing of mounted volumes
+  * Change label dialog hint
+  * Restrict maximal label length if known
+  * Hints for passphrase fields
+  * Remove deprecated GTK functions
+  * Fix wrong behavior of filesystem creation dialog
+  * The UUID of the selected volume is shown
+  * Add app menu entry to create an empty disk image
+  * Add tooltip text to Auto-clear switch
+
+Piotr Drąg:
+  * Update po/Makevars
+  * Update POTFILES.in
+
+Updated translations:
+  * hanniedu (nl), Ask H. Larsen (da), Balázs Úr & Balázs Meskó (hu),
+    Cédric Valmary (oc), Charles Monzat (fr), Daniel Mustieles (es),
+    Emin Tufan Çetin (tr), Fabio Tomat (fur), gogo (hr),
+    Kukuh Syafaat (id), Mario Blättermann (de), Tom Tryfonidis (el),
+    Yuras Shumovich (be), Милош Поповић (sr, sr@latin)
+
+3.24.0 - March 19, 2017
+=======================
+
+* Fix crash in error path (Matthias Clasen)
+* Updated translations
+
+3.23.92 - March 11, 2017
+========================
+
+* Fix broken desktop files (Michael Catanzaro)
+* Drop unused gsettings schema (Jeremy Bicha)
+* Updated translations
+
+3.23.4 - January 13, 2017
+=========================
+
+* Fix failure in g-s-d plugin (Bastien Nocera)
+* Updated translations
+
+3.23.3 - December 12, 2016
+==========================
+
+* Update gnome-settings-daemon plugin for 3.23 (Bastien Nocera)
+* Code cleanups (Nicholas Bishop)
+* Stop using intltool for translations (Michael Catanzaro)
+* Use more Unicode in translatable strings (Piotr Drąg)
+* Updated translations
+
 3.22.1 - November 7, 2016
 =========================
 
