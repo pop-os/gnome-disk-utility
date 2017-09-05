@@ -10,5 +10,3 @@ override_dh_install:
 	if dpkg-vendor --is ubuntu; then \
 	    sed -i '/^Categories=/ s/$$/Settings;HardwareSettings;/' debian/gnome-disk-utility/usr/share/applications/*.desktop; \
 	fi
-	# delete .la files.
-	find $(CURDIR)/debian/gnome-disk-utility/usr \( -name '*.la' -o -name '*.a' \) -delete
