@@ -1,8 +1,11 @@
-gnome-disk-utility (3.25.92-1) UNRELEASED; urgency=medium
+gnome-disk-utility (3.25.92-1) unstable; urgency=medium
 
   * New upstream version 3.25.92
+  * Add Breaks against gnome-settings-daemon (<< 3.24)
+  * Drop obsolete clean-up rule for libtool .la files
+  * Use non-multiarch path /usr/lib/gnome-disk-utility for libexecdir
 
- -- Michael Biebl <biebl@debian.org>  Tue, 05 Sep 2017 15:40:24 +0200
+ -- Michael Biebl <biebl@debian.org>  Tue, 05 Sep 2017 16:15:08 +0200
 
 gnome-disk-utility (3.25.91-1) unstable; urgency=medium
 
