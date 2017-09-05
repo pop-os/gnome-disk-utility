@@ -85,7 +85,6 @@ gdu_utils_configure_file_chooser_for_disk_images (GtkFileChooser *file_chooser,
   g_object_set_data_full (G_OBJECT (file_chooser), "x-gdu-orig-folder", g_strdup (folder), g_free);
   gtk_file_chooser_set_current_folder_uri (file_chooser, folder);
 
-  /* TODO: define proper mime-types */
   if (set_file_types)
     {
       filter = gtk_file_filter_new ();
@@ -97,14 +96,12 @@ gdu_utils_configure_file_chooser_for_disk_images (GtkFileChooser *file_chooser,
         gtk_file_filter_set_name (filter, _("Disk Images (*.img, *.img.xz, *.iso)"));
       else
         gtk_file_filter_set_name (filter, _("Disk Images (*.img, *.iso)"));
-      gtk_file_filter_add_pattern (filter, "*.raw-disk-image");
-      gtk_file_filter_add_pattern (filter, "*.img");
+      gtk_file_filter_add_mime_type (filter, "application/x-raw-disk-image");
       if (allow_compressed)
         {
-          gtk_file_filter_add_pattern (filter, "*.raw-disk-image.xz");
-          gtk_file_filter_add_pattern (filter, "*.img.xz");
+          gtk_file_filter_add_mime_type (filter, "application/x-raw-disk-image-xz-compressed");
         }
-      gtk_file_filter_add_pattern (filter, "*.iso");
+      gtk_file_filter_add_mime_type (filter, "application/x-cd-image");
       gtk_file_chooser_add_filter (file_chooser, filter); /* adopts filter */
       gtk_file_chooser_set_filter (file_chooser, filter);
     }
@@ -593,6 +590,100 @@ gdu_utils_format_duration_usec (guint64                usec,
   return ret;
 }
 
+gboolean
+gdu_utils_is_flash (UDisksDrive *drive)
+{
+  gboolean ret = FALSE;
+  guint n;
+  const gchar *const *media_compat;
+
+  media_compat = udisks_drive_get_media_compatibility (drive);
+  for (n = 0; media_compat != NULL && media_compat[n] != NULL; n++)
+    {
+      if (g_str_has_prefix (media_compat[n], "flash"))
+        {
+          ret = TRUE;
+          break;
+        }
+    }
+
+  return ret;
+}
+
+guint
+gdu_utils_count_primary_dos_partitions (UDisksClient         *client,
+                                        UDisksPartitionTable *table)
+{
+  GList *partitions, *l;
+  guint ret = 0;
+
+  partitions = udisks_client_get_partitions (client, table);
+  for (l = partitions; l != NULL; l = l->next)
+    {
+      UDisksPartition *partition = UDISKS_PARTITION (l->data);
+      if (!udisks_partition_get_is_contained (partition))
+        ret += 1;
+    }
+
+  g_list_foreach (partitions, (GFunc) g_object_unref, NULL);
+  g_list_free (partitions);
+
+  return ret;
+}
+
+gboolean
+gdu_utils_have_dos_extended (UDisksClient         *client,
+                             UDisksPartitionTable *table)
+{
+  GList *partitions, *l;
+  gboolean ret = FALSE;
+
+  partitions = udisks_client_get_partitions (client, table);
+  for (l = partitions; l != NULL; l = l->next)
+    {
+      UDisksPartition *partition = UDISKS_PARTITION (l->data);
+      if (udisks_partition_get_is_container (partition))
+        {
+          ret = TRUE;
+          break;
+        }
+    }
+
+  g_list_foreach (partitions, (GFunc) g_object_unref, NULL);
+  g_list_free (partitions);
+
+  return ret;
+}
+
+gboolean
+gdu_utils_is_inside_dos_extended (UDisksClient         *client,
+                                  UDisksPartitionTable *table,
+                                  guint64               offset)
+{
+  GList *partitions, *l;
+  gboolean ret = FALSE;
+
+  partitions = udisks_client_get_partitions (client, table);
+  for (l = partitions; l != NULL; l = l->next)
+    {
+      UDisksPartition *partition = UDISKS_PARTITION (l->data);
+      if (udisks_partition_get_is_container (partition))
+        {
+          if (offset >= udisks_partition_get_offset (partition) &&
+              offset < udisks_partition_get_offset (partition) + udisks_partition_get_size (partition))
+            {
+              ret = TRUE;
+              break;
+            }
+        }
+    }
+
+  g_list_foreach (partitions, (GFunc) g_object_unref, NULL);
+  g_list_free (partitions);
+
+  return ret;
+}
+
 /* ---------------------------------------------------------------------------------------------------- */
 
 void
@@ -780,6 +871,206 @@ gdu_utils_is_ntfs_available (void)
 
 /* ---------------------------------------------------------------------------------------------------- */
 
+#ifdef HAVE_UDISKS2_7_2
+
+typedef struct
+{
+  gboolean available;
+  gchar *missing_util;
+  ResizeFlags mode;
+} UtilCacheEntry;
+
+static void
+util_cache_entry_free (UtilCacheEntry *data)
+{
+  g_free (data->missing_util);
+  g_free (data);
+}
+
+G_LOCK_DEFINE (can_resize_lock);
+
+/* Uses an internal cache, set flush to rebuild it first */
+gboolean
+gdu_utils_can_resize (UDisksClient *client,
+                      const gchar  *fstype,
+                      gboolean      flush,
+                      ResizeFlags  *mode_out,
+                      gchar       **missing_util_out)
+{
+  static GHashTable *cache = NULL;
+  const gchar *const *supported_fs;
+  UtilCacheEntry *result;
+
+  G_LOCK (can_resize_lock);
+  if (flush)
+    g_clear_pointer (&cache, g_hash_table_destroy);
+
+  if (cache == NULL)
+    {
+      cache = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, (GDestroyNotify) util_cache_entry_free);
+      supported_fs = udisks_manager_get_supported_filesystems (udisks_client_get_manager (client));
+      for (gsize i = 0; supported_fs[i] != NULL; i++)
+        {
+          GVariant *out_available;
+
+          if (udisks_manager_call_can_resize_sync (udisks_client_get_manager (client),
+                                                   supported_fs[i], &out_available, NULL, NULL))
+            {
+              UtilCacheEntry *entry;
+              guint64 m = 0;
+
+              entry = g_new0 (UtilCacheEntry, 1);
+              g_variant_get (out_available, "(bts)", &entry->available, &m, &entry->missing_util);
+              g_variant_unref (out_available);
+              entry->mode = (ResizeFlags) m;
+              g_hash_table_insert (cache, g_strdup (supported_fs[i]), entry);
+            }
+        }
+    }
+  G_UNLOCK (can_resize_lock);
+
+  result = g_hash_table_lookup (cache, fstype);
+  if (mode_out != NULL)
+    *mode_out = result ? result->mode : 0;
+
+  if (missing_util_out != NULL)
+    *missing_util_out = result ? g_strdup (result->missing_util) : NULL;
+
+  return result ? result->available : FALSE;
+}
+
+G_LOCK_DEFINE (can_repair_lock);
+
+gboolean
+gdu_utils_can_repair (UDisksClient *client,
+                      const gchar  *fstype,
+                      gboolean      flush,
+                      gchar       **missing_util_out)
+{
+  static GHashTable *cache = NULL;
+  const gchar *const *supported_fs;
+  UtilCacheEntry *result;
+
+  G_LOCK (can_repair_lock);
+  if (flush)
+    g_clear_pointer (&cache, g_hash_table_destroy);
+
+  if (cache == NULL)
+    {
+      cache = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, (GDestroyNotify) util_cache_entry_free);
+      supported_fs = udisks_manager_get_supported_filesystems (udisks_client_get_manager (client));
+      for (gsize i = 0; supported_fs[i] != NULL; i++)
+        {
+          GVariant *out_available;
+
+          if (udisks_manager_call_can_repair_sync (udisks_client_get_manager (client),
+                                                   supported_fs[i], &out_available, NULL, NULL))
+            {
+              UtilCacheEntry *entry;
+
+              entry = g_new0 (UtilCacheEntry, 1);
+              g_variant_get (out_available, "(bs)", &entry->available, &entry->missing_util);
+              g_variant_unref (out_available);
+              g_hash_table_insert (cache, g_strdup (supported_fs[i]), entry);
+            }
+        }
+    }
+  G_UNLOCK (can_repair_lock);
+
+  result = g_hash_table_lookup (cache, fstype);
+  if (missing_util_out != NULL)
+    *missing_util_out = result ? g_strdup (result->missing_util) : NULL;
+
+  return result ? result->available : FALSE;
+}
+
+G_LOCK_DEFINE (can_check_lock);
+
+gboolean
+gdu_utils_can_check (UDisksClient *client,
+                     const gchar  *fstype,
+                     gboolean      flush,
+                     gchar       **missing_util_out)
+{
+  static GHashTable *cache = NULL;
+  const gchar *const *supported_fs;
+  UtilCacheEntry *result;
+
+  G_LOCK (can_check_lock);
+  if (flush && cache != NULL)
+    g_clear_pointer (&cache, g_hash_table_destroy);
+
+  if (cache == NULL)
+    {
+      cache = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, (GDestroyNotify) util_cache_entry_free);
+      supported_fs = udisks_manager_get_supported_filesystems (udisks_client_get_manager (client));
+      for (gsize i = 0; supported_fs[i] != NULL; i++)
+        {
+          GVariant *out_available;
+
+          if (udisks_manager_call_can_check_sync (udisks_client_get_manager (client),
+                                                  supported_fs[i], &out_available, NULL, NULL))
+            {
+              UtilCacheEntry *entry;
+              guint64 m = 0;
+
+              entry = g_new0 (UtilCacheEntry, 1);
+              g_variant_get (out_available, "(bs)", &entry->available, &entry->missing_util);
+              g_variant_unref (out_available);
+              entry->mode = (ResizeFlags) m;
+              g_hash_table_insert (cache, g_strdup (supported_fs[i]), entry);
+            }
+        }
+    }
+  G_UNLOCK (can_check_lock);
+
+  result = g_hash_table_lookup (cache, fstype);
+  if (missing_util_out != NULL)
+    *missing_util_out = result ? g_strdup (result->missing_util) : NULL;
+
+  return result ? result->available : FALSE;
+}
+
+#endif
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+guint
+gdu_utils_get_max_label_length (const gchar *fstype)
+{
+  guint max_length = G_MAXUINT;
+
+  if (g_strcmp0 (fstype, "exfat") == 0)
+    {
+      max_length = 15;
+    }
+  else if (g_strcmp0 (fstype, "vfat") == 0)
+    {
+      max_length = 11;
+    }
+
+  return max_length;
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+gboolean
+_gtk_entry_buffer_truncate_bytes (GtkEntryBuffer *gtk_entry_buffer,
+                                  guint           max_bytes)
+{
+  guint max_utf8_length = max_bytes;
+
+  while (gtk_entry_buffer_get_bytes (gtk_entry_buffer) > max_bytes)
+    {
+      gtk_entry_buffer_delete_text (gtk_entry_buffer, max_utf8_length, -1);
+      max_utf8_length--;
+    }
+
+  return max_utf8_length != max_bytes;
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
 #ifdef __GNUC_PREREQ
 # if __GNUC_PREREQ(4,6)
 #  pragma GCC diagnostic pop
@@ -855,14 +1146,10 @@ gdu_utils_get_pretty_uri (GFile *file)
 
 /* ---------------------------------------------------------------------------------------------------- */
 
-static gboolean
-gdu_utils_is_in_use_full (UDisksClient      *client,
-                          UDisksObject      *object,
-                          UDisksFilesystem **filesystem_to_unmount_out,
-                          UDisksEncrypted  **encrypted_to_lock_out)
+GList *
+gdu_utils_get_all_contained_objects (UDisksClient *client,
+                                     UDisksObject *object)
 {
-  UDisksFilesystem *filesystem_to_unmount = NULL;
-  UDisksEncrypted *encrypted_to_lock = NULL;
   UDisksBlock *block = NULL;
   UDisksDrive *drive = NULL;
   UDisksObject *block_object = NULL;
@@ -870,7 +1157,6 @@ gdu_utils_is_in_use_full (UDisksClient      *client,
   GList *partitions = NULL;
   GList *l;
   GList *objects_to_check = NULL;
-  gboolean ret = FALSE;
 
   drive = udisks_object_get_drive (object);
   if (drive != NULL)
@@ -926,6 +1212,33 @@ gdu_utils_is_in_use_full (UDisksClient      *client,
         }
     }
 
+  g_clear_object (&partition_table);
+  g_list_free_full (partitions, g_object_unref);
+  g_clear_object (&block_object);
+  g_clear_object (&block);
+  g_clear_object (&drive);
+
+  return objects_to_check;
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+static gboolean
+gdu_utils_is_in_use_full (UDisksClient      *client,
+                          UDisksObject      *object,
+                          UDisksFilesystem **filesystem_to_unmount_out,
+                          UDisksEncrypted  **encrypted_to_lock_out,
+                          gboolean          *last_out)
+{
+  UDisksFilesystem *filesystem_to_unmount = NULL;
+  UDisksEncrypted *encrypted_to_lock = NULL;
+  GList *l;
+  GList *objects_to_check = NULL;
+  gboolean ret = FALSE;
+  gboolean last = TRUE;
+
+  objects_to_check = gdu_utils_get_all_contained_objects (client, object);
+
   /* Check in reverse order, e.g. cleartext before LUKS, partitions before the main block device */
   objects_to_check = g_list_reverse (objects_to_check);
   for (l = objects_to_check; l != NULL; l = l->next)
@@ -943,8 +1256,14 @@ gdu_utils_is_in_use_full (UDisksClient      *client,
           const gchar *const *mount_points = udisks_filesystem_get_mount_points (filesystem_for_object);
           if (g_strv_length ((gchar **) mount_points) > 0)
             {
+              if (ret)
+                {
+                  last = FALSE;
+                  break;
+                }
+
               filesystem_to_unmount = g_object_ref (filesystem_for_object);
-              goto victim_found;
+              ret = TRUE;
             }
         }
 
@@ -956,35 +1275,38 @@ gdu_utils_is_in_use_full (UDisksClient      *client,
           if (cleartext != NULL)
             {
               g_object_unref (cleartext);
+
+              if (ret)
+                {
+                  last = FALSE;
+                  break;
+                }
+
               encrypted_to_lock = g_object_ref (encrypted_for_object);
-              goto victim_found;
+              ret = TRUE;
             }
         }
-    }
 
- victim_found:
+      if (ret && last_out == NULL)
+        break;
+    }
 
   if (filesystem_to_unmount_out != NULL)
     {
       *filesystem_to_unmount_out = (filesystem_to_unmount != NULL) ?
         g_object_ref (filesystem_to_unmount) : NULL;
-      ret = TRUE;
     }
-  else if (encrypted_to_lock_out != NULL)
+  if (encrypted_to_lock_out != NULL)
     {
       *encrypted_to_lock_out = (encrypted_to_lock != NULL) ?
         g_object_ref (encrypted_to_lock) : NULL;
-      ret = TRUE;
     }
+  if (last_out != NULL)
+    *last_out = last;
 
-  g_clear_object (&partition_table);
-  g_list_free_full (partitions, g_object_unref);
   g_list_free_full (objects_to_check, g_object_unref);
   g_clear_object (&encrypted_to_lock);
   g_clear_object (&filesystem_to_unmount);
-  g_clear_object (&block_object);
-  g_clear_object (&block);
-  g_clear_object (&drive);
 
   return ret;
 }
@@ -993,7 +1315,7 @@ gboolean
 gdu_utils_is_in_use (UDisksClient *client,
                      UDisksObject *object)
 {
-  return gdu_utils_is_in_use_full (client, object, NULL, NULL);
+  return gdu_utils_is_in_use_full (client, object, NULL, NULL, NULL);
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -1079,15 +1401,71 @@ unuse_lock_cb (UDisksEncrypted  *encrypted,
 }
 
 static void
+unuse_set_autoclear_cb (UDisksLoop   *loop,
+                        GAsyncResult *res,
+                        gpointer      user_data)
+{
+  UnuseData *data = user_data;
+  GError *error = NULL;
+
+  if (!udisks_loop_call_set_autoclear_finish (loop,
+                                              res,
+                                              &error))
+    {
+      unuse_data_complete (data,
+                           _("Error disabling autoclear for loop device"),
+                           error);
+    }
+  else
+    {
+      unuse_data_iterate (data);
+    }
+}
+
+static void
 unuse_data_iterate (UnuseData *data)
 {
   UDisksObject *object;
   UDisksFilesystem *filesystem_to_unmount = NULL;
   UDisksEncrypted *encrypted_to_lock = NULL;
+  UDisksLoop *loop;
+  UDisksBlock *block;
+  gboolean last;
 
   object = UDISKS_OBJECT (data->object_iter->data);
   gdu_utils_is_in_use_full (data->client, object,
-                            &filesystem_to_unmount, &encrypted_to_lock);
+                            &filesystem_to_unmount, &encrypted_to_lock, NULL);
+  block = udisks_object_peek_block (object);
+
+  if (block != NULL && (filesystem_to_unmount != NULL || encrypted_to_lock != NULL))
+    {
+      loop = udisks_client_get_loop_for_block (data->client, block);
+
+      if (loop != NULL)
+        {
+          if (udisks_loop_get_autoclear (loop))
+            {
+              gdu_utils_is_in_use_full (data->client,
+                                        UDISKS_OBJECT (g_dbus_interface_get_object (G_DBUS_INTERFACE (loop))),
+                                        NULL, NULL, &last);
+              if (last)
+                {
+                  udisks_loop_call_set_autoclear (loop,
+                                                  FALSE,
+                                                  g_variant_new ("a{sv}", NULL),
+                                                  data->cancellable,
+                                                  (GAsyncReadyCallback) unuse_set_autoclear_cb,
+                                                  data);
+                  g_object_unref (loop);
+                  g_clear_object (&encrypted_to_lock);
+                  g_clear_object (&filesystem_to_unmount);
+                  return;
+                }
+            }
+
+          g_object_unref (loop);
+        }
+    }
 
   if (filesystem_to_unmount != NULL)
     {
@@ -1197,6 +1575,77 @@ gdu_utils_ensure_unused_finish (UDisksClient  *client,
 
 /* ---------------------------------------------------------------------------------------------------- */
 
+guint64
+gdu_utils_calc_space_to_grow (UDisksClient *client,
+                              UDisksPartitionTable *table,
+                              UDisksPartition *partition)
+{
+  GList *partitions, *l;
+  guint64 next_pos, current_end;
+  UDisksObject *table_object;
+
+  table_object = UDISKS_OBJECT (g_dbus_interface_get_object (G_DBUS_INTERFACE (table)));
+  next_pos = udisks_block_get_size (udisks_object_peek_block (table_object));
+  current_end = udisks_partition_get_offset (partition) + udisks_partition_get_size (partition);
+  partitions = udisks_client_get_partitions (client, table);
+  for (l = partitions; l != NULL; l = l->next)
+    {
+      UDisksPartition *tmp_partition = UDISKS_PARTITION (l->data);
+      guint64 start;
+      guint64 end;
+
+      if (udisks_partition_get_number (partition) == udisks_partition_get_number (tmp_partition))
+        continue;
+
+      start = udisks_partition_get_offset (tmp_partition);
+      end = start + udisks_partition_get_size (tmp_partition);
+      if (end > current_end && (end < next_pos))
+        next_pos = end;
+      if (start >= current_end && (start < next_pos))
+        next_pos = start;
+    }
+
+  g_list_foreach (partitions, (GFunc) g_object_unref, NULL);
+  g_list_free (partitions);
+
+  return next_pos - udisks_partition_get_offset (partition);
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+guint64
+gdu_utils_calc_space_to_shrink_extended (UDisksClient *client,
+                                         UDisksPartitionTable *table,
+                                         UDisksPartition *partition)
+{
+  GList *partitions, *l;
+  guint64 minimum, maximum;
+
+  g_assert (udisks_partition_get_is_container (partition));
+  minimum = udisks_partition_get_offset (partition) + 1;
+  maximum = minimum + udisks_partition_get_size (partition);
+  partitions = udisks_client_get_partitions (client, table);
+  for (l = partitions; l != NULL; l = l->next)
+    {
+      UDisksPartition *tmp_partition = UDISKS_PARTITION (l->data);
+      guint64 end;
+
+      if (udisks_partition_get_number (partition) == udisks_partition_get_number (tmp_partition))
+        continue;
+
+      end = udisks_partition_get_offset (tmp_partition) + udisks_partition_get_size (tmp_partition);
+      if (end > minimum && end <= maximum)
+        minimum = end;
+    }
+
+  g_list_foreach (partitions, (GFunc) g_object_unref, NULL);
+  g_list_free (partitions);
+
+  return minimum - udisks_partition_get_offset (partition);
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
 gint64
 gdu_utils_get_unused_for_block (UDisksClient *client,
                                 UDisksBlock  *block)
@@ -1233,3 +1682,36 @@ gdu_utils_get_unused_for_block (UDisksClient *client,
  out:
   return ret;
 }
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+gint
+gdu_utils_get_default_unit (guint64 size)
+{
+  if (size > unit_sizes[TByte] * 10)
+    {
+      /* size > 10TB -> TB */
+      return TByte;
+    }
+  else if (size > unit_sizes[GByte] * 10)
+    {
+      /* 10TB > size > 10GB -> GB */
+      return GByte;
+    }
+  else if (size > unit_sizes[MByte] * 10)
+    {
+      /* 10GB > size > 10MB -> MB */
+      return MByte;
+    }
+  else if (size > unit_sizes[KByte] * 10)
+    {
+      /* 10MB > size > 10KB -> KB */
+      return KByte;
+    }
+  else
+    {
+      /* 10kB > size > 0 -> bytes */
+      return Byte;
+    }
+}
+
