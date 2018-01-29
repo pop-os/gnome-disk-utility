@@ -25,9 +25,9 @@ Build-Depends: appstream-util,
                pkg-config,
                xsltproc,
 Standards-Version: 4.1.1
-Vcs-Git: https://anonscm.debian.org/git/pkg-utopia/gnome-disk-utility.git
-Vcs-Browser: https://anonscm.debian.org/git/pkg-utopia/gnome-disk-utility.git
-Homepage: https://git.gnome.org/browse/gnome-disk-utility/
+Vcs-Git: https://salsa.debian.org/gnome-team/gnome-disk-utility.git
+Vcs-Browser: https://salsa.debian.org/gnome-team/gnome-disk-utility
+Homepage: https://wiki.gnome.org/Apps/Disks
 
 Package: gnome-disk-utility
 Architecture: any
