@@ -4,6 +4,7 @@ gnome-disk-utility (3.26.2-2) UNRELEASED; urgency=medium
   * Update debian/gbp.conf and git branches for Debian GNOME conventions
   * Update VCS fields for move to https://salsa.debian.org/
   * Bump debhelper compat to 11
+  * Bump Standards-Version to 4.1.3
 
  -- Jeremy Bicha <jbicha@debian.org>  Mon, 29 Jan 2018 14:42:52 -0500
 
