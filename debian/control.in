@@ -27,7 +27,7 @@ Homepage: https://wiki.gnome.org/Apps/Disks
 
 Package: gnome-disk-utility
 Architecture: any
-Depends: udisks2 (>= 2.7.2),
+Depends: udisks2 (>= 2.7.6),
          ${misc:Depends},
          ${shlibs:Depends},
 Pre-Depends: ${misc:Pre-Depends},
