@@ -1,6 +1,8 @@
 gnome-disk-utility (3.27.90-1) UNRELEASED; urgency=medium
 
-  * New upstream development release 
+  * New upstream development release
+  * debian/rules: remove explicit buildsystem=meson, autotools has
+    been removed.
 
  -- Tim Lunn <tim@feathertop.org>  Sun, 18 Feb 2018 12:15:49 +1100
 
