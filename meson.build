@@ -1,12 +1,9 @@
 project(
   'gnome-disk-utility', 'c',
-  version: '3.26.2',
+  version: '3.27.90',
   license: 'GPL2.0',
-  default_options: [
-    'buildtype=debugoptimized',
-    'warning_level=1'
-  ],
-  meson_version: '>= 0.41.0'
+  default_options: 'buildtype=debugoptimized',
+  meson_version: '>= 0.43.0'
 )
 
 gdu_name = 'gnome-disk-utility'
@@ -23,66 +20,8 @@ gdu_sysconfdir = join_paths(gdu_prefix, get_option('sysconfdir'))
 cc = meson.get_compiler('c')
 
 config_h = configuration_data()
-
-# package
-set_defines = [
-  ['PACKAGE', gdu_name],
-  ['PACKAGE_BUGREPORT', 'http://bugzilla.gnome.org/enter_bug.cgi?product=' + gdu_name],
-  ['PACKAGE_NAME', meson.project_name()],
-  ['PACKAGE_STRING', '@0@ @1@'.format(meson.project_name(), gdu_version)],
-  ['PACKAGE_TARNAME', gdu_name],
-  ['PACKAGE_URL', ''],
-  ['PACKAGE_VERSION', gdu_version],
-  ['VERSION', gdu_version],
-  ['GETTEXT_PACKAGE', gdu_name]
-]
-
-foreach define: set_defines
-  config_h.set_quoted(define[0], define[1])
-endforeach
-
-# headers
-check_headers = [
-  ['HAVE_DLFCN_H', 'dlfcn.h'],
-  ['HAVE_INTTYPES_H', 'inttypes.h'],
-  ['HAVE_MEMORY_H', 'memory.h'],
-  ['HAVE_STDINT_H', 'stdint.h'],
-  ['HAVE_STDLIB_H', 'stdlib.h'],
-  ['HAVE_STRINGS_H', 'strings.h'],
-  ['HAVE_STRING_H', 'string.h'],
-  ['HAVE_SYS_STAT_H', 'sys/stat.h'],
-  ['HAVE_SYS_TYPES_H', 'sys/types.h'],
-  ['HAVE_UNISTD_H', 'unistd.h']
-]
-
-foreach header: check_headers
-  if cc.has_header(header[1])
-    config_h.set(header[0], true)
-  endif
-endforeach
-
-# functions
-check_functions = [
-  ['HAVE_DCGETTEXT', 'dcgettext'],
-  ['HAVE_GETTEXT', 'gettext'],
-  ['HAVE_ICONV', 'iconv'],
-  ['HAVE_MEMSET', 'memset'],
-  ['HAVE_SETLOCALE', 'setlocale'],
-  ['HAVE_STRSTR', 'strstr']
-]
-
-if host_machine.system().contains('darwin')
-  check_functions += [
-    ['HAVE_CFLOCALECOPYCURRENT', 'CFLocaleCopyCurrent'],
-    ['HAVE_CFPREFERENCESCOPYAPPVALUE', 'CFPreferencesCopyAppValue']
-  ]
-endif
-
-foreach func: check_functions
-  if cc.has_function(func[1])
-    config_h.set(func[0], true)
-  endif
-endforeach
+config_h.set_quoted('PACKAGE_VERSION', gdu_version)
+config_h.set_quoted('GETTEXT_PACKAGE', gdu_name)
 
 message('Checking for valid fallocate() function')
 
@@ -103,11 +42,9 @@ fallocate_src = '''
 config_h.set('HAVE_FALLOCATE', cc.run(fallocate_src).returncode())
 
 # compiler flags
-common_flags = ['-DHAVE_CONFIG_H']
-gdu_cflags = []
+compiler_flags = []
 
-buildtype = get_option('buildtype')
-if buildtype == 'debug' or buildtype == 'debugoptimized'
+if get_option('buildtype').contains('debug')
   test_cflags = [
     '-fno-strict-aliasing',
     '-Wcast-align',
@@ -139,14 +76,10 @@ if buildtype == 'debug' or buildtype == 'debugoptimized'
     '-Wwrite-strings'
   ]
 
-  foreach cflag: test_cflags
-    if cc.has_argument(cflag)
-      gdu_cflags += [cflag]
-    endif
-  endforeach
+  compiler_flags += cc.get_supported_arguments(test_cflags)
 endif
 
-add_project_arguments(common_flags + gdu_cflags, language: 'c')
+add_project_arguments(compiler_flags, language: 'c')
 
 gmodule_dep = dependency('gmodule-2.0')
 gio_unix_dep = dependency('gio-unix-2.0', version: '>= 2.31.0')
@@ -165,18 +98,17 @@ udisks2_7_2_dep = dependency('udisks2', version: '>= 2.7.2', required: false)
 config_h.set('HAVE_UDISKS2_7_2', udisks2_7_2_dep.found(),
              description: 'Define to 1 if UDisks version >= 2.7.2 for resize, repair, check')
 
+udisks2_7_6_dep = dependency('udisks2', version: '>= 2.7.6', required: false)
+config_h.set('HAVE_UDISKS2_7_6', udisks2_7_6_dep.found(),
+             description: 'Define to 1 if UDisks version >= 2.7.6 for userspace mount options')
+
 # *** Check for libsystemd ***
-enable_libsystemd = get_option('enable-libsystemd')
+enable_libsystemd = get_option('libsystemd')
 if enable_libsystemd
   libsystemd_dep = dependency('libsystemd', version: '>= 209', required: false)
   config_h.set('HAVE_LIBSYSTEMD', libsystemd_dep.found(),
                description: 'Define to 1 if libsystemd is available')
 endif
-
-configure_file(
-  output: 'config.h',
-  configuration: config_h
-)
 
 gnome = import('gnome')
 i18n = import('i18n')
@@ -190,7 +122,7 @@ subdir('src/disks')
 subdir('src/disk-image-mounter')
 
 # *** gnome-settings-daemon plug-in ***
-enable_gsd_plugin = get_option('enable-gsd-plugin')
+enable_gsd_plugin = get_option('gsd_plugin')
 if enable_gsd_plugin
   subdir('src/notify')
 endif
@@ -199,7 +131,15 @@ subdir('data')
 subdir('po')
 subdir('doc/man')
 
-meson.add_install_script('meson_post_install.py')
+configure_file(
+  output: 'config.h',
+  configuration: config_h
+)
+
+meson.add_install_script(
+  'meson_post_install.py',
+  gdu_datadir
+)
 
 output = '\n        gnome-disk-utility ' + gdu_version + '\n'
 output += '        =========================\n\n'
@@ -213,5 +153,6 @@ output += '        sysconfdir:                 ' + gdu_sysconfdir + '\n\n'
 output += '        Use libsystemd:             ' + enable_libsystemd.to_string() + '\n'
 output += '        Build g-s-d plug-in:        ' + enable_gsd_plugin.to_string() + '\n\n'
 output += '        compiler:                   ' + cc.get_id() + '\n'
-output += '        cflags:                     ' + ' '.join(gdu_cflags) + '\n'
+output += '        cflags:                     ' + ' '.join(compiler_flags) + '\n\n'
+output += '        (Change with: meson configure BUILDDIR -D libsystemd=true|false -D gsd_plugin=true|false)\n\n'
 message(output)

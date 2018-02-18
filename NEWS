@@ -1,23 +1,70 @@
-3.26.2 - October 30, 2017
-=========================
+3.27.90 - February 6, 2018
+==========================
+
+Andrea Azzarone:
+  * Hide devices if mounted with x-gdu.hide
+
+Will Thompson:
+  * restore: don't attempt to open target read-only
+
+Updated translations:
+  * Balázs Úr (hu), Dušan Kazik (sk), Fabio Tomat (fur), Fran Dieguez (gl),
+    Jiri Grönroos (fi), Ovídio Francisco (pt_BR), Victor Ibragimov (tg)
+
+3.27.4 - January 9, 2018
+========================
+
+Updated translations:
+  * Aurimas Černius (lt), Cheng-Chia Tseng (zh_TW), Daniel Mustieles (es),
+    Emin Tufan Çetin (tr), Jiri Grönroos (fi), Khaled Hosny (ar), Matej Urbančič (sl)
+
+3.27.3 - December 11, 2017
+==========================
+
+Iñigo Martínez:
+  * build: Rename build options
+  * build: Remove default warning level
+  * build: Remove unused defines
+  * build: Remove macro definition
+  * build: Use meson 0.43.0 features
+  * build: Use datadir on post install script
+  * build: Move the icons' files
 
 Kai Lüke:
+  * Set partition type for MBR partitions
+  * build: Document custom build switches
+
+Updated translations:
+  * gogo (hr), Kukuh Syafaat (id), Marek Cernocky (cs), Tim Sabsch (de)
+
+3.27.2 - November 13, 2017
+==========================
+
+Kai Lüke:
+  * Resize dialog: missing mnemonic activations
   * No format option for extended partitions
 
 Updated translations:
-  * Hannie Dumoleyn (nl), Matej Urbančič (sl), Xavi Ivars (ca@valencia)
+  * Daniel Mustieles (es), Fabio Tomat (fur), gogo (hr), Hannie Dumoleyn (nl),
+    Kjartan Maraas (nb), Marek Cernocky (cs), Mario Blättermann (de)
 
-3.26.1 - October 2, 2017
-========================
+3.27.1 - October 16, 2017
+=========================
 
 Kai Lüke:
   * Fix license link in logo SVG metadata
   * Fix SIGSEGV in gdu_utils_get_all_contained_objects
   * Keep FS mounted while growing partition
+  * Redesign Format Dialog
   * Show mount options for swap volumes
 
+Piotr Drąg:
+  * Spruce up typography in new translatable strings
+
 Updated translations:
-  * Efstathios Iosifidis (el), Stas Solovey (ru), Trần Ngọc Quân (vi)
+  * Dušan Kazik (sk), Efstathios Iosifidis (el), Kukuh Syafaat (id),
+    Marek Cernocky (cs), Matej Urbančič (sl), Stas Solovey (ru),
+    Trần Ngọc Quân (vi), Xavi Ivars (ca@valencia)
 
 3.26.0 - September 11, 2017
 ===========================
