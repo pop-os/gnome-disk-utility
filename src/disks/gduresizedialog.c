@@ -548,7 +548,7 @@ ensure_unused_cb_offline_next_repair (GObject      *source_object,
   if (!gdu_utils_ensure_unused_finish (data->client, res, &error))
     {
       gdu_utils_show_error (GTK_WINDOW (data->window),
-                            _("Error unmounting filesystem"),
+                            _("Error unmounting filesystem for repairing"),
                             error);
 
       g_error_free (error);
@@ -757,7 +757,7 @@ mount_cb (UDisksFilesystem *filesystem,
                                             &error))
     {
       gdu_utils_show_error (GTK_WINDOW (data->window),
-                            _("Error mounting filesystem"),
+                            _("Error mounting the filesystem"),
                             error);
 
       g_error_free (error);
