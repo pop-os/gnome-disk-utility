@@ -1,3 +1,10 @@
+gnome-disk-utility (3.27.90-2) UNRELEASED; urgency=medium
+
+  * Add hide-snaps.patch from Ubuntu.
+    - Temporary workaround to exclude snaps from cluttering the sidebar
+
+ -- Jeremy Bicha <jbicha@debian.org>  Sun, 18 Feb 2018 13:24:35 -0500
+
 gnome-disk-utility (3.27.90-1) experimental; urgency=medium
 
   * Team upload

@@ -1,0 +1,39 @@
+From: Andrea Azzarone <andrea.azzarone@canonical.com>
+Date: Sun, 18 Feb 2018 13:30:52 -0500
+Subject: Hide snap loop devices
+
+Workaround to hide snaps. This is needed because the existing installed snaps
+are not mounted with the x-gdu.hide option. We can get rid of this once snapd
+gets the ability to edit existing mount units.
+
+Bug: https://bugzilla.gnome.org/show_bug.cgi?id=790279
+Bug-Ubuntu: https://launchpad.net/bugs/1637984
+Forwarded: not-needed
+---
+ src/disks/gdudevicetreemodel.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/src/disks/gdudevicetreemodel.c b/src/disks/gdudevicetreemodel.c
+index 329717a..f116bc8 100644
+--- a/src/disks/gdudevicetreemodel.c
++++ b/src/disks/gdudevicetreemodel.c
+@@ -1188,6 +1188,7 @@ should_include_block (UDisksObject *object)
+   const gchar *device;
+   const gchar *drive;
+   const gchar *crypto_backing_device;
++  const gchar *loop_backing_file;
+   guint64 size;
+ 
+   ret = FALSE;
+@@ -1196,6 +1197,11 @@ should_include_block (UDisksObject *object)
+   partition = udisks_object_peek_partition (object);
+   loop = udisks_object_peek_loop (object);
+ 
++  // Hide snaps loop devices
++  loop_backing_file = loop != NULL ? udisks_loop_get_backing_file (loop) : NULL;
++  if (loop_backing_file != NULL && g_str_has_suffix (loop_backing_file, ".snap"))
++    goto out;
++
+   if (gdu_utils_has_userspace_mount_option (block, "x-gdu.hide"))
+     goto out;
+ 
