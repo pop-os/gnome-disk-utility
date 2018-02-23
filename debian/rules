@@ -23,3 +23,7 @@ override_dh_install:
 override_dh_translations:
 	ninja -C obj-$(DEB_HOST_GNU_TYPE) gnome-disk-utility-pot
 	dh_translations
+
+override_dh_auto_clean:
+	dh_auto_clean
+	rm -f po/gnome-disk-utility.pot
