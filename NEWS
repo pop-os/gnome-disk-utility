@@ -1,3 +1,37 @@
+3.28.0 - March 12, 2018
+=======================
+
+Kai Lüke:
+ * Format dialog: Fix NULL deref when no partition table is present
+
+Updated translations:
+ * Anders Jonsson (sv), Changwoo Ryu (ko), gogo (hr), Jordi Mas (ca),
+   Julien Hardelin (fr), Rūdolfs Mazurs (lv), Милош Поповић (sr, sr@latin)
+
+3.27.92 - March 5, 2018
+=======================
+
+Piotr Drąg:
+  * Remove po/Makevars
+
+Updated translations:
+ * Aurimas Černius (lt), Balázs Úr (hu), Baurzhan Muftakhidinov (kk),
+   Cheng-Chia Tseng (zh_TW), Daniel Mustieles (es), Emin Tufan Çetin (tr),
+   Enrico Nicoletto (pt_BR), Fabio Tomat (fur), Fran Dieguez (gl),
+   GNOME Translation Robot (gd, nl), gogo (hr), Joe Hansen (da),
+   Jordi Mas (ca), Kukuh Syafaat (id), Marek Cernocky (cs),
+   Milo Casagrande (it), Piotr Drąg (pl), Wolfgang Stöggl (de)
+
+3.27.91 - February 20, 2018
+===========================
+
+Will Thompson:
+  * Fix tooltip for “Hide from Firmware” GPT partition flag
+  * Drop redundant “Legacy BIOS Bootable” text in tooltip
+
+Updated translations:
+  * Cheng-Chia Tseng (zh_TW), Piotr Drąg (pl)
+
 3.27.90 - February 6, 2018
 ==========================
 
