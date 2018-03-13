@@ -1,7 +1,9 @@
-gnome-disk-utility (3.27.90-2) UNRELEASED; urgency=medium
+gnome-disk-utility (3.28.0-1) UNRELEASED; urgency=medium
 
+  * New upstream release
   * Add hide-snaps.patch from Ubuntu.
     - Temporary workaround to exclude snaps from cluttering the sidebar
+  * Release to unstable
 
  -- Jeremy Bicha <jbicha@debian.org>  Sun, 18 Feb 2018 13:24:35 -0500
 
