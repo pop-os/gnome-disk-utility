@@ -1,6 +1,7 @@
 gnome-disk-utility (3.28.1-1) UNRELEASED; urgency=medium
 
   * New upstream release
+  * Drop obsolete dh_translations override
 
  -- Jeremy Bicha <jbicha@debian.org>  Fri, 13 Apr 2018 17:16:03 -0400
 

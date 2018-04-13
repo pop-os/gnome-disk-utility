@@ -18,12 +18,3 @@ override_dh_install:
 	if dpkg-vendor --is ubuntu; then \
 	    sed -i '/^Categories=/ s/$$/Settings;HardwareSettings;/' debian/gnome-disk-utility/usr/share/applications/*.desktop; \
 	fi
-
-# Needed by Ubuntu
-override_dh_translations:
-	ninja -C obj-$(DEB_HOST_GNU_TYPE) gnome-disk-utility-pot
-	dh_translations
-
-override_dh_auto_clean:
-	dh_auto_clean
-	rm -f po/gnome-disk-utility.pot
