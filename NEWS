@@ -1,19 +1,29 @@
-3.28.3 - May 31, 2018
-=====================
+3.29.90 - July 30, 2018
+=======================
 
-Kai Lüke:
- * Query NTFS tooling from UDisks (> 2.7.2)
-   Disks queried for mkntfs in the $PATH directly
-   which does not work for non-sudoers without /sbin
-
-3.28.2 - May 8, 2018
-====================
-
-Kai Lüke:
- * Register inhibitor for benchmark thread (no string change)
+mtvoid:
+ * Fix swapped "Number of Samples" tooltips in benchmark dialog
 
 Updated translations:
- * gogo (hr), Matej Urbančič (sl)
+ * Balázs Meskó (hu), Daniel Mustieles (es), Daniel Șerbănescu (ro),
+   Emin Tufan Çetin (tr), Fabio Tomat (fur), Gun Chleoc (gd),
+   Jordi Mas (ca), Marek Cernocky (cs), Yi-Jyun Pan (zh_TW)
+
+3.29.2 - May 31, 2018
+=====================
+
+segfault:
+ * Add TrueCrypt/VeraCrypt support
+
+Kai Lüke:
+ * Register inhibitor for benchmark thread
+ * Update URLs after migration
+ * Query NTFS tooling from UDisks
+
+Updated translations:
+ * Anders Jonsson (sv), Daniel Mustieles (es), Fabio Tomat (fur),
+   gogo (hr), Marcos Lans (gl), Marek Černocký (cs), Matej Urbančič (sl),
+   Milo Casagrande (it), Mingcong Bai (zh_CN)
 
 3.28.1 - April 9, 2018
 =======================
