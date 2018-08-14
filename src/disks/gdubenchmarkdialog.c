@@ -1177,7 +1177,7 @@ benchmark_thread (gpointer user_data)
                                             GTK_APPLICATION_INHIBIT_SUSPEND |
                                             GTK_APPLICATION_INHIBIT_LOGOUT,
                                             /* Translators: Reason why suspend/logout is being inhibited */
-                                            _("Benchmark"));
+                                            C_("create-inhibit-message", "Benchmarking device"));
 
   g_variant_builder_init (&options_builder, G_VARIANT_TYPE_VARDICT);
   g_variant_builder_add (&options_builder, "{sv}", "writable", g_variant_new_boolean (data->bm_do_write));
