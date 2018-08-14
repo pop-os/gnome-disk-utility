@@ -2,6 +2,7 @@ gnome-disk-utility (3.28.3-2) UNRELEASED; urgency=medium
 
   * debian/gbp.conf: Set the upstream branch to upstream/3.28.x, since we've
     branched for experimental now.
+  * Stanrdards-Version → 4.2.0 - no changes required.
 
  -- Andrea Azzarone <andrea.azzarone@canonical.com>  Tue, 14 Aug 2018 11:59:28 +0300
 
