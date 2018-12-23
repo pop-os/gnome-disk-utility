@@ -1,3 +1,10 @@
+gnome-disk-utility (3.30.2-2) unstable; urgency=medium
+
+  * Add -Wl,-O1 to our LDFLAGS
+  * Bump Standards-Version to 4.3.0
+
+ -- Jeremy Bicha <jbicha@debian.org>  Sun, 23 Dec 2018 11:29:48 -0500
+
 gnome-disk-utility (3.30.2-1) unstable; urgency=medium
 
   * New upstream version
