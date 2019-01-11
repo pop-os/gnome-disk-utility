@@ -1,1 +1,2 @@
 hide-snaps.patch
+build-stop-checking-for-fallocate.patch
