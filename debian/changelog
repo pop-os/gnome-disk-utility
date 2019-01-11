@@ -1,3 +1,11 @@
+gnome-disk-utility (3.30.2-3) unstable; urgency=medium
+
+  * Update debian/gbp.conf
+  * Cherry-pick build-stop-checking-for-fallocate.patch
+    - Patch by Helmut Grohne to help cross-building (Closes: #917639)
+
+ -- Jeremy Bicha <jbicha@debian.org>  Fri, 11 Jan 2019 16:30:40 -0500
+
 gnome-disk-utility (3.30.2-2) unstable; urgency=medium
 
   * Add -Wl,-O1 to our LDFLAGS
