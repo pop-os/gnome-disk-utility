@@ -27,11 +27,10 @@ Vcs-Browser: https://salsa.debian.org/gnome-team/gnome-disk-utility
 Homepage: https://wiki.gnome.org/Apps/Disks
 
 Package: gnome-disk-utility
-Architecture: any
+Architecture: linux-any
 Depends: udisks2 (>= 2.7.6),
          ${misc:Depends},
          ${shlibs:Depends},
-Pre-Depends: ${misc:Pre-Depends},
 Breaks: gnome-settings-daemon (<< 3.24)
 Description: manage and configure disk drives and media
  GNOME Disks is a tool to manage disk drives and media:
