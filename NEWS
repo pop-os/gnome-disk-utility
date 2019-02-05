@@ -1,11 +1,34 @@
-3.30.2 - October 22, 2018
-=========================
+3.31.90 - February 5, 2019
+==========================
+
+Helmut Grohne:
+ * build: stop checking for fallocate
+
+Jakub Steiner:
+ * icon: app icon adjustments
+
+Maoschanz:
+ * Update the UI to match current guidelines
+
+Piotr Drąg:
+ * Update POTFILES.in
+
+Ronald van Engelen:
+ * Added total-lbas-written and total-lbas-read to translatable strings
+
+segfault:
+ * unlock dialog: Add tooltip for keyfile chooser button
 
 Updated translations:
- * Марко Костић (sr)
+ * Anders Jonsson (sv),  Balázs Úr (hu),  Charles Monzat (fr),  Daniel Mustieles (es),
+   Daniel Rusek (cs), Fabio Tomat (fur), Fran Dieguez (gl), Jordi Mas (ca),
+   Matej Urbančič (sl), Ryuta Fujii (ja)
 
-3.30.1 - September 24, 2018
-===========================
+3.31.2 - November 12, 2018
+==========================
+
+Jakub Steiner:
+ * update app icon
 
 Jeremy Bicha:
  * GduVolumeGrid: Use starred icon instead of user-bookmarks
@@ -14,7 +37,9 @@ Kai Lüke:
  * Remove redundant error showing
 
 Updated translations:
- * Emin Tufan Çetin (tr), Jordi Mas (ca), Stas Solovey (ru)
+ * Dušan Kazik (sk), Emin Tufan Çetin (tr), Jordi Mas (ca),
+   Kristjan SCHMIDT (eo), Marek Cernocky (cs),  Matej Urbančič (sl),
+   Stas Solovey (ru)
 
 3.30.0 - September 3, 2018
 ==========================
