@@ -1,3 +1,9 @@
+gnome-disk-utility (3.31.90-1) UNRELEASED; urgency=medium
+
+  * New upstream release
+
+ -- Jeremy Bicha <jbicha@debian.org>  Tue, 05 Feb 2019 17:15:01 -0500
+
 gnome-disk-utility (3.30.2-3) unstable; urgency=medium
 
   * Update debian/gbp.conf
