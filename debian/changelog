@@ -1,3 +1,12 @@
+gnome-disk-utility (3.31.90-1ubuntu1) disco; urgency=medium
+
+  * Sync with Debian. Remaining change:
+    - Add dont-use-libdvdread.patch:
+      + Revert commit that depends on libdvdread since it's in universe
+  * Drop hide-snaps.patch: this patch hasn't been needed for a while
+
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Tue, 05 Feb 2019 17:53:43 -0500
+
 gnome-disk-utility (3.31.90-1) experimental; urgency=medium
 
   * New upstream development release
