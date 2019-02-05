@@ -1,0 +1,234 @@
+From: David Zeuthen <zeuthen@gmail.com>
+Date: Sat, 20 Oct 2012 01:36:48 +0000
+Subject: Revert "Use libdvdcss for creating disk images of DVDs,
+ if available"
+
+Without this change, the archive process may fail for some DVD video
+discs with "Add. Sense: Read of scrambled sector without
+authentication".
+
+This commit does NOT add a hard dependency on libdvdcss (which would
+be bad as this library isn't even shipped in most OSes) since it's
+accessed via dlopen(). If libdvdcss is not available on the system, we
+simply fall back to reading data using the standard libc interfaces
+(e.g. read(2)).
+
+License-wise there is no problem with this approach: libdvdcss is
+licensed under the GPLv2+ which is exactly the same license as Disks
+itself.
+
+This dlopen() approach is nothing new - it's also used in Brasero,
+VLC, mplayer, Totem and many other applications.
+
+Signed-off-by: David Zeuthen <zeuthen@gmail.com>
+---
+ meson.build                          |  1 -
+ src/disks/gducreatediskimagedialog.c | 90 +++++++++---------------------------
+ src/disks/meson.build                |  2 -
+ 3 files changed, 23 insertions(+), 70 deletions(-)
+
+diff --git a/meson.build b/meson.build
+index 250317a..f983ffa 100644
+--- a/meson.build
++++ b/meson.build
+@@ -88,7 +88,6 @@ gtk_dep = dependency('gtk+-3.0', version: '>= 3.16.0')
+ libsecret_dep = dependency('libsecret-1', version: '>= 0.7')
+ pwquality_dep = dependency('pwquality', version: '>= 1.0.0')
+ libcanberra_dep = dependency('libcanberra-gtk3', version: '>= 0.1')
+-dvdread_dep = dependency('dvdread', version: '>= 4.2.0')
+ libnotify_dep = dependency('libnotify', version: '>= 0.7')
+ liblzma_dep = dependency('liblzma', version: '>= 5.0.5')
+ m_dep = cc.find_library('m')
+diff --git a/src/disks/gducreatediskimagedialog.c b/src/disks/gducreatediskimagedialog.c
+index a22ef8c..926a0a2 100644
+--- a/src/disks/gducreatediskimagedialog.c
++++ b/src/disks/gducreatediskimagedialog.c
+@@ -17,6 +17,7 @@
+ #include <gio/gunixinputstream.h>
+ #include <gio/gfiledescriptorbased.h>
+ 
++#include <gmodule.h>
+ #include <glib-unix.h>
+ #include <sys/ioctl.h>
+ #include <linux/fs.h>
+@@ -30,8 +31,6 @@
+ #include "gduestimator.h"
+ #include "gdulocaljob.h"
+ 
+-#include "gdudvdsupport.h"
+-
+ /* TODOs / ideas for Disk Image creation
+  *
+  * - Be tolerant of I/O errors like dd_rescue(1), see http://www.gnu.org/s/ddrescue/ddrescue.html
+@@ -75,7 +74,6 @@ typedef struct
+   GduEstimator *estimator;
+ 
+   gboolean allocating_file;
+-  gboolean retrieving_dvd_keys;
+   guint64 num_error_bytes;
+   gint64 start_time_usec;
+   gint64 end_time_usec;
+@@ -342,10 +340,6 @@ update_job (DialogData *data,
+     {
+       extra_markup = g_strdup (_("Allocating Disk Image"));
+     }
+-  else if (data->retrieving_dvd_keys)
+-    {
+-      extra_markup = g_strdup (_("Retrieving DVD keys"));
+-    }
+ 
+   if (num_error_bytes > 0)
+     {
+@@ -531,7 +525,6 @@ copy_span (int              fd,
+            guint64          size,
+            guchar          *buffer,
+            gboolean         pad_with_zeroes,
+-           GduDVDSupport   *dvd_support,
+            GCancellable    *cancellable,
+            GError         **error)
+ {
+@@ -545,45 +538,35 @@ copy_span (int              fd,
+   g_return_val_if_fail (-1, cancellable == NULL || G_IS_CANCELLABLE (cancellable));
+   g_return_val_if_fail (-1, error == NULL || *error == NULL);
+ 
+-  if (dvd_support != NULL)
++  if (lseek (fd, offset, SEEK_SET) == (off_t) -1)
+     {
+-      num_bytes_read = gdu_dvd_support_read (dvd_support, fd, buffer, offset, size);
++      g_set_error (error,
++                   G_IO_ERROR, g_io_error_from_errno (errno),
++                   "Error seeking to offset %" G_GUINT64_FORMAT ": %s",
++                   offset, strerror (errno));
++      goto out;
++    }
++
++ copy_read_again:
++  num_bytes_read = read (fd, buffer, size);
++  if (num_bytes_read < 0)
++    {
++      if (errno == EAGAIN || errno == EINTR)
++        goto copy_read_again;
++      /* do not consider this an error - treat as zero bytes read */
++      num_bytes_read = 0;
+     }
+   else
+     {
+-      if (lseek (fd, offset, SEEK_SET) == (off_t) -1)
++      /* EOF */
++      if (num_bytes_read == 0)
+         {
+           g_set_error (error,
+-                       G_IO_ERROR, g_io_error_from_errno (errno),
+-                       "Error seeking to offset %" G_GUINT64_FORMAT ": %s",
+-                       offset, strerror (errno));
++                       G_IO_ERROR, G_IO_ERROR_FAILED,
++                       "Reading from offset %" G_GUINT64_FORMAT " returned zero bytes",
++                       offset);
+           goto out;
+         }
+-    read_again:
+-      num_bytes_read = read (fd, buffer, size);
+-      if (num_bytes_read < 0)
+-        {
+-          if (errno == EAGAIN || errno == EINTR)
+-            goto read_again;
+-        }
+-      else
+-        {
+-          /* EOF */
+-          if (num_bytes_read == 0)
+-            {
+-              g_set_error (error,
+-                           G_IO_ERROR, G_IO_ERROR_FAILED,
+-                           "Reading from offset %" G_GUINT64_FORMAT " returned zero bytes",
+-                           offset);
+-              goto out;
+-            }
+-        }
+-    }
+-
+-  if (num_bytes_read < 0)
+-    {
+-      /* do not consider this an error - treat as zero bytes read */
+-      num_bytes_read = 0;
+     }
+ 
+   num_bytes_to_write = num_bytes_read;
+@@ -632,7 +615,6 @@ static gpointer
+ copy_thread_func (gpointer user_data)
+ {
+   DialogData *data = user_data;
+-  GduDVDSupport *dvd_support = NULL;
+   guchar *buffer_unaligned = NULL;
+   guchar *buffer = NULL;
+   guint64 block_device_size = 0;
+@@ -657,29 +639,7 @@ copy_thread_func (gpointer user_data)
+    */
+   if (g_str_has_prefix (udisks_block_get_device (data->block), "/dev/sr"))
+     {
+-      const gchar *device_file = udisks_block_get_device (data->block);
+-      fd = open (device_file, O_RDONLY);
+-
+-      /* Use libdvdcss (if available on the system) on DVDs with UDF
+-       * filesystems - otherwise the backup process may fail because
+-       * of unreadable/scrambled sectors
+-       */
+-      if (g_strcmp0 (udisks_block_get_id_usage (data->block), "filesystem") == 0 &&
+-          g_strcmp0 (udisks_block_get_id_type (data->block), "udf") == 0 &&
+-          g_str_has_prefix (udisks_drive_get_media (data->drive), "optical_dvd"))
+-        {
+-          g_mutex_lock (&data->copy_lock);
+-          data->retrieving_dvd_keys = TRUE;
+-          g_mutex_unlock (&data->copy_lock);
+-          g_idle_add (on_update_job, dialog_data_ref (data));
+-
+-          dvd_support = gdu_dvd_support_new (device_file, udisks_block_get_size (data->block));
+-
+-          g_mutex_lock (&data->copy_lock);
+-          data->retrieving_dvd_keys = FALSE;
+-          g_mutex_unlock (&data->copy_lock);
+-          g_idle_add (on_update_job, dialog_data_ref (data));
+-        }
++      fd = open (udisks_block_get_device (data->block), O_RDONLY);
+     }
+ 
+   /* Otherwise, request the fd from udisks */
+@@ -816,7 +776,6 @@ copy_thread_func (gpointer user_data)
+                                   num_bytes_to_read,
+                                   buffer,
+                                   TRUE, /* pad_with_zeroes */
+-                                  dvd_support,
+                                   data->cancellable,
+                                   &error);
+       if (num_bytes_read < 0)
+@@ -838,9 +797,6 @@ copy_thread_func (gpointer user_data)
+     }
+ 
+  out:
+-  if (dvd_support != NULL)
+-    gdu_dvd_support_free (dvd_support);
+-
+   data->end_time_usec = g_get_real_time ();
+ 
+   /* in either case, close the stream */
+diff --git a/src/disks/meson.build b/src/disks/meson.build
+index a495474..57f2e60 100644
+--- a/src/disks/meson.build
++++ b/src/disks/meson.build
+@@ -17,7 +17,6 @@ sources = files(
+   'gducrypttabdialog.c',
+   'gdudevicetreemodel.c',
+   'gdudisksettingsdialog.c',
+-  'gdudvdsupport.c',
+   'gduestimator.c',
+   'gdufilesystemdialog.c',
+   'gduformatdiskdialog.c',
+@@ -93,7 +92,6 @@ deps = [
+   libsecret_dep,
+   pwquality_dep,
+   libcanberra_dep,
+-  dvdread_dep,
+   liblzma_dep,
+   libgdu_dep,
+   m_dep
+
