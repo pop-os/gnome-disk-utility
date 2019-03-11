@@ -1,8 +1,9 @@
-gnome-disk-utility (3.31.90-2) UNRELEASED; urgency=medium
+gnome-disk-utility (3.32.0-1) UNRELEASED; urgency=medium
 
   * Drop hide-snaps.patch: this patch hasn't been needed for a while
+  * New upstream release
 
- -- Jeremy Bicha <jbicha@debian.org>  Sun, 10 Mar 2019 21:29:47 -0400
+ -- Jeremy Bicha <jbicha@debian.org>  Sun, 10 Mar 2019 21:30:23 -0400
 
 gnome-disk-utility (3.31.90-1) experimental; urgency=medium
 
