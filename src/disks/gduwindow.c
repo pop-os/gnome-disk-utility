@@ -294,7 +294,6 @@ static void on_volume_menu_item_change_passphrase (GSimpleAction *action,
                                                    GVariant      *parameter,
                                                    gpointer       user_data);
 
-#ifdef HAVE_UDISKS2_7_2
 static void on_volume_menu_item_resize (GSimpleAction *action,
                                         GVariant      *parameter,
                                         gpointer       user_data);
@@ -304,7 +303,6 @@ static void on_volume_menu_item_repair (GSimpleAction *action,
 static void on_volume_menu_item_check (GSimpleAction *action,
                                        GVariant      *parameter,
                                        gpointer       user_data);
-#endif
 
 static void on_volume_menu_item_edit_label (GSimpleAction *action,
                                             GVariant      *parameter,
@@ -359,11 +357,10 @@ static const GActionEntry actions[] = {
 	{ "edit-partition", on_volume_menu_item_edit_partition },
 	{ "edit-label", on_volume_menu_item_edit_label },
 	{ "change-passphrase", on_volume_menu_item_change_passphrase },
-#ifdef HAVE_UDISKS2_7_2
 	{ "resize", on_volume_menu_item_resize },
 	{ "check-fs", on_volume_menu_item_check },
 	{ "repair-fs", on_volume_menu_item_repair },
-#endif
+
 	{ "configure-fstab", on_volume_menu_item_configure_fstab },
 	{ "configure-crypttab", on_volume_menu_item_configure_crypttab },
 	{ "create-partition-image", on_volume_menu_item_create_volume_image },
@@ -2694,8 +2691,6 @@ update_device_page_for_block (GduWindow          *window,
         show_flags->drive_buttons |= SHOW_FLAGS_DRIVE_BUTTONS_EJECT;
     }
 
-#ifdef HAVE_UDISKS2_7_2
-
   if (partition != NULL && g_strcmp0 (usage, "") == 0 && !read_only)
     {
 
@@ -2714,8 +2709,6 @@ update_device_page_for_block (GduWindow          *window,
       if (gdu_utils_can_check (window->client, type, FALSE, NULL))
         show_flags->volume_menu |= SHOW_FLAGS_VOLUME_MENU_CHECK;
     }
-
-#endif
 
   /* Only show jobs if the volume is a partition (if it's not, we're already showing
    * the jobs in the drive section)
@@ -2957,8 +2950,6 @@ update_device_page (GduWindow      *window,
 
 /* ---------------------------------------------------------------------------------------------------- */
 
-#ifdef HAVE_UDISKS2_7_2
-
 static void
 on_volume_menu_item_resize (GSimpleAction *action,
                             GVariant      *parameter,
@@ -3080,7 +3071,7 @@ on_volume_menu_item_repair (GSimpleAction *action,
                                               _("A filesystem repair is not always possible and can cause data loss. "
                                                 "Consider backing it up first in order to use forensic recovery tools "
                                                 "that retrieve lost files. "
-                                                "Depending on the amount of data this operation takes longer time."));
+                                                "The operation may take a long time, especially if the partition contains a lot of data."));
 
   ok_button = gtk_dialog_get_widget_for_response (GTK_DIALOG (message_dialog), GTK_RESPONSE_OK);
   gtk_style_context_add_class (gtk_widget_get_style_context (ok_button), "destructive-action");
@@ -3195,7 +3186,7 @@ on_volume_menu_item_check (GSimpleAction *action,
                                                         _("Confirm Check"));
 
   gtk_message_dialog_format_secondary_markup (GTK_MESSAGE_DIALOG (message_dialog), "%s",
-                                              _("Depending on the amount of data the filesystem check takes longer time."));
+                                              _("The check may take a long time, especially if the partition contains a lot of data."));
 
   ok_button = gtk_dialog_get_widget_for_response (GTK_DIALOG (message_dialog), GTK_RESPONSE_OK);
   gtk_style_context_add_class (gtk_widget_get_style_context (ok_button), "suggested-action");
@@ -3206,8 +3197,6 @@ on_volume_menu_item_check (GSimpleAction *action,
 
   gtk_widget_destroy (message_dialog);
 }
-
-#endif
 
 /* ---------------------------------------------------------------------------------------------------- */
 

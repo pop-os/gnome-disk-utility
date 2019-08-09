@@ -26,17 +26,14 @@ sources = files(
   'gdunewdiskimagedialog.c',
   'gdupartitiondialog.c',
   'gdupasswordstrengthwidget.c',
+  'gduresizedialog.c',
   'gdurestorediskimagedialog.c',
   'gduunlockdialog.c',
   'gduvolumegrid.c',
   'gduwindow.c',
   'gduxzdecompressor.c',
-  'main.c'
+  'main.c',
 )
-
-if config_h.get('HAVE_UDISKS2_7_2')
-  sources += files('gduresizedialog.c')
-endif
 
 resource_data = files(
   'ui/about-dialog.ui',
@@ -65,15 +62,14 @@ resource_data = files(
   'ui/resize-dialog.ui',
   'ui/restore-disk-image-dialog.ui',
   'ui/smart-dialog.ui',
-  'ui/unlock-device-dialog.ui'
+  'ui/unlock-device-dialog.ui',
 )
 
 sources += gnome.compile_resources(
   'resources',
   'gnome-disks.gresource.xml',
-  source_dir: '.',
   dependencies: resource_data,
-  export: true
+  export: true,
 )
 
 enum = 'gduenumtypes'
@@ -82,28 +78,29 @@ sources += gnome.mkenums(
   enum,
   sources: enum_headers,
   c_template: enum + '.c.template',
-  h_template: enum + '.h.template'
+  h_template: enum + '.h.template',
 )
 
 deps = [
-  gmodule_dep,
-  gio_unix_dep,
-  udisk_dep,
-  gtk_dep,
-  libsecret_dep,
-  pwquality_dep,
-  libcanberra_dep,
   dvdread_dep,
-  liblzma_dep,
+  gio_unix_dep,
+  gmodule_dep,
+  libcanberra_dep,
   libgdu_dep,
-  m_dep
+  liblzma_dep,
+  libsecret_dep,
+  m_dep,
+  pwquality_dep,
 ]
 
 cflags = [
-  '-DPACKAGE_DATA_DIR="@0@"'.format(gdu_datadir),
   '-DG_LOG_DOMAIN="@0@"'.format(name),
-  '-DGNOMELOCALEDIR="@0@"'.format(gdu_localedir)
+  '-DGNOMELOCALEDIR="@0@"'.format(gdu_prefix / gdu_localedir),
 ]
+
+if enable_logind
+  deps += logind_dep
+endif
 
 executable(
   name.to_lower(),
@@ -112,5 +109,4 @@ executable(
   dependencies: deps,
   c_args: cflags,
   install: true,
-  install_dir: gdu_bindir
 )
