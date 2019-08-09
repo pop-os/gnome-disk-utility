@@ -1,3 +1,11 @@
+gnome-disk-utility (3.33.90-1) UNRELEASED; urgency=medium
+
+  * New upstream release
+  * debian/control.in:
+    - update the meson build requirement
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 09 Aug 2019 17:38:14 +0200
+
 gnome-disk-utility (3.32.1-1) experimental; urgency=medium
 
   * New upstream release
