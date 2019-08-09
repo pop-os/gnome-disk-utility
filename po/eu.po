@@ -9,8 +9,8 @@
 msgid ""
 msgstr "Project-Id-Version: gnome-disk-utility master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-disk-utility/issues\n"
-"POT-Creation-Date: 2019-03-10 20:42+0000\n"
-"PO-Revision-Date: 2019-03-16 06:00+0100\n"
+"POT-Creation-Date: 2019-04-08 19:13+0000\n"
+"PO-Revision-Date: 2019-04-27 10:00+0100\n"
 "Last-Translator: Asier Sarasua Garmendia <asier.sarasua@gmail.com>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -18,7 +18,6 @@ msgstr "Project-Id-Version: gnome-disk-utility master\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: OmegaT 4.1.5\n"
 
 #: data/gnome-disk-image-mounter.desktop.in:3 src/disk-image-mounter/main.c:48
 msgid "Disk Image Mounter"
@@ -27,12 +26,6 @@ msgstr "Disko-irudien muntatzailea"
 #: data/gnome-disk-image-mounter.desktop.in:4
 msgid "Mount Disk Images"
 msgstr "Muntatu disko-irudia"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/gnome-disk-image-mounter.desktop.in:7
-#: data/gnome-disk-image-writer.desktop.in:7
-msgid "drive-removable-media"
-msgstr "drive-removable-media"
 
 #: data/gnome-disk-image-writer.desktop.in:3
 msgid "Disk Image Writer"
@@ -80,7 +73,7 @@ msgstr "Diskoak kudeatzeko modu erraza"
 msgid "The GNOME Project"
 msgstr "GNOME proiektua"
 
-#: data/org.gnome.DiskUtility.desktop.in:3 src/disks/gduwindow.c:1128
+#: data/org.gnome.DiskUtility.desktop.in:3 src/disks/gduwindow.c:1125
 #: src/disks/ui/about-dialog.ui:11
 msgid "Disks"
 msgstr "Diskoak"
@@ -96,11 +89,6 @@ msgid ""
 "restore;benchmark;raid;luks;encryption;S.M.A.R.T.;smart;"
 msgstr "diskoa;unitatea;bolumena;disko gogorra;hdd;diskoa;CD-ROMa;DVDa;partizioa;iso;irudia;babeskopia;leheneratu;errendimenduaren proba;proba-bankua;raid;luks;zifratzea;S.M.A.R.T.;smart;"
 
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.DiskUtility.desktop.in:9
-msgid "org.gnome.DiskUtility"
-msgstr "org.gnome.DiskUtility"
-
 #: src/disk-image-mounter/main.c:46
 msgid "An error occurred"
 msgstr "Errorea gertatu da"
@@ -115,7 +103,7 @@ msgstr "Hautatu disko-irudiak muntatzeko"
 
 #: src/disk-image-mounter/main.c:85 src/disks/gducreatediskimagedialog.c:927
 #: src/disks/gducreateformatdialog.c:173 src/disks/gducreateformatdialog.c:455
-#: src/disks/gdunewdiskimagedialog.c:329 src/disks/gduwindow.c:828
+#: src/disks/gdunewdiskimagedialog.c:329 src/disks/gduwindow.c:825
 msgid "_Cancel"
 msgstr "_Utzi"
 
@@ -589,11 +577,11 @@ msgstr "Buruen alturak diskoaren gainazalaren gainetik"
 #.
 #: src/disks/gduatasmartdialog.c:421
 msgid "Spin High Current"
-msgstr "Biraketaren uneko gehienezkoa"
+msgstr "Biraketaren uneko gehienekoa"
 
 #: src/disks/gduatasmartdialog.c:422
 msgid "Amount of high current used to spin up the drive"
-msgstr "Unean erabilitako gehienezko kopurua diskoa abiarazteko"
+msgstr "Unean erabilitako gehieneko kopurua diskoa abiarazteko"
 
 #. Translators: SMART attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -726,7 +714,7 @@ msgstr "Falta den iraunkortasuna"
 msgid ""
 "Number of physical erase cycles completed on the drive as a percentage of "
 "the maximum physical erase cycles the drive supports"
-msgstr "Unitatean burututako ezabatze fisikoen kopurua unitateak onartzen duen gehienezko ezabatze fisikoen ehuneko gisa"
+msgstr "Unitatean burututako ezabatze fisikoen kopurua unitateak onartzen duen gehieneko ezabatze fisikoen ehuneko gisa"
 
 #. Translators: SMART attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -1455,7 +1443,7 @@ msgstr "UDF — Universal Disk Format, hainbat sistematako gailu aldagarrietarak
 msgid "No Filesystem"
 msgstr "Fitxategi-sistemarik ez"
 
-#: src/disks/gducreateotherpage.c:207
+#: src/disks/gducreateotherpage.c:203
 #, c-format
 msgid "The utility %s is missing."
 msgstr "%s utilitatea falta da."
@@ -1947,7 +1935,7 @@ msgstr "Ezarri desblokeorako aukerak"
 msgid "Volumes Grid"
 msgstr "Bolumenen sareta"
 
-#: src/disks/gduvolumegrid.c:566 src/disks/gduwindow.c:2057
+#: src/disks/gduvolumegrid.c:566 src/disks/gduwindow.c:2054
 msgid "No Media"
 msgstr "Euskarririk ez"
 
@@ -1989,37 +1977,37 @@ msgctxt "volume-grid"
 msgid "Free Space"
 msgstr "Ez dago nahikoa leku librerik"
 
-#: src/disks/gduwindow.c:652
+#: src/disks/gduwindow.c:649
 msgid "Error deleting loop device"
 msgstr "Errorea gailuaren begizta ezabatzean"
 
-#: src/disks/gduwindow.c:752 src/disks/gduwindow.c:795
+#: src/disks/gduwindow.c:749 src/disks/gduwindow.c:792
 msgid "Error attaching disk image"
 msgstr "Errorea disko-irudia eranstean"
 
-#: src/disks/gduwindow.c:825
+#: src/disks/gduwindow.c:822
 msgid "Select Disk Image to Attach"
 msgstr "Hautatu disko-irudiak eransteko"
 
-#: src/disks/gduwindow.c:829
+#: src/disks/gduwindow.c:826
 msgid "_Attach"
 msgstr "_Erantsi"
 
 #. set file types
 #. allow_compressed
 #. Add a RO check button that defaults to RO
-#: src/disks/gduwindow.c:836
+#: src/disks/gduwindow.c:833
 msgid "Set up _read-only loop device"
 msgstr "Konfiguratu begizta ('loop') motako gailua irakurtzeko _soilik gisa"
 
-#: src/disks/gduwindow.c:837
+#: src/disks/gduwindow.c:834
 msgid ""
 "If checked, the loop device will be read-only. This is useful if you don’t "
 "want the underlying file to be modified"
 msgstr "Gaitzen bada, begiztaren gailua irakurtzeko soilik izango da. Erabilgarria da ez baduzu bere fitxategiak aldatzerik nahi"
 
 #. Translators: Shown for a read-only device. The %s is the device file, e.g. /dev/sdb1
-#: src/disks/gduwindow.c:1700
+#: src/disks/gduwindow.c:1697
 #, c-format
 msgid "%s (Read-Only)"
 msgstr "%s (irakurtzeko soilik)"
@@ -2028,7 +2016,7 @@ msgstr "%s (irakurtzeko soilik)"
 #. *              The first %s is the estimated amount of time remaining (ex. "1 minute" or "5 minutes").
 #. *              The second %s is the average amount of bytes transfered per second (ex. "8.9 MB").
 #.
-#: src/disks/gduwindow.c:1738
+#: src/disks/gduwindow.c:1735
 #, c-format
 msgctxt "job-remaining-with-rate"
 msgid "%s remaining (%s/sec)"
@@ -2037,7 +2025,7 @@ msgstr "%s geratzen da (%s/seg)"
 #. Translators: Used for job progress.
 #. *              The first %s is the estimated amount of time remaining (ex. "1 minute" or "5 minutes").
 #.
-#: src/disks/gduwindow.c:1746
+#: src/disks/gduwindow.c:1743
 #, c-format
 msgctxt "job-remaining"
 msgid "%s remaining"
@@ -2048,7 +2036,7 @@ msgstr "%s falta"
 #. *              The second %s is the total amount of bytes to process (ex. "8.5 GB").
 #. *              The third %s is the estimated amount of time remaining including speed (if known) (ex. "1 minute remaining", "5 minutes remaining (42.3 MB/s)", "Less than a minute remaining").
 #.
-#: src/disks/gduwindow.c:1761
+#: src/disks/gduwindow.c:1758
 #, c-format
 msgid "%s of %s — %s"
 msgstr "%s / %s — %s"
@@ -2057,17 +2045,17 @@ msgstr "%s / %s — %s"
 #. *              The %s is the job description (e.g. "Erasing Device").
 #. *              The %f is the completion percentage (between 0.0 and 100.0).
 #.
-#: src/disks/gduwindow.c:1886
+#: src/disks/gduwindow.c:1883
 #, c-format
 msgid "%s: %2.1f%%"
 msgstr "%s: %%%2.1f"
 
-#: src/disks/gduwindow.c:1966 src/disks/gduwindow.c:2345
+#: src/disks/gduwindow.c:1963 src/disks/gduwindow.c:2342
 msgid "Block device is empty"
 msgstr "Blokeen gailua hutsik dago"
 
 #. Translators: Shown for unknown partitioning type. The first %s is the low-level type.
-#: src/disks/gduwindow.c:1989
+#: src/disks/gduwindow.c:1986
 #, c-format
 msgctxt "partitioning"
 msgid "Unknown (%s)"
@@ -2076,11 +2064,11 @@ msgstr "Ezezaguna (%s)"
 #. Translators: Shown in "Location" when drive is connected to another seat than where
 #. * our application is running.
 #.
-#: src/disks/gduwindow.c:2148
+#: src/disks/gduwindow.c:2145
 msgid "Connected to another seat"
 msgstr "Konektatu beste eserlekura"
 
-#: src/disks/gduwindow.c:2289
+#: src/disks/gduwindow.c:2286
 msgid "Loop device is empty"
 msgstr "Begiztaren gailua hutsik dago"
 
@@ -2090,61 +2078,61 @@ msgstr "Begiztaren gailua hutsik dago"
 #. *              The second %s is a short string with the space free (e.g. '43 GB').
 #. *              The %f is the percentage in use (e.g. 62.2).
 #.
-#: src/disks/gduwindow.c:2506
+#: src/disks/gduwindow.c:2503
 #, c-format
 msgid "%s — %s free (%.1f%% full)"
 msgstr "%s — %s libre (%%%.1f beteta)"
 
-#: src/disks/gduwindow.c:2536
+#: src/disks/gduwindow.c:2533
 msgctxt "partition type"
 msgid "Unknown"
 msgstr "Ezezaguna"
 
 #. Translators: Use for mount point '/' simply because '/' is too small to hit as a hyperlink
 #.
-#: src/disks/gduwindow.c:2574
+#: src/disks/gduwindow.c:2571
 msgctxt "volume-content-fs"
 msgid "Filesystem Root"
 msgstr "Fitxategi-sistemaren erroa"
 
 #. Translators: Shown as in-use part of 'Contents'. The first %s is the mount point, e.g. /media/foobar
-#: src/disks/gduwindow.c:2582
+#: src/disks/gduwindow.c:2579
 #, c-format
 msgctxt "volume-content-fs"
 msgid "Mounted at %s"
 msgstr "%s(e)n muntatuta"
 
 #. Translators: Shown when the device is not mounted next to the "In Use" label
-#: src/disks/gduwindow.c:2588
+#: src/disks/gduwindow.c:2585
 msgctxt "volume-content-fs"
 msgid "Not Mounted"
 msgstr "Muntatu gabe"
 
 #. Translators: Shown as in-use part of 'Contents' if the swap device is in use
-#: src/disks/gduwindow.c:2611
+#: src/disks/gduwindow.c:2608
 msgctxt "volume-content-swap"
 msgid "Active"
 msgstr "Aktibo"
 
 #. Translators: Shown as in-use part of 'Contents' if the swap device is not in use
-#: src/disks/gduwindow.c:2617
+#: src/disks/gduwindow.c:2614
 msgctxt "volume-content-swap"
 msgid "Not Active"
 msgstr "Ez aktibo"
 
 #. Translators: Shown as in-use part of 'Contents' if the encrypted device is unlocked
-#: src/disks/gduwindow.c:2632
+#: src/disks/gduwindow.c:2629
 msgctxt "volume-content-crypto"
 msgid "Unlocked"
 msgstr "Desblokeatuta"
 
 #. Translators: Shown as in-use part of 'Contents' if the encrypted device is unlocked
-#: src/disks/gduwindow.c:2638
+#: src/disks/gduwindow.c:2635
 msgctxt "volume-content-crypto"
 msgid "Locked"
 msgstr "Blokeatuta"
 
-#: src/disks/gduwindow.c:2652
+#: src/disks/gduwindow.c:2649
 msgctxt "volume-contents-msdos-ext"
 msgid "Extended Partition"
 msgstr "Hedatutako partizioa"
@@ -2153,147 +2141,150 @@ msgstr "Hedatutako partizioa"
 #. *              The first %s is the usual contents string e.g. "Swapspace" or "Ext4 (version 1.0)".
 #. *              The second %s is either "Mounted at /path/to/fs", "Not Mounted, "Active", "Not Active", "Unlocked" or "Locked".
 #.
-#: src/disks/gduwindow.c:2672
+#: src/disks/gduwindow.c:2669
 #, c-format
 msgctxt "volume-contents-combiner"
 msgid "%s — %s"
 msgstr "%s — %s"
 
 #. Translators: used to convey free space for partitions
-#: src/disks/gduwindow.c:2796
+#: src/disks/gduwindow.c:2789
 msgid "Unallocated Space"
 msgstr "Esleitu gabeko lekua"
 
-#: src/disks/gduwindow.c:2988
+#: src/disks/gduwindow.c:2979
 msgid "Error while repairing filesystem"
 msgstr "Errorea fitxategi-sistema konpontzean"
 
-#: src/disks/gduwindow.c:3015
+#: src/disks/gduwindow.c:3006
 msgid "Repair successful"
 msgstr "Ongi konpondu da"
 
-#: src/disks/gduwindow.c:3015
+#: src/disks/gduwindow.c:3006
 msgid "Repair failed"
 msgstr "Konponketak huts egin du"
 
-#: src/disks/gduwindow.c:3018
+#: src/disks/gduwindow.c:3009
 #, c-format
 msgid "Filesystem %s on %s has been repaired."
 msgstr "%s fitxategi-sistema, %s(e)n, konpondu da."
 
 #. show as result and not error message, because it's not a malfunction of GDU
-#: src/disks/gduwindow.c:3024
+#: src/disks/gduwindow.c:3015
 #, c-format
 msgid "Filesystem %s on %s could not be repaired."
 msgstr "%s fitxategi-sistema, %s(e)n, ezin izan da konpondu."
 
-#: src/disks/gduwindow.c:3077
+#: src/disks/gduwindow.c:3068
 msgid "Confirm Repair"
 msgstr "Berretsi konpontzea"
 
-#: src/disks/gduwindow.c:3080
+#: src/disks/gduwindow.c:3071
 msgid ""
 "A filesystem repair is not always possible and can cause data loss. Consider "
 "backing it up first in order to use forensic recovery tools that retrieve "
-"lost files. Depending on the amount of data this operation takes longer time."
-msgstr "Batzuetan ezin izaten da fitxategi-sistema bat konpondu, eta datuen galera gerta daiteke. Aurrenik babeskopia bat egitea komeni da berreskuratzeko forentse-tresnak erabil ahal izateko. Datuen kopuruaren arabera, eragiketa honek denbora luze bat behar lezake."
+"lost files. The operation may take a long time, especially if the partition "
+"contains a lot of data."
+msgstr "Batzuetan ezin izaten da fitxategi-sistema bat konpondu, eta datuen galera gerta daiteke. Aurrenik babeskopia bat egitea komeni da berreskuratzeko forentse-tresnak erabil ahal izateko. Eragiketak denbora luzekoa izan daiteke, batez ere partizioak datuen kopuru handia badu."
 
-#: src/disks/gduwindow.c:3108
+#: src/disks/gduwindow.c:3099
 msgid "Error while checking filesystem"
 msgstr "Errorea fitxategi-sistema egiaztatzean"
 
-#: src/disks/gduwindow.c:3135
+#: src/disks/gduwindow.c:3126
 msgid "Filesystem intact"
 msgstr "Fitxategi-sistema oso osorik"
 
-#: src/disks/gduwindow.c:3135
+#: src/disks/gduwindow.c:3126
 msgid "Filesystem damaged"
 msgstr "Fitxategi-sistema hondatuta"
 
-#: src/disks/gduwindow.c:3138
+#: src/disks/gduwindow.c:3129
 #, c-format
 msgid "Filesystem %s on %s is undamaged."
 msgstr "%2$s(e)ko %1$s fitxategi-sistemak ez dauka kalterik."
 
 #. show as result and not error message, because it's not a malfunction of GDU
-#: src/disks/gduwindow.c:3144
+#: src/disks/gduwindow.c:3135
 #, c-format
 msgid "Filesystem %s on %s needs repairing."
 msgstr "%2$s(e)ko %1$s fitxategi-sistemak konpontzea behar ditu."
 
-#: src/disks/gduwindow.c:3195
+#: src/disks/gduwindow.c:3186
 msgid "Confirm Check"
 msgstr "Berretsi egiaztaketa"
 
-#: src/disks/gduwindow.c:3198
-msgid "Depending on the amount of data the filesystem check takes longer time."
-msgstr "Fitxategi-sistemako datu kopuruaren arabera, honek luze jo lezake."
+#: src/disks/gduwindow.c:3189
+msgid ""
+"The check may take a long time, especially if the partition contains a lot "
+"of data."
+msgstr "Egiaztaketa denboran asko luzatu daiteke, batez ere partizioak datuen kopuru handia badu."
 
-#: src/disks/gduwindow.c:3437
+#: src/disks/gduwindow.c:3426
 msgid "An error occurred when trying to put the drive into standby mode"
 msgstr "Errorea gertatu da unitatea egonean moduan jartzen saiatzean"
 
-#: src/disks/gduwindow.c:3484
+#: src/disks/gduwindow.c:3473
 msgid "An error occurred when trying to wake up the drive from standby mode"
 msgstr "Errorea gertatu da unitatea egonean modutik esnatzen saiatzean"
 
-#: src/disks/gduwindow.c:3530
+#: src/disks/gduwindow.c:3519
 msgid "Error powering off drive"
 msgstr "Errorea unitatea itzaltzean"
 
 #. Translators: Heading for powering off a device with multiple drives
-#: src/disks/gduwindow.c:3582
+#: src/disks/gduwindow.c:3571
 msgid "Are you sure you want to power off the drives?"
 msgstr "Ziur zaude unitateak itzaltzea nahi dituzula?"
 
 #. Translators: Message for powering off a device with multiple drives
-#: src/disks/gduwindow.c:3584
+#: src/disks/gduwindow.c:3573
 msgid ""
 "This operation will prepare the system for the following drives to be "
 "powered down and removed."
 msgstr "Eragiketa honek sistema prestatuko du unitate hauek itzali eta kentzeko"
 
-#: src/disks/gduwindow.c:3588 src/disks/ui/drive-menu.ui:44
+#: src/disks/gduwindow.c:3577 src/disks/ui/drive-menu.ui:44
 msgid "_Power Off"
 msgstr "_Itzali"
 
-#: src/disks/gduwindow.c:3668
+#: src/disks/gduwindow.c:3657
 msgid "Error mounting filesystem"
 msgstr "Errorea fitxategi-sistema muntatzean"
 
-#: src/disks/gduwindow.c:3754
+#: src/disks/gduwindow.c:3743
 msgid "Error deleting partition"
 msgstr "Errorea partizioa ezabatzean"
 
-#: src/disks/gduwindow.c:3791
+#: src/disks/gduwindow.c:3780
 msgid "Are you sure you want to delete the partition?"
 msgstr "Ziur zaude partizioa ezabatzea nahi duzula?"
 
-#: src/disks/gduwindow.c:3792
+#: src/disks/gduwindow.c:3781
 msgid "All data on the partition will be lost"
 msgstr "Partizioan dauden datu guztiak galdu egingo dira"
 
-#: src/disks/gduwindow.c:3793
+#: src/disks/gduwindow.c:3782
 msgid "_Delete"
 msgstr "Ez_abatu"
 
-#: src/disks/gduwindow.c:3824
+#: src/disks/gduwindow.c:3813
 msgid "Error ejecting media"
 msgstr "Errorea euskarria egoztean"
 
-#: src/disks/gduwindow.c:3907
+#: src/disks/gduwindow.c:3896
 msgid "Error starting swap"
 msgstr "Errorea swap abiaraztean"
 
-#: src/disks/gduwindow.c:3944
+#: src/disks/gduwindow.c:3933
 msgid "Error stopping swap"
 msgstr "Errorea swap gelditzean"
 
-#: src/disks/gduwindow.c:3986
+#: src/disks/gduwindow.c:3975
 msgid "Error setting autoclear flag"
 msgstr "Errorea garbiketa automatikoaren bandera ezartzean"
 
-#: src/disks/gduwindow.c:4039 src/disks/gduwindow.c:4103
+#: src/disks/gduwindow.c:4028 src/disks/gduwindow.c:4092
 msgid "Error canceling job"
 msgstr "Errorea lana bertan behera uztean"
 
@@ -3556,20 +3547,20 @@ msgstr "_Leheneratu partizio-irudia..."
 msgid "_Benchmark Partition…"
 msgstr "Probatu partizioaren e_rrendimendua..."
 
-#: src/libgdu/gduutils.c:111
+#: src/libgdu/gduutils.c:107
 msgid "All Files"
 msgstr "Fitxategi guztiak"
 
-#: src/libgdu/gduutils.c:116
+#: src/libgdu/gduutils.c:112
 msgid "Disk Images (*.img, *.img.xz, *.iso)"
 msgstr "Disko-irudiak (*.img, *.img.xz, *.iso)"
 
-#: src/libgdu/gduutils.c:118
+#: src/libgdu/gduutils.c:114
 msgid "Disk Images (*.img, *.iso)"
 msgstr "Disko-irudiak (*.img, *.iso)"
 
 #. Translators: Used for number of years
-#: src/libgdu/gduutils.c:447
+#: src/libgdu/gduutils.c:443
 #, c-format
 msgid "%d year"
 msgid_plural "%d years"
@@ -3577,7 +3568,7 @@ msgstr[0] "urte %d"
 msgstr[1] "%d urte"
 
 #. Translators: Used for number of months
-#: src/libgdu/gduutils.c:454
+#: src/libgdu/gduutils.c:450
 #, c-format
 msgid "%d month"
 msgid_plural "%d months"
@@ -3585,7 +3576,7 @@ msgstr[0] "hilabete %d"
 msgstr[1] "%d hilabete"
 
 #. Translators: Used for number of days
-#: src/libgdu/gduutils.c:461
+#: src/libgdu/gduutils.c:457
 #, c-format
 msgid "%d day"
 msgid_plural "%d days"
@@ -3593,7 +3584,7 @@ msgstr[0] "egun %d"
 msgstr[1] "%d egun"
 
 #. Translators: Used for number of hours
-#: src/libgdu/gduutils.c:468
+#: src/libgdu/gduutils.c:464
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
@@ -3601,7 +3592,7 @@ msgstr[0] "ordu %d"
 msgstr[1] "%d ordu"
 
 #. Translators: Used for number of minutes
-#: src/libgdu/gduutils.c:475
+#: src/libgdu/gduutils.c:471
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
@@ -3609,7 +3600,7 @@ msgstr[0] "minutu %d"
 msgstr[1] "%d minutu"
 
 #. Translators: Used for number of seconds
-#: src/libgdu/gduutils.c:482
+#: src/libgdu/gduutils.c:478
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -3617,7 +3608,7 @@ msgstr[0] "segundo %d"
 msgstr[1] "%d segundo"
 
 #. Translators: Used for number of milli-seconds
-#: src/libgdu/gduutils.c:489
+#: src/libgdu/gduutils.c:485
 #, c-format
 msgid "%d milli-second"
 msgid_plural "%d milli-seconds"
@@ -3625,74 +3616,74 @@ msgstr[0] "milisegundo %d"
 msgstr[1] "%d milisegundo"
 
 #. Translators: Used for duration greater than one year. First %s is number of years, second %s is months, third %s is days
-#: src/libgdu/gduutils.c:553
+#: src/libgdu/gduutils.c:549
 #, c-format
 msgctxt "duration-year-to-inf"
 msgid "%s, %s and %s"
 msgstr "%s, %s eta %s"
 
 #. Translators: Used for durations less than one year but greater than one month. First %s is number of months, second %s is days
-#: src/libgdu/gduutils.c:558
+#: src/libgdu/gduutils.c:554
 #, c-format
 msgctxt "duration-months-to-year"
 msgid "%s and %s"
 msgstr "%s eta %s"
 
 #. Translators: Used for durations less than one month but greater than one day. First %s is number of days, second %s is hours
-#: src/libgdu/gduutils.c:563
+#: src/libgdu/gduutils.c:559
 #, c-format
 msgctxt "duration-day-to-month"
 msgid "%s and %s"
 msgstr "%s eta %s"
 
 #. Translators: Used for durations less than one day but greater than one hour. First %s is number of hours, second %s is minutes
-#: src/libgdu/gduutils.c:568
+#: src/libgdu/gduutils.c:564
 #, c-format
 msgctxt "duration-hour-to-day"
 msgid "%s and %s"
 msgstr "%s eta %s"
 
 #. Translators: Used for durations less than one hour but greater than one minute. First %s is number of minutes, second %s is seconds
-#: src/libgdu/gduutils.c:579
+#: src/libgdu/gduutils.c:575
 #, c-format
 msgctxt "duration-minute-to-hour"
 msgid "%s and %s"
 msgstr "%s eta %s"
 
-#: src/libgdu/gduutils.c:588
+#: src/libgdu/gduutils.c:584
 msgctxt "duration"
 msgid "Less than a minute"
 msgstr "minutu bat baino gutxiago"
 
 #. Translators: Used for durations less than one minute byte greater than one second. First %s is number of seconds
-#: src/libgdu/gduutils.c:593
+#: src/libgdu/gduutils.c:589
 #, c-format
 msgctxt "duration-second-to-minute"
 msgid "%s"
 msgstr "%s"
 
 #. Translators: Used for durations less than one second. First %s is number of milli-seconds
-#: src/libgdu/gduutils.c:599
+#: src/libgdu/gduutils.c:595
 #, c-format
 msgctxt "duration-zero-to-second"
 msgid "%s"
 msgstr "%s"
 
 #. Translators: Shown in confirmation dialogs with a list of devices that will be affected by the action
-#: src/libgdu/gduutils.c:835
+#: src/libgdu/gduutils.c:831
 msgctxt "confirmation-list-of-devices"
 msgid "Affected Devices"
 msgstr "Eragindako gailuak"
 
-#: src/libgdu/gduutils.c:1411
+#: src/libgdu/gduutils.c:1398
 msgid "Error unmounting filesystem"
 msgstr "Errorea fitxategi-sistema desmuntatzean"
 
-#: src/libgdu/gduutils.c:1431
+#: src/libgdu/gduutils.c:1418
 msgid "Error locking device"
 msgstr "Errorea gailua blokeatzean"
 
-#: src/libgdu/gduutils.c:1452
+#: src/libgdu/gduutils.c:1439
 msgid "Error disabling autoclear for loop device"
 msgstr "Errorea begizta gailuaren garbiketa automatikoa desgaitzean"
 
@@ -3714,3035 +3705,3 @@ msgctxt "notify-smart"
 msgid "Examine"
 msgstr "Aztertu"
 
-#~ msgid "gnome-disks"
-#~ msgstr "gnome-disks"
-
-#~ msgid "FAT"
-#~ msgstr "FAT"
-
-#~ msgid "Compatible with most systems"
-#~ msgstr "Sistema gehienekin bateragarria"
-
-#~ msgid "NTFS"
-#~ msgstr "NTFS"
-
-#~ msgid "Compatible with Linux systems"
-#~ msgstr "Linux sistemekin bateragarria"
-
-#~ msgid "Ext4"
-#~ msgstr "Ext4"
-
-#~ msgid "Encrypted, compatible with Linux systems"
-#~ msgstr "Enkriptatuta, Linux sistemekin bateragarria"
-
-#~ msgid "LUKS + Ext4"
-#~ msgstr "LUKS + Ext4"
-
-#~ msgid "Enter filesystem type"
-#~ msgstr "Sartu fitxategi-sistema mota"
-
-#~ msgid "Error formatting partition"
-#~ msgstr "Errorea partizioari formatua ematean"
-
-#~ msgid "Extended partition"
-#~ msgstr "Hedatutako partizioa"
-
-#~ msgid "For logical partitions"
-#~ msgstr "Partizio logikoentzako"
-
-#~ msgid "Are you sure you want to format the volume?"
-#~ msgstr "Ziur zaude bolumena formateatzea nahi duzula?"
-
-#~ msgid ""
-#~ "All data on the volume will be lost but may still be recoverable by data "
-#~ "recovery services"
-#~ msgstr ""
-#~ "Bolumeneko datu guztiak galduko diren arren, datuak berreskuratzeko "
-#~ "zerbitzuen bidez berreskura daitezke oraindik"
-
-#~ msgid ""
-#~ "All data on the volume will be overwritten and will likely not be "
-#~ "recoverable by data recovery services"
-#~ msgstr ""
-#~ "Bolumeneko datu guztiak gainidatzi egingo dira, eta datuak "
-#~ "berreskuratzeko zerbitzuen bidez ezin izango dira berreskuratu"
-
-#~| msgid "Error unmounting filesystem"
-#~ msgid "Error unmounting filesystem for resizing"
-#~ msgstr "Errorea fitxategi-sistema desmuntatzean tamainaz aldatzeko"
-
-#~ msgid "Error unlocking encrypted device"
-#~ msgstr "Errorea enkriptatutako gailua desblokeatzean"
-
-#~ msgctxt "accelerator"
-#~ msgid "F10"
-#~ msgstr "F10"
-
-#~ msgctxt "accelerator"
-#~ msgid "<Ctrl>F"
-#~ msgstr "<Ctrl>F"
-
-#~ msgctxt "accelerator"
-#~ msgid "<Ctrl>S"
-#~ msgstr "<Ctrl>S"
-
-#~ msgctxt "accelerator"
-#~ msgid "<Ctrl>E"
-#~ msgstr "<Ctrl>E"
-
-#~ msgctxt "accelerator"
-#~ msgid "<Shift>F10"
-#~ msgstr "<Shift>F10"
-
-#~ msgctxt "accelerator"
-#~ msgid "<Shift><Ctrl>F"
-#~ msgstr "<Shift><Ctrl>F"
-
-#~ msgid "Error locking encrypted device"
-#~ msgstr "Errorea enkriptatutako gailua blokeatzean"
-
-#~ msgid "_Quit"
-#~ msgstr "Irte_n"
-
-#~ msgid "C_reate"
-#~ msgstr "_Sortu"
-
-#~ msgid "Power Off…"
-#~ msgstr "Itzali…"
-
-#~ msgid "F_ilesystem"
-#~ msgstr "_Fitxategi-sistema"
-
-#~ msgid ""
-#~ "The custom filesystem type to create e.g. <i>btrfs</i>, <i>xfs</i> or "
-#~ "<i>swap</i>"
-#~ msgstr ""
-#~ "Fitxategi-sistema mota pertsonalizatua sortzeko. Adib: <i>btrfs</i>, "
-#~ "<i>xfs</i> edo <i>swap</i>"
-
-#~ msgid "The custom filesystem type to create e.g. btrfs, xfs or swap"
-#~ msgstr ""
-#~ "Fitxategi-sistema mota pertsonalizatua sortzeko. Adib: btrfs, xfs edo swap"
-
-#~ msgid ""
-#~ "The name to use for the filesystem. This is useful if you want to refer "
-#~ "to the device via a symlink in the <b>/dev/disk/by-label</b> directory"
-#~ msgstr ""
-#~ "Izena fitxategi-sisteman erabiltzeko. Erabilgarria da gailua adierazteko "
-#~ "esteka sinboliko baten bidez <b>/dev/disk/by-label</b> direktorioan "
-#~ "erabiltzea nahi baduzu"
-
-#~ msgid "ATA Secure Erase / Enhanced Secure Erase"
-#~ msgstr "ATA Ezabatze segurua / Hobetutako ezabatze segurua"
-
-#~ msgid "If Available, Slow"
-#~ msgstr "Erabilgarri badago, motela"
-
-#~ msgid "Error erasing device %s"
-#~ msgstr "Errorea gailuak ezabatzean: %s"
-
-#~ msgid "Are you sure you want to erase the disks?"
-#~ msgstr "Ziur zaude diskoak ezabatzea nahi dituzula?"
-
-#~ msgid ""
-#~ "All data on the selected disks will be lost but may still be recoverable "
-#~ "by data recovery services"
-#~ msgstr ""
-#~ "Hautatutako diskoetako datu guztiak galduko diren arren,  datuak "
-#~ "berreskuratzeko zerbitzuen bidez berreskura daitezke oraindik"
-
-#~ msgid ""
-#~ "All data on the selected disks will be overwritten and will likely not be "
-#~ "recoverable by data recovery services"
-#~ msgstr ""
-#~ "Hautatutako diskoetako datu guztiak gainidatzi egingo dira, eta datuak "
-#~ "berreskuratzeko zerbitzuen bidez ezin izango dira berreskuratu"
-
-#~ msgid "_Automatic Encryption Options"
-#~ msgstr "_Automatikoki enkriptatzeko aukerak"
-
-#~ msgid "_Automatic Mount Options"
-#~ msgstr "_Automatikoki muntatzeko aukerak"
-
-#~ msgid "Activation of this plugin"
-#~ msgstr "Plugin honen aktibazioa"
-
-#~ msgid ""
-#~ "Whether this plugin would be activated by gnome-settings-daemon or not"
-#~ msgstr "gnome-settings-daemon daemon-ak plugin hau aktibatuko duen edo ez"
-
-#~ msgid "Priority to use for this plugin"
-#~ msgstr "Lehentasuna plugin honekin erabiltzeko"
-
-#~ msgid ""
-#~ "Priority to use for this plugin in gnome-settings-daemon startup queue"
-#~ msgstr ""
-#~ "Lehentasuna plugin honekin erabiltzeko gnome-settings-daemon abioaren "
-#~ "ilaran"
-
-#~ msgid "Disks Problem Monitor"
-#~ msgstr "Diskoen arazoen monitorea"
-
-#~ msgid "Warns about problems with disks and storage devices"
-#~ msgstr "Disko eta biltegien gailuen arazoei buruz abisatzen du"
-
-#~ msgid "Show help options"
-#~ msgstr "Erakutsi laguntzako aukerak"
-
-#~ msgid "Format…"
-#~ msgstr "Formateatu…"
-
-#~ msgid "Create RAID Array"
-#~ msgstr "Sortu RAID matrizea"
-
-#~ msgid "C_reate…"
-#~ msgstr "_Sortu…"
-
-#~ msgid "RAID _Level"
-#~ msgstr "RAID _maila"
-
-#~ msgid "Usable Size"
-#~ msgstr "Tamaina erabilgarria"
-
-#~ msgid "Number of Disks"
-#~ msgstr "Disko kopurua"
-
-#~ msgid "For example, “My RAID Array” or “Backup Data”"
-#~ msgstr "Adibidez, \"Nire RAID matrizea\" edo \"Babeseko datuak\""
-
-#~ msgid "Mount the filesystem"
-#~ msgstr "Muntatu fitxategi-sistema"
-
-#~ msgid "Unmount the filesystem"
-#~ msgstr "Desmuntatu fitxategi-sistema"
-
-#~ msgid "Lock the encrypted device"
-#~ msgstr "Blokeatu enkriptatutako gailua"
-
-#~ msgid "More actions"
-#~ msgstr "Ekintza gehiago"
-
-#~ msgid "Start RAID Array"
-#~ msgstr "Abiarazi RAID matrizea"
-
-#~ msgid "Stop RAID Array"
-#~ msgstr "Gelditu RAID matrizea"
-
-#~ msgid "_Devices"
-#~ msgstr "_Gailuak"
-
-#~ msgid "Click to select multiple disks to perform operations on"
-#~ msgstr "Egin klik hainbat disko hautatzeko haien gain eragiketak lantzeko"
-
-#~ msgid "Done"
-#~ msgstr "Eginda"
-
-#~ msgid "Eject the medium in the drive"
-#~ msgstr "Egotzi euskarria unitatetik"
-
-#~ msgid "RAID Level"
-#~ msgstr "RAID maila"
-
-#~ msgid "State"
-#~ msgstr "Egoera"
-
-#~ msgid "Bitmap"
-#~ msgstr "Bit-mapa"
-
-#~ msgid "RAID Disks…"
-#~ msgstr "RAID diskoak…"
-
-#~ msgid "Start Data Scrubbing…"
-#~ msgstr "Hasi datuen arazketa egiten…"
-
-#~ msgid "Stop Data Scrubbing"
-#~ msgstr "Gelditu datuen arazketa"
-
-#~ msgid "Create RAID"
-#~ msgstr "Sortu RAIDa"
-
-#~ msgid ""
-#~ "If set, some OSes may mount or use the contents of the partition as read-"
-#~ "only instead of read-write"
-#~ msgstr ""
-#~ "Ezartzen bada, sistema eragile batzuk partizioa irakurtzeko soilik bezala "
-#~ "muntatu edo bere edukia erabiliko dute, irakurri eta idazteko modua "
-#~ "erabili ordez"
-
-#~ msgid ""
-#~ "If set, some OSes may hide the contents of the partition in their user "
-#~ "interfaces"
-#~ msgstr ""
-#~ "Ezartzen bada, sistema eragile batzuk partizioaren edukia ezkutatuko dute "
-#~ "beraien erabiltzaile-interfazeetan"
-
-#~ msgid "Do Not _Automount"
-#~ msgstr "Ez muntatu _automatikoki"
-
-#~ msgid "If set, some OSes may not automount the contents of the partition"
-#~ msgstr ""
-#~ "Ezartzen bada, sistema eragile batzuk ez dute partizioaren edukia "
-#~ "automatikoki muntatuko"
-
-#~ msgid "RAID Disks"
-#~ msgstr "RAID diskoak"
-
-#~ msgid "%d disk"
-#~ msgid_plural "%d disks"
-#~ msgstr[0] "Disko %d"
-#~ msgstr[1] "%d disko"
-
-#~ msgid "%s of %s each"
-#~ msgstr "%s / %s bakoitza"
-
-#~ msgid "Error creating RAID array"
-#~ msgstr "Errorea RAID matrizea sortzean"
-
-#~ msgid "Are you sure you want to use the disks for a RAID array?"
-#~ msgstr "Ziur zaude diskoak RAID matrizean erabiltzea nahi dituzula?"
-
-#~ msgid "Existing content on the devices will be erased"
-#~ msgstr "Gailuetako datuak ezabatu egingo dira"
-
-#~ msgid "RAID Arrays"
-#~ msgstr "RAID matrizeak"
-
-#~ msgctxt "md-raid-tree-primary"
-#~ msgid "%s RAID Array"
-#~ msgstr "%s RAID matrizea"
-
-#~ msgctxt "md-raid-tree-primary"
-#~ msgid "RAID Array"
-#~ msgstr "RAID matrizea"
-
-#~ msgctxt "md-raid-tree-secondary"
-#~ msgid "%s (%s)"
-#~ msgstr "%s (%s)"
-
-#~ msgid "%s <span size=\"smaller\">(Read-Only)</span>"
-#~ msgstr "%s <span size=\"smaller\">(irakurtzeko soilik)</span>"
-
-#~ msgid "An error occurred when removing a disk from the RAID Array"
-#~ msgstr "Errorea RAID matrizeko diskoa kentzean"
-
-#~ msgctxt "mdraid-disks"
-#~ msgid "Are you sure you want to remove the disk?"
-#~ msgstr "Ziur zaude diskoa kentzea nahi duzula?"
-
-#~ msgctxt "mdraid-disks"
-#~ msgid "Removing a disk from a RAID array may degrade it"
-#~ msgstr "RAID matrize batetik disko bat kentzean hura degrada dezake"
-
-#~ msgctxt "mdraid-disks"
-#~ msgid "_Remove"
-#~ msgstr "_Kendu"
-
-#~ msgctxt "mdraid-disks-state"
-#~ msgid "FAILED"
-#~ msgstr "HUTS EGIN DU"
-
-#~ msgctxt "mdraid-disks-state"
-#~ msgid "In Sync"
-#~ msgstr "Sinkronizatzen"
-
-#~ msgctxt "mdraid-disks-state"
-#~ msgid "Spare"
-#~ msgstr "Ordezkoa"
-
-#~ msgctxt "mdraid-disks-state"
-#~ msgid "Recovering"
-#~ msgstr "Berreskuratzen"
-
-#~ msgctxt "mdraid-disks-state"
-#~ msgid "Write-mostly"
-#~ msgstr "Gehienbat idatzita"
-
-#~ msgctxt "mdraid-disks-state"
-#~ msgid "Blocked"
-#~ msgstr "Blokeatuta"
-
-#~ msgctxt "mdraid-disks-state"
-#~ msgid "Unknown (%s)"
-#~ msgstr "Ezezaguna (%s)"
-
-#~ msgctxt "mdraid-disks"
-#~ msgid "Position"
-#~ msgstr "Posizioa"
-
-#~ msgctxt "mdraid-disks"
-#~ msgid "Disk"
-#~ msgstr "Diskoa"
-
-#~ msgctxt "mdraid-disks"
-#~ msgid "State"
-#~ msgstr "Egoera"
-
-#~ msgctxt "mdraid-disks"
-#~ msgid "Errors"
-#~ msgstr "Erroreak"
-
-#~ msgid "An error occurred when adding a disk to the RAID Array"
-#~ msgstr "Errore bat gertatu da diskoa RAID matrizeari gehitzean"
-
-#~ msgctxt "mdraid-disks"
-#~ msgid "Are you sure you want to add the disk to the array?"
-#~ msgstr "Ziur zaude diskoa matrizeari gehitzea nahi diozula?"
-
-#~ msgctxt "mdraid-disks"
-#~ msgid "All existing data on the disk will be lost"
-#~ msgstr "Diskoan dauden datu guztiak galdu egingo dira"
-
-#~ msgctxt "mdraid-disks"
-#~ msgid "_Add"
-#~ msgstr "_Gehitu"
-
-#~ msgctxt "mdraid-add"
-#~ msgid "No disks of suitable size available"
-#~ msgstr "Ez dago tamaina egokiko diskorik erabilgarri"
-
-#~ msgctxt "mdraid-add"
-#~ msgid "Select disk to add"
-#~ msgstr "Hautatu diskoa gehitzeko"
-
-#~ msgctxt "volume-grid"
-#~ msgid "%s [local to %s]"
-#~ msgstr "%s [%s-ekoa]"
-
-#~ msgctxt "accelerator"
-#~ msgid "<Ctrl>R"
-#~ msgstr "<Ctrl>R"
-
-#~ msgid "RAID array is not running"
-#~ msgstr "RAID matrizea ez da exekutatzen ari"
-
-#~ msgctxt "md-raid-window"
-#~ msgid "%s RAID Array"
-#~ msgstr "%s RAID matrizea"
-
-#~ msgctxt "md-raid-window"
-#~ msgid "RAID Array"
-#~ msgstr "RAID matrizea"
-
-#~ msgctxt "mdraid"
-#~ msgid "%s (local to %s)"
-#~ msgstr "%s (%s-ekoa)"
-
-#~ msgid "%d Disk"
-#~ msgid_plural "%d Disks"
-#~ msgstr[0] "Disko %d"
-#~ msgstr[1] "%d disko"
-
-#~ msgctxt "mdraid-disks-and-chunk-size"
-#~ msgid "%s, %s Chunk"
-#~ msgstr "%s, %s zatia"
-
-#~ msgctxt "mdraid"
-#~ msgid "%s, %s"
-#~ msgstr "%s, %s"
-
-#~ msgctxt "mdraid"
-#~ msgid "ARRAY IS DEGRADED"
-#~ msgstr "MATRIZEA DEGRADATUTA DAGO"
-
-#~ msgctxt "mdraid-degraded"
-#~ msgid "%s — %s"
-#~ msgstr "%s — %s"
-
-#~ msgctxt "mdraid-state"
-#~ msgid "Running"
-#~ msgstr "Exekutatzen"
-
-#~ msgctxt "mdraid-state"
-#~ msgid "Not running"
-#~ msgstr "Ez da exekutatzen ari"
-
-#~ msgctxt "mdraid-state"
-#~ msgid "Data Scrubbing"
-#~ msgstr "Datuen arazketa"
-
-#~ msgctxt "mdraid-state"
-#~ msgid "Data Scrubbing and Repair"
-#~ msgstr "Datuen arazketa eta konponketa"
-
-#~ msgctxt "mdraid-state"
-#~ msgid "Resyncing"
-#~ msgstr "Birsinkronizatzen"
-
-#~ msgctxt "mdraid-state"
-#~ msgid "Recovering"
-#~ msgstr "Berreskuratzen"
-
-#~ msgctxt "mdraid-state"
-#~ msgid "Frozen"
-#~ msgstr "Izoztuta"
-
-#~ msgctxt "raid-split-brain"
-#~ msgid "RAID ARRAY IS MISCONFIGURED"
-#~ msgstr "RAID MATRIZEA GAIZKI KONFIGURATUTA"
-
-#~ msgctxt "raid-split-brain"
-#~ msgid "Split-Brain"
-#~ msgstr "Garun-zatitua"
-
-#~ msgctxt "raid-split-brain"
-#~ msgid "%s (%s)"
-#~ msgstr "%s (%s)"
-
-#~ msgctxt "raid-state-progress"
-#~ msgid "%s: %s"
-#~ msgstr "%s: %s"
-
-#~ msgctxt "mdraid-sync-op"
-#~ msgid "%s remaining (%s/sec)"
-#~ msgstr "%s geratzen da (%s/seg)"
-
-#~ msgctxt "volume-contents-raid"
-#~ msgid "Go To Array"
-#~ msgstr "Joan matrizera"
-
-#~ msgctxt "volume-contents-raid"
-#~ msgid "%s — %s"
-#~ msgstr "%s — %s"
-
-#~ msgid "An error occurred when requesting data redundancy check"
-#~ msgstr "Errorea gertatu da datuen errendundantzia begiratzea eskatzean"
-
-#~ msgctxt "mdraid-scrub-dialog"
-#~ msgid "Data Scrubbing"
-#~ msgstr "Datuen arazketa"
-
-#~ msgctxt "mdraid-scrub-dialog"
-#~ msgid ""
-#~ "As storage devices can develop bad blocks at any time it is valuable to "
-#~ "regularly read all blocks on all disks in a RAID array so as to catch "
-#~ "such bad blocks early.\n"
-#~ "\n"
-#~ "The RAID array will remain operational for the duration of the operation "
-#~ "but performance will be impacted. For more information about data "
-#~ "scrubbing, see the <a href='https://raid.wiki.kernel.org/index.php/"
-#~ "RAID_Administration'>RAID Administration</a> article."
-#~ msgstr ""
-#~ "Biltegien gailuak bloke txarrak edozein unetan eduki ditzaketenez, "
-#~ "baliagarria izan ohi da RAID matrize bateko disko guztietako bloke "
-#~ "guztiak irakurtzea halako bloke txarrak garaiz atzemateko.\n"
-#~ "\n"
-#~ "RAID matrizeak funtzionatzen jarraituko du eragiketak irauten duen "
-#~ "bitartean, errendimenduan eragina izango du ordea. Datuen arazketari "
-#~ "buruz gehiago jakiteko, irakurri ingelesezko artikulu hau: <a "
-#~ "href='https://raid.wiki.kernel.org/index.php/"
-#~ "RAID_Administration'>RAIDaren administrazioa</a>"
-
-#~ msgctxt "mdraid-scrub-dialog"
-#~ msgid "_Start"
-#~ msgstr "_Hasi"
-
-#~ msgctxt "mdraid-scrub-dialog"
-#~ msgid "_Repair mismatched blocks, if possible"
-#~ msgstr "_Konpondu galdutako blokeak (ahal bada)"
-
-#~ msgid "Error starting RAID array"
-#~ msgstr "Errorea RAID matrizea abiaraztean"
-
-#~ msgid "Error stopping RAID array"
-#~ msgstr "Errorea RAID matrizea gelditzean"
-
-#~ msgid "Error setting bitmap for the RAID array"
-#~ msgstr "Errorea RAID matrizeko bitmapa ezartzean"
-
-#~ msgctxt "multi-disk-menu"
-#~ msgid "No _Devices Selected"
-#~ msgstr "Ez da _gailurik hautatu"
-
-#~ msgid "%d _Device Selected (%s)"
-#~ msgid_plural "%d _Devices Selected (%s)"
-#~ msgstr[0] "Gailu %d hautatuta (%s)"
-#~ msgstr[1] "%d gailu hautatuta (%s)"
-
-#~ msgid "RAID 0"
-#~ msgstr "RAID 0"
-
-#~ msgid "Stripe"
-#~ msgstr "Zatitua"
-
-#~ msgid "RAID 1"
-#~ msgstr "RAID 1"
-
-#~ msgid "Mirror"
-#~ msgstr "Ispilua"
-
-#~ msgid "RAID 4"
-#~ msgstr "RAID 4"
-
-#~ msgid "Dedicated Parity"
-#~ msgstr "Dedikatutako paritatea"
-
-#~ msgid "RAID 5"
-#~ msgstr "RAID 5"
-
-#~ msgid "Distributed Parity"
-#~ msgstr "Banatutako paritatea"
-
-#~ msgid "RAID 6"
-#~ msgstr "RAID 6"
-
-#~ msgid "Double Distributed Parity"
-#~ msgstr "Banatutako paritate bikoitza"
-
-#~ msgid "RAID 10"
-#~ msgstr "RAID 10"
-
-#~ msgid "Stripe of Mirrors"
-#~ msgstr "Ispilu zatituak"
-
-#~ msgid "RAID (%s)"
-#~ msgstr "RAID (%s)"
-
-#~ msgctxt "notify-mdraid"
-#~ msgid "RAID Problems Detected"
-#~ msgstr "RAID arazoak hautemanda"
-
-#~ msgctxt "notify-mdraid"
-#~ msgid "A RAID array is degraded."
-#~ msgstr "RAID matrize bat degradatuta dago."
-
-#~ msgctxt "notify-mdraid"
-#~ msgid "Examine"
-#~ msgstr "Aztertu"
-
-#~ msgctxt "benchmarking"
-#~ msgid "Error pre-reading %s bytes from offset %s"
-#~ msgstr "Errorea '%2$s' desplazamenduaren %1$s byte aurre-irakurtzean"
-
-#~ msgid "Disk Notifications"
-#~ msgstr "Diskoen jakinarazpenak"
-
-#~ msgid "Provides notifications related to disks"
-#~ msgstr "Diskoekin zerikusia duten jakinarazpenak ematen ditu"
-
-#~ msgid ""
-#~ "To prevent data corruption, wait until this has finished before removing "
-#~ "media or disconnecting the device."
-#~ msgstr ""
-#~ "Datuen hondaketa saihesteko, itxaron hau burutu arte euskarria kendu edo "
-#~ "gailua deskonektatu aurretik."
-
-#~ msgid "The device to show the dialog for"
-#~ msgstr "Erakutsiko den gailuaren elkarrizketa-koadroa"
-
-#~ msgid "text"
-#~ msgstr "testua"
-
-#~ msgid "Text to show"
-#~ msgstr "Testua erakusteko"
-
-#~ msgid "Error launching Disk Utility"
-#~ msgstr "Errorea diskoen tresna abiaraztean"
-
-#~ msgid "Device to format"
-#~ msgstr "Gailua formateatzeko"
-
-#~ msgid "DEVICE"
-#~ msgstr "GAILUA"
-
-#~ msgid "Operation was canceled"
-#~ msgstr "Eragiketa bertan behera utzi da"
-
-#~ msgid "Gnome Disk Utility formatting tool"
-#~ msgstr "Gnome-ko diskoak formateatzeko tresna"
-
-#~ msgid "Format partition %d of %s (%s)"
-#~ msgstr "Formateatu %d partizioa - %s (%s)"
-
-#~ msgid "Formatting partition %d of %s (%s)"
-#~ msgstr "%d partizioa formateatzen - %s (%s)"
-
-#~ msgid "Format %s (%s)"
-#~ msgstr "Formateatu %s (%s)"
-
-#~ msgid "Formatting %s (%s)"
-#~ msgstr "%s (%s) formateatzen"
-
-#~ msgid "Format %s Volume (%s)"
-#~ msgstr "Formateatu %s(e)tako bolumena (%s)"
-
-#~ msgid "Formatting %s Volume (%s)"
-#~ msgstr "%s(e)tako bolumena (%s) formateatzen"
-
-#~ msgid "Preparing..."
-#~ msgstr "Prestatzen..."
-
-#~ msgid "Unmounting..."
-#~ msgstr "Desmuntatzen..."
-
-#~ msgid "Unable to format '%s'"
-#~ msgstr "Ezin da '%s' formateatu"
-
-#~ msgid "Formatting..."
-#~ msgstr "Formateatzen..."
-
-#~ msgid "Cancelling..."
-#~ msgstr "Bertan behera uzten..."
-
-#~ msgid "Mounting volume..."
-#~ msgstr "Bolumena muntatzen..."
-
-#~ msgid "Error storing passphrase in keyring"
-#~ msgstr "Errorea pasahitza gako-sortan gordetzean"
-
-#~ msgid "The RAID Array to add a component to."
-#~ msgstr "RAID array-a horri osagai bat gehitzeko."
-
-#~ msgid "Add spare to %s"
-#~ msgstr "Gehitu ordezkoa %s(e)ri"
-
-#~ msgid ""
-#~ "Select a device to create a %s spare on for the RAID Array \"%s\" (%s)"
-#~ msgstr "Hautatu gailu bat %s ordezkoa sortzeko \"%s\" (%s) RAID array-an"
-
-#~ msgid "Expand %s"
-#~ msgstr "Zabaldu %s"
-
-#~ msgid ""
-#~ "Select one or more devices to use %s on for expanding the RAID Array \"%s"
-#~ "\" (%s)"
-#~ msgstr ""
-#~ "Hautatu gailu bat edo gehiago %s erabiltzeko \"%s\" (%s) RAID array-a "
-#~ "zabaltzean"
-
-#~ msgid "_Expand"
-#~ msgstr "_Zabaldu"
-
-#~ msgid "The VG to add a PV to."
-#~ msgstr "Bolumen taldea bolumen fisikoari gehitzeko."
-
-#~ msgid "Add Physical Volume to %s (%s)"
-#~ msgstr "Gehitu bolumen fisikoa honi: %s (%s)"
-
-#~ msgid "_Size:"
-#~ msgstr "_Tamaina:"
-
-#~ msgid "Value:"
-#~ msgstr "Balioa:"
-
-#~ msgid "Failing"
-#~ msgstr "Hutsegitea"
-
-#~ msgid "Warning"
-#~ msgstr "Abisua"
-
-#~ msgid ""
-#~ "The tests may take a very long time to complete depending on the speed "
-#~ "and size of the disk. You can continue using your system while the test "
-#~ "is running."
-#~ msgstr ""
-#~ "Probak denbora asko iraun dezakete, diskoaren abiadura eta tamainaren "
-#~ "arabera. Zure sistema erabiltzen jarrai dezakezu proba exekutatzen ari "
-#~ "den bitartean."
-
-#~ msgid "_Short (usually less than ten minutes)"
-#~ msgstr "_Laburra (10 minutu baino gutxiago)"
-
-#~ msgid "_Extended (usually tens of minutes)"
-#~ msgstr "_Hedatua (10 minutu inguru)"
-
-#~ msgid "C_onveyance (usually less than ten minutes)"
-#~ msgstr "_Transferentzia (10 minutu baino gutxiago)"
-
-#~ msgid "_Run Self Test"
-#~ msgstr "_Exekutatu auto-proba"
-
-#~ msgid "%s (%s) – SMART Data"
-#~ msgstr "%s (%s) - SMART datuak"
-
-#~ msgid ""
-#~ "Time since SMART data was last read – SMART data is updated every 30 "
-#~ "minutes unless the disk is sleeping"
-#~ msgstr ""
-#~ "SMART datuak irakurri ziren azken alditik igarotako denbora. SMART datuak "
-#~ "30 minuturo eguneratzen dira, diskoa lotan ez badago bederen."
-
-#~ msgid "The result of the last self-test that ran on the disk"
-#~ msgstr "Diskoan exekutatu den azken auto-probaren emaitza"
-
-#~ msgid "The amount of elapsed time the disk has been in a powered-up state"
-#~ msgstr "Diskoa piztuta egoeran igaro duen denbora kopurua"
-
-#~ msgid "Power Cycles:"
-#~ msgstr "Piztutako zikloak:"
-
-#~ msgid "The number of full disk power on/off cycles"
-#~ msgstr "Diskoa piztu/itzali ziklo osoen kopurua"
-
-#~ msgid "Temperature:"
-#~ msgstr "Tenperatura:"
-
-#~ msgid "Bad Sectors:"
-#~ msgstr "Sektore txarrak:"
-
-#~ msgid "The sum of pending and reallocated bad sectors"
-#~ msgstr "Birresleitutako eta falta diren sektore txarren batura"
-
-#~ msgid "The assessment from the disk itself whether it is about to fail"
-#~ msgstr "Disko berak duen estimazioa, noiz hutsegingo duen buruzkoa"
-
-#~ msgid "An overall assessment of the health of the disk"
-#~ msgstr "Diskoaren osasunaren estimazio orokorra"
-
-#~ msgid "_Refresh"
-#~ msgstr "_Freskatu"
-
-#~ msgid "Reads SMART Data, waking up the disk"
-#~ msgstr "SMART datuak irakurtzen ditu, diskoa esnatuz"
-
-#~ msgid "Run _Self-test"
-#~ msgstr "Exekutatu _auto-proba"
-
-#~ msgid "Test the disk surface for errors"
-#~ msgstr "Probatu diskoaren gainazala erroreak aurkitzeko"
-
-#~ msgid "Don't _warn if the disk is failing"
-#~ msgstr "_Ez abisatu diskoak hutsegiten badu"
-
-#~ msgid "Leave unchecked to get notified if the disk starts failing"
-#~ msgstr "Utzi aktibatu gabe diskoa hutsegiten hastean jakinarazteko"
-
-#~ msgid "%.1f seconds"
-#~ msgstr "%.1f segundo"
-
-#~ msgid "Failure is a sign of imminent disk failure (Pre-Fail)"
-#~ msgstr ""
-#~ "Hutsegitea berehalako diskoaren hutsegitearen adierazgarri da (Pre-Fail)"
-
-#~ msgid "Failure is a sign of old age (Old-Age)"
-#~ msgstr "Hutsegitea zahartzaroaren adierazgarri da (Old-Age)"
-
-#~ msgid "Every time data is collected (Online)"
-#~ msgstr "Datuak jasotzen diren bakoitzean (Online)"
-
-#~ msgid "Only during off-line activities (Not Online)"
-#~ msgstr "Soilik lineaz kanpoko jardueretan (Not Online)"
-
-#~ msgid ""
-#~ "Type: %s\n"
-#~ "Updates: %s\n"
-#~ "Raw: 0x%02x%02x%02x%02x%02x%02x"
-#~ msgstr ""
-#~ "Mota: %s\n"
-#~ "Eguneraketak: %s\n"
-#~ "Gordina: 0x%02x%02x%02x%02x%02x%02x"
-
-#~ msgid "SMART data never collected"
-#~ msgstr "Inoiz ez dira SMART daturik eskuratu"
-
-#~ msgid "SMART data is malformed"
-#~ msgstr "SMART datuak gaizki osatuta daude"
-
-#~ msgid "%d bad sector"
-#~ msgid_plural "%d bad sectors"
-#~ msgstr[0] "Sektore %d txarra"
-#~ msgstr[1] "%d sektore txarrak"
-
-#~ msgid "Completed OK"
-#~ msgstr "Ongi burututa"
-
-#~ msgid "Cancelled (with hard or soft reset)"
-#~ msgstr "Bertan behera utzita (berrabiarazte gogor edo bigunarekin)"
-
-#~ msgid "Not completed (a fatal error might have occurred)"
-#~ msgstr "Burutu gabe (errore larri bat gerta zitekeen)"
-
-#~ msgid "FAILED (Electrical)"
-#~ msgstr "HUTS EGIN DU (elektrikoa)"
-
-#~ msgid "FAILED (Servo)"
-#~ msgstr "HUTS EGIN DU (serboa)"
-
-#~ msgid "FAILED (Suspected of having handled damage)"
-#~ msgstr "HUTS EGIN DU (kalteak jaso dituenaren susmoa dago)"
-
-#~ msgid "This operation concerns the volume \"%s\" (%s)"
-#~ msgstr "Eragiketa hau \"%s\" (%s) bolumenari dagokio"
-
-#~ msgid "This operation concerns the drive \"%s\" (%s)"
-#~ msgstr "Eragiketa hau \"%s\" (%s) unitateari dagokio"
-
-#~ msgid "This operation concerns \"%s\" (%s)"
-#~ msgstr "Eragiketa hau honi dagokio: \"%s\" (%s)"
-
-#~ msgid "User Name"
-#~ msgstr "Erabiltzaile-izena"
-
-#~ msgid "The chosen user name"
-#~ msgstr "Aukeratutako erabiltzaile-izena"
-
-#~ msgid "Address"
-#~ msgstr "Helbidea"
-
-#~ msgid "The chosen address"
-#~ msgstr "Aukeratutako helbidea"
-
-#~ msgid "Choose Server"
-#~ msgstr "Aukeratu zerbitzaria"
-
-#~ msgid "_Browse..."
-#~ msgstr "_Arakatu..."
-
-#~ msgid "Browse servers discovered via the DNS-SD protocol"
-#~ msgstr "DNS-SD protokoloaren bidez aurkitutako zerbitzariak arakatu"
-
-#~ msgid ""
-#~ "To manage storage devices on another machine, enter the address and press "
-#~ "“Connect”. The connection will be made using the <i>Secure Shell</i> "
-#~ "protocol."
-#~ msgstr ""
-#~ "Biltegien gailuak beste ordenagailu batean kudeatzeko, sartu helbidea eta "
-#~ "sakatu \"Konektatu\" botoia. Konexioa sortuko da <i>Shell Segurua (SSH)</"
-#~ "i> protokoloa erabiliz."
-
-#~ msgid "The hostname or address to connect to"
-#~ msgstr "Ostalari-izena edo helbidea konektatzeko"
-
-#~ msgid "Server _Address:"
-#~ msgstr "Zerbitzariaren _helbidea:"
-
-#~ msgid "The user name to connect as"
-#~ msgstr "Erabiltzaile-izena konektatzeko"
-
-#~ msgid "_User Name:"
-#~ msgstr "_Erabiltzaile-izena:"
-
-#~ msgid "Maximum Logical Volume Size"
-#~ msgstr "Bolumen logikoaren gehienezko tamaina"
-
-#~ msgid "The maximum possible logical volume size"
-#~ msgstr "Bolumen logikoak eduki dezakeen gehienezko tamaina"
-
-#~ msgid "Logical Volume Size"
-#~ msgstr "Bolumen logikoaren tamaina"
-
-#~ msgid "The requested Logical Volume size"
-#~ msgstr "Eskatutako bolumen logikoaren tamaina"
-
-#~ msgid "Create Logical Volume on %s"
-#~ msgstr "Sortu bolumen logikoa hemen: %s"
-
-#~ msgid "Pool"
-#~ msgstr "Multzoa"
-
-#~ msgid "The pool of devices"
-#~ msgstr "Gailuen multzoa"
-
-#~ msgid "The selected RAID level"
-#~ msgstr "Hautatutako RAID maila"
-
-#~ msgid "The requested name for the array"
-#~ msgstr "Eskatutako izena array-arentzako"
-
-#~ msgid "The requested size of the array"
-#~ msgstr "Eskatutako tamaina array-arentzako"
-
-#~ msgid "Component Size"
-#~ msgstr "Osagaiaren tamaina"
-
-#~ msgid "The size of each component"
-#~ msgstr "Osagai bakoitzaren tamaina"
-
-#~ msgid "The requested stripe size of the array"
-#~ msgstr "Eskatutako zatiaren tamaina array-arentzako"
-
-#~ msgid "Drives"
-#~ msgstr "Unitateak"
-
-#~ msgid "Array of drives to use for the array"
-#~ msgstr "Array-an erabiliko den unitateen array-a"
-
-#~ msgid "New RAID Array"
-#~ msgstr "RAID array berria"
-
-#~ msgid "Stripe S_ize:"
-#~ msgstr "Zatiketaren _tamaina:"
-
-#~ msgid "4 KiB"
-#~ msgstr "4 KiB"
-
-#~ msgid "8 KiB"
-#~ msgstr "8 KiB"
-
-#~ msgid "16 KiB"
-#~ msgstr "16 KiB"
-
-#~ msgid "32 KiB"
-#~ msgstr "32 KiB"
-
-#~ msgid "64 KiB"
-#~ msgstr "64 KiB"
-
-#~ msgid "128 KiB"
-#~ msgstr "128 KiB"
-
-#~ msgid "256 KiB"
-#~ msgstr "256 KiB"
-
-#~ msgid "512 KiB"
-#~ msgstr "512 KiB"
-
-#~ msgid "1 MiB"
-#~ msgstr "1 MiB"
-
-#~ msgid "Array _Size:"
-#~ msgstr "Array-_tamaina:"
-
-#~ msgid "Use entire disks instead of _partitions"
-#~ msgstr "Erabili disko osoak _partizioen ordez"
-
-#~ msgid ""
-#~ "If checked, the entirety of each selected disk will be used for the RAID "
-#~ "array. Otherwise partitions will be created."
-#~ msgstr ""
-#~ "Aktibatzen bada, hautatutako disko bakoitz osoa erabiliko da RAID array-"
-#~ "an. Bestela, partizioak sortuko dira."
-
-#~ msgid "Insufficient number of disks to create a %s array."
-#~ msgstr "Ez dago nahikoa diskorik %s array-a sortzeko."
-
-#~ msgid "To create a %s array, select a disk."
-#~ msgid_plural "To create a %s array, select %d disks."
-#~ msgstr[0] "%s array bat sortzeko, hautatu disko bat."
-#~ msgstr[1] "%s array bat sortzeko, hautatu %d disko."
-
-#~ msgid "To create a %s array, select one more disk."
-#~ msgid_plural "To create a %s array, select %d more disks."
-#~ msgstr[0] "%s array bat sortzeko, hautatu disko bat gehiago."
-#~ msgstr[1] "%s array bat sortzeko, hautatu %d disko gehiago."
-
-#~ msgid "To create a %s %s array on %d disks, press \"Create\""
-#~ msgstr ""
-#~ "%3$d diskotan %1$s tamainako %2$s array bat sortzeko, egin klik \"Sortu\" "
-#~ "botoian"
-
-#~ msgid "Maximum Partition Size"
-#~ msgstr "Partizioaren gehienezko tamaina"
-
-#~ msgid "The maximum possible partition size"
-#~ msgstr "Partizioak eduki dezakeen gehienezko tamaina"
-
-#~ msgid "Flags for the widget"
-#~ msgstr "Trepetaren banderak"
-
-#~ msgid "Array of selected drives"
-#~ msgstr "Hautatutako unitateen array-a"
-
-#~ msgid "Largest Segment For Selected"
-#~ msgstr "Hautapenaren segmentu handiena"
-
-#~ msgid "The largest free segment for the selected drives"
-#~ msgstr "Hautatutako unitateen libre dagoen segmenturik handiena"
-
-#~ msgid "Largest Segment For All"
-#~ msgstr "Guztietako segmentu handiena"
-
-#~ msgid "The largest free segment for all the drives"
-#~ msgstr "Unitate guztietako libre dagoen segmenturik handiena"
-
-#~ msgid "The size to use in the details header"
-#~ msgstr "Tamaina xehetasunen goiburuan erabiltzeko"
-
-#~ msgid "Cannot select multipath component"
-#~ msgstr "Ezin da bide-izen anitzeko osagairik hautatu"
-
-#~ msgid ""
-#~ "Insufficient space: %s is needed but largest contiguous free block is %s."
-#~ msgstr ""
-#~ "Lekurik ez: %s. behar da, baina jarraian bloke libre handiena %s da."
-
-#~ msgid ""
-#~ "The disk will be partitioned and a %s partition will be created. "
-#~ "Afterwards no space will be available."
-#~ msgstr ""
-#~ "Diskoa zatitu egingo da eta %s-eko partizioa sortuko da. Ondoren, ez da "
-#~ "leku librerik egongo erabilgarri."
-
-#~ msgid ""
-#~ "The disk will be partitioned and a %s partition will be created. "
-#~ "Afterwards %s will be available."
-#~ msgstr ""
-#~ "Diskoa zatitu egingo da eta %s-eko partizioa sortuko da. Ondoren, %s "
-#~ "egongo dira erabilgarri."
-
-#~ msgid ""
-#~ "A %s partition will be created. Afterwards no space will be available."
-#~ msgstr ""
-#~ "%s(e)ko partizioa sortuko da. Ondoren, ez da leku librerik egongo "
-#~ "erabilgarri."
-
-#~ msgid "A %s volume will be created. Afterwards no space will be available."
-#~ msgstr ""
-#~ "%s(e)ko bolumena sortuko da. Ondoren, ez da leku librerik egongo "
-#~ "erabilgarri."
-
-#~ msgid "A %s partition will be created. Afterwards %s will be available."
-#~ msgstr "%s(e)ko partizioa sortuko da. Ondoren, %s egongo dira erabilgarri."
-
-#~ msgid "A %s volume will be created. Afterwards %s will be available."
-#~ msgstr "%s(e)ko bolumena sortuko da. Ondoren, %s egongo dira erabilgarri."
-
-#~ msgid "%s available for use"
-#~ msgstr "%s erabilgarri dago"
-
-#~ msgid "The disk has no partitions. %s available for use"
-#~ msgstr "Diskoak ez du partiziorik. %s erabilgarri dago"
-
-#~ msgid "The disk has %d partition"
-#~ msgid_plural "The disk has %d partitions"
-#~ msgstr[0] "Diskoak partizio %d du"
-#~ msgstr[1] "Diskoak %d partizio ditu"
-
-#~ msgid "%s. Largest contiguous free block is %s"
-#~ msgstr "%s. Jarraian bloke libre handiena %s da"
-
-#~ msgid "Details"
-#~ msgstr "Xehetasunak"
-
-#~ msgid "Are you sure you want to start a read/write benchmark?"
-#~ msgstr ""
-#~ "Ziur zaude irakurketa/idazketaren proba-banku bat hastea nahi duzula?"
-
-#~ msgid "%s (%s) – Benchmark"
-#~ msgstr "%s (%s) – Proba-bankua"
-
-#~ msgid "Minimum Read Rate:"
-#~ msgstr "Gutxieneko irakurketa-emaria:"
-
-#~ msgid "Minimum Write Rate:"
-#~ msgstr "Gutxieneko idazketa-emaria:"
-
-#~ msgid "Maximum Read Rate:"
-#~ msgstr "Gehienezko irakurketa-emaria:"
-
-#~ msgid "Maximum Write Rate:"
-#~ msgstr "Gehienezko idazketa-emaria:"
-
-#~ msgid "Start _Read-Only Benchmark"
-#~ msgstr "Hasi _irakurketaren proba-bankua"
-
-#~ msgid "Measure read rate and access time"
-#~ msgstr "Neurtu irakurketa-emaria eta atzipen-denbora"
-
-#~ msgid "Start Read/_Write Benchmark"
-#~ msgstr "Hasi irakurketa/i_dazketaren proba-bankua"
-
-#~ msgid "Measure read rate, write rate and access time"
-#~ msgstr "Neurtu irakurketa-emaria, idazketa-emaria eta atzipen-denbora"
-
-#~ msgid "Cancels the currently running benchmark"
-#~ msgstr "Bertan behera utzi unean exekutatzen ari den proba"
-
-#~ msgid "Edit %s"
-#~ msgstr "Editatu %s"
-
-#~ msgid "Missing Physical Volume"
-#~ msgstr "Bolumen fisikoa falta da"
-
-#~ msgid "Edit PVs on %s (%s)"
-#~ msgstr "Editatu bol. fisikoa %s(e)n (%s)"
-
-#~ msgid "Physical _Volumes"
-#~ msgstr "Bolumen _fisikoak"
-
-#~ msgid "Physical Volume"
-#~ msgstr "Bolumen fisikoak"
-
-#~ msgid "Capacity"
-#~ msgstr "Edukiera"
-
-#~ msgid "Unallocated"
-#~ msgstr "Esleitu gabea"
-
-#~ msgid "SMART Status:"
-#~ msgstr "SMARTen egoera:"
-
-#~ msgid "Device:"
-#~ msgstr "Gailua:"
-
-#~ msgid "_New Physical Volume"
-#~ msgstr "Bolumen fisiko _berria"
-
-#~ msgid "Add a new PV to the VG"
-#~ msgstr "Gehitu bol. fisikoa bol. taldeari"
-
-#~ msgid "_Remove Physical Volume"
-#~ msgstr "_Kendu bolumen fisikoa"
-
-#~ msgid "Remove the PV from the VG"
-#~ msgstr "Kendu bol. fisikoa bol. taldetik"
-
-#~ msgid "Not Supported"
-#~ msgstr "Ez dago onartuta"
-
-#~ msgid "Edit components on %s (%s)"
-#~ msgstr "Editatu osagaiak %s(e)n (%s)"
-
-#~ msgid "Component"
-#~ msgstr "Osagaia"
-
-#~ msgid "Position:"
-#~ msgstr "Posizioa:"
-
-#~ msgid "State:"
-#~ msgstr "Egoera:"
-
-#~ msgid "Add _Spare"
-#~ msgstr "Gehitu _ordezkoa"
-
-#~ msgid "Add a spare to the array"
-#~ msgstr "Gehitu ordezko bat array-ari"
-
-#~ msgid "_Expand Array"
-#~ msgstr "_Zabaldu array-a"
-
-#~ msgid "Increase the capacity of the array"
-#~ msgstr "Handiagotu array-aren edukiera"
-
-#~ msgid "_Attach Component"
-#~ msgstr "_Erantsi osagaia"
-
-#~ msgid "Attach the component to the array"
-#~ msgstr "Erantsi osagaia array-ari"
-
-#~ msgid "_Remove Component"
-#~ msgstr "_Kendu osagaia"
-
-#~ msgid "Remove the component from the array"
-#~ msgstr "Kendu osagaia array-tik"
-
-#~ msgid "Part_ition Label:"
-#~ msgstr "Partizioaren _etiketa:"
-
-#~ msgid "Ty_pe:"
-#~ msgstr "_Mota:"
-
-#~ msgid "The operation was canceled"
-#~ msgstr "Eragiketa bertan behera utzi da"
-
-#~ msgid "The daemon is being inhibited"
-#~ msgstr "Daemon-a galarazten dago"
-
-#~ msgid "An invalid option was passed"
-#~ msgstr "Aukera baliogabe bat eman zaio"
-
-#~ msgid "The operation is not supported"
-#~ msgstr "Eragiketa ez dago onartuta"
-
-#~ msgid "Getting ATA SMART data would wake up the device"
-#~ msgstr "ATA SMART datuak lortzean gailua esna daiteke"
-
-#~ msgid "Permission denied"
-#~ msgstr "Baimena ukatuta"
-
-#~ msgid "Filesystem driver not installed"
-#~ msgstr "Fitxategi-sistemaren kontrolatzailea ez dago instalatuta"
-
-#~ msgid "Unknown error"
-#~ msgstr "Errore ezezaguna"
-
-#~ msgid "An error occurred while performing an operation on \"%s\" (%s): %s"
-#~ msgstr "Errorea gertatu da eragiketa bat lantzean \"%s\"(e)n (%s): %s"
-
-#~ msgid "An error occurred: %s"
-#~ msgstr "Errore bat gertatu da: %s"
-
-#~ msgid "_Details"
-#~ msgstr "_Xehetasunak"
-
-#~ msgid "Flags specifying the behavior of the dialog"
-#~ msgstr "Elkarrizketa-koadroaren portaera zehazten duten banderak"
-
-#~ msgid "The requested filesystem label"
-#~ msgstr "Eskatutako fitxategi-sistemaren etiketa"
-
-#~ msgid "Filesystem options"
-#~ msgstr "Fitxategi-sistemaren aukerak"
-
-#~ msgid "Whether the volume should be encrypted"
-#~ msgstr "Bolumena enkriptatu behar den edo ez"
-
-#~ msgid "Take Ownership"
-#~ msgstr "Hartu jabetza"
-
-#~ msgid "Whether the filesystem should be owned by the user"
-#~ msgstr "Fitxategi-sistemaren jabetza erabiltzaileak hartu dezakeen edo ez"
-
-#~ msgid "Affirmative Button Mnemonic"
-#~ msgstr "Baiezko botoi mnemoteknikoa"
-
-#~ msgid "The mnemonic label for the affirmative button"
-#~ msgstr "Baiezko botoiaren etiketa mnemoteknikoa"
-
-#~ msgid "Disk _Utility"
-#~ msgstr "Diskoen _tresna"
-
-#~ msgid "Use Disk Utility to format volume"
-#~ msgstr "Erabili 'Diskoen tresna' bolumenari formatu emateko"
-
-#~ msgid "Compatible with Linux (ext4)"
-#~ msgstr "Linux-ekin bateragarria (ext4)"
-
-#~ msgid "T_ake ownership of filesystem"
-#~ msgstr "_Hartu fitxategi-sistemaren jabetza"
-
-#~ msgid ""
-#~ "The selected file system has a concept of file ownership. If checked, the "
-#~ "created file system will be owned by you. If not checked, only the super "
-#~ "user can access the file system."
-#~ msgstr ""
-#~ "Hautatutako fitxategi-sistema fitxategiaren jabetzaren kontzeptua dauka. "
-#~ "Aktibatzen bada, sortutako fitxategi-sistemaren jabea zu zeu izango zara. "
-#~ "Ez bada aktibatzen, supererabiltzaileak soilik atzi dezake fitxategi-"
-#~ "sistema."
-
-#~ msgid "_Encrypt underlying device"
-#~ msgstr "_Enkriptatu azpiko gailua"
-
-#~ msgid ""
-#~ "Encryption protects your data, requiring a passphrase to be entered "
-#~ "before the file system can be used. May decrease performance and may not "
-#~ "be compatible if you use the media on other operating systems."
-#~ msgstr ""
-#~ "Enkriptatzeak zure datuak babesten ditu, pasaesaldi bat sartzea eskatuz "
-#~ "fitxategi-sistema erabili aurretik. Errendimendua gutxiagotu dezake eta "
-#~ "ez da bateragarria izango euskarria beste sistema eragileetan erabiltzen "
-#~ "baduzu."
-
-#~ msgid "uid: %d  pid: %d  program: %s"
-#~ msgstr "uid: %d  pid: %d  programa: %s"
-
-#~ msgid "pid: %d  program: %s"
-#~ msgstr "pid: %d  programa: %s"
-
-#~ msgid "Cannot unmount volume"
-#~ msgstr "Ezin da bolumena desmuntatu"
-
-#~ msgid ""
-#~ "One or more applications are using the volume. Quit the applications, and "
-#~ "then try unmounting again."
-#~ msgstr ""
-#~ "Aplikazio bat, edo gehiago, bolumena erabiltzen ari da. Irten "
-#~ "aplikaziotik eta saiatu berriro desmuntatzen."
-
-#~ msgid "Passphrases do not differ"
-#~ msgstr "Pasaesaldiak ez dira desberdinak"
-
-#~ msgid "Passphrase can't be empty"
-#~ msgstr "Pasaesaldia ezin da hutsik egon"
-
-#~ msgid "Cr_eate"
-#~ msgstr "_Sortu"
-
-#~ msgid "To create an encrypted device, choose a passphrase to protect it"
-#~ msgstr ""
-#~ "Enkriptatutako gailua sortzeko, aukeratu pasaesaldi bat hura babesteko"
-
-#~ msgid ""
-#~ "Data on this device is stored in an encrypted form protected by a "
-#~ "passphrase"
-#~ msgstr ""
-#~ "Gailu honetako datuak pasaesaldi batekin babestutako enkriptatutako "
-#~ "moduan gordeta daude"
-
-#~ msgid ""
-#~ "Data on this device will be stored in an encrypted form protected by a "
-#~ "passphrase."
-#~ msgstr ""
-#~ "Gailu honetako datuak pasaesaldi batekin babestutako enkriptatutako "
-#~ "moduan gorde egingo dira."
-
-#~ msgid ""
-#~ "Data on this device is stored in an encrypted form protected by a "
-#~ "passphrase."
-#~ msgstr ""
-#~ "Gailu honetako datuak pasaesaldi batekin babestutako enkriptatutako "
-#~ "moduan gordeta daude."
-
-#~ msgid ""
-#~ "To make the data available for use, enter the passphrase for the device."
-#~ msgstr "Datuak erabilgarri izateko, sartu gailuaren pasaesaldia."
-
-#~ msgid "Incorrect Passphrase. Try again."
-#~ msgstr "Okerreko pasaesaldia. Saiatu berriro."
-
-#~ msgid "_Verify Passphrase:"
-#~ msgstr "_Egiaztatu pasaesaldia:"
-
-#~ msgid "_Forget passphrase immediately"
-#~ msgstr "Gogoratu pasaesaldia _berehala"
-
-#~ msgid "Remember passphrase until you _log out"
-#~ msgstr "Gogoratu pasaesaldia saioa _amaitu arte"
-
-#~ msgid "_Remember forever"
-#~ msgstr "_Gogoratu beti"
-
-#~ msgid "LUKS Passphrase for UUID %s"
-#~ msgstr "LUKS pasaesaldia %s UUIDarentzako"
-
-#~ msgid "Empty (don't create a file system)"
-#~ msgstr "Hutsa (ez sortu fitxategi-sistemarik)"
-
-#~ msgid "Master Boot Record"
-#~ msgstr "Abioko Erregistro Maisua (MBR)"
-
-#~ msgid "GUID Partition Table"
-#~ msgstr "GUID partizio-taula"
-
-#~ msgid "Apple Partition Map"
-#~ msgstr "Apple-ren partizio-mapa"
-
-#~ msgid "Partitioning Scheme"
-#~ msgstr "Partizio-eskema"
-
-#~ msgid "The selected partitioning scheme"
-#~ msgstr "Hautatutako partizio-eskema"
-
-#~ msgid "_Scheme:"
-#~ msgstr "_Eskema:"
-
-#~ msgid "The currently selected size"
-#~ msgstr "Unean hautatutako tamaina"
-
-#~ msgid "The minimum size that can be selected"
-#~ msgstr "Hauta daitekeen gutxieneko tamaina"
-
-#~ msgid "Maximum Size"
-#~ msgstr "Gehienezko tamaina"
-
-#~ msgid "The maximum size that can be selected"
-#~ msgstr "Hauta daitekeen gehienezko tamaina"
-
-#~ msgid "Drive to show volumes for"
-#~ msgstr "Unitatea (haren bolumenak erakusteko)"
-
-#~ msgid "No Media Detected"
-#~ msgstr "Ez da euskarririk detektatu"
-
-#~ msgid "Encrypted"
-#~ msgstr "Enkriptatuta"
-
-#~ msgid "RAID Component"
-#~ msgstr "RAID osagaia"
-
-#~ msgid "Free"
-#~ msgstr "Libre"
-
-#~ msgid "_Format..."
-#~ msgstr "_Formateatu..."
-
-#~ msgid "Create new filesystem on the selected device"
-#~ msgstr "Sortu fitxategi-sistema berria hautatutako gailuan"
-
-#~ msgid "CompactFlash"
-#~ msgstr "CompactFlash"
-
-#~ msgid "MemoryStick"
-#~ msgstr "MemoryStick"
-
-#~ msgid "SmartMedia"
-#~ msgstr "SmartMedia"
-
-#~ msgid "SecureDigital"
-#~ msgstr "SecureDigital"
-
-#~ msgid "SD High Capacity"
-#~ msgstr "SD edukiera altukoa"
-
-#~ msgid "Floppy"
-#~ msgstr "Disketea"
-
-#~ msgid "Zip"
-#~ msgstr "Zip"
-
-#~ msgid "Jaz"
-#~ msgstr "Jaz"
-
-#~ msgid "Flash"
-#~ msgstr "Flash"
-
-#~ msgid "CD"
-#~ msgstr "CDa"
-
-#~ msgid "DVD"
-#~ msgstr "DVDa"
-
-#~ msgid "Blu-Ray"
-#~ msgstr "Blu-Ray"
-
-#~ msgid "HDDVD"
-#~ msgstr "HDDVD"
-
-#~ msgid "%s %s Drive"
-#~ msgstr "%s %s unitatea"
-
-#~ msgid "%s Hard Disk"
-#~ msgstr "%s disko gogorra"
-
-#~ msgid "%s Solid-State Disk"
-#~ msgstr "%s egoera solidoko diskoa (SSD)"
-
-#~ msgid "Solid-State Disk"
-#~ msgstr "Solid-State Diskoa"
-
-#~ msgid "MBR Partition Table"
-#~ msgstr "MBR partizio-taula"
-
-#~ msgid "Apple Partition Table"
-#~ msgstr "Apple partizio-taula"
-
-#~ msgid "Not Partitioned"
-#~ msgstr "Partiziorik gabea"
-
-#~ msgid "SAS Expander"
-#~ msgstr "SAS zabaltzailea"
-
-#~ msgid "PATA Host Adapter"
-#~ msgstr "PATA ostalari-moldagailua"
-
-#~ msgid "SATA Host Adapter"
-#~ msgstr "SATA ostalari-moldagailua"
-
-#~ msgid "ATA Host Adapter"
-#~ msgstr "ATA ostalari-moldagailua"
-
-#~ msgid "SAS Host Adapter"
-#~ msgstr "SAS ostalari-moldagailua"
-
-#~ msgid "SCSI Host Adapter"
-#~ msgstr "SCSI ostalari-moldagailua"
-
-#~ msgid "Host Adapter"
-#~ msgstr "Ostalari-moldagailua"
-
-#~ msgid "Logical Volume"
-#~ msgstr "Bolumen logikoa"
-
-#~ msgid "LVM2 Logical Volume"
-#~ msgstr "LVM2 bolumen logikoa"
-
-#~ msgid "%s LVM2 Volume Group"
-#~ msgstr "%s LVM2 bolumen taldea"
-
-#~ msgid "LVM2 Volume Group"
-#~ msgstr "LVM2 bolumen taldea"
-
-#~ msgid "%s Free"
-#~ msgstr "%s libre"
-
-#~ msgid "LVM2 VG Unallocated Space"
-#~ msgstr "LVM2 bol. taldea, esleitu gabeko lekua"
-
-#~ msgid "%s %s Array"
-#~ msgstr "%s %s array-a"
-
-#~ msgid "%s Array"
-#~ msgstr "%s array-a"
-
-#~ msgid "RAID device %s"
-#~ msgstr "%s RAID gailua"
-
-#~ msgid "Local Storage"
-#~ msgstr "Biltegi lokala"
-
-#~ msgid "Storage on %s"
-#~ msgstr "Biltegia %s(e)n"
-
-#~ msgid "Multipath Devices"
-#~ msgstr "Bide-izen anitzeko gailuak"
-
-#~ msgid "Drives with multiple I/O paths"
-#~ msgstr "S/I-rako hainbat bide-izen dituzten unitateak"
-
-#~ msgid "RAID, LVM and other logical drives"
-#~ msgstr "RAID, LVM eta beste unitate logikoak"
-
-#~ msgid "Peripheral Devices"
-#~ msgstr "Gailu periferikoak"
-
-#~ msgid "USB, FireWire and other peripherals"
-#~ msgstr "USB, FireWire eta beste periferikoak"
-
-#~ msgid "Error enumerating adapters: %s"
-#~ msgstr "Errorea moldagailuak zenbatzean: %s"
-
-#~ msgid "Error enumerating ports: %s"
-#~ msgstr "Errorea atakak zenbatzean: %s"
-
-#~ msgid "Error listening to address `localhost:%d': %s: %s\n"
-#~ msgstr "Errorea 'localhost:%d' helbidea entzutean: %s: %s\n"
-
-#~ msgid ""
-#~ "Error creating a local TCP server, tried binding to ports 9000-10000 on "
-#~ "localhost"
-#~ msgstr ""
-#~ "Errorea TCP zerbitzari lokala sortzean, 9000 eta 10000 arteko ataketara "
-#~ "esleitzea saiatu da ostalari lokalean"
-
-#~ msgid "Error setting auth mechanisms on local DBusServer\n"
-#~ msgstr ""
-#~ "Errorea autentifikazioaren mekanismoa ezartzean DBusServer lokalean\n"
-
-#~ msgid "Unable to parse command-line `%s' (Malformed address?): %s"
-#~ msgstr ""
-#~ "Ezin da '%s' komando-lerroa analizatu (gaizki osatutako helbidea?): %s"
-
-#~ msgid "Unable to spawn ssh program: %s"
-#~ msgstr "Ezin da ssh programa abiarazi: %s"
-
-#~ msgid "Error reading stderr output: %s"
-#~ msgstr "Errorea stderr-en irteera irakurtzean: %s"
-
-#~ msgid "Error reading stderr output: No content"
-#~ msgstr "Errorea stderr-en irteera irakurtzean: edukirik ez"
-
-#~ msgid "Error logging in"
-#~ msgstr "Errorea saioa hastean"
-
-#~ msgid ""
-#~ "Unexpected stderr output - expected `udisks-tcp-bridge: Waiting for "
-#~ "secret' but got `%s'"
-#~ msgstr ""
-#~ "Ustekabeko stderr-ren irteera - 'udisks-tcp-bridge: Waiting for secret' "
-#~ "espero zen, baina '%s' lortu da"
-
-#~ msgid "Error passing authorization secret: %s"
-#~ msgstr "Errorea autorizazioaren ezkutukoa analizatzean: %s"
-
-#~ msgid ""
-#~ "Unexpected stderr output - expected `udisks-tcp-bridge: Attempting to "
-#~ "connect to port %d' but got `%s'"
-#~ msgstr ""
-#~ "Ustekabeko stderr-ren irteera  - 'udisks-tcp-bridge: Attempting to "
-#~ "connect to port %d' espero zen, baina '%s' lortu da"
-
-#~ msgid "The udisks-tcp-bridge program failed to prove it was authorized: %s"
-#~ msgstr ""
-#~ "udisks-tcp-bridge programak huts egin du autorizazio zuela frogatzean: %s"
-
-#~ msgid "The udisks-tcp-bridge program failed to prove it was authorized"
-#~ msgstr ""
-#~ "udisks-tcp-bridge programak huts egin du autorizazioa zuela frogatzean"
-
-#~ msgid "FAT (12-bit version)"
-#~ msgstr "FAT (12-bit bertsioa)"
-
-#~ msgid "FAT (16-bit version)"
-#~ msgstr "FAT (16-bit bertsioa)"
-
-#~ msgid "FAT (32-bit version)"
-#~ msgstr "FAT (32-bit bertsioa)"
-
-#~ msgid "NTFS (version %s)"
-#~ msgstr "NTFS (%s bertsioa)"
-
-#~ msgid "HFS"
-#~ msgstr "HFS"
-
-#~ msgid "HFS+"
-#~ msgstr "HFS+"
-
-#~ msgid "Linux Unified Key Setup"
-#~ msgstr "Linux Unified Key Setup"
-
-#~ msgid "LUKS"
-#~ msgstr "LUKS"
-
-#~ msgid "Ext2 (version %s)"
-#~ msgstr "Ext2 (%s bertsioa)"
-
-#~ msgid "Ext2"
-#~ msgstr "Ext2"
-
-#~ msgid "ext2"
-#~ msgstr "ext2"
-
-#~ msgid "Ext3 (version %s)"
-#~ msgstr "Ext3 (%s bertsioa)"
-
-#~ msgid "Ext3"
-#~ msgstr "Ext3"
-
-#~ msgid "ext3"
-#~ msgstr "ext3"
-
-#~ msgid "Journal for Ext3 (version %s)"
-#~ msgstr "Ext3-ren egunkaria (%s bertsioa)"
-
-#~ msgid "Journal for Ext3"
-#~ msgstr "Ext3-ren egunkaria"
-
-#~ msgid "jbd"
-#~ msgstr "jbd"
-
-#~ msgid "Ext4 (version %s)"
-#~ msgstr "Ext4 (%s bertsioa)"
-
-#~ msgid "ext4"
-#~ msgstr "ext4"
-
-#~ msgid "XFS (version %s)"
-#~ msgstr "XFS (%s bertsioa)"
-
-#~ msgid "XFS"
-#~ msgstr "XFS"
-
-#~ msgid "xfs"
-#~ msgstr "xfs"
-
-#~ msgid "ReiserFS (version %s)"
-#~ msgstr "ReiserFS (%s bertsioa)"
-
-#~ msgid "ReiserFS"
-#~ msgstr "ReiserFS"
-
-#~ msgid "reiserfs"
-#~ msgstr "reiserfs"
-
-#~ msgid "ISO 9660"
-#~ msgstr "ISO 9660"
-
-#~ msgid "iso9660"
-#~ msgstr "iso9660"
-
-#~ msgid "Universal Disk Format"
-#~ msgstr "UDF (Diskoen Formatu Unibertsala)"
-
-#~ msgid "udf"
-#~ msgstr "udf"
-
-#~ msgid "Swap Space"
-#~ msgstr "Swap lekua"
-
-#~ msgid "swap"
-#~ msgstr "swap"
-
-#~ msgid "LVM2 Physical Volume (version %s)"
-#~ msgstr "LVM2 bolumen fisikoa (%s bertsioa)"
-
-#~ msgid "LVM2 Physical Volume"
-#~ msgstr "LVM2 bolumen fisikoa"
-
-#~ msgid "lvm2_pv"
-#~ msgstr "lvm2_bf"
-
-#~ msgid "RAID Component (version %s)"
-#~ msgstr "RAID osagaia (%s bertsioa)"
-
-#~ msgid "raid"
-#~ msgstr "raid"
-
-#~ msgid "Minix"
-#~ msgstr "Minix"
-
-#~ msgid "minix"
-#~ msgstr "minix"
-
-#~ msgid "Creating LUKS Device"
-#~ msgstr "LUKS gailua sortzen"
-
-#~ msgid "Unlocking LUKS Device"
-#~ msgstr "LUKS gailua desblokeatzen"
-
-#~ msgid "Locking LUKS Device"
-#~ msgstr "LUKS gailua blokeatzen"
-
-#~ msgid "Creating Partition Table"
-#~ msgstr "Partizio-taula sortzen"
-
-#~ msgid "Creating Partition"
-#~ msgstr "Partizioa sortzen"
-
-#~ msgid "Modifying Partition"
-#~ msgstr "Partizioa eraldatzen"
-
-#~ msgid "Setting Label for Device"
-#~ msgstr "Gailuaren etiketa ezartzen"
-
-#~ msgid "Changing Passphrase for Encrypted LUKS Device"
-#~ msgstr "Enkriptatutako LUKS gailuaren pasaesaldia aldatzen"
-
-#~ msgid "Adding Component to RAID Array"
-#~ msgstr "Osagaia RAID array-ari gehitzen"
-
-#~ msgid "Removing Component from RAID Array"
-#~ msgstr "Osagaia RAID array-tik kentzen"
-
-#~ msgid "Stopping RAID Array"
-#~ msgstr "RAID array-a gelditzen"
-
-#~ msgid "Starting RAID Array"
-#~ msgstr "RAID array-a abiarazten"
-
-#~ msgid "Checking RAID Array"
-#~ msgstr "RAID array-a egiaztatzen"
-
-#~ msgid "Repairing RAID Array"
-#~ msgstr "RAID array-a konpontzen"
-
-#~ msgid "Running Short SMART Self-Test"
-#~ msgstr "SMART proba automatiko laburra exekutatzen"
-
-#~ msgid "Running Extended SMART Self-Test"
-#~ msgstr "Hedatutako SMART proba automatikoa exekutatzen"
-
-#~ msgid "Running Conveyance SMART Self-Test"
-#~ msgstr "Transmisioko SMART proba automatikoa exekutatzen"
-
-#~ msgid "Forcibly Unmounting Filesystem"
-#~ msgstr "Fitxategi-sistema derrigortuta desmuntatzen"
-
-#~ msgid "Forcibly Locking LUKS device"
-#~ msgstr "LUKS gailua derrigortuta blokeatzen"
-
-#~ msgid "Linux Basic Data Partition"
-#~ msgstr "Linux-en oinarrizko datuen partizioa"
-
-#~ msgid "Linux RAID Partition"
-#~ msgstr "Linux RAID partizioa"
-
-#~ msgid "Linux LVM Partition"
-#~ msgstr "Linux LVM partizioa"
-
-#~ msgid "Linux Reserved Partition"
-#~ msgstr "Gordetako Linux partizioa"
-
-#~ msgid "MBR Partition Scheme"
-#~ msgstr "MBR partizioaren eskema"
-
-#~ msgid "BIOS Boot Partition"
-#~ msgstr "BIOS-en abioko partizioa"
-
-#~ msgid "Microsoft Reserved Partition"
-#~ msgstr "Gordetako Microsoft partizioa"
-
-#~ msgid "Microsoft Basic Data Partition"
-#~ msgstr "Microsoft-en oinarrizko datuen partizioa"
-
-#~ msgid "Microsoft LDM Metadata Partition"
-#~ msgstr "Microsoft LDM meta-datuen partizioa"
-
-#~ msgid "Microsoft LDM Data Partition"
-#~ msgstr "Microsoft LDM datuen partizioa"
-
-#~ msgid "Microsoft Windows Recovery Environment"
-#~ msgstr "Microsoft Windows berreskuratze-ingurunea"
-
-#~ msgid "HP-UX Data Partition"
-#~ msgstr "HP-UX datuen partizioa"
-
-#~ msgid "HP-UX Service Partition"
-#~ msgstr "HP-UX zerbitzuen partizioa"
-
-#~ msgid "FreeBSD Boot Partition"
-#~ msgstr "FreeBSD abioko partizioa"
-
-#~ msgid "FreeBSD Data Partition"
-#~ msgstr "FreeBSD datuen partizioa"
-
-#~ msgid "FreeBSD Swap Partition"
-#~ msgstr "FreeBSD Swap partizioa"
-
-#~ msgid "FreeBSD UFS Partition"
-#~ msgstr "FreeBSD UFS partizioa"
-
-#~ msgid "FreeBSD Vinum Partition"
-#~ msgstr "FreeBSD Vinum Partition"
-
-#~ msgid "FreeBSD ZFS Partition"
-#~ msgstr "FreeBSD-ren ZFS partizioa"
-
-#~ msgid "Solaris Boot Partition"
-#~ msgstr "Solaris abioko partizioa"
-
-#~ msgid "Solaris Root Partition"
-#~ msgstr "Solaris erroko partizioa"
-
-#~ msgid "Solaris Swap Partition"
-#~ msgstr "Solaris Swap partizioa"
-
-#~ msgid "Solaris Backup Partition"
-#~ msgstr "Solaris babeskopiaren partizioa"
-
-#~ msgid "Solaris /usr Partition"
-#~ msgstr "Solaris /usr partizioa"
-
-#~ msgid "Solaris /var Partition"
-#~ msgstr "Solaris /var partizioa"
-
-#~ msgid "Solaris /home Partition"
-#~ msgstr "Solaris /home partizioa"
-
-#~ msgid "Solaris Alternate Sector Partition"
-#~ msgstr "Solaris-en 2. mailako sektorearen partizioa"
-
-#~ msgid "Solaris Reserved Partition"
-#~ msgstr "Gordetako Solaris partizioa"
-
-#~ msgid "Solaris Reserved Partition (2)"
-#~ msgstr "Gordetako Solaris partizioa (2)"
-
-#~ msgid "Solaris Reserved Partition (3)"
-#~ msgstr "Gordetako Solaris partizioa (3)"
-
-#~ msgid "Solaris Reserved Partition (4)"
-#~ msgstr "Gordetako Solaris partizioa (4)"
-
-#~ msgid "Solaris Reserved Partition (5)"
-#~ msgstr "Gordetako Solaris partizioa (5)"
-
-#~ msgid "Apple HFS/HFS+ Partition"
-#~ msgstr "Apple HFS/HFS+ partizioa"
-
-#~ msgid "Apple UFS Partition"
-#~ msgstr "Apple UFS partizioa"
-
-#~ msgid "Apple ZFS Partition"
-#~ msgstr "Apple ZFS partizioa"
-
-#~ msgid "Apple RAID Partition"
-#~ msgstr "Apple RAID partizioa"
-
-#~ msgid "Apple RAID Partition (Offline)"
-#~ msgstr "Apple RAID partizioa (lineaz kanpo)"
-
-#~ msgid "Apple Boot Partition"
-#~ msgstr "Apple abioko partizioa"
-
-#~ msgid "Apple Label Partition"
-#~ msgstr "Apple Label partizioa"
-
-#~ msgid "Apple TV Recovery Partition"
-#~ msgstr "Apple TB berreskuratzeko partizioa"
-
-#~ msgid "NetBSD Swap Partition"
-#~ msgstr "NetBSD Swap partizioa"
-
-#~ msgid "NetBSD FFS Partition"
-#~ msgstr "NetBSD FFS partizioa"
-
-#~ msgid "NetBSD LFS Partition"
-#~ msgstr "NetBSD LFS partizioa"
-
-#~ msgid "NetBSD RAID Partition"
-#~ msgstr "NetBSD RAID partizioa"
-
-#~ msgid "NetBSD Concatenated Partition"
-#~ msgstr "NetBSD kateatutako partizioa"
-
-#~ msgid "NetBSD Encrypted Partition"
-#~ msgstr "NetBSD enkriptatutako partizioa"
-
-#~ msgid "Unused Partition"
-#~ msgstr "Erabili gabeko partizioa"
-
-#~ msgid "Empty Partition"
-#~ msgstr "Partizio hutsa"
-
-#~ msgid "Driver 4.3 Partition"
-#~ msgstr "Driver 4.3 partizioa"
-
-#~ msgid "ProDOS file system"
-#~ msgstr "ProDOS fitxategi-sistema"
-
-#~ msgid "FAT 12"
-#~ msgstr "FAT 12"
-
-#~ msgid "FAT 16"
-#~ msgstr "FAT 16"
-
-#~ msgid "FAT 32"
-#~ msgstr "FAT 32"
-
-#~ msgid "FAT 16 (Windows)"
-#~ msgstr "FAT 16 (Windows)"
-
-#~ msgid "FAT 32 (Windows)"
-#~ msgstr "FAT 32 (Windows)"
-
-#~ msgid "Empty (0x00)"
-#~ msgstr "Hutsa (0x00)"
-
-#~ msgid "FAT12 (0x01)"
-#~ msgstr "FAT12 (0x01)"
-
-#~ msgid "FAT16 <32M (0x04)"
-#~ msgstr "FAT16 <32M (0x04)"
-
-#~ msgid "Extended (0x05)"
-#~ msgstr "Hedatua (0x05)"
-
-#~ msgid "FAT16 (0x06)"
-#~ msgstr "FAT16 (0x06)"
-
-#~ msgid "HPFS/NTFS (0x07)"
-#~ msgstr "HPFS/NTFS (0x07)"
-
-#~ msgid "W95 FAT32 (0x0b)"
-#~ msgstr "W95 FAT32 (0x0b)"
-
-#~ msgid "W95 FAT32 (LBA) (0x0c)"
-#~ msgstr "W95 FAT32 (LBA) (0x0c)"
-
-#~ msgid "W95 FAT16 (LBA) (0x0e)"
-#~ msgstr "W95 FAT16 (LBA) (0x0e)"
-
-#~ msgid "W95 Ext d (LBA) (0x0f)"
-#~ msgstr "W95 Ext d (LBA) (0x0f)"
-
-#~ msgid "OPUS (0x10)"
-#~ msgstr "OPUS (0x10)"
-
-#~ msgid "Hidden FAT12 (0x11)"
-#~ msgstr "Ezkutuko FAT12 (0x11)"
-
-#~ msgid "Compaq diagnostics (0x12)"
-#~ msgstr "Compaq-en diagnostikoak (0x12)"
-
-#~ msgid "Hidden FAT16 <32M (0x14)"
-#~ msgstr "Ezkutuko FAT16 <32M (0x14)"
-
-#~ msgid "Hidden FAT16 (0x16)"
-#~ msgstr "Ezkutuko FAT16 (0x16)"
-
-#~ msgid "Hidden HPFS/NTFS (0x17)"
-#~ msgstr "Ezkutuko HPFS/NTFS (0x17)"
-
-#~ msgid "Hidden W95 FAT32 (0x1b)"
-#~ msgstr "Ezkutuko W95 FAT32 (0x1b)"
-
-#~ msgid "Hidden W95 FAT32 (LBA) (0x1c)"
-#~ msgstr "Ezkutuko W95 FAT32 (LBA) (0x1c)"
-
-#~ msgid "Hidden W95 FAT16 (LBA) (0x1e)"
-#~ msgstr "Ezkutuko W95 FAT16 (LBA) (0x1e)"
-
-#~ msgid "PartitionMagic (0x3c)"
-#~ msgstr "PartitionMagic (0x3c)"
-
-#~ msgid "Minix (0x81)"
-#~ msgstr "Minix (0x81)"
-
-#~ msgid "Linux swap (0x82)"
-#~ msgstr "Linux swap (0x82)"
-
-#~ msgid "Linux (0x83)"
-#~ msgstr "Linux (0x83)"
-
-#~ msgid "Hibernation (0x84)"
-#~ msgstr "Hibernatzekoa (0x84)"
-
-#~ msgid "Linux Extended (0x85)"
-#~ msgstr "Linux hedatua (0x85)"
-
-#~ msgid "Linux LVM (0x8e)"
-#~ msgstr "Linux LVM (0x8e)"
-
-#~ msgid "Hibernation (0xa0)"
-#~ msgstr "Hibernatzekoa (0xa0)"
-
-#~ msgid "FreeBSD (0xa5)"
-#~ msgstr "FreeBSD (0xa5)"
-
-#~ msgid "OpenBSD (0xa6)"
-#~ msgstr "OpenBSD (0xa6)"
-
-#~ msgid "Mac OS X (0xa8)"
-#~ msgstr "Mac OS X (0xa8)"
-
-#~ msgid "Mac OS X (0xaf)"
-#~ msgstr "Mac OS X (0xaf)"
-
-#~ msgid "Solaris boot (0xbe)"
-#~ msgstr "Solaris abioa (0xbe)"
-
-#~ msgid "Solaris (0xbf)"
-#~ msgstr "Solaris (0xbf)"
-
-#~ msgid "BeOS BFS (0xeb)"
-#~ msgstr "BeOS BFS (0xeb)"
-
-#~ msgid "SkyOS SkyFS (0xec)"
-#~ msgstr "SkyOS SkyFS (0xec)"
-
-#~ msgid "EFI GPT (0xee)"
-#~ msgstr "EFI GPT (0xee)"
-
-#~ msgid "EFI (FAT-12/16/32 (0xef)"
-#~ msgstr "EFI (FAT-12/16/32 (0xef)"
-
-#~ msgid "Linux RAID autodetect (0xfd)"
-#~ msgstr "Linux RAID autodetekzioa (0xfd)"
-
-#~ msgid ""
-#~ "A popular format compatible with almost any device or system, typically "
-#~ "used for file exchange."
-#~ msgstr ""
-#~ "Gailu edo sistema gehienekin ia bateragarria den formatu ospetsua, batiz "
-#~ "bat fitxategiak trukatzeko erabilia."
-
-#~ msgid ""
-#~ "This file system is compatible with Linux systems only and provides "
-#~ "classic UNIX file permissions support. This file system does not use a "
-#~ "journal."
-#~ msgstr ""
-#~ "Fitxategi-sistema hau Linux sistemekin bateragarria da eta UNIXeko "
-#~ "fitxategien baimenen euskarri klasikoa eskaintzen du. Fitxategi-sistema "
-#~ "honek ez du egunkaririk erabiltzen."
-
-#~ msgid ""
-#~ "This file system is compatible with Linux systems only and provides "
-#~ "classic UNIX file permissions support."
-#~ msgstr ""
-#~ "Fitxategi-sistema hau Linux sistemekin bateragarria da eta UNIXeko "
-#~ "fitxategien baimenen euskarri klasikoa eskaintzen du."
-
-#~ msgid "Swap area used by the operating system for virtual memory."
-#~ msgstr ""
-#~ "Sistema eragileak memoria birtual gisa erabiltzen duen trukatzeko area."
-
-#~ msgid ""
-#~ "The native Windows file system. Not widely compatible with other "
-#~ "operating systems than Windows."
-#~ msgstr ""
-#~ "Windows-eko jatorrizko fitxategi-sistema. Ez da oso bateragarria Windows "
-#~ "ez diren sistema eragileekin."
-
-#~ msgid ""
-#~ "Simple filesystem with low overhead and UNIX permissions support. Not "
-#~ "widely compatible with operating systems other than Linux and Minix."
-#~ msgstr ""
-#~ "Koste baxuko fitxategi-sistema bakuna, UNIX-en baimenen euskarriarekin. "
-#~ "Linux eta Minix ez diren beste sistema eragileekin ez da hain "
-#~ "bateragarria."
-
-#~ msgid "No file system will be created."
-#~ msgstr "Ez da fitxategi-sistemarik sortuko."
-
-#~ msgid ""
-#~ "The Master Boot Record scheme is compatible with almost any device or "
-#~ "system but has a number of limitations with respect to disk size and "
-#~ "number of partitions."
-#~ msgstr ""
-#~ "Abioko erregistro maisuaren (MBR) eskema ia gailu edo sistema gehienekin "
-#~ "bateragarria da, baina baditu murriztapen batzuk diskoaren tamaina eta "
-#~ "partizio kopuruekiko."
-
-#~ msgid ""
-#~ "A legacy scheme that is incompatible with most systems except Apple "
-#~ "systems and most Linux systems. Not recommended for removable media."
-#~ msgstr ""
-#~ "Eskema zaharkitua ez da bateragarria ia sistema gehienekin, Apple eta "
-#~ "Linux sistema gehienekin izan ezik. Ez da gomendagarria euskarri "
-#~ "aldagarrientzako."
-
-#~ msgid ""
-#~ "The GUID scheme is compatible with most modern systems but may be "
-#~ "incompatible with some devices and legacy systems."
-#~ msgstr ""
-#~ "GUID eskema egungo sistema moderno gehienekin bateragarria izan arren, "
-#~ "baliteke ez izatea zenbait gailu eta sistema zaharrekin."
-
-#~ msgid ""
-#~ "Marks the entire disk as unused. Use this option only if you want to "
-#~ "avoid partitioning the disk for e.g. whole disk use or floppy / Zip disks."
-#~ msgstr ""
-#~ "Disko osoa erabilkaitz gisa markatzen du. Erabili aukera hau diskoan "
-#~ "partizioak egitea saihestea nahi baduzu, adib. disko osoa erabiltzeko eta "
-#~ "diskete edo Zip diskoetan."
-
-#~ msgid "%.1f kB/s"
-#~ msgstr "%.1f kB/s"
-
-#~ msgid "%.1f MB/s"
-#~ msgstr "%.1f MB/s"
-
-#~ msgid "%.1f GB/s"
-#~ msgstr "%.1f GB/s"
-
-#~ msgid "SATA"
-#~ msgstr "SATA"
-
-#~ msgid "eSATA"
-#~ msgstr "eSATA"
-
-#~ msgid "PATA"
-#~ msgstr "PATA"
-
-#~ msgid "ATA"
-#~ msgstr "ATA"
-
-#~ msgid "SCSI"
-#~ msgstr "SCSI"
-
-#~ msgid "USB"
-#~ msgstr "USB"
-
-#~ msgid "Firewire"
-#~ msgstr "Firewire"
-
-#~ msgid "SDIO"
-#~ msgstr "SDIO"
-
-#~ msgid "Virtual"
-#~ msgstr "Birtuala"
-
-#~ msgid ""
-#~ "Striped set without parity. Provides improved performance but no fault "
-#~ "tolerance. If a single disk in the array fails, the entire RAID-0 array "
-#~ "fails."
-#~ msgstr ""
-#~ "Zatitutako multzoa paritaterik gabe. Hobetutako errendimendua eskaintzen "
-#~ "du, baina ez du tolerantziarik akatsen aurka. Array-ko disko bakun batek "
-#~ "huts egiten badu, RAID-0 array-ak huts egingo du."
-
-#~ msgid ""
-#~ "Mirrored set without parity. Provides fault tolerance and improved "
-#~ "performance for reading. RAID-1 arrays can sustain all but one disk "
-#~ "failing."
-#~ msgstr ""
-#~ "Ispilatutako multzoa paritaterik gabe. Tolerantzia dauka akatsen aurka, "
-#~ "eta hobetutako errendimendua ematen du irakurtzean. RAID-1 array-ak disko "
-#~ "baten hutsegitea onar dezake."
-
-#~ msgid ""
-#~ "Striped set with parity on a single disk. Provides improved performance "
-#~ "and fault tolerance. RAID-4 arrays can sustain a single disk failure."
-#~ msgstr ""
-#~ "Zatitutako multzoa paritatearekin disko bakun batean. Hobetutako "
-#~ "errendimendua eta hutsegiteen aurkako tolerantzia eskaintzen du. RAID-4 "
-#~ "array-ak disko baten hutsegitea onar dezake."
-
-#~ msgid ""
-#~ "Striped set with distributed parity. Provides improved performance and "
-#~ "fault tolerance. RAID-5 arrays can sustain a single disk failure."
-#~ msgstr ""
-#~ "Zatitutako multzoa banatutako paritatearekin. Hobetutako errendimendua "
-#~ "eta hutsegiteen aurkako tolerantzia eskaintzen du. RAID-5 array-ak disko "
-#~ "baten hutsegitea onar dezake."
-
-#~ msgid ""
-#~ "Striped set with dual distributed parity. Provides improved performance "
-#~ "and fault tolerance. RAID-6 arrays can sustain two disk failures."
-#~ msgstr ""
-#~ "Zatitutako multzoa banatutako paritate bikoitzarekin. Hobetutako "
-#~ "errendimendua eta hutsegiteen aurkako tolerantzia eskaintzen du. RAID-6 "
-#~ "array-ak bi diskoren hutsegitea onar dezake."
-
-#~ msgid ""
-#~ "Striped set with distributed parity. Provides improved performance and "
-#~ "fault tolerance. RAID-10 arrays can sustain multiple drive losses so long "
-#~ "as no mirror loses all its drives."
-#~ msgstr ""
-#~ "Zatitutako multzoa banatutako paritatearekin. Hobetutako errendimendua "
-#~ "eta hutsegiteen aurkako tolerantzia eskaintzen du. RAID-10 array-ak "
-#~ "hainbat diskoren hutsegiteak onar ditzake, beti ere ispiluren batek bere "
-#~ "unitate guztiak ez baditu galtzen."
-
-#~ msgid "Unknown RAID level %s."
-#~ msgstr "%s RAID maila ezezaguna"
-
-#~ msgid "Disk was used outside of design parameters in the past"
-#~ msgstr "Diskoa diseinuaren parametroetatik kanpo erabili da iraganean"
-
-#~ msgid "DISK IS BEING USED OUTSIDE DESIGN PARAMETERS"
-#~ msgstr "DISKOA DISEINUAREN PARAMETROETATIK AT ERABILTZEN ARI DA"
-
-#~ msgid "Backup all data and replace the disk"
-#~ msgstr "Egin datu guztien babeskopia eta ordeztu diskoa"
-
-#~ msgid "DISK HAS MANY BAD SECTORS"
-#~ msgstr "DISKOAK HONDATUTAKO SEKTORE GEHIEGI DITU"
-
-#~ msgid "DISK FAILURE IS IMMINENT"
-#~ msgstr "DISKOAREN HUTSEGITEA BEREHALA GERTATUKO DA"
-
-#~ msgid "CD-ROM Disc"
-#~ msgstr "CD-ROM diskoa"
-
-#~ msgid "Blank CD-ROM Disc"
-#~ msgstr "CD-ROM disko hutsa"
-
-#~ msgid "CD-R Disc"
-#~ msgstr "CD-R diskoa"
-
-#~ msgid "Blank CD-R Disc"
-#~ msgstr "CD-R disko hutsa"
-
-#~ msgid "CD-RW Disc"
-#~ msgstr "CD-RW diskoa"
-
-#~ msgid "Blank CD-RW Disc"
-#~ msgstr "CD-RW disko hutsa"
-
-#~ msgid "DVD-ROM Disc"
-#~ msgstr "DVD-ROM diskoa"
-
-#~ msgid "Blank DVD-ROM Disc"
-#~ msgstr "DVD-ROM disko hutsa"
-
-#~ msgid "DVD-RW Disc"
-#~ msgstr "DVD-RW diskoa"
-
-#~ msgid "Blank DVD-RW Disc"
-#~ msgstr "DVD-RW disko hutsa"
-
-#~ msgid "DVD-RAM Disc"
-#~ msgstr "DVD-RAM diskoa"
-
-#~ msgid "Blank DVD-RAM Disc"
-#~ msgstr "DVD-RAM disko hutsa"
-
-#~ msgid "DVD+R Disc"
-#~ msgstr "DVD+R diskoa"
-
-#~ msgid "Blank DVD+R Disc"
-#~ msgstr "DVD+R disko hutsa"
-
-#~ msgid "DVD+RW Disc"
-#~ msgstr "DVD+RW diskoa"
-
-#~ msgid "Blank DVD+RW Disc"
-#~ msgstr "DVD+RW disko hutsa"
-
-#~ msgid "DVD+R DL Disc"
-#~ msgstr "DVD+R DL diskoa"
-
-#~ msgid "Blank DVD+R DL Disc"
-#~ msgstr "DVD+R DL disko hutsa"
-
-#~ msgid "DVD+RW DL Disc"
-#~ msgstr "DVD+RW DL diskoa"
-
-#~ msgid "Blank DVD+RW DL Disc"
-#~ msgstr "DVD+RW DL disko hutsa"
-
-#~ msgid "Blu-Ray Disc"
-#~ msgstr "Blu-Ray diskoa"
-
-#~ msgid "Blank Blu-Ray Disc"
-#~ msgstr "Blu-Ray disko hutsa"
-
-#~ msgid "Blu-Ray R Disc"
-#~ msgstr "Blu-Ray R diskoa"
-
-#~ msgid "Blank Blu-Ray R Disc"
-#~ msgstr "Blu-Ray R disko hutsa"
-
-#~ msgid "Blu-Ray RW Disc"
-#~ msgstr "Blu-Ray RW diskoa"
-
-#~ msgid "Blank Blu-Ray RW Disc"
-#~ msgstr "Blu-Ray RW disko hutsa"
-
-#~ msgid "HD DVD Disc"
-#~ msgstr "HD DVD diskoa"
-
-#~ msgid "Blank HD DVD Disc"
-#~ msgstr "HD DVD disko hutsa"
-
-#~ msgid "HD DVD-R Disc"
-#~ msgstr "HD DVD-R diskoa"
-
-#~ msgid "Blank HD DVD-R Disc"
-#~ msgstr "HD DVD-R disko hutsa"
-
-#~ msgid "HD DVD-RW Disc"
-#~ msgstr "HD DVD-RW diskoa"
-
-#~ msgid "Blank HD DVD-RW Disc"
-#~ msgstr "HD DVD-RW disko hutsa"
-
-#~ msgid "MO Disc"
-#~ msgstr "MO diskoa"
-
-#~ msgid "Blank MO Disc"
-#~ msgstr "MO disko hutsa"
-
-#~ msgid "MRW Disc"
-#~ msgstr "MRW diskoa"
-
-#~ msgid "Blank MRW Disc"
-#~ msgstr "MRW disko hutsa"
-
-#~ msgid "MRW/W Disc"
-#~ msgstr "MRW/W diskoa"
-
-#~ msgid "Blank MRW/W Disc"
-#~ msgstr "MRW/W disko hutsa"
-
-#~ msgid "Blank Optical Disc"
-#~ msgstr "Disko optiko hutsa"
-
-#~ msgid "%s Extended"
-#~ msgstr "%s hedatua"
-
-#~ msgid "%s Encrypted"
-#~ msgstr "%s enkriptatuta"
-
-#~ msgid "Optical Disc"
-#~ msgstr "Disko optikoa"
-
-#~ msgid "%s Filesystem"
-#~ msgstr "%s fitxategi-sistema"
-
-#~ msgid "%s Partition Table"
-#~ msgstr "%s partizio-taula"
-
-#~ msgid "%s LVM2 Physical Volume"
-#~ msgstr "%s LVM2 bolumen fisikoa"
-
-#~ msgid "%s %s Component"
-#~ msgstr "%s %s osagaia"
-
-#~ msgid "Part of \"%s\" array"
-#~ msgstr "\"%s\" array-aren zatia"
-
-#~ msgid "%s Swap Space"
-#~ msgstr "%s swap lekua"
-
-#~ msgid "%s Data"
-#~ msgstr "%s datuak"
-
-#~ msgid "%s Unrecognized"
-#~ msgstr "%s ezezaguna"
-
-#~ msgid "Unknown or Unused"
-#~ msgstr "Ezezaguna edo erabili gabea"
-
-#~ msgid "%s Partition"
-#~ msgstr "%s partizioa"
-
-#~ msgid "Partition %d of %s"
-#~ msgstr "%d. partizioa - %s"
-
-#~ msgid "Whole-disk volume on %s"
-#~ msgstr "Disko osoaren bolumena - %s"
-
-#~ msgid "Whole-disk volume"
-#~ msgstr "Disko osoaren bolumena"
-
-#~ msgid "It's now safe to remove \"%s\"."
-#~ msgstr "Orain segurua da \"%s\" kentzea."
-
-#~ msgid "Writing data to \"%s\"..."
-#~ msgstr "Datuak \"%s\"(e)n idazten..."
-
-#~ msgid ""
-#~ "To prevent data loss, wait until this has finished before removing media "
-#~ "or disconnecting the device."
-#~ msgstr ""
-#~ "Datuak galtzea saihesteko, itxaron amaitu arte euskarria kendu edo gailua "
-#~ "deskonektatu aurretik."
-
-#~ msgid "A hard disk is reporting health problems."
-#~ msgstr "Disko gogor bateak osasun-arazoak dituela jakinarazi du."
-
-#~ msgid "Multiple system hard disks are reporting health problems."
-#~ msgstr ""
-#~ "Sistemako hainbat disko gogorrek osasun-arazoak dituztela jakinarazi dute."
-
-#~ msgid "Multiple hard disks are reporting health problems."
-#~ msgstr "Hainbat disko gogorrek osasun-arazoak dituztela jakinarazi dute."
-
-#~ msgid "Volume to show"
-#~ msgstr "Bolumena erakusteko"
-
-#~ msgid "Drive to show"
-#~ msgstr "Unitatea erakusteko"
-
-#~ msgid "Multipath Drive"
-#~ msgstr "Bide-izen anitzeko unitatea"
-
-#~ msgid "PHY %d of %s"
-#~ msgstr "%d. PHY - %s"
-
-#~ msgid "Port %d of %s"
-#~ msgstr "%d. ataka - %s"
-
-#~ msgid "Unknown Scheme: %s"
-#~ msgstr "Eskema ezezaguna: %s"
-
-#~ msgid "Error launching Brasero"
-#~ msgstr "Errorea Brasero abiaraztean"
-
-#~ msgid "The application is not installed"
-#~ msgstr "Aplikazioa ez dago instalatuta"
-
-#~ msgid ""
-#~ "<b>WARNING:</b> Several paths to this drive has been detected but no "
-#~ "corresponding multipath device was found. Your OS may be misconfigured."
-#~ msgstr ""
-#~ "<b>Abisua:</b> unitate honetan hainbat bide-izen atzeman dira, baina ez "
-#~ "da bat datorren bide-izen anitzeko gailurik aurkitu. Sist. Erag. gaizki "
-#~ "konfiguratuta egon daiteke."
-
-#~ msgid "Go to Multipath Device"
-#~ msgstr "Joan bide-izen anitzeko gailura"
-
-#~ msgid ""
-#~ "<b>NOTE:</b> This object represents one of several paths to the drive. To "
-#~ "perform operations on the drive, use the corresponding multipath object."
-#~ msgstr ""
-#~ "<b>Oharra:</b> objektu honek unitatearen bide-izenetariko bat adierazten "
-#~ "du. Unitatean eragiketak lantzeko, erabili dagokion bide-izen anitzeko "
-#~ "objektua."
-
-#~ msgid "Firmware Version:"
-#~ msgstr "Firmware-aren bertsioa:"
-
-#~ msgid "Rotation Rate:"
-#~ msgstr "Biratze-emaria:"
-
-#~ msgid "Capacity:"
-#~ msgstr "Edukiera:"
-
-#~ msgid "Open CD/_DVD Application"
-#~ msgstr "Ireki CD/_DVD aplikazioa"
-
-#~ msgid "Create and copy CDs and DVDs"
-#~ msgstr "Sortu eta kopiatu CD eta DVDak"
-
-#~ msgid "Erase or partition the drive"
-#~ msgstr "Ezabatu edo sortu partizioa unitatean"
-
-#~ msgid "_Eject"
-#~ msgstr "_Egotzi"
-
-#~ msgid "Safe Rem_oval"
-#~ msgstr "Segurtasunez _kendu"
-
-#~ msgid "Power down the drive so it can be removed"
-#~ msgstr "Itzali unitatea kendu ahal izateko"
-
-#~ msgid "Measure drive performance"
-#~ msgstr "Neurtu unitatearen errendimendua"
-
-#~ msgid "%d PHYs"
-#~ msgstr "%d PHY"
-
-#~ msgid "Parallel ATA"
-#~ msgstr "Paraleloko ATA"
-
-#~ msgid "Serial ATA"
-#~ msgstr "Serieko ATA"
-
-#~ msgid "Serial Attached SCSI"
-#~ msgstr "Seriean Erantsitako SCSI (SAS)"
-
-#~ msgid "Vendor:"
-#~ msgstr "Hornitzailea:"
-
-#~ msgid "Revision:"
-#~ msgstr "Berrikuspena:"
-
-#~ msgid "Driver:"
-#~ msgstr "Kontrolatzailea:"
-
-#~ msgid "Fabric:"
-#~ msgstr "Lantegia:"
-
-#~ msgid "Error starting Volume Group"
-#~ msgstr "Errorea bolumen taldea abiaraztean"
-
-#~ msgid "Error stopping Volume Group"
-#~ msgstr "Errorea bolumen taldea gelditzean"
-
-#~ msgid "Error setting name for Volume Group"
-#~ msgstr "Errorea bolumen taldearen izena ezartzean"
-
-#~ msgid "Choose a new Volume Group name."
-#~ msgstr "Aukeratu bolumen taldearen izen berria."
-
-#~ msgid "Error adding Physical Volume to Volume Group"
-#~ msgstr "Errorea bolumen fisikoa bolumen taldeari gehitzean"
-
-#~ msgid "Error creating PV for VG"
-#~ msgstr "Errorea bol. fisikoa sortzean bol. taldearentzako"
-
-#~ msgid "Error deleting partition for Physical Volume in Volume Group"
-#~ msgstr "Errorea bol. fisikoaren partizioa ezabatzean bol. taldean"
-
-#~ msgid "Error removing Physical Volume from Volume Group"
-#~ msgstr "Errorea bol. fisikoa kentzean bol. taldetik"
-
-#~ msgid "Are you sure you want the remove the Physical Volume?"
-#~ msgstr "Ziur zaude bol. fisikoa kentzea nahi duzula?"
-
-#~ msgid "Not Running"
-#~ msgstr "Ez da exekutatzen ari"
-
-#~ msgid "Partially Running"
-#~ msgstr "Partzialki exekutatzen"
-
-#~ msgid "Unknown (%d)"
-#~ msgstr "Ezezaguna (%d)"
-
-#~ msgid "Name:"
-#~ msgstr "Izena:"
-
-#~ msgid "Extent Size:"
-#~ msgstr "Hedaduraren tamaina:"
-
-#~ msgid "Physical Volumes:"
-#~ msgstr "Bolumen fisikoak:"
-
-#~ msgid "Unallocated:"
-#~ msgstr "Esleitu gabekoak:"
-
-#~ msgid "St_art Volume Group"
-#~ msgstr "_Abiarazi bolumen taldea"
-
-#~ msgid "Activate all LVs in the VG"
-#~ msgstr "Aktibatu bol. log. guztiak bol. taldean"
-
-#~ msgid "St_op Volume Group"
-#~ msgstr "_Gelditu bol. taldea"
-
-#~ msgid "Deactivate all LVs in the VG"
-#~ msgstr "Desaktibatu bol. taldeko bol. log. guztiak"
-
-#~ msgid "Edit _Name"
-#~ msgstr "Editatu _izena"
-
-#~ msgid "Change the Volume Group name"
-#~ msgstr "Aldatu bolumen taldearen izena"
-
-#~ msgid "Edit _Physical Volumes"
-#~ msgstr "Editatu bolumen _fisikoak"
-
-#~ msgid "Create and remove PVs"
-#~ msgstr "Sortu eta kendu bol. fisikoak"
-
-#~ msgid "Not enough components available to start the RAID Array"
-#~ msgstr "Ez daude nahiko osagairik RAID array-a abiarazteko"
-
-#~ msgid "Error deleting partition for component in RAID Array"
-#~ msgstr "Errorea RAID array-ko osagaiaren partizioa ezabatzean"
-
-#~ msgid "Are you sure you want the remove the component?"
-#~ msgstr "Ziur zaude osagaia kentzea nahi duzula?"
-
-#~ msgid "Error adding component to RAID Array"
-#~ msgstr "Errorea osagaia gehitzean RAID array-ari"
-
-#~ msgid "Error expanding RAID Array"
-#~ msgstr "Errorea RAID array-a zabaltzean"
-
-#~ msgid "Error checking RAID Array"
-#~ msgstr "Errorea RAID array-a egiaztatzean"
-
-#~ msgid "Level:"
-#~ msgstr "_Maila:"
-
-#~ msgid "Metadata Version:"
-#~ msgstr "Meta-datuen bertsioa:"
-
-#~ msgid "Components:"
-#~ msgstr "Osagaiak:"
-
-#~ msgid "Bring up the RAID Array"
-#~ msgstr "Muntatu RAID array-a"
-
-#~ msgid "Tear down the RAID Array"
-#~ msgstr "Desmuntatu RAID array-a"
-
-#~ msgid "Format/Erase RAI_D Array"
-#~ msgstr "Formateatu/Ezabatu _RAID array-a"
-
-#~ msgid "Erase or partition the array"
-#~ msgstr "Ezabatu edo array-aren partizioa egin"
-
-#~ msgid "Chec_k Array"
-#~ msgstr "_Egiaztatu array-a"
-
-#~ msgid "Check and repair the array"
-#~ msgstr "Egiaztatu eta konpondu array-a"
-
-#~ msgid "Edit Com_ponents"
-#~ msgstr "Editatu _osagaiak"
-
-#~ msgid "Create and remove components"
-#~ msgstr "Sortu eta kendu osagaiak"
-
-#~ msgid "Measure RAID array performance"
-#~ msgstr "Neurtu RAID array-aren errendimendua"
-
-#~ msgid "Error unmounting volume"
-#~ msgstr "Errorea bolumena desmuntatzean"
-
-#~ msgid "Error mounting volume"
-#~ msgstr "Errorea bolumena muntatzean"
-
-#~ msgid "Error modifying partition"
-#~ msgstr "Errorea partizioa eraldatzean"
-
-#~ msgid "_Forget"
-#~ msgstr "_Ahaztu"
-
-#~ msgid "Error locking LUKS volume"
-#~ msgstr "Errorea LUKS bolumena blokeatzean"
-
-#~ msgid "Error unlocking LUKS volume"
-#~ msgstr "Errorea LUKS bolumena desblokeatzean"
-
-#~ msgid "Choose a new filesystem label."
-#~ msgstr "Aukeratu fitxategi-sistemaren etiketa berria."
-
-#~ msgid "File system check on \"%s\" (%s) completed"
-#~ msgstr "\"%s\"(r)en (%s) fitxategi-sistemaren egiaztaketa burutu da."
-
-#~ msgid "File system is clean."
-#~ msgstr "Fitxategi-sistema garbi dago."
-
-#~ msgid "File system is <b>NOT</b> clean."
-#~ msgstr "Fitxategi-sistema <b>EZ</b> dago garbi."
-
-#~ msgid "Error spawning nautilus: %s"
-#~ msgstr "Errorea nautilus abiaraztean: %s"
-
-#~ msgid "Error creating Logical Volume"
-#~ msgstr "Errorea bolumen logikoa sortzean"
-
-#~ msgid "Error stopping Logical Volume"
-#~ msgstr "Errorea bolumen logikoa gelditzean"
-
-#~ msgid "Error setting name for Logical Volume"
-#~ msgstr "Errorea bolumen logikoaren izena ezartzean"
-
-#~ msgid "Choose a new name for the Logical Volume."
-#~ msgstr "Aukeratu bolumen logikoaren izen berria."
-
-#~ msgid "Are you sure you want to delete the logical volume?"
-#~ msgstr "Ziur zaude bolumen logikoa ezabatzea nahi duzula?"
-
-#~ msgid "Usage:"
-#~ msgstr "Erabilera:"
-
-#~ msgid "Partition Label:"
-#~ msgstr "Partizioaren etiketa:"
-
-#~ msgid "Partition Flags:"
-#~ msgstr "Partizioaren bandera:"
-
-#~ msgid "Label:"
-#~ msgstr "Etiketa:"
-
-#~ msgid "Bootable"
-#~ msgstr "Abiarazgarria"
-
-#~ msgid "Required"
-#~ msgstr "Beharrezkoa"
-
-#~ msgid "Allocated"
-#~ msgstr "Esleituta"
-
-#~ msgid "Allow Read"
-#~ msgstr "Baimendu irakurtzea"
-
-#~ msgid "Allow Write"
-#~ msgstr "Baimendu idaztea"
-
-#~ msgid "Boot Code PIC"
-#~ msgstr "Abioko PIC kodea"
-
-#~ msgid "View files on the volume using a SFTP network share"
-#~ msgstr "Ikusi fitxategiak bolumenean SFTP sare partekatua erabiliz"
-
-#~ msgid "Encrypted Volume (Locked)"
-#~ msgstr "Enkriptatutako bolumena (blokeatuta)"
-
-#~ msgid "Encrypted Volume (Unlocked)"
-#~ msgstr "Enkriptatutako bolumena (desblokeatuta)"
-
-#~ msgid "Logical _Volumes"
-#~ msgstr "Bolumen _logikoak"
-
-#~ msgid "_Mount Volume"
-#~ msgstr "_Muntatu bolumena"
-
-#~ msgid "Un_mount Volume"
-#~ msgstr "_Desmuntatu bolumena"
-
-#~ msgid "Unmount the volume"
-#~ msgstr "Desmuntatu bolumena"
-
-#~ msgid "Erase or format the volume"
-#~ msgstr "Ezabatu edo formatua eman bolumenari"
-
-#~ msgid "Check and repair the filesystem"
-#~ msgstr "Egiaztatu eta konpondu fitxategi-sistema"
-
-#~ msgid "Change partition type, label and flags"
-#~ msgstr "Aldatu partizio mota, etiketa eta banderak"
-
-#~ msgid "_Lock Volume"
-#~ msgstr "_Blokeatu bolumena"
-
-#~ msgid "Make encrypted data unavailable"
-#~ msgstr "Egin enkriptatutako datuak eskurakaitzak"
-
-#~ msgid "Un_lock Volume"
-#~ msgstr "_Desblokeatu bolumena"
-
-#~ msgid "Forge_t Passphrase"
-#~ msgstr "A_haztu pasaesaldia"
-
-#~ msgid "Change passphrase"
-#~ msgstr "Aldatu pasaesaldia"
-
-#~ msgid "_Create Logical Volume"
-#~ msgstr "_Sortu bolumen logikoa"
-
-#~ msgid "Create a new logical volume"
-#~ msgstr "Sortu bolumen logiko berria"
-
-#~ msgid "S_tart Volume"
-#~ msgstr "_Abiarazi bolumena"
-
-#~ msgid "Edit Vol_ume Name"
-#~ msgstr "Editatu _bolumenaren izena"
-
-#~ msgid "Change the name of the volume"
-#~ msgstr "Aldatu bolumenaren izena"
-
-#~ msgid "D_elete Volume"
-#~ msgstr "_Ezabatu bolumena"
-
-#~ msgid "Delete the Logical Volume"
-#~ msgstr "Ezabatu bolumen logikoa"
-
-#~ msgid "Sto_p Volume"
-#~ msgstr "_Gelditu bolumena"
-
-#~ msgid "%s — Disk Utility"
-#~ msgstr "%s — Diskoen tresna"
-
-#~ msgid "%s (%s) [%s] @ %s — Disk Utility"
-#~ msgstr "%s (%s) [%s] @ %s — Diskoen tresna"
-
-#~ msgid "%s (%s) @ %s — Disk Utility"
-#~ msgstr "%s (%s) @ %s — Diskoen tresna"
-
-#~ msgid "%s (%s) [%s] — Disk Utility"
-#~ msgstr "%s (%s) [%s] — Diskoen tresna"
-
-#~ msgid "%s (%s) — Disk Utility"
-#~ msgstr "%s (%s) — Diskoen tresna"
-
-#~ msgid "Error connecting to “%s”"
-#~ msgstr "Errorea '%s'(r)ekin konektatzean"
-
-#~ msgid "_File"
-#~ msgstr "_Fitxategia"
-
-#~ msgid "Connect to _Server..."
-#~ msgstr "Konektatu _zerbitzarira..."
-
-#~ msgid "Manage storage devices on another machine"
-#~ msgstr "Kudeatu biltegien gailuak beste ordenagailuan"
-
-#~ msgid "_Create"
-#~ msgstr "_Sortu"
-
-#~ msgid "_RAID Array..."
-#~ msgstr "_RAID array-a..."
-
-#~ msgid "Create a RAID array"
-#~ msgstr "Sortu RAID array-a"
-
-#~ msgid "_Edit"
-#~ msgstr "_Editatu"
-
-#~ msgid "Get Help on Disk Utility"
-#~ msgstr "Diskoen tresnaren laguntza eskuratu"
-
-#~ msgid "The operation failed."
-#~ msgstr "Eragiketak huts egin du."
-
-#~ msgid "The device is busy."
-#~ msgstr "Gailua lanpetuta dago."
-
-#~ msgid "The operation was canceled."
-#~ msgstr "Eragiketa bertan behera utzi da."
-
-#~ msgid "The daemon is being inhibited."
-#~ msgstr "Daemon-a galarazten dago."
-
-#~ msgid "An invalid option was passed."
-#~ msgstr "Aukera baliogabe bat eman zaio."
-
-#~ msgid "The operation is not supported."
-#~ msgstr "Eragiketa ez dago onartuta."
-
-#~ msgid "Getting ATA SMART data would wake up the device."
-#~ msgstr "ATA SMART datuak lortzean gailua esna daiteke."
-
-#~ msgid "Permission denied."
-#~ msgstr "Baimena ukatuta."
-
-#~ msgid "_Details:"
-#~ msgstr "_Xehetasunak:"
-
-#~ msgid "_Storage Devices"
-#~ msgstr "_Biltegien gailuak"
-
-#~ msgctxt "application name"
-#~ msgid "Bourne Again Shell"
-#~ msgstr "Bourne Again Shell"
-
-#~ msgctxt "application name"
-#~ msgid "Bourne Shell"
-#~ msgstr "Bourne Shell"
-
-#~ msgctxt "application name"
-#~ msgid "C Shell"
-#~ msgstr "C Shell"
-
-#~ msgctxt "application name"
-#~ msgid "TENEX C Shell"
-#~ msgstr "TENEX C Shell"
-
-#~ msgctxt "application name"
-#~ msgid "Z Shell"
-#~ msgstr "Z Shell"
-
-#~ msgctxt "application name"
-#~ msgid "Korn Shell"
-#~ msgstr "Korn Shell"
-
-#~ msgctxt "application name"
-#~ msgid "Process Viewer (top)"
-#~ msgstr "Prozesuen ikustailea (top)"
-
-#~ msgctxt "application name"
-#~ msgid "Terminal Pager (less)"
-#~ msgstr "Terminaleko orrikatzailea (less)"
-
-#~| msgid "Unknown"
-#~ msgctxt "application name"
-#~ msgid "Unknown"
-#~ msgstr "Ezezaguna"
-
-#~| msgid "ID"
-#~ msgctxt "RAID Level fallback"
-#~ msgid "RAID"
-#~ msgstr "RAID"
-
-#~ msgctxt "Linux MD slave state"
-#~ msgid "Faulty"
-#~ msgstr "Akastuna"
-
-#~ msgctxt "Linux MD slave state"
-#~ msgid "Fully Synchronized"
-#~ msgstr "Erabat sinkronizatuta"
-
-#~| msgid "Partially Running"
-#~ msgctxt "Linux MD slave state"
-#~ msgid "Partially Synchronized"
-#~ msgstr "Partzialki sinkronizatuta"
-
-#~| msgid "Unknown"
-#~ msgctxt "connection name"
-#~ msgid "Unknown"
-#~ msgstr "Ezezaguna"
-
-#~ msgctxt "RAID level"
-#~ msgid "Stripe (RAID-0)"
-#~ msgstr "Zatitua (RAID-0)"
-
-#~ msgctxt "RAID level"
-#~ msgid "Mirror (RAID-1)"
-#~ msgstr "Ispilua (RAID-1)"
-
-#~ msgctxt "RAID level"
-#~ msgid "Parity Disk (RAID-4)"
-#~ msgstr "Disko paritatea (RAID-4)"
-
-#~| msgid "NetBSD Concatenated Partition"
-#~ msgctxt "RAID level"
-#~ msgid "Concatenated (Linear)"
-#~ msgstr "Kateatuta (lineala)"
-
-#~ msgctxt "RAID level"
-#~ msgid "Linear"
-#~ msgstr "Lineala"
-
-#~| msgid "ID"
-#~ msgctxt "RAID level"
-#~ msgid "RAID"
-#~ msgstr "RAID"
-
-#~ msgid "One or more disks are failing"
-#~ msgstr "Disko bat edo gehiago hutsegiten"
-
-#~ msgid ""
-#~ "One or more hard disks report health problems. Click the icon to get more "
-#~ "information."
-#~ msgstr ""
-#~ "Disko gogor bat edo gehiagok osasun arazoak dituztela jakinarazi da. Egin "
-#~ "klik ikonoan informazio gehiago lortzeko."
-
-#~ msgctxt "Write Cache"
-#~ msgid "Enabled"
-#~ msgstr "Gaituta"
-
-#~| msgid "%d MB/s"
-#~ msgctxt "Rotation Rate"
-#~ msgid "%d RPM"
-#~ msgstr "%d b/min"
-
-#~| msgid "Solid-State Disk"
-#~ msgctxt "Rotation Rate"
-#~ msgid "Solid-State Disk"
-#~ msgstr "Solid-State Diskoa"
-
-#~ msgctxt "RAID status"
-#~ msgid "Not running, partially assembled"
-#~ msgstr "Ez da exekutatzen ari, partzialki mihiztatua"
-
-#~ msgctxt "RAID status"
-#~ msgid "Not running, can only start degraded"
-#~ msgstr "Ez da exekutatzen ari, degradatuta soilik abiaraz daiteke"
-
-#~| msgid "Not enough components available to start the RAID Array"
-#~ msgctxt "RAID status"
-#~ msgid "Not running, not enough components to start"
-#~ msgstr "Ez da exekutatzen ari, ez dago nahikoa osagairik abiarazteko"
-
-#~| msgid "Running"
-#~ msgctxt "RAID status"
-#~ msgid "Running"
-#~ msgstr "Exekutatzen"
-
-#~ msgctxt "RAID action"
-#~ msgid "Reshaping"
-#~ msgstr "Berrantolatzen"
-
-#~| msgid "Preparing..."
-#~ msgctxt "RAID action"
-#~ msgid "Repairing"
-#~ msgstr "Konpontzen"
-
-#~ msgctxt "RAID action"
-#~ msgid "Checking"
-#~ msgstr "Egiaztatzen"
-
-#~ msgctxt "RAID action"
-#~ msgid "Idle"
-#~ msgstr "Inaktibo"
-
-#~| msgid "Running"
-#~ msgctxt "LVM2 LV State"
-#~ msgid "Running"
-#~ msgstr "Exekutatzen"
-
-#~| msgid "Not Running"
-#~ msgctxt "LVM2 LV State"
-#~ msgid "Not Running"
-#~ msgstr "Ez da exekutatzen ari"

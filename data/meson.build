@@ -1,9 +1,12 @@
-subdir('icons')
+install_subdir(
+  'icons/hicolor',
+  install_dir: gdu_datadir / 'icons',
+)
 
 desktops = [
   'org.gnome.DiskUtility.desktop',
   'gnome-disk-image-mounter.desktop',
-  'gnome-disk-image-writer.desktop'
+  'gnome-disk-image-writer.desktop',
 ]
 
 foreach desktop: desktops
@@ -14,35 +17,31 @@ foreach desktop: desktops
     output: desktop,
     po_dir: po_dir,
     install: true,
-    install_dir: join_paths(gdu_datadir, 'applications')
+    install_dir: gdu_datadir / 'applications',
   )
 endforeach
 
-service_conf = configuration_data()
-service_conf.set('bindir', gdu_bindir)
-
-service = 'org.gnome.DiskUtility.service'
 
 configure_file(
-  input: service + '.in',
-  output: service,
+  input: 'org.gnome.DiskUtility.service.in',
+  output: '@BASENAME@',
+  configuration: {'bindir': gdu_prefix / gdu_bindir},
   install: true,
-  install_dir: join_paths(gdu_datadir, 'dbus-1', 'services'),
-  configuration: service_conf
+  install_dir: gdu_datadir / 'dbus-1/services',
 )
 
 install_data(
   'org.gnome.Disks.gschema.xml',
-  install_dir: join_paths(gdu_datadir, 'glib-2.0', 'schemas')
+  install_dir: gio_schemasdir,
 )
 
 info = 'org.gnome.DiskUtility.appdata.xml'
 
 i18n.merge_file(
   info,
-  input: 'org.gnome.DiskUtility.appdata.xml.in',
+  input: info + '.in',
   output: info,
   po_dir: po_dir,
   install: true,
-  install_dir: join_paths(gdu_datadir, 'metainfo')
+  install_dir: gdu_datadir / 'metainfo',
 )

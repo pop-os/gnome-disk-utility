@@ -4,43 +4,40 @@ sources = files('gduutils.c')
 
 enum = 'libgduenumtypes'
 
-libgduenumtypes = gnome.mkenums(
+enum_sources = gnome.mkenums(
   enum,
   sources: enum_headers,
   c_template: enum + '.c.template',
-  h_template: enum + '.h.template'
+  h_template: enum + '.h.template',
 )
 
+private_deps = [m_dep]
+
 deps = [
-  gmodule_dep,
-  gio_unix_dep,
-  udisk_dep,
   gtk_dep,
-  libsecret_dep,
-  pwquality_dep,
-  m_dep
+  udisk_dep,
 ]
 
-if enable_libsystemd
-  deps += libsystemd_dep
+if enable_logind
+  private_deps += logind_dep
 endif
 
 cflags = [
-  '-DPACKAGE_DATA_DIR="@0@"'.format(gdu_datadir),
   '-DG_LOG_DOMAIN="libgdu"',
-  '-DGNOMELOCALEDIR="@0@"'.format(gdu_localedir)
+  '-DGNOMELOCALEDIR="@0@"'.format(gdu_prefix / gdu_localedir),
 ]
 
 libgdu = static_library(
   'gdu',
-  sources: sources + libgduenumtypes,
+  sources: sources + enum_sources,
   include_directories: top_inc,
-  dependencies: deps,
-  c_args: cflags
+  dependencies: deps + private_deps,
+  c_args: cflags,
 )
 
 libgdu_dep = declare_dependency(
+  sources: enum_sources[1],
   link_with: libgdu,
-  include_directories: include_directories('.'),
-  dependencies: deps
+  include_directories: '.',
+  dependencies: deps,
 )

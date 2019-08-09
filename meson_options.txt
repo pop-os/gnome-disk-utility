@@ -1,2 +1,3 @@
-option('libsystemd', type: 'boolean', value: true, description: 'build with libsystemd')
+option('logind', type: 'combo', choices: ['libsystemd', 'libelogind', 'none'], value: 'libsystemd', description: 'build with logind')
 option('gsd_plugin', type: 'boolean', value: true, description: 'build gnome-settings-daemon plug-in')
+option('man', type: 'boolean', value: true, description: 'generate man pages')

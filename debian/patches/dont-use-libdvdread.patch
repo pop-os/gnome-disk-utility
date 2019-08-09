@@ -27,22 +27,22 @@ Signed-off-by: David Zeuthen <zeuthen@gmail.com>
  src/disks/meson.build                |  2 -
  3 files changed, 23 insertions(+), 70 deletions(-)
 
-diff --git a/meson.build b/meson.build
-index 250317a..f983ffa 100644
---- a/meson.build
-+++ b/meson.build
-@@ -88,7 +88,6 @@ gtk_dep = dependency('gtk+-3.0', version: '>= 3.16.0')
- libsecret_dep = dependency('libsecret-1', version: '>= 0.7')
- pwquality_dep = dependency('pwquality', version: '>= 1.0.0')
- libcanberra_dep = dependency('libcanberra-gtk3', version: '>= 0.1')
+Index: gnome-disk-utility-3.33.90/meson.build
+===================================================================
+--- gnome-disk-utility-3.33.90.orig/meson.build
++++ gnome-disk-utility-3.33.90/meson.build
+@@ -68,7 +68,6 @@ endif
+ 
+ add_project_arguments(compiler_flags, language: 'c')
+ 
 -dvdread_dep = dependency('dvdread', version: '>= 4.2.0')
- libnotify_dep = dependency('libnotify', version: '>= 0.7')
- liblzma_dep = dependency('liblzma', version: '>= 5.0.5')
- m_dep = cc.find_library('m')
-diff --git a/src/disks/gducreatediskimagedialog.c b/src/disks/gducreatediskimagedialog.c
-index a22ef8c..926a0a2 100644
---- a/src/disks/gducreatediskimagedialog.c
-+++ b/src/disks/gducreatediskimagedialog.c
+ gio_unix_dep = dependency('gio-unix-2.0', version: '>= 2.31.0')
+ gmodule_dep = dependency('gmodule-2.0')
+ gtk_dep = dependency('gtk+-3.0', version: '>= 3.16.0')
+Index: gnome-disk-utility-3.33.90/src/disks/gducreatediskimagedialog.c
+===================================================================
+--- gnome-disk-utility-3.33.90.orig/src/disks/gducreatediskimagedialog.c
++++ gnome-disk-utility-3.33.90/src/disks/gducreatediskimagedialog.c
 @@ -17,6 +17,7 @@
  #include <gio/gunixinputstream.h>
  #include <gio/gfiledescriptorbased.h>
@@ -193,7 +193,7 @@ index a22ef8c..926a0a2 100644
      }
  
    /* Otherwise, request the fd from udisks */
-@@ -816,7 +776,6 @@ copy_thread_func (gpointer user_data)
+@@ -814,7 +774,6 @@ copy_thread_func (gpointer user_data)
                                    num_bytes_to_read,
                                    buffer,
                                    TRUE, /* pad_with_zeroes */
@@ -201,7 +201,7 @@ index a22ef8c..926a0a2 100644
                                    data->cancellable,
                                    &error);
        if (num_bytes_read < 0)
-@@ -838,9 +797,6 @@ copy_thread_func (gpointer user_data)
+@@ -836,9 +795,6 @@ copy_thread_func (gpointer user_data)
      }
  
   out:
@@ -211,10 +211,10 @@ index a22ef8c..926a0a2 100644
    data->end_time_usec = g_get_real_time ();
  
    /* in either case, close the stream */
-diff --git a/src/disks/meson.build b/src/disks/meson.build
-index a495474..57f2e60 100644
---- a/src/disks/meson.build
-+++ b/src/disks/meson.build
+Index: gnome-disk-utility-3.33.90/src/disks/meson.build
+===================================================================
+--- gnome-disk-utility-3.33.90.orig/src/disks/meson.build
++++ gnome-disk-utility-3.33.90/src/disks/meson.build
 @@ -17,7 +17,6 @@ sources = files(
    'gducrypttabdialog.c',
    'gdudevicetreemodel.c',
@@ -223,12 +223,11 @@ index a495474..57f2e60 100644
    'gduestimator.c',
    'gdufilesystemdialog.c',
    'gduformatdiskdialog.c',
-@@ -93,7 +92,6 @@ deps = [
-   libsecret_dep,
-   pwquality_dep,
-   libcanberra_dep,
+@@ -82,7 +81,6 @@ sources += gnome.mkenums(
+ )
+ 
+ deps = [
 -  dvdread_dep,
-   liblzma_dep,
-   libgdu_dep,
-   m_dep
-
+   gio_unix_dep,
+   gmodule_dep,
+   libcanberra_dep,

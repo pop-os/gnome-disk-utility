@@ -1,21 +1,28 @@
 project(
   'gnome-disk-utility', 'c',
-  version: '3.32.1',
+  version: '3.33.90',
   license: 'GPL2.0',
   default_options: 'buildtype=debugoptimized',
-  meson_version: '>= 0.43.0'
+  meson_version: '>= 0.50.0',
 )
 
-gdu_name = 'gnome-disk-utility'
+gdu_name = meson.project_name()
 gdu_version = meson.project_version()
 
 gdu_prefix = get_option('prefix')
-gdu_bindir = join_paths(gdu_prefix, get_option('bindir'))
-gdu_datadir = join_paths(gdu_prefix, get_option('datadir'))
-gdu_libexecdir = join_paths(gdu_prefix, get_option('libexecdir'))
-gdu_localedir = join_paths(gdu_prefix, get_option('localedir'))
-gdu_mandir = join_paths(gdu_prefix, get_option('mandir'))
-gdu_sysconfdir = join_paths(gdu_prefix, get_option('sysconfdir'))
+gdu_bindir = get_option('bindir')
+gdu_datadir = get_option('datadir')
+gdu_libexecdir = get_option('libexecdir')
+gdu_localedir = get_option('localedir')
+gdu_mandir = get_option('mandir')
+gdu_sysconfdir = get_option('sysconfdir')
+
+gnome = import('gnome')
+i18n = import('i18n')
+
+po_dir = meson.current_source_dir() / 'po'
+
+top_inc = include_directories('.', 'src')
 
 cc = meson.get_compiler('c')
 
@@ -27,7 +34,7 @@ config_h.set_quoted('GETTEXT_PACKAGE', gdu_name)
 compiler_flags = []
 
 if get_option('buildtype').contains('debug')
-  test_cflags = [
+  compiler_flags += cc.get_supported_arguments([
     '-fno-strict-aliasing',
     '-Wcast-align',
     '-Wdeclaration-after-statement',
@@ -55,49 +62,39 @@ if get_option('buildtype').contains('debug')
     '-Wswitch-enum',
     '-Wundef',
     '-Wunused-but-set-variable',
-    '-Wwrite-strings'
-  ]
-
-  compiler_flags += cc.get_supported_arguments(test_cflags)
+    '-Wwrite-strings',
+  ])
 endif
 
 add_project_arguments(compiler_flags, language: 'c')
 
-gmodule_dep = dependency('gmodule-2.0')
+dvdread_dep = dependency('dvdread', version: '>= 4.2.0')
 gio_unix_dep = dependency('gio-unix-2.0', version: '>= 2.31.0')
-udisk_dep = dependency('udisks2', version: '>= 2.1.1')
+gmodule_dep = dependency('gmodule-2.0')
 gtk_dep = dependency('gtk+-3.0', version: '>= 3.16.0')
+libcanberra_dep = dependency('libcanberra-gtk3', version: '>= 0.1')
+liblzma_dep = dependency('liblzma', version: '>= 5.0.5')
+libnotify_dep = dependency('libnotify', version: '>= 0.7')
 libsecret_dep = dependency('libsecret-1', version: '>= 0.7')
 pwquality_dep = dependency('pwquality', version: '>= 1.0.0')
-libcanberra_dep = dependency('libcanberra-gtk3', version: '>= 0.1')
-dvdread_dep = dependency('dvdread', version: '>= 4.2.0')
-libnotify_dep = dependency('libnotify', version: '>= 0.7')
-liblzma_dep = dependency('liblzma', version: '>= 5.0.5')
+udisk_dep = dependency('udisks2', version: '>= 2.7.6')
+
 m_dep = cc.find_library('m')
 
-# *** Check for recent UDisks ***
-udisks2_7_2_dep = dependency('udisks2', version: '>= 2.7.2', required: false)
-config_h.set('HAVE_UDISKS2_7_2', udisks2_7_2_dep.found(),
-             description: 'Define to 1 if UDisks version >= 2.7.2 for resize, repair, check')
+gio_schemasdir = dependency('gio-2.0').get_pkgconfig_variable(
+  'schemasdir',
+  define_variable: ['datadir', gdu_prefix / gdu_datadir],
+  default: gdu_prefix / gdu_datadir / 'glib-2.0/schemas',
+)
 
-udisks2_7_6_dep = dependency('udisks2', version: '>= 2.7.6', required: false)
-config_h.set('HAVE_UDISKS2_7_6', udisks2_7_6_dep.found(),
-             description: 'Define to 1 if UDisks version >= 2.7.6 for userspace mount options')
-
-# *** Check for libsystemd ***
-enable_libsystemd = get_option('libsystemd')
-if enable_libsystemd
-  libsystemd_dep = dependency('libsystemd', version: '>= 209', required: false)
-  config_h.set('HAVE_LIBSYSTEMD', libsystemd_dep.found(),
-               description: 'Define to 1 if libsystemd is available')
+# *** Check for logind ***
+logind = get_option('logind')
+enable_logind = (logind != 'none')
+if enable_logind
+  logind_dep = dependency(logind, version: '>= 209')
 endif
-
-gnome = import('gnome')
-i18n = import('i18n')
-
-po_dir = join_paths(meson.source_root(), 'po')
-
-top_inc = include_directories('.', 'src')
+config_h.set('HAVE_LOGIND', enable_logind,
+             description: 'Define to 1 if logind API is available')
 
 subdir('src/libgdu')
 subdir('src/disks')
@@ -111,16 +108,21 @@ endif
 
 subdir('data')
 subdir('po')
-subdir('doc/man')
+
+enable_man = get_option('man')
+if enable_man
+  subdir('doc/man')
+endif
 
 configure_file(
   output: 'config.h',
-  configuration: config_h
+  configuration: config_h,
 )
 
 meson.add_install_script(
   'meson_post_install.py',
-  gdu_datadir
+  gdu_datadir,
+  gio_schemasdir,
 )
 
 output = '\n        gnome-disk-utility ' + gdu_version + '\n'
@@ -132,9 +134,9 @@ output += '        libexecdir:                 ' + gdu_libexecdir + '\n'
 output += '        localedir:                  ' + gdu_localedir + '\n'
 output += '        mandir:                     ' + gdu_mandir + '\n'
 output += '        sysconfdir:                 ' + gdu_sysconfdir + '\n\n'
-output += '        Use libsystemd:             ' + enable_libsystemd.to_string() + '\n'
+output += '        Use logind:                 ' + logind + '\n'
 output += '        Build g-s-d plug-in:        ' + enable_gsd_plugin.to_string() + '\n\n'
 output += '        compiler:                   ' + cc.get_id() + '\n'
 output += '        cflags:                     ' + ' '.join(compiler_flags) + '\n\n'
-output += '        (Change with: meson configure BUILDDIR -D libsystemd=true|false -D gsd_plugin=true|false)\n\n'
+output += '        (Change with: meson configure BUILDDIR -D logind=libsystemd|libelogind|none -D gsd_plugin=true|false)\n\n'
 message(output)
