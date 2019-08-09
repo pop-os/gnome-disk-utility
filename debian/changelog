@@ -1,4 +1,4 @@
-gnome-disk-utility (3.33.90-1ubuntu1) UNRELEASED; urgency=medium
+gnome-disk-utility (3.33.90-1ubuntu1) eoan; urgency=medium
 
   * Sync with Debian. Remaining change:
     - Add dont-use-libdvdread.patch:
