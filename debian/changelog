@@ -1,4 +1,4 @@
-gnome-disk-utility (3.34.0-2) UNRELEASED; urgency=medium
+gnome-disk-utility (3.34.0-2) unstable; urgency=medium
 
   *  debian/gnome-disk-utility.docs: tweaked for upstream file changes
 
