@@ -1,3 +1,29 @@
+3.34.0 - September 8, 2019
+==========================
+
+Iñigo Martínez:
+ * Flatpak: Remove unnecessary udev module
+
+Roger:
+ * Convert README to markdown
+
+Updated translations:
+ * Danial Behzadi (fa), Dušan Kazik (sk), Goran Vidović (hr), Milo Casagrande (it)
+
+3.33.92 - September 2, 2019
+===========================
+
+Kai Lüke:
+ * Build documentation for Flatpak
+ * Flatpak manifest fixes
+
+Updated translations:
+ * Aurimas Černius (lt), Balázs Úr (hu), Claude Paroz (fr),
+   Danial Behzadi (fa), Emin Tufan Çetin (tr), Enrico Nicoletto (pt_BR),
+   Fran Dieguez (gl), Jiri Grönroos (fi), Matej Urbančič (sl), Piotr Drąg (pl),
+   Rūdolfs Mazurs (lv), Ryuta Fujii (ja), Seong-ho Cho (ko), Tim Sabsch (de),
+   Марко Костић (sr)
+
 3.33.91 - August 18, 2019
 =========================
 
