@@ -1,10 +1,16 @@
-gnome-disk-utility (3.34.0-2ubuntu1) eoan; urgency=medium
+gnome-disk-utility (3.35.2-1ubuntu1) UNRELEASED; urgency=medium
 
   * Sync with Debian. Remaining change:
     - Add dont-use-libdvdread.patch:
       + Revert commit that depends on libdvdread since it's in universe
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 09 Sep 2019 17:32:27 +0200
+ -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 06 Feb 2020 10:20:36 +0100
+
+gnome-disk-utility (3.35.2-1) experimental; urgency=medium
+
+  * New upstream release
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 06 Feb 2020 10:17:06 +0100
 
 gnome-disk-utility (3.34.0-2) unstable; urgency=medium
 
