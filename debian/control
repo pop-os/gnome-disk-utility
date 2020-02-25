@@ -8,7 +8,7 @@ Priority: optional
 Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
 Uploaders: Jeremy Bicha <jbicha@debian.org>, Michael Biebl <biebl@debian.org>, Tim Lunn <tim@feathertop.org>
 Build-Depends: appstream-util,
-               debhelper (>= 11),
+               debhelper-compat (= 12),
                docbook-xsl,
                gnome-pkg-tools,
                libcanberra-gtk3-dev (>= 0.1),
