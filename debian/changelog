@@ -1,11 +1,11 @@
-gnome-disk-utility (3.36.0-1) UNRELEASED; urgency=medium
+gnome-disk-utility (3.36.0-1) unstable; urgency=medium
 
+  * New upstream release
   * Bump debhelper compatibility to 12
   * Move the daemon to /usr/libexec now that's allowed in the policy
   * debian/control.in: Bump Standards-Version to 4.5.0 (no further changes)
-  * New upstream release
 
- -- Laurent Bigonville <bigon@debian.org>  Sun, 08 Mar 2020 16:51:38 +0100
+ -- Laurent Bigonville <bigon@debian.org>  Sun, 08 Mar 2020 16:52:41 +0100
 
 gnome-disk-utility (3.35.91-1) experimental; urgency=medium
 
