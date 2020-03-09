@@ -5,7 +5,7 @@ Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
 Uploaders: @GNOME_TEAM@
 Build-Depends: appstream-util,
-               debhelper (>= 11),
+               debhelper-compat (= 12),
                docbook-xsl,
                gnome-pkg-tools,
                libcanberra-gtk3-dev (>= 0.1),
@@ -22,7 +22,7 @@ Build-Depends: appstream-util,
                pkg-config,
                xsltproc,
 Rules-Requires-Root: no
-Standards-Version: 4.3.0
+Standards-Version: 4.5.0
 Vcs-Browser: https://code.launchpad.net/~ubuntu-desktop/ubuntu/+source/gnome-disk-utility/+git/gnome-disk-utility
 Vcs-Git: https://git.launchpad.net/~ubuntu-desktop/ubuntu/+source/gnome-disk-utility
 XS-Debian-Vcs-Git: https://salsa.debian.org/gnome-team/gnome-disk-utility.git
