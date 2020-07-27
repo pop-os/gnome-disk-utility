@@ -1,4 +1,4 @@
-gnome-disk-utility (3.36.3-1ubuntu1) UNRELEASED; urgency=medium
+gnome-disk-utility (3.36.3-1ubuntu1) groovy; urgency=medium
 
   * Sync with Debian. Remaining change:
     - Add dont-use-libdvdread.patch:
