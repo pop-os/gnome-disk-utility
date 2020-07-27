@@ -1,8 +1,8 @@
-gnome-disk-utility (3.36.3-1) UNRELEASED; urgency=medium
+gnome-disk-utility (3.36.3-1) unstable; urgency=medium
 
   * New upstream release
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 27 Jul 2020 16:07:24 +0200
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 27 Jul 2020 16:07:30 +0200
 
 gnome-disk-utility (3.36.1-1) unstable; urgency=medium
 
