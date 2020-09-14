@@ -1,10 +1,10 @@
-gnome-disk-utility (3.38.0-1ubuntu1) UNRELEASED; urgency=medium
+gnome-disk-utility (3.38.0-1ubuntu1) groovy; urgency=medium
 
   * Merge with unstable. Remaining changes:
     - Add dont-use-libdvdread.patch:
       + Revert commit that depends on libdvdread since it's in universe
 
- -- Iain Lane <iain.lane@canonical.com>  Mon, 14 Sep 2020 13:10:49 +0100
+ -- Iain Lane <iain.lane@canonical.com>  Mon, 14 Sep 2020 13:15:36 +0100
 
 gnome-disk-utility (3.38.0-1) unstable; urgency=medium
 
