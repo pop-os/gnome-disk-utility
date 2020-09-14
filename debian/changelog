@@ -1,6 +1,11 @@
 gnome-disk-utility (3.38.0-1) UNRELEASED; urgency=medium
 
   * New upstream release
+    + Always show other filesystem format choices
+    + Fix creating partitions by using special parameter when requesting the
+      maximal partition size
+    + Fix unmounting drives by waiting until UDisks updates the unmounted
+      filesystem
 
  -- Iain Lane <laney@debian.org>  Mon, 14 Sep 2020 12:26:09 +0100
 
