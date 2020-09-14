@@ -1,4 +1,4 @@
-gnome-disk-utility (3.38.0-1) UNRELEASED; urgency=medium
+gnome-disk-utility (3.38.0-1) unstable; urgency=medium
 
   * New upstream release
     + Always show other filesystem format choices
@@ -7,7 +7,7 @@ gnome-disk-utility (3.38.0-1) UNRELEASED; urgency=medium
     + Fix unmounting drives by waiting until UDisks updates the unmounted
       filesystem
 
- -- Iain Lane <laney@debian.org>  Mon, 14 Sep 2020 12:26:09 +0100
+ -- Iain Lane <laney@debian.org>  Mon, 14 Sep 2020 13:04:09 +0100
 
 gnome-disk-utility (3.36.1-1) unstable; urgency=medium
 
