@@ -1,20 +1,28 @@
-3.36.3 - July 19, 2020
+3.38.0 - September 10, 2020
+===========================
+
+Kai Lüke:
+ * Build/install readme improvements (INSTALL)
+
+Jordan Petridis:
+ * ci: remove deprecated jobs
+ * ci: port flatpak job to the template
+
+Updated translations:
+ * Andre Klapper (zh_CN), sicklylife (ja), Zander Brown (en_GB)
+
+3.37.2 - March 5, 2020
 ======================
 
 Kai Lüke:
-* Fix creating partitions by using special parameter when requesting the maximal partition size
+ * Fix creating partitions by using special parameter when requesting the maximal partition size
+ * Always show other filesystem format choices
+ * Fix unmounting drives by waiting until UDisks updates the unmounted filesystem
 
 Updated translations:
-* Baurzhan Muftakhidinov (kk), Cheng-Chia Tseng (zh_TW), Dušan Kazik (sk), Rūdolfs Mazurs (lv)
-
-3.36.1 - March 21, 2020
-=======================
-
-Kai Lüke:
- * Wait until UDisks updates the unmounted filesystem
-
-Updated translations:
- * Daniel Korostil (uk), Daniel Șerbănescu (ro)
+ * Baurzhan Muftakhidinov (kk), Boyuan Yang (zh_CN), Cheng-Chia Tseng (zh_TW),
+   Daniel Korostil (uk), Daniel Șerbănescu (ro), Dušan Kazik (sk), Fabio Tomat (fur),
+   Rūdolfs Mazurs (lv)
 
 3.36.0 - March 5, 2020
 ======================
