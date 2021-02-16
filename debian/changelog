@@ -1,3 +1,9 @@
+gnome-disk-utility (3.38.2-1) UNRELEASED; urgency=medium
+
+  * New upstream release
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 16 Feb 2021 16:46:16 +0100
+
 gnome-disk-utility (3.38.1-1) unstable; urgency=medium
 
   * New upstream release
