@@ -1,4 +1,4 @@
-gnome-disk-utility (3.38.2-1ubuntu1) UNRELEASED; urgency=medium
+gnome-disk-utility (3.38.2-1ubuntu1) hirsute; urgency=medium
 
   * Merge with unstable. Remaining changes:
     - Add dont-use-libdvdread.patch:
