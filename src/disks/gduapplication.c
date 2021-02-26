@@ -172,7 +172,7 @@ gdu_application_object_from_block_device (GduApplication *app,
 static GOptionEntry opt_entries[] = {
     {"block-device", 0, 0, G_OPTION_ARG_STRING, NULL, N_("Select device"), "DEVICE" },
     {"format-device", 0, 0, G_OPTION_ARG_NONE, NULL, N_("Format selected device"), NULL },
-    {"xid", 0, 0, G_OPTION_ARG_INT, NULL, N_("Parent window XID for the format dialog"), "ID" },
+    {"xid", 0, 0, G_OPTION_ARG_INT, NULL, N_("Ignored, kept for compatibility"), "ID" },
     {"restore-disk-image", 0, 0, G_OPTION_ARG_FILENAME, NULL, N_("Restore disk image"), "FILE" },
     {NULL}
 };
@@ -206,6 +206,12 @@ gdu_application_command_line (GApplication            *_app,
   if (opt_format && opt_block_device == NULL)
     {
       g_application_command_line_printerr (command_line, _("--format-device must be used together with --block-device\n"));
+      goto out;
+    }
+
+  if (opt_format && opt_restore_disk_image != NULL)
+    {
+      g_application_command_line_printerr (command_line, _("--format-device must not be used together with --restore-disk-image"));
       goto out;
     }
 
@@ -389,6 +395,7 @@ gdu_application_startup (GApplication *_app)
   GduApplication *app = GDU_APPLICATION (_app);
   const gchar **it;
   const gchar *action_accels[] = {
+    "win.go-back",               "Escape", NULL,
     "win.open-drive-menu",       "F10", NULL,
     "win.open-volume-menu",      "<Shift>F10", NULL,
 
@@ -411,6 +418,8 @@ gdu_application_startup (GApplication *_app)
 
   if (G_APPLICATION_CLASS (gdu_application_parent_class)->startup != NULL)
     G_APPLICATION_CLASS (gdu_application_parent_class)->startup (_app);
+
+  hdy_init ();
 
   g_action_map_add_action_entries (G_ACTION_MAP (app), app_entries, G_N_ELEMENTS (app_entries), app);
 
