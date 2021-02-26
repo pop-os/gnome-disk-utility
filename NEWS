@@ -1,22 +1,57 @@
-3.38.2 - February 11, 2020
-==========================
+40.beta - February 11, 2020
+===========================
+
+Bastien Nocera:
+ * build: Pin libhandy wrapper to a specific version
+   (the subprojects/libhandy repository meson uses as fallback)
+ * build: Bump required libhandy to version 1.1.90
+
+Christopher Davis:
+ * ci: Add dependencies for libhandy
+ * dialogs: Remove redundant and deprecated child props
+ * about-dialog: Remove useless child
+ * ui: Make disks-devtab a scrolledwindow
+ * ui: move margins from stack to devtab
+ * ui: Use HdyStatusPage for empty view
+ * ui: Replace GtkTable with GtkGrid
+ * ui: Replace Notebook with stack in the main window
+ * ui: Replace GtkHBox and GtkVBox
+ * disks.ui: Remove GtkAlignment
+ * ui: Adjust margins
+ * flatpak: Enable diagnostics and disable deprecated API
 
 Kai Lüke:
+ * Don't allow to specify both --format-device and --restore-disk-image
  * Ignore the --xid option when formatting from Nautilus
    (this aligns the behavior under X11 with that on Wayland)
+ * Flatpak build fixes
 
 Updated translations:
- * Kjartan Maraas (nb), Źmicier Turok (be)
+ * Anders Jonsson (sv), Asier Sarasua Garmendia (eu), Daniel Mustieles (es),
+   Daniel Șerbănescu (ro), Emin Tufan Çetin (tr), Fran Dieguez (gl),
+   Hugo Carvalho (pt), Jordi Mas (ca), Kjartan Maraas (nb), Kukuh Syafaat (id),
+   Luna Jernberg (sv), Matej Urbančič (sl), Yuri Chornoivan (uk)
 
-3.38.1 - December 13, 2020
+
+40.alpha - January 9, 2020
 ==========================
+
+Christopher Davis:
+ * window: Make adaptive with HdyLeaflet
+ * window: Add empty state
+ * Add libhandy as a subproject (allowing to build if not available as system library)
 
 Kai Lüke:
  * Do not display zram devices
+ * Flatpak build fixes
 
 Updated translations:
- * Boyuan Yang (zh_CN), Efstathios Iosifidis (el), Fabio Tomat (fur),
-   Juliano Camargo (pt), Rūdolfs Mazurs (lv), Yosef Or Boczko (he)
+ * Boyuan Yang (zh_CN), Bruno Lopes da Silva (pt_BR), Daniel Mustieles (es),
+   Efstathios Iosifidis (el), Fabio Tomat (fur), Florentina Mușat (ro),
+   Hugo Carvalho (pt), Jordi Mas (ca), Jordi Mas i Hernandez (ca),
+   Juliano Camargo (pt), Marek Černocký (cs), Rūdolfs Mazurs (lv),
+   Stephan Woidowski (de), Yosef Or Boczko (he), Yuri Chornoivan (uk), Аляксей (be)
+
 
 3.38.0 - September 10, 2020
 ===========================

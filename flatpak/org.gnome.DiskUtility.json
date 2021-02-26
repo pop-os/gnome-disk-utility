@@ -16,10 +16,11 @@
         "--socket=session-bus",
         "--socket=system-bus",
         "--socket=wayland",
-        "--socket=x11"
+        "--socket=x11",
+        "--env=G_ENABLE_DIAGNOSTIC=1"
     ],
     "build-options" : {
-        "cflags" : "-O2 -g",
+        "cflags" : "-O2 -g -DGDK_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED",
         "cxxflags" : "-O2 -g",
         "env" : {
             "V" : "1"
@@ -64,10 +65,7 @@
         },
         {
             "name" : "gudev",
-            "buildsystem" : "autotools",
-            "config-opts" : [
-                "--disable-umockdev"
-            ],
+            "buildsystem" : "meson",
             "sources" : [
                 {
                     "type" : "git",
@@ -110,8 +108,8 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "ftp://sources.redhat.com/pub/lvm2/LVM2.2.03.05.tgz",
-                    "sha256": "ca52815c999b20c6d25e3192f142f081b93d01f07b9d787e99664b169dba2700"
+                    "url" : "https://github.com/lvmteam/lvm2/archive/v2_03_05.tar.gz",
+                    "sha256": "6a1f6f76a099c41e2639147eba3f97cbc0760fa01d315f91852e03142884e0c8"
                 }
             ],
             "post-install": [
@@ -159,13 +157,39 @@
             ]
         },
         {
+            "name" : "json-c",
+            "buildsystem" : "cmake",
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://s3.amazonaws.com/json-c_releases/releases/json-c-0.15.tar.gz",
+                    "sha256" : "b8d80a1ddb718b3ba7492916237bbf86609e9709fb007e7f7d4322f02341a4c6"
+                }
+            ]
+        },
+        {
             "name" : "cryptsetup",
             "buildsystem" : "autotools",
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "https://www.kernel.org/pub/linux/utils/cryptsetup/v1.7/cryptsetup-1.7.5.tar.xz",
-                    "sha256" : "2b30cd1d0dd606a53ac77b406e1d37798d4b0762fa89de6ea546201906a251bd"
+                    "url" : "https://mirrors.edge.kernel.org/pub/linux/utils/cryptsetup/v2.3/cryptsetup-2.3.4.tar.gz",
+                    "sha256" : "8bc16c0b1c987867f13f0f2114fc4182d92bc866d1f84bb725c2cb9bcc55bf93"
+                }
+            ]
+        },
+        {
+            "name" : "keyutils",
+            "buildsystem" : "simple",
+            "build-commands": [
+                "make",
+                "make LIBDIR=/app/lib BINDIR=/app/bin SBINDIR=/app/sbin INCLUDEDIR=/app/include MANDIR=/app/share/man SHAREDIR=/app/share/keyutils install"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://people.redhat.com/~dhowells/keyutils/keyutils-1.6.1.tar.bz2",
+                    "sha256" : "c8b15722ae51d95b9ad76cc6d49a4c2cc19b0c60f72f61fb9bf43eea7cbd64ce"
                 }
             ]
         },
@@ -183,14 +207,12 @@
                 "--with-mpath=no",
                 "--with-nvdimm=no",
                 "--with-escrow=no",
-                "--with-tools=no",
-                "--with-vdo=no"
+                "--with-tools=no"
             ],
             "sources" : [
                 {
                     "type" : "git",
-                    "url" : "https://github.com/vojtechtrefny/libblockdev.git",
-                    "branch" : "master_part-libfdisk-create"
+                    "url" : "https://github.com/storaged-project/libblockdev.git"
                 }
             ]
         },
@@ -273,6 +295,16 @@
                     "type" : "archive",
                     "url" : "http://0pointer.de/lennart/projects/libcanberra/libcanberra-0.30.tar.xz",
                     "sha256" : "c2b671e67e0c288a69fc33dc1b6f1b534d07882c2aceed37004bf48c601afa72"
+                }
+            ]
+        },
+        {
+            "name" : "libhandy",
+            "buildsystem": "meson",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/libhandy.git"
                 }
             ]
         },

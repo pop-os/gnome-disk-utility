@@ -1,10 +1,18 @@
-gnome-disk-utility (3.38.2-1ubuntu1) hirsute; urgency=medium
+gnome-disk-utility (40~beta-1ubuntu1) UNRELEASED; urgency=medium
 
   * Merge with unstable. Remaining changes:
     - Add dont-use-libdvdread.patch:
       + Revert commit that depends on libdvdread since it's in universe
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 16 Feb 2021 16:50:29 +0100
+ -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 26 Feb 2021 16:37:28 +0100
+
+gnome-disk-utility (40~beta-1) experimental; urgency=medium
+
+  * New upstream release
+  * debian/control.in:
+    - build with libhandy
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 26 Feb 2021 16:31:07 +0100
 
 gnome-disk-utility (3.38.2-1) unstable; urgency=medium
 
