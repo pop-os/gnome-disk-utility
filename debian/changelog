@@ -1,10 +1,10 @@
-gnome-disk-utility (40.0-1ubuntu1) UNRELEASED; urgency=medium
+gnome-disk-utility (40.0-1ubuntu1) hirsute; urgency=medium
 
   * Merge with unstable. Remaining changes:
     - Add dont-use-libdvdread.patch:
       + Revert commit that depends on libdvdread since it's in universe
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 22 Mar 2021 21:16:27 +0100
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 22 Mar 2021 21:17:01 +0100
 
 gnome-disk-utility (40.0-1) experimental; urgency=medium
 
