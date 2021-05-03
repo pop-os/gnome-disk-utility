@@ -3,24 +3,24 @@
 # This file is distributed under the same license as the gnome-disk-utility package.
 # markkr <mark125@gmail.com>, 2009.
 # fr33domlover <fr33domlover@riseup.net>, 2013.
-# Yosef Or Boczko <yoseforb@gmail.com>, 2014-2020.
+# Yosef Or Boczko <yoseforb@gmail.com>, 2014-2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-disk-utility master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-disk-utility/"
 "issues\n"
-"POT-Creation-Date: 2020-09-10 20:58+0000\n"
-"PO-Revision-Date: 2020-09-29 02:42+0300\n"
-"Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
+"POT-Creation-Date: 2021-03-28 22:05+0000\n"
+"PO-Revision-Date: 2021-03-30 01:40+0300\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <yoseforb@gmail.com>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Poedit-Language: Hebrew\n"
-"X-Generator: Gtranslator 3.36.0\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? 2 : "
+"3);\n"
+"X-Generator: Poedit 2.4.2\n"
 
 #: data/gnome-disk-image-mounter.desktop.in:3 src/disk-image-mounter/main.c:48
 msgid "Disk Image Mounter"
@@ -60,15 +60,11 @@ msgstr "כלי עזר לניהול כוננים עבור GNOME"
 
 #: data/org.gnome.DiskUtility.appdata.xml.in:10
 msgid ""
-"Disks provides an easy way to inspect, format, partition, and configure "
-"disks and block devices."
+"Disks provides an easy way to inspect, format, partition, and configure disks "
+"and block devices."
 msgstr "כוננים מספק דרך קלה לבדוק, לפרמט, לחלק ולהגדיר כוננים והתקנים."
 
 #: data/org.gnome.DiskUtility.appdata.xml.in:14
-#| msgid ""
-#| "Using Disks, you can view SMART data, manage RAID devices, benchmark "
-#| "physical disks, and image USB sticks. Tasks are executed in the "
-#| "background, even after the application has been closed by the user."
 msgid ""
 "Using Disks, you can view SMART data, manage devices, benchmark physical "
 "disks, and image USB sticks."
@@ -84,8 +80,8 @@ msgstr "דרך קלה ופשוטה לנהל את הכוננים שלך"
 msgid "The GNOME Project"
 msgstr "מיזם GNOME"
 
-#: data/org.gnome.DiskUtility.desktop.in:3 src/disks/gduwindow.c:1125
-#: src/disks/ui/about-dialog.ui:11 src/disks/ui/headerbar.ui:10
+#: data/org.gnome.DiskUtility.desktop.in:3 src/disks/gduwindow.c:1098
+#: src/disks/ui/about-dialog.ui:11 src/disks/ui/disks.ui:28
 msgid "Disks"
 msgstr "כוננים"
 
@@ -99,9 +95,9 @@ msgid ""
 "disk;drive;volume;harddisk;hdd;disc;cdrom;dvd;partition;iso;image;backup;"
 "restore;benchmark;raid;luks;encryption;S.M.A.R.T.;smart;"
 msgstr ""
-"דיסק;תקליטור;התקן;כונן;כרך;כונן קישח;הארדיסק;hdd;דיסק;cdrom;מחיצה;cd-rom;"
-"תמונה;dvd;דמות;iso;גיבוי;אחסון;שחזור;בחינת ביצועים;RAID;הצפנה;LUKS;S.M.A.R."
-"T.;ניטור עצמי;ניתוח;אנליזה;דיווח טכנולוגיה;"
+"דיסק;תקליטור;התקן;כונן;כרך;כונן קישח;הארדיסק;hdd;דיסק;cdrom;מחיצה;cd-rom;תמונה;"
+"dvd;דמות;iso;גיבוי;אחסון;שחזור;בחינת ביצועים;RAID;הצפנה;LUKS;S.M.A.R.T.;ניטור "
+"עצמי;ניתוח;אנליזה;דיווח טכנולוגיה;"
 
 #: src/disk-image-mounter/main.c:46
 msgid "An error occurred"
@@ -117,7 +113,7 @@ msgstr "בחירת דמות כונן לעגינה"
 
 #: src/disk-image-mounter/main.c:85 src/disks/gducreatediskimagedialog.c:927
 #: src/disks/gducreateformatdialog.c:173 src/disks/gducreateformatdialog.c:470
-#: src/disks/gdunewdiskimagedialog.c:329 src/disks/gduwindow.c:825
+#: src/disks/gdunewdiskimagedialog.c:329 src/disks/gduwindow.c:808
 msgid "_Cancel"
 msgstr "_ביטול"
 
@@ -131,12 +127,9 @@ msgid "Set up _read-only mount"
 msgstr "הגדרת עגינה לקריאה _בלבד"
 
 #: src/disk-image-mounter/main.c:95
-#| msgid ""
-#| "If checked, the mount will be read-only. This is useful if you don't want "
-#| "the underlying disk image to be modified"
 msgid ""
-"If checked, the mount will be read-only. This is useful if you don’t want "
-"the underlying disk image to be modified"
+"If checked, the mount will be read-only. This is useful if you don’t want the "
+"underlying disk image to be modified"
 msgstr ""
 "אם תיבה זו מסומנת, העיגון יהיה ניתן לקריאה בלבד. מצב זה שימושי אם אין ברצונך "
 "לשנות את קובץ הדמות הבסיסי"
@@ -152,13 +145,11 @@ msgstr "Attach and mount one or more disk image files."
 
 #: src/disk-image-mounter/main.c:192
 #, c-format
-#| msgid "Cannot open `%s' - maybe the volume isn't mounted?"
 msgid "Cannot open “%s” — maybe the volume isn’t mounted?"
 msgstr "לא ניתן לפתוח את „%s” - ייתכן שהכרך אינו מעוגן?"
 
 #: src/disk-image-mounter/main.c:199
 #, c-format
-#| msgid "Error opening `%s': %m"
 msgid "Error opening “%s”: %m"
 msgstr "שגיאה בפתיחת ‏‎„%s”‏:‏‏ %m"
 
@@ -168,8 +159,6 @@ msgid "Error attaching disk image: %s (%s, %d)"
 msgstr "שגיאה בהצמדת דמות הכונן: %s‎‏ (%s,‏ %d)"
 
 #: src/disks/gduapplication.c:92
-#| msgctxt "mdraid"
-#| msgid "Not running"
 msgid "Stop running jobs?"
 msgstr "עצירת הרצת העבודות?"
 
@@ -196,27 +185,27 @@ msgid "Format selected device"
 msgstr "Format selected device"
 
 #: src/disks/gduapplication.c:175
-msgid "Parent window XID for the format dialog"
-msgstr "Parent window XID for the format dialog"
+msgid "Ignored, kept for compatibility"
+msgstr "Ignored, kept for compatibility"
 
 #: src/disks/gduapplication.c:176
 msgid "Restore disk image"
 msgstr "Restore disk image"
 
-#: src/disks/gduapplication.c:210
+#: src/disks/gduapplication.c:208
 msgid "--format-device must be used together with --block-device\n"
 msgstr "--format-device must be used together with --block-device\n"
 
-#: src/disks/gduapplication.c:216
-msgid "--format-device must be specified when using --xid\n"
-msgstr "--format-device must be specified when using --xid\n"
+#: src/disks/gduapplication.c:214
+msgid "--format-device must not be used together with --restore-disk-image"
+msgstr "--format-device must not be used together with --restore-disk-image"
 
 #. Translators: Shown in the About dialog to convey version numbers.
 #. *              The first %s is the version of Disks (for example "3.6").
 #. *              The second %s is the version of the running udisks daemon (for example "2.0.90").
 #. *              The third, fourth and fifth %d are the major, minor and micro versions of libudisks2 that was used when compiling the Disks application (for example 2, 0 and 90).
 #.
-#: src/disks/gduapplication.c:353
+#: src/disks/gduapplication.c:342
 #, c-format
 msgid ""
 "gnome-disk-utility %s\n"
@@ -271,7 +260,7 @@ msgstr "מונה התחלה/עצירה"
 
 #: src/disks/gduatasmartdialog.c:178
 msgid "Number of spindle start/stop cycles"
-msgstr "מספר מחזורי התחלת/עצירת הציר "
+msgstr "מספר מחזורי התחלת/עצירת הציר"
 
 #. Translators: SMART attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -282,9 +271,9 @@ msgstr "מונה סקטורים שהוקצו מחדש"
 
 #: src/disks/gduatasmartdialog.c:186
 msgid ""
-"Count of remapped sectors. When the hard drive finds a read/write/"
-"verification error, it marks the sector as “reallocated” and transfers data "
-"to a special reserved area (spare area)"
+"Count of remapped sectors. When the hard drive finds a read/write/verification "
+"error, it marks the sector as “reallocated” and transfers data to a special "
+"reserved area (spare area)"
 msgstr ""
 "מספר הסקטורים שמופו מחדש. כאשר הכונן הקשיח נתקל בשגיאת קריאה/כתיבה/אימות הוא "
 "מסמן את הסקטור ל„הקצאה מחדש” ומעביר את הנתונים לאזור שמור מיוחד (אזור התוספת)"
@@ -448,7 +437,7 @@ msgstr "מספר המחזורים לתוך מיקום אזור הנחיתה"
 #. * or the next string for a longer explanation.
 #.
 #: src/disks/gduatasmartdialog.c:308 src/disks/gduatasmartdialog.c:527
-#: src/disks/ui/smart-dialog.ui:179
+#: src/disks/ui/smart-dialog.ui:163
 msgid "Temperature"
 msgstr "טמפרטורה"
 
@@ -492,10 +481,10 @@ msgstr "מונה סקטורים הממתינים כרגע"
 
 #: src/disks/gduatasmartdialog.c:336
 msgid ""
-"Number of sectors waiting to be remapped. If the sector waiting to be "
-"remapped is subsequently written or read successfully, this value is "
-"decreased and the sector is not remapped. Read errors on the sector will not "
-"remap the sector, it will only be remapped on a failed write attempt"
+"Number of sectors waiting to be remapped. If the sector waiting to be remapped "
+"is subsequently written or read successfully, this value is decreased and the "
+"sector is not remapped. Read errors on the sector will not remap the sector, "
+"it will only be remapped on a failed write attempt"
 msgstr ""
 "מספר הסקטורים הממתינים למיפוי מחדש. אם מתבצעות כתיבה וקריאה מוצלחות ובאופן "
 "עקבי בזמן שהסקטור ממתין למיפוי מחדש, ערך זה מופחת והסקטור לא ממופה מחדש. "
@@ -511,12 +500,12 @@ msgstr "מונה סקטורים שאינם ניתנים לתיקון"
 
 #: src/disks/gduatasmartdialog.c:348
 msgid ""
-"The total number of uncorrectable errors when reading/writing a sector. A "
-"rise in the value of this attribute indicates defects of the disk surface "
-"and/or problems in the mechanical subsystem"
+"The total number of uncorrectable errors when reading/writing a sector. A rise "
+"in the value of this attribute indicates defects of the disk surface and/or "
+"problems in the mechanical subsystem"
 msgstr ""
-"סך כל השגיאות שלא ניתן לתקן בעת פעולות כתיבה/קריאה על סקטור. עלייה בערך "
-"מאפיין זה מציינת פגמים במשטח הכונן ו/או בעיה של תת־המערכת המכנית"
+"סך כל השגיאות שלא ניתן לתקן בעת פעולות כתיבה/קריאה על סקטור. עלייה בערך מאפיין "
+"זה מציינת פגמים במשטח הכונן ו/או בעיה של תת־המערכת המכנית"
 
 #. Translators: SMART attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -538,8 +527,8 @@ msgstr "קצב שגיאת כתיבה"
 
 #: src/disks/gduatasmartdialog.c:366
 msgid ""
-"Number of errors while writing to disk (or) multi-zone error rate (or) "
-"flying-height"
+"Number of errors while writing to disk (or) multi-zone error rate (or) flying-"
+"height"
 msgstr "מספר השגיאות בעת כתיבה לכונן (או) בקצב שגיאה רב אזורי (או) גובה הריחוף"
 
 #. Translators: SMART attribute, see http://smartmontools.sourceforge.net/doc.html
@@ -650,10 +639,9 @@ msgstr "הזחה בכונן"
 
 #: src/disks/gduatasmartdialog.c:446
 msgid ""
-"Shift of disk is possible as a result of strong shock loading in the store, "
-"as a result of falling (or) temperature"
-msgstr ""
-"הזחה בכונן מתבצעת עקב מכה חזקה בטעינה מהאחסון, כתוצאה מכשל (או) טמפרטורה."
+"Shift of disk is possible as a result of strong shock loading in the store, as "
+"a result of falling (or) temperature"
+msgstr "הזחה בכונן מתבצעת עקב מכה חזקה בטעינה מהאחסון, כתוצאה מכשל (או) טמפרטורה"
 
 #: src/disks/gduatasmartdialog.c:455
 msgid ""
@@ -752,11 +740,11 @@ msgstr "כושר עמידה נותר"
 
 #: src/disks/gduatasmartdialog.c:536
 msgid ""
-"Number of physical erase cycles completed on the drive as a percentage of "
-"the maximum physical erase cycles the drive supports"
+"Number of physical erase cycles completed on the drive as a percentage of the "
+"maximum physical erase cycles the drive supports"
 msgstr ""
-"מספר מחזורי המחיקה הפיזיים שהושלמו על הכונן כאחוז מכמות מחזורי המחיקה "
-"הפיזיים שהכונן תומך בהם"
+"מספר מחזורי המחיקה הפיזיים שהושלמו על הכונן כאחוז מכמות מחזורי המחיקה הפיזיים "
+"שהכונן תומך בהם"
 
 #. Translators: SMART attribute, see http://smartmontools.sourceforge.net/doc.html
 #. * or the next string for a longer explanation.
@@ -852,7 +840,9 @@ msgstr "תקין"
 msgid "%d sector"
 msgid_plural "%d sectors"
 msgstr[0] "סקטור אחד"
-msgstr[1] "%d סקטורים"
+msgstr[1] "שני סקטורים"
+msgstr[2] "‏‫%d סקטורים"
+msgstr[3] "‏‫%d סקטורים"
 
 #. Translators: Used in the treeview for the pretty/interpreted value of an attribute
 #. * for a temperature-based unit - first %f is the temperature in degrees Celcius, second %f
@@ -969,21 +959,27 @@ msgstr "הבדיקה העצמית נכשלה"
 msgid "Disk is OK, one failing attribute is failing"
 msgid_plural "Disk is OK, %d attributes are failing"
 msgstr[0] "הכונן תקין, מאפיין אחד כושל"
-msgstr[1] "הכונן תקין, %d מאפיינים כושלים"
+msgstr[1] "הכונן תקין, שני מאפיינים כושלים"
+msgstr[2] "‫הכונן תקין, %d מאפיינים כושלים"
+msgstr[3] "‫‫הכונן תקין, %d מאפיינים כושלים"
 
 #: src/disks/gduatasmartdialog.c:1002
 #, c-format
 msgid "Disk is OK, one bad sector"
 msgid_plural "Disk is OK, %d bad sectors"
 msgstr[0] "הכונן תקין, סקטור אחד פגום"
-msgstr[1] "הכונן תקין, %d סקטורים פגומים"
+msgstr[1] "הכונן תקין, שני סקטורים פגומים"
+msgstr[2] "‫הכונן תקין, %d סקטורים פגומים"
+msgstr[3] "‫הכונן תקין, %d סקטורים פגומים"
 
 #: src/disks/gduatasmartdialog.c:1013
 #, c-format
 msgid "Disk is OK, one attribute failed in the past"
 msgid_plural "Disk is OK, %d attributes failed in the past"
 msgstr[0] "הכונן תקין, מאפיין אחד נכשל בעבר"
-msgstr[1] "הכונן תקין, %d מאפיינים נכשלו בעבר"
+msgstr[1] "הכונן תקין, שני מאפיינים נכשלו בעבר"
+msgstr[2] "‫הכונן תקין, %d מאפיינים נכשלו בעבר"
+msgstr[3] "‫הכונן תקין, %d מאפיינים נכשלו בעבר"
 
 #. Otherwise, it's all honky dory
 #: src/disks/gduatasmartdialog.c:1022
@@ -1072,8 +1068,7 @@ msgid "Worst"
 msgstr "גרוע ביותר"
 
 #. Translators: This string is used as the column title in the treeview for the type
-#: src/disks/gduatasmartdialog.c:1604
-#: src/disks/ui/create-filesystem-page.ui:105
+#: src/disks/gduatasmartdialog.c:1604 src/disks/ui/create-filesystem-page.ui:105
 msgid "Type"
 msgstr "סוג"
 
@@ -1083,7 +1078,7 @@ msgid "Updates"
 msgstr "עדכון"
 
 #. Translators: This string is used as the column title in the treeview for the assessment of the attribute
-#: src/disks/gduatasmartdialog.c:1628 src/disks/ui/disks.ui:303
+#: src/disks/gduatasmartdialog.c:1628 src/disks/ui/disks.ui:354
 msgid "Assessment"
 msgstr "הערכה"
 
@@ -1113,7 +1108,9 @@ msgstr "‏%s/ש׳"
 msgid "%u sample"
 msgid_plural "%u samples"
 msgstr[0] "דגימה אחת"
-msgstr[1] "%u דגימות"
+msgstr[1] "שתי דגימות"
+msgstr[2] "‏‫%u דגימות"
+msgstr[3] "‏‫%u דגימות"
 
 #. Translators: The first %s is the date and time the benchmark took place in the preferred
 #. * format for the locale (e.g. "%c" for strftime()/g_date_time_format()), for example
@@ -1162,7 +1159,6 @@ msgstr "‏%.2f מילישניות"
 
 #. Translators: Reason why suspend/logout is being inhibited
 #: src/disks/gdubenchmarkdialog.c:1180
-#| msgid "Error benchmarking drive"
 msgctxt "create-inhibit-message"
 msgid "Benchmarking device"
 msgstr "מדידת ביצוע כונן"
@@ -1241,12 +1237,10 @@ msgid "Error reading %lld bytes from offset %lld"
 msgstr "אירעה שגיאה בעת קריאת %lld בתים מהיסט %lld"
 
 #: src/disks/gduchangepassphrasedialog.c:120
-#| msgid "Passphrases do not match"
 msgid "The passphrases do not match"
 msgstr "מילות הצופן אינן תואמות"
 
 #: src/disks/gduchangepassphrasedialog.c:129
-#| msgid "To change the passphrase, enter both the current and new passphrase"
 msgid "The passphrase matches the existing passphrase"
 msgstr "מילות הצופן תואמות את מילות הצופן הקיימות"
 
@@ -1285,8 +1279,6 @@ msgstr "חוזק מילת הצופן"
 #.
 #: src/disks/gducreateconfirmpage.c:110
 #, c-format
-#| msgctxt "volume-contents-combiner"
-#| msgid "%s — %s"
 msgid "%s — %s"
 msgstr "‏%s — ‎%s"
 
@@ -1294,7 +1286,6 @@ msgstr "‏%s — ‎%s"
 #.
 #: src/disks/gducreateconfirmpage.c:128
 #, c-format
-#| msgid "%s: %2.1f%%"
 msgid "%s (%.1f%%)"
 msgstr "‏%s ‏‎(%.1f%%)"
 
@@ -1355,8 +1346,8 @@ msgstr "שגיאת קריאה בלתי הפיכה בעת יצירת דמות ה�
 #, c-format
 msgid ""
 "%2.1f%% (%s) of the data on the device “%s” was unreadable and replaced with "
-"zeroes in the created disk image file. This typically happens if the medium "
-"is scratched or if there is physical damage to the drive"
+"zeroes in the created disk image file. This typically happens if the medium is "
+"scratched or if there is physical damage to the drive"
 msgstr ""
 "נמצאו %2.1f%% (שהם %s) מנתוני ההתקן „%s” שאינם קריאים והוחלפו באפסים בקובץ "
 "דמות הכונן שנוצרה. הדבר קורה לרוב אם הדיסק שרוט או אם יש נזק פיזי לכונן"
@@ -1373,7 +1364,7 @@ msgstr "_סגירה"
 #: src/disks/gducreatediskimagedialog.c:722
 #: src/disks/gdurestorediskimagedialog.c:731
 msgid "Error determining size of device: "
-msgstr "שגיאה באיתור גודל ההתקן:"
+msgstr "שגיאה באיתור גודל ההתקן: "
 
 #: src/disks/gducreatediskimagedialog.c:729
 #: src/disks/gdurestorediskimagedialog.c:738
@@ -1385,26 +1376,22 @@ msgstr "ההתקן הוא בגודל 0"
 msgid "Error allocating space for disk image file: "
 msgstr "שגיאה בהקצאת מקום לקובץ דמות הכונן: "
 
-#: src/disks/gducreatediskimagedialog.c:922
-#: src/disks/gdunewdiskimagedialog.c:324
+#: src/disks/gducreatediskimagedialog.c:922 src/disks/gdunewdiskimagedialog.c:324
 #, c-format
 msgid "A file named “%s” already exists.  Do you want to replace it?"
 msgstr "קובץ בשם „%s“ כבר קיים. האם ברצונך להחליף אותו?"
 
-#: src/disks/gducreatediskimagedialog.c:925
-#: src/disks/gdunewdiskimagedialog.c:327
+#: src/disks/gducreatediskimagedialog.c:925 src/disks/gdunewdiskimagedialog.c:327
 #, c-format
 msgid ""
 "The file already exists in “%s”.  Replacing it will overwrite its contents."
 msgstr "הקובץ כבר קיים תחת „%s“. החלפתו תדרוס את תוכנו."
 
-#: src/disks/gducreatediskimagedialog.c:928
-#: src/disks/gdunewdiskimagedialog.c:330
+#: src/disks/gducreatediskimagedialog.c:928 src/disks/gdunewdiskimagedialog.c:330
 msgid "_Replace"
 msgstr "ה_חלפה"
 
-#: src/disks/gducreatediskimagedialog.c:978
-#: src/disks/gdunewdiskimagedialog.c:247
+#: src/disks/gducreatediskimagedialog.c:978 src/disks/gdunewdiskimagedialog.c:247
 msgid "Error opening file for writing"
 msgstr "שגיאה בפתיחת הקובץ לכתיבה"
 
@@ -1428,7 +1415,6 @@ msgid "Cre_ate"
 msgstr "_יצירה"
 
 #: src/disks/gducreateformatdialog.c:187
-#| msgid "_Format"
 msgid "Form_at"
 msgstr "_אתחול"
 
@@ -1453,7 +1439,6 @@ msgid "Format Volume"
 msgstr "פרמוט כרך"
 
 #: src/disks/gducreateformatdialog.c:462
-#| msgid "Custom"
 msgid "Custom Format"
 msgstr "תבנית מותאמת"
 
@@ -1462,7 +1447,6 @@ msgid "Set Password"
 msgstr "הגדרת ססמה"
 
 #: src/disks/gducreateformatdialog.c:468
-#| msgid "Details"
 msgid "Confirm Details"
 msgstr "אימות פרטים"
 
@@ -1480,8 +1464,7 @@ msgstr "מחיצת החלפה (Swap) של לינוקס"
 
 #: src/disks/gducreateotherpage.c:119
 msgid "Btrfs — Copy-on-write Linux Filesystem, for snapshots"
-msgstr ""
-"‏Btrfs – מערכת קבצים תואמת לינוקס בשיטת העתקה־בזמן־כתיבה, עבור תמונות בזק"
+msgstr "‏Btrfs – מערכת קבצים תואמת לינוקס בשיטת העתקה־בזמן־כתיבה, עבור תמונות בזק"
 
 #: src/disks/gducreateotherpage.c:121
 msgid "F2FS — Flash Storage Linux Filesystem"
@@ -1496,21 +1479,16 @@ msgid "UDF — Universal Disk Format, for removable devices on many systems"
 msgstr "‏UDF — תבנית כונן בינלאומית, עבור התקנים ניתקים על מערכות רבות"
 
 #: src/disks/gducreateotherpage.c:127
-#| msgctxt "volume-grid"
-#| msgid "Filesystem"
 msgid "No Filesystem"
 msgstr "אין מערכת קבצים"
 
 #: src/disks/gducreateotherpage.c:203
 #, c-format
-#| msgid "%d disk is missing"
-#| msgid_plural "%d disks are missing"
 msgid "The utility %s is missing."
 msgstr "הכלי %s חסר."
 
 #: src/disks/gducreatepartitionpage.c:320
-msgid ""
-"Cannot create a new partition. There are already four primary partitions."
+msgid "Cannot create a new partition. There are already four primary partitions."
 msgstr "לא ניתן ליצור מחיצה חדשה. כבר ישנן ארבע מחיצות עיקריות."
 
 #: src/disks/gducreatepartitionpage.c:324
@@ -1518,9 +1496,8 @@ msgid "This is the last primary partition that can be created."
 msgstr "זוהי המחיצה העיקרית האחרונה שניתן ליצור."
 
 #: src/disks/gducreatepasswordpage.c:124
-#| msgid "Passphrases do not match"
 msgid "The passwords do not match"
-msgstr "הססמות אינן תואמות."
+msgstr "הססמאות אינן תואמות"
 
 #: src/disks/gducrypttabdialog.c:108 src/disks/gducrypttabdialog.c:128
 msgid "Will be created"
@@ -1753,15 +1730,15 @@ msgid ""
 "computer or disk, you should use a more thorough erase type to keep your "
 "private information from falling into the wrong hands"
 msgstr ""
-"<b>עצה</b>: אם בכוונתך למחזר, למכור או לתרום את את המחשב הישן שלך או את "
-"הדיסק הקשיח שלו, כדאי שתשתמש/י בסוג מחיקה יסודי יותר על מנת למנוע מהמידע "
-"הפרטי שלך להגיע לידיים הלא־נכונות."
+"‫<b>עצה</b>: אם בכוונתך למחזר, למכור או לתרום את את המחשב הישן שלך או את הכונן "
+"הקשיח שלו, כדאי להשתמש בסוג מחיקה יסודי יותר כדי למנוע מהמידע הפרטי שלך להגיע "
+"לידיים הלא־נכונות"
 
 #. Translators: warning used when overwriting data
 #: src/disks/gduformatdiskdialog.c:428
 msgid ""
-"All data on the disk will be overwritten and will likely not be recoverable "
-"by data recovery services"
+"All data on the disk will be overwritten and will likely not be recoverable by "
+"data recovery services"
 msgstr ""
 "כל הנתונים על הכונן ישוכתבו וכנראה שלא ניתן יהיה לשחזר אותם על ידי שירותי "
 "שחזור מידע"
@@ -1771,15 +1748,15 @@ msgid ""
 "<b>WARNING</b>: The Secure Erase command may take a very long time to "
 "complete, can’t be canceled and may not work properly with some hardware. In "
 "the worst case, your drive may be rendered unusable or your system may crash "
-"or lock up. Before proceeding, please read the article about <a "
-"href='https://ata.wiki.kernel.org/index.php/ATA_Secure_Erase'>ATA Secure "
-"Erase</a> and make sure you understand the risks"
+"or lock up. Before proceeding, please read the article about <a href='https://"
+"ata.wiki.kernel.org/index.php/ATA_Secure_Erase'>ATA Secure Erase</a> and make "
+"sure you understand the risks"
 msgstr ""
-"<b>אזהרה</b>: פקודת המחיקה הבטוחה עלולה להימשך זמן רב מאוד, לא ניתן לבטלה "
-"ועשויה שלא לפעול היטב על חומרה מסוימת. במקרה הגרוע ביותר, הכונן שלך עשוי "
-"להפוך לבלתי-שמיש או לחילופין המערכת שלך עשויה לקרוס או להינעל. לפני המשך "
-"התהליך, אנא קרא/י את הכתבה אודות <a href='https://ata.wiki.kernel.org/index."
-"php/ATA_Secure_Erase'>ATA Secure Erase</a> וודא/י שהסיכונים מובנים לך."
+"‫<b>אזהרה</b>: פקודת המחיקה הבטוחה עלולה להימשך זמן רב מאוד, לא ניתן לבטלה והיא "
+"עשויה שלא לפעול היטב על חומרה מסוימת. במקרה הגרוע ביותר, הכונן שלך עשוי להפוך "
+"לבלתי־שמיש או לחילופין המערכת שלך עשויה לקרוס או להינעל. לפני המשך התהליך, נא "
+"לקרוא את הכתבה על <a href='https://ata.wiki.kernel.org/index.php/"
+"ATA_Secure_Erase'>ATA Secure Erase</a> ולוודא שהסיכונים מובנים לך"
 
 #: src/disks/gdufstabdialog.c:155
 #, c-format
@@ -1792,8 +1769,7 @@ msgstr "תואם לדיסק של ההתקן בעל נתוני המוצר הנת�
 
 #: src/disks/gdufstabdialog.c:163
 #, c-format
-msgid ""
-"Matches partition %u of any device connected at the given port or address"
+msgid "Matches partition %u of any device connected at the given port or address"
 msgstr "תואם למחיצה %u של כל התקן המחובר בפתחה או בכתובת הנתונים"
 
 #: src/disks/gdufstabdialog.c:166
@@ -1838,7 +1814,6 @@ msgid "Unnamed (%s).img"
 msgstr "ללא שם (%s).img"
 
 #: src/disks/gdunewdiskimagedialog.c:267
-#| msgid "Error writing to image"
 msgid "Error writing file"
 msgstr "ארעה שגיאה בכתיבת הקובץ"
 
@@ -1875,34 +1850,28 @@ msgid "Strong"
 msgstr "חזקה"
 
 #: src/disks/gduresizedialog.c:188
-#| msgid "Chunk _Size"
 msgid "Current Size"
 msgstr "גודל נוכחי"
 
 #: src/disks/gduresizedialog.c:199
-#| msgid "Minimum Size"
 msgid "Minimal Size"
 msgstr "גודל מזערי"
 
 #: src/disks/gduresizedialog.c:249
-#| msgid "_Restore"
 msgid "_Resize"
 msgstr "_שינוי גודל"
 
 #: src/disks/gduresizedialog.c:352 src/disks/gduresizedialog.c:431
 #: src/disks/gduresizedialog.c:595 src/disks/gduresizedialog.c:618
-#| msgid "Error mounting filesystem"
 msgid "Error resizing filesystem"
 msgstr "שגיאה בשינוי גודל מערכת הקבצים"
 
 #: src/disks/gduresizedialog.c:370 src/disks/gduresizedialog.c:493
 #: src/disks/gduresizedialog.c:569
-#| msgid "Error creating partition"
 msgid "Error resizing partition"
 msgstr "שגיאה בשינוי גודל מחיצה"
 
 #: src/disks/gduresizedialog.c:389 src/disks/gduresizedialog.c:413
-#| msgid "Error checking filesystem on volume"
 msgid "Error repairing filesystem after resize"
 msgstr "שגיאה בתיקון מערכת הקבצים לאחר שינוי גודל"
 
@@ -1911,17 +1880,14 @@ msgid "Resizing not ready"
 msgstr "שינוי גודל לא מוכן"
 
 #: src/disks/gduresizedialog.c:466
-#| msgid "Change the label of the filesystem"
 msgid "Waited too long for the filesystem"
 msgstr "המתנה ארוכה מדי למערכת הקבצים"
 
 #: src/disks/gduresizedialog.c:526 src/disks/gduresizedialog.c:642
-#| msgid "Error mounting filesystem"
 msgid "Error repairing filesystem"
 msgstr "שגיאה בתיקון מערכת הקבצים"
 
 #: src/disks/gduresizedialog.c:748
-#| msgid "Error mounting filesystem"
 msgid "Error mounting the filesystem"
 msgstr "שגיאה בעיגון מערכת הקבצים"
 
@@ -1930,7 +1896,6 @@ msgid "Fit to size"
 msgstr "התאמה לגודל"
 
 #: src/disks/gduresizedialog.c:825
-#| msgid "Error mounting filesystem"
 msgid "Error mounting filesystem to calculate minimum size"
 msgstr "שגיאה בעיגון מערכת הקבצים לחישוב גודל מזערי"
 
@@ -1995,13 +1960,11 @@ msgstr "כל הנתונים הקיימים יימחקו"
 msgid "_Restore"
 msgstr "_שחזור"
 
-#: src/disks/gduunlockdialog.c:112 src/disks/ui/unlock-device-dialog.ui:219
-#| msgid "Select a device"
+#: src/disks/gduunlockdialog.c:112 src/disks/ui/unlock-device-dialog.ui:209
 msgid "Select a Keyfile"
 msgstr "בחירת קובץ מפתח"
 
 #: src/disks/gduunlockdialog.c:147 src/disks/gduunlockdialog.c:226
-#| msgid "Error locking device"
 msgid "Error unlocking device"
 msgstr "שגיאה בשחרור הכונן"
 
@@ -2022,7 +1985,7 @@ msgstr "הגדרת אפשרויות לנעילה"
 msgid "Volumes Grid"
 msgstr "רשת כרכים"
 
-#: src/disks/gduvolumegrid.c:566 src/disks/gduwindow.c:2054
+#: src/disks/gduvolumegrid.c:566 src/disks/gduwindow.c:2020
 msgid "No Media"
 msgstr "אין התקן מדיה"
 
@@ -2064,30 +2027,30 @@ msgctxt "volume-grid"
 msgid "Free Space"
 msgstr "שטח פנוי"
 
-#: src/disks/gduwindow.c:649
+#: src/disks/gduwindow.c:632
 msgid "Error deleting loop device"
 msgstr "שגיאה במחיקת ההתקן המחזורי"
 
-#: src/disks/gduwindow.c:749 src/disks/gduwindow.c:792
+#: src/disks/gduwindow.c:732 src/disks/gduwindow.c:775
 msgid "Error attaching disk image"
 msgstr "שגיאה בהצמדת דמות הכונן"
 
-#: src/disks/gduwindow.c:822
+#: src/disks/gduwindow.c:805
 msgid "Select Disk Image to Attach"
 msgstr "יש לבחור דמות כונן להצמדה"
 
-#: src/disks/gduwindow.c:826
+#: src/disks/gduwindow.c:809
 msgid "_Attach"
 msgstr "ה_צמדה"
 
 #. set file types
 #. allow_compressed
 #. Add a RO check button that defaults to RO
-#: src/disks/gduwindow.c:833
+#: src/disks/gduwindow.c:816
 msgid "Set up _read-only loop device"
 msgstr "הגדרת התקן מחזורי לקריאה _בלבד"
 
-#: src/disks/gduwindow.c:834
+#: src/disks/gduwindow.c:817
 msgid ""
 "If checked, the loop device will be read-only. This is useful if you don’t "
 "want the underlying file to be modified"
@@ -2096,7 +2059,7 @@ msgstr ""
 "ברצונך לשנות את קובץ הדמות המשויך"
 
 #. Translators: Shown for a read-only device. The %s is the device file, e.g. /dev/sdb1
-#: src/disks/gduwindow.c:1697
+#: src/disks/gduwindow.c:1663
 #, c-format
 msgid "%s (Read-Only)"
 msgstr "‏%s (קריאה בלבד)"
@@ -2105,7 +2068,7 @@ msgstr "‏%s (קריאה בלבד)"
 #. *              The first %s is the estimated amount of time remaining (ex. "1 minute" or "5 minutes").
 #. *              The second %s is the average amount of bytes transfered per second (ex. "8.9 MB").
 #.
-#: src/disks/gduwindow.c:1735
+#: src/disks/gduwindow.c:1701
 #, c-format
 msgctxt "job-remaining-with-rate"
 msgid "%s remaining (%s/sec)"
@@ -2114,7 +2077,7 @@ msgstr "נותרו %s ‏(%s/ש׳)"
 #. Translators: Used for job progress.
 #. *              The first %s is the estimated amount of time remaining (ex. "1 minute" or "5 minutes").
 #.
-#: src/disks/gduwindow.c:1743
+#: src/disks/gduwindow.c:1709
 #, c-format
 msgctxt "job-remaining"
 msgid "%s remaining"
@@ -2125,9 +2088,8 @@ msgstr "נותרו %s"
 #. *              The second %s is the total amount of bytes to process (ex. "8.5 GB").
 #. *              The third %s is the estimated amount of time remaining including speed (if known) (ex. "1 minute remaining", "5 minutes remaining (42.3 MB/s)", "Less than a minute remaining").
 #.
-#: src/disks/gduwindow.c:1758
+#: src/disks/gduwindow.c:1724
 #, c-format
-#| msgid "%s of %s – %s"
 msgid "%s of %s — %s"
 msgstr "‏%s מתוך %s - ‏%s"
 
@@ -2135,17 +2097,17 @@ msgstr "‏%s מתוך %s - ‏%s"
 #. *              The %s is the job description (e.g. "Erasing Device").
 #. *              The %f is the completion percentage (between 0.0 and 100.0).
 #.
-#: src/disks/gduwindow.c:1883
+#: src/disks/gduwindow.c:1849
 #, c-format
 msgid "%s: %2.1f%%"
 msgstr "‏%s: ‏%2.1f%%"
 
-#: src/disks/gduwindow.c:1963 src/disks/gduwindow.c:2342
+#: src/disks/gduwindow.c:1929 src/disks/gduwindow.c:2312
 msgid "Block device is empty"
 msgstr "בלוק ההתקן ריק"
 
 #. Translators: Shown for unknown partitioning type. The first %s is the low-level type.
-#: src/disks/gduwindow.c:1986
+#: src/disks/gduwindow.c:1952
 #, c-format
 msgctxt "partitioning"
 msgid "Unknown (%s)"
@@ -2154,11 +2116,11 @@ msgstr "לא ידוע (%s)"
 #. Translators: Shown in "Location" when drive is connected to another seat than where
 #. * our application is running.
 #.
-#: src/disks/gduwindow.c:2145
+#: src/disks/gduwindow.c:2111
 msgid "Connected to another seat"
 msgstr "מתחבר למושב אחר"
 
-#: src/disks/gduwindow.c:2286
+#: src/disks/gduwindow.c:2256
 msgid "Loop device is empty"
 msgstr "ההתקן המחזורי ריק"
 
@@ -2168,65 +2130,61 @@ msgstr "ההתקן המחזורי ריק"
 #. *              The second %s is a short string with the space free (e.g. '43 GB').
 #. *              The %f is the percentage in use (e.g. 62.2).
 #.
-#: src/disks/gduwindow.c:2503
+#: src/disks/gduwindow.c:2473
 #, c-format
 msgid "%s — %s free (%.1f%% full)"
 msgstr "‏%s - ‏%s פנוי (%.1f%% מלא)"
 
-#: src/disks/gduwindow.c:2533
+#: src/disks/gduwindow.c:2503
 msgctxt "partition type"
 msgid "Unknown"
 msgstr "לא ידוע"
 
 #. Translators: Use for mount point '/' simply because '/' is too small to hit as a hyperlink
 #.
-#: src/disks/gduwindow.c:2571
+#: src/disks/gduwindow.c:2541
 msgctxt "volume-content-fs"
 msgid "Filesystem Root"
 msgstr "שורש מערכת הקבצים"
 
 #. Translators: Shown as in-use part of 'Contents'. The first %s is the mount point, e.g. /media/foobar
-#: src/disks/gduwindow.c:2579
+#: src/disks/gduwindow.c:2549
 #, c-format
 msgctxt "volume-content-fs"
 msgid "Mounted at %s"
 msgstr "מעוגן בנקודה %s"
 
 #. Translators: Shown when the device is not mounted next to the "In Use" label
-#: src/disks/gduwindow.c:2585
+#: src/disks/gduwindow.c:2555
 msgctxt "volume-content-fs"
 msgid "Not Mounted"
 msgstr "לא מעוגן"
 
 #. Translators: Shown as in-use part of 'Contents' if the swap device is in use
-#: src/disks/gduwindow.c:2608
+#: src/disks/gduwindow.c:2578
 msgctxt "volume-content-swap"
 msgid "Active"
 msgstr "פעיל"
 
 #. Translators: Shown as in-use part of 'Contents' if the swap device is not in use
-#: src/disks/gduwindow.c:2614
+#: src/disks/gduwindow.c:2584
 msgctxt "volume-content-swap"
 msgid "Not Active"
 msgstr "לא פעיל"
 
 #. Translators: Shown as in-use part of 'Contents' if the encrypted device is unlocked
-#: src/disks/gduwindow.c:2629
-#| msgctxt "volume-content-luks"
-#| msgid "Unlocked"
+#: src/disks/gduwindow.c:2599
 msgctxt "volume-content-crypto"
 msgid "Unlocked"
 msgstr "משוחרר"
 
 #. Translators: Shown as in-use part of 'Contents' if the encrypted device is unlocked
-#: src/disks/gduwindow.c:2635
-#| msgctxt "volume-content-luks"
-#| msgid "Locked"
+#: src/disks/gduwindow.c:2605
 msgctxt "volume-content-crypto"
 msgid "Locked"
 msgstr "נעול"
 
-#: src/disks/gduwindow.c:2649
+#: src/disks/gduwindow.c:2619
 msgctxt "volume-contents-msdos-ext"
 msgid "Extended Partition"
 msgstr "מחיצה מורחבת"
@@ -2235,163 +2193,153 @@ msgstr "מחיצה מורחבת"
 #. *              The first %s is the usual contents string e.g. "Swapspace" or "Ext4 (version 1.0)".
 #. *              The second %s is either "Mounted at /path/to/fs", "Not Mounted, "Active", "Not Active", "Unlocked" or "Locked".
 #.
-#: src/disks/gduwindow.c:2669
+#: src/disks/gduwindow.c:2639
 #, c-format
 msgctxt "volume-contents-combiner"
 msgid "%s — %s"
 msgstr "%s — %s"
 
 #. Translators: used to convey free space for partitions
-#: src/disks/gduwindow.c:2789
+#: src/disks/gduwindow.c:2759
 msgid "Unallocated Space"
 msgstr "שטח לא בשימוש"
 
-#: src/disks/gduwindow.c:2979
-#| msgid "Error mounting filesystem"
+#: src/disks/gduwindow.c:2960
 msgid "Error while repairing filesystem"
 msgstr "שגיאה בתיקון מערכת הקבצים"
 
-#: src/disks/gduwindow.c:3006
+#: src/disks/gduwindow.c:2987
 msgid "Repair successful"
 msgstr "תיקון הצליח"
 
-#: src/disks/gduwindow.c:3006
-#| msgid "The operation failed"
+#: src/disks/gduwindow.c:2987
 msgid "Repair failed"
 msgstr "תיקון נכשל"
 
-#: src/disks/gduwindow.c:3009
+#: src/disks/gduwindow.c:2990
 #, c-format
 msgid "Filesystem %s on %s has been repaired."
 msgstr "מערכת הקבצים %s על %s תוקנה."
 
 #. show as result and not error message, because it's not a malfunction of GDU
-#: src/disks/gduwindow.c:3015
+#: src/disks/gduwindow.c:2996
 #, c-format
-#| msgid "Filesystem tools not installed"
 msgid "Filesystem %s on %s could not be repaired."
 msgstr "מערכת הקבצים %s על %s לא ניתנת לתיקון."
 
-#: src/disks/gduwindow.c:3068
-#| msgid "C_onfirm Passphrase"
+#: src/disks/gduwindow.c:3049
 msgid "Confirm Repair"
 msgstr "אימות תיקון"
 
-#: src/disks/gduwindow.c:3071
+#: src/disks/gduwindow.c:3052
 msgid ""
 "A filesystem repair is not always possible and can cause data loss. Consider "
-"backing it up first in order to use forensic recovery tools that retrieve "
-"lost files. The operation may take a long time, especially if the partition "
+"backing it up first in order to use forensic recovery tools that retrieve lost "
+"files. The operation may take a long time, especially if the partition "
 "contains a lot of data."
 msgstr ""
 "תיקון מערכת קבצים לא תמיד אפשרי ואף עשוי לגרום לאבדן של מידע. יש לשקול גיבוי "
 "מראש על מנת להשתמש בכלי אחזור משפטיים לאחזור קבצים שאבדו. הפעולה עשויה לקחת "
 "זמן רב, בייחוד אם המחיצה מכילה מידע רב."
 
-#: src/disks/gduwindow.c:3099
-#| msgid "Error checking filesystem on volume"
+#: src/disks/gduwindow.c:3080
 msgid "Error while checking filesystem"
 msgstr "שגיאה בבדיקת מערכת הקבצים"
 
-#: src/disks/gduwindow.c:3126
-#| msgctxt "volume-content-fs"
-#| msgid "Filesystem Root"
+#: src/disks/gduwindow.c:3107
 msgid "Filesystem intact"
 msgstr "מערכת קבצים שלמה"
 
-#: src/disks/gduwindow.c:3126
-#| msgid "Filesystem label"
+#: src/disks/gduwindow.c:3107
 msgid "Filesystem damaged"
 msgstr "מערכת קבצים פגומה"
 
-#: src/disks/gduwindow.c:3129
+#: src/disks/gduwindow.c:3110
 #, c-format
-#| msgid "Filesystem tools not installed"
 msgid "Filesystem %s on %s is undamaged."
 msgstr "מערכת הקבצים %s על %s פגומה."
 
 #. show as result and not error message, because it's not a malfunction of GDU
-#: src/disks/gduwindow.c:3135
+#: src/disks/gduwindow.c:3116
 #, c-format
 msgid "Filesystem %s on %s needs repairing."
 msgstr "מערכת הקבצים %s על %s דרושה תיקון."
 
-#: src/disks/gduwindow.c:3186
-#| msgid "C_onfirm Passphrase"
+#: src/disks/gduwindow.c:3167
 msgid "Confirm Check"
 msgstr "אימות בדיקה"
 
-#: src/disks/gduwindow.c:3189
+#: src/disks/gduwindow.c:3170
 msgid ""
-"The check may take a long time, especially if the partition contains a lot "
-"of data."
+"The check may take a long time, especially if the partition contains a lot of "
+"data."
 msgstr "הבדיקה עשויה לארוך זמן רב, במיוחד עם המחיצה מכילה מידע רב."
 
-#: src/disks/gduwindow.c:3426
+#: src/disks/gduwindow.c:3422
 msgid "An error occurred when trying to put the drive into standby mode"
 msgstr "אירעה שגיאה בעת ניסיון להכניס את הכונן למצב המתנה"
 
-#: src/disks/gduwindow.c:3473
+#: src/disks/gduwindow.c:3469
 msgid "An error occurred when trying to wake up the drive from standby mode"
 msgstr "אירעה שגיאה בעת ניסיון להעיר את הכונן ממצב המתנה"
 
-#: src/disks/gduwindow.c:3519
+#: src/disks/gduwindow.c:3515
 msgid "Error powering off drive"
 msgstr "אירעה שגיאה בכיבוי הכונן"
 
 #. Translators: Heading for powering off a device with multiple drives
-#: src/disks/gduwindow.c:3571
+#: src/disks/gduwindow.c:3567
 msgid "Are you sure you want to power off the drives?"
 msgstr "האם אכן ברצונך לכבות את הכוננים?"
 
 #. Translators: Message for powering off a device with multiple drives
-#: src/disks/gduwindow.c:3573
+#: src/disks/gduwindow.c:3569
 msgid ""
-"This operation will prepare the system for the following drives to be "
-"powered down and removed."
+"This operation will prepare the system for the following drives to be powered "
+"down and removed."
 msgstr "פעולה זו תכין את המערכת לכיבוי והסרה של הכוננים הבאים."
 
-#: src/disks/gduwindow.c:3577 src/disks/ui/drive-menu.ui:44
+#: src/disks/gduwindow.c:3573 src/disks/ui/drive-menu.ui:44
 msgid "_Power Off"
 msgstr "_כיבוי"
 
-#: src/disks/gduwindow.c:3657
+#: src/disks/gduwindow.c:3653
 msgid "Error mounting filesystem"
 msgstr "שגיאה בעגינת מערכת הקבצים"
 
-#: src/disks/gduwindow.c:3742
+#: src/disks/gduwindow.c:3738
 msgid "Error deleting partition"
 msgstr "שגיאה במהלך מחיקת המחיצה"
 
-#: src/disks/gduwindow.c:3779
+#: src/disks/gduwindow.c:3775
 msgid "Are you sure you want to delete the partition?"
 msgstr "האם אכן ברצונך למחוק את המחיצה?"
 
-#: src/disks/gduwindow.c:3780
+#: src/disks/gduwindow.c:3776
 msgid "All data on the partition will be lost"
 msgstr "כל הנתונים במחיצה יאבדו"
 
-#: src/disks/gduwindow.c:3781
+#: src/disks/gduwindow.c:3777
 msgid "_Delete"
 msgstr "_מחיקה"
 
-#: src/disks/gduwindow.c:3812
+#: src/disks/gduwindow.c:3808
 msgid "Error ejecting media"
 msgstr "שגיאה בשליפת התקן המדיה"
 
-#: src/disks/gduwindow.c:3895
+#: src/disks/gduwindow.c:3891
 msgid "Error starting swap"
 msgstr "שגיאה בהתחלת שטח ההחלפה"
 
-#: src/disks/gduwindow.c:3932
+#: src/disks/gduwindow.c:3928
 msgid "Error stopping swap"
 msgstr "שגיאה בעצירת שטח ההחלפה"
 
-#: src/disks/gduwindow.c:3974
+#: src/disks/gduwindow.c:3970
 msgid "Error setting autoclear flag"
 msgstr "שגיאה בהגדרת דגלונן ניקוי אוטומטי"
 
-#: src/disks/gduwindow.c:4027 src/disks/gduwindow.c:4091
+#: src/disks/gduwindow.c:4023 src/disks/gduwindow.c:4087
 msgid "Error canceling job"
 msgstr "שגיאה בביטול המשימה"
 
@@ -2413,9 +2361,6 @@ msgid "Need more input"
 msgstr "נדרש קלט נוסף"
 
 #: src/disks/ui/about-dialog.ui:12
-#| msgid ""
-#| "Copyright © 2008-2013 Red Hat, Inc.\n"
-#| "Copyright © 2008-2013 David Zeuthen"
 msgid ""
 "Copyright © 2008-2013 Red Hat, Inc.\n"
 "Copyright © 2008-2013 David Zeuthen\n"
@@ -2441,12 +2386,10 @@ msgstr ""
 "http://gnome-il.berlios.de"
 
 #: src/disks/ui/app-menu.ui:6
-#| msgid "Create Disk Image…"
 msgid "_New Disk Image…"
 msgstr "יצירת דמות כונן _חדש…"
 
 #: src/disks/ui/app-menu.ui:10
-#| msgid "Attach Disk _Image…"
 msgid "_Attach Disk Image… (.iso, .img)"
 msgstr "הצמדת _דמות כונן ‎(.iso, .img)…"
 
@@ -2459,7 +2402,6 @@ msgid "_Help"
 msgstr "_עזרה"
 
 #: src/disks/ui/app-menu.ui:24
-#| msgid "_About"
 msgid "_About Disks"
 msgstr "על _אודות כוננים"
 
@@ -2471,72 +2413,72 @@ msgstr "מדידת ביצועים"
 msgid "_Start Benchmark…"
 msgstr "ה_תחלת מדידת הביצועים…"
 
-#: src/disks/ui/benchmark-dialog.ui:38
+#: src/disks/ui/benchmark-dialog.ui:35
 msgid "_Abort Benchmark"
 msgstr "ביטול מ_דידת ביצועים"
 
-#: src/disks/ui/benchmark-dialog.ui:101
+#: src/disks/ui/benchmark-dialog.ui:83
 msgid "Last Benchmarked"
 msgstr "מדידת הביצועים האחרונה"
 
-#: src/disks/ui/benchmark-dialog.ui:118
+#: src/disks/ui/benchmark-dialog.ui:100
 msgid "Average Read Rate"
 msgstr "קצב קריאה ממוצע"
 
-#: src/disks/ui/benchmark-dialog.ui:135
+#: src/disks/ui/benchmark-dialog.ui:117
 msgid "Average Write Rate"
 msgstr "קצב כתיבה ממוצע"
 
-#: src/disks/ui/benchmark-dialog.ui:152
+#: src/disks/ui/benchmark-dialog.ui:134
 msgid "Average Access Time"
 msgstr "זמן גישה ממוצע"
 
-#: src/disks/ui/benchmark-dialog.ui:233
+#: src/disks/ui/benchmark-dialog.ui:215
 msgid "Disk or Device"
 msgstr "כונן או התקן"
 
-#: src/disks/ui/benchmark-dialog.ui:266
+#: src/disks/ui/benchmark-dialog.ui:248
 msgid "Sample Size"
 msgstr "גודל הדגימה"
 
-#: src/disks/ui/benchmark-dialog.ui:319
+#: src/disks/ui/benchmark-dialog.ui:291
 msgid "Benchmark Settings"
 msgstr "הגדרות מדידת ביצועים"
 
-#: src/disks/ui/benchmark-dialog.ui:349
+#: src/disks/ui/benchmark-dialog.ui:316
 msgid "_Start Benchmarking…"
 msgstr "הת_חלת מדידת הביצועים…"
 
-#: src/disks/ui/benchmark-dialog.ui:381
+#: src/disks/ui/benchmark-dialog.ui:340
 msgid ""
 "Benchmarking involves measuring the transfer rate on various area of the "
-"device as well as measuring how long it takes to seek from one random area "
-"to another. Please back up important data before using the write benchmark."
+"device as well as measuring how long it takes to seek from one random area to "
+"another. Please back up important data before using the write benchmark."
 msgstr ""
 "מדידת ביצועים כוללת מדידה של קצב ההעברה של מספר אזורים על ההתקן, ומדידת משך "
 "הזמן הדרוש לסריקה מאזור אקראי אחר לאזור אקראי אחר. נא גבה נתונים חשובים לפני "
 "שימוש במדידת ביצועי כתיבה."
 
-#: src/disks/ui/benchmark-dialog.ui:397
+#: src/disks/ui/benchmark-dialog.ui:356
 msgid "Transfer Rate"
 msgstr "קצב העברה"
 
-#: src/disks/ui/benchmark-dialog.ui:420
+#: src/disks/ui/benchmark-dialog.ui:374
 msgid "Number of S_amples"
 msgstr "מספר ה_דגימות"
 
-#: src/disks/ui/benchmark-dialog.ui:439
+#: src/disks/ui/benchmark-dialog.ui:393
 msgid "Sample S_ize (MiB)"
 msgstr "גודל _דגימה (MiB)"
 
-#: src/disks/ui/benchmark-dialog.ui:455
+#: src/disks/ui/benchmark-dialog.ui:409
 msgid "Perform _write-benchmark"
 msgstr "ביצוע מדידת קצב ה_כתיבה"
 
-#: src/disks/ui/benchmark-dialog.ui:459
+#: src/disks/ui/benchmark-dialog.ui:413
 msgid ""
-"Benchmarking the write-rate of a disk requires exclusive access to the disk "
-"(e.g. the disk or its partitions cannot be mounted or in use) and involves "
+"Benchmarking the write-rate of a disk requires exclusive access to the disk (e."
+"g. the disk or its partitions cannot be mounted or in use) and involves "
 "reading data and then writing it back. As a result, the contents of the disk "
 "is not changed.\n"
 "\n"
@@ -2544,39 +2486,39 @@ msgid ""
 "other hand exclusive access to the device is not needed (e.g. the disk or "
 "device can be in use)."
 msgstr ""
-"מדידת קצב הכתיבה של כונן דורשת גישה בלעדית להתקן (הכונן ומחיצותיו אינם "
-"יכולים להיות מעוגנים או בשימוש) וכוללת קריאת נתונים וכתיבתם חזרה. כתוצאה "
-"מכך, תוכן הכונן אינו משתנה.\n"
+"מדידת קצב הכתיבה של כונן דורשת גישה בלעדית להתקן (הכונן ומחיצותיו אינם יכולים "
+"להיות מעוגנים או בשימוש) וכוללת קריאת נתונים וכתיבתם חזרה. כתוצאה מכך, תוכן "
+"הכונן אינו משתנה.\n"
 "\n"
 "אם לא סומן, שלב הכתיבה של המדידה לא יבוצע, אך גם לא תידרש גישה בלעדית לכונן "
 "(למשך הכונן או ההתקן יכול להיות בשימוש)."
 
-#: src/disks/ui/benchmark-dialog.ui:478
+#: src/disks/ui/benchmark-dialog.ui:432
 msgid ""
-"Number of samples. Bigger number produces more smooth graphs but the "
-"benchmark will take more time."
+"Number of samples. Bigger number produces more smooth graphs but the benchmark "
+"will take more time."
 msgstr ""
 "מספר הדגימות. ככל שהמספר גדול יותר ככה התרשימים יהיו חלקים יותר אך מדידת "
 "הביצועים תארוך זמן רב יותר."
 
-#: src/disks/ui/benchmark-dialog.ui:495
+#: src/disks/ui/benchmark-dialog.ui:449
 msgid ""
 "The number of MiB (1048576 bytes) to read/write for each sample. Big sample "
 "sizes tend to produce more accurate benchmarks at the cost of the benchmark "
 "taking more time."
 msgstr ""
-"מספר מגה-הבתים (1,048,576 בתים) לקרוא/לכתוב עבור כל דגימה. דגימות גדולות "
-"נוטות ליצור מדידות מדויקת יותר, אך המדידה אורכת יותר זמן."
+"מספר מגה-הבתים (1,048,576 בתים) לקרוא/לכתוב עבור כל דגימה. דגימות גדולות נוטות "
+"ליצור מדידות מדויקת יותר, אך המדידה אורכת יותר זמן."
 
-#: src/disks/ui/benchmark-dialog.ui:533
+#: src/disks/ui/benchmark-dialog.ui:482
 msgid "Access Time"
 msgstr "זמן הגישה"
 
-#: src/disks/ui/benchmark-dialog.ui:556
+#: src/disks/ui/benchmark-dialog.ui:500
 msgid "Number of Sampl_es"
 msgstr "מספר ה_דגימות"
 
-#: src/disks/ui/benchmark-dialog.ui:575
+#: src/disks/ui/benchmark-dialog.ui:519
 msgid ""
 "Number of samples. Bigger number produces a more accurate picture of access "
 "time patterns but takes more time."
@@ -2588,54 +2530,53 @@ msgstr ""
 msgid "Change Passphrase"
 msgstr "החלפת מילת הצופן"
 
-#: src/disks/ui/change-passphrase-dialog.ui:37
-#: src/disks/ui/edit-dos-partition-dialog.ui:41
-#: src/disks/ui/edit-filesystem-dialog.ui:41
-#: src/disks/ui/edit-gpt-partition-dialog.ui:41
-#: src/disks/ui/edit-partition-dialog.ui:41
+#: src/disks/ui/change-passphrase-dialog.ui:32
+#: src/disks/ui/edit-dos-partition-dialog.ui:36
+#: src/disks/ui/edit-filesystem-dialog.ui:36
+#: src/disks/ui/edit-gpt-partition-dialog.ui:36
+#: src/disks/ui/edit-partition-dialog.ui:36
 msgid "C_hange"
 msgstr "_שינוי"
 
-#: src/disks/ui/change-passphrase-dialog.ui:86
+#: src/disks/ui/change-passphrase-dialog.ui:68
 msgid "Curr_ent Passphrase"
 msgstr "מילת הצופן הנו_כחית"
 
-#: src/disks/ui/change-passphrase-dialog.ui:106
-#: src/disks/ui/change-passphrase-dialog.ui:107
+#: src/disks/ui/change-passphrase-dialog.ui:88
+#: src/disks/ui/change-passphrase-dialog.ui:89
 msgid "Enter current passphrase used to protect the data"
 msgstr "יש להזין את מילת צופן הנוכחית המשמשת להגנה על הנתונים"
 
-#: src/disks/ui/change-passphrase-dialog.ui:123
+#: src/disks/ui/change-passphrase-dialog.ui:105
 msgid "Sho_w Passphrases"
 msgstr "ה_צגת מילות צופן"
 
-#: src/disks/ui/change-passphrase-dialog.ui:129
-#: src/disks/ui/change-passphrase-dialog.ui:130
+#: src/disks/ui/change-passphrase-dialog.ui:111
+#: src/disks/ui/change-passphrase-dialog.ui:112
 #: src/disks/ui/create-password-page.ui:101
 msgid "Check this box to see the passphrases entered above"
 msgstr "יש לסמן תיבה זו כדי להציג את מילת הצופן שמוזנת להלן"
 
-#: src/disks/ui/change-passphrase-dialog.ui:164
-#: src/disks/ui/change-passphrase-dialog.ui:165
+#: src/disks/ui/change-passphrase-dialog.ui:146
+#: src/disks/ui/change-passphrase-dialog.ui:147
 #: src/disks/ui/create-password-page.ui:81
 msgid "Confirm passphrase entered above"
 msgstr "אישור מילת הצפון שהוזנה להלן"
 
-#: src/disks/ui/change-passphrase-dialog.ui:185
-#: src/disks/ui/change-passphrase-dialog.ui:186
+#: src/disks/ui/change-passphrase-dialog.ui:167
+#: src/disks/ui/change-passphrase-dialog.ui:168
 msgid "Enter new passphrase used to protect the data"
 msgstr "יש להזין את מילת הצופן החדשה המשמשת להגנה על הנתונים"
 
-#: src/disks/ui/change-passphrase-dialog.ui:206
+#: src/disks/ui/change-passphrase-dialog.ui:188
 msgid "C_onfirm Passphrase"
 msgstr "_אימות מילת הצופן"
 
-#: src/disks/ui/change-passphrase-dialog.ui:226
+#: src/disks/ui/change-passphrase-dialog.ui:208
 msgid "New _Passphrase"
 msgstr "מילת צופן _חדשה"
 
 #: src/disks/ui/create-confirm-page.ui:17
-#| msgid "All data on the volume will be lost"
 msgid "Warning: all data on the volume will be lost"
 msgstr "אזהרה: כל הנתונים בכרך יאבדו"
 
@@ -2643,12 +2584,11 @@ msgstr "אזהרה: כל הנתונים בכרך יאבדו"
 msgid "Confirm the details of the current volume before proceeding."
 msgstr "יש לאמת את הפרטים של הכרך הנוכחי לפני המשך."
 
-#: src/disks/ui/create-confirm-page.ui:46 src/disks/ui/disks.ui:910
+#: src/disks/ui/create-confirm-page.ui:46 src/disks/ui/disks.ui:863
 msgid "Device"
 msgstr "התקן"
 
 #: src/disks/ui/create-confirm-page.ui:72
-#| msgid "_Volumes"
 msgid "Volume"
 msgstr "כרך"
 
@@ -2657,7 +2597,7 @@ msgid "Used"
 msgstr "מנוצל"
 
 #. The physical location of the drive, could be 'Connected to another seat'  or 'Bay 11 of Promise VTrak' or 'USB connector II'
-#: src/disks/ui/create-confirm-page.ui:113 src/disks/ui/disks.ui:229
+#: src/disks/ui/create-confirm-page.ui:113 src/disks/ui/disks.ui:296
 msgid "Location"
 msgstr "מיקום"
 
@@ -2666,8 +2606,8 @@ msgid "Create Disk Image"
 msgstr "יצירת דמות כונן"
 
 #: src/disks/ui/create-disk-image-dialog.ui:29
-#: src/disks/ui/edit-crypttab-dialog.ui:140
-#: src/disks/ui/edit-gpt-partition-dialog.ui:107
+#: src/disks/ui/edit-crypttab-dialog.ui:104
+#: src/disks/ui/edit-gpt-partition-dialog.ui:91
 #: src/disks/ui/new-disk-image-dialog.ui:48
 msgid "_Name"
 msgstr "_שם"
@@ -2686,38 +2626,32 @@ msgstr "בחירת תיקייה"
 msgid "Source"
 msgstr "מקור"
 
-#: src/disks/ui/create-disk-image-dialog.ui:153
+#: src/disks/ui/create-disk-image-dialog.ui:143
 msgid "_Start Creating…"
 msgstr "ה_תחלת היצירה…"
 
 #: src/disks/ui/create-filesystem-page.ui:19
-#| msgid "Volume Name:"
 msgid "Volume _Name"
 msgstr "_שם הכרך"
 
 #: src/disks/ui/create-filesystem-page.ui:33
-#| msgid ""
-#| "The name to use for the filesystem. This is useful if you want to refer "
-#| "to the device via a symlink in the /dev/disk/by-label directory"
 msgid ""
-"The name to use for the filesystem. This is useful if you want to refer to "
-"the device via a symlink in the /dev/disk/by-label directory."
+"The name to use for the filesystem. This is useful if you want to refer to the "
+"device via a symlink in the /dev/disk/by-label directory."
 msgstr ""
-"שם לשימוש עבור מערכת הקבצים. שימוש אם ברצונך לפנות להתקן דרך קישור סמלי "
-"בתיקיה ‎/dev/disk/by-label‏."
+"שם לשימוש עבור מערכת הקבצים. שימוש אם ברצונך לפנות להתקן דרך קישור סמלי בתיקיה"
+" ‎/dev/disk/by-label‏."
 
 #: src/disks/ui/create-filesystem-page.ui:47
-#| msgid "For example, “My Files” or “Backup Data”"
 msgid "For example: “Angela’s Files” or “Backup”."
 msgstr "לדוגמה: „הקבצים שלי” או „נתוני גיבוי”."
 
 #: src/disks/ui/create-filesystem-page.ui:74
-#: src/disks/ui/format-disk-dialog.ui:103
+#: src/disks/ui/format-disk-dialog.ui:87
 msgid "_Erase"
 msgstr "מ_חיקה"
 
 #: src/disks/ui/create-filesystem-page.ui:89
-#| msgid "Overwrite existing data with zeroes"
 msgid "Overwrites existing data, but takes longer."
 msgstr "דריסת הנתונים הקיימים, אבל לוקח זמן ארוך יותר."
 
@@ -2726,7 +2660,7 @@ msgid "_Internal disk for use with Linux systems only (Ext4)"
 msgstr "כונן _פנימי עבור שימוש עם מערכת קבצים תואמת לינוקס בלבד (Ext4)"
 
 #: src/disks/ui/create-filesystem-page.ui:131
-#: src/disks/ui/create-other-page.ui:46
+#: src/disks/ui/create-other-page.ui:36
 msgid "_Password protect volume (LUKS)"
 msgstr "_ססמה להגנת כרך (LUKS)"
 
@@ -2735,7 +2669,6 @@ msgid "For use with _Windows (NTFS)"
 msgstr "לשימוש עם _חלונות (NTFS)"
 
 #: src/disks/ui/create-filesystem-page.ui:163
-#| msgid "Compatible with all systems and devices"
 msgid "For use with all _systems and devices (FAT)"
 msgstr "לשימוש עם כל ה_מערכות וההתקנים (FAT)"
 
@@ -2750,90 +2683,84 @@ msgid ""
 "about your use case."
 msgstr ""
 "במקרה ואפשרות ברירת המחדל לא תואמת את הצרכים שלך יש לבחור את אחת מאפשרויות "
-"מערכות הקבצים הבאות. יש לשים לב להבדלים הטכניים ולבצע מחקר על הצורך הפרטני "
-"שלך."
+"מערכות הקבצים הבאות. יש לשים לב להבדלים הטכניים ולבצע מחקר על הצורך הפרטני שלך."
 
-#: src/disks/ui/create-partition-page.ui:79 src/disks/ui/resize-dialog.ui:95
+#: src/disks/ui/create-partition-page.ui:71 src/disks/ui/resize-dialog.ui:87
 msgid "Partition _Size"
 msgstr "_גודל המחיצה"
 
-#: src/disks/ui/create-partition-page.ui:93 src/disks/ui/resize-dialog.ui:109
-#| msgid "The size of the partition to create, in megabytes"
+#: src/disks/ui/create-partition-page.ui:85 src/disks/ui/resize-dialog.ui:101
 msgid "The size of the partition to create"
 msgstr "גודל המחיצה אותה יש ליצור"
 
-#: src/disks/ui/create-partition-page.ui:111
-#: src/disks/ui/new-disk-image-dialog.ui:140 src/disks/ui/resize-dialog.ui:127
+#: src/disks/ui/create-partition-page.ui:103
+#: src/disks/ui/new-disk-image-dialog.ui:140 src/disks/ui/resize-dialog.ui:119
 msgid "bytes"
 msgstr "בתים"
 
-#: src/disks/ui/create-partition-page.ui:112
-#: src/disks/ui/new-disk-image-dialog.ui:141 src/disks/ui/resize-dialog.ui:128
+#: src/disks/ui/create-partition-page.ui:104
+#: src/disks/ui/new-disk-image-dialog.ui:141 src/disks/ui/resize-dialog.ui:120
 msgid "kB"
 msgstr "ק״ב"
 
-#: src/disks/ui/create-partition-page.ui:113
-#: src/disks/ui/new-disk-image-dialog.ui:142 src/disks/ui/resize-dialog.ui:129
+#: src/disks/ui/create-partition-page.ui:105
+#: src/disks/ui/new-disk-image-dialog.ui:142 src/disks/ui/resize-dialog.ui:121
 msgid "MB"
 msgstr "מ״ב"
 
-#: src/disks/ui/create-partition-page.ui:114
-#: src/disks/ui/new-disk-image-dialog.ui:143 src/disks/ui/resize-dialog.ui:130
+#: src/disks/ui/create-partition-page.ui:106
+#: src/disks/ui/new-disk-image-dialog.ui:143 src/disks/ui/resize-dialog.ui:122
 msgid "GB"
 msgstr "ג״ב"
 
-#: src/disks/ui/create-partition-page.ui:115
-#: src/disks/ui/new-disk-image-dialog.ui:144 src/disks/ui/resize-dialog.ui:131
+#: src/disks/ui/create-partition-page.ui:107
+#: src/disks/ui/new-disk-image-dialog.ui:144 src/disks/ui/resize-dialog.ui:123
 msgid "TB"
 msgstr "ט״ב"
 
-#: src/disks/ui/create-partition-page.ui:116
-#: src/disks/ui/new-disk-image-dialog.ui:145 src/disks/ui/resize-dialog.ui:132
+#: src/disks/ui/create-partition-page.ui:108
+#: src/disks/ui/new-disk-image-dialog.ui:145 src/disks/ui/resize-dialog.ui:124
 msgid "PB"
 msgstr "פ\"ב"
 
-#: src/disks/ui/create-partition-page.ui:117
-#: src/disks/ui/new-disk-image-dialog.ui:146 src/disks/ui/resize-dialog.ui:133
+#: src/disks/ui/create-partition-page.ui:109
+#: src/disks/ui/new-disk-image-dialog.ui:146 src/disks/ui/resize-dialog.ui:125
 msgid "KiB"
 msgstr "KiB"
 
-#: src/disks/ui/create-partition-page.ui:118
-#: src/disks/ui/new-disk-image-dialog.ui:147 src/disks/ui/resize-dialog.ui:134
+#: src/disks/ui/create-partition-page.ui:110
+#: src/disks/ui/new-disk-image-dialog.ui:147 src/disks/ui/resize-dialog.ui:126
 msgid "MiB"
 msgstr "MiB"
 
-#: src/disks/ui/create-partition-page.ui:119
-#: src/disks/ui/new-disk-image-dialog.ui:148 src/disks/ui/resize-dialog.ui:135
+#: src/disks/ui/create-partition-page.ui:111
+#: src/disks/ui/new-disk-image-dialog.ui:148 src/disks/ui/resize-dialog.ui:127
 msgid "GiB"
 msgstr "GiB"
 
-#: src/disks/ui/create-partition-page.ui:120
-#: src/disks/ui/new-disk-image-dialog.ui:149 src/disks/ui/resize-dialog.ui:136
+#: src/disks/ui/create-partition-page.ui:112
+#: src/disks/ui/new-disk-image-dialog.ui:149 src/disks/ui/resize-dialog.ui:128
 msgid "TiB"
 msgstr "TiB"
 
-#: src/disks/ui/create-partition-page.ui:121
-#: src/disks/ui/new-disk-image-dialog.ui:150 src/disks/ui/resize-dialog.ui:137
+#: src/disks/ui/create-partition-page.ui:113
+#: src/disks/ui/new-disk-image-dialog.ui:150 src/disks/ui/resize-dialog.ui:129
 msgid "PiB"
 msgstr "PiB"
 
-#: src/disks/ui/create-partition-page.ui:135 src/disks/ui/resize-dialog.ui:151
+#: src/disks/ui/create-partition-page.ui:127 src/disks/ui/resize-dialog.ui:143
 msgid "Free Space _Following"
 msgstr "שטח פנוי ל_אחר"
 
-#: src/disks/ui/create-partition-page.ui:148 src/disks/ui/resize-dialog.ui:168
-#| msgid "The free space following the partition, in megabytes"
+#: src/disks/ui/create-partition-page.ui:140 src/disks/ui/resize-dialog.ui:160
 msgid "The free space following the partition"
 msgstr "השטח הפנוי שלאחר המחיצה"
 
-#: src/disks/ui/create-partition-page.ui:173
-#| msgctxt "volume-grid"
-#| msgid "Extended Partition"
+#: src/disks/ui/create-partition-page.ui:165
 msgid "Extended Partition"
 msgstr "מחיצה מורחבת"
 
-#: src/disks/ui/create-partition-page.ui:177
-#| msgid "Container for Logical Partitions"
+#: src/disks/ui/create-partition-page.ui:169
 msgid "Extended Partitions can contain Logical Partitions"
 msgstr "מחיצה מורחבת יכולה להכיל מחיצות לוגיות"
 
@@ -2845,7 +2772,6 @@ msgstr ""
 "מידע המאוחסן בכרך יהיה נגיש רק עם הססמה הנכונה. יש לשים לב לא לשכוח אותה."
 
 #: src/disks/ui/create-password-page.ui:34
-#| msgid "Passed"
 msgid "_Password"
 msgstr "_ססמה"
 
@@ -2858,7 +2784,6 @@ msgid "Enter passphrase used to protect the data"
 msgstr "יש להזין מילת צופן כדי להגן על הנתונים"
 
 #: src/disks/ui/create-password-page.ui:95
-#| msgid "Sho_w Passphrases"
 msgid "Sh_ow Password"
 msgstr "ה_צגת ססמה"
 
@@ -2876,8 +2801,7 @@ msgstr "החלת הגדרות זמן המתנה"
 
 #: src/disks/ui/disk-settings-dialog.ui:71
 msgid ""
-"Turn on to configure Standby Timeout at startup and when the disk is "
-"connected"
+"Turn on to configure Standby Timeout at startup and when the disk is connected"
 msgstr "אפשר על מנת להגדיר זמן מעבר להמתנה בעת האתחול וכאשר הכונן מחובר"
 
 #: src/disks/ui/disk-settings-dialog.ui:104
@@ -2966,201 +2890,206 @@ msgstr ""
 msgid "Wr_ite Cache"
 msgstr "מטמון _כתיבה"
 
-#: src/disks/ui/disks.ui:63
-msgid "Select a device"
-msgstr "בחירת התקן"
+#: src/disks/ui/disks.ui:93
+msgid "Go back to main view"
+msgstr "חזרה לתצוגה הראשית"
 
-#: src/disks/ui/disks.ui:122
+#: src/disks/ui/disks.ui:105
+msgid "Drive Options"
+msgstr "אפשרויות כונן"
+
+#: src/disks/ui/disks.ui:120
+msgid "Power off this disk"
+msgstr "כיבוי כונן זה"
+
+#: src/disks/ui/disks.ui:135
+msgid "Eject this disk"
+msgstr "הוצאת כונן זה"
+
+#: src/disks/ui/disks.ui:150
+msgid "Detach this loop device"
+msgstr "ניתוק התקן מחזורי זה"
+
+#: src/disks/ui/disks.ui:173
+msgid "No Device Selected"
+msgstr "לא נבחרו התקנים"
+
+#: src/disks/ui/disks.ui:174
+msgid "Select a device to manage."
+msgstr "יש לבחור התקן לניהול."
+
+#: src/disks/ui/disks.ui:209
 msgid "Model"
 msgstr "דגם"
 
-#: src/disks/ui/disks.ui:155
+#: src/disks/ui/disks.ui:238
 msgid "Serial Number"
 msgstr "מספר סידורי"
 
-#: src/disks/ui/disks.ui:192
+#: src/disks/ui/disks.ui:267
 msgid "World Wide Name"
 msgstr "שם כלל עולמי"
 
-#: src/disks/ui/disks.ui:266
+#: src/disks/ui/disks.ui:325
 msgid "Media"
 msgstr "מדיה"
 
-#: src/disks/ui/disks.ui:341 src/disks/ui/disks.ui:1022
+#: src/disks/ui/disks.ui:384 src/disks/ui/disks.ui:951
 msgid "Job"
 msgstr "משימה"
 
-#: src/disks/ui/disks.ui:439
+#: src/disks/ui/disks.ui:476
 msgid "Name"
 msgstr "שם"
 
-#: src/disks/ui/disks.ui:476 src/disks/ui/disks.ui:840
+#: src/disks/ui/disks.ui:505 src/disks/ui/disks.ui:805
 msgid "Size"
 msgstr "גודל"
 
-#: src/disks/ui/disks.ui:513
+#: src/disks/ui/disks.ui:534
 msgid "Auto-clear"
 msgstr "ניקוי אוטומטי"
 
-#: src/disks/ui/disks.ui:534
+#: src/disks/ui/disks.ui:552
 msgid "Detach loop device after unmount action"
 msgstr "הפרדת התקן מחזורי לאחר פעולת הניתוק"
 
 #. The filename or URI of the file that is used as backing store for the loop device.
-#: src/disks/ui/disks.ui:557
+#: src/disks/ui/disks.ui:566
 msgid "Backing File"
 msgstr "הקובץ מגובה"
 
-#: src/disks/ui/disks.ui:594
+#: src/disks/ui/disks.ui:595
 msgid "Partitioning"
 msgstr "הפרדה למחיצות"
 
-#: src/disks/ui/disks.ui:638
+#: src/disks/ui/disks.ui:626
 msgid "_Volumes"
 msgstr "_כרכים"
 
-#: src/disks/ui/disks.ui:692
+#: src/disks/ui/disks.ui:668
 msgid "Mount selected partition"
 msgstr "עיגון מחיצה נבחרת"
 
-#: src/disks/ui/disks.ui:693
-#| msgid "_Mount"
+#: src/disks/ui/disks.ui:669
 msgctxt "Accessibility label for toolbutton-mount"
 msgid "Mount"
 msgstr "עיגון"
 
-#: src/disks/ui/disks.ui:706
+#: src/disks/ui/disks.ui:682
 msgid "Unmount selected partition"
 msgstr "ביטול עיגון מחיצה נבחרת"
 
-#: src/disks/ui/disks.ui:707
-#| msgid "Unmounting..."
+#: src/disks/ui/disks.ui:683
 msgctxt "Accessibility label for toolbutton-unmount"
 msgid "Unmount"
 msgstr "ניתוק"
 
-#: src/disks/ui/disks.ui:720
+#: src/disks/ui/disks.ui:696
 msgid "Activate selected swap partition"
 msgstr "הפעלת מחיצת הפעלה נבחרת"
 
-#: src/disks/ui/disks.ui:721
-#| msgctxt "volume-content-swap"
-#| msgid "Active"
+#: src/disks/ui/disks.ui:697
 msgctxt "Accessibility label for toolbutton-activate-swap"
 msgid "Activate swap"
 msgstr "הפעלת מחיצת החלפה"
 
-#: src/disks/ui/disks.ui:734
+#: src/disks/ui/disks.ui:710
 msgid "Deactivate selected swap partition"
 msgstr "השבתת מחיצת החלפה נבחרת"
 
-#: src/disks/ui/disks.ui:735
-#| msgid "Deactivate selected swap partition"
+#: src/disks/ui/disks.ui:711
 msgctxt "Accessibility label for toolbutton-deactivate-swap"
 msgid "Deactivate swap"
 msgstr "השבתת מחיצת החלפה"
 
-#: src/disks/ui/disks.ui:748
+#: src/disks/ui/disks.ui:724
 msgid "Unlock selected encrypted partition"
 msgstr "שחרור מחיצה מוצפנת נבחרת"
 
-#: src/disks/ui/disks.ui:749
-#| msgid "_Unlock"
+#: src/disks/ui/disks.ui:725
 msgctxt "Accessibility label for toolbutton-unlock"
 msgid "Unlock"
 msgstr "שחרור"
 
-#: src/disks/ui/disks.ui:762
+#: src/disks/ui/disks.ui:738
 msgid "Lock selected encrypted partition"
 msgstr "נעילת מחיצה מוצפנת נבחרת"
 
-#: src/disks/ui/disks.ui:763
-#| msgctxt "volume-content-luks"
-#| msgid "Locked"
+#: src/disks/ui/disks.ui:739
 msgctxt "Accessibility label for toolbutton-lock"
 msgid "Lock"
 msgstr "נעילה"
 
-#: src/disks/ui/disks.ui:776
+#: src/disks/ui/disks.ui:752
 msgid "Create partition in unallocated space"
 msgstr "יצירת מחיצה במרחב הלא־מוקצה"
 
-#: src/disks/ui/disks.ui:777
-#| msgid "Create Partition"
+#: src/disks/ui/disks.ui:753
 msgctxt "Accessibility label for toolbutton-partition-create"
 msgid "Create partition"
 msgstr "יצירת מחיצה"
 
-#: src/disks/ui/disks.ui:790
+#: src/disks/ui/disks.ui:766
 msgid "Delete selected partition"
 msgstr "מחיקת מחיצה נבחרת"
 
-#: src/disks/ui/disks.ui:791
-#| msgid "Deleting Partition"
+#: src/disks/ui/disks.ui:767
 msgctxt "Accessibility label for toolbutton-partition-delete"
 msgid "Delete partition"
 msgstr "מחיקת מחיצה"
 
-#: src/disks/ui/disks.ui:804
+#: src/disks/ui/disks.ui:780
 msgid "Additional partition options"
 msgstr "אפשרויות מחיצה נוספות"
 
-#: src/disks/ui/disks.ui:805
+#: src/disks/ui/disks.ui:781
 msgctxt "Accessibility label for toolbutton-volume-menu"
 msgid "Menu"
 msgstr "תפריט"
 
 #. The contents of the device, for example 'Unknown', 'FAT (32-bit version)', 'Ext4 (version 1.0)', 'Swap (version 2)'
-#: src/disks/ui/disks.ui:873
+#: src/disks/ui/disks.ui:834
 msgid "Contents"
 msgstr "תכנים"
 
-#: src/disks/ui/disks.ui:947
-#| msgid "UUID: %s"
+#: src/disks/ui/disks.ui:892
 msgid "UUID"
 msgstr "UUID"
 
-#: src/disks/ui/disks.ui:984
+#: src/disks/ui/disks.ui:921
 msgid "Partition Type"
 msgstr "סוג המחיצה"
 
 #: src/disks/ui/drive-menu.ui:6
-#| msgid "Format Disk…"
 msgid "Format _Disk…"
 msgstr "אתחול ה_כונן…"
 
 #: src/disks/ui/drive-menu.ui:12
-#| msgid "Create Disk Image…"
 msgid "_Create Disk Image…"
 msgstr "_יצירת דמות כונן…"
 
 #: src/disks/ui/drive-menu.ui:16
-#| msgid "Restore Disk Image…"
 msgid "_Restore Disk Image…"
 msgstr "_שחזור דמות כונן…"
 
 #: src/disks/ui/drive-menu.ui:22
-#| msgid "Benchmark Disk…"
 msgid "_Benchmark Disk…"
 msgstr "_מדידת ביצועי כונן…"
 
 #: src/disks/ui/drive-menu.ui:26
-#| msgid "SMART Data & Self-Tests…"
 msgid "_SMART Data & Self-Tests…"
 msgstr "_צפייה בנתוני SMART והרצת בדיקות עצמיות…"
 
 #: src/disks/ui/drive-menu.ui:30
-#| msgid "Drive Settings…"
 msgid "Drive S_ettings…"
 msgstr "_הגדרות כונן…"
 
 #: src/disks/ui/drive-menu.ui:36
-#| msgid "Standby Now"
 msgid "S_tandby Now"
 msgstr "כניסה מיידית למצב ה_מתנה"
 
 #: src/disks/ui/drive-menu.ui:40
-#| msgid "Wake-Up from Standby"
 msgid "_Wake-Up from Standby"
 msgstr "יציאה ממצב ה_מתנה"
 
@@ -3168,78 +3097,67 @@ msgstr "יציאה ממצב ה_מתנה"
 msgid "Encryption Options"
 msgstr "אפשרויות הצפנה"
 
-#: src/disks/ui/edit-crypttab-dialog.ui:92 src/disks/ui/edit-fstab-dialog.ui:46
+#: src/disks/ui/edit-crypttab-dialog.ui:71 src/disks/ui/edit-fstab-dialog.ui:41
 msgid "Us_er Session Defaults"
 msgstr "_אפשרויות עגינה אוטומטיות"
 
-#: src/disks/ui/edit-crypttab-dialog.ui:112
-#, fuzzy
-#| msgid ""
-#| "Switch off <i>Automatic Encryption Options</i> to manage encryption "
-#| "options and passphrase for the device. The options correspond to an entry "
-#| "in the <b>/etc/crypttab</b> file"
+#: src/disks/ui/edit-crypttab-dialog.ui:86
 msgid ""
 "Switch off <i>User Session Defaults</i> to manage encryption options and "
 "passphrase for the device. The options correspond to an entry in the <b>/etc/"
 "crypttab</b> file"
 msgstr ""
-"יש לכבות את אפשרויות ההצפנה האוטומטית כדי לנהל את אפשרויות ההצפנה ואת מילות "
-"הצופן עבור ההתקן. האפשרויות קשורות ברשומה שבקובץ <b>/etc/crypttab</b>"
+"יש לכבות את בררות המחדל להפעלת משתמש כדי לנהל את אפשרויות ההצפנה ואת מילות "
+"הצופן עבור ההתקן. האפשרויות תואמות לרשומה בקובץ <b>/etc/crypttab</b>"
 
-#: src/disks/ui/edit-crypttab-dialog.ui:160
+#: src/disks/ui/edit-crypttab-dialog.ui:124
 msgid "Opt_ions"
 msgstr "_אפשרויות"
 
-#: src/disks/ui/edit-crypttab-dialog.ui:179
-#| msgid ""
-#| "The name to use for the unlocked device - the device is set up as the "
-#| "name prefixed with <b>/dev/mapper</b>/"
+#: src/disks/ui/edit-crypttab-dialog.ui:143
 msgid ""
 "The name to use for the unlocked device — the device is set up as the name "
 "prefixed with <b>/dev/mapper</b>/"
 msgstr ""
-"השם לשימוש עבור ההתקן המשוחרר - ההתקן מוגדר כשם בעל הקידומת ‎<b>/dev/mapper</"
-"b>/‎"
+"השם לשימוש עבור ההתקן המשוחרר - ההתקן מוגדר כשם בעל הקידומת ‎<b>/dev/mapper</b>/‎"
 
-#: src/disks/ui/edit-crypttab-dialog.ui:196
+#: src/disks/ui/edit-crypttab-dialog.ui:160
 msgid "Options to use when unlocking the device"
 msgstr "האפשרויות לשימוש בעת שחרור התקן"
 
-#: src/disks/ui/edit-crypttab-dialog.ui:213
+#: src/disks/ui/edit-crypttab-dialog.ui:177
 msgid "Passphrase File"
 msgstr "קובץ מילת צופן"
 
-#: src/disks/ui/edit-crypttab-dialog.ui:243
-#: src/disks/ui/unlock-device-dialog.ui:97
+#: src/disks/ui/edit-crypttab-dialog.ui:207
+#: src/disks/ui/unlock-device-dialog.ui:87
 msgid "Sho_w passphrase"
 msgstr "הצ_גת מילת צופן"
 
-#: src/disks/ui/edit-crypttab-dialog.ui:265
+#: src/disks/ui/edit-crypttab-dialog.ui:229
 msgid ""
 "Passphrase of the device or empty to request from user when setting up the "
 "device"
 msgstr "מילת הצופן של ההתקן או ריק כדי לבקש מהמשתמש בעת הגדרת ההתקן"
 
-#: src/disks/ui/edit-crypttab-dialog.ui:282
-#: src/disks/ui/unlock-device-dialog.ui:63
+#: src/disks/ui/edit-crypttab-dialog.ui:246
+#: src/disks/ui/unlock-device-dialog.ui:53
 msgid "_Passphrase"
 msgstr "מי_לת צופן"
 
-#: src/disks/ui/edit-crypttab-dialog.ui:304
-#| msgid "_Unlock at startup"
+#: src/disks/ui/edit-crypttab-dialog.ui:268
 msgid "_Unlock at system startup"
 msgstr "_שחרור עם ההפעלה"
 
-#: src/disks/ui/edit-crypttab-dialog.ui:310
-#| msgid "If checked, the device will be unlocked at startup [!noauto]"
+#: src/disks/ui/edit-crypttab-dialog.ui:274
 msgid "If checked, the device will be unlocked at system startup [!noauto]"
 msgstr "אם תיבה זו מסומנת, ההתקן ישוחרר עם הפעלת המערכת [!noauto]"
 
-#: src/disks/ui/edit-crypttab-dialog.ui:325
+#: src/disks/ui/edit-crypttab-dialog.ui:289
 msgid "Require additional authori_zation to unlock"
 msgstr "דרישת אימות _נוסף לצורך שחרור"
 
-#: src/disks/ui/edit-crypttab-dialog.ui:331
+#: src/disks/ui/edit-crypttab-dialog.ui:295
 msgid ""
 "If checked, additional authorization is required to unlock the device [x-"
 "udisks-auth]"
@@ -3251,25 +3169,25 @@ msgstr "אם נבחר, נדרש אימות נוסף כדי לשחרר את הה�
 msgid "Edit Partition"
 msgstr "עריכת מחיצה"
 
-#: src/disks/ui/edit-dos-partition-dialog.ui:76
-#: src/disks/ui/edit-gpt-partition-dialog.ui:75
-#: src/disks/ui/edit-partition-dialog.ui:75
+#: src/disks/ui/edit-dos-partition-dialog.ui:60
+#: src/disks/ui/edit-gpt-partition-dialog.ui:59
+#: src/disks/ui/edit-partition-dialog.ui:59
 msgid "_Type"
 msgstr "_סוג"
 
-#: src/disks/ui/edit-dos-partition-dialog.ui:92
+#: src/disks/ui/edit-dos-partition-dialog.ui:76
 msgid "The partition type as a 8-bit unsigned integer"
 msgstr "סוג המחיצה בתור מספר שלם וחיובי באורך 8 סיביות ללא סימן"
 
-#: src/disks/ui/edit-dos-partition-dialog.ui:103
+#: src/disks/ui/edit-dos-partition-dialog.ui:87
 msgid "_Bootable"
 msgstr "ניתן ל_אתחול"
 
-#: src/disks/ui/edit-dos-partition-dialog.ui:108
+#: src/disks/ui/edit-dos-partition-dialog.ui:92
 msgid ""
 "A flag used by the Platform bootloader to determine where the OS should be "
-"loaded from. Sometimes the partition with this flag set is referred to as "
-"the <i>active</i> partition"
+"loaded from. Sometimes the partition with this flag set is referred to as the "
+"<i>active</i> partition"
 msgstr ""
 "דגל שבאמצעותו קובע מנהל האתחול מאיפה יש לטעון את מערכת ההפעלה. לעתים המחיצה "
 "שבה הדגל מוגדר מכונה המחיצה ה<i>פעילה</i>"
@@ -3278,11 +3196,11 @@ msgstr ""
 msgid "Change Filesystem Label"
 msgstr "שינוי תווית מערכת הקבצים"
 
-#: src/disks/ui/edit-filesystem-dialog.ui:72
+#: src/disks/ui/edit-filesystem-dialog.ui:56
 msgid "This filesystem will be automatically unmounted prior to any changes."
 msgstr "מערכת הקבצים שנותק באופן אוטומטי לפני כל שינוי."
 
-#: src/disks/ui/edit-filesystem-dialog.ui:92
+#: src/disks/ui/edit-filesystem-dialog.ui:71
 msgid "_Label"
 msgstr "_תווית"
 
@@ -3290,11 +3208,7 @@ msgstr "_תווית"
 msgid "Mount Options"
 msgstr "אפשרויות עיגון"
 
-#: src/disks/ui/edit-fstab-dialog.ui:64
-#| msgid ""
-#| "Switch off <i>Automatic Mount Options</i> to manage mount point and mount "
-#| "options for the device. The options correspond to an entry in the <b>/etc/"
-#| "fstab</b> file"
+#: src/disks/ui/edit-fstab-dialog.ui:54
 msgid ""
 "Switch off <i>User Session Defaults</i> to manage mount point and mount "
 "options for the device. The options correspond to an entry in the <b>/etc/"
@@ -3303,106 +3217,95 @@ msgstr ""
 "יש לכבות את <i>אפשרויות העגינה האוטומטיות</i> כדי לנהל את נקודת העגינה ואת "
 "אפשרויות העגינה עבור ההתקן. האפשרויות קשורות ברשומה שבקובץ ‏‎<b>/etc/fstab</b>‎"
 
-#: src/disks/ui/edit-fstab-dialog.ui:91
+#: src/disks/ui/edit-fstab-dialog.ui:71
 msgid "I_dentify As"
 msgstr "זיהוי _בתור"
 
-#: src/disks/ui/edit-fstab-dialog.ui:110
-#, fuzzy
-#| msgid ""
-#| "The <b>special device file</b> - use symlinks in the <b>/dev/disk</b> "
-#| "hierarchy to control the scope of the entry"
+#: src/disks/ui/edit-fstab-dialog.ui:90
 msgid ""
 "The <b>special device file</b> — use symlinks in the <b>/dev/disk</b> "
 "hierarchy to control the scope of the entry"
 msgstr ""
-"‏<b>קובץ ההתקן המיוחד</b> - שימוש בקישורים סימבוליים בהיררכיית ה־ <b>‎/dev/"
-"disk</b> כדי לשלוט בטווח הרשומה"
+"‏<b>קובץ ההתקן המיוחד</b> - שימוש בקישורים סימבוליים בהיררכיית <b>‎/dev/disk</b> "
+"כדי לשלוט בטווח הרשומה"
 
-#: src/disks/ui/edit-fstab-dialog.ui:111
-#, fuzzy
-#| msgid ""
-#| "The special device file - use symlinks in the /dev/disk hierarchy to "
-#| "control the scope of the entry"
+#: src/disks/ui/edit-fstab-dialog.ui:91
 msgid ""
 "The special device file — use symlinks in the /dev/disk hierarchy to control "
 "the scope of the entry"
 msgstr ""
-"קובץ ההתקן המיוחד - שימוש בקישורים סימבוליים בהיררכיית ה־‎/dev/disk כדי לשלוט "
+"קובץ ההתקן המיוחד - שימוש בקישורים סימבוליים בהיררכיית ‎/dev/disk כדי לשלוט "
 "בטווח הרשומה"
 
-#: src/disks/ui/edit-fstab-dialog.ui:141
+#: src/disks/ui/edit-fstab-dialog.ui:121
 msgid "Mount _Point"
 msgstr "_נקודת עגינה"
 
-#: src/disks/ui/edit-fstab-dialog.ui:160
+#: src/disks/ui/edit-fstab-dialog.ui:140
 msgid "Filesystem _Type"
 msgstr "סוג מערכת ה_קבצים"
 
-#: src/disks/ui/edit-fstab-dialog.ui:179 src/disks/ui/edit-fstab-dialog.ui:180
+#: src/disks/ui/edit-fstab-dialog.ui:159 src/disks/ui/edit-fstab-dialog.ui:160
 msgid "The directory to mount the device in"
 msgstr "התיקייה תחתיה יש לעגן את ההתקן"
 
-#: src/disks/ui/edit-fstab-dialog.ui:196 src/disks/ui/edit-fstab-dialog.ui:197
+#: src/disks/ui/edit-fstab-dialog.ui:176 src/disks/ui/edit-fstab-dialog.ui:177
 msgid "The filesystem type to use"
 msgstr "סוג מערכת הקבצים לשימוש"
 
-#: src/disks/ui/edit-fstab-dialog.ui:219
+#: src/disks/ui/edit-fstab-dialog.ui:199
 msgid "Display _Name"
 msgstr "_שם התצוגה"
 
-#: src/disks/ui/edit-fstab-dialog.ui:238
+#: src/disks/ui/edit-fstab-dialog.ui:218
 msgid ""
 "If set, the name to use for the device in the user interface [x-gvfs-name=]"
 msgstr "אם מוגדר, השם בו יש להשתמש עבור ההתקן בממשק המשתמש ‎‪[x-gvfs-name=‎]‎‎"
 
-#: src/disks/ui/edit-fstab-dialog.ui:255
+#: src/disks/ui/edit-fstab-dialog.ui:235
 msgid "Icon Na_me"
 msgstr "שם ה_סמל"
 
-#: src/disks/ui/edit-fstab-dialog.ui:274
+#: src/disks/ui/edit-fstab-dialog.ui:254
 msgid ""
 "If set, the name of the icon to use in the device in the user interface [x-"
 "gvfs-icon=]"
-msgstr ""
-"אם מוגדר, שם הצלמית בה יש להשתמש עבור ההתקן בממשק המשתמש ‎‪[x-gvfs-icon=]‎"
+msgstr "אם מוגדר, שם הצלמית בה יש להשתמש עבור ההתקן בממשק המשתמש ‎‪[x-gvfs-icon=]‎"
 
-#: src/disks/ui/edit-fstab-dialog.ui:288
+#: src/disks/ui/edit-fstab-dialog.ui:268
 msgid "Sho_w in user interface"
 msgstr "הצגה במ_נשק המשתמש"
 
-#: src/disks/ui/edit-fstab-dialog.ui:293 src/disks/ui/edit-fstab-dialog.ui:294
+#: src/disks/ui/edit-fstab-dialog.ui:273 src/disks/ui/edit-fstab-dialog.ui:274
 msgid ""
 "If checked, the device is always shown in the user interface no matter what "
 "its directory is [x-gvfs-show]"
 msgstr ""
 "אם מסומן, ההתקן תמיד יוצג בממשק המשתמש, ללא תלות בתיקייה שלו [x-gvfs-show]"
 
-#: src/disks/ui/edit-fstab-dialog.ui:308
+#: src/disks/ui/edit-fstab-dialog.ui:288
 msgid "Require additional authori_zation to mount"
 msgstr "דרישת אימות _נוסף לצורך עיגון"
 
-#: src/disks/ui/edit-fstab-dialog.ui:313 src/disks/ui/edit-fstab-dialog.ui:314
+#: src/disks/ui/edit-fstab-dialog.ui:293 src/disks/ui/edit-fstab-dialog.ui:294
 msgid ""
-"If checked, additional authorization is required to mount the device [x-"
-"udisks-auth]"
+"If checked, additional authorization is required to mount the device [x-udisks-"
+"auth]"
 msgstr "אם מסומן, הרשאה נוספת נדרשת על מנת לעגן את ההתקן [x-udisks-auth]"
 
-#: src/disks/ui/edit-fstab-dialog.ui:328
-#| msgid "Mount at _startup"
+#: src/disks/ui/edit-fstab-dialog.ui:308
 msgid "Mount at system _startup"
 msgstr "עיגון עם הפעלת ה_מערכת"
 
-#: src/disks/ui/edit-fstab-dialog.ui:333
-#| msgid "If checked, the device will be mounted at startup [!noauto]"
+#: src/disks/ui/edit-fstab-dialog.ui:313
 msgid "If checked, the device will be mounted at system startup [!noauto]"
 msgstr "אם מסומן, ההתקן יעוגן בעת הפעלת המערכת ‪[!noauto]"
 
-#: src/disks/ui/edit-fstab-dialog.ui:350
+#: src/disks/ui/edit-fstab-dialog.ui:330
 msgid "S_ymbolic Icon Name"
 msgstr "שם הצלמית ה_סמלית"
 
-#: src/disks/ui/edit-fstab-dialog.ui:369 src/disks/ui/edit-fstab-dialog.ui:370
+#: src/disks/ui/edit-fstab-dialog.ui:349 src/disks/ui/edit-fstab-dialog.ui:350
 msgid ""
 "If set, the name of the symbolic icon to use in the device in the user "
 "interface [x-gvfs-symbolic-icon=]"
@@ -3410,19 +3313,19 @@ msgstr ""
 "אם מוגדר, שם הצלמית הסמלית בה יש להשתמש עבור ההתקן בממשק המשתמש ‪[x-gvfs-"
 "symbolic-icon=]"
 
-#: src/disks/ui/edit-fstab-dialog.ui:396
+#: src/disks/ui/edit-fstab-dialog.ui:376
 msgid "Mount Opt_ions"
 msgstr "אפשרויות _עיגון"
 
-#: src/disks/ui/edit-fstab-dialog.ui:415
+#: src/disks/ui/edit-fstab-dialog.ui:395
 msgid "The mount options stored in the <b>/etc/fstab</b> file"
 msgstr "אפשרויות העיגון השמורות בקובץ ‪<b>/etc/fstab</b>"
 
-#: src/disks/ui/edit-gpt-partition-dialog.ui:93
+#: src/disks/ui/edit-gpt-partition-dialog.ui:77
 msgid "The partition type represented as a 32-bit <i>GUID</i>"
 msgstr "סוג המחיצה, מיוצג כ-<i>GUID</i> בן 32 סיביות"
 
-#: src/disks/ui/edit-gpt-partition-dialog.ui:125
+#: src/disks/ui/edit-gpt-partition-dialog.ui:109
 msgid ""
 "The partition name (up to 36 unicode characters). This is useful if you want "
 "to refer to the device via a symlink in the <b>/dev/disk/by-partlabel</b> "
@@ -3431,60 +3334,54 @@ msgstr ""
 "שם המחיצה (עד 36 תווי יוניקוד). מאפשר לפנות להתקן דרך קישור סמלי בתיקיה ‪<b>/"
 "dev/disk/by-partlabel</b>"
 
-#: src/disks/ui/edit-gpt-partition-dialog.ui:138
+#: src/disks/ui/edit-gpt-partition-dialog.ui:122
 msgid "_System Partition"
 msgstr "מחיצת מ_ערכת"
 
-#: src/disks/ui/edit-gpt-partition-dialog.ui:143
+#: src/disks/ui/edit-gpt-partition-dialog.ui:127
 msgid ""
 "Used to indicate that the partition and its contents are required for the OS/"
-"Platform to function. Special care should be taken to not delete or "
-"overwrite the contents"
+"Platform to function. Special care should be taken to not delete or overwrite "
+"the contents"
 msgstr ""
 "משמש לציון שהמחיצה ותוכנה נחוצים לפעולה של מערכת ההפעלה/הפלטפורמה. יש להיזהר "
 "לא למחוק או לשכתב את התכנים"
 
-#: src/disks/ui/edit-gpt-partition-dialog.ui:157
+#: src/disks/ui/edit-gpt-partition-dialog.ui:141
 msgid "Legacy BIOS _Bootable"
 msgstr "ניתן ל_אתחול דרך BIOS"
 
-#: src/disks/ui/edit-gpt-partition-dialog.ui:162
-#, fuzzy
-#| msgid ""
-#| "Legacy BIOS Bootable. This is equivalent to Master Boot Record "
-#| "<i>bootable</i> flag. It is normally only used for GPT partitions on MBR "
-#| "systems"
+#: src/disks/ui/edit-gpt-partition-dialog.ui:146
 msgid ""
-"This is equivalent to Master Boot Record <i>bootable</i> flag. It is "
-"normally only used for GPT partitions on MBR systems"
+"This is equivalent to Master Boot Record <i>bootable</i> flag. It is normally "
+"only used for GPT partitions on MBR systems"
 msgstr ""
-"ניתן לאתחול דרך BIOS מיושן. אפשרות זו מקבילה לדגל ה־<i>bootable</i> (\"ניתן "
-"לאתחול\") של Master Boot Record. בדרך־כלל היא בשימוש רק עבור מחיצות GPT על־"
-"גבי מערכות MBR"
+"זו המקבילה של הדגלון <i>bootable</i> ב־Master Boot Record ‏(MBR). בדרך לל "
+"בשימוש למחיצות GPT על מערכות MBR"
 
-#: src/disks/ui/edit-gpt-partition-dialog.ui:179
+#: src/disks/ui/edit-gpt-partition-dialog.ui:163
 msgid "Flags"
 msgstr "דגלונים"
 
-#: src/disks/ui/edit-gpt-partition-dialog.ui:195
+#: src/disks/ui/edit-gpt-partition-dialog.ui:179
 msgid "Hide from _Firmware"
 msgstr "הסתרה מה_קושחה"
 
-#: src/disks/ui/edit-gpt-partition-dialog.ui:200
+#: src/disks/ui/edit-gpt-partition-dialog.ui:184
 msgid ""
-"Indicates that EFI firmware should ignore the content of the partition and "
-"not try to read from it"
-msgstr ""
+"Indicates that EFI firmware should ignore the content of the partition and not "
+"try to read from it"
+msgstr "מציין של שקושחת EFI אמורה להתעלם מתוכן המחיצה ולא לנסות לקרוא ממנה"
 
 #: src/disks/ui/erase-multiple-disks-dialog.ui:7
 msgid "Erase Multiple Disks"
 msgstr "מחיקת מספר כוננים"
 
-#: src/disks/ui/erase-multiple-disks-dialog.ui:36
+#: src/disks/ui/erase-multiple-disks-dialog.ui:31
 msgid "_Erase…"
 msgstr "_מחיקה…"
 
-#: src/disks/ui/erase-multiple-disks-dialog.ui:68
+#: src/disks/ui/erase-multiple-disks-dialog.ui:52
 msgid "Erase _Type"
 msgstr "_סוג המחיקה"
 
@@ -3492,74 +3389,51 @@ msgstr "_סוג המחיקה"
 msgid "Format Disk"
 msgstr "פרמוט הכונן"
 
-#: src/disks/ui/format-disk-dialog.ui:39
+#: src/disks/ui/format-disk-dialog.ui:34
 msgid "_Format…"
 msgstr "_פרמוט…"
 
-#: src/disks/ui/format-disk-dialog.ui:86
+#: src/disks/ui/format-disk-dialog.ui:70
 msgid "_Partitioning"
 msgstr "ה_פרדה למחיצות"
 
-#: src/disks/ui/headerbar.ui:35
-#| msgid "Drive Settings"
-msgid "Drive Options"
-msgstr "אפשרויות כונן"
-
-#: src/disks/ui/headerbar.ui:50
-msgid "Power off this disk"
-msgstr "כיבוי כונן זה"
-
-#: src/disks/ui/headerbar.ui:65
-msgid "Eject this disk"
-msgstr "הוצאת כונן זה"
-
-#: src/disks/ui/headerbar.ui:80
-msgid "Detach this loop device"
-msgstr "ניתוק התקן מחזורי זה"
-
 #: src/disks/ui/new-disk-image-dialog.ui:8
-#| msgid "Create Disk Image"
 msgid "New Disk Image"
 msgstr "יצירת דמות כונן חדשה"
 
 #: src/disks/ui/new-disk-image-dialog.ui:29
-#| msgid "Image Size"
 msgid "Image _Size"
 msgstr "_גודל הדמות"
 
 #: src/disks/ui/new-disk-image-dialog.ui:86
-#| msgid "The size of the partition to create, in megabytes"
 msgid "The size of the image to create"
 msgstr "גודל מחיצה אותה יש ליצור"
 
-#: src/disks/ui/new-disk-image-dialog.ui:187
-#| msgid "Attach Disk _Image…"
+#: src/disks/ui/new-disk-image-dialog.ui:177
 msgid "Attach new _Image…"
 msgstr "הצמדת _דמות כונן חדשה…"
 
 #: src/disks/ui/resize-dialog.ui:19
-#| msgid "New Volume"
 msgid "Resize Volume"
 msgstr "שינוי גודל כרך"
 
-#: src/disks/ui/resize-dialog.ui:53
+#: src/disks/ui/resize-dialog.ui:48
 msgid ""
 "Resizing a filesystem can lead to data loss. You are advised to backup your "
-"data before. The resize operation will take longer if a lot of data has to "
-"be moved. The minimal size is calculated according to the current content. "
-"Keep additional free space for the filesystem to work fast and reliably."
+"data before. The resize operation will take longer if a lot of data has to be "
+"moved. The minimal size is calculated according to the current content. Keep "
+"additional free space for the filesystem to work fast and reliably."
 msgstr ""
 "שינוי גודל של מערכת קבצים עשוי להוביל לאבדן מידע. מומלץ לגבות את המידע שלך "
 "קודם. פעולת שינוי הגודל עשויה לארוך זמן רב אם קיים מידע רב שצריך לזוז. הגודל "
 "המזערי מחושב לפי התוכן הנוכחי. יש להמשיך להוסיף מקום ריק כדי שמערכת הקבצים "
 "תעבוד מהר ובצורה אמינה."
 
-#: src/disks/ui/resize-dialog.ui:197
+#: src/disks/ui/resize-dialog.ui:189
 msgid "_Difference"
 msgstr "_שינוי"
 
-#: src/disks/ui/resize-dialog.ui:214
-#| msgid "The requested partition size"
+#: src/disks/ui/resize-dialog.ui:206
 msgid "The difference to the previous partition size"
 msgstr "השינוי לגודל המחיצה הקודם"
 
@@ -3596,89 +3470,81 @@ msgid "_Start Restoring…"
 msgstr "ה_תחלת השחזור…"
 
 #: src/disks/ui/shortcuts.ui:13
-#| msgid "General"
 msgctxt "shortcut window"
 msgid "General"
 msgstr "כללי"
 
 #: src/disks/ui/shortcuts.ui:17
-#| msgid "Create Disk Image"
 msgctxt "shortcut window"
 msgid "Create a new empty disk image"
 msgstr "יצירת דמות כונן חדש"
 
 #: src/disks/ui/shortcuts.ui:24
-#| msgid "Error attaching disk image"
 msgctxt "shortcut window"
 msgid "Attach an existing disk image"
 msgstr "הצמדת דמות הכונן קיים"
 
 #: src/disks/ui/shortcuts.ui:31
-#| msgid "_Help"
+msgctxt "shortcut window"
+msgid "Unselect current disk"
+msgstr "ביטול בחירת הכונן הנוכחי"
+
+#: src/disks/ui/shortcuts.ui:38
 msgctxt "shortcut window"
 msgid "Help"
 msgstr "עזרה"
 
-#: src/disks/ui/shortcuts.ui:38
+#: src/disks/ui/shortcuts.ui:45
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
 msgstr "צירופי מקשים"
 
-#: src/disks/ui/shortcuts.ui:45
-#| msgid "Quit"
+#: src/disks/ui/shortcuts.ui:52
 msgctxt "shortcut window"
 msgid "Quit"
 msgstr "יציאה"
 
-#: src/disks/ui/shortcuts.ui:54
-#| msgid "Drive"
+#: src/disks/ui/shortcuts.ui:61
 msgctxt "shortcut window"
 msgid "Drive"
 msgstr "כונן"
 
-#: src/disks/ui/shortcuts.ui:58
+#: src/disks/ui/shortcuts.ui:65
 msgctxt "shortcut window"
 msgid "Open the drive menu"
 msgstr "פתיחת תפריט כוננים"
 
-#: src/disks/ui/shortcuts.ui:65
-#| msgid "Format _Drive"
+#: src/disks/ui/shortcuts.ui:72
 msgctxt "shortcut window"
 msgid "Format the drive"
 msgstr "אתחול הכונן"
 
-#: src/disks/ui/shortcuts.ui:72
-#| msgid "The temperature of the disk"
+#: src/disks/ui/shortcuts.ui:79
 msgctxt "shortcut window"
 msgid "Restore an image to the disk"
 msgstr "שחזור תמונה לכונן"
 
-#: src/disks/ui/shortcuts.ui:79
-#| msgid "SMART Data"
+#: src/disks/ui/shortcuts.ui:86
 msgctxt "shortcut window"
 msgid "SMART data"
 msgstr "נתוני SMART"
 
-#: src/disks/ui/shortcuts.ui:86
-#| msgid "Drive Settings"
+#: src/disks/ui/shortcuts.ui:93
 msgctxt "shortcut window"
 msgid "Drive settings"
 msgstr "הגדרות כוננים"
 
-#: src/disks/ui/shortcuts.ui:95
-#| msgid "Partitioned"
+#: src/disks/ui/shortcuts.ui:102
 msgctxt "shortcut window"
 msgid "Partition"
 msgstr "מחיצה"
 
-#: src/disks/ui/shortcuts.ui:99
-#| msgid "Mount the volume"
+#: src/disks/ui/shortcuts.ui:106
 msgctxt "shortcut window"
 msgid "Open the volume menu"
 msgstr "פתיחת תפריט כרך"
 
-#: src/disks/ui/shortcuts.ui:106
-#| msgid "Format selected device"
+#: src/disks/ui/shortcuts.ui:113
 msgctxt "shortcut window"
 msgid "Format the selected volume"
 msgstr "אתחול הכרך הנבחר"
@@ -3695,55 +3561,55 @@ msgstr "ה_תחלת בדיקות עצמיות"
 msgid "Click to start a SMART self-test"
 msgstr "יש ללחוץ להתחלת בדיקות SMART עצמיות"
 
-#: src/disks/ui/smart-dialog.ui:40
+#: src/disks/ui/smart-dialog.ui:37
 msgid "_Stop Self-test"
 msgstr "_עצירת בדיקה עצמית"
 
-#: src/disks/ui/smart-dialog.ui:44
+#: src/disks/ui/smart-dialog.ui:41
 msgid "Click to stop the SMART self-test currently in progress"
 msgstr "לחיצה תעצור את בדיקת ה־SMART העצמית שנמצאת בתהליך כרגע"
 
-#: src/disks/ui/smart-dialog.ui:74
+#: src/disks/ui/smart-dialog.ui:63
 msgid "Click to force re-reading SMART data from the hard disk"
 msgstr "לחיצה תאלץ קריאה מחדש של נתוני SMART מהכונן הקשיח"
 
-#: src/disks/ui/smart-dialog.ui:113
+#: src/disks/ui/smart-dialog.ui:97
 msgid "Powered On"
 msgstr "זמן הפעלת החשמל"
 
-#: src/disks/ui/smart-dialog.ui:146
+#: src/disks/ui/smart-dialog.ui:130
 msgid "Updated"
 msgstr "עודכן"
 
-#: src/disks/ui/smart-dialog.ui:212
+#: src/disks/ui/smart-dialog.ui:196
 msgid "Self-test Result"
 msgstr "תוצאות הבדיקות העצמיות"
 
-#: src/disks/ui/smart-dialog.ui:229
+#: src/disks/ui/smart-dialog.ui:213
 msgid "Self-assessment"
 msgstr "הערכה עצמית"
 
-#: src/disks/ui/smart-dialog.ui:246
+#: src/disks/ui/smart-dialog.ui:230
 msgid "Overall Assessment"
 msgstr "הערכה כללית"
 
-#: src/disks/ui/smart-dialog.ui:317
+#: src/disks/ui/smart-dialog.ui:296
 msgid "Click to toggle whether SMART is enabled for the hard disk"
 msgstr "לחיצה תאפשר/תכבה שימוש ב־SMART עבור הכונן הקשיח"
 
-#: src/disks/ui/smart-dialog.ui:339
+#: src/disks/ui/smart-dialog.ui:307
 msgid "SMART _Attributes"
 msgstr "מ_אפייני SMART"
 
-#: src/disks/ui/smart-dialog.ui:413
+#: src/disks/ui/smart-dialog.ui:364
 msgid "Short"
 msgstr "קצר"
 
-#: src/disks/ui/smart-dialog.ui:421
+#: src/disks/ui/smart-dialog.ui:372
 msgid "Extended"
 msgstr "מורחב"
 
-#: src/disks/ui/smart-dialog.ui:429
+#: src/disks/ui/smart-dialog.ui:380
 msgid "Conveyance"
 msgstr "העברה"
 
@@ -3751,81 +3617,74 @@ msgstr "העברה"
 msgid "Enter passphrase to unlock"
 msgstr "יש להזין מילת צופן לשחרור"
 
-#: src/disks/ui/unlock-device-dialog.ui:41
+#: src/disks/ui/unlock-device-dialog.ui:36
 msgid "This volume might be a VeraCrypt volume as it contains random data."
 msgstr "הכרך חייב להיות כרך VeraCrypt כיוון שהוא מכיל מידע אקראי."
 
-#: src/disks/ui/unlock-device-dialog.ui:79
-#: src/disks/ui/unlock-device-dialog.ui:186
+#: src/disks/ui/unlock-device-dialog.ui:69
+#: src/disks/ui/unlock-device-dialog.ui:176
 msgid "If specified"
 msgstr "אם צוין"
 
-#: src/disks/ui/unlock-device-dialog.ui:117
-#| msgid "Volume Name:"
+#: src/disks/ui/unlock-device-dialog.ui:107
 msgid "Volume type"
 msgstr "סוג כרך"
 
-#: src/disks/ui/unlock-device-dialog.ui:136
-#| msgid "H_idden"
+#: src/disks/ui/unlock-device-dialog.ui:126
 msgid "_Hidden"
 msgstr "_מוסתר"
 
-#: src/disks/ui/unlock-device-dialog.ui:137
+#: src/disks/ui/unlock-device-dialog.ui:127
 msgid ""
-"Instead of unlocking this volume, attempt to unlock a secondary volume "
-"hidden inside."
+"Instead of unlocking this volume, attempt to unlock a secondary volume hidden "
+"inside."
 msgstr "במקום לשחרר כרך זה, יש לנסות לשחרר כרך משני המוסתר בתוכו."
 
-#: src/disks/ui/unlock-device-dialog.ui:149
+#: src/disks/ui/unlock-device-dialog.ui:139
 msgid "Windows _system"
 msgstr "_מערכת חלונות"
 
-#: src/disks/ui/unlock-device-dialog.ui:150
-#| msgid "Unlock selected encrypted partition"
+#: src/disks/ui/unlock-device-dialog.ui:140
 msgid "Unlock an encrypted Windows system partition or drive."
 msgstr "שחרור מחיצה או כונן מערכת חלונות מוצפן."
 
-#: src/disks/ui/unlock-device-dialog.ui:171
+#: src/disks/ui/unlock-device-dialog.ui:161
 msgid "PI_M"
 msgstr "PI_M"
 
-#: src/disks/ui/unlock-device-dialog.ui:187
+#: src/disks/ui/unlock-device-dialog.ui:177
 msgid ""
 "If set, the VeraCrypt PIM (Personal Iterations Multiplier) numeric value to "
 "use for this volume."
-msgstr "אם מסומן, "
-
-#: src/disks/ui/unlock-device-dialog.ui:204
-msgid "_Keyfiles"
 msgstr ""
+"אם מוגדר, זהו ערך ה־PIM ‏(Personal Iterations Multiplier) המספרי של VeraCrypt "
+"לשימוש לכרך זה."
 
-#: src/disks/ui/unlock-device-dialog.ui:221
-#, fuzzy
-#| msgid "View files on the volume"
+#: src/disks/ui/unlock-device-dialog.ui:194
+msgid "_Keyfiles"
+msgstr "קובצי מ_פתחות"
+
+#: src/disks/ui/unlock-device-dialog.ui:211
 msgid "Select a keyfile to unlock this volume"
-msgstr "צפייה בקבצים בכרך"
+msgstr "נא לבחור קובץ מפתח כדי לשחרר את נעילת הכרך הזה"
 
-#: src/disks/ui/unlock-device-dialog.ui:260
+#: src/disks/ui/unlock-device-dialog.ui:240
 msgid "_Unlock"
 msgstr "_שחרור"
 
 #: src/disks/ui/volume-menu.ui:6
-#| msgid "Format Partition…"
 msgid "Format _Partition…"
 msgstr "אתחול _מחיצה…"
 
 #: src/disks/ui/volume-menu.ui:12
-#| msgid "Edit Partition…"
 msgid "_Edit Partition…"
 msgstr "עריכת _מחיצה…"
 
 #: src/disks/ui/volume-menu.ui:16
-#| msgid "Edit Filesystem…"
 msgid "Edit _Filesystem…"
 msgstr "עריכת מערכת _קבצים…"
 
 #: src/disks/ui/volume-menu.ui:20
-#| msgid "Change Passphrase…"
 msgid "Change Pa_ssphrase…"
 msgstr "החלפת מילת ה_צופן…"
 
@@ -3834,37 +3693,30 @@ msgid "Resi_ze…"
 msgstr "_שינוי גודל…"
 
 #: src/disks/ui/volume-menu.ui:30
-#| msgid "_Check Filesystem"
 msgid "C_heck Filesystem…"
 msgstr "ב_דיקת מערכת הקבצים…"
 
 #: src/disks/ui/volume-menu.ui:34
-#| msgid "Edit Filesystem…"
 msgid "Rep_air Filesystem…"
 msgstr "_תיקון מערכת קבצים…"
 
 #: src/disks/ui/volume-menu.ui:40
-#| msgid "Edit Mount Options…"
 msgid "Edit _Mount Options…"
 msgstr "עריכת אפשרויות _עגינה…"
 
 #: src/disks/ui/volume-menu.ui:44
-#| msgid "Edit Encryption Options…"
 msgid "Edit Encr_yption Options…"
 msgstr "עריכת אפשרויות ה_צפנה…"
 
 #: src/disks/ui/volume-menu.ui:50
-#| msgid "Create Partition Image…"
 msgid "_Create Partition Image…"
 msgstr "יצירת דמות _מחיצה…"
 
 #: src/disks/ui/volume-menu.ui:54
-#| msgid "Restore Partition Image…"
 msgid "_Restore Partition Image…"
 msgstr "_שחזור דמות מחיצה…"
 
 #: src/disks/ui/volume-menu.ui:58
-#| msgid "Benchmark Partition…"
 msgid "_Benchmark Partition…"
 msgstr "מדידת _ביצועי מחיצה…"
 
@@ -3886,7 +3738,9 @@ msgstr "דמויות כונן (‎*.img, *.iso)"
 msgid "%d year"
 msgid_plural "%d years"
 msgstr[0] "שנה אחת"
-msgstr[1] "%d שנים"
+msgstr[1] "שנתיים"
+msgstr[2] "‏‫%d שנים"
+msgstr[3] "‏‫%d שנים"
 
 #. Translators: Used for number of months
 #: src/libgdu/gduutils.c:450
@@ -3894,7 +3748,9 @@ msgstr[1] "%d שנים"
 msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] "חודש אחד"
-msgstr[1] "%d חודשים"
+msgstr[1] "חודשיים"
+msgstr[2] "‏‫%d חודשים"
+msgstr[3] "‏‫%d חודשים"
 
 #. Translators: Used for number of days
 #: src/libgdu/gduutils.c:457
@@ -3902,7 +3758,9 @@ msgstr[1] "%d חודשים"
 msgid "%d day"
 msgid_plural "%d days"
 msgstr[0] "יום אחד"
-msgstr[1] "%d ימים"
+msgstr[1] "יומיים"
+msgstr[2] "‏‫%d ימים"
+msgstr[3] "‏‫%d ימים"
 
 #. Translators: Used for number of hours
 #: src/libgdu/gduutils.c:464
@@ -3910,7 +3768,9 @@ msgstr[1] "%d ימים"
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "שעה אחת"
-msgstr[1] "%d שעות"
+msgstr[1] "שעתיים"
+msgstr[2] "‏‫%d שעות"
+msgstr[3] "‏‫%d שעות"
 
 #. Translators: Used for number of minutes
 #: src/libgdu/gduutils.c:471
@@ -3918,7 +3778,9 @@ msgstr[1] "%d שעות"
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "דקה אחת"
-msgstr[1] "%d דקות"
+msgstr[1] "שתי דקות"
+msgstr[2] "‏‫%d דקות"
+msgstr[3] "‏‫%d דקות"
 
 #. Translators: Used for number of seconds
 #: src/libgdu/gduutils.c:478
@@ -3926,7 +3788,9 @@ msgstr[1] "%d דקות"
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] "שנייה אחת"
-msgstr[1] "%d שניות"
+msgstr[1] "שתי שניות"
+msgstr[2] "‏‫%d שניות"
+msgstr[3] "‏‫%d שניות"
 
 #. Translators: Used for number of milli-seconds
 #: src/libgdu/gduutils.c:485
@@ -3934,7 +3798,9 @@ msgstr[1] "%d שניות"
 msgid "%d milli-second"
 msgid_plural "%d milli-seconds"
 msgstr[0] "מילישנייה"
-msgstr[1] " %d מילישניות"
+msgstr[1] "שתי מילישניות"
+msgstr[2] "‏‫ %d מילישניות"
+msgstr[3] "‏‫ %d מילישניות"
 
 #. Translators: Used for duration greater than one year. First %s is number of years, second %s is months, third %s is days
 #: src/libgdu/gduutils.c:549
@@ -4005,7 +3871,6 @@ msgid "Error locking device"
 msgstr "שגיאה בעת נעילת ההתקן"
 
 #: src/libgdu/gduutils.c:1452
-#| msgid "Error deleting loop device"
 msgid "Error disabling autoclear for loop device"
 msgstr "שגיאה בהשבתת ניקוי אוטומטי עבור ההתקן המחזורי"
 
@@ -4027,19 +3892,23 @@ msgctxt "notify-smart"
 msgid "Examine"
 msgstr "בחינה"
 
+#~ msgid "Parent window XID for the format dialog"
+#~ msgstr "Parent window XID for the format dialog"
+
+#~ msgid "--format-device must be specified when using --xid\n"
+#~ msgstr "--format-device must be specified when using --xid\n"
+
 #~ msgid "Activation of this plugin"
 #~ msgstr "Activation of this plugin"
 
-#~ msgid ""
-#~ "Whether this plugin would be activated by gnome-settings-daemon or not"
+#~ msgid "Whether this plugin would be activated by gnome-settings-daemon or not"
 #~ msgstr ""
 #~ "Whether this plugin would be activated by gnome-settings-daemon or not"
 
 #~ msgid "Priority to use for this plugin"
 #~ msgstr "Priority to use for this plugin"
 
-#~ msgid ""
-#~ "Priority to use for this plugin in gnome-settings-daemon startup queue"
+#~ msgid "Priority to use for this plugin in gnome-settings-daemon startup queue"
 #~ msgstr ""
 #~ "Priority to use for this plugin in gnome-settings-daemon startup queue"
 
@@ -4089,8 +3958,8 @@ msgstr "בחינה"
 #~ msgstr "האם אכן ברצונך למחוק את הכוננים?"
 
 #~ msgid ""
-#~ "All data on the selected disks will be lost but may still be recoverable "
-#~ "by data recovery services"
+#~ "All data on the selected disks will be lost but may still be recoverable by "
+#~ "data recovery services"
 #~ msgstr ""
 #~ "כל הנתונים בכוננים הנבחרים יאבדו אך עדיין יהיה ניתן לשחזור אותם בעזרת "
 #~ "שירותי שחזור מידע"
@@ -4099,8 +3968,8 @@ msgstr "בחינה"
 #~ "All data on the selected disks will be overwritten and will likely not be "
 #~ "recoverable by data recovery services"
 #~ msgstr ""
-#~ "כל הנתונים בכונן ישוכתבו ויתכן שלא ניתן יהיה לשחזר אותם בעזרת שירותי "
-#~ "שחזור מידע"
+#~ "כל הנתונים בכונן ישוכתבו ויתכן שלא ניתן יהיה לשחזר אותם בעזרת שירותי שחזור "
+#~ "מידע"
 
 #~ msgid "Are you sure you want to format the volume?"
 #~ msgstr "האם ברצונך לפרמט את הכרך?"
@@ -4109,8 +3978,8 @@ msgstr "בחינה"
 #~ "All data on the volume will be lost but may still be recoverable by data "
 #~ "recovery services"
 #~ msgstr ""
-#~ "כל הנתונים על הכרך יאבדו אך יתכן שעדיין ניתן יהיה לשחזר אותם על ידי "
-#~ "שירותי שחזור מידע"
+#~ "כל הנתונים על הכרך יאבדו אך יתכן שעדיין ניתן יהיה לשחזר אותם על ידי שירותי "
+#~ "שחזור מידע"
 
 #~ msgid ""
 #~ "All data on the volume will be overwritten and will likely not be "
@@ -4177,8 +4046,8 @@ msgstr "בחינה"
 #~ msgstr "סוג מערכת הקבצים שיש ליצור, למשל btrfs,‫ xfs או swap"
 
 #~ msgid ""
-#~ "The name to use for the filesystem. This is useful if you want to refer "
-#~ "to the device via a symlink in the <b>/dev/disk/by-label</b> directory"
+#~ "The name to use for the filesystem. This is useful if you want to refer to "
+#~ "the device via a symlink in the <b>/dev/disk/by-label</b> directory"
 #~ msgstr ""
 #~ "שם מערכת הקבצים. מאפשר לפנות להתקן דרך קישור סמלי בתיקיה <b>/dev/disk/by-"
 #~ "label</b>"
@@ -4335,10 +4204,9 @@ msgstr "בחינה"
 
 #, fuzzy
 #~ msgid ""
-#~ "Updated only during off-line activities <span size=\"small\">(Not "
-#~ "Online)</span>"
-#~ msgstr ""
-#~ "רק במהלך פעולות בלתי מקוונות <span size=\"small\">(Not Online)</span>"
+#~ "Updated only during off-line activities <span size=\"small\">(Not Online)</"
+#~ "span>"
+#~ msgstr "רק במהלך פעולות בלתי מקוונות <span size=\"small\">(Not Online)</span>"
 
 #~ msgctxt "benchmark"
 #~ msgid "%s — %s"
@@ -4616,10 +4484,6 @@ msgstr "בחינה"
 #~ msgid "Error stopping RAID array"
 #~ msgstr "שגיאה ביצירת מערך RAID"
 
-#~ msgctxt "multi-disk-menu"
-#~ msgid "No _Devices Selected"
-#~ msgstr "לא _נבחרו התקנים"
-
 #~ msgid "RAID 0"
 #~ msgstr "RAID 0"
 
@@ -4817,8 +4681,7 @@ msgstr "בחינה"
 #~ "To prevent data corruption, wait until this has finished before removing "
 #~ "media or disconnecting the device."
 #~ msgstr ""
-#~ "כדי למנוע פגיעה בנתונים, יש להמתין עד לסיום לפני הסרת המדיה או ניתוק "
-#~ "ההתקן."
+#~ "כדי למנוע פגיעה בנתונים, יש להמתין עד לסיום לפני הסרת המדיה או ניתוק ההתקן."
 
 #~ msgid "The device to show the dialog for"
 #~ msgstr "ההתקן שעבורו להציג תיבת דו־שיח"
@@ -4877,8 +4740,7 @@ msgstr "בחינה"
 #~ msgid "Add spare to %s"
 #~ msgstr "תוספת ל־%s"
 
-#~ msgid ""
-#~ "Select a device to create a %s spare on for the RAID Array \"%s\" (%s)"
+#~ msgid "Select a device to create a %s spare on for the RAID Array \"%s\" (%s)"
 #~ msgstr "יש לבחור את ההתקן כדי ליצור תוספת מסוג %s למערך ה־RAID‏ \"%s\"‏ (%s)"
 
 #~ msgid "Expand %s"
@@ -4887,8 +4749,7 @@ msgstr "בחינה"
 #~ msgid ""
 #~ "Select one or more devices to use %s on for expanding the RAID Array \"%s"
 #~ "\" (%s)"
-#~ msgstr ""
-#~ "יש לבחור בהתקן אחד או יותר שישתמש ב־%s להרחבת מערך ה־RAID‏ \"%s\"‏ (%s)"
+#~ msgstr "יש לבחור בהתקן אחד או יותר שישתמש ב־%s להרחבת מערך ה־RAID‏ \"%s\"‏ (%s)"
 
 #~ msgid "_Expand"
 #~ msgstr "הר_חבה"
@@ -4915,9 +4776,9 @@ msgstr "בחינה"
 #~ msgstr "בחירת בדיקת SMART עצמית"
 
 #~ msgid ""
-#~ "The tests may take a very long time to complete depending on the speed "
-#~ "and size of the disk. You can continue using your system while the test "
-#~ "is running."
+#~ "The tests may take a very long time to complete depending on the speed and "
+#~ "size of the disk. You can continue using your system while the test is "
+#~ "running."
 #~ msgstr ""
 #~ "השלמת הבדיקות האלו יכולה לקחת זמן רב בהתאם למהירות ולגודל הכונן. ניתן "
 #~ "להמשיך להשתמש במערכת בזמן הבדיקה."
@@ -5209,17 +5070,16 @@ msgstr "בחינה"
 #~ msgstr "אין די מקום: נדרש %s אך המקטע הרציף הגדול ביותר הוא %s."
 
 #~ msgid ""
-#~ "The disk will be partitioned and a %s partition will be created. "
-#~ "Afterwards no space will be available."
+#~ "The disk will be partitioned and a %s partition will be created. Afterwards "
+#~ "no space will be available."
 #~ msgstr "הכונן יחולק ותיווצר מחיצת %s. לאחר מכן לא יישאר עוד מקום זמין."
 
 #~ msgid ""
-#~ "The disk will be partitioned and a %s partition will be created. "
-#~ "Afterwards %s will be available."
+#~ "The disk will be partitioned and a %s partition will be created. Afterwards "
+#~ "%s will be available."
 #~ msgstr "הכונן יחולק ותיווצר מחיצת %s. לאחר מכן יישארו %s של מקום פנוי."
 
-#~ msgid ""
-#~ "A %s partition will be created. Afterwards no space will be available."
+#~ msgid "A %s partition will be created. Afterwards no space will be available."
 #~ msgstr "תיווצר מחיצה מסוג %s. לאחר מכן לא יישאר עוד מקום פנוי."
 
 #~ msgid "A %s volume will be created. Afterwards no space will be available."
@@ -5448,13 +5308,13 @@ msgstr "בחינה"
 #~ msgstr "ה_צפנת ההתקן הכפוף"
 
 #~ msgid ""
-#~ "Encryption protects your data, requiring a passphrase to be entered "
-#~ "before the file system can be used. May decrease performance and may not "
-#~ "be compatible if you use the media on other operating systems."
+#~ "Encryption protects your data, requiring a passphrase to be entered before "
+#~ "the file system can be used. May decrease performance and may not be "
+#~ "compatible if you use the media on other operating systems."
 #~ msgstr ""
 #~ "הצפנה מגנה על המידע שלך על ידי דרישת מילת צופן לפני מתן האפשרות לשימוש "
-#~ "במערכת הקבצים. מצב זה עלול לפגוע בביצועים ובמידה וברשותך מערכות הפעלה "
-#~ "אחרות המדיה עלולה לא להתאים להן."
+#~ "במערכת הקבצים. מצב זה עלול לפגוע בביצועים ובמידה וברשותך מערכות הפעלה אחרות "
+#~ "המדיה עלולה לא להתאים להן."
 
 #~ msgctxt "application name"
 #~ msgid "Bourne Again Shell"
@@ -5505,8 +5365,7 @@ msgstr "בחינה"
 #~ "One or more applications are using the volume. Quit the applications, and "
 #~ "then try unmounting again."
 #~ msgstr ""
-#~ "יתכן שיש יישום אחד או יותר המשתמשים בכרך. נא לצאת מהיישומים ולנסות לנתק "
-#~ "שוב."
+#~ "יתכן שיש יישום אחד או יותר המשתמשים בכרך. נא לצאת מהיישומים ולנסות לנתק שוב."
 
 #~ msgid "Passphrases do not differ"
 #~ msgstr "מילות הצופן אינן שונות"
@@ -5521,8 +5380,7 @@ msgstr "בחינה"
 #~ msgstr "כדי ליצור התקן מוצפן, יש לבחור במילת צופן כדי להגן עליו"
 
 #~ msgid ""
-#~ "Data on this device is stored in an encrypted form protected by a "
-#~ "passphrase"
+#~ "Data on this device is stored in an encrypted form protected by a passphrase"
 #~ msgstr "הנתונים המאוחסנים על ההתקן מוצפנים ומוגנים על ידי מילת צופן"
 
 #~ msgid ""
@@ -5762,8 +5620,7 @@ msgstr "בחינה"
 #~ "Error creating a local TCP server, tried binding to ports 9000-10000 on "
 #~ "localhost"
 #~ msgstr ""
-#~ "שגיאה ביצירת שרת TCP מקומי, ארע ניסיון לאיגוד הפתחות 9000—10000 ב־"
-#~ "localhost"
+#~ "שגיאה ביצירת שרת TCP מקומי, ארע ניסיון לאיגוד הפתחות 9000—10000 ב־localhost"
 
 #~ msgid "Error setting auth mechanisms on local DBusServer\n"
 #~ msgstr "שגיאה בכת הגדרת מנגנוני האימות בשרת ה־D-Bus המקומי\n"
@@ -5781,8 +5638,8 @@ msgstr "בחינה"
 #~ msgstr "שגיאה בקריאת פלט ה־stderr: איו תוכן"
 
 #~ msgid ""
-#~ "Unexpected stderr output - expected `udisks-tcp-bridge: Waiting for "
-#~ "secret' but got `%s'"
+#~ "Unexpected stderr output - expected `udisks-tcp-bridge: Waiting for secret' "
+#~ "but got `%s'"
 #~ msgstr ""
 #~ "פלט בלתי צפוי מה־stderr — התכנה ציפתה ל־`udisks-tcp-bridge: Waiting for "
 #~ "secret' אך קיבלה `%s'"
@@ -6254,51 +6111,50 @@ msgstr "בחינה"
 #~ "תצורה נפוצה התומכת כמעט בכל התקן או מערכת קבצים, לרב משמשמת להעברת קבצים."
 
 #~ msgid ""
-#~ "This file system is compatible with Linux systems only and provides "
-#~ "classic UNIX file permissions support. This file system does not use a "
-#~ "journal."
+#~ "This file system is compatible with Linux systems only and provides classic "
+#~ "UNIX file permissions support. This file system does not use a journal."
 #~ msgstr ""
-#~ "מערכת קבצים זו תואמת רק למערכות לינוקס ומספקת תמיכה בהרשאות הקבצים "
-#~ "הקלסיות של UNIX. מערכת קבצים זו לא משתמשת במתעד."
+#~ "מערכת קבצים זו תואמת רק למערכות לינוקס ומספקת תמיכה בהרשאות הקבצים הקלסיות "
+#~ "של UNIX. מערכת קבצים זו לא משתמשת במתעד."
 
 #~ msgid ""
-#~ "This file system is compatible with Linux systems only and provides "
-#~ "classic UNIX file permissions support."
+#~ "This file system is compatible with Linux systems only and provides classic "
+#~ "UNIX file permissions support."
 #~ msgstr ""
-#~ "מערכת קבצים זו תואמת רק למערכות לינוקס ומספקת תמיכה בהרשאות הקבצים "
-#~ "הקלסיות של UNIX."
+#~ "מערכת קבצים זו תואמת רק למערכות לינוקס ומספקת תמיכה בהרשאות הקבצים הקלסיות "
+#~ "של UNIX."
 
 #~ msgid "Swap area used by the operating system for virtual memory."
 #~ msgstr "שטח ההחלפה (Swap) משמש כזיכרון הווירטואלי של מערכת ההפעלה."
 
 #~ msgid ""
-#~ "The native Windows file system. Not widely compatible with other "
-#~ "operating systems than Windows."
+#~ "The native Windows file system. Not widely compatible with other operating "
+#~ "systems than Windows."
 #~ msgstr ""
-#~ "מערכת הקבצים הטבעית של Windows. .לא תואם עם מגוון רחב של מערכות הפעלה "
-#~ "אחרות מ־Windows."
+#~ "מערכת הקבצים הטבעית של Windows. .לא תואם עם מגוון רחב של מערכות הפעלה אחרות "
+#~ "מ־Windows."
 
 #~ msgid ""
 #~ "Simple filesystem with low overhead and UNIX permissions support. Not "
 #~ "widely compatible with operating systems other than Linux and Minix."
 #~ msgstr ""
-#~ "מערכת קבצים פשוטה שמעמיסה מעט על המערכת ובעלת תמיכה בהרשאות UNIX. לא "
-#~ "נתמכת על ידי מערכות הפעלה שאינן Linux ו־Minix."
+#~ "מערכת קבצים פשוטה שמעמיסה מעט על המערכת ובעלת תמיכה בהרשאות UNIX. לא נתמכת "
+#~ "על ידי מערכות הפעלה שאינן Linux ו־Minix."
 
 #~ msgid "No file system will be created."
 #~ msgstr "לא תיווצר מערכת קבצים."
 
 #~ msgid ""
 #~ "The Master Boot Record scheme is compatible with almost any device or "
-#~ "system but has a number of limitations with respect to disk size and "
-#~ "number of partitions."
+#~ "system but has a number of limitations with respect to disk size and number "
+#~ "of partitions."
 #~ msgstr ""
 #~ "סכימת רשומת ההפעלה העיקרית (MBR) תומכת כמעט בכל התקן או מערכת קבצים אך יש "
 #~ "לה מספר מגבלות בנוגע לגודל הכונן ולמספר המחיצות."
 
 #~ msgid ""
-#~ "A legacy scheme that is incompatible with most systems except Apple "
-#~ "systems and most Linux systems. Not recommended for removable media."
+#~ "A legacy scheme that is incompatible with most systems except Apple systems "
+#~ "and most Linux systems. Not recommended for removable media."
 #~ msgstr ""
 #~ "סכימה מיושבת שאינה נתמכת ברוב המערכות למעט המערכות של Apple ורוב מערכות "
 #~ "הלינוקס. לא מומלץ למדיה נשלפת."
@@ -6311,8 +6167,8 @@ msgstr "בחינה"
 #~ "במערכות מיושנות."
 
 #~ msgid ""
-#~ "Marks the entire disk as unused. Use this option only if you want to "
-#~ "avoid partitioning the disk for e.g. whole disk use or floppy / Zip disks."
+#~ "Marks the entire disk as unused. Use this option only if you want to avoid "
+#~ "partitioning the disk for e.g. whole disk use or floppy / Zip disks."
 #~ msgstr ""
 #~ "סימון הכונן כולו כ\"לא בשימוש\". יש להשתמש באפשרות זו אם ברצונך למנוע את "
 #~ "חלוקת הכונן למחיצות כמו לדוגמה שימוש בכונן מלא או דיסקטים/תקליטוני זיפ."
@@ -6386,20 +6242,19 @@ msgstr "בחינה"
 #~ "tolerance. If a single disk in the array fails, the entire RAID-0 array "
 #~ "fails."
 #~ msgstr ""
-#~ "ערכה משוכפלת ללא זוגיות. מספקת ביצועים משופרים אך ללא עמידות בפני כשלים. "
-#~ "אם כונן יחיד במערך כושל כל מערך ה־RAID-0 ייכשל."
+#~ "ערכה משוכפלת ללא זוגיות. מספקת ביצועים משופרים אך ללא עמידות בפני כשלים. אם "
+#~ "כונן יחיד במערך כושל כל מערך ה־RAID-0 ייכשל."
 
 #~ msgid ""
 #~ "Mirrored set without parity. Provides fault tolerance and improved "
-#~ "performance for reading. RAID-1 arrays can sustain all but one disk "
-#~ "failing."
+#~ "performance for reading. RAID-1 arrays can sustain all but one disk failing."
 #~ msgstr ""
 #~ "ערכת מראה ללא זוגיות. מספקת עמידות בפני כשלים וביצועים משופרים לקריאה. "
 #~ "מערכי RAID-1 עמידים בפני כל כשל למעט כשל יחיד."
 
 #~ msgid ""
-#~ "Striped set with parity on a single disk. Provides improved performance "
-#~ "and fault tolerance. RAID-4 arrays can sustain a single disk failure."
+#~ "Striped set with parity on a single disk. Provides improved performance and "
+#~ "fault tolerance. RAID-4 arrays can sustain a single disk failure."
 #~ msgstr ""
 #~ "ערכה משוכפלת עם זוגיות על כונן יחיד. מספקת ביצועים משופרים ועמידות בפני "
 #~ "כשלים. מערכי RAID-4 יכולים לעמוד בכשל של כונן בודד."
@@ -6412,8 +6267,8 @@ msgstr "בחינה"
 #~ "מערכי RAID-5 יכולים לספוג כשל בכונן יחיד."
 
 #~ msgid ""
-#~ "Striped set with dual distributed parity. Provides improved performance "
-#~ "and fault tolerance. RAID-6 arrays can sustain two disk failures."
+#~ "Striped set with dual distributed parity. Provides improved performance and "
+#~ "fault tolerance. RAID-6 arrays can sustain two disk failures."
 #~ msgstr ""
 #~ "ערכה משוכפלת עם זוגיות מבוזרת כפולה. מספקת ביצועים משופרים ועמידות בפני "
 #~ "כשלים. מערכי RAID-6 יכולים לעמוד בכשל של שני כוננים."
@@ -6621,8 +6476,8 @@ msgstr "בחינה"
 #~ msgstr "כעת בטוח להסיר את \"%s\"."
 
 #~ msgid ""
-#~ "To prevent data loss, wait until this has finished before removing media "
-#~ "or disconnecting the device."
+#~ "To prevent data loss, wait until this has finished before removing media or "
+#~ "disconnecting the device."
 #~ msgstr ""
 #~ "כדי למנוע איבוד נתונים, יש להמתין עד לסיום לפי הוצאת מדיה או ניתוק ההתקן."
 
@@ -6672,8 +6527,8 @@ msgstr "בחינה"
 #~ "<b>WARNING:</b> Several paths to this drive has been detected but no "
 #~ "corresponding multipath device was found. Your OS may be misconfigured."
 #~ msgstr ""
-#~ "<b>שגיאה:</b> נמצאו מספר נתיבים לכונן זה אך לא נמצא התקן ריבוי נתיבים. "
-#~ "יתכן שמערכת ההפעלה שלך אינה מוגדרת כראוי."
+#~ "<b>שגיאה:</b> נמצאו מספר נתיבים לכונן זה אך לא נמצא התקן ריבוי נתיבים. יתכן "
+#~ "שמערכת ההפעלה שלך אינה מוגדרת כראוי."
 
 #~ msgid "Go to Multipath Device"
 #~ msgstr "מעבר להתקן מרובה נתיבים"
@@ -7125,8 +6980,7 @@ msgstr "בחינה"
 #~ "One or more hard disks report health problems. Click the icon to get more "
 #~ "information."
 #~ msgstr ""
-#~ "כונן קשיח אחד או יותר מדווחים על בעיות תקינות. יש ללחוץ על הסמל למידע "
-#~ "נוסף."
+#~ "כונן קשיח אחד או יותר מדווחים על בעיות תקינות. יש ללחוץ על הסמל למידע נוסף."
 
 #~| msgid "C_reate"
 #~ msgid "C_reate…"
@@ -7234,8 +7088,8 @@ msgstr "בחינה"
 #~ msgctxt "mdraid-scrub-dialog"
 #~ msgid ""
 #~ "As storage devices can develop bad blocks at any time it is valuable to "
-#~ "regularly read all blocks on all disks in a RAID array so as to catch "
-#~ "such bad blocks early.\n"
+#~ "regularly read all blocks on all disks in a RAID array so as to catch such "
+#~ "bad blocks early.\n"
 #~ "\n"
 #~ "The RAID array will remain operational for the duration of the operation "
 #~ "but performance will be impacted. For more information about data "
@@ -7245,9 +7099,9 @@ msgstr "בחינה"
 #~ "מאחר והתקני אחסון יכולים לפתח בלוקים שגויים בכל עת, כדאי לקרוא באופן קבוע "
 #~ "את כל הבלוקים על כל הכוננים במערך RAID על מנת לגלות בלוקים שגויים מוקדם.\n"
 #~ "\n"
-#~ "מערך ה-RAID יישאר שמיש במשך הפעולה אך ביצועיו יושפעו. למידע נוסף אודות "
-#~ "data scrubbing, ראה את הכתבה <a href='https://raid.wiki.kernel.org/index."
-#~ "php/RAID_Administration'>ניהול RAID</a>."
+#~ "מערך ה-RAID יישאר שמיש במשך הפעולה אך ביצועיו יושפעו. למידע נוסף אודות data "
+#~ "scrubbing, ראה את הכתבה <a href='https://raid.wiki.kernel.org/index.php/"
+#~ "RAID_Administration'>ניהול RAID</a>."
 
 #~ msgctxt "mdraid-scrub-dialog"
 #~ msgid "_Repair mismatched blocks, if possible"
