@@ -781,10 +781,12 @@ gdu_utils_show_confirmation (GtkWindow    *parent_window,
                              const gchar  *checkbox_mnemonic,
                              gboolean     *inout_checkbox_value,
                              UDisksClient *client,
-                             GList        *objects)
+                             GList        *objects,
+                             gboolean     destructive_action)
 {
   GtkWidget *check_button = NULL;
   GtkWidget *dialog;
+  GtkWidget *affirmative_button;
   gint response;
 
   dialog = gtk_message_dialog_new_with_markup (parent_window,
@@ -848,9 +850,15 @@ gdu_utils_show_confirmation (GtkWindow    *parent_window,
                           FALSE, FALSE, 0);
     }
 
-  gtk_dialog_add_button (GTK_DIALOG (dialog),
+  affirmative_button = gtk_dialog_add_button (GTK_DIALOG (dialog),
                          affirmative_verb,
                          GTK_RESPONSE_OK);
+
+  if (destructive_action) {
+      GtkStyleContext *context;
+      context = gtk_widget_get_style_context (affirmative_button);
+      gtk_style_context_add_class (context,"destructive-action");
+  }
 
   gtk_widget_grab_focus (gtk_dialog_get_widget_for_response (GTK_DIALOG (dialog), GTK_RESPONSE_CANCEL));
   gtk_widget_show_all (dialog);
@@ -1003,6 +1011,18 @@ gdu_utils_can_repair (UDisksClient *client,
     *missing_util_out = result ? g_strdup (result->missing_util) : NULL;
 
   return result ? result->available : FALSE;
+}
+
+gboolean
+gdu_utils_can_take_ownership (const gchar *fstype)
+{
+  if (g_strcmp0 (fstype, "ntfs") == 0 ||
+      g_strcmp0 (fstype, "vfat") == 0 ||
+      g_strcmp0 (fstype, "exfat") == 0)
+    {
+      return FALSE;
+    }
+  return TRUE;
 }
 
 G_LOCK_DEFINE (can_check_lock);
