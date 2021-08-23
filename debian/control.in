@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
 Uploaders: @GNOME_TEAM@
 Build-Depends: appstream-util,
-               debhelper-compat (= 12),
+               debhelper-compat (= 13),
                docbook-xsl,
                gnome-pkg-tools,
                libcanberra-gtk3-dev (>= 0.1),
