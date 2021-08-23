@@ -1,8 +1,8 @@
-gnome-disk-utility (41~beta-1) UNRELEASED; urgency=medium
+gnome-disk-utility (41~beta-1) experimental; urgency=medium
 
   * New upstream release
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 23 Aug 2021 12:29:04 +0200
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 23 Aug 2021 12:30:08 +0200
 
 gnome-disk-utility (40.2-1) unstable; urgency=medium
 
