@@ -229,6 +229,7 @@ typedef enum
   SHOW_FLAGS_VOLUME_MENU_RESIZE                = (1<<9),
   SHOW_FLAGS_VOLUME_MENU_REPAIR                = (1<<10),
   SHOW_FLAGS_VOLUME_MENU_CHECK                 = (1<<11),
+  SHOW_FLAGS_VOLUME_MENU_TAKE_OWNERSHIP        = (1<<12),
 } ShowFlagsVolumeMenu;
 
 typedef struct
@@ -263,6 +264,7 @@ static void on_devtab_drive_power_off_button_clicked (GtkButton *button, gpointe
 static void on_go_back (GSimpleAction *action, GVariant *parameter, gpointer user_data);
 static void on_drive_menu_open (GSimpleAction *action, GVariant *parameter, gpointer user_data);
 static void on_volume_menu_open (GSimpleAction *action, GVariant *parameter, gpointer user_data);
+static void on_app_menu_open (GSimpleAction *action, GVariant *parameter, gpointer user_data);
 
 static void on_drive_menu_item_view_smart (GSimpleAction *action,
                                            GVariant      *parameter,
@@ -308,6 +310,9 @@ static void on_volume_menu_item_resize (GSimpleAction *action,
 static void on_volume_menu_item_repair (GSimpleAction *action,
                                         GVariant      *parameter,
                                         gpointer       user_data);
+static void on_volume_menu_item_take_ownership (GSimpleAction *action,
+                                                GVariant      *parameter,
+                                                gpointer       user_data);
 static void on_volume_menu_item_check (GSimpleAction *action,
                                        GVariant      *parameter,
                                        gpointer       user_data);
@@ -353,6 +358,7 @@ static const GActionEntry actions[] = {
 	{ "go-back", on_go_back },
 	{ "open-drive-menu", on_drive_menu_open },
 	{ "open-volume-menu", on_volume_menu_open },
+	{ "open-app-menu", on_app_menu_open },
 
 	{ "format-disk", on_drive_menu_item_format_disk },
 	{ "create-disk-image", on_drive_menu_item_create_disk_image },
@@ -371,6 +377,7 @@ static const GActionEntry actions[] = {
 	{ "resize", on_volume_menu_item_resize },
 	{ "check-fs", on_volume_menu_item_check },
 	{ "repair-fs", on_volume_menu_item_repair },
+	{ "take-ownership", on_volume_menu_item_take_ownership },
 
 	{ "configure-fstab", on_volume_menu_item_configure_fstab },
 	{ "configure-crypttab", on_volume_menu_item_configure_crypttab },
@@ -515,6 +522,9 @@ update_for_show_flags (GduWindow *window,
   g_simple_action_set_enabled (G_SIMPLE_ACTION (g_action_map_lookup_action (G_ACTION_MAP (window),
                               "repair-fs")),
                               show_flags->volume_menu & SHOW_FLAGS_VOLUME_MENU_REPAIR);
+  g_simple_action_set_enabled (G_SIMPLE_ACTION (g_action_map_lookup_action (G_ACTION_MAP (window),
+                              "take-ownership")),
+                               show_flags->volume_menu & SHOW_FLAGS_VOLUME_MENU_TAKE_OWNERSHIP);
   g_simple_action_set_enabled (G_SIMPLE_ACTION (g_action_map_lookup_action (G_ACTION_MAP (window),
                               "check-fs")),
                               show_flags->volume_menu & SHOW_FLAGS_VOLUME_MENU_CHECK);
@@ -2676,6 +2686,9 @@ update_device_page_for_block (GduWindow          *window,
       if (!read_only && gdu_utils_can_repair (window->client, type, FALSE, NULL))
         show_flags->volume_menu |= SHOW_FLAGS_VOLUME_MENU_REPAIR;
 
+      if (!read_only && gdu_utils_can_take_ownership (type))
+        show_flags->volume_menu |= SHOW_FLAGS_VOLUME_MENU_TAKE_OWNERSHIP;
+
       if (gdu_utils_can_check (window->client, type, FALSE, NULL))
         show_flags->volume_menu |= SHOW_FLAGS_VOLUME_MENU_CHECK;
     }
@@ -3067,6 +3080,87 @@ on_volume_menu_item_repair (GSimpleAction *action,
 /* ---------------------------------------------------------------------------------------------------- */
 
 static void
+on_recursive_checkbutton (GtkToggleButton *togglebutton,
+                          gpointer         user_data)
+{
+  GtkWidget *ok_button = GTK_WIDGET (user_data);
+
+  if (gtk_toggle_button_get_active (togglebutton))
+    {
+      gtk_style_context_remove_class (gtk_widget_get_style_context (ok_button), "suggested-action");
+      gtk_style_context_add_class (gtk_widget_get_style_context (ok_button), "destructive-action");
+    }
+  else
+    {
+      gtk_style_context_remove_class (gtk_widget_get_style_context (ok_button), "destructive-action");
+      gtk_style_context_add_class (gtk_widget_get_style_context (ok_button), "suggested-action");
+    }
+}
+
+static void
+fs_take_ownership_cb (UDisksFilesystem *filesystem,
+                      GAsyncResult     *res,
+                      GduWindow        *window)
+{
+  GError *error = NULL;
+
+  if (!udisks_filesystem_call_take_ownership_finish (filesystem, res, &error))
+    {
+      gdu_utils_show_error (GTK_WINDOW (window),
+                            _("Error while taking filesystem ownership"),
+                            error);
+
+      g_error_free (error);
+    }
+}
+
+static void
+on_volume_menu_item_take_ownership (GSimpleAction *action,
+                                    GVariant      *parameter,
+                                    gpointer       user_data)
+{
+  GduWindow *window;
+  GtkBuilder *builder;
+  GVariantBuilder options_builder;
+  GtkWidget *dialog;
+  GtkWidget *recursive_checkbutton;
+  GtkWidget *ok_button;
+  UDisksObject *object;
+  UDisksFilesystem *filesystem;
+
+  window = GDU_WINDOW (user_data);
+  object = gdu_volume_grid_get_selected_device (GDU_VOLUME_GRID (window->volume_grid));
+  g_assert (object != NULL);
+  filesystem = udisks_object_peek_filesystem (object);
+
+  builder = gtk_builder_new_from_resource ("/org/gnome/Disks/ui/take-ownership-dialog.ui");
+  dialog = GTK_WIDGET (gtk_builder_get_object (builder, "take-ownership-dialog"));
+  gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (window));
+
+  ok_button = gtk_dialog_get_widget_for_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
+  recursive_checkbutton = GTK_WIDGET (gtk_builder_get_object (builder, "recursive-checkbutton"));
+  g_signal_connect (recursive_checkbutton, "toggled", G_CALLBACK (on_recursive_checkbutton), ok_button);
+
+  if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_OK)
+    {
+      g_variant_builder_init (&options_builder, G_VARIANT_TYPE_VARDICT);
+
+      if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (recursive_checkbutton)))
+        g_variant_builder_add (&options_builder, "{sv}", "recursive", g_variant_new_boolean (TRUE));
+
+      udisks_filesystem_call_take_ownership (filesystem,
+                                             g_variant_builder_end (&options_builder),
+                                             NULL,
+                                             (GAsyncReadyCallback) fs_take_ownership_cb,
+                                             window);
+    }
+
+  gtk_widget_destroy (dialog);
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+static void
 fs_check_cb (UDisksFilesystem *filesystem,
              GAsyncResult     *res,
              GduWindow        *window)
@@ -3186,10 +3280,15 @@ on_volume_menu_open (GSimpleAction *action,
                      GVariant      *parameter,
                      gpointer       user_data)
 {
-  GduWindow *window = GDU_WINDOW (user_data);
+  GduWindow *window;
 
+  window = GDU_WINDOW (user_data);
   update_all (window, FALSE);
-  gtk_popover_popup (GTK_POPOVER (window->volume_menu));
+
+  if (!gtk_widget_get_visible (window->volume_menu))
+    gtk_popover_popup (GTK_POPOVER (window->volume_menu));
+  else
+    gtk_popover_popdown (GTK_POPOVER (window->volume_menu));
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -3199,10 +3298,33 @@ on_drive_menu_open (GSimpleAction *action,
                     GVariant      *parameter,
                     gpointer       user_data)
 {
-  GduWindow *window = GDU_WINDOW (user_data);
+  GduWindow *window;
 
+  window = GDU_WINDOW (user_data);
   update_all (window, FALSE);
-  gtk_popover_popup (GTK_POPOVER (window->drive_menu));
+
+  if (!gtk_widget_get_visible (window->drive_menu))
+    gtk_popover_popup (GTK_POPOVER (window->drive_menu));
+  else
+    gtk_popover_popdown (GTK_POPOVER (window->drive_menu));
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+static void
+on_app_menu_open (GSimpleAction *action,
+                  GVariant      *parameter,
+                  gpointer       user_data)
+{
+  GduWindow *window;
+
+  window = GDU_WINDOW (user_data);
+  update_all (window, FALSE);
+
+  if (!gtk_widget_get_visible (window->app_menu))
+    gtk_popover_popup (GTK_POPOVER (window->app_menu));
+  else
+    gtk_popover_popdown (GTK_POPOVER (window->app_menu));
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -3572,7 +3694,7 @@ do_power_off (GduWindow *window)
                                         message,
                                         _("_Power Off"),
                                         NULL, NULL,
-                                        window->client, objects))
+                                        window->client, objects, FALSE))
         goto out;
     }
 
@@ -3776,7 +3898,7 @@ on_partition_delete_tool_button_clicked (GtkToolButton *button, gpointer user_da
                                     _("All data on the partition will be lost"),
                                     _("_Delete"),
                                     NULL, NULL,
-                                    window->client, objects))
+                                    window->client, objects, TRUE))
     goto out;
 
   gdu_window_ensure_unused (window,

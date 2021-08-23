@@ -73,7 +73,8 @@ gboolean        gdu_utils_show_confirmation (GtkWindow    *parent_window,
                                              const gchar  *checkbox_mnemonic,
                                              gboolean     *inout_checkbox_value,
                                              UDisksClient *client,
-                                             GList        *objects);
+                                             GList        *objects,
+                                             gboolean     destructive_action);
 
 gboolean gdu_utils_is_ntfs_available (UDisksClient *client);
 
@@ -96,6 +97,8 @@ gboolean gdu_utils_can_repair (UDisksClient *client,
                                const gchar  *fstype,
                                gboolean      flush,
                                gchar       **missing_util_out);
+
+gboolean gdu_utils_can_take_ownership (const gchar  *fstype);
 
 gboolean gdu_utils_can_check  (UDisksClient *client,
                                const gchar  *fstype,
