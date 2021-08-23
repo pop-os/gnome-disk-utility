@@ -5,8 +5,8 @@ Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.
 Uploaders: @GNOME_TEAM@
 Build-Depends: appstream-util,
                debhelper-compat (= 13),
+               dh-sequence-gnome,
                docbook-xsl,
-               gnome-pkg-tools,
                libcanberra-gtk3-dev (>= 0.1),
                libdvdread-dev (>= 4.2.0),
                libglib2.0-dev (>= 2.31.0),
