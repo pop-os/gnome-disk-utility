@@ -1,10 +1,25 @@
-gnome-disk-utility (40.1-1ubuntu1) impish; urgency=medium
+gnome-disk-utility (41~beta-1ubuntu1) UNRELEASED; urgency=medium
 
   * Merge with unstable. Remaining changes:
     - Add dont-use-libdvdread.patch:
       + Revert commit that depends on libdvdread since it's in universe
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 03 May 2021 10:52:39 +0200
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 23 Aug 2021 12:31:26 +0200
+
+gnome-disk-utility (41~beta-1) experimental; urgency=medium
+
+  * New upstream release
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 23 Aug 2021 12:30:08 +0200
+
+gnome-disk-utility (40.2-1) unstable; urgency=medium
+
+  * New upstream release
+  * Bump debhelper-compat to 13
+  * Build-Depend on dh-sequence-gnome instead of gnome-pkg-tools
+  * debian/rules: Simplify a bit
+
+ -- Jeremy Bicha <jbicha@debian.org>  Sun, 22 Aug 2021 23:32:50 -0400
 
 gnome-disk-utility (40.1-1) experimental; urgency=medium
 
