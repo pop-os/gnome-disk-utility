@@ -1,15 +1,14 @@
 #!/usr/bin/make -f
 
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
-export DEB_LDFLAGS_MAINT_APPEND = -Wl,-O1 -Wl,-z,defs -Wl,--as-needed
+export DEB_LDFLAGS_MAINT_APPEND = -Wl,-O1 -Wl,-z,defs
 
 %:
 	dh $@
 
-override_dh_install:
-	dh_install
-	# when building for Ubuntu, move menu entry from Apps → System Tools
-	# (which Ubuntu tries to avoid) to System → Administration.
-	if dpkg-vendor --is ubuntu; then \
-	    sed -i '/^Categories=/ s/$$/Settings;HardwareSettings;/' debian/gnome-disk-utility/usr/share/applications/*.desktop; \
-	fi
+# when building for Ubuntu, move menu entry from Apps → System Tools
+# (which Ubuntu tries to avoid) to System → Administration.
+ifeq ($(shell dpkg-vendor --query vendor),Ubuntu)
+execute_after_dh_install:
+	sed -i '/^Categories=/ s/$$/Settings;HardwareSettings;/' debian/gnome-disk-utility/usr/share/applications/*.desktop
+endif
