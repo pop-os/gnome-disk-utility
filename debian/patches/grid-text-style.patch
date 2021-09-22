@@ -1,0 +1,32 @@
+Index: gnome-disk-utility/src/disks/gduvolumegrid.c
+===================================================================
+--- gnome-disk-utility.orig/src/disks/gduvolumegrid.c
++++ gnome-disk-utility/src/disks/gduvolumegrid.c
+@@ -795,6 +795,7 @@ render_element (GduVolumeGrid *grid,
+ 
+   context = gtk_widget_get_style_context (GTK_WIDGET (grid));
+   gtk_style_context_save (context);
++  gtk_style_context_add_class (context, "gnome-disk-utility-grid");
+   state = gtk_widget_get_state_flags (GTK_WIDGET (grid));
+ 
+   state &= ~(GTK_STATE_FLAG_SELECTED | GTK_STATE_FLAG_FOCUSED | GTK_STATE_FLAG_ACTIVE);
+@@ -808,7 +809,6 @@ render_element (GduVolumeGrid *grid,
+ 
+   /* frames */
+   gtk_style_context_save (context);
+-  gtk_style_context_add_class (context, "gnome-disk-utility-grid");
+   gtk_style_context_get_border (context, state, &border);
+   sides = GTK_JUNCTION_NONE;
+   if (!(element->edge_flags & GRID_EDGE_TOP))
+Index: gnome-disk-utility/src/disks/ui/gdu.css
+===================================================================
+--- gnome-disk-utility.orig/src/disks/ui/gdu.css
++++ gnome-disk-utility/src/disks/ui/gdu.css
+@@ -11,6 +11,7 @@
+ }
+ 
+ .gnome-disk-utility-grid:selected {
++	color: @theme_selected_fg_color;
+ 	background-image: -gtk-gradient(radial,
+ 	                              center center, 0,
+ 	                              center center, 1,
