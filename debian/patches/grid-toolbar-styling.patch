@@ -1,0 +1,47 @@
+Changes to correct the visual appearance of the Volume Grid toolbar. The upstream toolbar
+is rather ugly and has a linked box that creates buttons with rounded and straight corners.
+
+Instead, we blend the toolbar into the grid above making the entire thing look like a 
+single contiguous widget. This helps enforce the UX connection of the toolbar to the
+grid, and visually looks appealing.
+--- a/src/disks/ui/gdu.css
++++ b/src/disks/ui/gdu.css
+@@ -7,7 +7,26 @@
+ }
+ 
+ #devtab-grid-toolbar {
+-	border-top-width: 1px;
++	padding: 0;
++	border: none;
++
++}
++
++#devtab-grid-toolbar separator {
++	background: none;
++	border: 1px solid @unfocused_borders;
++}
++
++#devtab-grid-toolbar * {
++	border-radius: 0;
++}
++
++#devtab-grid-toolbar *:first-child {
++	border-bottom-left-radius: 4px;
++}
++
++#devtab-grid-toolbar *:last-child {
++	border-bottom-right-radius: 4px;
+ }
+ 
+ .gnome-disk-utility-grid:selected {
+--- a/src/disks/ui/disks.ui
++++ b/src/disks/ui/disks.ui
+@@ -808,7 +808,7 @@
+                                           <object class="GtkSeparator">
+                                             <property name="visible">True</property>
+                                             <property name="can-focus">False</property>
+-                                            <property name="halign">GTK_ALIGN_START</property>
++                                            <property name="halign">GTK_ALIGN_FILL</property>
+                                           </object>
+                                           <packing>
+                                             <property name="expand">True</property>
