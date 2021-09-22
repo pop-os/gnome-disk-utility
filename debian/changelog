@@ -1,8 +1,9 @@
-gnome-disk-utility (41.0-1) UNRELEASED; urgency=medium
+gnome-disk-utility (41.0-1) unstable; urgency=medium
 
   * New upstream release
+  * Release to unstable
 
- -- Jeremy Bicha <jbicha@debian.org>  Tue, 21 Sep 2021 20:24:21 -0400
+ -- Jeremy Bicha <jbicha@debian.org>  Tue, 21 Sep 2021 20:25:08 -0400
 
 gnome-disk-utility (41~rc-1) experimental; urgency=medium
 
