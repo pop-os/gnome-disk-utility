@@ -35,7 +35,7 @@ Vcs-Browser: https://salsa.debian.org/gnome-team/gnome-disk-utility/tree/ubuntu/
 Homepage: https://wiki.gnome.org/Apps/Disks
 
 Package: gnome-disk-utility
-Architecture: linux-any
+Architecture: amd64
 Depends: udisks2 (>= 2.7.6),
          ${misc:Depends},
          ${shlibs:Depends},
