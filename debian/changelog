@@ -1,3 +1,9 @@
+gnome-disk-utility (41.0-1ubuntu1pop0) impish; urgency=medium
+
+  * Pop!_OS patches
+
+ -- Jeremy Soller <jeremy@system76.com>  Thu, 07 Oct 2021 12:25:33 -0600
+
 gnome-disk-utility (41.0-1ubuntu1) impish; urgency=medium
 
   * Merge with unstable. Remaining changes:
