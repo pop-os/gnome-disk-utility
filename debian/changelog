@@ -1,10 +1,10 @@
-gnome-disk-utility (42~beta-1ubuntu1) UNRELEASED; urgency=medium
+gnome-disk-utility (42~beta-1ubuntu1) jammy; urgency=medium
 
   * Merge with unstable. Remaining changes:
     - Add dont-use-libdvdread.patch:
       + Revert commit that depends on libdvdread since it's in universe
 
- -- Jeremy Bicha <jeremy.bicha@canonical.com>  Fri, 11 Feb 2022 14:49:54 -0500
+ -- Jeremy Bicha <jeremy.bicha@canonical.com>  Fri, 11 Feb 2022 14:50:17 -0500
 
 gnome-disk-utility (42~beta-1) experimental; urgency=medium
 
