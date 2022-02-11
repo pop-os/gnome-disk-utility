@@ -62,10 +62,8 @@ typedef struct
   GtkWidget *stop_selftest_button;
   GtkWidget *refresh_button;
 
-  GtkWidget *selftest_menu;
-  GtkWidget *selftest_short_menuitem;
-  GtkWidget *selftest_extended_menuitem;
-  GtkWidget *selftest_conveyance_menuitem;
+  guint timeout_id;
+  gulong notify_id;
 } DialogData;
 
 static const struct {
@@ -85,10 +83,6 @@ static const struct {
   {G_STRUCT_OFFSET (DialogData, self_assessment_label), "self-assessment-label"},
   {G_STRUCT_OFFSET (DialogData, overall_assessment_label), "overall-assessment-label"},
   {G_STRUCT_OFFSET (DialogData, attributes_treeview), "attributes-treeview"},
-  {G_STRUCT_OFFSET (DialogData, selftest_menu), "selftest-menu"},
-  {G_STRUCT_OFFSET (DialogData, selftest_short_menuitem), "selftest-short-menuitem"},
-  {G_STRUCT_OFFSET (DialogData, selftest_extended_menuitem), "selftest-extended-menuitem"},
-  {G_STRUCT_OFFSET (DialogData, selftest_conveyance_menuitem), "selftest-conveyance-menuitem"},
 
   {G_STRUCT_OFFSET (DialogData, start_selftest_button), "start-selftest-button"},
   {G_STRUCT_OFFSET (DialogData, stop_selftest_button), "stop-selftest-button"},
@@ -1398,7 +1392,8 @@ selftest_do (DialogData  *data,
 }
 
 static void
-on_selftest_short (GtkMenuItem *menu_item,
+on_selftest_short (GAction     *action,
+                   GVariant    *parameter,
                    gpointer     user_data)
 {
   DialogData *data = user_data;
@@ -1406,7 +1401,8 @@ on_selftest_short (GtkMenuItem *menu_item,
 }
 
 static void
-on_selftest_extended (GtkMenuItem *menu_item,
+on_selftest_extended (GAction     *action,
+                      GVariant    *parameter,
                       gpointer     user_data)
 {
   DialogData *data = user_data;
@@ -1414,8 +1410,9 @@ on_selftest_extended (GtkMenuItem *menu_item,
 }
 
 static void
-on_selftest_conveyance (GtkMenuItem *menu_item,
-                        gpointer     user_data)
+on_selftest_conveyance (GAction     *action,
+                      GVariant    *parameter,
+                      gpointer     user_data)
 {
   DialogData *data = user_data;
   selftest_do (data, "conveyance");
@@ -1476,6 +1473,44 @@ on_enabled_switch_notify_active (GObject    *object,
 
 /* ---------------------------------------------------------------------------------------------------- */
 
+static void
+on_dialog_response (GtkDialog *dialog,
+                    gint       response,
+                    gpointer   user_data)
+{
+  DialogData *data = user_data;
+
+  /* Keep in sync with .ui file */
+  if (response > 0) {
+    switch (response)
+      {
+      case 0:
+        /* handled by GtkMenuButton */
+        break;
+      case 1:
+        selftest_do (data, "abort");
+        return;
+      case 2:
+        refresh_do (data);
+        return;
+      default:
+        g_assert_not_reached ();
+      }
+  }
+
+  gtk_widget_destroy (GTK_WIDGET (dialog));
+
+  if (data->timeout_id) {
+    g_source_remove (data->timeout_id);
+    data->timeout_id = 0;
+  }
+  if (data->notify_id) {
+    g_signal_handler_disconnect (data->ata, data->notify_id);
+    data->notify_id = 0;
+  }
+  dialog_data_unref (data);
+}
+
 void
 gdu_ata_smart_dialog_show (GduWindow    *window,
                            UDisksObject *object)
@@ -1484,8 +1519,8 @@ gdu_ata_smart_dialog_show (GduWindow    *window,
   guint n;
   GtkTreeViewColumn *column;
   GtkCellRenderer *renderer;
-  gulong notify_id;
-  guint timeout_id;
+  GSimpleActionGroup *group;
+  GSimpleAction *action;
 
   data = g_new0 (DialogData, 1);
   data->ref_count = 1;
@@ -1642,45 +1677,30 @@ gdu_ata_smart_dialog_show (GduWindow    *window,
 
   gtk_window_set_transient_for (GTK_WINDOW (data->dialog), GTK_WINDOW (window));
 
-  notify_id = g_signal_connect (data->ata, "notify", G_CALLBACK (on_ata_notify), data);
-  timeout_id = g_timeout_add_seconds (1, on_timeout, data);
+  data->notify_id = g_signal_connect (data->ata, "notify", G_CALLBACK (on_ata_notify), data);
+  data->timeout_id = g_timeout_add_seconds (1, on_timeout, data);
 
-  g_signal_connect (data->selftest_short_menuitem, "activate", G_CALLBACK (on_selftest_short), data);
-  g_signal_connect (data->selftest_extended_menuitem, "activate", G_CALLBACK (on_selftest_extended), data);
-  g_signal_connect (data->selftest_conveyance_menuitem, "activate", G_CALLBACK (on_selftest_conveyance), data);
+  group = g_simple_action_group_new ();
+
+  action = g_simple_action_new ("short", NULL);
+  g_signal_connect (action, "activate", G_CALLBACK (on_selftest_short), data);
+  g_simple_action_group_insert (group, G_ACTION (action));
+
+  action = g_simple_action_new ("extended", NULL);
+  g_signal_connect (action, "activate", G_CALLBACK (on_selftest_extended), data);
+  g_simple_action_group_insert (group, G_ACTION (action));
+
+  action = g_simple_action_new ("conveyance", NULL);
+  g_signal_connect (action, "activate", G_CALLBACK (on_selftest_conveyance), data);
+  g_simple_action_group_insert (group, G_ACTION (action));
+
+  gtk_widget_insert_action_group (GTK_WIDGET (data->dialog), "test", G_ACTION_GROUP (group));
 
   update_dialog (data);
   gtk_widget_grab_focus (data->attributes_treeview);
 
   g_signal_connect (data->enabled_switch, "notify::active", G_CALLBACK (on_enabled_switch_notify_active), data);
+  g_signal_connect (data->dialog, "response", G_CALLBACK (on_dialog_response), data);
 
-  while (TRUE)
-    {
-      gint response;
-      response = gtk_dialog_run (GTK_DIALOG (data->dialog));
-
-      if (response < 0)
-        break;
-
-      /* Keep in sync with .ui file */
-      switch (response)
-        {
-        case 0:
-          /* handled by GtkMenuButton */
-          break;
-        case 1:
-          selftest_do (data, "abort");
-          break;
-        case 2:
-          refresh_do (data);
-          break;
-        default:
-          g_assert_not_reached ();
-        }
-    }
-
-  g_source_remove (timeout_id);
-  g_signal_handler_disconnect (data->ata, notify_id);
-
-  dialog_data_unref (data);
+  gtk_window_present (GTK_WINDOW (data->dialog));
 }

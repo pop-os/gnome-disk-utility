@@ -1,3 +1,36 @@
+42.beta - February 11, 2022
+===========================
+
+Kai Lüke:
+ * Restore old window destruction to fix data retrieval
+
+Updated translations:
+ * Marek Černocký (cs), Matej Urbančič (sl), Quentin PAGÈS (oc),
+   Rafael Fontenelle (pt_BR), sicklylife (ja)
+
+42.alpha - January 7, 2022
+==========================
+
+Alexander Mikhaylenko:
+ * Support dark theme preference (required to bump libhandy to 1.5.0)
+
+Maximiliano Sandoval R:
+ * Rewrite GUI parts to avoid deprecated things and prepare for GTK 4
+
+Ian Santopietro:
+ * Improve the visual appearance of the devtab toolbar
+
+Sophie Herold:
+ * metainfo: Align app name with .desktop name
+
+Updated translations:
+ * Alexey Rubtsov (ru), Asier Sarasua Garmendia (eu), Boyuan Yang (zh_CN),
+   Daniel Mustieles (es), Dušan Kazik (sk), Fabio Tomat (fur),
+   Fran Dieguez (gl), Goran Vidović (hr), Hugo Carvalho (pt),
+   Kukuh Syafaat (id), MohammadSaleh Kamyab (fa), Ngọc Quân Trần (vi),
+   Quentin PAGÈS (oc), Rūdolfs Mazurs (lv), Yaron Shahrabani (he),
+   Yuri Chornoivan (uk), Марко Костић (sr)
+
 41.0 - September 18, 2021
 =========================
 

@@ -322,6 +322,12 @@ shortcuts_activated (GSimpleAction *action,
 }
 
 static void
+on_about_dialog_response (GtkDialog *dialog)
+{
+  gtk_widget_destroy (GTK_WIDGET (dialog));
+}
+
+static void
 about_activated (GSimpleAction *action,
                  GVariant      *parameter,
                  gpointer       user_data)
@@ -347,13 +353,9 @@ about_activated (GSimpleAction *action,
   g_free (s);
 
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (app->window));
-  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
   gtk_widget_show_all (dialog);
-  g_object_ref (dialog);
-  gtk_dialog_run (GTK_DIALOG (dialog));
-  gtk_widget_hide (dialog);
-  gtk_widget_destroy (dialog);
-  g_object_unref (dialog);
+  g_signal_connect (dialog, "response", on_about_dialog_response, NULL);
+  gtk_window_present (GTK_WINDOW (dialog));
 }
 
 static void
@@ -421,6 +423,8 @@ gdu_application_startup (GApplication *_app)
     G_APPLICATION_CLASS (gdu_application_parent_class)->startup (_app);
 
   hdy_init ();
+  hdy_style_manager_set_color_scheme (hdy_style_manager_get_default (),
+                                      HDY_COLOR_SCHEME_PREFER_LIGHT);
 
   g_action_map_add_action_entries (G_ACTION_MAP (app), app_entries, G_N_ELEMENTS (app_entries), app);
 

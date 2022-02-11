@@ -1,3 +1,18 @@
+gnome-disk-utility (42~beta-1ubuntu1) UNRELEASED; urgency=medium
+
+  * Merge with unstable. Remaining changes:
+    - Add dont-use-libdvdread.patch:
+      + Revert commit that depends on libdvdread since it's in universe
+
+ -- Jeremy Bicha <jeremy.bicha@canonical.com>  Fri, 11 Feb 2022 14:49:54 -0500
+
+gnome-disk-utility (42~beta-1) experimental; urgency=medium
+
+  * New upstream release
+  * debian/control.in: Bump minimum libhandy to 1.5.0
+
+ -- Jeremy Bicha <jeremy.bicha@canonical.com>  Fri, 11 Feb 2022 14:46:02 -0500
+
 gnome-disk-utility (41.0-1ubuntu1) impish; urgency=medium
 
   * Merge with unstable. Remaining changes:
