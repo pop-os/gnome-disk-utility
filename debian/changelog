@@ -1,8 +1,8 @@
-gnome-disk-utility (42~rc-1) UNRELEASED; urgency=medium
+gnome-disk-utility (42~rc-1) unstable; urgency=medium
 
   * New upstream release
 
- -- Jeremy Bicha <jeremy.bicha@canonical.com>  Tue, 08 Mar 2022 16:50:19 -0500
+ -- Jeremy Bicha <jeremy.bicha@canonical.com>  Tue, 08 Mar 2022 16:50:29 -0500
 
 gnome-disk-utility (42~beta-2) unstable; urgency=medium
 
