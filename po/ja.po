@@ -22,7 +22,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-disk-utility/"
 "issues\n"
 "POT-Creation-Date: 2021-09-18 09:14+0000\n"
-"PO-Revision-Date: 2022-02-09 21:00+0900\n"
+"PO-Revision-Date: 2022-03-15 22:00+0900\n"
 "Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
@@ -153,14 +153,14 @@ msgstr "マウント(_M)"
 #. Add a RO check button that defaults to RO
 #: src/disk-image-mounter/main.c:94
 msgid "Set up _read-only mount"
-msgstr "読み込み専用マウントに設定(_R)"
+msgstr "読み取り専用マウントに設定(_R)"
 
 #: src/disk-image-mounter/main.c:95
 msgid ""
 "If checked, the mount will be read-only. This is useful if you don’t want "
 "the underlying disk image to be modified"
 msgstr ""
-"チェックした場合、読み込み専用としてマウントします。基のディスクイメージを変"
+"チェックした場合、読み取り専用としてマウントします。基のディスクイメージを変"
 "更されたくない場合に便利です。"
 
 #: src/disk-image-mounter/main.c:136
@@ -1333,7 +1333,7 @@ msgstr "%s のディスクイメージ (%s).img"
 #.
 #: src/disks/gducreatediskimagedialog.c:307
 msgid "Disk image read error"
-msgstr "ディスクイメージ読み込みエラー"
+msgstr "ディスクイメージ読み取りエラー"
 
 #: src/disks/gducreatediskimagedialog.c:343
 msgid "Allocating Disk Image"
@@ -1349,7 +1349,7 @@ msgstr "DVD のキーを取得中"
 #: src/disks/gducreatediskimagedialog.c:356
 #, c-format
 msgid "%s unreadable (replaced with zeroes)"
-msgstr "%s は読み込めません (ゼロに置き換えました)"
+msgstr "%s は読み取れません (ゼロに置き換えました)"
 
 #. Translators: A descriptive string for the 'complete' sound, see CA_PROP_EVENT_DESCRIPTION
 #: src/disks/gducreatediskimagedialog.c:410
@@ -1364,7 +1364,7 @@ msgstr "ディスクイメージの作成中にエラーが発生しました"
 #. Translators: Primary message in dialog shown if some data was unreadable while creating a disk image
 #: src/disks/gducreatediskimagedialog.c:480
 msgid "Unrecoverable read errors while creating disk image"
-msgstr "ディスクイメージの作成中に修復できない読み込みエラーが発生しました"
+msgstr "ディスクイメージの作成中に修復できない読み取りエラーが発生しました"
 
 #. Translators: Secondary message in dialog shown if some data was unreadable while creating a disk image.
 #. * The %f is the percentage of unreadable data (ex. 13.0).
@@ -1378,7 +1378,7 @@ msgid ""
 "zeroes in the created disk image file. This typically happens if the medium "
 "is scratched or if there is physical damage to the drive"
 msgstr ""
-"%2.1f%% (%s) のデータ (デバイス %s 上) が読み込めず、作成したディスクイメージ"
+"%2.1f%% (%s) のデータ (デバイス %s 上) が読み取れず、作成したディスクイメージ"
 "ファイルでは 0 に置き換えられています。これは主に、メディアに傷がある場合やド"
 "ライブに物理的損傷がある場合に発生します。"
 
@@ -2098,7 +2098,7 @@ msgstr "アタッチ(_A)"
 #. Add a RO check button that defaults to RO
 #: src/disks/gduwindow.c:826
 msgid "Set up _read-only loop device"
-msgstr "ループデバイスを読み込み専用に設定する(_R)"
+msgstr "ループデバイスを読み取り専用に設定する(_R)"
 
 #: src/disks/gduwindow.c:827
 msgid ""
@@ -2329,8 +2329,8 @@ msgid ""
 "The check may take a long time, especially if the partition contains a lot "
 "of data."
 msgstr ""
-"パーティションに大量のデータがある場合は、チェックに長い時間がかかるかもしれ"
-"ません。"
+"パーティションに大量のデータがある場合、チェックに長い時間がかかるかもしれま"
+"せん。"
 
 #: src/disks/gduwindow.c:3544
 msgid "An error occurred when trying to put the drive into standby mode"
@@ -3203,7 +3203,7 @@ msgstr "チェックした場合、システム起動時にデバイスをロッ
 
 #: src/disks/ui/edit-crypttab-dialog.ui:289
 msgid "Require additional authori_zation to unlock"
-msgstr "ロック解除時に追加の認証を必要とする(_Z)"
+msgstr "ロック解除時に追加の認証を要求する(_Z)"
 
 #: src/disks/ui/edit-crypttab-dialog.ui:295
 msgid ""
@@ -3342,7 +3342,7 @@ msgstr ""
 
 #: src/disks/ui/edit-fstab-dialog.ui:288
 msgid "Require additional authori_zation to mount"
-msgstr "マウント時に追加の認証を必要とする(_Z)"
+msgstr "マウント時に追加の認証を要求する(_Z)"
 
 #: src/disks/ui/edit-fstab-dialog.ui:293 src/disks/ui/edit-fstab-dialog.ui:294
 msgid ""
@@ -3488,8 +3488,8 @@ msgstr ""
 "ファイルシステムのサイズ変更はデータ損失につながる可能性があるため、作業前に"
 "データをバックアップしておくことをお勧めします。サイズ変更時に移動させる必要"
 "があるデータ量が多いほど、作業に時間がかかります。最小サイズは現在の内容を元"
-"に算出されます。ファイルシステムが高速かつ確実に動作するように、ある程度の空"
-"き領域を確保してください。"
+"に算出されます。ファイルシステムが高速かつ確実に動作するように、ある程度余裕"
+"のある容量を確保してください。"
 
 #: src/disks/ui/resize-dialog.ui:189
 msgid "_Difference"
@@ -3641,6 +3641,14 @@ msgstr "セルフテストを停止(_S)"
 msgid "Click to stop the SMART self-test currently in progress"
 msgstr "クリックすると現在実行中の SMART セルフテストを停止します"
 
+#: src/disks/ui/smart-dialog.ui:51
+msgid "Close"
+msgstr "閉じる"
+
+#: src/disks/ui/smart-dialog.ui:59
+msgid "Refresh"
+msgstr "更新"
+
 #: src/disks/ui/smart-dialog.ui:63
 msgid "Click to force re-reading SMART data from the hard disk"
 msgstr ""
@@ -3674,17 +3682,17 @@ msgstr "クリックするとハードディスクの SMART の有効/無効を�
 msgid "SMART _Attributes"
 msgstr "SMART 属性(_A)"
 
-#: src/disks/ui/smart-dialog.ui:364
-msgid "Short"
-msgstr "Short"
+#: src/disks/ui/smart-dialog.ui:334
+msgid "_Short"
+msgstr ""
 
-#: src/disks/ui/smart-dialog.ui:372
-msgid "Extended"
-msgstr "Extended"
+#: src/disks/ui/smart-dialog.ui:338
+msgid "_Extended"
+msgstr ""
 
-#: src/disks/ui/smart-dialog.ui:380
-msgid "Conveyance"
-msgstr "Conveyance"
+#: src/disks/ui/smart-dialog.ui:342
+msgid "_Conveyance"
+msgstr ""
 
 #: src/disks/ui/take-ownership-dialog.ui:4
 msgid "Confirm Taking Ownership"
