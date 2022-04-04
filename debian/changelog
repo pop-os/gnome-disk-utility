@@ -1,3 +1,9 @@
+gnome-disk-utility (42.0-1ubuntu1pop0) jammy; urgency=medium
+
+  * Pop!_OS patches
+
+ -- Jeremy Soller <jeremy@system76.com>  Mon, 04 Apr 2022 13:42:55 -0600
+
 gnome-disk-utility (42.0-1ubuntu1) jammy; urgency=medium
 
   * Merge with unstable. Remaining changes:
